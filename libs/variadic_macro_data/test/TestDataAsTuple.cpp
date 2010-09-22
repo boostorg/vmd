@@ -2,6 +2,7 @@
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/list/size.hpp>
 #include <boost/preprocessor/seq/size.hpp>
+#include <boost/preprocessor/tuple/rem.hpp>
 #include <vector>
 #include <boost/type_traits/is_same.hpp>
 
@@ -38,8 +39,12 @@ int main()
   VMD_PP_REPEAT_TUPLE(VMD_TEST_ADD_TO_INT,VMD_TEST_TUPLE_NUMBERS)
   
   addedNumber += VMD_DATA_ELEMENT(5,VMD_PP_TUPLE_TO_DATA(VMD_TEST_TUPLE_NUMBERS));
+  addedNumber += VMD_DATA_ELEMENT(3,VMD_PP_TUPLE_REM(VMD_PP_TUPLE_SIZE(VMD_TEST_TUPLE_NUMBERS))(23,45,147,6,7743,12,67,43,89045,82));
+  addedNumber += VMD_DATA_ELEMENT(4,VMD_PP_TUPLE_REM_CTOR(VMD_TEST_TUPLE_NUMBERS));
   
-  BOOST_TEST_EQ(addedNumber,23+45+147+6+7743+12+67+43+89045+82+12);
+  VMD_PP_TUPLE_EAT(VMD_PP_TUPLE_SIZE(VMD_TEST_TUPLE_NUMBERS))(23,45,147,6,7743,12,67,43,89045,82)
+  
+  BOOST_TEST_EQ(addedNumber,23+45+147+6+7743+12+67+43+89045+82+12+6+7743);
   
   int listSize(BOOST_PP_LIST_SIZE(VMD_PP_TUPLE_TO_LIST(VMD_TEST_TUPLE_NUMBERS2)));
   
