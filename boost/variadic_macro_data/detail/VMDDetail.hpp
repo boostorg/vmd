@@ -9,6 +9,8 @@
 #include <boost/preprocessor/tuple/reverse.hpp>
 #include <boost/preprocessor/tuple/to_list.hpp>
 #include <boost/preprocessor/tuple/to_seq.hpp>
+#include <boost/preprocessor/tuple/rem.hpp>
+#include <boost/preprocessor/tuple/eat.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
 #define VMD_DETAIL_ARG_N( \
@@ -70,6 +72,15 @@
 /**/
 #define VMD_DETAIL_PP_TUPLE_SIZE(tuple) \
   VMD_DETAIL_DATA_SIZE(VMD_DETAIL_PP_TUPLE_TO_DATA(tuple)) \
+/**/
+#define VMD_DETAIL_PP_TUPLE_EAT(size) \
+  BOOST_PP_TUPLE_EAT(size) \
+/**/
+#define VMD_DETAIL_PP_TUPLE_REM(size) \
+  BOOST_PP_TUPLE_REM(size) \
+/**/
+#define VMD_DETAIL_PP_TUPLE_REM_CTOR(size,tuple) \
+  BOOST_PP_TUPLE_REM_CTOR(size,tuple) \
 /**/
 #define VMD_DETAIL_PP_TUPLE_REVERSE(size,tuple) \
   BOOST_PP_TUPLE_REVERSE(size,tuple) \

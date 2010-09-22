@@ -190,10 +190,10 @@
     returns = the number of elements in the tuple,
               commonly referred to as the tuple size.
               
-    In the Boost PP library there is no way to calculate 
-    the size of a tuple, so that the size must be known 
+    In the Boost PP library there is no way to calculate
+    the size of a tuple, so that the size must be known
     in order to be used by Boost PP library tuple macros.
-    With variadic macros the size of a tuple can be 
+    With variadic macros the size of a tuple can be
     calculated from the tuple itself.
     
     When using the results of this macro as the first parameter
@@ -234,6 +234,70 @@
 */
 #define VMD_PP_TUPLE_ELEM(n,tuple) \
   VMD_DETAIL_PP_TUPLE_ELEM(VMD_PP_TUPLE_SIZE(tuple),n,tuple) \
+/**/
+
+/// Expands to a macro that eats a tuple of the specified size.
+/**
+
+    size = the number of elements in the subsequent tuple.
+
+    returns = a macro which eats a subsequent tuple. 
+              This means that when applied to the subsequent tuple the returned macro expands to nothing.
+    
+    This macro is a replacement for BOOST_PP_TUPLE_EAT when the count
+    parameter is calculated with either VMD_DATA_SIZE(...) or
+    VMD_PP_TUPLE_SIZE(tuple). In that case BOOST_PP_TUPLE_EAT will
+    not expand properly but using this macro, which delays the call
+    to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or
+    VMD_PP_TUPLE_SIZE(tuple) are fully expanded, does work properly.
+    
+*/
+#define VMD_PP_TUPLE_EAT(size) \
+  VMD_DETAIL_PP_TUPLE_EAT(size) \
+/**/
+
+/// Expands to a macro that removes the parentheses from a tuple of the specified size.
+/**
+
+    size = the number of elements in the subsequent tuple.
+
+    returns = a macro which can remove the parentheses from a subsequent tuple.
+    
+    This macro is a replacement for BOOST_PP_TUPLE_REM when the count 
+    parameter is calculated with either VMD_DATA_SIZE(...) or
+    VMD_PP_TUPLE_SIZE(tuple). In that case BOOST_PP_TUPLE_REM will
+    not expand properly but using this macro, which delays the call 
+    to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or 
+    VMD_PP_TUPLE_SIZE(tuple) are fully expanded, does work properly.
+    
+*/
+#define VMD_PP_TUPLE_REM(size) \
+  VMD_DETAIL_PP_TUPLE_REM(size) \
+/**/
+
+/// Expands to a series of tokens which are equivalent to removing the parentheses from a tuple.
+/**
+
+    tuple = a Boost PP library tuple data type.
+
+    returns = a series of comma-separated tokens equivalent to removing the parentheses from a tuple.
+    
+              This result is actually equivalent to the form of variadic macro data
+              and can be used as an alternative to VMD_PP_TUPLE_TO_DATA to convert
+              the tuple to variadic macro data.
+              
+    In the Boost PP library there is no way to calculate 
+    the size of a tuple, so that the size must be known 
+    in order to be used by Boost PP library tuple macros.
+    With variadic macros the size of a tuple can be 
+    calculated from the tuple itself.
+    
+    Therefore this macro is a replacement for the BOOST_PP_TUPLE_REM_CTOR
+    macro without the necessity of having to pass a size.
+    
+*/
+#define VMD_PP_TUPLE_REM_CTOR(tuple) \
+  VMD_DETAIL_PP_TUPLE_REM_CTOR(VMD_PP_TUPLE_SIZE(tuple),tuple) \
 /**/
 
 /// Expands to a tuple whose elements are in reversed order.
