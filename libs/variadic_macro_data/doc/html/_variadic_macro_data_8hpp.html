@@ -33,6 +33,9 @@
 <code>#include &lt;boost/preprocessor/array/data.hpp&gt;</code><br/>
 <code>#include &lt;boost/preprocessor/list/to_tuple.hpp&gt;</code><br/>
 <code>#include &lt;boost/preprocessor/seq/to_tuple.hpp&gt;</code><br/>
+<code>#include &lt;boost/preprocessor/tuple/rem.hpp&gt;</code><br/>
+<code>#include &lt;boost/preprocessor/tuple/eat.hpp&gt;</code><br/>
+<code>#include &lt;boost/preprocessor/repetition/repeat.hpp&gt;</code><br/>
 <code>#include &quot;detail/VMDDetail.hpp&quot;</code><br/>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
@@ -79,12 +82,12 @@ Defines</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A replacement macro for BOOST_PP_REPEAT where count is the tuple data size.  <a href="#aaa1566ca3ab8c1240be3b4a70825f470"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>The term 'Boost PP library' in this dopcumentation is shorthand for the Boost preprocessor library.</p>
 <p>The macros provide support for variadic macro usage as well as integrating variadic macros with the Boost PP library without changing anything in the Boost PP library in any way. The latter is done by providing means of converting variadic macro data to Boost PP data types and by providing means of converting Boost PP data types back to variadic macro data.</p>
 <p>The macros will only work for compilers in which the Boost configuration macro, BOOST_NO_VARIADIC_MACROS, is not defined.</p>
 <p>Currently All of the macros in this library begin with the prefix of VMD_. If this library were accepted as a Boost library, the macros could be changed to start with a prefix of BOOST_VMD_ .</p>
-<p>The term 'Boost PP library' in this dopcumentation is shorthand for the Boost preprocessor library.</p>
-<p>The word DATA in the name of the macros refers to variadic macro data, as represented by '...' when passed as the final parameter of a variadic macro and as __VA_ARGS__ when expanded by the variadic macro definition.</p>
-<p>The words TUPLE, ARRAY, LIST, and SEQ in the name of the macros refer to the Boost PP library data types of tuples, arrays, lists, and sequences respectively. All mention in the comments of tuples, arrays, lists, and sequences refer to the Boost PP library definitions of these data types.</p>
+<p>The word DATA in the name of some of the macros refers to variadic macro data, as represented by '...' when passed as the final parameter of a variadic macro and as __VA_ARGS__ when expanded by the variadic macro definition.</p>
+<p>The words TUPLE, ARRAY, LIST, and SEQ in the name of some of the macros refer to the Boost PP library data types of tuples, arrays, lists, and sequences respectively. All mention in the comments of tuples, arrays, lists, and sequences refer to the Boost PP library definitions of these data types.</p>
 <p>The macros can be divided into these groups of functionality:</p>
 <ul>
 <li>Macros which directly support variadic macro data processing.<ul>
@@ -112,11 +115,13 @@ Defines</h2></td></tr>
 <li><a class="el" href="_variadic_macro_data_8hpp.html#a8c81c6e964c9fb60b850c6cb1f71382d" title="Expands to a tuple whose elements are in reversed order.">VMD_PP_TUPLE_REVERSE(tuple)</a></li>
 <li><a class="el" href="_variadic_macro_data_8hpp.html#ab4f99fd1f6008a036db7fc9b92583e38" title="Expands to a list whose elements are the same as a tuple.">VMD_PP_TUPLE_TO_LIST(tuple)</a></li>
 <li><a class="el" href="_variadic_macro_data_8hpp.html#a1399f161c3a47bb2d39b49e9b4c9432b" title="Expands to a sequence whose elements are the same as a tuple.">VMD_PP_TUPLE_TO_SEQ(tuple)</a></li>
+<li><a class="el" href="_variadic_macro_data_8hpp.html#aaa1566ca3ab8c1240be3b4a70825f470" title="A replacement macro for BOOST_PP_REPEAT where count is the tuple data size.">VMD_PP_REPEAT_TUPLE(macro,tuple)</a></li>
 </ul>
 </li>
-<li>Macros which allow the Boost PP macro functionality of BOOST_PP_REPEAT to be used when the 'count' parameter is calculated from ._SIZE macros in this library.<ul>
-<li><a class="el" href="_variadic_macro_data_8hpp.html#a475143272d92866fdc88cfcff2c7d8cf" title="A replacement macro for BOOST_PP_REPEAT where count is calculated.">VMD_PP_REPEAT(count,macro,data)</a></li>
-<li><a class="el" href="_variadic_macro_data_8hpp.html#aaa1566ca3ab8c1240be3b4a70825f470" title="A replacement macro for BOOST_PP_REPEAT where count is the tuple data size.">VMD_PP_REPEAT_TUPLE(macro,tuple)</a> </li>
+<li>Macros which allow the Boost PP macro functionality to be used when the 'count' or 'size' parameter is calculated from .._SIZE macros in this library and one is using Microsoft's Visual C++.<ul>
+<li><a class="el" href="_variadic_macro_data_8hpp.html#a112de8b9571ff160beab7e9d1e66a011" title="Expands to a macro that eats a tuple of the specified size.">VMD_PP_TUPLE_EAT(size)</a></li>
+<li><a class="el" href="_variadic_macro_data_8hpp.html#a1facbd95654768f329db54b76f009b40" title="Expands to a macro that removes the parentheses from a tuple of the specified size.">VMD_PP_TUPLE_REM(size)</a></li>
+<li><a class="el" href="_variadic_macro_data_8hpp.html#a475143272d92866fdc88cfcff2c7d8cf" title="A replacement macro for BOOST_PP_REPEAT where count is calculated.">VMD_PP_REPEAT(count,macro,data)</a> </li>
 </ul>
 </li>
 </ul>
@@ -347,7 +352,8 @@ Defines</h2></td></tr>
 <p>Expands to a macro that eats a tuple of the specified size. </p>
 <p>size = the number of elements in the subsequent tuple.</p>
 <p>returns = a macro which eats a subsequent tuple. This means that when applied to the subsequent tuple the returned macro expands to nothing.</p>
-<p>This macro is a replacement for BOOST_PP_TUPLE_EAT when the count parameter is calculated with either VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a>. In that case BOOST_PP_TUPLE_EAT will not expand properly but using this macro, which delays the call to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a> are fully expanded, does work properly. </p>
+<p>For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_TUPLE_EAT when the count parameter is calculated with either VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a>. In that case BOOST_PP_TUPLE_EAT will not expand properly but using this macro, which delays the call to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a> are fully expanded, does work properly.</p>
+<p>Other compilers can use BOOST_PP_TUPLE_EAT directly, but this macro will also work. </p>
 
 </div>
 </div>
@@ -370,7 +376,8 @@ Defines</h2></td></tr>
 <p>Expands to a macro that removes the parentheses from a tuple of the specified size. </p>
 <p>size = the number of elements in the subsequent tuple.</p>
 <p>returns = a macro which can remove the parentheses from a subsequent tuple.</p>
-<p>This macro is a replacement for BOOST_PP_TUPLE_REM when the count parameter is calculated with either VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a>. In that case BOOST_PP_TUPLE_REM will not expand properly but using this macro, which delays the call to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a> are fully expanded, does work properly. </p>
+<p>For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_TUPLE_REM when the count parameter is calculated with either VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a>. In that case BOOST_PP_TUPLE_REM will not expand properly but using this macro, which delays the call to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a> are fully expanded, does work properly.</p>
+<p>Other compilers can use BOOST_PP_TUPLE_REM directly but this macro will also work. </p>
 
 </div>
 </div>
@@ -599,7 +606,8 @@ Defines</h2></td></tr>
 <p>macro = A ternary operation of the form macro(z, n, data). This macro is expanded by BOOST_PP_REPEAT with the next available repetition depth, the current repetition number, and the auxiliary data argument.</p>
 <p>data = Auxiliary data passed to macro.</p>
 <p>returns = The macro expands to the sequence: macro(z, 0, data) macro(z, 1, data) ... macro(z, count - 1, data). See BOOST_PP_REPEAT for further explanation.</p>
-<p>This macro is a replacement for BOOST_PP_REPEAT when the count parameter is calculated with either VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a>. In that case BOOST_PP_REPEAT will not expand properly but using this macro, which delays the call to BOOST_PP_REPEAT until the VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a> are fully expanded, does work properly. </p>
+<p>For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_REPEAT when the count parameter is calculated with either VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a>. In that case BOOST_PP_REPEAT will not expand properly but using this macro, which delays the call to BOOST_PP_REPEAT until the VMD_DATA_SIZE(...) or <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a> are fully expanded, does work properly.</p>
+<p>Other compilers can use BOOST_PP_REPEAT directly but this macro will also work. </p>
 
 </div>
 </div>
@@ -632,8 +640,8 @@ Defines</h2></td></tr>
 <p>macro = A ternary operation of the form macro(z, n, data). This macro is expanded by BOOST_PP_REPEAT with the next available repetition depth, the current repetition number, and the auxiliary data argument.</p>
 <p>tuple = Auxiliary data, which must be a tuple, passed to macro.</p>
 <p>returns = The macro expands to the sequence: macro(z, 0, tuple) macro(z, 1, tuple) ... macro(z, tuple size - 1, tuple). See BOOST_PP_REPEAT for further explanation.</p>
-<p>This macro is a replacement for BOOST_PP_REPEAT when the count parameter is calculated from the size of the tuple data.</p>
-<p>BOOST_PP_REPEAT will not expand properly when called directly with a count which is calculated from <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(tuple)</a>. This macro, which delays the call to BOOST_PP_REPEAT until <a class="el" href="_variadic_macro_data_8hpp.html#a142becd2891042b870cdc32adda0d0b5" title="Expands to the number of elements in a tuple.">VMD_PP_TUPLE_SIZE(data)</a> is fully expanded, does work properly. </p>
+<p>This macro is a replacement for BOOST_PP_REPEAT when the count parameter is exactly the size of the tuple data.</p>
+<p>For the other Boost PP data types, the size of the data type is directly accessible through functionality in the Boost PP library, so there is no problem calling BOOST_PP_REPEAT directly with that size as the first parameter. </p>
 
 </div>
 </div>

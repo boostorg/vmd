@@ -9,9 +9,11 @@
 #include <boost/preprocessor/tuple/reverse.hpp>
 #include <boost/preprocessor/tuple/to_list.hpp>
 #include <boost/preprocessor/tuple/to_seq.hpp>
+#if defined(BOOST_MSVC)
 #include <boost/preprocessor/tuple/rem.hpp>
 #include <boost/preprocessor/tuple/eat.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
+#endif
 
 #define VMD_DETAIL_ARG_N( \
   A1,A2,A3,A4,A5,A6,A7,A8,A9,A10, \
@@ -73,20 +75,24 @@
 #define VMD_DETAIL_PP_TUPLE_SIZE(tuple) \
   VMD_DETAIL_DATA_SIZE(VMD_DETAIL_PP_TUPLE_TO_DATA(tuple)) \
 /**/
+
+#if defined(BOOST_MSVC)
 #define VMD_DETAIL_PP_TUPLE_EAT(size) \
   BOOST_PP_TUPLE_EAT(size) \
 /**/
 #define VMD_DETAIL_PP_TUPLE_REM(size) \
   BOOST_PP_TUPLE_REM(size) \
 /**/
+#define VMD_DETAIL_PP_REPEAT(count,macro,data) \
+  BOOST_PP_REPEAT(count, macro, data) \
+/**/
+#endif
+
 #define VMD_DETAIL_PP_TUPLE_REM_CTOR(size,tuple) \
   BOOST_PP_TUPLE_REM_CTOR(size,tuple) \
 /**/
 #define VMD_DETAIL_PP_TUPLE_REVERSE(size,tuple) \
   BOOST_PP_TUPLE_REVERSE(size,tuple) \
-/**/
-#define VMD_DETAIL_PP_REPEAT(count,macro,data) \
-  BOOST_PP_REPEAT(count, macro, data) \
 /**/
 
 #endif // BOOST_NO_VARIADIC_MACROS

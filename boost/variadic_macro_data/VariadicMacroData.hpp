@@ -8,6 +8,11 @@
 #include <boost/preprocessor/array/data.hpp>
 #include <boost/preprocessor/list/to_tuple.hpp>
 #include <boost/preprocessor/seq/to_tuple.hpp>
+#if ! defined(BOOST_MSVC)
+#include <boost/preprocessor/tuple/rem.hpp>
+#include <boost/preprocessor/tuple/eat.hpp>
+#include <boost/preprocessor/repetition/repeat.hpp>
+#endif
 #include "detail/VMDDetail.hpp"
 
 /*
@@ -18,6 +23,9 @@
 
 /** \file
 
+    The term 'Boost PP library' in this dopcumentation is shorthand
+    for the Boost preprocessor library.
+    
     The macros provide support for variadic macro usage as well
     as integrating variadic macros with the Boost PP
     library without changing anything in the Boost PP
@@ -34,15 +42,12 @@
     library, the macros could be changed to start with a prefix
     of BOOST_VMD_ .
     
-    The term 'Boost PP library' in this dopcumentation is shorthand
-    for the Boost preprocessor library.
-    
-    The word DATA in the name of the macros refers to variadic
+    The word DATA in the name of some of the macros refers to variadic
     macro data, as represented by '...' when passed as the
     final parameter of a variadic macro and as __VA_ARGS__
     when expanded by the variadic macro definition.
     
-    The words TUPLE, ARRAY, LIST, and SEQ in the name of the macros
+    The words TUPLE, ARRAY, LIST, and SEQ in the name of some of the macros
     refer to the Boost PP library data types of tuples, arrays,
     lists, and sequences respectively. All mention in the comments
     of tuples, arrays, lists, and sequences refer to the Boost PP
@@ -72,11 +77,14 @@
       - VMD_PP_TUPLE_REVERSE(tuple)
       - VMD_PP_TUPLE_TO_LIST(tuple)
       - VMD_PP_TUPLE_TO_SEQ(tuple)
-    - Macros which allow the Boost PP macro functionality
-      of BOOST_PP_REPEAT to be used when the 'count' parameter is 
-      calculated from ._SIZE macros in this library.
-      - VMD_PP_REPEAT(count,macro,data)
       - VMD_PP_REPEAT_TUPLE(macro,tuple)
+    - Macros which allow the Boost PP macro functionality
+      to be used when the 'count' or 'size' parameter is
+      calculated from .._SIZE macros in this library and
+      one is using Microsoft's Visual C++.
+      - VMD_PP_TUPLE_EAT(size)
+      - VMD_PP_TUPLE_REM(size)
+      - VMD_PP_REPEAT(count,macro,data)
 
 */
 
@@ -244,17 +252,25 @@
     returns = a macro which eats a subsequent tuple. 
               This means that when applied to the subsequent tuple the returned macro expands to nothing.
     
-    This macro is a replacement for BOOST_PP_TUPLE_EAT when the count
+    For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_TUPLE_EAT when the count
     parameter is calculated with either VMD_DATA_SIZE(...) or
     VMD_PP_TUPLE_SIZE(tuple). In that case BOOST_PP_TUPLE_EAT will
     not expand properly but using this macro, which delays the call
     to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or
     VMD_PP_TUPLE_SIZE(tuple) are fully expanded, does work properly.
     
+    Other compilers can use BOOST_PP_TUPLE_EAT directly, but this macro will also work.
+    
 */
+#if defined(BOOST_MSVC)
 #define VMD_PP_TUPLE_EAT(size) \
   VMD_DETAIL_PP_TUPLE_EAT(size) \
 /**/
+#else
+#define VMD_PP_TUPLE_EAT(size) \
+  BOOST_PP_TUPLE_EAT(size) \
+/**/
+#endif
 
 /// Expands to a macro that removes the parentheses from a tuple of the specified size.
 /**
@@ -263,17 +279,25 @@
 
     returns = a macro which can remove the parentheses from a subsequent tuple.
     
-    This macro is a replacement for BOOST_PP_TUPLE_REM when the count 
+    For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_TUPLE_REM when the count
     parameter is calculated with either VMD_DATA_SIZE(...) or
     VMD_PP_TUPLE_SIZE(tuple). In that case BOOST_PP_TUPLE_REM will
     not expand properly but using this macro, which delays the call 
     to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or 
     VMD_PP_TUPLE_SIZE(tuple) are fully expanded, does work properly.
     
+    Other compilers can use BOOST_PP_TUPLE_REM directly but this macro will also work.
+    
 */
+#if defined(BOOST_MSVC)
 #define VMD_PP_TUPLE_REM(size) \
   VMD_DETAIL_PP_TUPLE_REM(size) \
 /**/
+#else
+#define VMD_PP_TUPLE_REM(size) \
+  BOOST_PP_TUPLE_REM(size) \
+/**/
+#endif
 
 /// Expands to a series of tokens which are equivalent to removing the parentheses from a tuple.
 /**
@@ -455,17 +479,25 @@
               macro(z, 0, data) macro(z, 1, data) ... macro(z, count - 1, data).
               See BOOST_PP_REPEAT for further explanation.
               
-    This macro is a replacement for BOOST_PP_REPEAT when the count 
+    For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_REPEAT when the count
     parameter is calculated with either VMD_DATA_SIZE(...) or
     VMD_PP_TUPLE_SIZE(tuple). In that case BOOST_PP_REPEAT will
     not expand properly but using this macro, which delays the call 
     to BOOST_PP_REPEAT until the VMD_DATA_SIZE(...) or 
     VMD_PP_TUPLE_SIZE(tuple) are fully expanded, does work properly.
     
+    Other compilers can use BOOST_PP_REPEAT directly but this macro will also work.
+    
 */
+#if defined(BOOST_MSVC)
 #define VMD_PP_REPEAT(count,macro,data) \
   VMD_DETAIL_PP_REPEAT(count,macro,data) \
 /**/
+#else
+#define VMD_PP_REPEAT(count,macro,data) \
+  BOOST_PP_REPEAT(count,macro,data) \
+/**/
+#endif
 
 /// A replacement macro for BOOST_PP_REPEAT where count is the tuple data size
 /**
@@ -482,17 +514,22 @@
               See BOOST_PP_REPEAT for further explanation.
               
     This macro is a replacement for BOOST_PP_REPEAT when the count
-    parameter is calculated from the size of the tuple data.
+    parameter is exactly the size of the tuple data.
     
-    BOOST_PP_REPEAT will not expand properly when called
-    directly with a count which is calculated from VMD_PP_TUPLE_SIZE(tuple).
-    This macro, which delays the call to BOOST_PP_REPEAT until 
-    VMD_PP_TUPLE_SIZE(data) is fully expanded, does work properly.
+    For the other Boost PP data types, the size of the data type is directly accessible
+    through functionality in the Boost PP library, so there is no problem calling 
+    BOOST_PP_REPEAT directly with that size as the first parameter.
     
 */
+#if defined(BOOST_MSVC)
 #define VMD_PP_REPEAT_TUPLE(macro,tuple) \
   VMD_PP_REPEAT(VMD_PP_TUPLE_SIZE(tuple),macro,tuple) \
 /**/
+#else
+#define VMD_PP_REPEAT_TUPLE(macro,tuple) \
+  BOOST_PP_REPEAT(VMD_PP_TUPLE_SIZE(tuple),macro,tuple) \
+/**/
+#endif
 
 #endif // BOOST_NO_VARIADIC_MACROS
 #endif // VARIADIC_MACRO_DATA_HPP
