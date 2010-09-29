@@ -9,10 +9,9 @@
 #include <boost/preprocessor/tuple/reverse.hpp>
 #include <boost/preprocessor/tuple/to_list.hpp>
 #include <boost/preprocessor/tuple/to_seq.hpp>
-#if defined(BOOST_MSVC)
 #include <boost/preprocessor/tuple/rem.hpp>
-#include <boost/preprocessor/tuple/eat.hpp>
-#include <boost/preprocessor/repetition/repeat.hpp>
+#if defined(BOOST_MSVC)
+#include <boost/preprocessor/arithmetic/add.hpp>
 #endif
 
 #define VMD_DETAIL_ARG_N( \
@@ -48,9 +47,15 @@
 #define VMD_DETAIL_PP_TUPLE_TO_DATA(tuple) \
   VMD_DETAIL_REMOVE_TUPLE_PARENS tuple \
 /**/
+#if defined(BOOST_MSVC)
+#define VMD_DETAIL_DATA_SIZE(...) \
+  BOOST_PP_ADD(VMD_DETAIL_APPLY(VMD_DETAIL_ARG_N, (__VA_ARGS__, VMD_DETAIL_RSEQ_N())),0) \
+/**/
+#else
 #define VMD_DETAIL_DATA_SIZE(...) \
   VMD_DETAIL_APPLY(VMD_DETAIL_ARG_N, (__VA_ARGS__, VMD_DETAIL_RSEQ_N())) \
 /**/
+#endif
 #define VMD_DETAIL_PP_TUPLE_ELEM(size,i,tuple) \
   BOOST_PP_TUPLE_ELEM(size,i,tuple) \
 /**/
@@ -75,19 +80,6 @@
 #define VMD_DETAIL_PP_TUPLE_SIZE(tuple) \
   VMD_DETAIL_DATA_SIZE(VMD_DETAIL_PP_TUPLE_TO_DATA(tuple)) \
 /**/
-
-#if defined(BOOST_MSVC)
-#define VMD_DETAIL_PP_TUPLE_EAT(size) \
-  BOOST_PP_TUPLE_EAT(size) \
-/**/
-#define VMD_DETAIL_PP_TUPLE_REM(size) \
-  BOOST_PP_TUPLE_REM(size) \
-/**/
-#define VMD_DETAIL_PP_REPEAT(count,macro,data) \
-  BOOST_PP_REPEAT(count, macro, data) \
-/**/
-#endif
-
 #define VMD_DETAIL_PP_TUPLE_REM_CTOR(size,tuple) \
   BOOST_PP_TUPLE_REM_CTOR(size,tuple) \
 /**/

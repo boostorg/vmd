@@ -8,11 +8,7 @@
 #include <boost/preprocessor/array/data.hpp>
 #include <boost/preprocessor/list/to_tuple.hpp>
 #include <boost/preprocessor/seq/to_tuple.hpp>
-#if ! defined(BOOST_MSVC)
-#include <boost/preprocessor/tuple/rem.hpp>
-#include <boost/preprocessor/tuple/eat.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
-#endif
 #include "detail/VMDDetail.hpp"
 
 /*
@@ -23,7 +19,7 @@
 
 /** \file
 
-    The term 'Boost PP library' in this dopcumentation is shorthand
+    The term 'Boost PP library' in this documentation is shorthand
     for the Boost preprocessor library.
     
     The macros provide support for variadic macro usage as well
@@ -78,44 +74,32 @@
       - VMD_PP_TUPLE_TO_LIST(tuple)
       - VMD_PP_TUPLE_TO_SEQ(tuple)
       - VMD_PP_REPEAT_TUPLE(macro,tuple)
-    - Macros which allow the Boost PP macro functionality
-      to be used when the 'count' or 'size' parameter is
-      calculated from .._SIZE macros in this library and
-      one is using Microsoft's Visual C++.
-      - VMD_PP_TUPLE_EAT(size)
-      - VMD_PP_TUPLE_REM(size)
-      - VMD_PP_REPEAT(count,macro,data)
 
 */
 
-/// Expands to the number of comma-separated variable macro data arguments.
+/// Expands to the number of comma-separated variadic macro data arguments.
 /**
 
-    ... = variable macro data.
+    ... = variadic macro data.
 
-    returns = the number of comma-separated variable macro data
+    returns = the number of comma-separated variadic macro data
               arguments being passed to it.
     
     The value returned can be between 1 and 64.
     
-    When using the results of this macro as the first parameter
-    to BOOST_PP_REPEAT, whether using the result directly or in
-    a Boost PP library calculation, use the macro
-    VMD_PP_REPEAT instead.
-
 */
 #define VMD_DATA_SIZE(...) \
   VMD_DETAIL_DATA_SIZE(__VA_ARGS__) \
 /**/
 
-/// Expands to a particular variable macro data argument.
+/// Expands to a particular variadic macro data argument.
 /**
 
-    n   = number of the variable macro data argument.
+    n   = number of the variadic macro data argument.
           The number starts from 0 to the number of
-          variable macro data arguments - 1.
+          variadic macro data arguments - 1.
           
-    ... = variable macro data.
+    ... = variadic macro data.
 
     returns = the particular macro data argument as specified
               by n. The argument returned can be any valid
@@ -129,7 +113,7 @@
 /// Expand to a Boost PP tuple data type.
 /**
 
-    ... = variable macro data.
+    ... = variadic macro data.
 
     returns = a Boost PP library tuple data type.
     
@@ -145,7 +129,7 @@
 /// Expand to a Boost PP array data type.
 /**
 
-    ... = variable macro data.
+    ... = variadic macro data.
 
     returns = a Boost PP library array data type.
     
@@ -161,7 +145,7 @@
 /// Expand to a Boost PP list data type.
 /**
 
-    ... = variable macro data.
+    ... = variadic macro data.
 
     returns = a Boost PP library list data type.
     
@@ -177,7 +161,7 @@
 /// Expand to a Boost PP sequence data type.
 /**
 
-    ... = variable macro data.
+    ... = variadic macro data.
 
     returns = a Boost PP library sequence data type.
     
@@ -204,14 +188,9 @@
     With variadic macros the size of a tuple can be
     calculated from the tuple itself.
     
-    When using the results of this macro as the first parameter
-    to BOOST_PP_REPEAT, whether using the result directly or in
-    a Boost PP library calculation, use the macro
-    VMD_PP_REPEAT instead.
-    
     If you need to call BOOST_PP_REPEAT with the first parameter
     being exactly the tuple size, you can more easily use 
-    VMD_PP_REPEAT_TUPLE instead.
+    VMD_PP_REPEAT_TUPLE instead without having to pass a count.
     
 */
 #define VMD_PP_TUPLE_SIZE(tuple) \
@@ -243,61 +222,6 @@
 #define VMD_PP_TUPLE_ELEM(n,tuple) \
   VMD_DETAIL_PP_TUPLE_ELEM(VMD_PP_TUPLE_SIZE(tuple),n,tuple) \
 /**/
-
-/// Expands to a macro that eats a tuple of the specified size.
-/**
-
-    size = the number of elements in the subsequent tuple.
-
-    returns = a macro which eats a subsequent tuple. 
-              This means that when applied to the subsequent tuple the returned macro expands to nothing.
-    
-    For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_TUPLE_EAT when the count
-    parameter is calculated with either VMD_DATA_SIZE(...) or
-    VMD_PP_TUPLE_SIZE(tuple). In that case BOOST_PP_TUPLE_EAT will
-    not expand properly but using this macro, which delays the call
-    to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or
-    VMD_PP_TUPLE_SIZE(tuple) are fully expanded, does work properly.
-    
-    Other compilers can use BOOST_PP_TUPLE_EAT directly, but this macro will also work.
-    
-*/
-#if defined(BOOST_MSVC)
-#define VMD_PP_TUPLE_EAT(size) \
-  VMD_DETAIL_PP_TUPLE_EAT(size) \
-/**/
-#else
-#define VMD_PP_TUPLE_EAT(size) \
-  BOOST_PP_TUPLE_EAT(size) \
-/**/
-#endif
-
-/// Expands to a macro that removes the parentheses from a tuple of the specified size.
-/**
-
-    size = the number of elements in the subsequent tuple.
-
-    returns = a macro which can remove the parentheses from a subsequent tuple.
-    
-    For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_TUPLE_REM when the count
-    parameter is calculated with either VMD_DATA_SIZE(...) or
-    VMD_PP_TUPLE_SIZE(tuple). In that case BOOST_PP_TUPLE_REM will
-    not expand properly but using this macro, which delays the call 
-    to BOOST_PP_TUPLE_REM until the VMD_DATA_SIZE(...) or 
-    VMD_PP_TUPLE_SIZE(tuple) are fully expanded, does work properly.
-    
-    Other compilers can use BOOST_PP_TUPLE_REM directly but this macro will also work.
-    
-*/
-#if defined(BOOST_MSVC)
-#define VMD_PP_TUPLE_REM(size) \
-  VMD_DETAIL_PP_TUPLE_REM(size) \
-/**/
-#else
-#define VMD_PP_TUPLE_REM(size) \
-  BOOST_PP_TUPLE_REM(size) \
-/**/
-#endif
 
 /// Expands to a series of tokens which are equivalent to removing the parentheses from a tuple.
 /**
@@ -390,114 +314,77 @@
   VMD_DETAIL_PP_TUPLE_TO_SEQ(VMD_PP_TUPLE_SIZE(tuple),tuple) \
 /**/
 
-/// Expands to variable macro data whose arguments are the same as a tuple's elements.
+/// Expands to variadic macro data whose arguments are the same as a tuple's elements.
 /**
 
     tuple = a Boost PP library tuple data type.
 
-    returns = variable macro data whose arguments are the same as the
+    returns = variadic macro data whose arguments are the same as the
               elements of a tuple that is inputted.
               
-    The variable macro data that is returned is in the form of
-    of comma separated arguments. The variable macro data can be
-    passed to any macro which takes variable macro data in the form
-    of a final variable macro data '...' macro parameter.
+    The variadic macro data that is returned is in the form of
+    of comma separated arguments. The variadic macro data can be
+    passed to any macro which takes variadic macro data in the form
+    of a final variadic macro data '...' macro parameter.
     
 */
 #define VMD_PP_TUPLE_TO_DATA(tuple) \
   VMD_DETAIL_PP_TUPLE_TO_DATA(tuple) \
 /**/
 
-/// Expands to variable macro data whose arguments are the same as an array's elements.
+/// Expands to variadic macro data whose arguments are the same as an array's elements.
 /**
 
     array = a Boost PP library array data type.
 
-    returns = variable macro data whose arguments are the same as the
+    returns = variadic macro data whose arguments are the same as the
               elements of an array that is inputted.
               
-    The variable macro data that is returned is in the form of
-    of comma separated arguments. The variable macro data can be
-    passed to any macro which takes variable macro data in the form
-    of a final variable macro data '...' macro parameter.
+    The variadic macro data that is returned is in the form of
+    of comma separated arguments. The variadic macro data can be
+    passed to any macro which takes variadic macro data in the form
+    of a final variadic macro data '...' macro parameter.
     
 */
 #define VMD_PP_ARRAY_TO_DATA(array) \
   VMD_PP_TUPLE_TO_DATA(BOOST_PP_ARRAY_DATA(array)) \
 /**/
 
-/// Expands to variable macro data whose arguments are the same as a list's elements.
+/// Expands to variadic macro data whose arguments are the same as a list's elements.
 /**
 
     list = a Boost PP library list data type.
 
-    returns = variable macro data whose arguments are the same as the
+    returns = variadic macro data whose arguments are the same as the
               elements of a list that is inputted.
               
-    The variable macro data that is returned is in the form of
-    of comma separated arguments. The variable macro data can be
-    passed to any macro which takes variable macro data in the form
-    of a final variable macro data '...' macro parameter.
+    The variadic macro data that is returned is in the form of
+    of comma separated arguments. The variadic macro data can be
+    passed to any macro which takes variadic macro data in the form
+    of a final variadic macro data '...' macro parameter.
     
 */
 #define VMD_PP_LIST_TO_DATA(list) \
   VMD_PP_TUPLE_TO_DATA(BOOST_PP_LIST_TO_TUPLE(list)) \
 /**/
 
-/// Expands to variable macro data whose arguments are the same as a sequence's elements.
+/// Expands to variadic macro data whose arguments are the same as a sequence's elements.
 /**
 
     seq = a Boost PP library sequence data type.
 
-    returns = variable macro data whose arguments are the same as the
+    returns = variadic macro data whose arguments are the same as the
               elements of a sequence that is inputted.
               
-    The variable macro data that is returned is in the form of
-    of comma separated arguments. The variable macro data can be
-    passed to any macro which takes variable macro data in the form
-    of a final variable macro data '...' macro parameter.
+    The variadic macro data that is returned is in the form of
+    of comma separated arguments. The variadic macro data can be
+    passed to any macro which takes variadic macro data in the form
+    of a final variadic macro data '...' macro parameter.
     
 */
 #define VMD_PP_SEQ_TO_DATA(seq) \
   VMD_PP_TUPLE_TO_DATA(BOOST_PP_SEQ_TO_TUPLE(seq)) \
 /**/
-
-/// A replacement macro for BOOST_PP_REPEAT where count is calculated.
-/**
-
-    count = The number of repetitious calls to macro. 
-            Valid values range from 0 to BOOST_PP_LIMIT_REPEAT.
-            
-    macro = A ternary operation of the form macro(z, n, data).
-            This macro is expanded by BOOST_PP_REPEAT with the next
-            available repetition depth, the current repetition number,
-            and the auxiliary data argument.
-            
-    data  = Auxiliary data passed to macro.
-
-    returns = The macro expands to the sequence:
-              macro(z, 0, data) macro(z, 1, data) ... macro(z, count - 1, data).
-              See BOOST_PP_REPEAT for further explanation.
-              
-    For Microsoft's Visual C++ this macro is a replacement for BOOST_PP_REPEAT when the count
-    parameter is calculated with either VMD_DATA_SIZE(...) or
-    VMD_PP_TUPLE_SIZE(tuple). In that case BOOST_PP_REPEAT will
-    not expand properly but using this macro, which delays the call 
-    to BOOST_PP_REPEAT until the VMD_DATA_SIZE(...) or 
-    VMD_PP_TUPLE_SIZE(tuple) are fully expanded, does work properly.
-    
-    Other compilers can use BOOST_PP_REPEAT directly but this macro will also work.
-    
-*/
-#if defined(BOOST_MSVC)
-#define VMD_PP_REPEAT(count,macro,data) \
-  VMD_DETAIL_PP_REPEAT(count,macro,data) \
-/**/
-#else
-#define VMD_PP_REPEAT(count,macro,data) \
-  BOOST_PP_REPEAT(count,macro,data) \
-/**/
-#endif
 
 /// A replacement macro for BOOST_PP_REPEAT where count is the tuple data size
 /**
@@ -514,22 +401,17 @@
               See BOOST_PP_REPEAT for further explanation.
               
     This macro is a replacement for BOOST_PP_REPEAT when the count
-    parameter is exactly the size of the tuple data.
+    parameter is exactly the size of the tuple data. It is purely 
+    a macro created for end-user convenience.
     
     For the other Boost PP data types, the size of the data type is directly accessible
     through functionality in the Boost PP library, so there is no problem calling 
     BOOST_PP_REPEAT directly with that size as the first parameter.
     
 */
-#if defined(BOOST_MSVC)
-#define VMD_PP_REPEAT_TUPLE(macro,tuple) \
-  VMD_PP_REPEAT(VMD_PP_TUPLE_SIZE(tuple),macro,tuple) \
-/**/
-#else
 #define VMD_PP_REPEAT_TUPLE(macro,tuple) \
   BOOST_PP_REPEAT(VMD_PP_TUPLE_SIZE(tuple),macro,tuple) \
 /**/
-#endif
 
 #endif // BOOST_NO_VARIADIC_MACROS
 #endif // VARIADIC_MACRO_DATA_HPP
