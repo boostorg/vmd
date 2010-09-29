@@ -73,7 +73,6 @@
       - VMD_PP_TUPLE_REVERSE(tuple)
       - VMD_PP_TUPLE_TO_LIST(tuple)
       - VMD_PP_TUPLE_TO_SEQ(tuple)
-      - VMD_PP_REPEAT_TUPLE(macro,tuple)
 
 */
 
@@ -187,10 +186,6 @@
     in order to be used by Boost PP library tuple macros.
     With variadic macros the size of a tuple can be
     calculated from the tuple itself.
-    
-    If you need to call BOOST_PP_REPEAT with the first parameter
-    being exactly the tuple size, you can more easily use 
-    VMD_PP_REPEAT_TUPLE instead without having to pass a count.
     
 */
 #define VMD_PP_TUPLE_SIZE(tuple) \
@@ -384,33 +379,6 @@
 */
 #define VMD_PP_SEQ_TO_DATA(seq) \
   VMD_PP_TUPLE_TO_DATA(BOOST_PP_SEQ_TO_TUPLE(seq)) \
-/**/
-
-/// A replacement macro for BOOST_PP_REPEAT where count is the tuple data size
-/**
-
-    macro = A ternary operation of the form macro(z, n, data).
-            This macro is expanded by BOOST_PP_REPEAT with the next
-            available repetition depth, the current repetition number,
-            and the auxiliary data argument.
-            
-    tuple = Auxiliary data, which must be a tuple, passed to macro.
-
-    returns = The macro expands to the sequence:
-              macro(z, 0, tuple) macro(z, 1, tuple) ... macro(z, tuple size - 1, tuple).
-              See BOOST_PP_REPEAT for further explanation.
-              
-    This macro is a replacement for BOOST_PP_REPEAT when the count
-    parameter is exactly the size of the tuple data. It is purely 
-    a macro created for end-user convenience.
-    
-    For the other Boost PP data types, the size of the data type is directly accessible
-    through functionality in the Boost PP library, so there is no problem calling 
-    BOOST_PP_REPEAT directly with that size as the first parameter.
-    
-*/
-#define VMD_PP_REPEAT_TUPLE(macro,tuple) \
-  BOOST_PP_REPEAT(VMD_PP_TUPLE_SIZE(tuple),macro,tuple) \
 /**/
 
 #endif // BOOST_NO_VARIADIC_MACROS
