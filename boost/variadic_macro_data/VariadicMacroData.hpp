@@ -53,7 +53,7 @@
     
     - Macros which directly support variadic macro data processing.
       - VMD_DATA_SIZE(...)
-      - VMD_DATA_ELEMENT(n,...)
+      - VMD_DATA_ELEM(n,...)
     - Macros which convert variadic macro data to Boost PP
       data types.
       - VMD_DATA_TO_PP_TUPLE(...)
@@ -70,6 +70,7 @@
       type by not requiring that a tuple size be passed.
       - VMD_PP_TUPLE_SIZE(tuple)
       - VMD_PP_TUPLE_ELEM(n,tuple)
+      - VMD_PP_TUPLE_REM_CTOR(tuple)
       - VMD_PP_TUPLE_REVERSE(tuple)
       - VMD_PP_TUPLE_TO_LIST(tuple)
       - VMD_PP_TUPLE_TO_SEQ(tuple)
@@ -105,8 +106,8 @@
               preprocessing token.
               
 */
-#define VMD_DATA_ELEMENT(n,...) \
-  VMD_DETAIL_DATA_ELEMENT(n,__VA_ARGS__) \
+#define VMD_DATA_ELEM(n,...) \
+  VMD_DETAIL_DATA_ELEM(n,__VA_ARGS__) \
 /**/
 
 /// Expand to a Boost PP tuple data type.
