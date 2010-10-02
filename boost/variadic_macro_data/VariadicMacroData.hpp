@@ -18,63 +18,6 @@
 */
 
 /** \file
-
-    The term 'Boost PP library' in this documentation is shorthand
-    for the Boost preprocessor library.
-    
-    The macros provide support for variadic macro usage as well
-    as integrating variadic macros with the Boost PP
-    library without changing anything in the Boost PP
-    library in any way. The latter is done by providing means
-    of converting variadic macro data to Boost PP data types
-    and by providing means of converting Boost PP data types
-    back to variadic macro data.
-    
-    The macros will only work for compilers in which the Boost
-    configuration macro, BOOST_NO_VARIADIC_MACROS, is not defined.
-    
-    Currently All of the macros in this library begin with the
-    prefix of VMD_. If this library were accepted as a Boost 
-    library, the macros could be changed to start with a prefix
-    of BOOST_VMD_ .
-    
-    The word DATA in the name of some of the macros refers to variadic
-    macro data, as represented by '...' when passed as the
-    final parameter of a variadic macro and as __VA_ARGS__
-    when expanded by the variadic macro definition.
-    
-    The words TUPLE, ARRAY, LIST, and SEQ in the name of some of the macros
-    refer to the Boost PP library data types of tuples, arrays,
-    lists, and sequences respectively. All mention in the comments
-    of tuples, arrays, lists, and sequences refer to the Boost PP
-    library definitions of these data types.
-    
-    The macros can be divided into these groups of functionality:
-    
-    - Macros which directly support variadic macro data processing.
-      - VMD_DATA_SIZE(...)
-      - VMD_DATA_ELEM(n,...)
-    - Macros which convert variadic macro data to Boost PP
-      data types.
-      - VMD_DATA_TO_PP_TUPLE(...)
-      - VMD_DATA_TO_PP_ARRAY(...)
-      - VMD_DATA_TO_PP_LIST(...)
-      - VMD_DATA_TO_PP_SEQ(...)
-    - Macros which convert Boost PP data types to variadic
-      macro data.
-      - VMD_PP_TUPLE_TO_DATA(tuple)
-      - VMD_PP_ARRAY_TO_DATA(array)
-      - VMD_PP_LIST_TO_DATA(list)
-      - VMD_PP_SEQ_TO_DATA(seq)
-    - Macros which ease the use of the Boost PP tuple data
-      type by not requiring that a tuple size be passed.
-      - VMD_PP_TUPLE_SIZE(tuple)
-      - VMD_PP_TUPLE_ELEM(n,tuple)
-      - VMD_PP_TUPLE_REM_CTOR(tuple)
-      - VMD_PP_TUPLE_REVERSE(tuple)
-      - VMD_PP_TUPLE_TO_LIST(tuple)
-      - VMD_PP_TUPLE_TO_SEQ(tuple)
-
 */
 
 /// Expands to the number of comma-separated variadic macro data arguments.
