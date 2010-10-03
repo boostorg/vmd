@@ -42,7 +42,7 @@ boostbook standalone
   :
      VariadicMacroData
   :
-  <xsl:param>boost.root=../../../.. # OK but link to I:/boost_trunk/boost.png
+  <xsl:param>boost.root=../../../.. 
   <xsl:param>table.footnote.number.format=1 # Identifies the format used for footnote numbers in tables.
   <xsl:param>footnote.number.format=1 # Identifies the format used for text footnote numbers.
   <xsl:param>nav.layout=horizontal # to get a horizontal navigation bar (you probably DO want this).
@@ -55,10 +55,10 @@ boostbook standalone
   <xsl:param>fop1.extensions=0 # DISable extensions for FOP version 0.90 and later .
   <format>pdf:<xsl:param>fop.extensions=0 # DISable extensions for FOP version 0.20.5 and earlier.
   <format>pdf:<xsl:param>xep.extensions=1 # Use XEP extension- PDF bookmarks, document information and better index processing.
-  <format>pdf:<xsl:param>body.start.indent=0pt #
+  <format>pdf:<xsl:param>body.start.indent=0pt 
   <format>pdf:<xsl:param>paper.type=A4  # Paper type = A4
   <xsl:param>admon.graphics=1
-  <format>pdf:<xsl:param>admon.graphics.extension=".svg"  #
+  <format>pdf:<xsl:param>admon.graphics.extension=".svg"  
   <format>pdf:<xsl:param>use.role.for.mediaobject=1 # Use print role on next line.
   <format>pdf:<xsl:param>preferred.mediaobject.role=print # pdf role is to be printed.
   <format>pdf:<xsl:param>img.src.path=$(images_location)/ # Path of image (.svg) files. (Note trailing /) ? //
