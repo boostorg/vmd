@@ -1,0 +1,3 @@
+[section:vmd_reference Reference]
+[xinclude VariadicMacroDataReference.xml]
+[endsect]

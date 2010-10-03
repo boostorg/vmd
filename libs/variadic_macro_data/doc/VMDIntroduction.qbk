@@ -1,0 +1,27 @@
+[section:vmd_intro Introduction]
+
+The variadic macro data library is a library of macros which 
+provide important functionality for variadic macros as well as 
+integrating variadic macros with the Boost preprocessor library, 
+which will afterwards be referred to as just 'Boost PP' in this 
+documentation. It integrates with Boost PP without changing the 
+latter library in any way.
+
+The functionality of the library may be summed up as:
+
+# Providing the means to extract any single token from the 
+  comma-separated data which makes up variadic macro data, 
+  as well as to calculate the number of tokens.
+# Convert variadic macro data to and from Boost PP data types. 
+# Enhance the tuple functionality of Boost PP by providing 
+  a means of calculating the size of a tuple as well as by 
+  providing equivalent macros to Boost PP tuple macros 
+  which do not require the size of the tuple to be explicitly 
+  passed.
+   
+The library is a header only library and all macros in the 
+library are in a single header, whose name is 'VariadicMacroData.hpp'.
+
+The library is dependent on Boost PP.
+   
+[endsect]

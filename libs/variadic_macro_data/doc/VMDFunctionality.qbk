@@ -1,0 +1,32 @@
+[section:vmd_functionality Functionality]
+
+The design of Boost PP allows data, in the form of preprocessor 
+tokens, to be grouped together into various data types, any one of 
+which can be treated as a single preprocessor argument to a macro. 
+A number of Boost PP macros accept data as a single argument. Each 
+of these data types also has its own rich set of macros to manipulate 
+the data. It is imperative that when interoperating with Boost PP 
+data be passed as a single argument, even though the data itself 
+may consist of a number of preprocessing tokens.
+
+In variadic macros the data to be passed as variadic macro data is 
+a comma-separated list of arguments, each of which can be any 
+preprocessing token. 
+
+Because the variadic macro data is more than a single token, in 
+order to use variadic macro data with Boost PP, it is 
+necessary to be able to convert the variadic macro data as a whole 
+to a single argument Boost PP data type. Alternatively one can extract 
+from the variadic macro data any given token and use that as a single 
+argument, or possibly combine individual tokens from the variadic 
+macro data into Boost PP data types using the functionality of any 
+given Boost PP data type to do so.
+
+The variadic macro data library provides means to interoperate 
+variadic macro data with Boost PP in either general case.
+
+Outside of Boost PP interoperability, the variadic macro data library 
+allows individual tokens to be extracted from the variadic macro data 
+and used in macro expansion in all the normal ways one may write macros.
+   
+[endsect]
