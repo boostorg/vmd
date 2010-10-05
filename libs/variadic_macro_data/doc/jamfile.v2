@@ -29,6 +29,7 @@ doxygen VariadicMacroDataReference
     <doxygen:param>SHOW_INCLUDE_FILES=NO
     <doxygen:param>MAX_INITIALIZER_LINES=0
     <doxygen:param>VERBATIM_HEADERS=NO
+    <reftitle>"Variadic Macro Data Reference"
 ;
 
 xml VariadicMacroData

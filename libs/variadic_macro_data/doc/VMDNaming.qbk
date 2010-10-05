@@ -2,7 +2,7 @@
 
 Currently all of the macros in the library begin with the prefix VMD_, 
 which stands for 'Variadic Macro Data'. If this library were to be 
-accepted into Boost, the macros can easily be changed to use BOOST_VMD_ 
+accepted into Boost, the macros can easily be changed to use BOOST\_VMD\_ 
 as the prefix instead.
 
 Following the prefix, certain names in the macros refer to data types 
@@ -10,7 +10,7 @@ in this library or Boost PP. These names and their data
 types are:
 
 # DATA  = variadic macro data as represented by '...' in a variadic 
-  macro signature and __VA_ARGS__ in variadic macro expansion.
+  macro signature and \_\_VA\_ARGS\_\_ in variadic macro expansion.
 # TUPLE = Boost PP tuple data type.
 # ARRAY = Boost PP array data type.
 # LIST  = Boost PP list data type.
