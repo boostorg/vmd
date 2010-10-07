@@ -9,7 +9,7 @@
     [authors [Diener, Edward]]
     [source-mode c++]
 ]
-
+ 
 [include VMDIntroduction.qbk]
 [include VMDVariadicMacros.qbk]
 [include VMDFunctionality.qbk]
