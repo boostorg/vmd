@@ -1,0 +1,22 @@
+# VariadicMacroData testing Jamfile
+#
+# Copyright (c) 2010
+# Edward Diener
+#
+
+import testing ;
+
+project variadic_macro_data_tests : requirements <warnings>all 
+                                                 <toolset>gcc-4.5.0:<linkflags>"-Wl,--enable-auto-import"
+                                                 <toolset>gcc-4.5.0:<cxxflags>-Wno-variadic-macros 
+                                                 <toolset>gcc-4.4.0:<cxxflags>-Wno-variadic-macros 
+                                                 ;
+
+test-suite variadic_macro_data
+    : 
+        [ run TestData.cpp ]
+        [ run TestDataAsTuple.cpp ]
+        [ run TestDataAsArray.cpp ]
+        [ run TestDataAsList.cpp ]
+        [ run TestDataAsSequence.cpp ]
+    ;
