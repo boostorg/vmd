@@ -12,17 +12,25 @@ There are two major considerations for using variadic macros:
   list of data mimics the way macro arguments are usually passed.
 # The length of the variadic data does not have to be passed.
   In Boost PP the length does not have to be passed for the 
-  sequences and lists, but it is passed as part of an arrays, and 
-  must be separately passed for tuples. Functionality in this library, 
-  however, alleviates this last requirement for tuples.
+  sequences and lists, but it is specified as part of an array, and 
+  must be separately passed, or known in advance, for tuples. 
+  Functionality in this library, however, alleviates this last 
+  requirement for tuples.
   
-On the other hand there is one major consideration for using 
-Boost PP data types for passing variadic data to macros. This 
-is the fact that Boost PP data types can be passed multiple 
-times in any macro whereas variadic macros can only pass its 
-variadic macro data a single time as the final set of arguments 
-to a macro. Nonetheless I feel that the more natural syntax of 
+On the other hand there are major considerations for using 
+Boost PP data types for passing variadic data to macros:
+
+# Boost PP data types can be passed multiple times in any macro 
+  whereas variadic macros can only pass its variadic macro data 
+  a single time as the final set of arguments to a macro. 
+# Boost PP data types are single macro arguments, which fits 
+  in well with Boost PP functionality.
+# Boost PP data types have a rich set of functionality for 
+  manipulating the data in the data type.
+
+Nonetheless I feel that the more natural syntax of 
 variadic macro data still provides enough importance for using  
-this library's facilities for variadic macros.
+this library's facilities for variadic macros from the end-user's 
+point of view.
 
 [endsect]
