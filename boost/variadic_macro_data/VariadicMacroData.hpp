@@ -40,7 +40,8 @@
 
     n   = number of the variadic macro data argument.
           The number starts from 0 to the number of
-          variadic macro data arguments - 1.
+          variadic macro data arguments - 1. The maximum
+          number for n is 63.
           
     ... = variadic macro data.
 

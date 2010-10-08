@@ -12,6 +12,8 @@
 #include <boost/preprocessor/tuple/rem.hpp>
 #if defined(BOOST_MSVC)
 #include <boost/preprocessor/arithmetic/add.hpp>
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/facilities/empty.hpp>
 #endif
 
 #define VMD_DETAIL_DATA_ELEM_0(p0, ...) p0
@@ -126,9 +128,15 @@
 /**/
 #define VMD_DETAIL_CAT(a, ...) VMD_DETAIL_PRIMITIVE_CAT(a, __VA_ARGS__)
 #define VMD_DETAIL_PRIMITIVE_CAT(a, ...) a ## __VA_ARGS__
+#if defined(BOOST_MSVC)
+#define VMD_DETAIL_DATA_ELEM(n,...) \
+  BOOST_PP_CAT(VMD_DETAIL_CAT(VMD_DETAIL_DATA_ELEM_, n)(__VA_ARGS__,),BOOST_PP_EMPTY()) \
+/**/
+#else
 #define VMD_DETAIL_DATA_ELEM(n,...) \
   VMD_DETAIL_CAT(VMD_DETAIL_DATA_ELEM_, n)(__VA_ARGS__,) \
 /**/
+#endif
 #define VMD_DETAIL_DATA_TO_PP_ARRAY(...) \
   ( VMD_DETAIL_DATA_SIZE(__VA_ARGS__) , VMD_DETAIL_DATA_TO_PP_TUPLE(__VA_ARGS__)) \
 /**/
