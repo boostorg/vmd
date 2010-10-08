@@ -38,8 +38,21 @@ int main()
       } \
   /**/
   
+#if defined(BOOST_MSVC)
+  
+#pragma warning( push )
+#pragma warning( disable : 4127 )
+  
+#endif
+
   BOOST_PP_REPEAT(VMD_PP_TUPLE_SIZE(VMD_TEST_TUPLE_NUMBERS),VMD_TEST_ADD_TO_INT,VMD_TEST_TUPLE_NUMBERS)
   
+#if defined(BOOST_MSVC)
+  
+#pragma warning( pop )  
+  
+#endif
+
   addedNumber += VMD_DATA_ELEM(5,VMD_PP_TUPLE_TO_DATA(VMD_TEST_TUPLE_NUMBERS));
   addedNumber += VMD_DATA_ELEM(3,BOOST_PP_TUPLE_REM(VMD_PP_TUPLE_SIZE(VMD_TEST_TUPLE_NUMBERS))(23,45,147,6,7743,12,67,43,89045,82));
   addedNumber += VMD_DATA_ELEM(4,VMD_PP_TUPLE_REM_CTOR(VMD_TEST_TUPLE_NUMBERS));

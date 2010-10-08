@@ -28,8 +28,21 @@ int main()
       } \
   /**/
   
+#if defined(BOOST_MSVC)
+  
+#pragma warning( push )
+#pragma warning( disable : 4127 )
+  
+#endif
+
   BOOST_PP_REPEAT(BOOST_PP_LIST_SIZE(VMD_TEST_LIST_NUMBERS),VMD_TEST_ADD_TO_INT,VMD_TEST_LIST_NUMBERS)
   
+#if defined(BOOST_MSVC)
+  
+#pragma warning( pop )  
+  
+#endif
+
   addedNumber += VMD_DATA_ELEM(8,VMD_PP_LIST_TO_DATA(VMD_TEST_LIST_NUMBERS));
   
   BOOST_TEST_EQ(addedNumber,34+23467+12+9984+34+678+7890+1235678+3489+1+8965+345+3489);
