@@ -6,10 +6,14 @@ specification. They are macros which take a final parameter denoted as
 series of comma-separated tokens. In the macro expansion a special 
 keyword of '\_\_VA\_ARGS\_\_' represents the comma-separated tokens. This 
 information when passed to a variadic macro I call 'variadic macro data',
-which gives its name to this library. C99, and by implication C++0x, 
-provides no built-in way of accessing a single token from the 
-comma-separated list of variadic macro data. But this library does 
-provide a means to do that among its other functionality.
+which gives its name to this library. The more general term 'variadic data' 
+is used in this documentation to specify data passed to a macro which can 
+contain any number of macro tokens as a single macro parameter, such as is 
+found in Boost PP.
+
+C99, and by implication C++0x, provides no built-in way of accessing a 
+single token from the comma-separated list of variadic macro data. But this 
+library does provide a means to do that among its other functionality.
 
 [section:vmd_vmacros_Boost Boost support]
 

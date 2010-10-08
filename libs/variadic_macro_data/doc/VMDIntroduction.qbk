@@ -3,8 +3,8 @@
 The variadic macro data library is a library of macros which 
 provide important functionality for variadic macros as well as 
 integrating variadic macros with the Boost preprocessor library, 
-which will afterwards be referred to as just 'Boost PP' in this 
-documentation. It integrates with Boost PP without changing the 
+to be referred to as just 'Boost PP' in this documentation. 
+It integrates with Boost PP without changing the 
 latter library in any way.
 
 The functionality of the library may be summed up as:

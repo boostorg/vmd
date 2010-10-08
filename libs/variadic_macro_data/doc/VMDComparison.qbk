@@ -1,0 +1,28 @@
+[section:vmd_comparison Variadic Macro Data Library and Boost PP]
+
+Boost PP already has the ability to pass variadic data
+as a single macro argument through any of its data types. 
+It may then be reasonably asked why there is any need to 
+use variadic macros instead.
+
+There are two major considerations for using variadic macros:
+
+# The syntax for using variadic macros is the more natural 
+  syntax for passing macro arguments. Providing a comma-separated 
+  list of data mimics the way macro arguments are usually passed.
+# The length of the variadic data does not have to be passed.
+  In Boost PP the length does not have to be passed for the 
+  sequences and lists, but it is passed as part of an arrays, and 
+  must be separately passed for tuples. Functionality in this library, 
+  however, alleviates this last requirement for tuples.
+  
+On the other hand there is one major consideration for using 
+Boost PP data types for passing variadic data to macros. This 
+is the fact that Boost PP data types can be passed multiple 
+times in any macro whereas variadic macros can only pass its 
+variadic macro data a single time as the final set of arguments 
+to a macro. Nonetheless I feel that the more natural syntax of 
+variadic macro data still provides enough importance for using  
+this library's facilities for variadic macros.
+
+[endsect]

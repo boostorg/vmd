@@ -17,4 +17,5 @@
 [include VMDDetail.qbk]
 [include VMDReference.qbk]
 [include VMDDesign.qbk]
+[include VMDComparison.qbk]
 [include VMDAcknowledgements.qbk]
