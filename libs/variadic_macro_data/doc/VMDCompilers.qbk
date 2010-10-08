@@ -1,0 +1,7 @@
+[section:vmd_compilers Compilers]
+
+A previously mentioned in the section 'Boost Support' the compilers supported 
+by this library must not have the Boost Config macro BOOST_NO_VARIADIC_MACROS 
+defined. I have tested this library using gcc/MingW and VC++ on Windows.
+
+[endsect]
