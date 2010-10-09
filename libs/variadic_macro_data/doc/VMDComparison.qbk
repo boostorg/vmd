@@ -3,9 +3,9 @@
 Boost PP already has the ability to pass variadic data
 as a single macro argument through any of its data types. 
 It may then be reasonably asked why there is any need to 
-use variadic macros instead.
+use variadic macros to pass preprocessor data instead.
 
-There are two major considerations for using variadic macros:
+There are two considerations for using variadic macros:
 
 # The syntax for using variadic macros is the more natural 
   syntax for passing macro arguments. Providing a comma-separated 
@@ -17,7 +17,7 @@ There are two major considerations for using variadic macros:
   Functionality in this library, however, alleviates this last 
   requirement for tuples.
   
-On the other hand there are major considerations for using 
+On the other hand there are considerations for using 
 Boost PP data types for passing variadic data to macros:
 
 # Boost PP data types can be passed multiple times in any macro 
@@ -29,8 +29,13 @@ Boost PP data types for passing variadic data to macros:
   manipulating the data in the data type.
 
 Nonetheless I feel that the more natural syntax of 
-variadic macro data still provides enough importance for using  
-this library's facilities for variadic macros from the end-user's 
-point of view.
+variadic macro data still provides enough importance for using 
+this library's facilities from the end-user's point of view. 
+A macro writer can design macros for the end-user which take 
+variadic data using variadic macros while internally using 
+Boost PP data types to manipulate that data and pass that data 
+to other Boost PP macros. This library provides functionality 
+to do just that with its macros which convert from variadic macro 
+data to Boost PP data types.
 
 [endsect]
