@@ -1,7 +1,7 @@
 [section:vmd_detail Functional groups]
 
-The macros in the variadic macro data library can best be explained 
-as falling into four groups. These are:
+The macros in VMD can best be explained as falling into four groups. 
+These are:
 
 # Macros which directly support variadic macro data usage.
 # Macros which convert variadic macro data to Boost PP data types.

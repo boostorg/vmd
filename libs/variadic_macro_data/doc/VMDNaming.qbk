@@ -6,8 +6,7 @@ accepted into Boost, the macros can easily be changed to use BOOST\_VMD\_
 as the prefix instead.
 
 Following the prefix, certain names in the macros refer to data types 
-in this library or Boost PP. These names and their data 
-types are:
+in this library or Boost PP. These names and their data types are:
 
 # DATA  = variadic macro data as represented by '...' in a variadic 
   macro signature and \_\_VA\_ARGS\_\_ in variadic macro expansion.

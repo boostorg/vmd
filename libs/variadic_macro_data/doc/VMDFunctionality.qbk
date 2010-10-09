@@ -21,17 +21,15 @@ converting the variadic macro data as a whole, by extracting any given
 token from the variadic macro data and use that as a single argument, 
 or by combining individual tokens from the variadic 
 macro data into Boost PP data types using the functionality of the 
-Boost PP data type to do so.
-
-The variadic macro data library provides means to interoperate 
+Boost PP data type to do so. VMD provides means to interoperate 
 variadic macro data with Boost PP in these ways.
 
-Outside of Boost PP interoperability, the variadic macro data library 
-allows individual tokens to be extracted from the variadic macro data 
-and used in macro expansion or passed to other macross.
+Outside of Boost PP interoperability, VMD allows individual tokens to 
+be extracted from the variadic macro data and used in macro expansion 
+or passed to other macross.
 
-Finally through the functionality of variadic macros, the variadic macro 
-data library provides parallel functionality to the Boost PP tuple 
-interface macros which does not need the size of a tuple to be specified.
+Finally through the functionality of variadic macros, VMD provides parallel 
+functionality to the Boost PP tuple interface macros with a set of macros 
+which do not need the size of a tuple to be specified.
    
 [endsect]
