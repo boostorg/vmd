@@ -37,4 +37,57 @@ pass that data to other Boost PP macros. This library provides
 functionality to do just that with its macros which convert from 
 variadic macro data to Boost PP data types.
 
+[section:vmd_comp_example Use-case example]
+
+A typical situation is designing a macro for end-users which 
+takes variadic data as its argument. Let's call this macro, 
+just as an example, ENDUSER_MACRO. 
+
+Without variadic macro support, but in keeping with Boost PP, the 
+best way of designing this macro is probably to use a Boost PP sequence. 
+Our design of the macro might look like this:
+
+  #define ENDUSER_MACRO(ppSequence) ENDUSER_DETAIL_MACRO(ppSequence)
+
+The reason for calling another macro which does the actual work of 
+expansion will be explained below when discussing how to design 
+this macro using VMD.
+
+ #define ENDUSER_DETAIL_MACRO(ppSequence) \
+ /* expansion which manipulates the data
+   using the Boost PP facilities for a sequence.
+   In Boost PP one can find out the size of the 
+   sequence, extract any token from the sequence, 
+   and much more...
+ */
+
+The end-user would pass data to this macro in this way:
+
+ ENDUSER_MACRO((a)(b)(c)(d)(e)) // etc. with each "token" in the sequence surrounded by ()
+
+That is certainly acceptable, and without variadic macros, it is certainly 
+excellent to have the Boost PP functionality that allows us to design macros 
+taking variadic macro and manipulate that data using the functionality of 
+Boost PP.
+
+With variadic macro support and VMD, but wishing to use our variadic data 
+in exactly the same way as above, we could design our macro like this:
+
+ #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
+
+Here we again call the macro which does the actual work. 
+This is the reason why I designed my version of the macro 
+without variadic macro support in the way that I did.
+
+The end-user would pass data to this macro in this way:
+
+ ENDUSER_MACRO(a,b,c,d,e)
+
+I think this last way of passing variadic data is more 
+natural to an end-user than using a Boost PP sequence 
+directly, but of course it depends on compiler variadic 
+macro support.
+
+[endsect]
+
 [endsect]

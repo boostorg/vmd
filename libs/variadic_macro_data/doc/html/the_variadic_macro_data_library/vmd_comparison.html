@@ -27,6 +27,8 @@
 <a name="the_variadic_macro_data_library.vmd_comparison"></a><a class="link" href="vmd_comparison.html" title="VMD and Boost PP">VMD and
     Boost PP</a>
 </h2></div></div></div>
+<div class="toc"><dl><dt><span class="section"><a href="vmd_comparison.html#the_variadic_macro_data_library.vmd_comparison.vmd_comp_example">Use-case
+      example</a></span></dt></dl></div>
 <p>
       Boost PP already has the ability to pass variadic data as a single macro argument
       through any of its data types. It may then be reasonably asked why there is
@@ -77,6 +79,67 @@
       to do just that with its macros which convert from variadic macro data to Boost
       PP data types.
     </p>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="the_variadic_macro_data_library.vmd_comparison.vmd_comp_example"></a><a class="link" href="vmd_comparison.html#the_variadic_macro_data_library.vmd_comparison.vmd_comp_example" title="Use-case example">Use-case
+      example</a>
+</h3></div></div></div>
+<p>
+        A typical situation is designing a macro for end-users which takes variadic
+        data as its argument. Let's call this macro, just as an example, ENDUSER_MACRO.
+      </p>
+<p>
+        Without variadic macro support, but in keeping with Boost PP, the best way
+        of designing this macro is probably to use a Boost PP sequence. Our design
+        of the macro might look like this:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
+</pre>
+<p>
+        The reason for calling another macro which does the actual work of expansion
+        will be explained below when discussing how to design this macro using VMD.
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/* expansion which manipulates the data
+  using the Boost PP facilities for a sequence.
+  In Boost PP one can find out the size of the 
+  sequence, extract any token from the sequence, 
+  and much more...
+*/</span>
+</pre>
+<p>
+        The end-user would pass data to this macro in this way:
+      </p>
+<pre class="programlisting"><span class="identifier">ENDUSER_MACRO</span><span class="special">((</span><span class="identifier">a</span><span class="special">)(</span><span class="identifier">b</span><span class="special">)(</span><span class="identifier">c</span><span class="special">)(</span><span class="identifier">d</span><span class="special">)(</span><span class="identifier">e</span><span class="special">))</span> <span class="comment">// etc. with each "token" in the sequence surrounded by ()
+</span></pre>
+<p>
+        That is certainly acceptable, and without variadic macros, it is certainly
+        excellent to have the Boost PP functionality that allows us to design macros
+        taking variadic macro and manipulate that data using the functionality of
+        Boost PP.
+      </p>
+<p>
+        With variadic macro support and VMD, but wishing to use our variadic data
+        in exactly the same way as above, we could design our macro like this:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
+</pre>
+<p>
+        Here we again call the macro which does the actual work. This is the reason
+        why I designed my version of the macro without variadic macro support in
+        the way that I did.
+      </p>
+<p>
+        The end-user would pass data to this macro in this way:
+      </p>
+<pre class="programlisting"><span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">a</span><span class="special">,</span><span class="identifier">b</span><span class="special">,</span><span class="identifier">c</span><span class="special">,</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">e</span><span class="special">)</span>
+</pre>
+<p>
+        I think this last way of passing variadic data is more natural to an end-user
+        than using a Boost PP sequence directly, but of course it depends on compiler
+        variadic macro support.
+      </p>
+</div>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>

@@ -22,5 +22,5 @@ The library is a header only library and all macros in the
 library are in a single header, whose name is 'VariadicMacroData.hpp'.
 
 The library is dependent on Boost PP.
-   
+
 [endsect]
