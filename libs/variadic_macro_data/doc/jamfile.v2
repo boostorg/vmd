@@ -1,0 +1,68 @@
+# VariadicMacroData documentation Jamfile
+#
+# Copyright (c) 2010
+# Edward Diener
+#
+
+project variadic_macro_data ;
+
+using quickbook ;
+using doxygen ;
+
+import modules ;
+import path ;
+import os ;
+
+local BOOST_ROOT = ../../../ ;
+path-constant local-boost-root : $(BOOST_ROOT) ;
+path-constant nav-images : $(local-boost-root)/doc/src/images/ ; # png and svg images for home, next, note, tip...
+path-constant images_location : html/images/ ; # location of SVG images referenced by Quickbook.
+path-constant here : . ; # convenient to refer to files in the same directory as this jamfile.v2
+
+doxygen VariadicMacroDataReference
+  :
+    $(here)/../../../boost/variadic_macro_data/VariadicMacroData.hpp
+  : 
+    <doxygen:param>PROJECT_NAME="VariadicMacroData"
+    <doxygen:param>PROJECT_NUMBER=1
+    <doxygen:param>SORT_MEMBER_DOCS=NO
+    <doxygen:param>SHOW_INCLUDE_FILES=NO
+    <doxygen:param>MAX_INITIALIZER_LINES=0
+    <doxygen:param>VERBATIM_HEADERS=NO
+    <reftitle>"Variadic Macro Data Reference"
+;
+
+xml VariadicMacroData
+  :
+    VariadicMacroData.qbk
+  :
+    <dependency>VariadicMacroDataReference
+;
+
+boostbook standalone
+  :
+     VariadicMacroData
+  :
+  <xsl:param>boost.root="../../../.."
+#  <xsl:param>table.footnote.number.format=1 # Identifies the format used for footnote numbers in tables.
+#  <xsl:param>footnote.number.format=1 # Identifies the format used for text footnote numbers.
+#  <xsl:param>nav.layout=horizontal # to get a horizontal navigation bar (you probably DO want this).
+#  <xsl:param>navig.graphics=1  # Use graphics not text for navigation.
+  <xsl:param>chunk.section.depth=8  # How far down we chunk nested sections, basically all of them.
+#  <xsl:param>chunk.first.sections=1  # Don't put the first section on the same page as the TOC.
+  <xsl:param>toc.section.depth=8  # How far down sections get TOCs.
+  <xsl:param>toc.max.depth=4  # Max depth in each TOC.
+#  <xsl:param>generate.section.toc.level=10  # How far down we go with TOCs.
+#  <xsl:param>fop1.extensions=0 # DISable extensions for FOP version 0.90 and later .
+#  <format>pdf:<xsl:param>fop.extensions=0 # DISable extensions for FOP version 0.20.5 and earlier.
+#  <format>pdf:<xsl:param>xep.extensions=1 # Use XEP extension- PDF bookmarks, document information and better index processing.
+#  <format>pdf:<xsl:param>body.start.indent=0pt 
+#  <format>pdf:<xsl:param>paper.type=A4  # Paper type = A4
+#  <xsl:param>admon.graphics=1
+#  <format>pdf:<xsl:param>admon.graphics.extension=".svg"  
+#  <format>pdf:<xsl:param>use.role.for.mediaobject=1 # Use print role on next line.
+#  <format>pdf:<xsl:param>preferred.mediaobject.role=print # pdf role is to be printed.
+#  <format>pdf:<xsl:param>img.src.path=$(images_location)/ # Path of image (.svg) files. (Note trailing /) ? //
+#  <format>pdf:<xsl:param>admon.graphics.path=$(nav-images)/ # path to admonition (warning, smiley...) image (.svg) files.
+#  <format>pdf:<xsl:param>draft.mode="no"
+  ;

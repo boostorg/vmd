@@ -1,0 +1,30 @@
+[section:vmd_vmacros Variadic Macros]
+
+Variadic macros, as specified by C++0x, is a feature taken from the C99 
+specification. They are macros which take a final parameter denoted as 
+'...' which represents one or more final arguments to the macro as a 
+series of comma-separated tokens. In the macro expansion a special 
+keyword of '\_\_VA\_ARGS\_\_' represents the comma-separated tokens. This 
+information when passed to a variadic macro I call 'variadic macro data',
+which gives its name to this library. The more general term 'variadic data' 
+is used in this documentation to specify data passed to a macro which can 
+contain any number of macro tokens as a single macro parameter, such as is 
+found in Boost PP.
+
+C99, and by implication C++0x, provides no built-in way of accessing a 
+single token from the comma-separated list of variadic macro data. But this 
+library does provide a means to do that among its other functionality.
+
+[section:vmd_vmacros_Boost Boost support]
+
+Boost until recently has had no generic support for variadic macros 
+based on the ability of a given compiler/version to support C99's variadic 
+macros. This support has now been added to the trunk in the form of 
+a macro which denotes that compiler support for variadic macros does not exist. 
+This macro is BOOST_NO_VARIADIC_MACROS. The variadic macro data library 
+will only work for a compiler/version combination when BOOST_NO_VARIADIC_MACROS 
+is not defined.
+
+[endsect]
+
+[endsect]
