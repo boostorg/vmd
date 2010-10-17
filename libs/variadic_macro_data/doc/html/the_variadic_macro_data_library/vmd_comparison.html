@@ -27,8 +27,8 @@
 <a name="the_variadic_macro_data_library.vmd_comparison"></a><a class="link" href="vmd_comparison.html" title="VMD and Boost PP">VMD and
     Boost PP</a>
 </h2></div></div></div>
-<div class="toc"><dl><dt><span class="section"><a href="vmd_comparison.html#the_variadic_macro_data_library.vmd_comparison.vmd_comp_example">Use-case
-      example</a></span></dt></dl></div>
+<div class="toc"><dl><dt><span class="section"><a href="vmd_comparison.html#the_variadic_macro_data_library.vmd_comparison.vmd_comp_example">An
+      example design</a></span></dt></dl></div>
 <p>
       Boost PP already has the ability to pass variadic data as a single macro argument
       through any of its data types. It may then be reasonably asked why there is
@@ -81,8 +81,8 @@
     </p>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="the_variadic_macro_data_library.vmd_comparison.vmd_comp_example"></a><a class="link" href="vmd_comparison.html#the_variadic_macro_data_library.vmd_comparison.vmd_comp_example" title="Use-case example">Use-case
-      example</a>
+<a name="the_variadic_macro_data_library.vmd_comparison.vmd_comp_example"></a><a class="link" href="vmd_comparison.html#the_variadic_macro_data_library.vmd_comparison.vmd_comp_example" title="An example design">An
+      example design</a>
 </h3></div></div></div>
 <p>
         A typical situation is designing a macro for end-users which takes variadic
@@ -132,12 +132,72 @@
 <p>
         The end-user would pass data to this macro in this way:
       </p>
-<pre class="programlisting"><span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">a</span><span class="special">,</span><span class="identifier">b</span><span class="special">,</span><span class="identifier">c</span><span class="special">,</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">e</span><span class="special">)</span>
-</pre>
+<pre class="programlisting"><span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">a</span><span class="special">,</span><span class="identifier">b</span><span class="special">,</span><span class="identifier">c</span><span class="special">,</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">e</span><span class="special">)</span> <span class="comment">// etc. with each token being somma-separated from each other 
+</span></pre>
 <p>
         I think this last way of passing variadic data is more natural to an end-user
         than using a Boost PP sequence directly, but of course it depends on compiler
         variadic macro support.
+      </p>
+<p>
+        One decision to be made is whether to support, for any given variadic data
+        macro functionality, a single macro or two macros with slightly different
+        names.
+      </p>
+<p>
+        Single macro design:
+      </p>
+<p>
+        In our example, if we wish to support a single macro, for compilers that
+        both support or do not support variadic macros, the code would be:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#if</span> <span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
+  <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
+<span class="preprocessor">#else</span>
+  <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
+<span class="preprocessor">#endif</span>
+</pre>
+<p>
+        We would now have a single macro which would be used slightly differently
+        by the end-user depending on whether the compiler being used supported variadic
+        macros or not. This might not be best if the end-user's code needed to work
+        for different compilers, some of which support variadic macros and some of
+        which do not. In that latter case, a dual macro design ( see below ) might
+        be better.
+      </p>
+<p>
+        Another solution supporting a single macro is to just ignore variadic macros,
+        and then our solution would be:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
+</pre>
+<p>
+        We could also ignore any compilers which do not support variadic macros,
+        and then our solution would be:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
+  <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
+<span class="preprocessor">#endif</span>
+</pre>
+<p>
+        Dual macro design:
+      </p>
+<p>
+        Perhaps best is to provide two macros with slightly different names. Our
+        solution would then be:
+      </p>
+<pre class="programlisting">  <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
+<span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
+  <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO_VM</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
+<span class="preprocessor">#endif</span>
+</pre>
+<p>
+        Here I have attached an '_VM' to the name of the macro which supports variadic
+        macros.
+      </p>
+<p>
+        In an ideal world, once the new C++ standard is ratified, all compilers will
+        support variadic macros.
       </p>
 </div>
 </div>

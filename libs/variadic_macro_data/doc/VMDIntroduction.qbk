@@ -1,5 +1,7 @@
 [section:vmd_intro Introduction]
 
+Welcome to the variadic macro data library version 1.1 .
+
 The variadic macro data library, or VMD for short, is a library 
 of macros which provide important functionality for variadic 
 macros as well as integrating variadic macros with the Boost 
