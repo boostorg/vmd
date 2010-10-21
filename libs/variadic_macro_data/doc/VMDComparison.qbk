@@ -1,7 +1,4 @@
 [section:vmd_comparison VMD and Boost PP]
-[template mpara[text]
-'''<para>'''[text]'''</para>'''
-]
 
 Boost PP already has the ability to pass variadic data
 as a single macro argument through any of its data types. 
