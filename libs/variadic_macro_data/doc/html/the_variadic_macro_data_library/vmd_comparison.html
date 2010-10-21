@@ -144,57 +144,64 @@
         macro functionality, a single macro or two macros with slightly different
         names.
       </p>
-<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-            Single macro design:
-          </li></ul></div>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+            Single macro design: <p>In our example, if we wish to support a single macro,
+            for compilers that both support or do not support variadic macros, the
+            code would be:</p>
 <p>
-        In our example, if we wish to support a single macro, for compilers that
-        both support or do not support variadic macros, the code would be:
-      </p>
+</p>
 <pre class="programlisting"><span class="preprocessor">#if</span> <span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
   <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
 <span class="preprocessor">#else</span>
   <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
-<span class="preprocessor">#endif</span>
+<span class="preprocessor">#endif</span>  
 </pre>
 <p>
-        We would now have a single macro which would be used slightly differently
-        by the end-user depending on whether the compiler being used supported variadic
-        macros or not. This might not be best if the end-user's code needed to work
-        for different compilers, some of which support variadic macros and some of
-        which do not. In that latter case, a dual macro design ( see below ) might
-        be better.
-      </p>
+            </p>
+<p>We would now have a single macro which would be used slightly differently
+            by the end-user depending on whether the compiler being used supported
+            variadic macros or not. This might not be best if the end-user's code
+            needed to work for different compilers, some of which support variadic
+            macros and some of which do not. In that latter case, a dual macro design
+            ( see below ) might be better.</p>
+<p>Another solution supporting a single macro
+            is to just ignore variadic macros, and then our solution would be:</p>
 <p>
-        Another solution supporting a single macro is to just ignore variadic macros,
-        and then our solution would be:
-      </p>
+</p>
 <pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
 </pre>
 <p>
-        We could also ignore any compilers which do not support variadic macros,
-        and then our solution would be:
-      </p>
+            </p>
+<p>We could also ignore any compilers which do not support variadic macros,
+            and then our solution would be:</p>
+<p>
+</p>
 <pre class="programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
   <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
 <span class="preprocessor">#endif</span>
 </pre>
-<div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
-            Dual macro design:
-          </li></ul></div>
 <p>
-        Perhaps best is to provide two macros with slightly different names. Our
-        solution would then be:
-      </p>
+            </p>
+
+          </li>
+<li class="listitem">
+            Dual macro design: <p>Perhaps best is to provide two macros with slightly
+            different names. Our solution would then be:</p>
+<p>
+</p>
 <pre class="programlisting">  <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
 <span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
   <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO_VM</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
 <span class="preprocessor">#endif</span>
 </pre>
 <p>
-        Here I have attached an '_VM' to the name of the macro which supports variadic
-        macros.
-      </p>
+            </p>
+<p>Here I have attached an '_VM' to the name of the macro which supports
+            variadic macros.</p>
+
+          </li>
+</ol></div>
 <p>
         In an ideal world, once the new C++ standard is ratified, all compilers will
         support variadic macros, and then we can design a single macro which takes
