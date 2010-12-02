@@ -31,3 +31,10 @@ to regenerate the docs or run the test.
 
 For the version of this library, see version.txt.
 For the history of this library, see history.txt.
+
+If you want to contact me directly, my name is 
+Edward Diener and you can reach me at 
+eld@tropicsoft.com. You can also of course 
+use the Boost newsgroups to ask questions 
+and make comments or suggestions about the 
+library.
