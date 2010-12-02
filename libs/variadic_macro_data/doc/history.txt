@@ -1,3 +1,10 @@
+Version 1.2
+
+1) Added a readme.txt file.
+2) Updated all jamfiles so that the library 
+   may be tested and docs generated from 
+   its own local directory.
+
 Version 1.1
 
 1) Added better documentation for using 
