@@ -1,0 +1,14 @@
+#
+#   Copyright 2010 
+#   Edward Diener
+#
+#   This file is taken from the 'example' sandbox library
+#
+
+project variadic_macro_data
+    : requirements
+        <include>.
+        <include>$(BOOST_ROOT)
+    :
+        build-dir bin.v2
+    ;
