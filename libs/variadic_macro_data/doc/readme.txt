@@ -23,14 +23,16 @@ Boost distribution by:
 
 2) Using the --boost=/path/to/boost/installation 
    bjam command-line parameter to point to a 
-   Boost installation.
+   Boost installation and placing the library 
+   below the sandbox top-level directory with 
+   its top-level sandbox files.
 
 If you move this library under a Boost installation 
 you need only execute 'bjam' in the jamfile directories 
 to regenerate the docs or run the test.
 
-For the version of this library, see version.txt.
-For the history of this library, see history.txt.
+Version information and history information are 
+now part of the generated HTML documentation.
 
 If you want to contact me directly, my name is 
 Edward Diener and you can reach me at 
