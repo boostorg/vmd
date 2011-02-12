@@ -19,10 +19,10 @@ library does provide a means to do that among its other functionality.
 
 Boost until recently has had no generic support for variadic macros 
 based on the ability of a given compiler/version to support C99's variadic 
-macros. This support has now been added to the trunk in the form of 
+macros. This support has now been added, as of Boost version 1.4.5, in the form of 
 a macro which denotes that compiler support for variadic macros does not exist. 
-This macro is BOOST_NO_VARIADIC_MACROS. The variadic macro data library 
-will only work for a compiler/version combination when BOOST_NO_VARIADIC_MACROS 
+This macro is BOOST\_NO\_VARIADIC\_MACROS. The variadic macro data library 
+will only work for a compiler/version combination when BOOST\_NO\_VARIADIC\_MACROS 
 is not defined.
 
 [endsect]

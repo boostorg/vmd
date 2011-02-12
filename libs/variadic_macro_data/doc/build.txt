@@ -1,5 +1,11 @@
-You can use the jamfile in the doc directory to 
-regenerate the documentation for this library.
+The library comes with full documentation with an index, 
+in both HTML and PDF format. However, you can use the 
+jamfile in the doc directory to regenerate the documentation 
+for this library. 
+
+Add '--enable-index' to the command line to have an index 
+with the documentation. Add 'pdf' on the command line to
+regenerate the PDF documentation.
 
 You can use the jamfile in the test directory to 
 run the tests for this library.

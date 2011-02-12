@@ -4,18 +4,40 @@
 # Edward Diener
 #
 
-project variadic_macro_data_doc ;
-
 using quickbook ;
 using doxygen ;
 
 path-constant here : . ; # convenient to refer to files in the same directory as this jamfile.v2
+path-constant boost-images : $(BOOST_ROOT)/doc/src/images ;
 
-doxygen VariadicMacroDataReference
+import modules ;
+
+if --enable-index in  [ modules.peek : ARGV ]
+{
+   ECHO "Building the variadic_macro_data docs with automatic index generation enabled." ;
+   using auto-index ;
+   project vmd_doc : requirements
+             <auto-index>on
+             <auto-index-script>index.idx
+             <auto-index-prefix>../../../
+             <auto-index-verbose>on
+             <format>html:<auto-index-internal>on
+             <format>html:<xsl:param>generate.index=0
+             <format>pdf:<auto-index-internal>on
+             <format>pdf:<xsl:param>index.on.type=1
+             <quickbook-define>enable_index ;
+}
+else
+{
+   project vmd_doc ;
+   ECHO "Building the variadic_macro_data docs with automatic index generation disabled. Try building with --enable-index." ;
+}
+
+doxygen vmd_reference
   :
-    $(here)/../../../boost/variadic_macro_data/VariadicMacroData.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd.hpp
   : 
-    <doxygen:param>PROJECT_NAME="VariadicMacroData"
+    <doxygen:param>PROJECT_NAME="VMD"
     <doxygen:param>PROJECT_NUMBER=1
     <doxygen:param>SORT_MEMBER_DOCS=NO
     <doxygen:param>SHOW_INCLUDE_FILES=NO
@@ -24,21 +46,44 @@ doxygen VariadicMacroDataReference
     <reftitle>"Variadic Macro Data Reference"
 ;
 
-xml VariadicMacroData
+xml vmd
   :
-    VariadicMacroData.qbk
+    vmd.qbk
   :
-    <dependency>VariadicMacroDataReference
+    <dependency>vmd_reference
 ;
 
 boostbook standalone
   :
-     VariadicMacroData
+     vmd
   :
   <xsl:param>boost.root="../../../.."
   <xsl:param>chunk.section.depth=8  # How far down we chunk nested sections, basically all of them.
   <xsl:param>toc.section.depth=8  # How far down sections get TOCs.
   <xsl:param>toc.max.depth=4  # Max depth in each TOC.
+  
+  # PDF Options:
+  # TOC Generation: this is needed for FOP-0.9 and later:
+  <xsl:param>fop1.extensions=0
+  <xsl:param>xep.extensions=1
+  # TOC generation: this is needed for FOP 0.2, but must not be set to zero for FOP-0.9!
+  <xsl:param>fop.extensions=0
+  # No indent on body text:
+  <xsl:param>body.start.indent=0pt
+  # Margin size:
+  <xsl:param>page.margin.inner=0.5in
+  # Margin size:
+  <xsl:param>page.margin.outer=0.5in
+  # Paper type = A4
+  <xsl:param>paper.type=A4
+  # Yes, we want graphics for admonishments:
+  <xsl:param>admon.graphics=1
+  # Set this one for PDF generation *only*:
+  # default pnd graphics are awful in PDF form,
+  # better use SVG's instead:
+  <format>pdf:<xsl:param>admon.graphics.extension=".svg"
+  <format>pdf:<xsl:param>admon.graphics.path=$(boost-images)/
+  
   <dependency>css
   <dependency>images
   ;
@@ -47,5 +92,9 @@ install css : [ glob $(BOOST_ROOT)/doc/src/*.css ]
     : <location>html ;
 install images : [ glob $(BOOST_ROOT)/doc/src/images/*.png ]
     : <location>html/images ;
+install pdfinstall
+    : standalone
+    : <location>$(here) <install-type>PDF <name>variadic_macro_data.pdf
+    ;
 explicit css ;
 explicit images ;

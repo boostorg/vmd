@@ -1,7 +1,7 @@
 [section:vmd_limitations Limitations]
 
 The number of comma-separated macro parameters supported 
-by the macros VMD_DATA_SIZE(...) and VMD_DATA_ELEM(n,...) 
+by the macros BOOST\_VMD\_DATA\_SIZE(...) and BOOST\_VMD\_DATA\_ELEM(n,...) 
 is 64.
 
 [endsect]

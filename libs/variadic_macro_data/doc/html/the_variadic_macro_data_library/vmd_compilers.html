@@ -4,8 +4,8 @@
 <title>Compilers</title>
 <link rel="stylesheet" href="../boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.3">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.3">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
 <link rel="prev" href="vmd_design.html" title="Design">
 <link rel="next" href="vmd_limitations.html" title="Limitations">
 </head>
@@ -22,16 +22,17 @@
 <p>
       A previously mentioned in the section 'Boost Support' the compilers supported
       by this library must not have the Boost Config macro BOOST_NO_VARIADIC_MACROS
-      defined. I have tested this library using gcc/MingW and VC++ on Windows. Other
-      compilers which currently should work with this library are gcc on Linux, Digital
-      Mars C++, and Borland C++ Builder 6/Codegear C++.
+      defined. I have tested this library using gcc/MingW and VC++ on Windows. The
+      compilers tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1
+      and VC++ 8.0, 9.0, 10.0. Other compilers which currently should work with this
+      library are gcc on Linux, Digital Mars C++, and Borland C++ Builder 6/Codegear
+      C++.
     </p>
 <p>
-      Currently (10/09/2010) the macro BOOST_NO_VARIADIC_MACROS is defined for compilers
-      in the trunk. Since this macro specifies compilers which do not support variadic
-      data, this library could be used with previous Boost installations but there
-      would be no guarantee that the compilers for which one wanted to use this library
-      actually support variadic macros.
+      As of Boost 1.4.5 the macro BOOST_NO_VARIADIC_MACROS is supported. This library
+      could be used with previous Boost installations but there would be no guarantee
+      that the compilers for which one wanted to use this library actually support
+      variadic macros.
     </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>

@@ -1,4 +1,4 @@
-#include <boost/variadic_macro_data/VariadicMacroData.hpp>
+#include <boost/variadic_macro_data/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
@@ -12,11 +12,11 @@ int main()
 #if !defined(BOOST_NO_VARIADIC_MACROS)
 
   #define VMD_TEST_SEQ_NUMBERS \
-    VMD_DATA_TO_PP_SEQ(4578,24,789436,78345,902,345,860,667433,56,727,47891) \
+    BOOST_VMD_DATA_TO_PP_SEQ(4578,24,789436,78345,902,345,860,667433,56,727,47891) \
   /**/
   
   #define VMD_TEST_SEQ_TYPES(...) \
-    VMD_DATA_TO_PP_SEQ(bool,__VA_ARGS__) \
+    BOOST_VMD_DATA_TO_PP_SEQ(bool,__VA_ARGS__) \
   /**/
   
   int addedNumber(0);
@@ -43,7 +43,7 @@ int main()
   
 #endif
 
-  addedNumber += VMD_DATA_ELEM(2,VMD_PP_SEQ_TO_DATA(VMD_TEST_SEQ_NUMBERS));
+  addedNumber += BOOST_VMD_DATA_ELEM(2,BOOST_VMD_PP_SEQ_TO_DATA(VMD_TEST_SEQ_NUMBERS));
   
   BOOST_TEST_EQ(addedNumber,4578+24+789436+78345+902+345+860+667433+56+727+47891+789436);
   

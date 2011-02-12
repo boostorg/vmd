@@ -22,9 +22,9 @@ of comma-separated tokens in the variadic macro data can be calculated,
 and that any token among the variadic macro data's comma-separated 
 tokens can be returned. The two macros are:
 
-# [macroref VMD_DATA_SIZE](...), which returns the number of comma-separated 
+# [macroref BOOST_VMD_DATA_SIZE](...), which returns the number of comma-separated 
   tokens.
-# [macroref VMD_DATA_ELEM](n,...), which returns a particular token among 
+# [macroref BOOST_VMD_DATA_ELEM](n,...), which returns a particular token among 
   the comma-separated sequence. Here 'n' stands for the number of 
   the token, starting with 0, which is returned from the variadic 
   macro data.
@@ -36,10 +36,10 @@ tokens can be returned. The two macros are:
 There are four macros which convert variadic macro data as a whole to 
 each of the four Boost PP data types. These are:
 
-# [macroref VMD_DATA_TO_PP_TUPLE](...), which converts to a Boost PP tuple.
-# [macroref VMD_DATA_TO_PP_ARRAY](...), which converts to a Boost PP array.
-# [macroref VMD_DATA_TO_PP_LIST](...), which converts to a Boost PP list.
-# [macroref VMD_DATA_TO_PP_SEQ](...), which converts to a Boost PP sequence.
+# [macroref BOOST_VMD_DATA_TO_PP_TUPLE](...), which converts to a Boost PP tuple.
+# [macroref BOOST_VMD_DATA_TO_PP_ARRAY](...), which converts to a Boost PP array.
+# [macroref BOOST_VMD_DATA_TO_PP_LIST](...), which converts to a Boost PP list.
+# [macroref BOOST_VMD_DATA_TO_PP_SEQ](...), which converts to a Boost PP sequence.
    
 [endsect]
 
@@ -48,10 +48,10 @@ each of the four Boost PP data types. These are:
 There are four macros which convert each of the four Boost PP data 
 types to variadic macro data. These are:
 
-# [macroref VMD_PP_TUPLE_TO_DATA](tuple), which converts from a Boost PP tuple.
-# [macroref VMD_PP_ARRAY_TO_DATA](array), which converts from a Boost PP array.
-# [macroref VMD_PP_LIST_TO_DATA](list), which converts from a Boost PP list.
-# [macroref VMD_PP_SEQ_TO_DATA](seq), which converts from a Boost PP sequence.
+# [macroref BOOST_VMD_PP_TUPLE_TO_DATA](tuple), which converts from a Boost PP tuple.
+# [macroref BOOST_VMD_PP_ARRAY_TO_DATA](array), which converts from a Boost PP array.
+# [macroref BOOST_VMD_PP_LIST_TO_DATA](list), which converts from a Boost PP list.
+# [macroref BOOST_VMD_PP_SEQ_TO_DATA](seq), which converts from a Boost PP sequence.
 
 In these macros the data is returned as a comma-separated list of 
 tokens, which is the format of variadic macro data. The results of 
@@ -67,21 +67,21 @@ addition to Boost PP functionality when dealing with tuples while the
 final five are direct replacements for Boost PP tuple data manipulation 
 macros and which do not require the size of the tuple. These are:
 
-# [macroref VMD_PP_TUPLE_SIZE](tuple), which returns the size of the tuple.
-# [macroref VMD_PP_TUPLE_ELEM](tuple), which is a replacement for 
-  BOOST_PP_TUPLE_ELEM without having to pass the size of the 
+# [macroref BOOST_VMD_PP_TUPLE_SIZE](tuple), which returns the size of the tuple.
+# [macroref BOOST_VMD_PP_TUPLE_ELEM](tuple), which is a replacement for 
+  BOOST\_PP\_TUPLE\_ELEM without having to pass the size of the 
   tuple as the first parameter.
-# [macroref VMD_PP_TUPLE_REM_CTOR](tuple), which is a replacement for 
-  BOOST_PP_TUPLE_REM_CTOR without having to pass the size of the 
+# [macroref BOOST_VMD_PP_TUPLE_REM_CTOR](tuple), which is a replacement for 
+  BOOST\_PP\_TUPLE\_REM\_CTOR without having to pass the size of the 
   tuple as the first parameter.
-# [macroref VMD_PP_TUPLE_REVERSE](tuple), which is a replacement for 
-  macroref BOOST_PP_TUPLE_REVERSE without having to pass the size of the 
+# [macroref BOOST_VMD_PP_TUPLE_REVERSE](tuple), which is a replacement for 
+  macroref BOOST\_PP\_TUPLE\_REVERSE without having to pass the size of the 
   tuple as the first parameter.
-# [macroref VMD_PP_TUPLE_TO_LIST](tuple), which is a replacement for 
-  BOOST_PP_TUPLE_TO_LIST without having to pass the size of the 
+# [macroref BOOST_VMD_PP_TUPLE_TO_LIST](tuple), which is a replacement for 
+  BOOST\_PP\_TUPLE\_TO\_LIST without having to pass the size of the 
   tuple as the first parameter.
-# [macroref VMD_PP_TUPLE_TO_SEQ](tuple), which is a replacement for 
-  BOOST_PP_TUPLE_TO_SEQ without having to pass the size of the 
+# [macroref BOOST_VMD_PP_TUPLE_TO_SEQ](tuple), which is a replacement for 
+  BOOST\_PP\_TUPLE\_TO\_SEQ without having to pass the size of the 
   tuple as the first parameter.
 
 [endsect]

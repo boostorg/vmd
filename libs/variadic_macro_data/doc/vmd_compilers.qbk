@@ -1,0 +1,15 @@
+[section:vmd_compilers Compilers]
+
+A previously mentioned in the section 'Boost Support' the compilers supported 
+by this library must not have the Boost Config macro BOOST\_NO\_VARIADIC\_MACROS 
+defined. I have tested this library using gcc/MingW and VC++ on Windows. The 
+compilers tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1
+and VC++ 8.0, 9.0, 10.0. Other compilers which currently should work with this 
+library are gcc on Linux, Digital Mars C++, and Borland C++ Builder 6/Codegear C++.
+
+As of Boost 1.4.5 the macro BOOST\_NO\_VARIADIC\_MACROS is supported.
+This library could be used with previous Boost 
+installations but there would be no guarantee that the compilers for which 
+one wanted to use this library actually support variadic macros.
+
+[endsect]

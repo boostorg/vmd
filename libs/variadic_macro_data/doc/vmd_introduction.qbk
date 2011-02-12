@@ -1,6 +1,6 @@
 [section:vmd_intro Introduction]
 
-Welcome to the variadic macro data library version 1.3 .
+Welcome to the variadic macro data library version 1.4 .
 
 The variadic macro data library, or VMD for short, is a library 
 of macros which provide important functionality for variadic 
@@ -21,7 +21,7 @@ The functionality of the library may be summed up as:
   passed.
    
 The library is a header only library and all macros in the 
-library are in a single header, whose name is 'VariadicMacroData.hpp'.
+library are in a single header, whose name is 'vmd.hpp'.
 
 The library is dependent on Boost PP.
 

@@ -1,4 +1,4 @@
-#include <boost/variadic_macro_data/VariadicMacroData.hpp>
+#include <boost/variadic_macro_data/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/list/at.hpp>
 #include <boost/preprocessor/list/size.hpp>
@@ -12,11 +12,11 @@ int main()
 #if !defined(BOOST_NO_VARIADIC_MACROS)
 
   #define VMD_TEST_LIST_NUMBERS \
-    VMD_DATA_TO_PP_LIST(34,23467,12,9984,34,678,7890,1235678,3489,1,8965,345) \
+    BOOST_VMD_DATA_TO_PP_LIST(34,23467,12,9984,34,678,7890,1235678,3489,1,8965,345) \
   /**/
   
   #define VMD_TEST_LIST_TYPES(...) \
-    VMD_DATA_TO_PP_LIST(unsigned char,__VA_ARGS__) \
+    BOOST_VMD_DATA_TO_PP_LIST(unsigned char,__VA_ARGS__) \
   /**/
   
   int addedNumber(0);
@@ -43,7 +43,7 @@ int main()
   
 #endif
 
-  addedNumber += VMD_DATA_ELEM(8,VMD_PP_LIST_TO_DATA(VMD_TEST_LIST_NUMBERS));
+  addedNumber += BOOST_VMD_DATA_ELEM(8,BOOST_VMD_PP_LIST_TO_DATA(VMD_TEST_LIST_NUMBERS));
   
   BOOST_TEST_EQ(addedNumber,34+23467+12+9984+34+678+7890+1235678+3489+1+8965+345+3489);
   

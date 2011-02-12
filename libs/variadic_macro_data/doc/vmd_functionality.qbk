@@ -26,7 +26,7 @@ variadic macro data with Boost PP in these ways.
 
 Outside of Boost PP interoperability, VMD allows individual tokens to 
 be extracted from the variadic macro data and used in macro expansion 
-or passed to other macross.
+or passed to other macros.
 
 Finally through the functionality of variadic macros, VMD provides parallel 
 functionality to the Boost PP tuple interface macros with a set of macros 

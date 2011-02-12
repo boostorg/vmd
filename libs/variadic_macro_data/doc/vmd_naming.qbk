@@ -1,9 +1,7 @@
 [section:vmd_naming Naming conventions]
 
-Currently all of the macros in the library begin with the prefix VMD_, 
-which stands for 'Variadic Macro Data'. If this library were to be 
-accepted into Boost, the macros can easily be changed to use BOOST\_VMD\_ 
-as the prefix instead.
+All of the macros in the library begin with the prefix BOOST\_VMD\_, 
+where VMD stands for 'Variadic Macro Data'.
 
 Following the prefix, certain names in the macros refer to data types 
 in this library or Boost PP. These names and their data types are:

@@ -41,7 +41,7 @@ variadic macro data to Boost PP data types.
 
 We will design a macro for end-users which 
 takes variadic data as its argument. Let's call this macro, 
-just as an example, ENDUSER_MACRO. 
+just as an example, ENDUSER\_MACRO. 
 
 Without variadic macro support, but in keeping with Boost PP, the 
 best way of designing this macro is probably to use a Boost PP sequence. 
@@ -73,7 +73,7 @@ Boost PP.
 With variadic macro support and VMD, but wishing to use our variadic data 
 in exactly the same way as above, we could design our macro like this:
 
- #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
+ #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(BOOST_VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
 
 Here we again call the macro which does the actual work. 
 This is the reason why I designed my version of the macro 
@@ -81,7 +81,7 @@ without variadic macro support in the way that I did.
 
 The end-user would pass data to this macro in this way:
 
- ENDUSER_MACRO(a,b,c,d,e) // etc. with each token being somma-separated from each other 
+ ENDUSER_MACRO(a,b,c,d,e) // etc. with each token being comma-separated from each other 
 
 I think this last way of passing variadic data is more 
 natural to an end-user than using a Boost PP sequence 
@@ -99,7 +99,7 @@ both support or do not support variadic macros, the code would be:'''</para>'''
   #if defined(BOOST_NO_VARIADIC_MACROS)
     #define ENDUSER_MACRO(ppSequence) ENDUSER_DETAIL_MACRO(ppSequence)
   #else
-    #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
+    #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(BOOST_VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
   #endif  
 ``'''</para>'''
 '''<para>'''We would now have a single macro which would be used slightly differently by the 
@@ -116,7 +116,7 @@ and then our solution would be:'''</para>'''
 and then our solution would be:'''</para>'''
 '''<para>'''``
   #if !defined(BOOST_NO_VARIADIC_MACROS)
-    #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
+    #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(BOOST_VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
   #endif
 ``'''</para>'''
 # Dual macro design:
@@ -125,10 +125,10 @@ would then be:'''</para>'''
 '''<para>'''``
     #define ENDUSER_MACRO(ppSequence) ENDUSER_DETAIL_MACRO(ppSequence)
   #if !defined(BOOST_NO_VARIADIC_MACROS)
-    #define ENDUSER_MACRO_VM(...) ENDUSER_DETAIL_MACRO(VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
+    #define ENDUSER_MACRO_VM(...) ENDUSER_DETAIL_MACRO(BOOST_VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
   #endif
 ``'''</para>'''
-'''<para>'''Here I have attached an '_VM' to the name of the macro which supports 
+'''<para>'''Here I have attached an '\_VM' to the name of the macro which supports 
 variadic macros.'''</para>'''
   
 In an ideal world, once the new C++ standard is ratified, all compilers   

@@ -1,4 +1,4 @@
-#include <boost/variadic_macro_data/VariadicMacroData.hpp>
+#include <boost/variadic_macro_data/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/array/size.hpp>
 #include <boost/preprocessor/array/elem.hpp>
@@ -12,11 +12,11 @@ int main()
 #if !defined(BOOST_NO_VARIADIC_MACROS)
 
   #define VMD_TEST_ARRAY_NUMBERS \
-    VMD_DATA_TO_PP_ARRAY(47,69,23,985,458,77,12457,89,99872) \
+    BOOST_VMD_DATA_TO_PP_ARRAY(47,69,23,985,458,77,12457,89,99872) \
   /**/
   
   #define VMD_TEST_ARRAY_TYPES(...) \
-    VMD_DATA_TO_PP_ARRAY(int,__VA_ARGS__) \
+    BOOST_VMD_DATA_TO_PP_ARRAY(int,__VA_ARGS__) \
   /**/
   
   int addedNumber(0);
@@ -43,7 +43,7 @@ int main()
   
 #endif
 
-  addedNumber += VMD_DATA_ELEM(5,VMD_PP_ARRAY_TO_DATA(VMD_TEST_ARRAY_NUMBERS));
+  addedNumber += BOOST_VMD_DATA_ELEM(5,BOOST_VMD_PP_ARRAY_TO_DATA(VMD_TEST_ARRAY_NUMBERS));
   
   BOOST_TEST_EQ(addedNumber,47+69+23+985+458+77+12457+89+99872+77);
   

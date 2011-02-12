@@ -1,4 +1,4 @@
-#include <boost/variadic_macro_data/VariadicMacroData.hpp>
+#include <boost/variadic_macro_data/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/arithmetic/add.hpp>
 #include <boost/preprocessor/cat.hpp>
@@ -9,11 +9,11 @@ int main()
   
 #if !defined(BOOST_NO_VARIADIC_MACROS)
 
-  int number(BOOST_PP_ADD(VMD_DATA_SIZE(3,7,45),0));
+  int number(BOOST_PP_ADD(BOOST_VMD_DATA_SIZE(3,7,45),0));
   
   BOOST_TEST_EQ(number,3);
   
-  number = BOOST_PP_CAT(6,VMD_DATA_SIZE(3,7,45));
+  number = BOOST_PP_CAT(6,BOOST_VMD_DATA_SIZE(3,7,45));
 
   BOOST_TEST_EQ(number,63);
   
