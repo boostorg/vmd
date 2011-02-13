@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Functional groups</title>
+<link rel="stylesheet" href="../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.3">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.3">
+<link rel="prev" href="vmd_naming.html" title="Naming conventions">
+<link rel="next" href="vmd_detail/vmd_toPP.html" title="Convert to Boost PP data types">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_naming.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_detail/vmd_toPP.html"><img src="../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="the_variadic_macro_data_library.vmd_detail"></a><a class="link" href="vmd_detail.html" title="Functional groups">Functional
+    groups</a>
+</h2></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="vmd_detail.html#the_variadic_macro_data_library.vmd_detail.vmd_usage">Variadic
+      Usage</a></span></dt>
+<dt><span class="section"><a href="vmd_detail/vmd_toPP.html">Convert
+      to Boost PP data types</a></span></dt>
+<dt><span class="section"><a href="vmd_detail/vmd_fromPP.html">Convert
+      from Boost PP data types</a></span></dt>
+<dt><span class="section"><a href="vmd_detail/vmd_tuple.html">Boost
+      PP tuple enhancements</a></span></dt>
+</dl></div>
+<p>
+      The macros in VMD can best be explained as falling into four groups. These
+      are:
+    </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+          Macros which directly support variadic macro data usage.
+        </li>
+<li class="listitem">
+          Macros which convert variadic macro data to Boost PP data types.
+        </li>
+<li class="listitem">
+          Macros which convert Boost PP data types to variadic macro data.
+        </li>
+<li class="listitem">
+          Macros which offer an easy to use replacement for Boost PP tuple macros
+          because they do not require the size of the tuple to be specified.
+        </li>
+</ol></div>
+<p>
+      A further general explanation of each of these groups follow, while a specific
+      explanation for each macro can be found in the reference section.
+    </p>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_usage"></a><a class="link" href="vmd_detail.html#the_variadic_macro_data_library.vmd_detail.vmd_usage" title="Variadic Usage">Variadic
+      Usage</a>
+</h3></div></div></div>
+<p>
+        There are two macros which enhance variadic macro data usage. These macros
+        add functionality to variadic macros so that the number of comma-separated
+        tokens in the variadic macro data can be calculated, and that any token among
+        the variadic macro data's comma-separated tokens can be returned. The two
+        macros are:
+      </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+            <code class="computeroutput"><a class="link" href="../BOOST_VMD_DATA_SIZE.html" title="Macro BOOST_VMD_DATA_SIZE">BOOST_VMD_DATA_SIZE</a></code>(...),
+            which returns the number of comma-separated tokens.
+          </li>
+<li class="listitem">
+            <code class="computeroutput"><a class="link" href="../BOOST_VMD_DATA_ELEM.html" title="Macro BOOST_VMD_DATA_ELEM">BOOST_VMD_DATA_ELEM</a></code>(n,...),
+            which returns a particular token among the comma-separated sequence.
+            Here 'n' stands for the number of the token, starting with 0, which is
+            returned from the variadic macro data.
+          </li>
+</ol></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_naming.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_detail/vmd_toPP.html"><img src="../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

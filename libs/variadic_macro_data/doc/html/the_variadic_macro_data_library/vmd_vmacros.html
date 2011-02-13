@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Variadic Macros</title>
+<link rel="stylesheet" href="../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.3">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.3">
+<link rel="prev" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.3">
+<link rel="next" href="vmd_functionality.html" title="Functionality">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../index.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_functionality.html"><img src="../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="the_variadic_macro_data_library.vmd_vmacros"></a><a class="link" href="vmd_vmacros.html" title="Variadic Macros">Variadic Macros</a>
+</h2></div></div></div>
+<div class="toc"><dl><dt><span class="section"><a href="vmd_vmacros.html#the_variadic_macro_data_library.vmd_vmacros.vmd_vmacros_Boost">Boost
+      support</a></span></dt></dl></div>
+<p>
+      Variadic macros, as specified by C++0x, is a feature taken from the C99 specification.
+      They are macros which take a final parameter denoted as '...' which represents
+      one or more final arguments to the macro as a series of comma-separated tokens.
+      In the macro expansion a special keyword of '__VA_ARGS__' represents the comma-separated
+      tokens. This information when passed to a variadic macro I call 'variadic macro
+      data', which gives its name to this library. The more general term 'variadic
+      data' is used in this documentation to specify data passed to a macro which
+      can contain any number of macro tokens as a single macro parameter, such as
+      is found in Boost PP.
+    </p>
+<p>
+      C99, and by implication C++0x, provides no built-in way of accessing a single
+      token from the comma-separated list of variadic macro data. But this library
+      does provide a means to do that among its other functionality.
+    </p>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="the_variadic_macro_data_library.vmd_vmacros.vmd_vmacros_Boost"></a><a class="link" href="vmd_vmacros.html#the_variadic_macro_data_library.vmd_vmacros.vmd_vmacros_Boost" title="Boost support">Boost
+      support</a>
+</h3></div></div></div>
+<p>
+        Boost until recently has had no generic support for variadic macros based
+        on the ability of a given compiler/version to support C99's variadic macros.
+        This support has now been added, as of Boost version 1.4.5, in the form of
+        a macro which denotes that compiler support for variadic macros does not
+        exist. This macro is BOOST_NO_VARIADIC_MACROS. The variadic macro data library
+        will only work for a compiler/version combination when BOOST_NO_VARIADIC_MACROS
+        is not defined.
+      </p>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../index.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_functionality.html"><img src="../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
