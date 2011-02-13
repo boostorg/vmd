@@ -1,17 +1,14 @@
 [section:vmd_history History]
 
-[heading Version 1.4]
+[heading Version 1.3]
 
+* Moved version information and history into the documentation.
+* Separate files for build.txt in the doc sub-directory and readme.txt in the top-level directory.
 * Breaking changes
   * The name of the main header file is shortened to 'vmd.hpp'.
   * The library follows the Boost conventions.
     * Changed the filenames to lower case and underscores.
     * The macros now start with BOOST\_VMD\_ rather than just VMD\_ as previously.
-
-[heading Version 1.3]
-
-* Moved version information and history into the documentation.
-* Updated readme.txt explanation for running executing jamfiles outside of a Boost implelmentation.
 
 [heading Version 1.2]
 
