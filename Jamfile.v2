@@ -7,8 +7,7 @@
 
 project variadic_macro_data
     : requirements
-        <include>.
-        <include>$(BOOST_ROOT)
+        <include>.&&$(BOOST_ROOT)
     :
         build-dir bin.v2
     ;
