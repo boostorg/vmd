@@ -10,11 +10,22 @@
 #include <boost/preprocessor/tuple/to_list.hpp>
 #include <boost/preprocessor/tuple/to_seq.hpp>
 #include <boost/preprocessor/tuple/rem.hpp>
+
 #if defined(BOOST_MSVC)
-#include <boost/preprocessor/arithmetic/add.hpp>
-#include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
+#if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MWCC()
+#define VMD_DETAIL_VD_CAT(a, b) VMD_DETAIL_VD_CAT_I(a, b)
+#else
+#define VMD_DETAIL_VD_CAT(a, b) VMD_DETAIL_VD_CAT_OO((a, b))
+#define VMD_DETAIL_VD_CAT_OO(par) VMD_DETAIL_VD_CAT_I ## par
 #endif
+#if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC()
+#define VMD_DETAIL_VD_CAT_I(a, b) a ## b
+#else
+#define VMD_DETAIL_VD_CAT_I(a, b) VMD_DETAIL_VD_CAT_II(a ## b)
+#define VMD_DETAIL_VD_CAT_II(res) res
+#endif
+#endif // defined(BOOST_MSVC)
 
 #define VMD_DETAIL_DATA_ELEM_0(p0, ...) p0
 #define VMD_DETAIL_DATA_ELEM_1(p0, p1, ...) p1
@@ -116,7 +127,7 @@
 /**/
 #if defined(BOOST_MSVC)
 #define VMD_DETAIL_DATA_SIZE(...) \
-  BOOST_PP_ADD(VMD_DETAIL_APPLY(VMD_DETAIL_ARG_N, (__VA_ARGS__, VMD_DETAIL_RSEQ_N())),0) \
+  VMD_DETAIL_VD_CAT(VMD_DETAIL_APPLY(VMD_DETAIL_ARG_N, (__VA_ARGS__, VMD_DETAIL_RSEQ_N())),BOOST_PP_EMPTY()) \
 /**/
 #else
 #define VMD_DETAIL_DATA_SIZE(...) \
@@ -130,7 +141,7 @@
 #define VMD_DETAIL_PRIMITIVE_CAT(a, ...) a ## __VA_ARGS__
 #if defined(BOOST_MSVC)
 #define VMD_DETAIL_DATA_ELEM(n,...) \
-  BOOST_PP_CAT(VMD_DETAIL_CAT(VMD_DETAIL_DATA_ELEM_, n)(__VA_ARGS__,),BOOST_PP_EMPTY()) \
+  VMD_DETAIL_VD_CAT(VMD_DETAIL_CAT(VMD_DETAIL_DATA_ELEM_, n)(__VA_ARGS__,),BOOST_PP_EMPTY()) \
 /**/
 #else
 #define VMD_DETAIL_DATA_ELEM(n,...) \

@@ -1,5 +1,9 @@
 [section:vmd_history History]
 
+[heading Version 1.4]
+
+* Removed internal dependency on BOOST_PP_CAT and BOOST_PP_ADD when using VC++.
+
 [heading Version 1.3]
 
 * Moved version information and history into the documentation.

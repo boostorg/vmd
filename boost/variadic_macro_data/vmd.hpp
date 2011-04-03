@@ -8,7 +8,6 @@
 #include <boost/preprocessor/array/data.hpp>
 #include <boost/preprocessor/list/to_tuple.hpp>
 #include <boost/preprocessor/seq/to_tuple.hpp>
-#include <boost/preprocessor/repetition/repeat.hpp>
 #include "detail/vmd_detail.hpp"
 
 /*
