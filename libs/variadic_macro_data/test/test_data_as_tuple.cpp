@@ -1,5 +1,8 @@
 #include <boost/variadic_macro_data/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
+
+#if BOOST_VMD_VARIADICS
+
 #include <boost/preprocessor/list/size.hpp>
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/rem.hpp>
@@ -7,11 +10,13 @@
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <vector>
 #include <boost/type_traits/is_same.hpp>
+  
+#endif
 
 int main()
   {
   
-#if !defined(BOOST_NO_VARIADIC_MACROS)
+#if BOOST_VMD_VARIADICS
 
   #define VMD_TEST_TUPLE_NUMBERS \
     BOOST_VMD_DATA_TO_PP_TUPLE(23,45,147,6,7743,12,67,43,89045,82) \

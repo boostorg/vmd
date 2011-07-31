@@ -1,5 +1,8 @@
 #include <boost/variadic_macro_data/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
+
+#if BOOST_VMD_VARIADICS
+
 #include <vector>
 #include <string>
 #include <boost/type_traits/is_same.hpp>
@@ -12,11 +15,13 @@
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/selection/max.hpp>
 #include <boost/preprocessor/stringize.hpp>
+  
+#endif
 
 int main()
   {
   
-#if !defined(BOOST_NO_VARIADIC_MACROS)
+#if BOOST_VMD_VARIADICS
 
   #define VMD_TEST_THE_DATA 147,12,the,*,we99,33,++,jjgg,+=,0,1
   

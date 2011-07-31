@@ -1,15 +1,21 @@
 #include <boost/variadic_macro_data/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
+
+#if BOOST_VMD_VARIADICS
+
 #include <boost/preprocessor/array/size.hpp>
 #include <boost/preprocessor/array/elem.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <vector>
 #include <boost/type_traits/is_same.hpp>
+  
+#endif
 
 int main()
   {
   
-#if !defined(BOOST_NO_VARIADIC_MACROS)
+
+#if BOOST_VMD_VARIADICS
 
   #define VMD_TEST_ARRAY_NUMBERS \
     BOOST_VMD_DATA_TO_PP_ARRAY(47,69,23,985,458,77,12457,89,99872) \
