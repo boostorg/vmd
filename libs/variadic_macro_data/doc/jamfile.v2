@@ -35,7 +35,8 @@ else
 
 doxygen vmd_reference
   :
-    $(here)/../../../boost/variadic_macro_data/vmd.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_native.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_common.hpp
   : 
     <doxygen:param>PROJECT_NAME="VMD"
     <doxygen:param>PROJECT_NUMBER=1

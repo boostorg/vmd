@@ -10,16 +10,16 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>msvc:<warnings>all
                                                  <toolset>gcc:<warnings>all
                                                  <toolset>gcc-4.3.0:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.3.0:<cxxflags>-std=c++0x
                                                  <toolset>gcc-4.4.0:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.4.0:<cxxflags>-std=c++0x
                                                  <toolset>gcc-4.5.0:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.5.0:<cxxflags>-std=c++0x
-                                                 <toolset>gcc-4.5.0:<linkflags>"-Wl,--enable-auto-import"
                                                  <toolset>gcc-4.5.2:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.5.2:<cxxflags>-std=c++0x
                                                  <toolset>gcc-4.6.0:<cxxflags>-Wno-variadic-macros
+                                                 <toolset>gcc-4.3.0:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.4.0:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.5.0:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.5.2:<cxxflags>-std=c++0x
                                                  <toolset>gcc-4.6.0:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.5.0:<linkflags>"-Wl,--enable-auto-import"
                                                  ;
 
 test-suite variadic_macro_data
@@ -29,6 +29,8 @@ test-suite variadic_macro_data
         [ run test_data_as_array.cpp ]
         [ run test_data_as_list.cpp ]
         [ run test_data_as_sequence.cpp ]
+        [ run test_tuple_begin.cpp ]
+        [ run test_remove_parens.cpp ]
     ;
 
 test-suite variadic_macro_data_pplib
@@ -48,4 +50,11 @@ test-suite variadic_macro_data_pplib
         [ run test_data_as_sequence.cpp : : :
           <define>BOOST_VMD_PPLIB=1 : 
           test_data_as_sequence_pplib ]
+        [ run test_tuple_begin.cpp : : :
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_tuple_begin_pplib ]
+        [ run test_remove_parens.cpp : : :
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_remove_parens_pplib ]
+          
     ;

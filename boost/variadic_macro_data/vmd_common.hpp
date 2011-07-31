@@ -18,14 +18,26 @@
 /** \file
 */
 
-# define BOOST_VMD_REMOVE_PARENS(x) \
+/// Removes the set of parens from the start of a parameter if it has any.
+/**
+
+    param = a macro parameter.
+
+    returns = the parameter with the beginning set of parens removed.
+              If the parameter has no beginning set of parameters, the
+              parameter is returned as is. If there are further sets of 
+              parens after the beginning set of parameters, they are not
+              removed.
+    
+*/
+# define BOOST_VMD_REMOVE_PARENS(param) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_TUPLE_BEGIN(x), \
+      BOOST_VMD_IS_TUPLE_BEGIN(param), \
       VMD_DETAIL_REMOVE_PARENS, \
       BOOST_PP_IDENTITY \
       ) \
-    (x)() \
+    (param)() \
 /**/
 
 #endif // BOOST_VMD_VARIADICS
