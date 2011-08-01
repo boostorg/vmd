@@ -365,5 +365,27 @@
       ) \
 /**/
 
+#if BOOST_VMD_MSVC
+
+# define BOOST_VMD_IS_EMPTY(param) \
+    VMD_DETAIL_IS_EMPTY_IIF \
+      ( \
+      BOOST_PP_DEC \
+        ( \
+        BOOST_PP_VARIADIC_SIZE \
+          ( \
+          VMD_DETAIL_IS_EMPTY_IS_TUPLE_BEGIN_EXPAND param \
+          ) \
+        ) \
+      ) \
+      ( \
+      VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
+      VMD_DETAIL_IS_EMPTY_IS_TUPLE_BEGIN \
+      ) \
+    (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param ()) \
+/**/
+
+#endif /* BOOST_VMD_MSVC */
+
 #endif // BOOST_VMD_VARIADICS
 #endif // VMD_PPLIB_HPP

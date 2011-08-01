@@ -40,5 +40,26 @@
     (param)() \
 /**/
 
+#if !BOOST_VMD_MSVC
+
+#define BOOST_VMD_IS_EMPTY(...) \
+    VMD_DETAIL_IS_EMPTY_IIF \
+      ( \
+      VMD_DETAIL_IS_EMPTY_IS_VARIADIC \
+        ( \
+        __VA_ARGS__ \
+        ) \
+      ) \
+      ( \
+      0, \
+      VMD_DETAIL_IS_EMPTY_IS_VARIADIC \
+        ( \
+        VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
+        ) \
+      ) \
+/**/
+
+#endif
+
 #endif // BOOST_VMD_VARIADICS
 #endif // VMD_COMMON_HPP
