@@ -33,7 +33,7 @@ int main()
       } \
   /**/
   
-#if defined(BOOST_VMD_MSVC)
+#if BOOST_VMD_MSVC
   
 #pragma warning( push )
 #pragma warning( disable : 4127 )
@@ -42,7 +42,7 @@ int main()
 
   BOOST_PP_REPEAT(BOOST_PP_LIST_SIZE(VMD_TEST_LIST_NUMBERS),VMD_TEST_ADD_TO_INT,VMD_TEST_LIST_NUMBERS)
   
-#if defined(BOOST_VMD_MSVC)
+#if BOOST_VMD_MSVC
   
 #pragma warning( pop )  
   

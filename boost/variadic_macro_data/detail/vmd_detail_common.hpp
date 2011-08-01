@@ -11,10 +11,6 @@
 
 #if BOOST_VMD_MSVC
 
-# define VMD_DETAIL_IS_EMPTY_IS_TUPLE_BEGIN_EXPAND(...) \
-    1,1 \
-/**/
-
 # define VMD_DETAIL_IS_EMPTY_GEN_ZERO(x) 0
 # define VMD_DETAIL_IS_EMPTY_PRIMITIVE_CAT(a, b) a ## b
 # define VMD_DETAIL_IS_EMPTY_IIF_0(t, b) b

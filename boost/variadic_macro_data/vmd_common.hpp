@@ -59,7 +59,7 @@
       ) \
 /**/
 
-#endif
+#endif /* BOOST_VMD_MSVC */
 
 #endif // BOOST_VMD_VARIADICS
 #endif // VMD_COMMON_HPP

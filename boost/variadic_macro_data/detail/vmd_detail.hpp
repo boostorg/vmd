@@ -13,5 +13,5 @@
 
 #include "vmd_detail_common.hpp"
 
-#endif // BOOST_VMD_VARIADICS
-#endif // VMD_DETAIL_HPP
+#endif /* BOOST_VMD_VARIADICS */
+#endif /* VMD_DETAIL_HPP */

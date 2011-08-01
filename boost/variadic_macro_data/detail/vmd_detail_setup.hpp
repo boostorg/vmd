@@ -29,4 +29,4 @@
 #endif /* BOOST_NO_VARIADIC_MACROS */
 #endif /* BOOST_VMD_VARIADICS */
 
-#endif // VMD_DETAIL_SETUP_HPP
+#endif /* VMD_DETAIL_SETUP_HPP */

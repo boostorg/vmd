@@ -12,7 +12,7 @@
 #include <boost/preprocessor/tuple/to_seq.hpp>
 #include <boost/preprocessor/tuple/rem.hpp>
 
-#if defined(BOOST_VMD_MSVC)
+#if BOOST_VMD_MSVC
 #include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MWCC()
@@ -27,7 +27,7 @@
 #define VMD_DETAIL_VD_CAT_I(a, b) VMD_DETAIL_VD_CAT_II(a ## b)
 #define VMD_DETAIL_VD_CAT_II(res) res
 #endif
-#endif // defined(BOOST_VMD_MSVC)
+#endif // BOOST_VMD_MSVC
 
 #define VMD_DETAIL_DATA_ELEM_0(p0, ...) p0
 #define VMD_DETAIL_DATA_ELEM_1(p0, p1, ...) p1
@@ -127,7 +127,7 @@
 #define VMD_DETAIL_PP_TUPLE_TO_DATA(tuple) \
   VMD_DETAIL_REMOVE_TUPLE_PARENS tuple \
 /**/
-#if defined(BOOST_VMD_MSVC)
+#if BOOST_VMD_MSVC
 #define VMD_DETAIL_DATA_SIZE(...) \
   VMD_DETAIL_VD_CAT(VMD_DETAIL_APPLY(VMD_DETAIL_ARG_N, (__VA_ARGS__, VMD_DETAIL_RSEQ_N())),BOOST_PP_EMPTY()) \
 /**/
@@ -141,7 +141,7 @@
 /**/
 #define VMD_DETAIL_CAT(a, ...) VMD_DETAIL_PRIMITIVE_CAT(a, __VA_ARGS__)
 #define VMD_DETAIL_PRIMITIVE_CAT(a, ...) a ## __VA_ARGS__
-#if defined(BOOST_VMD_MSVC)
+#if BOOST_VMD_MSVC
 #define VMD_DETAIL_DATA_ELEM(n,...) \
   VMD_DETAIL_VD_CAT(VMD_DETAIL_CAT(VMD_DETAIL_DATA_ELEM_, n)(__VA_ARGS__,),BOOST_PP_EMPTY()) \
 /**/
@@ -177,20 +177,6 @@
 #define VMD_DETAIL_REMOVE_PARENS(x) \
   BOOST_PP_IDENTITY(VMD_DETAIL_PP_TUPLE_TO_DATA(x)) \
 /**/
-
-#if defined(BOOST_VMD_MSVC)
-
-# define VMD_DETAIL_IS_EMPTY_IS_TUPLE_BEGIN(x) \
-    BOOST_PP_DEC \
-      ( \
-      VMD_DETAIL_DATA_SIZE \
-        ( \
-        VMD_DETAIL_IS_EMPTY_IS_TUPLE_BEGIN_EXPAND x \
-        ) \
-      ) \
-/**/
-
-#endif /* BOOST_VMD_MSVC */
 
 #endif // BOOST_VMD_VARIADICS
 #endif // VMD_DETAIL_NATIVE_HPP
