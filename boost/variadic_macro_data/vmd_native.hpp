@@ -326,6 +326,8 @@
   BOOST_VMD_PP_TUPLE_TO_DATA(BOOST_PP_SEQ_TO_TUPLE(seq)) \
 /**/
 
+#if BOOST_VMD_MSVC
+
 /// Tests whether its parameter begins with a tuple.
 /**
 
@@ -349,8 +351,6 @@
         ) \
       ) \
 /**/
-
-#if BOOST_VMD_MSVC
 
 #define BOOST_VMD_IS_EMPTY(param) \
     VMD_DETAIL_IS_EMPTY_IIF \

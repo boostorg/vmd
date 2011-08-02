@@ -42,17 +42,29 @@
 
 #if !BOOST_VMD_MSVC
 
+# define BOOST_VMD_IS_TUPLE_BEGIN(...) \
+    VMD_DETAIL_IS_EMPTY_SPLIT \
+      ( \
+      0, \
+      VMD_DETAIL_IS_EMPTY_CAT \
+        ( \
+        VMD_DETAIL_IS_EMPTY_IS_VARIADIC_R_, \
+        VMD_DETAIL_IS_EMPTY_IS_VARIADIC_C __VA_ARGS__ \
+        ) \
+      ) \
+/**/
+
 #define BOOST_VMD_IS_EMPTY(...) \
     VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      VMD_DETAIL_IS_EMPTY_IS_VARIADIC \
+      BOOST_VMD_IS_TUPLE_BEGIN \
         ( \
         __VA_ARGS__ \
         ) \
       ) \
       ( \
       0, \
-      VMD_DETAIL_IS_EMPTY_IS_VARIADIC \
+      BOOST_VMD_IS_TUPLE_BEGIN \
         ( \
         VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
         ) \

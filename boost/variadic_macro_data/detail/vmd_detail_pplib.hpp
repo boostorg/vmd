@@ -10,7 +10,22 @@
 
 #if BOOST_VMD_MSVC
 
+#include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
+
+#define VMD_DETAIL_IS_EMPTY_VSIZE(...) VMD_DETAIL_IS_EMPTY_VSIZE2(__VA_ARGS__)
+#define VMD_DETAIL_IS_EMPTY_VSIZE2(...) VMD_DETAIL_IS_EMPTY_VSIZE3(__VA_ARGS__)
+#define VMD_DETAIL_IS_EMPTY_VSIZE3(...) BOOST_PP_VARIADIC_SIZE(__VA_ARGS__)
+
+#define VMD_DETAIL_IS_EMPTY_TUPLE_BEGIN(param) \
+    BOOST_PP_DEC \
+      ( \
+      VMD_DETAIL_IS_EMPTY_VSIZE \
+        ( \
+        VMD_DETAIL_IS_TUPLE_BEGIN_EXPAND param \
+        ) \
+      ) \
+/**/
 
 #endif /* BOOST_PP_VARIADICS_MSVC */
 

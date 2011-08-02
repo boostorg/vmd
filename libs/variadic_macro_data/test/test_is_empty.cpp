@@ -11,6 +11,7 @@ int main()
   #define OBJECT2
   #define FUNC(x) FUNC2(x)
   #define FUNC2(x)
+  #define FUNC_GEN() ()
   
   BOOST_TEST(BOOST_VMD_IS_EMPTY());
   BOOST_TEST(BOOST_VMD_IS_EMPTY(DATA));
@@ -18,6 +19,8 @@ int main()
   BOOST_TEST(BOOST_VMD_IS_EMPTY(OBJECT));
   BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC(z)));
   
+//  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN));
+
 #endif
 
   return boost::report_errors();

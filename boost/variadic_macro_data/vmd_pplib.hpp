@@ -340,6 +340,8 @@
   BOOST_PP_SEQ_ENUM(seq) \
 /**/
 
+#if BOOST_VMD_MSVC
+
 /// Tests whether its parameter begins with a tuple.
 /**
 
@@ -365,8 +367,6 @@
       ) \
 /**/
 
-#if BOOST_VMD_MSVC
-
 #define BOOST_VMD_IS_EMPTY(param) \
     VMD_DETAIL_IS_EMPTY_IIF \
       ( \
@@ -380,7 +380,7 @@
       ) \
       ( \
       VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
-      BOOST_VMD_IS_TUPLE_BEGIN \
+      VMD_DETAIL_IS_EMPTY_TUPLE_BEGIN \
       ) \
     (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param ()) \
 /**/

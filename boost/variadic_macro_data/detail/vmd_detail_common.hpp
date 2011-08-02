@@ -28,18 +28,6 @@
 
 # define VMD_DETAIL_IS_EMPTY_SPLIT_0(a, ...) a
 # define VMD_DETAIL_IS_EMPTY_SPLIT_1(a, ...) __VA_ARGS__
-# define VMD_DETAIL_IS_EMPTY_IS_VARIADIC(...) \
-    VMD_DETAIL_IS_EMPTY_SPLIT \
-      ( \
-      0, \
-      VMD_DETAIL_IS_EMPTY_CAT \
-        ( \
-        VMD_DETAIL_IS_EMPTY_IS_VARIADIC_R_, \
-        VMD_DETAIL_IS_EMPTY_IS_VARIADIC_C __VA_ARGS__ \
-        ) \
-      ) \
-/**/
-
 # define VMD_DETAIL_IS_EMPTY_IS_VARIADIC_C(...) 1
 # define VMD_DETAIL_IS_EMPTY_IS_VARIADIC_R_1 1,
 # define VMD_DETAIL_IS_EMPTY_IS_VARIADIC_R_VMD_DETAIL_IS_EMPTY_IS_VARIADIC_C 0,
