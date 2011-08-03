@@ -1,2 +1,2 @@
-!scan boost/variadic_macro_data/vmd_native.hpp
-!scan boost/variadic_macro_data/vmd_common.hpp
+!scan boost/variadic_macro_data/vmd_main_native.hpp
+!scan boost/variadic_macro_data/vmd_main_common.hpp

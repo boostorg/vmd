@@ -5,13 +5,7 @@
 
 #if BOOST_VMD_VARIADICS
 
-#if BOOST_VMD_PPLIB
-#include "vmd_pplib.hpp"
-#else
-#include "vmd_native.hpp"
-#endif /* BOOST_VMD_PPLIB */
-
-#include "vmd_common.hpp"
+#include "vmd_main.hpp"
 
 #endif /* BOOST_VMD_VARIADICS */
 #endif /* VARIADIC_MACRO_DATA_HPP */
