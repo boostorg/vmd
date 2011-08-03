@@ -10,6 +10,7 @@
 #include <boost/preprocessor/list/to_tuple.hpp>
 #include <boost/preprocessor/seq/to_tuple.hpp>
 
+#include "vmd_is_tuple_begin.hpp"
 #include "detail/vmd_detail.hpp"
 #include "detail/vmd_detail_main.hpp"
 

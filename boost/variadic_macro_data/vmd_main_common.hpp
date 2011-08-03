@@ -7,6 +7,7 @@
 
 #include <boost/preprocessor/facilities/identity.hpp>
 
+#include "vmd_is_tuple_begin.hpp"
 #include "detail/vmd_detail_main.hpp"
 
 /*

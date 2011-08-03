@@ -1,4 +1,4 @@
-#include <boost/variadic_macro_data/vmd.hpp>
+#include <boost/variadic_macro_data/vmd_main.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
 #if BOOST_VMD_VARIADICS
