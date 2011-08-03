@@ -7,6 +7,7 @@
 
 #include "vmd_main.hpp"
 #include "vmd_is_tuple_begin.hpp"
+#include "vmd_remove_parens.hpp"
 
 #endif /* BOOST_VMD_VARIADICS */
 #endif /* VARIADIC_MACRO_DATA_HPP */

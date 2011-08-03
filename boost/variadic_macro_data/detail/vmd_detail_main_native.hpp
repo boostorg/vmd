@@ -11,6 +11,7 @@
 #include <boost/preprocessor/tuple/to_list.hpp>
 #include <boost/preprocessor/tuple/to_seq.hpp>
 #include <boost/preprocessor/tuple/rem.hpp>
+#include "vmd_detail_native.hpp"
 
 #if BOOST_VMD_MSVC
 #include <boost/preprocessor/arithmetic/dec.hpp>
@@ -121,12 +122,6 @@
 #define VMD_DETAIL_DATA_TO_PP_TUPLE(...) \
   ( __VA_ARGS__ ) \
 /**/
-#define VMD_DETAIL_REMOVE_TUPLE_PARENS(...) \
-  __VA_ARGS__ \
-/**/
-#define VMD_DETAIL_PP_TUPLE_TO_DATA(tuple) \
-  VMD_DETAIL_REMOVE_TUPLE_PARENS tuple \
-/**/
 #if BOOST_VMD_MSVC
 #define VMD_DETAIL_DATA_SIZE(...) \
   VMD_DETAIL_VD_CAT(VMD_DETAIL_APPLY(VMD_DETAIL_ARG_N, (__VA_ARGS__, VMD_DETAIL_RSEQ_N())),BOOST_PP_EMPTY()) \
@@ -173,9 +168,6 @@
 /**/
 #define VMD_DETAIL_PP_TUPLE_REVERSE(size,tuple) \
   BOOST_PP_TUPLE_REVERSE(size,tuple) \
-/**/
-#define VMD_DETAIL_REMOVE_PARENS(x) \
-  BOOST_PP_IDENTITY(VMD_DETAIL_PP_TUPLE_TO_DATA(x)) \
 /**/
 
 #endif // BOOST_VMD_VARIADICS

@@ -5,6 +5,10 @@
 
 #if BOOST_VMD_VARIADICS
 
+#if !BOOST_VMD_PPLIB
+#include "vmd_detail_native.hpp"
+#endif /* BOOST_VMD_PPLIB */
+
 #include "vmd_detail_common.hpp"
 
 #endif /* BOOST_VMD_VARIADICS */
