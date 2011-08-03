@@ -5,14 +5,12 @@
 
 #if BOOST_VMD_VARIADICS
 
-#include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/array/data.hpp>
 #include <boost/preprocessor/list/to_tuple.hpp>
 #include <boost/preprocessor/seq/to_tuple.hpp>
 
-#include "vmd_is_tuple_begin.hpp"
-#include "detail/vmd_detail.hpp"
 #include "detail/vmd_detail_main.hpp"
+#include "detail/vmd_detail.hpp"
 
 /*
 
@@ -329,26 +327,5 @@
   BOOST_VMD_PP_TUPLE_TO_DATA(BOOST_PP_SEQ_TO_TUPLE(seq)) \
 /**/
 
-#if BOOST_VMD_MSVC
-
-#define BOOST_VMD_IS_EMPTY(param) \
-    VMD_DETAIL_IS_EMPTY_IIF \
-      ( \
-      BOOST_PP_DEC \
-        ( \
-        BOOST_VMD_DATA_SIZE \
-          ( \
-          VMD_DETAIL_COMMON_EXPAND param \
-          ) \
-        ) \
-      ) \
-      ( \
-      VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
-      BOOST_VMD_IS_TUPLE_BEGIN \
-      ) \
-    (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param ()) \
-/**/
-
-#endif /* BOOST_VMD_MSVC */
 #endif /* BOOST_VMD_VARIADICS */
 #endif /* VMD_MAIN_NATIVE_HPP */

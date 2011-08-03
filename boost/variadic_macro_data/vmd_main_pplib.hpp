@@ -5,7 +5,6 @@
 
 #if BOOST_VMD_VARIADICS
 
-#include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/array/enum.hpp>
 #include <boost/preprocessor/list/enum.hpp>
 #include <boost/preprocessor/seq/enum.hpp>
@@ -22,9 +21,6 @@
 #include <boost/preprocessor/variadic/to_list.hpp>
 #include <boost/preprocessor/variadic/to_seq.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
-
-#include "detail/vmd_detail.hpp"
-#include "detail/vmd_detail_main.hpp"
 
 /*
 
@@ -341,26 +337,5 @@
   BOOST_PP_SEQ_ENUM(seq) \
 /**/
 
-#if BOOST_VMD_MSVC
-
-#define BOOST_VMD_IS_EMPTY(param) \
-    VMD_DETAIL_IS_EMPTY_IIF \
-      ( \
-      BOOST_PP_DEC \
-        ( \
-        BOOST_PP_VARIADIC_SIZE \
-          ( \
-          VMD_DETAIL_COMMON_EXPAND param \
-          ) \
-        ) \
-      ) \
-      ( \
-      VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
-      VMD_DETAIL_IS_EMPTY_TUPLE_BEGIN \
-      ) \
-    (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param ()) \
-/**/
-
-#endif /* BOOST_VMD_MSVC */
 #endif /* BOOST_VMD_VARIADICS */
 #endif /* VMD_MAIN_PPLIB_HPP */

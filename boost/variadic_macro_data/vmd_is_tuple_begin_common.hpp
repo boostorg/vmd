@@ -5,7 +5,7 @@
 
 #if BOOST_VMD_VARIADICS
 
-#include "detail/vmd_detail_main.hpp"
+#include "detail/vmd_detail_is_empty.hpp"
 
 /*
 
