@@ -1,4 +1,4 @@
-#include <boost/variadic_macro_data/vmd.hpp>
+#include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
 int main()

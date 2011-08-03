@@ -5,10 +5,6 @@
 
 #if BOOST_VMD_VARIADICS
 
-#define VMD_DETAIL_IS_TUPLE_BEGIN_EXPAND(...) \
-  1,1 \
-/**/
-
 #if BOOST_VMD_MSVC
 
 #define VMD_DETAIL_IS_EMPTY_GEN_ZERO(x) 0

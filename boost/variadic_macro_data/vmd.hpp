@@ -6,6 +6,7 @@
 #if BOOST_VMD_VARIADICS
 
 #include "vmd_main.hpp"
+#include "vmd_is_tuple_begin.hpp"
 
 #endif /* BOOST_VMD_VARIADICS */
 #endif /* VARIADIC_MACRO_DATA_HPP */

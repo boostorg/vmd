@@ -12,6 +12,7 @@
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
+#include "vmd_detail.hpp"
 
 #define VMD_DETAIL_IS_EMPTY_VSIZE(...) VMD_DETAIL_IS_EMPTY_VSIZE2(__VA_ARGS__)
 #define VMD_DETAIL_IS_EMPTY_VSIZE2(...) VMD_DETAIL_IS_EMPTY_VSIZE3(__VA_ARGS__)
@@ -22,7 +23,7 @@
       ( \
       VMD_DETAIL_IS_EMPTY_VSIZE \
         ( \
-        VMD_DETAIL_IS_TUPLE_BEGIN_EXPAND param \
+        VMD_DETAIL_COMMON_EXPAND param \
         ) \
       ) \
 /**/
