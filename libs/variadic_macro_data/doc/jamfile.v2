@@ -35,8 +35,12 @@ else
 
 doxygen vmd_reference
   :
-    $(here)/../../../boost/variadic_macro_data/vmd_main_native.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_main_common.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_to_data_native.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_data_native.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_tuple_native.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_is_empty_common.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_is_tuple_begin_common.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_remove_parens_common.hpp
   : 
     <doxygen:param>PROJECT_NAME="VMD"
     <doxygen:param>PROJECT_NUMBER=1

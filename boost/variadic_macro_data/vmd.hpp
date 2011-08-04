@@ -5,7 +5,7 @@
 
 #if BOOST_VMD_VARIADICS
 
-#include "vmd_main.hpp"
+#include "vmd_to_data.hpp"
 #include "vmd_data.hpp"
 #include "vmd_tuple.hpp"
 #include "vmd_is_empty.hpp"

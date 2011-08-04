@@ -1,5 +1,5 @@
-#if !defined(VMD_MAIN_NATIVE_HPP)
-#define VMD_MAIN_NATIVE_HPP
+#if !defined(VMD_TO_DATA_NATIVE_HPP)
+#define VMD_TO_DATA_NATIVE_HPP
 
 #include "detail/vmd_detail_setup.hpp"
 
@@ -74,4 +74,4 @@
 /**/
 
 #endif /* BOOST_VMD_VARIADICS */
-#endif /* VMD_MAIN_NATIVE_HPP */
+#endif /* VMD_TO_DATA_NATIVE_HPP */
