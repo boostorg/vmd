@@ -1,7 +1,7 @@
 #if !defined(VMD_DETAIL_REMOVE_PARENS_PPLIB_HPP)
 #define VMD_DETAIL_REMOVE_PARENS_PPLIB_HPP
 
-#include "vmd_detail_setup.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
 

@@ -1,11 +1,11 @@
 #if !defined(VMD_DETAIL_DATA_NATIVE_HPP)
 #define VMD_DETAIL_DATA_NATIVE_HPP
 
-#include "vmd_detail_setup.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
 
-#include "vmd_detail_native.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_native.hpp>
 
 #if BOOST_VMD_MSVC
 #include <boost/preprocessor/facilities/empty.hpp>

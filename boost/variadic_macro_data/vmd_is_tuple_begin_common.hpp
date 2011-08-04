@@ -1,11 +1,11 @@
 #if !defined(VMD_IS_TUPLE_BEGIN_COMMON_HPP)
 #define VMD_IS_TUPLE_BEGIN_COMMON_HPP
 
-#include "detail/vmd_detail_setup.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
 
-#include "detail/vmd_detail_is_empty.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_is_empty.hpp>
 
 /*
 

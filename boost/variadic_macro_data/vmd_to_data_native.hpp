@@ -1,14 +1,14 @@
 #if !defined(VMD_TO_DATA_NATIVE_HPP)
 #define VMD_TO_DATA_NATIVE_HPP
 
-#include "detail/vmd_detail_setup.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
 
 #include <boost/preprocessor/array/data.hpp>
 #include <boost/preprocessor/list/to_tuple.hpp>
 #include <boost/preprocessor/seq/to_tuple.hpp>
-#include "vmd_tuple.hpp"
+#include <boost/variadic_macro_data/vmd_tuple.hpp>
 
 /*
 

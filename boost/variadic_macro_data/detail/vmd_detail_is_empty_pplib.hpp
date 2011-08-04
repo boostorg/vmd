@@ -1,7 +1,7 @@
 #if !defined(VMD_DETAIL_IS_EMPTY_PPLIB_HPP)
 #define VMD_DETAIL_IS_EMPTY_PPLIB_HPP
 
-#include "vmd_detail_setup.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
 
@@ -9,7 +9,7 @@
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
-#include "vmd_detail.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail.hpp>
 
 #define VMD_DETAIL_IS_EMPTY_VSIZE(...) VMD_DETAIL_IS_EMPTY_VSIZE2(__VA_ARGS__)
 #define VMD_DETAIL_IS_EMPTY_VSIZE2(...) VMD_DETAIL_IS_EMPTY_VSIZE3(__VA_ARGS__)

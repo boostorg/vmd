@@ -1,7 +1,7 @@
 #if !defined(VMD_DATA_PPLIB_HPP)
 #define VMD_DATA_PPLIB_HPP
 
-#include "detail/vmd_detail_setup.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
 

@@ -1,16 +1,16 @@
 #if !defined(VMD_IS_EMPTY_NATIVE_HPP)
 #define VMD_IS_EMPTY_NATIVE_HPP
 
-#include "detail/vmd_detail_setup.hpp"
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
 
-#include "vmd_data.hpp"
-#include "vmd_is_tuple_begin.hpp"
-#include "detail/vmd_detail.hpp"
-#include "detail/vmd_detail_is_empty.hpp"
+#include <boost/variadic_macro_data/vmd_data.hpp>
+#include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_is_empty.hpp>
 
 /*
 
@@ -36,7 +36,7 @@
         ) \
       ) \
       ( \
-      VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
+      VMD_DETAIL_GEN_ZERO, \
       BOOST_VMD_IS_TUPLE_BEGIN \
       ) \
     (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param ()) \
