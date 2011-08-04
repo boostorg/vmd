@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
 
-#include "vmd_main.hpp"
+#include "vmd_data.hpp"
 #include "detail/vmd_detail.hpp"
 
 /*

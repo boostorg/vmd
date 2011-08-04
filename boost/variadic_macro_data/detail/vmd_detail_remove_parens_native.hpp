@@ -6,7 +6,7 @@
 #if BOOST_VMD_VARIADICS
 
 #include <boost/preprocessor/facilities/identity.hpp>
-#include "vmd_detail_native.hpp"
+#include "vmd_detail_tuple.hpp"
 
 #define VMD_DETAIL_REMOVE_PARENS(x) \
   BOOST_PP_IDENTITY(VMD_DETAIL_PP_TUPLE_TO_DATA(x)) \

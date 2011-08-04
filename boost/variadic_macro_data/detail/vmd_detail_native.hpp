@@ -5,11 +5,14 @@
 
 #if BOOST_VMD_VARIADICS
 
-#define VMD_DETAIL_REMOVE_TUPLE_PARENS(...) \
-  __VA_ARGS__ \
+#include <boost/preprocessor/tuple/to_list.hpp>
+#include <boost/preprocessor/tuple/to_seq.hpp>
+
+#define VMD_DETAIL_PP_TUPLE_TO_LIST(size,tuple) \
+  BOOST_PP_TUPLE_TO_LIST(size,tuple) \
 /**/
-#define VMD_DETAIL_PP_TUPLE_TO_DATA(tuple) \
-  VMD_DETAIL_REMOVE_TUPLE_PARENS tuple \
+#define VMD_DETAIL_PP_TUPLE_TO_SEQ(size,tuple) \
+  BOOST_PP_TUPLE_TO_SEQ(size,tuple) \
 /**/
 
 #endif // BOOST_VMD_VARIADICS

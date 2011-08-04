@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
 
-#include "vmd_main.hpp"
+#include "vmd_data.hpp"
 #include "vmd_is_tuple_begin.hpp"
 #include "detail/vmd_detail.hpp"
 #include "detail/vmd_detail_is_empty.hpp"
