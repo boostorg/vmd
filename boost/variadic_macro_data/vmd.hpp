@@ -11,6 +11,7 @@
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
 #include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
 #include <boost/variadic_macro_data/vmd_remove_parens.hpp>
+#include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
 
 #endif /* BOOST_VMD_VARIADICS */
 #endif /* VARIADIC_MACRO_DATA_HPP */
