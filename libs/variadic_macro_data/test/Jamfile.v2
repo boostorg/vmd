@@ -42,6 +42,16 @@ test-suite variadic_macro_data
           <define>BOOST_VMD_ASSERT_DATA=1 ]
         [ compile-fail test_assert_is_tuple_fail4.cpp :
           <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile test_assert_is_array.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile-fail test_assert_is_array_fail.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile-fail test_assert_is_array_fail2.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile-fail test_assert_is_array_fail3.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile-fail test_assert_is_array_fail4.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
     ;
 
 test-suite variadic_macro_data_pplib
@@ -90,4 +100,24 @@ test-suite variadic_macro_data_pplib
           <define>BOOST_VMD_ASSERT_DATA=1
           <define>BOOST_VMD_PPLIB=1 : 
           test_assert_is_tuple_fail4_pplib ]
+        [ compile test_assert_is_array.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_array_pplib ]
+        [ compile-fail test_assert_is_array_fail.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_array_fail_pplib ]
+        [ compile-fail test_assert_is_array_fail2.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_array_fail2_pplib.cpp ]
+        [ compile-fail test_assert_is_array_fail3.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_array_fail3_pplib ]
+        [ compile-fail test_assert_is_array_fail4.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_array_fail4_pplib ]
     ;
