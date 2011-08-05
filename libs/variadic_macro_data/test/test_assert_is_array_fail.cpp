@@ -12,7 +12,7 @@ int main()
   
 #else
 
-  typedef char BOOST_VMD_ASSERT_IS_TUPLE_ERROR[-1]; \
+  typedef char BOOST_VMD_ASSERT_IS_ARRAY_ERROR[-1]; \
    
 #endif
 

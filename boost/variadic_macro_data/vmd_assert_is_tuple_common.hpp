@@ -64,7 +64,7 @@
      ) \
 /**/
 
-#endif
+#endif /* BOOST_VMD_MSVC */
 
 #endif /* BOOST_VMD_ASSERT_DATA */
 #endif /* BOOST_VMD_VARIADICS */
