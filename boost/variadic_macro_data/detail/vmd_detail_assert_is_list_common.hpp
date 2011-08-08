@@ -3,9 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
-
-#if BOOST_VMD_ASSERT_DATA
+#if BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/control/iif.hpp>
@@ -131,6 +129,5 @@
 
 #define VMD_DETAIL_ASSERT_IS_LIST_FHELPER_BOOST_VMD_IS_LIST_FAILURE
 
-#endif /* BOOST_VMD_ASSERT_DATA */
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA */
 #endif /* VMD_DETAIL_ASSERT_IS_LIST_COMMON_HPP */

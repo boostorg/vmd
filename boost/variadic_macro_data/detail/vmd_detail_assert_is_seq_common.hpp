@@ -3,9 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
-
-#if BOOST_VMD_ASSERT_DATA
+#if BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/control/iif.hpp>
@@ -215,6 +213,5 @@
 #define VMD_DETAIL_ASSERT_IS_SEQ_GEN_ZERO_COMMA() 0,
 #define VMD_DETAIL_ASSERT_IS_SEQ_GEN_FAILURE(x) BOOST_VMD_IS_SEQ_FAILURE
 
-#endif /* BOOST_VMD_ASSERT_DATA */
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA */
 #endif /* VMD_DETAIL_ASSERT_IS_SEQ_COMMON_HPP */

@@ -3,9 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
-
-#if BOOST_VMD_ASSERT_DATA
+#if BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
@@ -104,6 +102,5 @@
 #define VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_63
 #define VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_64
 
-#endif /* BOOST_VMD_ASSERT_DATA */
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA */
 #endif /* VMD_DETAIL_ASSERT_ASSERT_IS_ARRAY_COMMON_HPP */

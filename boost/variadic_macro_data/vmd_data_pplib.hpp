@@ -1,6 +1,15 @@
 #if !defined(VMD_DATA_PPLIB_HPP)
 #define VMD_DATA_PPLIB_HPP
 
+/*
+
+  The succeeding comments in this file are in doxygen format.
+
+*/
+
+/** \file
+*/
+
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
@@ -11,15 +20,6 @@
 #include <boost/preprocessor/variadic/to_list.hpp>
 #include <boost/preprocessor/variadic/to_seq.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
-
-/*
-
-  The succeeding comments in this file are in doxygen format.
-
-*/
-
-/** \file
-*/
 
 /// Expands to the number of comma-separated variadic macro data arguments.
 /**

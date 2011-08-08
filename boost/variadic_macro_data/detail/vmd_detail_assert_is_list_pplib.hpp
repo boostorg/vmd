@@ -3,9 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
-
-#if BOOST_VMD_ASSERT_DATA
+#if BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA
 
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
@@ -28,6 +26,5 @@
     BOOST_PP_TUPLE_ELEM(1,x) \
 /**/
 
-#endif /* BOOST_VMD_ASSERT_DATA */
-#endif // BOOST_VMD_VARIADICS
-#endif // VMD_DETAIL_ASSERT_IS_LIST_PPLIB_HPP
+#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA */
+#endif /* VMD_DETAIL_ASSERT_IS_LIST_PPLIB_HPP */

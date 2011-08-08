@@ -1,6 +1,15 @@
 #if !defined(VMD_TUPLE_NATIVE_HPP)
 #define VMD_TUPLE_NATIVE_HPP
 
+/*
+
+  The succeeding comments in this file are in doxygen format.
+
+*/
+
+/** \file
+*/
+
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
 #if BOOST_VMD_VARIADICS
@@ -12,15 +21,6 @@
 #include <boost/variadic_macro_data/detail/vmd_detail_native.hpp>
 
 #endif
-
-/*
-
-  The succeeding comments in this file are in doxygen format.
-
-*/
-
-/** \file
-*/
 
 /// Expands to the number of elements in a tuple.
 /**

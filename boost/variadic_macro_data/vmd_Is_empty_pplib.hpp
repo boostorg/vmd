@@ -1,10 +1,6 @@
 #if !defined(VMD_IS_EMPTY_PPLIB_HPP)
 #define VMD_IS_EMPTY_PPLIB_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
-
-#if BOOST_VMD_VARIADICS
-
 /*
 
   The succeeding comments in this file are in doxygen format.
@@ -14,7 +10,9 @@
 /** \file
 */
 
-#if BOOST_VMD_MSVC
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+
+#if BOOST_VMD_VARIADICS && BOOST_VMD_MSVC
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
@@ -38,6 +36,5 @@
     (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param ()) \
 /**/
 
-#endif /* BOOST_VMD_MSVC */
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_MSVC */
 #endif /* VMD_IS_EMPTY_PPLIB_HPP */

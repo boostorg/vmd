@@ -3,9 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
-
-#if BOOST_VMD_MSVC
+#if BOOST_VMD_VARIADICS && BOOST_VMD_MSVC
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
@@ -20,7 +18,5 @@
       ) \
 /**/
 
-#endif /* BOOST_VMD_MSVC */
-
-#endif // BOOST_VMD_VARIADICS
-#endif // VMD_DETAIL_IS_EMPTY_PPLIB_HPP
+#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_MSVC */
+#endif /* VMD_DETAIL_IS_EMPTY_PPLIB_HPP */

@@ -1,16 +1,6 @@
 #if !defined(VMD_REMOVE_PARENS_COMMON_HPP)
 #define VMD_REMOVE_PARENS_COMMON_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
-
-#if BOOST_VMD_VARIADICS
-
-#include <boost/preprocessor/control/iif.hpp>
-#include <boost/preprocessor/facilities/identity.hpp>
-
-#include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_remove_parens.hpp>
-
 /*
 
   The succeeding comments in this file are in doxygen format.
@@ -19,6 +9,15 @@
 
 /** \file
 */
+
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+
+#if BOOST_VMD_VARIADICS
+
+#include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/facilities/identity.hpp>
+#include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_remove_parens.hpp>
 
 /// Removes the set of parens from the start of a parameter if it has any.
 /**

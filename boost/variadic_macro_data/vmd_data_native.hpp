@@ -1,12 +1,6 @@
 #if !defined(VMD_DATA_NATIVE_HPP)
 #define VMD_DATA_NATIVE_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
-
-#if BOOST_VMD_VARIADICS
-
-#include <boost/variadic_macro_data/detail/vmd_detail_data.hpp>
-
 /*
 
   The succeeding comments in this file are in doxygen format.
@@ -15,6 +9,12 @@
 
 /** \file
 */
+
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+
+#if BOOST_VMD_VARIADICS
+
+#include <boost/variadic_macro_data/detail/vmd_detail_data.hpp>
 
 /// Expands to the number of comma-separated variadic macro data arguments.
 /**

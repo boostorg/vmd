@@ -30,7 +30,7 @@
 #define VMD_DETAIL_VD_CAT_I(a, b) VMD_DETAIL_VD_CAT_II(a ## b)
 #define VMD_DETAIL_VD_CAT_II(res) res
 #endif
-#endif // BOOST_VMD_MSVC
+#endif /* BOOST_VMD_MSVC */
 
 #define VMD_DETAIL_DATA_ELEM_0(p0, ...) p0
 #define VMD_DETAIL_DATA_ELEM_1(p0, p1, ...) p1
@@ -178,5 +178,5 @@
 
 #endif
 
-#endif // BOOST_VMD_VARIADICS
-#endif // VMD_DETAIL_DATA_NATIVE_HPP
+#endif /* BOOST_VMD_VARIADICS */
+#endif /* VMD_DETAIL_DATA_NATIVE_HPP */

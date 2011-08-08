@@ -1,6 +1,9 @@
+#if defined(BOOST_VMD_TEST_GENERAL_HEADER)
+#include <boost/variadic_macro_data/vmd.hpp>
+#else
 #include <boost/variadic_macro_data/vmd_to_data.hpp>
 #include <boost/variadic_macro_data/vmd_data.hpp>
-// #include <boost/variadic_macro_data/vmd.hpp>
+#endif
 #include <boost/detail/lightweight_test.hpp>
 
 #if BOOST_VMD_VARIADICS

@@ -1,10 +1,6 @@
 #if !defined(VMD_ASSERT_IS_LIST_COMMON_HPP)
 #define VMD_ASSERT_IS_LIST_COMMON_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
-
-#if BOOST_VMD_VARIADICS
-
 /*
 
   The succeeding comments in this file are in doxygen format.
@@ -13,6 +9,10 @@
 
 /** \file
 */
+
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+
+#if BOOST_VMD_VARIADICS
 
 #if !BOOST_VMD_ASSERT_DATA
 

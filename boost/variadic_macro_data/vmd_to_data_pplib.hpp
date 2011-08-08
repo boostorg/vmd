@@ -1,14 +1,6 @@
 #if !defined(VMD_TO_DATA_PPLIB_HPP)
 #define VMD_TO_DATA_PPLIB_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
-
-#if BOOST_VMD_VARIADICS
-
-#include <boost/preprocessor/array/enum.hpp>
-#include <boost/preprocessor/list/enum.hpp>
-#include <boost/preprocessor/seq/enum.hpp>
-
 /*
 
   The succeeding comments in this file are in doxygen format.
@@ -17,6 +9,14 @@
 
 /** \file
 */
+
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+
+#if BOOST_VMD_VARIADICS
+
+#include <boost/preprocessor/array/enum.hpp>
+#include <boost/preprocessor/list/enum.hpp>
+#include <boost/preprocessor/seq/enum.hpp>
 
 /// Expands to variadic macro data whose arguments are the same as an array's elements.
 /**

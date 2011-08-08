@@ -3,13 +3,9 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
-
-#if BOOST_VMD_MSVC
+#if BOOST_VMD_VARIADICS && BOOST_VMD_MSVC
 
 #define VMD_DETAIL_IS_TUPLE_BEGIN_COMMON_EXPAND(...) 1,1
 
-#endif /* BOOST_VMD_MSVC */
-
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_MSVC */
 #endif /* VMD_DETAIL_IS_TUPLE_BEGIN_COMMON_HPP */

@@ -15,5 +15,5 @@
   BOOST_PP_TUPLE_TO_SEQ(size,tuple) \
 /**/
 
-#endif // BOOST_VMD_VARIADICS
-#endif // VMD_DETAIL_NATIVE_HPP
+#endif /* BOOST_VMD_VARIADICS */
+#endif /* VMD_DETAIL_NATIVE_HPP */
