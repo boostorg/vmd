@@ -5,11 +5,6 @@
 
 #if BOOST_VMD_VARIADICS
 
-#include <boost/preprocessor/arithmetic/dec.hpp>
-#include <boost/preprocessor/variadic/size.hpp>
-
-#include <boost/variadic_macro_data/detail/vmd_detail.hpp>
-
 /*
 
   The succeeding comments in this file are in doxygen format.
@@ -20,6 +15,10 @@
 */
 
 #if BOOST_VMD_MSVC
+
+#include <boost/preprocessor/arithmetic/dec.hpp>
+#include <boost/preprocessor/variadic/size.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_is_tuple_begin.hpp>
 
 /// Tests whether its parameter begins with a tuple.
 /**
@@ -41,7 +40,7 @@
       ( \
       BOOST_PP_VARIADIC_SIZE \
         ( \
-        VMD_DETAIL_COMMON_EXPAND param \
+        VMD_DETAIL_IS_TUPLE_BEGIN_COMMON_EXPAND param \
         ) \
       ) \
 /**/

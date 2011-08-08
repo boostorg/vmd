@@ -33,6 +33,8 @@
    typedef char BOOST_VMD_ASSERT_IS_TUPLE_ERROR[-1]; \
 /**/
 
+#define VMD_DETAIL_ASSERT_IS_TUPLE_GEN_ZERO(x) 0
+
 #endif /* BOOST_VMD_MSVC */
 
 #define VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER(x) \

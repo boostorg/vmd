@@ -7,6 +7,12 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_tuple.hpp>
 
+#if !BOOST_VMD_MSVC
+
+#include <boost/variadic_macro_data/detail/vmd_detail_native.hpp>
+
+#endif
+
 /*
 
   The succeeding comments in this file are in doxygen format.
@@ -108,6 +114,54 @@
   VMD_DETAIL_PP_TUPLE_REVERSE(BOOST_VMD_PP_TUPLE_SIZE(tuple),tuple) \
 /**/
 
+#if BOOST_VMD_MSVC
+
+/// Expands to a list whose elements are the same as a tuple.
+/**
+
+    tuple = a Boost PP library tuple data type.
+
+    returns = a list whose elements are the same as the tuple
+              that is inputted.
+              
+    In the Boost PP library there is no way to calculate 
+    the size of a tuple, so that the size must be known 
+    in order to be used by Boost PP library tuple macros.
+    With variadic macros the size of a tuple can be 
+    calculated from the tuple itself.
+    
+    Therefore this macro is a replacement for the BOOST_PP_TUPLE_TO_LIST
+    macro without the necessity of having to pass a size.
+    
+*/
+#define BOOST_VMD_PP_TUPLE_TO_LIST(tuple) \
+  VMD_DETAIL_PP_TUPLE_VC_TO_LIST(BOOST_VMD_PP_TUPLE_SIZE(tuple),tuple) \
+/**/
+
+/// Expands to a sequence whose elements are the same as a tuple.
+/**
+
+    tuple = a Boost PP library tuple data type.
+
+    returns = a sequence whose elements are the same as the tuple
+              that is inputted.
+              
+    In the Boost PP library there is no way to calculate 
+    the size of a tuple, so that the size must be known 
+    in order to be used by Boost PP library tuple macros.
+    With variadic macros the size of a tuple can be 
+    calculated from the tuple itself.
+    
+    Therefore this macro is a replacement for the BOOST_PP_TUPLE_TO_SEQ
+    macro without the necessity of having to pass a size.
+    
+*/
+#define BOOST_VMD_PP_TUPLE_TO_SEQ(tuple) \
+  VMD_DETAIL_PP_TUPLE_VC_TO_SEQ(BOOST_VMD_PP_TUPLE_SIZE(tuple),tuple) \
+/**/
+
+#else
+
 /// Expands to a list whose elements are the same as a tuple.
 /**
 
@@ -151,6 +205,8 @@
 #define BOOST_VMD_PP_TUPLE_TO_SEQ(tuple) \
   VMD_DETAIL_PP_TUPLE_TO_SEQ(BOOST_VMD_PP_TUPLE_SIZE(tuple),tuple) \
 /**/
+
+#endif
 
 /// Expands to variadic macro data whose arguments are the same as a tuple's elements.
 /**

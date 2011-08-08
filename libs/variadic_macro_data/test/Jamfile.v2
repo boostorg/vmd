@@ -62,6 +62,16 @@ test-suite variadic_macro_data
           <define>BOOST_VMD_ASSERT_DATA=1 ]
         [ compile-fail test_assert_is_list_fail4.cpp :
           <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile test_assert_is_seq.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile-fail test_assert_is_seq_fail.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile-fail test_assert_is_seq_fail2.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile-fail test_assert_is_seq_fail3.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
+        [ compile-fail test_assert_is_seq_fail4.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1 ]
     ;
 
 test-suite variadic_macro_data_pplib
@@ -150,4 +160,24 @@ test-suite variadic_macro_data_pplib
           <define>BOOST_VMD_ASSERT_DATA=1
           <define>BOOST_VMD_PPLIB=1 : 
           test_assert_is_list_fail4_pplib ]
+        [ compile test_assert_is_seq.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_seq_pplib ]
+        [ compile-fail test_assert_is_seq_fail.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_seq_fail_pplib ]
+        [ compile-fail test_assert_is_seq_fail2.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_seq_fail2_pplib.cpp ]
+        [ compile-fail test_assert_is_seq_fail3.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_seq_fail3_pplib ]
+        [ compile-fail test_assert_is_seq_fail4.cpp :
+          <define>BOOST_VMD_ASSERT_DATA=1
+          <define>BOOST_VMD_PPLIB=1 : 
+          test_assert_is_seq_fail4_pplib ]
     ;

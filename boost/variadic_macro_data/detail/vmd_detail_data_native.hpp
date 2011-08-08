@@ -5,7 +5,16 @@
 
 #if BOOST_VMD_VARIADICS
 
+#if BOOST_VMD_MSVC
+
+#include <boost/preprocessor/tuple/to_list.hpp>
+#include <boost/preprocessor/tuple/to_seq.hpp>
+
+#else
+
 #include <boost/variadic_macro_data/detail/vmd_detail_native.hpp>
+
+#endif
 
 #if BOOST_VMD_MSVC
 #include <boost/preprocessor/facilities/empty.hpp>
@@ -138,12 +147,36 @@
 #define VMD_DETAIL_DATA_TO_PP_ARRAY(...) \
   ( VMD_DETAIL_DATA_SIZE(__VA_ARGS__) , VMD_DETAIL_DATA_TO_PP_TUPLE(__VA_ARGS__)) \
 /**/
+
+#if BOOST_VMD_MSVC
+
+#define VMD_DETAIL_DATA_PP_TUPLE_TO_LIST(size,tuple) \
+  BOOST_PP_TUPLE_TO_LIST(size,tuple) \
+/**/
+
+#define VMD_DETAIL_DATA_PP_TUPLE_TO_SEQ(size,tuple) \
+  BOOST_PP_TUPLE_TO_SEQ(size,tuple) \
+/**/
+
+#define VMD_DETAIL_DATA_TO_PP_LIST(...) \
+  VMD_DETAIL_DATA_PP_TUPLE_TO_LIST(VMD_DETAIL_DATA_SIZE(__VA_ARGS__),VMD_DETAIL_DATA_TO_PP_TUPLE(__VA_ARGS__)) \
+/**/
+
+#define VMD_DETAIL_DATA_TO_PP_SEQ(...) \
+  VMD_DETAIL_DATA_PP_TUPLE_TO_SEQ(VMD_DETAIL_DATA_SIZE(__VA_ARGS__),VMD_DETAIL_DATA_TO_PP_TUPLE(__VA_ARGS__)) \
+/**/
+
+#else
+
 #define VMD_DETAIL_DATA_TO_PP_LIST(...) \
   VMD_DETAIL_PP_TUPLE_TO_LIST(VMD_DETAIL_DATA_SIZE(__VA_ARGS__),VMD_DETAIL_DATA_TO_PP_TUPLE(__VA_ARGS__)) \
 /**/
+
 #define VMD_DETAIL_DATA_TO_PP_SEQ(...) \
   VMD_DETAIL_PP_TUPLE_TO_SEQ(VMD_DETAIL_DATA_SIZE(__VA_ARGS__),VMD_DETAIL_DATA_TO_PP_TUPLE(__VA_ARGS__)) \
 /**/
+
+#endif
 
 #endif // BOOST_VMD_VARIADICS
 #endif // VMD_DETAIL_DATA_NATIVE_HPP

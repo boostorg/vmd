@@ -13,6 +13,7 @@
 #include <boost/variadic_macro_data/vmd_remove_parens.hpp>
 #include <boost/variadic_macro_data/vmd_assert_is_array.hpp>
 #include <boost/variadic_macro_data/vmd_assert_is_list.hpp>
+#include <boost/variadic_macro_data/vmd_assert_is_seq.hpp>
 #include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
 
 #endif /* BOOST_VMD_VARIADICS */

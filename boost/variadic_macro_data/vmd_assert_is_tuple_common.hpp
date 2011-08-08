@@ -25,11 +25,11 @@
 #if !BOOST_VMD_MSVC
 
 #include <boost/preprocessor/debug/assert.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail.hpp>
 
 #endif
 
 #include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail.hpp>
 #include <boost/variadic_macro_data/detail/vmd_detail_assert_is_tuple.hpp>
 
 #if BOOST_VMD_MSVC
@@ -43,7 +43,7 @@
        ( \
        BOOST_VMD_IS_TUPLE_BEGIN(x), \
        VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
-       VMD_DETAIL_GEN_ZERO \
+       VMD_DETAIL_ASSERT_IS_TUPLE_GEN_ZERO \
        ) \
      (x) \
      ) \

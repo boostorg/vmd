@@ -12,7 +12,12 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
+
+#if !BOOST_VMD_MSVC
+
 #include <boost/variadic_macro_data/detail/vmd_detail.hpp>
+
+#endif
 
 #if BOOST_VMD_MSVC
 
@@ -22,13 +27,29 @@
       ( \
       BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(x)), \
       VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM, \
-      VMD_DETAIL_GEN_ZERO \
+      VMD_DETAIL_ASSERT_IS_ARRAY_GEN_ZERO \
       ) \
     (x) \
     ) \
 /**/
 
-#endif /* BOOST_VMD_MSVC */
+/*
+
+  Check if the first element of the tuple is numeric
+
+*/
+
+#define VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM(x) \
+    BOOST_PP_IIF \
+      ( \
+      VMD_DETAIL_ASSERT_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,x)), \
+      VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_NUMERIC_MATCH, \
+      VMD_DETAIL_ASSERT_IS_ARRAY_GEN_ZERO \
+      ) \
+    (x) \
+/**/
+
+#else
 
 /*
 
@@ -45,6 +66,8 @@
       ) \
     (x) \
 /**/
+
+#endif /* BOOST_VMD_MSVC */
 
 /*
 
