@@ -19,4 +19,12 @@ overhead, and a minimum of compile-time overhead, I value ease of use to
 be much more important than redundancy, so I added the functionality to 
 this library.
 
+I have furthered design the library to offer a few macro programming 
+features which are impossible to do effectively without the use of 
+variadic macros. But I have kept these features at a minimum because 
+of the difficulty of using variadic macros with compilers, most notably
+Visual C++, whose implementation of variadic macros is substandard and
+therefore very difficult to get to work correctly when variadic macros
+must be used.
+
 [endsect]

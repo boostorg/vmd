@@ -39,7 +39,7 @@ doxygen vmd_reference
     $(here)/../../../boost/variadic_macro_data/vmd_data_native.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_tuple_native.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_is_empty_common.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_is_tuple_begin_common.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_is_begin_parens_common.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_remove_parens_common.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_tuple_common.hpp
   : 

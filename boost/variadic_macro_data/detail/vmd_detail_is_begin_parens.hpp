@@ -5,7 +5,7 @@
 
 #if BOOST_VMD_VARIADICS
 
-#include <boost/variadic_macro_data/detail/vmd_detail_is_tuple_begin_common.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_is_begin_parens_common.hpp>
 
 #endif /* BOOST_VMD_VARIADICS */
 #endif /* VMD_DETAIL_IS_TUPLE_BEGIN_HPP */

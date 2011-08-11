@@ -31,7 +31,7 @@ test-suite variadic_macro_data
         [ run test_data_as_array.cpp ]
         [ run test_data_as_list.cpp ]
         [ run test_data_as_sequence.cpp ]
-        [ run test_tuple_begin.cpp ]
+        [ run test_is_begin_parens.cpp ]
         [ run test_remove_parens.cpp ]
         [ run test_is_empty.cpp ]
         [ compile test_assert_is_tuple.cpp :
@@ -93,9 +93,9 @@ test-suite variadic_macro_data_gh
         [ run test_data_as_sequence.cpp : : :
           <define>BOOST_VMD_TEST_GENERAL_HEADER : 
           test_data_as_sequence_gh ]
-        [ run test_tuple_begin.cpp : : :
+        [ run test_is_begin_parens.cpp : : :
           <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-          test_tuple_begin_gh ]
+          test_is_begin_parens_gh ]
         [ run test_remove_parens.cpp : : :
           <define>BOOST_VMD_TEST_GENERAL_HEADER : 
           test_remove_parens_gh ]
@@ -201,9 +201,9 @@ test-suite variadic_macro_data_pplib
         [ run test_data_as_sequence.cpp : : :
           <define>BOOST_VMD_PPLIB=1 : 
           test_data_as_sequence_pplib ]
-        [ run test_tuple_begin.cpp : : :
+        [ run test_is_begin_parens.cpp : : :
           <define>BOOST_VMD_PPLIB=1 : 
-          test_tuple_begin_pplib ]
+          test_is_begin_parens_pplib ]
         [ run test_remove_parens.cpp : : :
           <define>BOOST_VMD_PPLIB=1 : 
           test_remove_parens_pplib ]
@@ -314,10 +314,10 @@ test-suite variadic_macro_data_ppgh
           <define>BOOST_VMD_TEST_GENERAL_HEADER
           <define>BOOST_VMD_PPLIB=1 : 
           test_data_as_sequence_ppgh ]
-        [ run test_tuple_begin.cpp : : :
+        [ run test_is_begin_parens.cpp : : :
           <define>BOOST_VMD_TEST_GENERAL_HEADER
           <define>BOOST_VMD_PPLIB=1 : 
-          test_tuple_begin_ppgh ]
+          test_is_begin_parens_ppgh ]
         [ run test_remove_parens.cpp : : :
           <define>BOOST_VMD_TEST_GENERAL_HEADER
           <define>BOOST_VMD_PPLIB=1 : 

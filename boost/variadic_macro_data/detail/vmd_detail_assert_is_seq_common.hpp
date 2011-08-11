@@ -11,7 +11,7 @@
 #include <boost/preprocessor/facilities/expand.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
-#include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
+#include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -22,7 +22,7 @@
 #define VMD_DETAIL_ASSERT_IS_SEQ_PRED(d,state) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_TUPLE_BEGIN(state), \
+      BOOST_VMD_IS_BEGIN_PARENS(state), \
       VMD_DETAIL_ASSERT_IS_SEQ_GEN_ONE, \
       VMD_DETAIL_ASSERT_IS_SEQ_PRED_CHECK_SUCCESS \
       ) \
@@ -49,7 +49,7 @@
 #define VMD_DETAIL_ASSERT_IS_SEQ_OP(d,state) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_TUPLE_BEGIN(state), \
+      BOOST_VMD_IS_BEGIN_PARENS(state), \
       VMD_DETAIL_ASSERT_IS_SEQ_CHECK_FIRST_TUPLE_SIZE, \
       VMD_DETAIL_ASSERT_IS_SEQ_GEN_RETURN_ASSERT \
       ) \
@@ -103,7 +103,7 @@
       ) \
 /**/
 #define VMD_DETAIL_ASSERT_IS_SEQ_IS_AFTER_FIRST_TUPLE(x) \
-    BOOST_VMD_IS_TUPLE_BEGIN \
+    BOOST_VMD_IS_BEGIN_PARENS \
       ( \
       VMD_DETAIL_ASSERT_IS_SEQ_EMPTY x \
       ) \
@@ -149,7 +149,7 @@
       ) \
 /**/
 #define VMD_DETAIL_ASSERT_IS_SEQ_IS_AFTER_FIRST_TUPLE(x) \
-    BOOST_VMD_IS_TUPLE_BEGIN \
+    BOOST_VMD_IS_BEGIN_PARENS \
       ( \
       VMD_DETAIL_ASSERT_IS_SEQ_APPLY(VMD_DETAIL_ASSERT_IS_SEQ_EMPTY,x) \
       ) \

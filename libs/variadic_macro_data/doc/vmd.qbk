@@ -1,9 +1,9 @@
 [library The Variadic Macro Data Library
     [quickbook 1.5]
-    [version 1.4]
+    [version 1.5]
     [id variadic_macro_data]
     [dirname variadic_macro_data]
-    [copyright 2010 Tropic Software East Inc]
+    [copyright 2010-2011 Tropic Software East Inc]
     [purpose Integration of variadic macro data with the Boost PP library]
     [category preprocessor]
     [authors [Diener, Edward]]

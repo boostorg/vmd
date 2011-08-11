@@ -9,7 +9,7 @@
 #include <boost/variadic_macro_data/vmd_data.hpp>
 #include <boost/variadic_macro_data/vmd_tuple.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
-#include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
+#include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
 #include <boost/variadic_macro_data/vmd_remove_parens.hpp>
 #include <boost/variadic_macro_data/vmd_assert_is_array.hpp>
 #include <boost/variadic_macro_data/vmd_assert_is_list.hpp>

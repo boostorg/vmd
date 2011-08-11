@@ -9,6 +9,7 @@
 #include <boost/preprocessor/tuple/reverse.hpp>
 #include <boost/preprocessor/tuple/rem.hpp>
 #include <boost/variadic_macro_data/detail/vmd_detail_data_native.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_to_data_native.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -21,12 +22,6 @@
 
 #endif
 
-#define VMD_DETAIL_REMOVE_TUPLE_PARENS(...) \
-  __VA_ARGS__ \
-/**/
-#define VMD_DETAIL_PP_TUPLE_TO_DATA(tuple) \
-  VMD_DETAIL_REMOVE_TUPLE_PARENS tuple \
-/**/
 #define VMD_DETAIL_PP_TUPLE_ELEM(size,i,tuple) \
   BOOST_PP_TUPLE_ELEM(size,i,tuple) \
 /**/

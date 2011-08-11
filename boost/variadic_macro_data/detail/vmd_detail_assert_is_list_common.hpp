@@ -11,7 +11,7 @@
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
-#include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
+#include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -62,7 +62,7 @@
 #define VMD_DETAIL_ASSERT_IS_LIST_PRED(d,state) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_TUPLE_BEGIN(state), \
+      BOOST_VMD_IS_BEGIN_PARENS(state), \
       VMD_DETAIL_ASSERT_IS_LIST_GEN_ONE, \
       VMD_DETAIL_ASSERT_IS_LIST_NOT_BOOST_PP_NIL \
       ) \
@@ -72,7 +72,7 @@
 #define VMD_DETAIL_ASSERT_IS_LIST_OP(d,state) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_TUPLE_BEGIN(state), \
+      BOOST_VMD_IS_BEGIN_PARENS(state), \
       VMD_DETAIL_ASSERT_IS_LIST_PROCESS_TUPLE, \
       VMD_DETAIL_ASSERT_IS_LIST_PROCESS_IF_BOOST_PP_NIL \
       ) \

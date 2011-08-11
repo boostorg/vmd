@@ -1,5 +1,13 @@
 [section:vmd_history History]
 
+[heading Version 1.5]
+
+* Added macros for verifying Boost PP data types.
+* Added macros for detecting and removing beginning parens.
+* Added a macro for testing for the emptiness of a parameter.
+* Added support for individual header files.
+* Added support for 'native' and 'pplib' modes.
+
 [heading Version 1.4]
 
 * Removed internal dependency on BOOST_PP_CAT and BOOST_PP_ADD when using VC++.

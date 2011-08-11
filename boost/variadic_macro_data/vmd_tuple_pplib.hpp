@@ -15,15 +15,13 @@
 #if BOOST_VMD_VARIADICS
 
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/preprocessor/tuple/enum.hpp>
 #include <boost/preprocessor/tuple/rem.hpp>
 #include <boost/preprocessor/tuple/reverse.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/tuple/to_list.hpp>
 #include <boost/preprocessor/tuple/to_seq.hpp>
 
-/// Expands to the number of elements in a tuple.
-/**
+/** \brief Expands to the number of elements in a tuple.
 
     tuple = a Boost PP library tuple data type.
 
@@ -41,8 +39,7 @@
   BOOST_PP_TUPLE_SIZE(tuple) \
 /**/
 
-/// Expands to a particular tuple element.
-/**
+/** \brief Expands to a particular tuple element.
 
     n   = number of the tuple element.
           The number starts from 0 to the size of
@@ -67,8 +64,7 @@
   BOOST_PP_TUPLE_ELEM(n,tuple) \
 /**/
 
-/// Expands to a series of tokens which are equivalent to removing the parentheses from a tuple.
-/**
+/** \brief Expands to a series of tokens which are equivalent to removing the parentheses from a tuple.
 
     tuple = a Boost PP library tuple data type.
 
@@ -92,8 +88,7 @@
   BOOST_PP_TUPLE_REM_CTOR(tuple) \
 /**/
 
-/// Expands to a tuple whose elements are in reversed order.
-/**
+/** \brief Expands to a tuple whose elements are in reversed order.
 
     tuple = a Boost PP library tuple data type.
 
@@ -114,8 +109,7 @@
   BOOST_PP_TUPLE_REVERSE(tuple) \
 /**/
 
-/// Expands to a list whose elements are the same as a tuple.
-/**
+/** \brief Expands to a list whose elements are the same as a tuple.
 
     tuple = a Boost PP library tuple data type.
 
@@ -136,8 +130,7 @@
   BOOST_PP_TUPLE_TO_LIST(tuple) \
 /**/
 
-/// Expands to a sequence whose elements are the same as a tuple.
-/**
+/** \brief Expands to a sequence whose elements are the same as a tuple.
 
     tuple = a Boost PP library tuple data type.
 
@@ -156,24 +149,6 @@
 */
 #define BOOST_VMD_PP_TUPLE_TO_SEQ(tuple) \
   BOOST_PP_TUPLE_TO_SEQ(tuple) \
-/**/
-
-/// Expands to variadic macro data whose arguments are the same as a tuple's elements.
-/**
-
-    tuple = a Boost PP library tuple data type.
-
-    returns = variadic macro data whose arguments are the same as the
-              elements of a tuple that is inputted.
-              
-    The variadic macro data that is returned is in the form of
-    of comma separated arguments. The variadic macro data can be
-    passed to any macro which takes variadic macro data in the form
-    of a final variadic macro data '...' macro parameter.
-    
-*/
-#define BOOST_VMD_PP_TUPLE_TO_DATA(tuple) \
-  BOOST_PP_TUPLE_ENUM(tuple) \
 /**/
 
 #endif /* BOOST_VMD_VARIADICS */

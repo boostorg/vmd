@@ -34,7 +34,7 @@ this library's facilities. A macro writer can design macros for
 the end-user which take variadic data using variadic macros while 
 internally using Boost PP data types to manipulate that data and 
 pass that data to other Boost PP macros. This library provides 
-functionality to do just that with its macros which convert from 
+functionality to do just that, with its macros which convert from 
 variadic macro data to Boost PP data types.
 
 [section:vmd_comp_example An example design]
@@ -65,7 +65,7 @@ The end-user would pass data to this macro in this way:
 
  ENDUSER_MACRO((a)(b)(c)(d)(e)) // etc. with each "token" in the sequence surrounded by ()
 
-That is certainly acceptable, and without variadic macros, it is certainly 
+That is certainly acceptable, and without variadic macros it is certainly 
 excellent to have the Boost PP functionality that allows us to design macros 
 taking variadic data and manipulate that data using the functionality of 
 Boost PP.
@@ -96,18 +96,18 @@ names.
 '''<para>'''In our example, if we wish to support a single macro, for compilers that 
 both support or do not support variadic macros, the code would be:'''</para>'''
 '''<para>'''``
-  #if defined(BOOST_NO_VARIADIC_MACROS)
+  #if !BOOST_VMD_VARIADICS
     #define ENDUSER_MACRO(ppSequence) ENDUSER_DETAIL_MACRO(ppSequence)
   #else
     #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(BOOST_VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
-  #endif  
+  #endif
 ``'''</para>'''
 '''<para>'''We would now have a single macro which would be used slightly differently by the 
 end-user depending on whether the compiler being used supported variadic macros 
 or not. This might not be best if the end-user's code needed to work for different 
 compilers, some of which support variadic macros and some of which do not. In that 
 latter case, a dual macro design ( see below ) might be better.'''</para>'''
-'''<para>'''Another solution supporting a single macro is to just ignore variadic macros, 
+'''<para>'''Another solution for supporting a single macro is to just ignore variadic macros, 
 and then our solution would be:'''</para>'''
 '''<para>'''``
   #define ENDUSER_MACRO(ppSequence) ENDUSER_DETAIL_MACRO(ppSequence)
@@ -115,7 +115,7 @@ and then our solution would be:'''</para>'''
 '''<para>'''We could also ignore any compilers which do not support variadic macros,
 and then our solution would be:'''</para>'''
 '''<para>'''``
-  #if !defined(BOOST_NO_VARIADIC_MACROS)
+  #if BOOST_VMD_VARIADICS
     #define ENDUSER_MACRO(...) ENDUSER_DETAIL_MACRO(BOOST_VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
   #endif
 ``'''</para>'''
@@ -124,7 +124,7 @@ and then our solution would be:'''</para>'''
 would then be:'''</para>'''
 '''<para>'''``
     #define ENDUSER_MACRO(ppSequence) ENDUSER_DETAIL_MACRO(ppSequence)
-  #if !defined(BOOST_NO_VARIADIC_MACROS)
+  #if BOOST_VMD_VARIADICS
     #define ENDUSER_MACRO_VM(...) ENDUSER_DETAIL_MACRO(BOOST_VMD_DATA_TO_PP_SEQ(__VA_ARGS__))
   #endif
 ``'''</para>'''

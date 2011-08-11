@@ -16,11 +16,10 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/facilities/identity.hpp>
-#include <boost/variadic_macro_data/vmd_is_tuple_begin.hpp>
+#include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
 #include <boost/variadic_macro_data/detail/vmd_detail_remove_parens.hpp>
 
-/// Removes the set of parens from the start of a parameter if it has any.
-/**
+/** \brief Removes the set of parens from the start of a parameter if it has any.
 
     param = a macro parameter.
 
@@ -34,7 +33,7 @@
 # define BOOST_VMD_REMOVE_PARENS(param) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_TUPLE_BEGIN(param), \
+      BOOST_VMD_IS_BEGIN_PARENS(param), \
       VMD_DETAIL_REMOVE_PARENS, \
       BOOST_PP_IDENTITY \
       ) \

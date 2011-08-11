@@ -21,9 +21,45 @@ Boost until recently has had no generic support for variadic macros
 based on the ability of a given compiler/version to support C99's variadic 
 macros. This support has now been added, as of Boost version 1.4.5, in the form of 
 a macro which denotes that compiler support for variadic macros does not exist. 
-This macro is BOOST\_NO\_VARIADIC\_MACROS. The variadic macro data library 
-will only work for a compiler/version combination when BOOST\_NO\_VARIADIC\_MACROS 
-is not defined.
+This macro is BOOST\_NO\_VARIADIC\_MACROS.
+
+The Boost PP library has had no support for variadic macros but a version 
+has been recently put in the Boost trunk which does offer support for 
+variadic macros. This version uses the macro BOOST_PP_VARIADICS to denote      
+that compiler support for variadic macros exist. There are variadic macros
+in this version of Boost PP whose functionality is taken from the variadic 
+macro support in the VMD.
+
+[section:vmd_vmacros_Modes The two modes of the library]
+
+Because of variadic macro support in the Boost PP library currently in the 
+Boost trunk, the VMD library can operate in one of two modes.
+In its 'native' mode, which is currently the default mode, the library does not 
+forward to the equivalent variadic macro support in the Boost PP library. In its 'pplib' 
+mode the VMD library does forward to the equivalent variadic macro support in the 
+Boost PP library. The modes can be controlled by the macro BOOST_VMD_PPLIB.
+When this macro is defined and set to 1, the library operates in the 'pplib' 
+mode, else it operates in its 'native' mode. The end-user of VMD can also use 
+the macro BOOST_VMD_PPLIB to test the mode the VMD library is in.
+
+When the Boost PP library variadic macro support currently in the Boost trunk
+is added to a future official version of Boost, the default mode in a 
+subsequent version of VMD will be changed to 'pplib' mode and the end-user 
+will be encouraged to use the functionality 
+of the Boost PP library instead of the functionality of VMD which duplicates it.
+At that time the functionality in VMD which duplicates the same functionality
+in Boost PP will be deprecated.
+
+Depending on the mode being used VMD determines whether variadic macro support 
+is enabled for a particular compiler. The end-user of VMD can also manually
+use the macro BOOST_VMD_VARIADICS to turn on or off compiler support for 
+variadic macro data in the VMD library. When BOOST_VMD_VARIADICS is set to 0
+variadic macro data is not supported in the VMD library, otherwise when 
+BOOST_VMD_VARIADICS is set to non-zero it is supported in the VMD library. This
+same macro can be used to determine if VMD supports variadic macros for a 
+particular compiler.
+
+[endsect]
 
 [endsect]
 

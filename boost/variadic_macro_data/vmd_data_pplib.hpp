@@ -21,8 +21,7 @@
 #include <boost/preprocessor/variadic/to_seq.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 
-/// Expands to the number of comma-separated variadic macro data arguments.
-/**
+/** \brief Expands to the number of comma-separated variadic macro data arguments.
 
     ... = variadic macro data.
 
@@ -36,8 +35,7 @@
   BOOST_PP_VARIADIC_SIZE(__VA_ARGS__) \
 /**/
 
-/// Expands to a particular variadic macro data argument.
-/**
+/** \brief Expands to a particular variadic macro data argument.
 
     n   = number of the variadic macro data argument.
           The number starts from 0 to the number of
@@ -55,8 +53,7 @@
   BOOST_PP_VARIADIC_ELEM(n,__VA_ARGS__) \
 /**/
 
-/// Expand to a Boost PP tuple data type.
-/**
+/** \brief Expand to a Boost PP tuple data type.
 
     ... = variadic macro data.
 
@@ -71,8 +68,7 @@
   BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__) \
 /**/
 
-/// Expand to a Boost PP array data type.
-/**
+/** \brief Expand to a Boost PP array data type.
 
     ... = variadic macro data.
 
@@ -87,8 +83,7 @@
   BOOST_PP_VARIADIC_TO_ARRAY(__VA_ARGS__) \
 /**/
 
-/// Expand to a Boost PP list data type.
-/**
+/** \brief Expand to a Boost PP list data type.
 
     ... = variadic macro data.
 
@@ -103,8 +98,7 @@
   BOOST_PP_VARIADIC_TO_LIST(__VA_ARGS__) \
 /**/
 
-/// Expand to a Boost PP sequence data type.
-/**
+/** \brief Expand to a Boost PP sequence data type.
 
     ... = variadic macro data.
 

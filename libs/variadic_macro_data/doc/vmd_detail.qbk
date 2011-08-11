@@ -1,6 +1,6 @@
 [section:vmd_detail Functional groups]
 
-The macros in VMD can best be explained as falling into four groups. 
+The macros in VMD can best be explained as falling into five groups. 
 These are:
 
 # Macros which directly support variadic macro data usage.
@@ -9,6 +9,9 @@ These are:
 # Macros which offer an easy to use replacement for Boost PP 
   tuple macros because they do not require the size of the tuple 
   to be specified.
+# Macros which offer further functionality for common Boost PP
+  situations through the use of variadic macros.
+# Macros which control internal variadic data functionality.
    
 A further general explanation of each of these groups follow, while 
 a specific explanation for each macro can be found in the reference 
@@ -28,6 +31,9 @@ tokens can be returned. The two macros are:
   the comma-separated sequence. Here 'n' stands for the number of 
   the token, starting with 0, which is returned from the variadic 
   macro data.
+  
+The end-user of VMD can include the individual header file 'vmd_data.hpp'
+instead of the general header file 'vmd.hpp' for using these macros.
    
 [endsect]
 
@@ -40,6 +46,9 @@ each of the four Boost PP data types. These are:
 # [macroref BOOST_VMD_DATA_TO_PP_ARRAY](...), which converts to a Boost PP array.
 # [macroref BOOST_VMD_DATA_TO_PP_LIST](...), which converts to a Boost PP list.
 # [macroref BOOST_VMD_DATA_TO_PP_SEQ](...), which converts to a Boost PP sequence.
+   
+The end-user of VMD can include the individual header file 'vmd_data.hpp'
+instead of the general header file 'vmd.hpp' for using these macros.
    
 [endsect]
 
@@ -58,6 +67,9 @@ tokens, which is the format of variadic macro data. The results of
 any of these macros can be passed to variadic macros as the final 
 parameter.
 
+The end-user of VMD can include the individual header file 'vmd_to_data.hpp'
+instead of the general header file 'vmd.hpp' for using these macros.
+   
 [endsect]
 
 [section:vmd_tuple Boost PP tuple enhancements]
@@ -83,6 +95,177 @@ macros and which do not require the size of the tuple. These are:
 # [macroref BOOST_VMD_PP_TUPLE_TO_SEQ](tuple), which is a replacement for 
   BOOST\_PP\_TUPLE\_TO\_SEQ without having to pass the size of the 
   tuple as the first parameter.
+
+The end-user of VMD can include the individual header file 'vmd_tuple.hpp'
+instead of the general header file 'vmd.hpp' for using these macros.
+   
+[endsect]
+
+[section:vmd_further_func Further functionality]
+
+There are macros which add further functionality related to Boost PP
+through the use of variadic macros. These can be divided into three
+groups:    
+
+[section:vmd_test_empty Testing for emptiness]
+
+Currently Boost PP has an undocumented macro for testing whether 
+a parameter is empty of not, written without the use of variadic 
+macros. The macro is called [macroref BOOST_PP_IS_EMPTY]. The macro is by its nature flawed,
+since there is no generalized way of determining whether or not a 
+parameter is empty using the C++ preprocessor. But the macro will 
+work given some limited inputs or emptiness. Paul Mensonides, the 
+developer of Boost PP and the BOOST_PP_IS_EMPTY macro there, also wrote a better macro, using variadic 
+macros, for determining whether or not a parameter is empty or not.
+This macro is also not perfect, since there is no perfect solution, 
+but will work correctly with almost all input. I have adapted his code
+for the VMD and developed my own code to work with the Visual C++ 
+compiler since Paul's code would not because of deficiencies in the 
+Visual C++ preprocessor.
+
+The macro is called BOOST_VMD_IS_EMPTY and will return 1 if its input 
+is empty or 0 if its input is not empty. For the standard version the macro
+is a variadic macro which make take any input. For the Visual C++ version the 
+macro is not a variadic macro and therefore takes a single parameter,    
+although it uses variadic macros in order to work properly.
+
+The one situation where the macro may not work properly is if its
+input is a function-like macro name. In that case the macro may 
+either work incorrectly or give a compiler error.
+
+The end-user of VMD can include the individual header file 'vmd_is_empty.hpp'
+instead of the general header file 'vmd.hpp' for using this macro.
+   
+[endsect]
+
+[section:vmd_test_parens Testing and removing parens]
+
+A common need when using macros and the Boost PP is determining
+whether a parameter begins with a set of parenthesis, within 
+which tokens may exist. This is the form of a Boost PP tuple.
+All Boost PP data types begin this way, and both PP arrays and
+lists are tuples of a certain form, while a PP seq is a series 
+of one or more single element tuples.
+
+The macro [macroref BOOST_VMD_IS_BEGIN_PARENS] takes as its input a parameter
+and determines whether the parameter begins with a set of parenthesis.
+It returns 1 if its input begins with a set of parenthesis, else it 
+returns 0. For the standard version the macro is a variadic macro which make take
+any input. For the Visual C++ version the macro is not a variadic macro 
+and therefore takes a single parameter, although it uses variadic macros 
+in order to work properly.
+
+There may be other tokens after the set of parameters that begins the 
+input, and the macro still returns 1. 
+
+Another common need when using macros and the Boost PP is to 
+remove the set of parenthesis from the beginning of a parameter.
+This is what [macroref BOOST_VMD_REMOVE_PARENS] does. if the parameter does 
+not contain a set of beginning parenthesis, the input parameter 
+is returned as is, else the input parameter is returned with the 
+beginning parenthesis removed. No other parenthesis after the 
+possible beginning parenthesis is removed.
+
+The end-user of VMD can include the individual header file 'vmd_is_begin_parens.hpp'
+instead of the general header file 'vmd.hpp' for using the BOOST_VMD_IS_BEGIN_PARENS
+macro and the individual header file 'vmd_remove_parens.hpp'
+instead of the general header file 'vmd.hpp' for using the BOOST_VMD_REMOVE_PARENS
+macro.
+
+[endsect]
+
+[section:vmd_assert_data Asserting Boost PP data types]
+
+There is no way to determine whether a macro parameter is a
+given Boost PP data type. But one can come close to this 
+functionality using variadic macros and the test for emptiness
+in the VMD library which the BOOST_VMD_IS_EMPTY macro gives.
+Therefore I have developed four macros, for each of the four 
+Boost PP data types, which will produce a compiler error if a
+parameter is not a given data type, else will output nothing.
+These macros are:
+
+# [macroref BOOST_VMD_ASSERT_IS_ARRAY](param), asserts that 'param' is a Boost PP array
+# [macroref BOOST_VMD_ASSERT_IS_LIST](param), asserts that 'param' is a Boost PP list
+# [macroref BOOST_VMD_ASSERT_IS_SEQ](param), asserts that 'param' is a Boost PP seq
+# [macroref BOOST_VMD_ASSERT_IS_TUPLE](param), asserts that 'param' is a Boost PP tuple
+
+Each of these act like a C++ assert-like macro. They do nothing if the 'param'
+is of the known type, else produce a compiler error. Furthermore these macros,
+like 'assert-like macros, only check their 'param' in debug mode. This, however,
+can be overridden by the BOOST_VMD_ASSERT_DATA macro. If it is defined and set
+to 1, the macros will always check their 'param', otherwise if it is set to 0 
+the 'param' is never checked.
+
+The assert macros can be used in code to test whether a 'param' is of the expected 
+Boost PP data type. It is not possible to create equivalent macros which return 1
+when the 'param' is of the correct type, else return 0, because of the assert macros'
+necessary reliance on BOOST_VMD_IS_EMPTY, which even in the best of conditions is slightly 
+flawed. However the flaw in BOOST_VMD_IS_EMPTY, where a function-like macro name 
+could produce a compiler error, is made use of in the assert macros so that the 
+compiler error produced in that case will only occur when the assert macro verifies
+that its 'param' is not the Boost PP data type being checked. Still there is the 
+very slight flaw in the assert macros where its reliance on BOOST_VMD_IS_EMPTY 
+could run into input being checked where a function-like macro name will produce 
+the incorrect result from the BOOST_VMD_IS_EMPTY macro. However this flaw is thought to be 
+so slight, and an end-user's chance of inputting such data so minimal, that it 
+was felt that such assert-like macros would be beneficial to macro programmers 
+using Boost PP and VMD.
+
+Another point to be made is that Boost PP array and list are also tuples. So
+passing an array or list to BOOST_VMD_ASSERT_IS_TUPLE will assert that either
+is a valid tuple by not producing a compiler error.
+
+A final point concerns using the assert macros with Visual C++. There is no way 
+which I have been able to discover to produce a compiler error from within a
+macro using Visual C++ without producing invalid C++ output to trigger the error. Because of this the 
+promise to produce no output in case of error from the assert macros must be amended for Visual C++. The 
+compiler error when using Visual C++, and an assert macro fails, could be masked by using one of the assert macros in a 
+situation where no output is generated by an enclosing macro.
+
+Individual header files can be used for each of the assert macros 
+instead of including the general header file 'vmd.hpp'. The individual
+header files are:
+
+'vmd_assert_is_array.hpp' for the BOOST_VMD_ASSERT_IS_ARRAY macro
+'vmd_assert_is_list.hpp' for the BOOST_VMD_ASSERT_IS_LIST macro
+'vmd_assert_is_seq.hpp' for the BOOST_VMD_ASSERT_IS_SEQ macro
+'vmd_assert_is_tuple.hpp' for the BOOST_VMD_ASSERT_IS_TUPLE macro.
+
+[endsect]
+
+[section:vmd_internal_macros Controlling internal usage]
+
+VMD has a few object-like macros which the end-user of the library can use 
+to determine or change the way variadic macros are used in the 
+library.
+
+The macro BOOST_VMD_VARIADICS is used to denote whether variadic
+data support exists for the particular compiler the end-user is
+using with VMD. VMD automatically sets this macro to 0 if the 
+compiler does not support variadic macros, else it sets this macro 
+to non-zero if the compiler does support variadic macro data. An
+end-user of VMD can also use this macro in his own design
+to determine whether or not variadic macros are supported. Furthermore
+an end-user of VMD can set this macro to 0 or non-zero, before including 
+a VMD header file, to force VMD to treat the particular compiler being 
+used as not supporting or supporting variadic macros.
+
+The macro BOOST_VMD_PPLIB controls the 'mode' VMD is operating in. When 
+this macro is set to 0, which is currently the default, VMD is operating
+in its 'native' mode, whereas when this macro is set to non-zero VMD is operating 
+in its 'pplib' mode. The end-user of VMD can set this macro to control the 
+mode before including a VMD header file, or check the value if necessary after
+including a VMD header file.
+
+The macro BOOST_VMD_ASSERT_DATA controls whether or not an assert macro
+will check its data. The default is that in compiler debug mode it will check the 
+data while in compiler release mode it will not check its data. The end-user can
+change this by setting the macro to 0 to not check the data, or non-zero to check
+the data before including a VMD header file, or check the value if necessary after
+including a VMD header file.
+
+[endsect]
 
 [endsect]
 
