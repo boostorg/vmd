@@ -4,8 +4,8 @@
 <title>Functional groups</title>
 <link rel="stylesheet" href="../boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
 <link rel="prev" href="vmd_naming.html" title="Naming conventions">
 <link rel="next" href="vmd_detail/vmd_toPP.html" title="Convert to Boost PP data types">
 </head>
@@ -29,9 +29,21 @@
       from Boost PP data types</a></span></dt>
 <dt><span class="section"><a href="vmd_detail/vmd_tuple.html">Boost
       PP tuple enhancements</a></span></dt>
+<dt><span class="section"><a href="vmd_detail/vmd_further_func.html">Further
+      functionality</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="vmd_detail/vmd_further_func.html#the_variadic_macro_data_library.vmd_detail.vmd_further_func.vmd_test_empty">Testing
+        for emptiness</a></span></dt>
+<dt><span class="section"><a href="vmd_detail/vmd_further_func/vmd_test_parens.html">Testing
+        and removing parens</a></span></dt>
+<dt><span class="section"><a href="vmd_detail/vmd_further_func/vmd_assert_data.html">Asserting
+        Boost PP data types</a></span></dt>
+<dt><span class="section"><a href="vmd_detail/vmd_further_func/vmd_internal_macros.html">Controlling
+        internal usage</a></span></dt>
+</dl></dd>
 </dl></div>
 <p>
-      The macros in VMD can best be explained as falling into four groups. These
+      The macros in VMD can best be explained as falling into five groups. These
       are:
     </p>
 <div class="orderedlist"><ol class="orderedlist" type="1">
@@ -47,6 +59,13 @@
 <li class="listitem">
           Macros which offer an easy to use replacement for Boost PP tuple macros
           because they do not require the size of the tuple to be specified.
+        </li>
+<li class="listitem">
+          Macros which offer further functionality for common Boost PP situations
+          through the use of variadic macros.
+        </li>
+<li class="listitem">
+          Macros which control internal variadic data functionality.
         </li>
 </ol></div>
 <p>
@@ -77,11 +96,15 @@
             returned from the variadic macro data.
           </li>
 </ol></div>
+<p>
+        The end-user of VMD can include the individual header file 'vmd_data.hpp'
+        instead of the general header file 'vmd.hpp' for using these macros.
+      </p>
 </div>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">

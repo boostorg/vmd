@@ -4,8 +4,8 @@
 <title>Compilers</title>
 <link rel="stylesheet" href="../boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
 <link rel="prev" href="vmd_design.html" title="Design">
 <link rel="next" href="vmd_limitations.html" title="Limitations">
 </head>
@@ -20,13 +20,10 @@
 <a name="the_variadic_macro_data_library.vmd_compilers"></a><a class="link" href="vmd_compilers.html" title="Compilers">Compilers</a>
 </h2></div></div></div>
 <p>
-      A previously mentioned in the section 'Boost Support' the compilers supported
-      by this library must not have the Boost Config macro BOOST_NO_VARIADIC_MACROS
-      defined. I have tested this library using gcc/MingW and VC++ on Windows. The
-      compilers tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1
-      and VC++ 8.0, 9.0, 10.0. Other compilers which currently should work with this
-      library are gcc on Linux, Digital Mars C++, and Borland C++ Builder 6/Codegear
-      C++.
+      I have tested this library using gcc/MingW and VC++ on Windows. The compilers
+      tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1 and VC++
+      8.0, 9.0, 10.0. Other compilers which currently should work with this library
+      are gcc on Linux, Digital Mars C++, and Borland C++ Builder 6/Codegear C++.
     </p>
 <p>
       As of Boost 1.4.5 the macro BOOST_NO_VARIADIC_MACROS is supported. This library
@@ -34,10 +31,14 @@
       that the compilers for which one wanted to use this library actually support
       variadic macros.
     </p>
+<p>
+      In 'pplib' mode the compilers supported are those which are deemed to offer
+      C99 variadic macro support for Boost PP.
+    </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">

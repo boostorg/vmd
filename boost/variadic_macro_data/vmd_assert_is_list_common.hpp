@@ -10,20 +10,9 @@
 /** \file
 */
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+/** \def BOOST_VMD_ASSERT_IS_LIST(list)
 
-#if BOOST_VMD_VARIADICS
-
-#if !BOOST_VMD_ASSERT_DATA
-
-#define BOOST_VMD_ASSERT_IS_LIST(x)
-
-#else
-
-#include <boost/preprocessor/control/while.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_list.hpp>
-
-/** \brief Asserts that the parameter is a pplib list.
+    \brief Asserts that the parameter is a pplib list.
 
     The macro checks that the parameter is a pplib list.
     If it is not a pplib list, it forces a compiler error.
@@ -61,6 +50,20 @@
      list.
     
 */
+
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+
+#if BOOST_VMD_VARIADICS
+
+#if !BOOST_VMD_ASSERT_DATA
+
+#define BOOST_VMD_ASSERT_IS_LIST(list)
+
+#else
+
+#include <boost/preprocessor/control/while.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_list.hpp>
+
 #define BOOST_VMD_ASSERT_IS_LIST(list) \
     VMD_DETAIL_ASSERT_IS_LIST_CHECK_RETURN_FAILURE \
       ( \

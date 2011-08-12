@@ -10,20 +10,9 @@
 /** \file
 */
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+/** \def BOOST_VMD_ASSERT_IS_SEQ(seq)
 
-#if BOOST_VMD_VARIADICS
-
-#if !BOOST_VMD_ASSERT_DATA
-
-#define BOOST_VMD_ASSERT_IS_SEQ(x)
-
-#else
-
-#include <boost/preprocessor/control/while.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_seq.hpp>
-
-/** \brief Asserts that the parameter is a pplib seq.
+    \brief Asserts that the parameter is a pplib seq.
 
     The macro checks that the parameter is a pplib seq.
     If it is not a pplib seq, it forces a compiler error.
@@ -61,6 +50,20 @@
      seq.
     
 */
+
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+
+#if BOOST_VMD_VARIADICS
+
+#if !BOOST_VMD_ASSERT_DATA
+
+#define BOOST_VMD_ASSERT_IS_SEQ(seq)
+
+#else
+
+#include <boost/preprocessor/control/while.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_seq.hpp>
+
 #define BOOST_VMD_ASSERT_IS_SEQ(seq) \
     VMD_DETAIL_ASSERT_IS_SEQ_CHECK_RETURN_FAILURE \
       ( \

@@ -4,8 +4,8 @@
 <title>Design</title>
 <link rel="stylesheet" href="../boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
 <link rel="prev" href="vmd_comparison.html" title="VMD and Boost PP">
 <link rel="next" href="vmd_compilers.html" title="Compilers">
 </head>
@@ -39,10 +39,18 @@
       overhead, I value ease of use to be much more important than redundancy, so
       I added the functionality to this library.
     </p>
+<p>
+      I have further designed the library to offer a few macro programming features
+      which are impossible to do effectively without the use of variadic macros.
+      But I have kept these features at a minimum because of the difficulty of using
+      variadic macros with compilers, most notably Visual C++, whose implementation
+      of variadic macros is substandard and therefore very difficult to get to work
+      correctly when variadic macros must be used.
+    </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">

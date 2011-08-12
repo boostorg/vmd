@@ -10,22 +10,9 @@
 /** \file
 */
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+/** \def BOOST_VMD_ASSERT_IS_ARRAY(array)
 
-#if BOOST_VMD_VARIADICS
-
-#if !BOOST_VMD_ASSERT_DATA
-
-#define BOOST_VMD_ASSERT_IS_ARRAY(x)
-
-#else
-
-#if BOOST_VMD_MSVC
-
-#include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_array.hpp>
-
-/** \brief Asserts that the parameter is a pplib array.
+    \brief Asserts that the parameter is a pplib array.
 
     The macro checks that the parameter is a pplib array.
     If it is not a pplib array, it forces a compiler error.
@@ -63,6 +50,22 @@
      array.
     
 */
+
+#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+
+#if BOOST_VMD_VARIADICS
+
+#if !BOOST_VMD_ASSERT_DATA
+
+#define BOOST_VMD_ASSERT_IS_ARRAY(array)
+
+#else
+
+#if BOOST_VMD_MSVC
+
+#include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_array.hpp>
+
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
     BOOST_VMD_ASSERT_IS_TUPLE(array) \
     VMD_DETAIL_ASSERT_IS_ARRAY_VC_CHECK_RETURN_FAILURE VMD_DETAIL_ASSERT_IS_ARRAY_VC_IMP(array) \

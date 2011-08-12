@@ -1,6 +1,6 @@
 # VariadicMacroData documentation Jamfile
 #
-# Copyright (c) 2010
+# Copyright (c) 2010-2011
 # Edward Diener
 #
 
@@ -41,6 +41,9 @@ doxygen vmd_reference
     $(here)/../../../boost/variadic_macro_data/vmd_is_empty_common.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_is_begin_parens_common.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_remove_parens_common.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_array_common.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_list_common.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_seq_common.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_tuple_common.hpp
   : 
     <doxygen:param>PROJECT_NAME="VMD"
@@ -49,6 +52,7 @@ doxygen vmd_reference
     <doxygen:param>SHOW_INCLUDE_FILES=NO
     <doxygen:param>MAX_INITIALIZER_LINES=0
     <doxygen:param>VERBATIM_HEADERS=NO
+    <doxygen:param>PREDEFINED=BOOST_VMD_VARIADICS
     <reftitle>"Variadic Macro Data Reference"
 ;
 

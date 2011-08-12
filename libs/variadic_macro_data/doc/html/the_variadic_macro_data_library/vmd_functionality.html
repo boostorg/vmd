@@ -4,8 +4,8 @@
 <title>Functionality</title>
 <link rel="stylesheet" href="../boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
 <link rel="prev" href="vmd_vmacros.html" title="Variadic Macros">
 <link rel="next" href="vmd_naming.html" title="Naming conventions">
 </head>
@@ -48,14 +48,26 @@
       macros.
     </p>
 <p>
-      Finally through the functionality of variadic macros, VMD provides parallel
-      functionality to the Boost PP tuple interface macros with a set of macros which
-      do not need the size of a tuple to be specified.
+      Through the functionality of variadic macros, VMD provides parallel functionality
+      to the Boost PP tuple interface macros with a set of macros which do not need
+      the size of a tuple to be specified.
+    </p>
+<p>
+      All of the previously mentioned variadic macro functionality has been added
+      to a version of Boost PP which is currently in the Boost trunk. In 'pplib'
+      mode, all of this functionality become invocations to the Boost PP trunk equivalent
+      macros.
+    </p>
+<p>
+      VMD also offers further macro functionality, using variadic macros, centered
+      on the verification of Boost PP data types, on the detection and removal of
+      beginning parentheses in a macro parameter, and on the determination of whether
+      a parameter is empty or not.
     </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">

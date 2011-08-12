@@ -4,16 +4,16 @@
 <title>VMD and Boost PP</title>
 <link rel="stylesheet" href="../boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.4">
-<link rel="prev" href="../BOOST_VMD_PP_SEQ_TO_DATA.html" title="Macro BOOST_VMD_PP_SEQ_TO_DATA">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="prev" href="../BOOST_VMD_PP_TUPLE_TO_SEQ.html" title="Macro BOOST_VMD_PP_TUPLE_TO_SEQ">
 <link rel="next" href="vmd_design.html" title="Design">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr><td valign="top"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../BOOST_VMD_PP_SEQ_TO_DATA.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_design.html"><img src="../images/next.png" alt="Next"></a>
+<a accesskey="p" href="../BOOST_VMD_PP_TUPLE_TO_SEQ.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_design.html"><img src="../images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -69,8 +69,8 @@
       writer can design macros for the end-user which take variadic data using variadic
       macros while internally using Boost PP data types to manipulate that data and
       pass that data to other Boost PP macros. This library provides functionality
-      to do just that with its macros which convert from variadic macro data to Boost
-      PP data types.
+      to do just that, with its macros which convert from variadic macro data to
+      Boost PP data types.
     </p>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -103,10 +103,10 @@
 <p>
         The end-user would pass data to this macro in this way:
       </p>
-<pre class="programlisting"><span class="identifier">ENDUSER_MACRO</span><span class="special">((</span><span class="identifier">a</span><span class="special">)(</span><span class="identifier">b</span><span class="special">)(</span><span class="identifier">c</span><span class="special">)(</span><span class="identifier">d</span><span class="special">)(</span><span class="identifier">e</span><span class="special">))</span> <span class="comment">// etc. with each "token" in the sequence surrounded by ()
-</span></pre>
+<pre class="programlisting"><span class="identifier">ENDUSER_MACRO</span><span class="special">((</span><span class="identifier">a</span><span class="special">)(</span><span class="identifier">b</span><span class="special">)(</span><span class="identifier">c</span><span class="special">)(</span><span class="identifier">d</span><span class="special">)(</span><span class="identifier">e</span><span class="special">))</span> <span class="comment">// etc. with each "token" in the sequence surrounded by ()</span>
+</pre>
 <p>
-        That is certainly acceptable, and without variadic macros, it is certainly
+        That is certainly acceptable, and without variadic macros it is certainly
         excellent to have the Boost PP functionality that allows us to design macros
         taking variadic data and manipulate that data using the functionality of
         Boost PP.
@@ -125,8 +125,8 @@
 <p>
         The end-user would pass data to this macro in this way:
       </p>
-<pre class="programlisting"><span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">a</span><span class="special">,</span><span class="identifier">b</span><span class="special">,</span><span class="identifier">c</span><span class="special">,</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">e</span><span class="special">)</span> <span class="comment">// etc. with each token being comma-separated from each other 
-</span></pre>
+<pre class="programlisting"><span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">a</span><span class="special">,</span><span class="identifier">b</span><span class="special">,</span><span class="identifier">c</span><span class="special">,</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">e</span><span class="special">)</span> <span class="comment">// etc. with each token being comma-separated from each other </span>
+</pre>
 <p>
         I think this last way of passing variadic data is more natural to an end-user
         than using a Boost PP sequence directly, but of course it depends on having
@@ -144,11 +144,11 @@
             code would be:</p>
 <p>
 </p>
-<pre class="programlisting"><span class="preprocessor">#if</span> <span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
+<pre class="programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">BOOST_VMD_VARIADICS</span>
   <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
 <span class="preprocessor">#else</span>
   <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">BOOST_VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
-<span class="preprocessor">#endif</span>  
+<span class="preprocessor">#endif</span>
 </pre>
 <p>
             </p>
@@ -158,8 +158,9 @@
             needed to work for different compilers, some of which support variadic
             macros and some of which do not. In that latter case, a dual macro design
             ( see below ) might be better.</p>
-<p>Another solution supporting a single macro
-            is to just ignore variadic macros, and then our solution would be:</p>
+<p>Another solution for supporting a single
+            macro is to just ignore variadic macros, and then our solution would
+            be:</p>
 <p>
 </p>
 <pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
@@ -170,7 +171,7 @@
             and then our solution would be:</p>
 <p>
 </p>
-<pre class="programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
+<pre class="programlisting"><span class="preprocessor">#if</span> <span class="identifier">BOOST_VMD_VARIADICS</span>
   <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">BOOST_VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
 <span class="preprocessor">#endif</span>
 </pre>
@@ -183,7 +184,7 @@
 <p>
 </p>
 <pre class="programlisting">  <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">ppSequence</span><span class="special">)</span>
-<span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_VARIADIC_MACROS</span><span class="special">)</span>
+<span class="preprocessor">#if</span> <span class="identifier">BOOST_VMD_VARIADICS</span>
   <span class="preprocessor">#define</span> <span class="identifier">ENDUSER_MACRO_VM</span><span class="special">(...)</span> <span class="identifier">ENDUSER_DETAIL_MACRO</span><span class="special">(</span><span class="identifier">BOOST_VMD_DATA_TO_PP_SEQ</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">))</span>
 <span class="preprocessor">#endif</span>
 </pre>
@@ -210,11 +211,11 @@
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../BOOST_VMD_PP_SEQ_TO_DATA.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_design.html"><img src="../images/next.png" alt="Next"></a>
+<a accesskey="p" href="../BOOST_VMD_PP_TUPLE_TO_SEQ.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_design.html"><img src="../images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>
