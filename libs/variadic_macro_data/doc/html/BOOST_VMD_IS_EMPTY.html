@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Macro BOOST_VMD_IS_EMPTY</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
+<link rel="home" href="index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="header/boost/variadic_macro_data/vmd_is_empty_common_hpp.html" title="Header &lt;boost/variadic_macro_data/vmd_is_empty_common.hpp&gt;">
+<link rel="prev" href="header/boost/variadic_macro_data/vmd_is_empty_common_hpp.html" title="Header &lt;boost/variadic_macro_data/vmd_is_empty_common.hpp&gt;">
+<link rel="next" href="header/boost/variadic_macro_data/vmd_remove_parens_common_hpp.html" title="Header &lt;boost/variadic_macro_data/vmd_remove_parens_common.hpp&gt;">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="header/boost/variadic_macro_data/vmd_is_empty_common_hpp.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="header/boost/variadic_macro_data/vmd_is_empty_common_hpp.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="header/boost/variadic_macro_data/vmd_remove_parens_common_hpp.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry">
+<a name="BOOST_VMD_IS_EMPTY"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Macro BOOST_VMD_IS_EMPTY</span></h2>
+<p>BOOST_VMD_IS_EMPTY &#8212; Tests whether a parameter is empty or not. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="header/boost/variadic_macro_data/vmd_is_empty_common_hpp.html" title="Header &lt;boost/variadic_macro_data/vmd_is_empty_common.hpp&gt;">boost/variadic_macro_data/vmd_is_empty_common.hpp</a>&gt;
+
+</span>BOOST_VMD_IS_EMPTY(...)</pre></div>
+<div class="refsect1">
+<a name="id909617"></a><h2>Description</h2>
+<p>The macro checks to see if the parameter is empty or not. It returns 1 if the parameter is empty, else returns 0.</p>
+<p>The macro works through variadic macro support.</p>
+<p>The macro is not perfect, and can not be so. The problem area is if the parameter to be checked is a function-like macro name, in which case either a compiler error can result or a false result can occur.</p>
+<p>This macro is a replacement, using variadic macro support, for the undocumented macro BOOST_PP_IS_EMPTY in the Boost pplib. The code is taken from a posting by Paul Mensonides of a variadic version for BOOST_PP_IS_EMPTY, and changed in order to also support VC++.</p>
+<p>.... = variadic param(s)</p>
+<p>returns = 1 if the param is empty, 0 if it is not </p>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="header/boost/variadic_macro_data/vmd_is_empty_common_hpp.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="header/boost/variadic_macro_data/vmd_is_empty_common_hpp.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="header/boost/variadic_macro_data/vmd_remove_parens_common_hpp.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
