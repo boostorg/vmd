@@ -13,7 +13,6 @@
 #define VMD_DETAIL_IS_EMPTY_IIF_0(t, b) b
 #define VMD_DETAIL_IS_EMPTY_IIF_1(t, b) t
 #define VMD_DETAIL_IS_EMPTY_GEN_ZERO(x) 0
-#define VMD_DETAIL_IS_EMPTY_COMMON_EXPAND(...) 1,1
 
 #else
 

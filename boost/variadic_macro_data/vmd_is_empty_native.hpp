@@ -14,8 +14,7 @@
 
 #if BOOST_VMD_VARIADICS && BOOST_VMD_MSVC
 
-#include <boost/preprocessor/arithmetic/dec.hpp>
-#include <boost/variadic_macro_data/vmd_data.hpp>
+#include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
 #include <boost/variadic_macro_data/detail/vmd_detail_is_empty.hpp>
 
 /** \brief Tests whether its input is empty or not.
@@ -49,17 +48,11 @@
 #define BOOST_VMD_IS_EMPTY(...) \
     VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_PP_DEC \
-        ( \
-        BOOST_VMD_DATA_SIZE \
-          ( \
-          VMD_DETAIL_IS_EMPTY_COMMON_EXPAND __VA_ARGS__ \
-          ) \
-        ) \
+      BOOST_VMD_IS_BEGIN_PARENS(__VA_ARGS__) \
       ) \
       ( \
       VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
-      VMD_DETAIL_IS_EMPTY_VC_IS_TUPLE_BEGIN \
+      BOOST_VMD_IS_BEGIN_PARENS \
       ) \
     (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ ()) \
 /**/
