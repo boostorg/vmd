@@ -3,6 +3,7 @@
 #else
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
 #endif
+#include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
 int main()
@@ -17,11 +18,11 @@ int main()
   #define FUNC2(x)
   #define FUNC_GEN() ()
   
-  BOOST_TEST(BOOST_VMD_IS_EMPTY());
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(DATA));
-  BOOST_TEST(!BOOST_VMD_IS_EMPTY((x)));
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(OBJECT));
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC(z)));
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_PP_EMPTY()));
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(DATA BOOST_PP_EMPTY()));
+  BOOST_TEST(!BOOST_VMD_IS_EMPTY((x BOOST_PP_EMPTY())));
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(OBJECT BOOST_PP_EMPTY()));
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC(z) BOOST_PP_EMPTY()));
   
 //  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN));
 

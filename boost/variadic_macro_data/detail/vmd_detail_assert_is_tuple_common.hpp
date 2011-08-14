@@ -5,6 +5,7 @@
 
 #if BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA
 
+#include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
 
 #if BOOST_VMD_MSVC
@@ -36,7 +37,7 @@
 #endif /* BOOST_VMD_MSVC */
 
 #define VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER(x) \
-   BOOST_VMD_IS_EMPTY(VMD_DETAIL_ASSERT_IS_TUPLE_EXPAND_AFTER x) \
+   BOOST_VMD_IS_EMPTY(VMD_DETAIL_ASSERT_IS_TUPLE_EXPAND_AFTER x BOOST_PP_EMPTY()) \
 /**/
 
 #define VMD_DETAIL_ASSERT_IS_TUPLE_EXPAND_AFTER(...) \

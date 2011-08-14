@@ -18,18 +18,9 @@
 
 #if BOOST_VMD_MSVC
 #include <boost/preprocessor/facilities/empty.hpp>
-#if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MWCC()
 #define VMD_DETAIL_VD_CAT(a, b) VMD_DETAIL_VD_CAT_I(a, b)
-#else
-#define VMD_DETAIL_VD_CAT(a, b) VMD_DETAIL_VD_CAT_OO((a, b))
-#define VMD_DETAIL_VD_CAT_OO(par) VMD_DETAIL_VD_CAT_I ## par
-#endif
-#if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC()
-#define VMD_DETAIL_VD_CAT_I(a, b) a ## b
-#else
 #define VMD_DETAIL_VD_CAT_I(a, b) VMD_DETAIL_VD_CAT_II(a ## b)
 #define VMD_DETAIL_VD_CAT_II(res) res
-#endif
 #endif /* BOOST_VMD_MSVC */
 
 #define VMD_DETAIL_DATA_ELEM_0(p0, ...) p0

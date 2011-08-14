@@ -7,12 +7,12 @@
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
+#include <boost/preprocessor/facilities/empty.hpp>
 
 #if BOOST_VMD_MSVC
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/debug/assert.hpp>
-#include <boost/preprocessor/facilities/empty.hpp>
 
 #define VMD_DETAIL_ASSERT_IS_ARRAY_VC_CHECK_RETURN_FAILURE(x) \
     BOOST_PP_ASSERT \
@@ -36,7 +36,7 @@
 
 #endif /* BOOST_VMD_MSVC */
 
-#define VMD_DETAIL_ASSERT_IS_ARRAY_NUM(x) BOOST_VMD_IS_EMPTY(BOOST_PP_CAT(VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_, x))
+#define VMD_DETAIL_ASSERT_IS_ARRAY_NUM(x) BOOST_VMD_IS_EMPTY(BOOST_PP_CAT(VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_, x) BOOST_PP_EMPTY())
 #define VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_1
 #define VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_2
 #define VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_3

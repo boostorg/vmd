@@ -124,10 +124,8 @@ compiler since Paul's code would not because of deficiencies in the
 Visual C++ preprocessor.
 
 The macro is called [macroref BOOST_VMD_IS_EMPTY] and will return 1 if its input 
-is empty or 0 if its input is not empty. For the standard version the macro
-is a variadic macro which make take any input. For the Visual C++ version the 
-macro is not a variadic macro and therefore takes a single parameter,    
-although it uses variadic macros in order to work properly.
+is empty or 0 if its input is not empty. The macro
+is a variadic macro which make take any input.
 
 The one situation where the macro may not work properly is if its
 input is a function-like macro name. In that case the macro may 

@@ -8,6 +8,7 @@
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/debug/assert.hpp>
+#include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/facilities/expand.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
@@ -79,7 +80,7 @@
       ( \
       BOOST_VMD_IS_EMPTY \
         ( \
-        VMD_DETAIL_ASSERT_IS_SEQ_GET_AFTER_FIRST_TUPLE(x) \
+        VMD_DETAIL_ASSERT_IS_SEQ_GET_AFTER_FIRST_TUPLE(x) BOOST_PP_EMPTY() \
         ), \
       VMD_DETAIL_ASSERT_IS_SEQ_ASSERT_FIRST_TUPLE_SIZE_EMPTY, \
       VMD_DETAIL_ASSERT_IS_SEQ_ASSERT_FIRST_TUPLE_SIZE_FULL \
@@ -171,7 +172,7 @@
       ( \
       BOOST_VMD_IS_EMPTY \
         ( \
-        x \
+        x BOOST_PP_EMPTY() \
         ), \
       BOOST_VMD_IS_SEQ_SUCCESS, \
       x \
@@ -196,13 +197,13 @@
 #define VMD_DETAIL_ASSERT_IS_SEQ_IS_SUCCESS(x) \
     BOOST_VMD_IS_EMPTY \
       ( \
-      BOOST_PP_CAT(VMD_DETAIL_ASSERT_IS_SEQ_SHELPER_,x) \
+      BOOST_PP_CAT(VMD_DETAIL_ASSERT_IS_SEQ_SHELPER_,x) BOOST_PP_EMPTY() \
       ) \
 /**/
 #define VMD_DETAIL_ASSERT_IS_SEQ_IS_FAILURE(x) \
     BOOST_VMD_IS_EMPTY \
       ( \
-      BOOST_PP_CAT(VMD_DETAIL_ASSERT_IS_SEQ_FHELPER_,x) \
+      BOOST_PP_CAT(VMD_DETAIL_ASSERT_IS_SEQ_FHELPER_,x) BOOST_PP_EMPTY() \
       ) \
 /**/
 #define VMD_DETAIL_ASSERT_IS_SEQ_SHELPER_BOOST_VMD_IS_SEQ_SUCCESS

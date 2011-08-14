@@ -8,6 +8,7 @@
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/debug/assert.hpp>
+#include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
@@ -114,7 +115,7 @@
         ( \
         VMD_DETAIL_ASSERT_IS_LIST_NIL_HELPER_, \
         x \
-        ) \
+        ) BOOST_PP_EMPTY() \
       ) \
 /**/
 
@@ -123,7 +124,7 @@
 #define VMD_DETAIL_ASSERT_IS_LIST_IS_FAILURE(x) \
     BOOST_VMD_IS_EMPTY \
       ( \
-      BOOST_PP_CAT(VMD_DETAIL_ASSERT_IS_LIST_FHELPER_,x) \
+      BOOST_PP_CAT(VMD_DETAIL_ASSERT_IS_LIST_FHELPER_,x) BOOST_PP_EMPTY() \
       ) \
 /**/
 

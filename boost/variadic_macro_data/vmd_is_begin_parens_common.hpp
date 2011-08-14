@@ -12,7 +12,25 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS && !BOOST_VMD_MSVC
+#if BOOST_VMD_VARIADICS
+
+#if BOOST_VMD_MSVC
+
+#include <boost/variadic_macro_data/detail/vmd_detail_is_begin_parens.hpp>
+
+#define BOOST_VMD_IS_BEGIN_PARENS(...) \
+    VMD_DETAIL_IS_BEGIN_PARENS_SPLIT \
+      ( \
+      0, \
+      VMD_DETAIL_IS_BEGIN_PARENS_CAT \
+        ( \
+        VMD_DETAIL_IS_BEGIN_PARENS_IS_VARIADIC_R_, \
+        VMD_DETAIL_IS_BEGIN_PARENS_IS_VARIADIC_C __VA_ARGS__ \
+        ) \
+      ) \
+/**/
+
+#else
 
 #include <boost/variadic_macro_data/detail/vmd_detail_is_empty.hpp>
 
@@ -54,5 +72,6 @@
       ) \
 /**/
 
+#endif /* BOOST_VMD_MSVC */
 #endif /* BOOST_VMD_VARIADICS && !BOOST_VMD_MSVC */
 #endif /* VMD_IS_TUPLE_BEGIN_COMMON_HPP */
