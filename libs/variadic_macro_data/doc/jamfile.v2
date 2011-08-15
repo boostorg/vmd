@@ -36,12 +36,16 @@ else
 doxygen vmd_reference
   :
     $(here)/../../../boost/variadic_macro_data/vmd_to_data.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_to_data_native.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_data.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_data_native.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_tuple.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_tuple_native.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_is_empty.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_is_begin_parens.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_remove_parens.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_array.hpp
+    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_array_common.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_list.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_seq.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_tuple.hpp
@@ -53,6 +57,8 @@ doxygen vmd_reference
     <doxygen:param>MAX_INITIALIZER_LINES=0
     <doxygen:param>VERBATIM_HEADERS=NO
     <doxygen:param>PREDEFINED=BOOST_VMD_VARIADICS
+    <doxygen:param>PREDEFINED=BOOST_VMD_ASSERT_DATA
+    <doxygen:param>PREDEFINED=BOOST_VMD_MSVC
     <reftitle>"Variadic Macro Data Reference"
 ;
 

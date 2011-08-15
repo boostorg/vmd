@@ -50,16 +50,14 @@
           macros, for determining whether or not a parameter is empty or not. This
           macro is also not perfect, since there is no perfect solution, but will
           work correctly with almost all input. I have adapted his code for the VMD
-          and developed my own code to work with the Visual C++ compiler since Paul's
-          code would not because of deficiencies in the Visual C++ preprocessor.
+          and developed my own slightly different code to work with the Visual C++
+          compiler since Paul's code would not work as is because of deficiencies
+          in the Visual C++ preprocessor.
         </p>
 <p>
           The macro is called <code class="computeroutput"><a class="link" href="../../BOOST_VMD_IS_EMPTY.html" title="Macro BOOST_VMD_IS_EMPTY">BOOST_VMD_IS_EMPTY</a></code>
           and will return 1 if its input is empty or 0 if its input is not empty.
-          For the standard version the macro is a variadic macro which make take
-          any input. For the Visual C++ version the macro is not a variadic macro
-          and therefore takes a single parameter, although it uses variadic macros
-          in order to work properly.
+          The macro is a variadic macro which make take any input.
         </p>
 <p>
           The one situation where the macro may not work properly is if its input

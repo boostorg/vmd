@@ -25,16 +25,16 @@
           a parameter begins with a set of parenthesis, within which tokens may exist.
           This is the form of a Boost PP tuple. All Boost PP data types begin this
           way, and both PP arrays and lists are tuples of a certain form, while a
-          PP seq is a series of one or more single element tuples.
+          PP seq is a series of one or more single element tuples. Once again I have
+          taken the implementation from code which Paul Mensonides posted and have
+          changed it slightly for Visual C++.
         </p>
 <p>
           The macro <code class="computeroutput"><a class="link" href="../../../BOOST_VMD_IS_BEGIN_PARENS.html" title="Macro BOOST_VMD_IS_BEGIN_PARENS">BOOST_VMD_IS_BEGIN_PARENS</a></code>
           takes as its input a parameter and determines whether the parameter begins
           with a set of parenthesis. It returns 1 if its input begins with a set
-          of parenthesis, else it returns 0. For the standard version the macro is
-          a variadic macro which make take any input. For the Visual C++ version
-          the macro is not a variadic macro and therefore takes a single parameter,
-          although it uses variadic macros in order to work properly.
+          of parenthesis, else it returns 0. The macro is a variadic macro which
+          make take any input.
         </p>
 <p>
           There may be other tokens after the set of parameters that begins the input,
