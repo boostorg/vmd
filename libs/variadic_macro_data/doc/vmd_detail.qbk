@@ -119,8 +119,8 @@ developer of Boost PP and the BOOST_PP_IS_EMPTY macro there, also wrote a better
 macros, for determining whether or not a parameter is empty or not.
 This macro is also not perfect, since there is no perfect solution, 
 but will work correctly with almost all input. I have adapted his code
-for the VMD and developed my own code to work with the Visual C++ 
-compiler since Paul's code would not because of deficiencies in the 
+for the VMD and developed my own slightly different code to work with the Visual C++ 
+compiler since Paul's code would not work as is because of deficiencies in the 
 Visual C++ preprocessor.
 
 The macro is called [macroref BOOST_VMD_IS_EMPTY] and will return 1 if its input 
@@ -143,15 +143,15 @@ whether a parameter begins with a set of parenthesis, within
 which tokens may exist. This is the form of a Boost PP tuple.
 All Boost PP data types begin this way, and both PP arrays and
 lists are tuples of a certain form, while a PP seq is a series 
-of one or more single element tuples.
+of one or more single element tuples. Once again I have taken 
+the implementation from code which Paul Mensonides posted and have
+changed it slightly for Visual C++.
 
 The macro [macroref BOOST_VMD_IS_BEGIN_PARENS] takes as its input a parameter
 and determines whether the parameter begins with a set of parenthesis.
 It returns 1 if its input begins with a set of parenthesis, else it 
-returns 0. For the standard version the macro is a variadic macro which make take
-any input. For the Visual C++ version the macro is not a variadic macro 
-and therefore takes a single parameter, although it uses variadic macros 
-in order to work properly.
+returns 0. The macro is a variadic macro which make take
+any input.
 
 There may be other tokens after the set of parameters that begins the 
 input, and the macro still returns 1. 
