@@ -24,25 +24,156 @@
         There are four macros which convert variadic macro data as a whole to each
         of the four Boost PP data types. These are:
       </p>
-<div class="orderedlist"><ol class="orderedlist" type="1">
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../../BOOST_VMD_DATA_TO_PP_TUPLE.html" title="Macro BOOST_VMD_DATA_TO_PP_TUPLE">BOOST_VMD_DATA_TO_PP_TUPLE</a></code>(...),
-            which converts to a Boost PP tuple.
-          </li>
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../../BOOST_VMD_DATA_TO_PP_ARRAY.html" title="Macro BOOST_VMD_DATA_TO_PP_ARRAY">BOOST_VMD_DATA_TO_PP_ARRAY</a></code>(...),
-            which converts to a Boost PP array.
-          </li>
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../../BOOST_VMD_DATA_TO_PP_LIST.html" title="Macro BOOST_VMD_DATA_TO_PP_LIST">BOOST_VMD_DATA_TO_PP_LIST</a></code>(...),
-            which converts to a Boost PP list.
-          </li>
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../../BOOST_VMD_DATA_TO_PP_SEQ.html" title="Macro BOOST_VMD_DATA_TO_PP_SEQ">BOOST_VMD_DATA_TO_PP_SEQ</a></code>(...),
-            which converts to a Boost PP sequence.
-          </li>
-</ol></div>
-<p>
+<div class="table">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_toPP.tb_vmd_toPP"></a><p class="title"><b>Table&#160;1.2.&#160;Conversion to Boost PP data type macros</b></p>
+<div class="table-contents"><table class="table" summary="Conversion to Boost PP data type macros">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Macro
+                </p>
+              </th>
+<th>
+                <p>
+                  Functionality
+                </p>
+              </th>
+<th>
+                <p>
+                  VMD Header File
+                </p>
+              </th>
+<th>
+                <p>
+                  Boost PP Equivalent
+                </p>
+              </th>
+<th>
+                <p>
+                  Boost PP Header File
+                </p>
+              </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_DATA_TO_PP_TUPLE.html" title="Macro BOOST_VMD_DATA_TO_PP_TUPLE">BOOST_VMD_DATA_TO_PP_TUPLE</a></code>(...)
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts variadic data to a Boost PP tuple.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_VARIADIC_TO_TUPLE
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/variadic/to_tuple.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_DATA_TO_PP_ARRAY.html" title="Macro BOOST_VMD_DATA_TO_PP_ARRAY">BOOST_VMD_DATA_TO_PP_ARRAY</a></code>(...)
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts variadic data to a Boost PP array.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_VARIADIC_TO_ARRAY
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/variadic/to_array.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_DATA_TO_PP_LIST.html" title="Macro BOOST_VMD_DATA_TO_PP_LIST">BOOST_VMD_DATA_TO_PP_LIST</a></code>(...)
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts variadic data to a Boost PP list.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_VARIADIC_TO_LIST
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/variadic/to_list.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_DATA_TO_PP_SEQ.html" title="Macro BOOST_VMD_DATA_TO_PP_SEQ">BOOST_VMD_DATA_TO_PP_SEQ</a></code>(...)
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts variadic data to a Boost PP sequence.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_VARIADIC_TO_SEQ
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/variadic/to_seq.hpp
+                </p>
+              </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>
         The end-user of VMD can include the individual header file 'vmd_data.hpp'
         instead of the general header file 'vmd.hpp' for using these macros.
       </p>

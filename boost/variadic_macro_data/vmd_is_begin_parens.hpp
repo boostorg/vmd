@@ -47,6 +47,22 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_is_begin_parens.hpp>
 
+#if BOOST_VMD_MSVC_V8
+
+#define BOOST_VMD_IS_BEGIN_PARENS(param) \
+    VMD_DETAIL_IS_BEGIN_PARENS_SPLIT \
+      ( \
+      0, \
+      VMD_DETAIL_IS_BEGIN_PARENS_CAT \
+        ( \
+        VMD_DETAIL_IS_BEGIN_PARENS_IS_VARIADIC_R_, \
+        VMD_DETAIL_IS_BEGIN_PARENS_IS_VARIADIC_C param \
+        ) \
+      ) \
+/**/
+
+#else
+
 #define BOOST_VMD_IS_BEGIN_PARENS(...) \
     VMD_DETAIL_IS_BEGIN_PARENS_SPLIT \
       ( \
@@ -58,6 +74,8 @@
         ) \
       ) \
 /**/
+
+#endif /* BOOST_VMD_MSVC_V8 */
 
 #else
 

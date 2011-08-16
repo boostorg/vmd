@@ -32,7 +32,7 @@
 </dl></div>
 <p>
         There are macros which add further functionality related to Boost PP through
-        the use of variadic macros. These can be divided into three groups:
+        the use of variadic macros. These can be divided into four groups:
       </p>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -57,7 +57,7 @@
 <p>
           The macro is called <code class="computeroutput"><a class="link" href="../../BOOST_VMD_IS_EMPTY.html" title="Macro BOOST_VMD_IS_EMPTY">BOOST_VMD_IS_EMPTY</a></code>
           and will return 1 if its input is empty or 0 if its input is not empty.
-          The macro is a variadic macro which make take any input.
+          The macro is a variadic macro which make take any input <sup>[<a name="the_variadic_macro_data_library.f0" href="#ftn.the_variadic_macro_data_library.f0" class="footnote">1</a>]</sup>.
         </p>
 <p>
           The one situation where the macro may not work properly is if its input
@@ -68,6 +68,12 @@
           The end-user of VMD can include the individual header file 'vmd_is_empty.hpp'
           instead of the general header file 'vmd.hpp' for using this macro.
         </p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a id="ftn.the_variadic_macro_data_library.f0" href="#the_variadic_macro_data_library.f0" class="para">1</a>] </sup>
+            For VC++ 8 the input is not variadic data but a single parameter
+          </p></div>
 </div>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>

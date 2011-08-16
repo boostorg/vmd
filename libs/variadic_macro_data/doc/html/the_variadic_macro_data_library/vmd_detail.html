@@ -43,8 +43,7 @@
 </dl></dd>
 </dl></div>
 <p>
-      The macros in VMD can best be explained as falling into five groups. These
-      are:
+      The macros in VMD can best be explained as falling into six groups. These are:
     </p>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -69,6 +68,20 @@
         </li>
 </ol></div>
 <p>
+      The first four groups above currently have been implemented for the Boost PP
+      library on the Boost trunk. This implementation of variadic macros for Boost
+      PP will be going into a future version of Boost. New users of VMD are strongly
+      encouraged to use the equivalent Boost PP macro equivalents if they have the
+      Boost trunk. The equivalent names of the macros in Boost PP on the Boost trunk
+      and their Boost PP header file names are given in the tables for each set of
+      the macros.
+    </p>
+<p>
+      Alternately using the macros in the first four groups under their VMD name
+      and header files, and using 'pplib' mode by setting the macro BOOST_VMD_PPLIB
+      to 1, will forward to the equivalent macros in Boost PP on the Boost trunk.
+    </p>
+<p>
       A further general explanation of each of these groups follow, while a specific
       explanation for each macro can be found in the reference section.
     </p>
@@ -84,19 +97,104 @@
         the variadic macro data's comma-separated tokens can be returned. The two
         macros are:
       </p>
-<div class="orderedlist"><ol class="orderedlist" type="1">
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../BOOST_VMD_DATA_SIZE.html" title="Macro BOOST_VMD_DATA_SIZE">BOOST_VMD_DATA_SIZE</a></code>(...),
-            which returns the number of comma-separated tokens.
-          </li>
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../BOOST_VMD_DATA_ELEM.html" title="Macro BOOST_VMD_DATA_ELEM">BOOST_VMD_DATA_ELEM</a></code>(n,...),
-            which returns a particular token among the comma-separated sequence.
-            Here 'n' stands for the number of the token, starting with 0, which is
-            returned from the variadic macro data.
-          </li>
-</ol></div>
-<p>
+<div class="table">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_usage.tb_vmd_usage"></a><p class="title"><b>Table&#160;1.1.&#160;Variadic usage macros</b></p>
+<div class="table-contents"><table class="table" summary="Variadic usage macros">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Macro
+                </p>
+              </th>
+<th>
+                <p>
+                  Functionality
+                </p>
+              </th>
+<th>
+                <p>
+                  VMD Header File
+                </p>
+              </th>
+<th>
+                <p>
+                  Boost PP Trunk Equivalent
+                </p>
+              </th>
+<th>
+                <p>
+                  Boost PP Trunk Header File
+                </p>
+              </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../BOOST_VMD_DATA_SIZE.html" title="Macro BOOST_VMD_DATA_SIZE">BOOST_VMD_DATA_SIZE</a></code>(...)
+                </p>
+              </td>
+<td>
+                <p>
+                  Returns the number of comma-separated variadic data tokens.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_VARIADIC_SIZE
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/variadic/size.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../BOOST_VMD_DATA_ELEM.html" title="Macro BOOST_VMD_DATA_ELEM">BOOST_VMD_DATA_ELEM</a></code>(n,...)
+                </p>
+              </td>
+<td>
+                <p>
+                  Returns a particular token among the comma-separated sequence.
+                  Here 'n' stands for the number of the token, starting with 0, which
+                  is returned from the variadic macro data.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_VARIADIC_ELEM
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/variadic/elem.hpp
+                </p>
+              </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>
         The end-user of VMD can include the individual header file 'vmd_data.hpp'
         instead of the general header file 'vmd.hpp' for using these macros.
       </p>

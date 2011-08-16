@@ -24,25 +24,156 @@
         There are four macros which convert each of the four Boost PP data types
         to variadic macro data. These are:
       </p>
-<div class="orderedlist"><ol class="orderedlist" type="1">
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_TUPLE_TO_DATA.html" title="Macro BOOST_VMD_PP_TUPLE_TO_DATA">BOOST_VMD_PP_TUPLE_TO_DATA</a></code>(tuple),
-            which converts from a Boost PP tuple.
-          </li>
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_ARRAY_TO_DATA.html" title="Macro BOOST_VMD_PP_ARRAY_TO_DATA">BOOST_VMD_PP_ARRAY_TO_DATA</a></code>(array),
-            which converts from a Boost PP array.
-          </li>
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_LIST_TO_DATA.html" title="Macro BOOST_VMD_PP_LIST_TO_DATA">BOOST_VMD_PP_LIST_TO_DATA</a></code>(list),
-            which converts from a Boost PP list.
-          </li>
-<li class="listitem">
-            <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_SEQ_TO_DATA.html" title="Macro BOOST_VMD_PP_SEQ_TO_DATA">BOOST_VMD_PP_SEQ_TO_DATA</a></code>(seq),
-            which converts from a Boost PP sequence.
-          </li>
-</ol></div>
-<p>
+<div class="table">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_fromPP.tb_vmd_toData"></a><p class="title"><b>Table&#160;1.3.&#160;Conversion to variadic data from Boost PP data type macros</b></p>
+<div class="table-contents"><table class="table" summary="Conversion to variadic data from Boost PP data type macros">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Macro
+                </p>
+              </th>
+<th>
+                <p>
+                  Functionality
+                </p>
+              </th>
+<th>
+                <p>
+                  VMD Header File
+                </p>
+              </th>
+<th>
+                <p>
+                  Boost PP Equivalent
+                </p>
+              </th>
+<th>
+                <p>
+                  Boost PP Header File
+                </p>
+              </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_TUPLE_TO_DATA.html" title="Macro BOOST_VMD_PP_TUPLE_TO_DATA">BOOST_VMD_PP_TUPLE_TO_DATA</a></code>(tuple)
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts a Boost PP tuple to variadic data.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_to_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_TUPLE_ENUM
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/tuple/enum.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_ARRAY_TO_DATA.html" title="Macro BOOST_VMD_PP_ARRAY_TO_DATA">BOOST_VMD_PP_ARRAY_TO_DATA</a></code>(array)
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts a Boost PP array to variadic data.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_to_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_ARRAY_ENUM
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/array/enum.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_LIST_TO_DATA.html" title="Macro BOOST_VMD_PP_LIST_TO_DATA">BOOST_VMD_PP_LIST_TO_DATA</a></code>(list)
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts a Boost PP list to variadic data.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_to_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_LIST_ENUM
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/list/enum.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_SEQ_TO_DATA.html" title="Macro BOOST_VMD_PP_SEQ_TO_DATA">BOOST_VMD_PP_SEQ_TO_DATA</a></code>(seq)
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts a Boost PP sequence to variadic data.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_to_data.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_SEQ_ENUM
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/seq/enum.hpp
+                </p>
+              </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>
         In these macros the data is returned as a comma-separated list of tokens,
         which is the format of variadic macro data. The results of any of these macros
         can be passed to variadic macros as the final parameter.

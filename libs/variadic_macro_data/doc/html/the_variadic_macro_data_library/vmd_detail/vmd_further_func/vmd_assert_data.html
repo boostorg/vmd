@@ -49,7 +49,7 @@
 <p>
           Each of these act like a C++ assert-like macro. They do nothing if the
           'param' is of the known type, else produce a compiler error. Furthermore
-          these macros, like 'assert-like macros, only check their 'param' in debug
+          these macros, like 'assert-like' macros, only check their 'param' in debug
           mode. This, however, can be overridden by the BOOST_VMD_ASSERT_DATA macro.
           If it is defined and set to 1, the macros will always check their 'param',
           otherwise if it is set to 0 the 'param' is never checked.
@@ -74,7 +74,8 @@
 <p>
           Another point to be made is that Boost PP array and list are also tuples.
           So passing an array or list to BOOST_VMD_ASSERT_IS_TUPLE will assert that
-          either is a valid tuple by not producing a compiler error.
+          either one of those Boost PP data types is a valid tuple by not producing
+          a compiler error.
         </p>
 <p>
           A final point concerns using the assert macros with Visual C++. There is
@@ -91,12 +92,20 @@
           of including the general header file 'vmd.hpp'. The individual header files
           are:
         </p>
-<p>
-          'vmd_assert_is_array.hpp' for the BOOST_VMD_ASSERT_IS_ARRAY macro 'vmd_assert_is_list.hpp'
-          for the BOOST_VMD_ASSERT_IS_LIST macro 'vmd_assert_is_seq.hpp' for the
-          BOOST_VMD_ASSERT_IS_SEQ macro 'vmd_assert_is_tuple.hpp' for the BOOST_VMD_ASSERT_IS_TUPLE
-          macro.
-        </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem">
+              'vmd_assert_is_array.hpp' for the BOOST_VMD_ASSERT_IS_ARRAY macro
+            </li>
+<li class="listitem">
+              'vmd_assert_is_list.hpp' for the BOOST_VMD_ASSERT_IS_LIST macro
+            </li>
+<li class="listitem">
+              'vmd_assert_is_seq.hpp' for the BOOST_VMD_ASSERT_IS_SEQ macro
+            </li>
+<li class="listitem">
+              'vmd_assert_is_tuple.hpp' for the BOOST_VMD_ASSERT_IS_TUPLE macro.
+            </li>
+</ul></div>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>

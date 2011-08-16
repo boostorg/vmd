@@ -24,17 +24,16 @@
           A common need when using macros and the Boost PP is determining whether
           a parameter begins with a set of parenthesis, within which tokens may exist.
           This is the form of a Boost PP tuple. All Boost PP data types begin this
-          way, and both PP arrays and lists are tuples of a certain form, while a
-          PP seq is a series of one or more single element tuples. Once again I have
-          taken the implementation from code which Paul Mensonides posted and have
-          changed it slightly for Visual C++.
+          way, and both Boost PP arrays and lists are tuples of a certain form, while
+          a Boost PP seq is a series of one or more single element tuples. Once again
+          I have taken the implementation from code which Paul Mensonides posted
+          and have changed it slightly for Visual C++.
         </p>
 <p>
           The macro <code class="computeroutput"><a class="link" href="../../../BOOST_VMD_IS_BEGIN_PARENS.html" title="Macro BOOST_VMD_IS_BEGIN_PARENS">BOOST_VMD_IS_BEGIN_PARENS</a></code>
-          takes as its input a parameter and determines whether the parameter begins
-          with a set of parenthesis. It returns 1 if its input begins with a set
-          of parenthesis, else it returns 0. The macro is a variadic macro which
-          make take any input.
+          takes as its input variadic data and determines whether it begins with
+          a set of parenthesis. It returns 1 if its input begins with a set of parenthesis,
+          else it returns 0. The macro is a variadic macro which make take any input<sup>[<a name="the_variadic_macro_data_library.f1" href="#ftn.the_variadic_macro_data_library.f1" class="footnote">2</a>]</sup>.
         </p>
 <p>
           There may be other tokens after the set of parameters that begins the input,
@@ -55,6 +54,12 @@
           the general header file 'vmd.hpp' for using the BOOST_VMD_REMOVE_PARENS
           macro.
         </p>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a id="ftn.the_variadic_macro_data_library.f1" href="#the_variadic_macro_data_library.f1" class="para">2</a>] </sup>
+            For VC++ 8 the input is not variadic data but a single parameter.
+          </p></div>
+</div>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>

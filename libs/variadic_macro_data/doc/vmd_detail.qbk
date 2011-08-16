@@ -1,6 +1,6 @@
 [section:vmd_detail Functional groups]
 
-The macros in VMD can best be explained as falling into five groups. 
+The macros in VMD can best be explained as falling into six groups.
 These are:
 
 # Macros which directly support variadic macro data usage.
@@ -12,6 +12,17 @@ These are:
 # Macros which offer further functionality for common Boost PP
   situations through the use of variadic macros.
 # Macros which control internal variadic data functionality.
+
+The first four groups above currently have been implemented for the Boost PP
+library on the Boost trunk. This implementation of variadic macros for 
+Boost PP will be going into a future version of Boost. New users of VMD are
+strongly encouraged to use the equivalent Boost PP macro equivalents if they
+have the Boost trunk. The equivalent names of the macros in Boost PP on the Boost trunk and their 
+Boost PP header file names are given in the tables for each set of the macros.
+
+Alternately using the macros in the first four groups under their VMD name 
+and header files, and using 'pplib' mode by setting the macro BOOST_VMD_PPLIB
+to 1, will forward to the equivalent macros in Boost PP on the Boost trunk.
    
 A further general explanation of each of these groups follow, while 
 a specific explanation for each macro can be found in the reference 
@@ -25,13 +36,53 @@ of comma-separated tokens in the variadic macro data can be calculated,
 and that any token among the variadic macro data's comma-separated 
 tokens can be returned. The two macros are:
 
-# [macroref BOOST_VMD_DATA_SIZE](...), which returns the number of comma-separated 
-  tokens.
-# [macroref BOOST_VMD_DATA_ELEM](n,...), which returns a particular token among 
-  the comma-separated sequence. Here 'n' stands for the number of 
-  the token, starting with 0, which is returned from the variadic 
-  macro data.
-  
+[table:tb_vmd_usage Variadic usage macros
+  [
+    [Macro]
+    [Functionality]
+    [VMD Header File]
+    [Boost PP Trunk Equivalent]
+    [Boost PP Trunk Header File]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_DATA_SIZE](...)
+    ]
+    [
+    Returns the number of comma-separated variadic data tokens.
+    ]
+    [
+    boost/variadic_macro_data/vmd_data.hpp
+    ]
+    [
+    BOOST_PP_VARIADIC_SIZE
+    ]
+    [
+    boost/preprocessor/variadic/size.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_DATA_ELEM](n,...)
+    ]
+    [
+    Returns a particular token among 
+    the comma-separated sequence. Here 'n' stands for the number of 
+    the token, starting with 0, which is returned from the variadic 
+    macro data.
+    ]
+    [
+    boost/variadic_macro_data/vmd_data.hpp
+    ]
+    [
+    BOOST_PP_VARIADIC_ELEM
+    ]
+    [
+    boost/preprocessor/variadic/elem.hpp
+    ]
+  ]
+]
+
 The end-user of VMD can include the individual header file 'vmd_data.hpp'
 instead of the general header file 'vmd.hpp' for using these macros.
    
@@ -42,11 +93,84 @@ instead of the general header file 'vmd.hpp' for using these macros.
 There are four macros which convert variadic macro data as a whole to 
 each of the four Boost PP data types. These are:
 
-# [macroref BOOST_VMD_DATA_TO_PP_TUPLE](...), which converts to a Boost PP tuple.
-# [macroref BOOST_VMD_DATA_TO_PP_ARRAY](...), which converts to a Boost PP array.
-# [macroref BOOST_VMD_DATA_TO_PP_LIST](...), which converts to a Boost PP list.
-# [macroref BOOST_VMD_DATA_TO_PP_SEQ](...), which converts to a Boost PP sequence.
-   
+[table:tb_vmd_toPP Conversion to Boost PP data type macros
+  [
+    [Macro]
+    [Functionality]
+    [VMD Header File]
+    [Boost PP Equivalent]
+    [Boost PP Header File]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_DATA_TO_PP_TUPLE](...)
+    ]
+    [
+    Converts variadic data to a Boost PP tuple.
+    ]
+    [
+    boost/variadic_macro_data/vmd_data.hpp
+    ]
+    [
+    BOOST_PP_VARIADIC_TO_TUPLE
+    ]
+    [
+    boost/preprocessor/variadic/to_tuple.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_DATA_TO_PP_ARRAY](...)
+    ]
+    [
+    Converts variadic data to a Boost PP array.
+    ]
+    [
+    boost/variadic_macro_data/vmd_data.hpp
+    ]
+    [
+    BOOST_PP_VARIADIC_TO_ARRAY
+    ]
+    [
+    boost/preprocessor/variadic/to_array.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_DATA_TO_PP_LIST](...)
+    ]
+    [
+    Converts variadic data to a Boost PP list.
+    ]
+    [
+    boost/variadic_macro_data/vmd_data.hpp
+    ]
+    [
+    BOOST_PP_VARIADIC_TO_LIST
+    ]
+    [
+    boost/preprocessor/variadic/to_list.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_DATA_TO_PP_SEQ](...)
+    ]
+    [
+    Converts variadic data to a Boost PP sequence.
+    ]
+    [
+    boost/variadic_macro_data/vmd_data.hpp
+    ]
+    [
+    BOOST_PP_VARIADIC_TO_SEQ
+    ]
+    [
+    boost/preprocessor/variadic/to_seq.hpp
+    ]
+  ]
+]
+
 The end-user of VMD can include the individual header file 'vmd_data.hpp'
 instead of the general header file 'vmd.hpp' for using these macros.
    
@@ -57,10 +181,83 @@ instead of the general header file 'vmd.hpp' for using these macros.
 There are four macros which convert each of the four Boost PP data 
 types to variadic macro data. These are:
 
-# [macroref BOOST_VMD_PP_TUPLE_TO_DATA](tuple), which converts from a Boost PP tuple.
-# [macroref BOOST_VMD_PP_ARRAY_TO_DATA](array), which converts from a Boost PP array.
-# [macroref BOOST_VMD_PP_LIST_TO_DATA](list), which converts from a Boost PP list.
-# [macroref BOOST_VMD_PP_SEQ_TO_DATA](seq), which converts from a Boost PP sequence.
+[table:tb_vmd_toData Conversion to variadic data from Boost PP data type macros
+  [
+    [Macro]
+    [Functionality]
+    [VMD Header File]
+    [Boost PP Equivalent]
+    [Boost PP Header File]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_TUPLE_TO_DATA](tuple)
+    ]
+    [
+    Converts a Boost PP tuple to variadic data.
+    ]
+    [
+    boost/variadic_macro_data/vmd_to_data.hpp
+    ]
+    [
+    BOOST_PP_TUPLE_ENUM
+    ]
+    [
+    boost/preprocessor/tuple/enum.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_ARRAY_TO_DATA](array)
+    ]
+    [
+    Converts a Boost PP array to variadic data.
+    ]
+    [
+    boost/variadic_macro_data/vmd_to_data.hpp
+    ]
+    [
+    BOOST_PP_ARRAY_ENUM
+    ]
+    [
+    boost/preprocessor/array/enum.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_LIST_TO_DATA](list)
+    ]
+    [
+    Converts a Boost PP list to variadic data.
+    ]
+    [
+    boost/variadic_macro_data/vmd_to_data.hpp
+    ]
+    [
+    BOOST_PP_LIST_ENUM
+    ]
+    [
+    boost/preprocessor/list/enum.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_SEQ_TO_DATA](seq)
+    ]
+    [
+    Converts a Boost PP sequence to variadic data.
+    ]
+    [
+    boost/variadic_macro_data/vmd_to_data.hpp
+    ]
+    [
+    BOOST_PP_SEQ_ENUM
+    ]
+    [
+    boost/preprocessor/seq/enum.hpp
+    ]
+  ]
+]
 
 In these macros the data is returned as a comma-separated list of 
 tokens, which is the format of variadic macro data. The results of 
@@ -79,22 +276,117 @@ addition to Boost PP functionality when dealing with tuples while the
 final five are direct replacements for Boost PP tuple data manipulation 
 macros and which do not require the size of the tuple. These are:
 
-# [macroref BOOST_VMD_PP_TUPLE_SIZE](tuple), which returns the size of the tuple.
-# [macroref BOOST_VMD_PP_TUPLE_ELEM](tuple), which is a replacement for 
-  BOOST\_PP\_TUPLE\_ELEM without having to pass the size of the 
-  tuple as the first parameter.
-# [macroref BOOST_VMD_PP_TUPLE_REM_CTOR](tuple), which is a replacement for 
-  BOOST\_PP\_TUPLE\_REM\_CTOR without having to pass the size of the 
-  tuple as the first parameter.
-# [macroref BOOST_VMD_PP_TUPLE_REVERSE](tuple), which is a replacement for 
-  macroref BOOST\_PP\_TUPLE\_REVERSE without having to pass the size of the 
-  tuple as the first parameter.
-# [macroref BOOST_VMD_PP_TUPLE_TO_LIST](tuple), which is a replacement for 
-  BOOST\_PP\_TUPLE\_TO\_LIST without having to pass the size of the 
-  tuple as the first parameter.
-# [macroref BOOST_VMD_PP_TUPLE_TO_SEQ](tuple), which is a replacement for 
-  BOOST\_PP\_TUPLE\_TO\_SEQ without having to pass the size of the 
-  tuple as the first parameter.
+[table:tb_vmd_tuple Tuple enhancement macros
+  [
+    [Macro]
+    [Functionality]
+    [VMD Header File]
+    [Boost PP Equivalent]
+    [Boost PP Header File]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_TUPLE_SIZE](tuple)
+    ]
+    [
+    Returns the size of the tuple.
+    ]
+    [
+    boost/variadic_macro_data/vmd_tuple.hpp
+    ]
+    [
+    BOOST_PP_TUPLE_SIZE
+    ]
+    [
+    boost/preprocessor/tuple/size.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_TUPLE_ELEM](tuple)
+    ]
+    [
+    A replacement for BOOST_PP_TUPLE_ELEM without having to pass the size of the tuple.
+    ]
+    [
+    boost/variadic_macro_data/vmd_tuple.hpp
+    ]
+    [
+    BOOST_PP_TUPLE_ELEM
+    ]
+    [
+    boost/preprocessor/tuple/elem.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_TUPLE_REM_CTOR](tuple)
+    ]
+    [
+    A replacement for BOOST_PP_TUPLE_REM_CTOR without having to pass the size of the tuple.
+    ]
+    [
+    boost/variadic_macro_data/vmd_tuple.hpp
+    ]
+    [
+    BOOST_PP_TUPLE_REM_CTOR
+    ]
+    [
+    boost/preprocessor/tuple/rem.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_TUPLE_REVERSE](tuple)
+    ]
+    [
+    A replacement for BOOST_PP_TUPLE_REVERSE without having to pass the size of the tuple.
+    ]
+    [
+    boost/variadic_macro_data/vmd_tuple.hpp
+    ]
+    [
+    BOOST_PP_TUPLE_REVERSE
+    ]
+    [
+    boost/preprocessor/tuple/reverse.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_TUPLE_TO_LIST](tuple)
+    ]
+    [
+    A replacement for BOOST_PP_TUPLE_TO_LIST without having to pass the size of the tuple.
+    ]
+    [
+    boost/variadic_macro_data/vmd_tuple.hpp
+    ]
+    [
+    BOOST_PP_TUPLE_TO_LIST
+    ]
+    [
+    boost/preprocessor/tuple/to_list.hpp
+    ]
+  ]
+  [
+    [
+    [macroref BOOST_VMD_PP_TUPLE_TO_SEQ](tuple)
+    ]
+    [
+    A replacement for BOOST_PP_TUPLE_TO_SEQ without having to pass the size of the tuple.
+    ]
+    [
+    boost/variadic_macro_data/vmd_tuple.hpp
+    ]
+    [
+    BOOST_PP_TUPLE_TO_SEQ
+    ]
+    [
+    boost/preprocessor/tuple/to_seq.hpp
+    ]
+  ]
+]
 
 The end-user of VMD can include the individual header file 'vmd_tuple.hpp'
 instead of the general header file 'vmd.hpp' for using these macros.
@@ -104,8 +396,7 @@ instead of the general header file 'vmd.hpp' for using these macros.
 [section:vmd_further_func Further functionality]
 
 There are macros which add further functionality related to Boost PP
-through the use of variadic macros. These can be divided into three
-groups:    
+through the use of variadic macros. These can be divided into four groups:
 
 [section:vmd_test_empty Testing for emptiness]
 
@@ -125,7 +416,8 @@ Visual C++ preprocessor.
 
 The macro is called [macroref BOOST_VMD_IS_EMPTY] and will return 1 if its input 
 is empty or 0 if its input is not empty. The macro
-is a variadic macro which make take any input.
+is a variadic macro which make take any input
+[footnote For VC++ 8 the input is not variadic data but a single parameter].
 
 The one situation where the macro may not work properly is if its
 input is a function-like macro name. In that case the macro may 
@@ -141,17 +433,17 @@ instead of the general header file 'vmd.hpp' for using this macro.
 A common need when using macros and the Boost PP is determining
 whether a parameter begins with a set of parenthesis, within 
 which tokens may exist. This is the form of a Boost PP tuple.
-All Boost PP data types begin this way, and both PP arrays and
-lists are tuples of a certain form, while a PP seq is a series 
+All Boost PP data types begin this way, and both Boost PP arrays and
+lists are tuples of a certain form, while a Boost PP seq is a series 
 of one or more single element tuples. Once again I have taken 
 the implementation from code which Paul Mensonides posted and have
 changed it slightly for Visual C++.
 
-The macro [macroref BOOST_VMD_IS_BEGIN_PARENS] takes as its input a parameter
-and determines whether the parameter begins with a set of parenthesis.
+The macro [macroref BOOST_VMD_IS_BEGIN_PARENS] takes as its input variadic data
+and determines whether it begins with a set of parenthesis.
 It returns 1 if its input begins with a set of parenthesis, else it 
 returns 0. The macro is a variadic macro which make take
-any input.
+any input[footnote For VC++ 8 the input is not variadic data but a single parameter.].
 
 There may be other tokens after the set of parameters that begins the 
 input, and the macro still returns 1. 
@@ -190,7 +482,7 @@ These macros are:
 
 Each of these act like a C++ assert-like macro. They do nothing if the 'param'
 is of the known type, else produce a compiler error. Furthermore these macros,
-like 'assert-like macros, only check their 'param' in debug mode. This, however,
+like 'assert-like' macros, only check their 'param' in debug mode. This, however,
 can be overridden by the BOOST_VMD_ASSERT_DATA macro. If it is defined and set
 to 1, the macros will always check their 'param', otherwise if it is set to 0 
 the 'param' is never checked.
@@ -211,7 +503,7 @@ was felt that such assert-like macros would be beneficial to macro programmers
 using Boost PP and VMD.
 
 Another point to be made is that Boost PP array and list are also tuples. So
-passing an array or list to BOOST_VMD_ASSERT_IS_TUPLE will assert that either
+passing an array or list to BOOST_VMD_ASSERT_IS_TUPLE will assert that either one of those Boost PP data types 
 is a valid tuple by not producing a compiler error.
 
 A final point concerns using the assert macros with Visual C++. There is no way 
@@ -225,10 +517,10 @@ Individual header files can be used for each of the assert macros
 instead of including the general header file 'vmd.hpp'. The individual
 header files are:
 
-'vmd_assert_is_array.hpp' for the BOOST_VMD_ASSERT_IS_ARRAY macro
-'vmd_assert_is_list.hpp' for the BOOST_VMD_ASSERT_IS_LIST macro
-'vmd_assert_is_seq.hpp' for the BOOST_VMD_ASSERT_IS_SEQ macro
-'vmd_assert_is_tuple.hpp' for the BOOST_VMD_ASSERT_IS_TUPLE macro.
+* 'vmd_assert_is_array.hpp' for the BOOST_VMD_ASSERT_IS_ARRAY macro
+* 'vmd_assert_is_list.hpp' for the BOOST_VMD_ASSERT_IS_LIST macro
+* 'vmd_assert_is_seq.hpp' for the BOOST_VMD_ASSERT_IS_SEQ macro
+* 'vmd_assert_is_tuple.hpp' for the BOOST_VMD_ASSERT_IS_TUPLE macro.
 
 [endsect]
 

@@ -26,6 +26,11 @@
       are gcc on Linux, Digital Mars C++, and Borland C++ Builder 6/Codegear C++.
     </p>
 <p>
+      For VC++ 8.0 the BOOST_VMD_IS_BEGIN_PARENS and BOOST_VMD_IS_EMPTY macros take
+      a single parameter rather than variadic data because this version of VC++ does
+      not accept variadic data which may be empty.
+    </p>
+<p>
       As of Boost 1.4.5 the macro BOOST_NO_VARIADIC_MACROS is supported. This library
       could be used with previous Boost installations but there would be no guarantee
       that the compilers for which one wanted to use this library actually support
@@ -33,7 +38,8 @@
     </p>
 <p>
       In 'pplib' mode the compilers supported are those which are deemed to offer
-      C99 variadic macro support for Boost PP.
+      C99 variadic macro support for Boost PP as represented by the BOOST_PP_VARIADICS
+      macro.
     </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
