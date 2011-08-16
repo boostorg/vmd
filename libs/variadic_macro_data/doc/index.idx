@@ -4,7 +4,7 @@
 !scan boost/variadic_macro_data/vmd_is_empty.hpp
 !scan boost/variadic_macro_data/vmd_is_begin_parens.hpp
 !scan boost/variadic_macro_data/vmd_remove_parens.hpp
-!scan boost/variadic_macro_data/vmd_assert_is_array_native.hpp
+!scan boost/variadic_macro_data/vmd_assert_is_array.hpp
 !scan boost/variadic_macro_data/vmd_assert_is_list.hpp
 !scan boost/variadic_macro_data/vmd_assert_is_seq.hpp
 !scan boost/variadic_macro_data/vmd_assert_is_tuple.hpp

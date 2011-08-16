@@ -7,6 +7,7 @@
 * Added a macro for testing for the emptiness of a parameter.
 * Added support for individual header files.
 * Added support for 'native' and 'pplib' modes.
+* Added control macros for controlling the variadic macro availability, mode, and data verification.
 
 [heading Version 1.4]
 

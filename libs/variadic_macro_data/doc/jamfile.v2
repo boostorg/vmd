@@ -45,7 +45,6 @@ doxygen vmd_reference
     $(here)/../../../boost/variadic_macro_data/vmd_is_begin_parens.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_remove_parens.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_array.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_array_common.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_list.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_seq.hpp
     $(here)/../../../boost/variadic_macro_data/vmd_assert_is_tuple.hpp
