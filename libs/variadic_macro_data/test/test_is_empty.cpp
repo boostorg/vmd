@@ -24,9 +24,19 @@ int main()
   BOOST_TEST(BOOST_VMD_IS_EMPTY(OBJECT BOOST_PP_EMPTY()));
   BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC(z) BOOST_PP_EMPTY()));
   
-//  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN));
+#if BOOST_VMD_MSVC
 
-#endif
+  /* This shows that VC++ does not work correctly in this case. */
+
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN));
+
+#else
+
+  BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN));
+  
+#endif /* BOOST_VMD_MSVC */
+
+#endif /* BOOST_VMD_VARIADICS */
 
   return boost::report_errors();
   

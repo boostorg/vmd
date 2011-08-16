@@ -5,6 +5,8 @@
 
 #if BOOST_VMD_VARIADICS
 
+#include <boost/variadic_macro_data/detail/vmd_detail_is_begin_parens.hpp>
+
 /*
 
   The succeeding comments in this file are in doxygen format.
@@ -43,10 +45,6 @@
     
 */
 
-#if BOOST_VMD_MSVC
-
-#include <boost/variadic_macro_data/detail/vmd_detail_is_begin_parens.hpp>
-
 #if BOOST_VMD_MSVC_V8
 
 #define BOOST_VMD_IS_BEGIN_PARENS(param) \
@@ -76,23 +74,5 @@
 /**/
 
 #endif /* BOOST_VMD_MSVC_V8 */
-
-#else
-
-#include <boost/variadic_macro_data/detail/vmd_detail_is_empty.hpp>
-
-#define BOOST_VMD_IS_BEGIN_PARENS(...) \
-    VMD_DETAIL_IS_EMPTY_SPLIT \
-      ( \
-      0, \
-      VMD_DETAIL_IS_EMPTY_CAT \
-        ( \
-        VMD_DETAIL_IS_EMPTY_IS_VARIADIC_R_, \
-        VMD_DETAIL_IS_EMPTY_IS_VARIADIC_C __VA_ARGS__ \
-        ) \
-      ) \
-/**/
-
-#endif /* BOOST_VMD_MSVC */
-#endif /* BOOST_VMD_VARIADICS && !BOOST_VMD_MSVC */
+#endif /* BOOST_VMD_VARIADICS */
 #endif /* VMD_IS_TUPLE_BEGIN_HPP */

@@ -48,37 +48,24 @@
     
 */
 
-#if BOOST_VMD_MSVC
-
 #if BOOST_VMD_MSVC_V8
 
 #define BOOST_VMD_IS_EMPTY(param) \
     VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_PARENS(param) \
-      ) \
-      ( \
-      VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
       BOOST_VMD_IS_BEGIN_PARENS \
-      ) \
-    (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param ()) \
-/**/
-
-#else
-
-#define BOOST_VMD_IS_EMPTY(...) \
-    VMD_DETAIL_IS_EMPTY_IIF \
-      ( \
-      BOOST_VMD_IS_BEGIN_PARENS(__VA_ARGS__) \
+        ( \
+        param \
+        ) \
       ) \
       ( \
-      VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
+      0, \
       BOOST_VMD_IS_BEGIN_PARENS \
+        ( \
+        VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param () \
+        ) \
       ) \
-    (VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ ()) \
 /**/
-
-#endif /* BOOST_VMD_MSVC_V8 */
 
 #else
 
@@ -99,6 +86,6 @@
       ) \
 /**/
 
-#endif /* BOOST_VMD_MSVC */
-#endif /* BOOST_VMD_VARIADICS && !BOOST_VMD_MSVC */
+#endif /* BOOST_VMD_MSVC_V8 */
+#endif /* BOOST_VMD_VARIADICS */
 #endif /* VMD_IS_EMPTY_HPP */

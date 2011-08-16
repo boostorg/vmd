@@ -420,8 +420,12 @@ is a variadic macro which make take any input
 [footnote For VC++ 8 the input is not variadic data but a single parameter].
 
 The one situation where the macro may not work properly is if its
-input is a function-like macro name. In that case the macro may 
-either work incorrectly or give a compiler error.
+input is a function-like macro name. Here are the problems that can occur
+in this case:
+
+# If the function-like macro has one or more parameters: a compiler error should occur.
+# If the function-like macro has no parameters but outputs a Boost PP tuple with one or more elements: a compiler error should occur.
+# If the function-like macro has no parameters but outputs a set of empty parameters when using VC++: an incorrect result will occur. This is because of a bug in the VC++ preprocessor.
 
 The end-user of VMD can include the individual header file 'vmd_is_empty.hpp'
 instead of the general header file 'vmd.hpp' for using this macro.
@@ -497,10 +501,10 @@ compiler error produced in that case will only occur when the assert macro verif
 that its 'param' is not the Boost PP data type being checked. Still there is the 
 very slight flaw in the assert macros where its reliance on BOOST_VMD_IS_EMPTY 
 could run into input being checked where a function-like macro name will produce 
-the incorrect result from the BOOST_VMD_IS_EMPTY macro. However this flaw is thought to be 
-so slight, and an end-user's chance of inputting such data so minimal, that it 
-was felt that such assert-like macros would be beneficial to macro programmers 
-using Boost PP and VMD.
+the incorrect result from the BOOST_VMD_IS_EMPTY macro when using VC++. 
+However this flaw is thought to be so slight, and an end-user's chance of inputting 
+such data so minimal, that it was felt that such assert-like macros would be 
+beneficial to macro programmers using Boost PP and VMD.
 
 Another point to be made is that Boost PP array and list are also tuples. So
 passing an array or list to BOOST_VMD_ASSERT_IS_TUPLE will assert that either one of those Boost PP data types 
