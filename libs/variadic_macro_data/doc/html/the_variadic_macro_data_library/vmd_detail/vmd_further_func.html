@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Further functionality</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
+<link rel="home" href="../../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="../vmd_detail.html" title="Functional groups">
+<link rel="prev" href="vmd_tuple.html" title="Boost PP tuple enhancements">
+<link rel="next" href="vmd_further_func/vmd_test_parens.html" title="Testing and removing parens">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_tuple.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_detail.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_further_func/vmd_test_parens.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_further_func"></a><a class="link" href="vmd_further_func.html" title="Further functionality">Further
+      functionality</a>
+</h3></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="vmd_further_func.html#the_variadic_macro_data_library.vmd_detail.vmd_further_func.vmd_test_empty">Testing
+        for emptiness</a></span></dt>
+<dt><span class="section"><a href="vmd_further_func/vmd_test_parens.html">Testing
+        and removing parens</a></span></dt>
+<dt><span class="section"><a href="vmd_further_func/vmd_assert_data.html">Asserting
+        Boost PP data types</a></span></dt>
+<dt><span class="section"><a href="vmd_further_func/vmd_internal_macros.html">Controlling
+        internal usage</a></span></dt>
+</dl></div>
+<p>
+        There are macros which add further functionality related to Boost PP through
+        the use of variadic macros. These can be divided into four groups:
+      </p>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_further_func.vmd_test_empty"></a><a class="link" href="vmd_further_func.html#the_variadic_macro_data_library.vmd_detail.vmd_further_func.vmd_test_empty" title="Testing for emptiness">Testing
+        for emptiness</a>
+</h4></div></div></div>
+<p>
+          Currently Boost PP has an undocumented macro for testing whether a parameter
+          is empty of not, written without the use of variadic macros. The macro
+          is called BOOST_PP_IS_EMPTY. The macro is by its nature flawed, since there
+          is no generalized way of determining whether or not a parameter is empty
+          using the C++ preprocessor. But the macro will work given some limited
+          inputs or emptiness. Paul Mensonides, the developer of Boost PP and the
+          BOOST_PP_IS_EMPTY macro there, also wrote a better macro, using variadic
+          macros, for determining whether or not a parameter is empty or not. This
+          macro is also not perfect, since there is no perfect solution, but will
+          work correctly with almost all input. I have adapted his code for the VMD
+          and developed my own slightly different code to work with the Visual C++
+          compiler since Paul's code would not work as is because of deficiencies
+          in the Visual C++ preprocessor.
+        </p>
+<p>
+          The macro is called <code class="computeroutput"><a class="link" href="../../BOOST_VMD_IS_EMPTY.html" title="Macro BOOST_VMD_IS_EMPTY">BOOST_VMD_IS_EMPTY</a></code>
+          and will return 1 if its input is empty or 0 if its input is not empty.
+          The macro is a variadic macro which make take any input <sup>[<a name="the_variadic_macro_data_library.f0" href="#ftn.the_variadic_macro_data_library.f0" class="footnote">1</a>]</sup>.
+        </p>
+<p>
+          The one situation where the macro may not work properly is if its input
+          is a function-like macro name. Here are the problems that can occur in
+          this case:
+        </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+              If the function-like macro has two or more parameters: a compiler error
+              should occur.
+            </li>
+<li class="listitem">
+              If the function-like macro has less than two parameters but outputs
+              a Boost PP tuple (parens with one or more elements): a compiler error
+              should occur.
+            </li>
+</ol></div>
+<p>
+          For the Visual C++ compiler the above is not the case, and instead of putting
+          out a compiler error, the Visual C++ compiler only issues warnings. Furthermore
+          the Visual C++ compiler will give the incorrect result whenever the function-like
+          macro name produces a Boost PP tuple or an empty set of parens, treating
+          the input as empty. I have not been able to find a workaround for the behavior
+          of Visual C++ in the above respect.
+        </p>
+<p>
+          With all of the above mentioned, the case(s) where BOOST_VMD_IS_EMPTY work
+          incorrectly are very small, and I considered the macro worthwhile to use
+          with the vast majority of possible input. The macro is used extensiovely
+          in the assert-like macros explained further on in the documentation and
+          macro programmers may find this macro useful in their own programming efforts
+          despite the slight flaw in the way that it works.
+        </p>
+<p>
+          The end-user of VMD can include the individual header file 'vmd_is_empty.hpp'
+          instead of the general header file 'vmd.hpp' for using this macro.
+        </p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a id="ftn.the_variadic_macro_data_library.f0" href="#the_variadic_macro_data_library.f0" class="para">1</a>] </sup>
+            For VC++ 8 the input is not variadic data but a single parameter
+          </p></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_tuple.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_detail.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_further_func/vmd_test_parens.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

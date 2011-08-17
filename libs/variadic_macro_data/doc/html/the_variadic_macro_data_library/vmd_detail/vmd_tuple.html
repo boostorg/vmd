@@ -1,0 +1,251 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Boost PP tuple enhancements</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
+<link rel="home" href="../../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="../vmd_detail.html" title="Functional groups">
+<link rel="prev" href="vmd_fromPP.html" title="Convert from Boost PP data types">
+<link rel="next" href="vmd_further_func.html" title="Further functionality">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_fromPP.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_detail.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_further_func.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_tuple"></a><a class="link" href="vmd_tuple.html" title="Boost PP tuple enhancements">Boost
+      PP tuple enhancements</a>
+</h3></div></div></div>
+<p>
+        There are six macros which manipulate Boost PP tuple data. The first is an
+        addition to Boost PP functionality when dealing with tuples while the final
+        five are direct replacements for Boost PP tuple data manipulation macros
+        and which do not require the size of the tuple. These are:
+      </p>
+<div class="table">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_tuple.tb_vmd_tuple"></a><p class="title"><b>Table&#160;1.4.&#160;Tuple enhancement macros</b></p>
+<div class="table-contents"><table class="table" summary="Tuple enhancement macros">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Macro
+                </p>
+              </th>
+<th>
+                <p>
+                  Functionality
+                </p>
+              </th>
+<th>
+                <p>
+                  VMD Header File
+                </p>
+              </th>
+<th>
+                <p>
+                  Boost PP Equivalent
+                </p>
+              </th>
+<th>
+                <p>
+                  Boost PP Header File
+                </p>
+              </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_TUPLE_SIZE.html" title="Macro BOOST_VMD_PP_TUPLE_SIZE">BOOST_VMD_PP_TUPLE_SIZE</a></code>(tuple)
+                </p>
+              </td>
+<td>
+                <p>
+                  Returns the size of the tuple.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_tuple.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_TUPLE_SIZE
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/tuple/size.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_TUPLE_ELEM.html" title="Macro BOOST_VMD_PP_TUPLE_ELEM">BOOST_VMD_PP_TUPLE_ELEM</a></code>(tuple)
+                </p>
+              </td>
+<td>
+                <p>
+                  A replacement for BOOST_PP_TUPLE_ELEM without having to pass the
+                  size of the tuple.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_tuple.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_TUPLE_ELEM
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/tuple/elem.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_TUPLE_REM_CTOR.html" title="Macro BOOST_VMD_PP_TUPLE_REM_CTOR">BOOST_VMD_PP_TUPLE_REM_CTOR</a></code>(tuple)
+                </p>
+              </td>
+<td>
+                <p>
+                  A replacement for BOOST_PP_TUPLE_REM_CTOR without having to pass
+                  the size of the tuple.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_tuple.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_TUPLE_REM_CTOR
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/tuple/rem.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_TUPLE_REVERSE.html" title="Macro BOOST_VMD_PP_TUPLE_REVERSE">BOOST_VMD_PP_TUPLE_REVERSE</a></code>(tuple)
+                </p>
+              </td>
+<td>
+                <p>
+                  A replacement for BOOST_PP_TUPLE_REVERSE without having to pass
+                  the size of the tuple.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_tuple.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_TUPLE_REVERSE
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/tuple/reverse.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_TUPLE_TO_LIST.html" title="Macro BOOST_VMD_PP_TUPLE_TO_LIST">BOOST_VMD_PP_TUPLE_TO_LIST</a></code>(tuple)
+                </p>
+              </td>
+<td>
+                <p>
+                  A replacement for BOOST_PP_TUPLE_TO_LIST without having to pass
+                  the size of the tuple.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_tuple.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_TUPLE_TO_LIST
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/tuple/to_list.hpp
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../../BOOST_VMD_PP_TUPLE_TO_SEQ.html" title="Macro BOOST_VMD_PP_TUPLE_TO_SEQ">BOOST_VMD_PP_TUPLE_TO_SEQ</a></code>(tuple)
+                </p>
+              </td>
+<td>
+                <p>
+                  A replacement for BOOST_PP_TUPLE_TO_SEQ without having to pass
+                  the size of the tuple.
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/variadic_macro_data/vmd_tuple.hpp
+                </p>
+              </td>
+<td>
+                <p>
+                  BOOST_PP_TUPLE_TO_SEQ
+                </p>
+              </td>
+<td>
+                <p>
+                  boost/preprocessor/tuple/to_seq.hpp
+                </p>
+              </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>
+        The end-user of VMD can include the individual header file 'vmd_tuple.hpp'
+        instead of the general header file 'vmd.hpp' for using these macros.
+      </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_fromPP.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_detail.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_further_func.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
