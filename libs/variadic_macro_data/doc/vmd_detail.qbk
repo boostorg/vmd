@@ -423,9 +423,22 @@ The one situation where the macro may not work properly is if its
 input is a function-like macro name. Here are the problems that can occur
 in this case:
 
-# If the function-like macro has one or more parameters: a compiler error should occur.
-# If the function-like macro has no parameters but outputs a Boost PP tuple with one or more elements: a compiler error should occur.
-# If the function-like macro has no parameters but outputs a set of empty parameters when using VC++: an incorrect result will occur. This is because of a bug in the VC++ preprocessor.
+# If the function-like macro has two or more parameters: a compiler error should occur.
+# If the function-like macro has less than two parameters but outputs a Boost PP tuple (parens with one or more elements): a compiler error should occur.
+
+For the Visual C++ compiler the above is not the case, 
+and instead of putting out a compiler error, the Visual C++ compiler 
+only issues warnings. Furthermore the Visual C++ compiler will give the 
+incorrect result whenever the function-like macro name produces a Boost PP tuple
+or an empty set of parens, treating the input as empty. I have not been able to 
+find a workaround for the behavior of Visual C++ in the above respect.
+
+With all of the above mentioned, the case(s) where BOOST_VMD_IS_EMPTY work 
+incorrectly are very small, and I considered the macro worthwhile to use
+with the vast majority of possible input. The macro is used extensiovely in the 
+assert-like macros explained further on in the documentation and macro programmers
+may find this macro useful in their own programming efforts despite the slight 
+flaw in the way that it works.
 
 The end-user of VMD can include the individual header file 'vmd_is_empty.hpp'
 instead of the general header file 'vmd.hpp' for using this macro.

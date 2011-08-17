@@ -11,13 +11,11 @@
 #define BOOST_VMD_VARIADICS BOOST_PP_VARIADICS
 #if BOOST_VMD_VARIADICS
 #define BOOST_VMD_MSVC BOOST_PP_VARIADICS_MSVC
-#if BOOST_VMD_MSVC
-#if defined(_MSC_VER) && _MSC_VER == 1400
+#if BOOST_VMD_MSVC && defined(_MSC_VER) && _MSC_VER == 1400
 #define BOOST_VMD_MSVC_V8 1
 #else
 #define BOOST_VMD_MSVC_V8 0
-#endif /* _MSC_VER */
-#endif /* BOOST_VMD_MSVC */
+#endif /* BOOST_VMD_MSVC  && defined(_MSC_VER) && _MSC_VER == 1400 */
 #endif /* BOOST_VMD_VARIADICS */
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_VARIADICS && BOOST_VMD_PPLIB */
@@ -35,6 +33,7 @@
 #endif /* _MSC_VER */
 #else
 #define BOOST_VMD_MSVC 0
+#define BOOST_VMD_MSVC_V8 0
 #endif /* BOOST_MSVC */
 #if !defined(BOOST_VMD_ASSERT_DATA)
 #if defined(NDEBUG)
