@@ -3,7 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
 #include <boost/variadic_macro_data/detail/vmd_detail_is_begin_parens.hpp>
 
@@ -33,7 +33,7 @@
     The code for the non-VC++ version of this is taken from a 
     posting by Paul Mensonides.
     
-    This macro is not a test for a parameter which is only 
+    This macro is not a test for a parameter which is only a
     single set of parentheses surrounding any tokens ( a Boost
     pplib tuple ) since the parameter may have other tokens 
     following the beginning set of parentheses and it will still 
@@ -74,5 +74,5 @@
 /**/
 
 #endif /* BOOST_VMD_MSVC_V8 */
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_PP_VARIADICS */
 #endif /* VMD_IS_TUPLE_BEGIN_HPP */

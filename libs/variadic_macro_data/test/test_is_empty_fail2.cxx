@@ -8,7 +8,7 @@
 int main()
   {
   
-#if BOOST_VMD_VARIADICS && !BOOST_VMD_MSVC
+#if BOOST_PP_VARIADICS && !BOOST_VMD_MSVC
 
   #define FUNC_GEN() (&)
   
@@ -18,7 +18,7 @@ int main()
 
   typedef char BOOST_VMD_IS_EMPTY_ERROR[-1];
    
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_PP_VARIADICS */
 
   return boost::report_errors();
   

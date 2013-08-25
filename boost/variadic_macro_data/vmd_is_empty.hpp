@@ -3,7 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
 #include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
 #include <boost/variadic_macro_data/detail/vmd_detail_is_empty.hpp>
@@ -87,5 +87,5 @@
 /**/
 
 #endif /* BOOST_VMD_MSVC_V8 */
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_PP_VARIADICS */
 #endif /* VMD_IS_EMPTY_HPP */

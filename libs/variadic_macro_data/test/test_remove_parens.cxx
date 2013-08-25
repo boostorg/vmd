@@ -8,7 +8,7 @@
 int main()
   {
   
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
   #define DATA (5 + 3) * 4
   #define DATA2 4 * (5 + 3)

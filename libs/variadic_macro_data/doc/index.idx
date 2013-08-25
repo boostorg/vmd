@@ -1,6 +1,3 @@
-!scan boost/variadic_macro_data/vmd_to_data_native.hpp
-!scan boost/variadic_macro_data/vmd_data_native.hpp
-!scan boost/variadic_macro_data/vmd_tuple_native.hpp
 !scan boost/variadic_macro_data/vmd_is_empty.hpp
 !scan boost/variadic_macro_data/vmd_is_begin_parens.hpp
 !scan boost/variadic_macro_data/vmd_remove_parens.hpp

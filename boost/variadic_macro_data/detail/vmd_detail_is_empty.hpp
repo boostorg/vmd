@@ -1,10 +1,6 @@
 #if !defined(VMD_DETAIL_IS_EMPTY_HPP)
 #define VMD_DETAIL_IS_EMPTY_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
-
-#if BOOST_VMD_VARIADICS
-
 #if BOOST_VMD_MSVC
 
 # pragma warning(once:4002)
@@ -27,5 +23,4 @@
 
 #define VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C() ()
 
-#endif /* BOOST_VMD_VARIADICS */
 #endif /* VMD_DETAIL_IS_EMPTY_HPP */

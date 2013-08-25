@@ -9,7 +9,7 @@
 int main()
   {
   
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
   #define DATA
   #define OBJECT OBJECT2
@@ -55,7 +55,7 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN3));
   BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN4));
   
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_PP_VARIADICS */
 
   return boost::report_errors();
   

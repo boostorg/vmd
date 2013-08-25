@@ -8,7 +8,7 @@
 int main()
   {
   
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
   #define AN_ARRAY (7,(5,7,f,x,%,$,U))
   

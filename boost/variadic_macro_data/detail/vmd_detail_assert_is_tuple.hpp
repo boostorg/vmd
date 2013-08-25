@@ -1,10 +1,6 @@
 #if !defined(VMD_DETAIL_ASSERT_IS_TUPLE_HPP)
 #define VMD_DETAIL_ASSERT_IS_TUPLE_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
-
-#if BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA
-
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
 
@@ -43,5 +39,4 @@
 #define VMD_DETAIL_ASSERT_IS_TUPLE_EXPAND_AFTER(...) \
 /**/
 
-#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA */
 #endif /* VMD_DETAIL_ASSERT_IS_TUPLE_HPP */

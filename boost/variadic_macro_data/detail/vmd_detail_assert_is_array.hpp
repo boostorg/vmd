@@ -1,17 +1,14 @@
 #if !defined(VMD_DETAIL_ASSERT_IS_ARRAY_HPP)
 #define VMD_DETAIL_ASSERT_IS_ARRAY_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
-
-#if BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA
-
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
+#include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/tuple/size.hpp>
 #include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
 #include <boost/variadic_macro_data/vmd_is_empty.hpp>
-#include <boost/variadic_macro_data/vmd_tuple.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -42,7 +39,7 @@
     ( \
     BOOST_PP_IIF \
       ( \
-      BOOST_PP_EQUAL(2,BOOST_VMD_PP_TUPLE_SIZE(x)), \
+      BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(x)), \
       VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM, \
       VMD_DETAIL_ASSERT_IS_ARRAY_GEN_ZERO \
       ) \
@@ -59,7 +56,7 @@
 #define VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM(x) \
     BOOST_PP_IIF \
       ( \
-      VMD_DETAIL_ASSERT_IS_ARRAY_NUM(BOOST_VMD_PP_TUPLE_ELEM(0,x)), \
+      VMD_DETAIL_ASSERT_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,x)), \
       VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_NUMERIC_MATCH, \
       VMD_DETAIL_ASSERT_IS_ARRAY_GEN_ZERO \
       ) \
@@ -68,7 +65,7 @@
 
 #else
 
-#include <boost/variadic_macro_data/detail/vmd_detail.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_gen_zero.hpp>
 
 /*
 
@@ -79,7 +76,7 @@
 #define VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM(x) \
     BOOST_PP_IIF \
       ( \
-      VMD_DETAIL_ASSERT_IS_ARRAY_NUM(BOOST_VMD_PP_TUPLE_ELEM(0,x)), \
+      VMD_DETAIL_ASSERT_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,x)), \
       VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_NUMERIC_MATCH, \
       VMD_DETAIL_GEN_ZERO \
       ) \
@@ -95,10 +92,10 @@
 */
 
 #define VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_NUMERIC_MATCH(x) \
-    BOOST_VMD_ASSERT_IS_TUPLE(BOOST_VMD_PP_TUPLE_ELEM(1,x)) \
+    BOOST_VMD_ASSERT_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,x)) \
     BOOST_PP_IIF \
       ( \
-      BOOST_PP_EQUAL(BOOST_VMD_PP_TUPLE_ELEM(0,x),BOOST_VMD_PP_TUPLE_SIZE(BOOST_VMD_PP_TUPLE_ELEM(1,x))), \
+      BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,x),BOOST_PP_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,x))), \
       1, \
       0 \
       ) \
@@ -170,5 +167,4 @@
 #define VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_63
 #define VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_64
 
-#endif /* BOOST_VMD_VARIADICS && BOOST_VMD_ASSERT_DATA */
 #endif /* VMD_DETAIL_ASSERT_IS_ARRAY_HPP */

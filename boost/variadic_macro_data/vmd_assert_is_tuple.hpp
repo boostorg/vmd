@@ -3,7 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
 /*
 
@@ -66,7 +66,7 @@
 #if !BOOST_VMD_MSVC
 
 #include <boost/preprocessor/debug/assert.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail.hpp>
+#include <boost/variadic_macro_data/detail/vmd_detail_gen_zero.hpp>
 
 #endif
 
@@ -107,5 +107,5 @@
 
 #endif /* BOOST_VMD_MSVC */
 #endif /* BOOST_VMD_ASSERT_DATA */
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_PP_VARIADICS */
 #endif /* VMD_ASSERT_IS_TUPLE_HPP */

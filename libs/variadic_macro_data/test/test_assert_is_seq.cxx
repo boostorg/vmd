@@ -8,7 +8,7 @@
 int main()
   {
   
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
   BOOST_VMD_ASSERT_IS_SEQ((x))
   BOOST_VMD_ASSERT_IS_SEQ((x)(y))

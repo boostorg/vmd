@@ -1,26 +1,16 @@
 [section:vmd_intro Introduction]
 
-Welcome to the variadic macro data library version 1.5.
+Welcome to the variadic macro data library version 1.6.
 
 The variadic macro data library, or VMD for short, is a library 
-of macros which provide important functionality for variadic 
-macros as well as integrating variadic macros with the Boost 
-preprocessor library ( Boost PP ). It integrates with Boost PP 
-without changing the latter library in any way.
+of variadic macros which enhance the functionality in
+the Boost preprocessor library ( Boost PP ).
 
 The functionality of the library may be summed up as:
 
-# Providing the means to extract any single token from the 
-  comma-separated data which makes up variadic macro data, 
-  as well as to calculate the number of tokens.
-# Convert variadic macro data to and from Boost PP data types. 
-# Enhance the tuple functionality of Boost PP by providing 
-  a means of calculating the size of a tuple as well as by 
-  providing equivalent macros to Boost PP tuple macros 
-  which do not require the size of the tuple to be explicitly 
-  passed.
-# Provide additional support for Boost PP data types and other 
-  functionality through the use of variadic macros.
+# Provide a better way of testing for empty parameters.
+# Provide ways for testing for and removing parens.
+# Provide support for verifying Boost PP data types.
    
 The library is a header only library and all macros in the 
 library are included by a single header, whose name is 'vmd.hpp'.
@@ -31,7 +21,6 @@ explained.
 All the macros in the library begin with the sequence 'BOOST_VMD_'
 to distinguish them from other macros the end-user might use.
 
-The library is dependent on Boost PP and, 
-in default 'native' mode, Boost Config.
+The library is dependent on Boost PP.
 
 [endsect]

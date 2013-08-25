@@ -8,7 +8,7 @@
 int main()
   {
   
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
   #define A_TUPLE (*,#,zz)
   #define A_TUPLE2 (*,#,(zz,44,(e7)))

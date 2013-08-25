@@ -8,7 +8,7 @@
 int main()
   {
   
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
   #define A_LIST (e,(g,(&,BOOST_PP_NIL)))
   

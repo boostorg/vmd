@@ -3,7 +3,7 @@
 
 #include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
 
-#if BOOST_VMD_VARIADICS
+#if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/facilities/identity.hpp>
@@ -40,6 +40,6 @@
     (param)() \
 /**/
 
-#endif /* BOOST_VMD_VARIADICS */
+#endif /* BOOST_PP_VARIADICS */
 
 #endif /* VMD_REMOVE_PARENS_HPP */
