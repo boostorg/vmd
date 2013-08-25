@@ -1,0 +1,42 @@
+[section:vmd_vmacros Variadic Macros]
+
+Variadic macros, as specified by C++0x, is a feature taken from the C99 
+specification. They are macros which take a final parameter denoted as 
+'...' which represents one or more final arguments to the macro as a 
+series of comma-separated tokens. In the macro expansion a special 
+keyword of '\_\_VA\_ARGS\_\_' represents the comma-separated tokens. This 
+information when passed to a variadic macro I call 'variadic macro data',
+which gives its name to this library. The more general term 'variadic data' 
+is used in this documentation to specify data passed to a macro which can 
+contain any number of macro tokens as a single macro parameter, such as is 
+found in Boost PP.
+
+[section:vmd_vmacros_Boost Boost support]
+
+The Boost PP library has support for variadic macros and uses its 
+own criteria to determine if a particular compiler has that support.
+Boost PP uses the macro BOOST_PP_VARIADICS to denote
+that compiler support for variadic macros exist. This macro can be set
+by a user of the Boost PP library, as well as checked to determine
+if a compiler has support for variadic macros.
+
+[section:vmd_vmacros_Modes Determining variadic macro support]
+
+The VMD library automatically determines whether variadic macro support 
+is enabled for a particular compiler by also using the BOOST_PP_VARIADICS 
+macro. The end-user of VMD can also manually
+use the macro BOOST_PP_VARIADICS to turn on or off compiler support for 
+variadic macro data in the VMD library. When BOOST_PP_VARIADICS is set to 0
+variadic macro data is not supported in the VMD library, otherwise when 
+BOOST_PP_VARIADICS is set to non-zero it is supported in the VMD library. This
+same macro can be used to determine if VMD supports variadic macros for a 
+particular compiler.
+
+If BOOST_PP_VARIADICS is set to 0, using any of the macros in VMD will lead to 
+a compiler error since the macro will not be defined.
+
+[endsect]
+
+[endsect]
+
+[endsect]
