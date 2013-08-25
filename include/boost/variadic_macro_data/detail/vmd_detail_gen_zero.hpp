@@ -1,0 +1,6 @@
+#if !defined(VMD_DETAIL_GEN_ZERO_HPP)
+#define VMD_DETAIL_GEN_ZERO_HPP
+
+#define VMD_DETAIL_GEN_ZERO(x) 0
+
+#endif /* VMD_DETAIL_GEN_ZERO_HPP */
