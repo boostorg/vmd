@@ -2,7 +2,7 @@
 #define VMD_DETAIL_ASSERT_IS_TUPLE_HPP
 
 #include <boost/preprocessor/facilities/empty.hpp>
-#include <boost/variadic_macro_data/vmd_is_empty.hpp>
+#include <boost/vmd/vmd_is_empty.hpp>
 
 #if BOOST_VMD_MSVC
 

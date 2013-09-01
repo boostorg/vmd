@@ -35,13 +35,13 @@ else
 
 doxygen vmd_reference
   :
-    $(here)/../../../boost/variadic_macro_data/vmd_is_empty.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_is_begin_parens.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_remove_parens.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_array.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_list.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_seq.hpp
-    $(here)/../../../boost/variadic_macro_data/vmd_assert_is_tuple.hpp
+    $(here)/../../../boost/vmd/vmd_is_empty.hpp
+    $(here)/../../../boost/vmd/vmd_is_begin_parens.hpp
+    $(here)/../../../boost/vmd/vmd_remove_parens.hpp
+    $(here)/../../../boost/vmd/vmd_assert_is_array.hpp
+    $(here)/../../../boost/vmd/vmd_assert_is_list.hpp
+    $(here)/../../../boost/vmd/vmd_assert_is_seq.hpp
+    $(here)/../../../boost/vmd/vmd_assert_is_tuple.hpp
   : 
     <doxygen:param>PROJECT_NAME="VMD"
     <doxygen:param>PROJECT_NUMBER=1
@@ -103,7 +103,7 @@ install images : [ glob $(BOOST_ROOT)/doc/src/images/*.png ]
     : <location>html/images ;
 install pdfinstall
     : standalone
-    : <location>$(here) <install-type>PDF <name>variadic_macro_data.pdf
+    : <location>$(here) <install-type>PDF <name>vmd.pdf
     ;
 explicit css ;
 explicit images ;

@@ -1,1 +1,1 @@
-#include <libs/variadic_macro_data/test/test_assert_is_array_fail.cxx>
+#include <libs/vmd/test/test_assert_is_array_fail.cxx>

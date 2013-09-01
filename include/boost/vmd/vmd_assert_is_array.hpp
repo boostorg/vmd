@@ -1,7 +1,7 @@
 #if !defined(VMD_ASSERT_IS_ARRAY_HPP)
 #define VMD_ASSERT_IS_ARRAY_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/vmd_detail_setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
@@ -11,8 +11,8 @@
 
 #else
 
-#include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_array.hpp>
+#include <boost/vmd/vmd_assert_is_tuple.hpp>
+#include <boost/vmd/detail/vmd_detail_assert_is_array.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -27,7 +27,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/debug/assert.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_gen_zero.hpp>
+#include <boost/vmd/detail/vmd_detail_gen_zero.hpp>
 
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
     BOOST_VMD_ASSERT_IS_TUPLE(array) \

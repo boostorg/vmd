@@ -1,11 +1,11 @@
 #if !defined(VMD_IS_TUPLE_BEGIN_HPP)
 #define VMD_IS_TUPLE_BEGIN_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/vmd_detail_setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/variadic_macro_data/detail/vmd_detail_is_begin_parens.hpp>
+#include <boost/vmd/detail/vmd_detail_is_begin_parens.hpp>
 
 /*
 

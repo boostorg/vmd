@@ -1,12 +1,12 @@
 #if !defined(VMD_IS_EMPTY_HPP)
 #define VMD_IS_EMPTY_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/vmd_detail_setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_is_empty.hpp>
+#include <boost/vmd/vmd_is_begin_parens.hpp>
+#include <boost/vmd/detail/vmd_detail_is_empty.hpp>
 
 /*
 

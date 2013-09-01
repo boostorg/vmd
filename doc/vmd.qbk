@@ -2,7 +2,7 @@
     [quickbook 1.6]
     [version 1.6]
     [id variadic_macro_data]
-    [dirname variadic_macro_data]
+    [dirname vmd]
     [copyright 2010-2013 Tropic Software East Inc]
     [purpose Extension of Boost PP library functionality using variadic macros]
     [category preprocessor]

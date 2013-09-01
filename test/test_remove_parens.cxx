@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
-#include <boost/variadic_macro_data/vmd.hpp>
+#include <boost/vmd/vmd.hpp>
 #else
-#include <boost/variadic_macro_data/vmd_remove_parens.hpp>
+#include <boost/vmd/vmd_remove_parens.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 

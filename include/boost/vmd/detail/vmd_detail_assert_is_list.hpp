@@ -10,9 +10,9 @@
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
-#include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
-#include <boost/variadic_macro_data/vmd_is_empty.hpp>
-#include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
+#include <boost/vmd/vmd_assert_is_tuple.hpp>
+#include <boost/vmd/vmd_is_empty.hpp>
+#include <boost/vmd/vmd_is_begin_parens.hpp>
 
 #if BOOST_VMD_MSVC
 

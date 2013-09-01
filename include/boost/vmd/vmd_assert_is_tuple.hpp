@@ -1,7 +1,7 @@
 #if !defined(VMD_ASSERT_IS_TUPLE_HPP)
 #define VMD_ASSERT_IS_TUPLE_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/vmd_detail_setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
@@ -66,12 +66,12 @@
 #if !BOOST_VMD_MSVC
 
 #include <boost/preprocessor/debug/assert.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_gen_zero.hpp>
+#include <boost/vmd/detail/vmd_detail_gen_zero.hpp>
 
 #endif
 
-#include <boost/variadic_macro_data/vmd_is_begin_parens.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_tuple.hpp>
+#include <boost/vmd/vmd_is_begin_parens.hpp>
+#include <boost/vmd/detail/vmd_detail_assert_is_tuple.hpp>
 
 #if BOOST_VMD_MSVC
 

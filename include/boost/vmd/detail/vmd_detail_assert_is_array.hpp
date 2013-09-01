@@ -7,8 +7,8 @@
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
-#include <boost/variadic_macro_data/vmd_assert_is_tuple.hpp>
-#include <boost/variadic_macro_data/vmd_is_empty.hpp>
+#include <boost/vmd/vmd_assert_is_tuple.hpp>
+#include <boost/vmd/vmd_is_empty.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -65,7 +65,7 @@
 
 #else
 
-#include <boost/variadic_macro_data/detail/vmd_detail_gen_zero.hpp>
+#include <boost/vmd/detail/vmd_detail_gen_zero.hpp>
 
 /*
 

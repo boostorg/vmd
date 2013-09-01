@@ -1,7 +1,7 @@
 #if !defined(VMD_ASSERT_IS_SEQ_HPP)
 #define VMD_ASSERT_IS_SEQ_HPP
 
-#include <boost/variadic_macro_data/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/vmd_detail_setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
@@ -62,7 +62,7 @@
 #else
 
 #include <boost/preprocessor/control/while.hpp>
-#include <boost/variadic_macro_data/detail/vmd_detail_assert_is_seq.hpp>
+#include <boost/vmd/detail/vmd_detail_assert_is_seq.hpp>
 
 #define BOOST_VMD_ASSERT_IS_SEQ(seq) \
     VMD_DETAIL_ASSERT_IS_SEQ_CHECK_RETURN_FAILURE \
