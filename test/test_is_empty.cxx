@@ -30,20 +30,16 @@ int main()
   
 #if BOOST_VMD_MSVC
 
-  #define FUNC_GEN5(x,y) anything
-  #define FUNC_GEN6() (&)
-  #define FUNC_GEN7(x) (y)
-  #define FUNC_GEN8() (y,z)
+  #define FUNC_GEN5(x,y) ()
+  #define FUNC_GEN6(x,y) anything
   
   /* This shows that VC++ does not work correctly in these cases. */
 
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN)); /* This produces the wrong result */
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN));  /* This produces the wrong result */
   BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN2)); /* This produces the wrong result */
   
-  BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN5)); /* This should produce a compiler error but does not */
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN6)); /* This produces the wrong results and also should produce a compiler error but does not */
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN7)); /* This produces the wrong results and also should produce a compiler error but does not */
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN8)); /* This produces the wrong results and also should produce a compiler error but does not */
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN5));  /* This should produce a compiler error but does not */
+  BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN6)); /* This should produce a compiler error but does not */
 
 #else
 

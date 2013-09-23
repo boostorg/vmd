@@ -1,5 +1,14 @@
 [section:vmd_history History]
 
+[heading Version 1.6]
+
+* Stripped off all functionality duplicated by the variadic macro functionality added to Boost PP.
+* Removed the notion of 'native' and 'pplib' modes.
+* Use the BOOST_PP_VARIADICS macro from the Boost PP library to determine variadic macro availability
+  and removed the native macro for determining this from this library.
+* Updated documentation, especially to give fuller information of the use of the BOOST_VMD_EMPTY
+  macro amnd its flaw and use with Visual C++.
+
 [heading Version 1.5]
 
 * Added macros for verifying Boost PP data types.

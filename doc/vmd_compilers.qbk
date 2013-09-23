@@ -1,9 +1,11 @@
 [section:vmd_compilers Compilers]
 
 I have tested this library using gcc/MingW and VC++ on Windows. The 
-compilers tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1, 4.6.0
-and VC++ 8.0, 9.0, 10.0. Other compilers which currently should work with this 
-library are gcc on Linux, Digital Mars C++, and Borland C++ Builder 6/Codegear C++.
+compilers tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1, 4.6.0,
+4.6.1, 4.6.2, 4.7.0, 4.7.2 and VC++ 8.0, 9.0, 10.0, 11.0. 
+Other compilers which currently should work with this 
+library are gcc on Linux and clang. Other compilers which may work with this 
+library are Digital Mars C++, and Borland C++ Builder 6/Codegear C++.
 
 For VC++ 8.0 the BOOST_VMD_IS_BEGIN_PARENS and BOOST_VMD_IS_EMPTY macros
 take a single parameter rather than variadic data because this 

@@ -1,0 +1,81 @@
+[section:vmd_test_empty Testing for empty input]
+
+Currently Boost PP has an undocumented macro for testing whether 
+a parameter is empty of not, written without the use of variadic 
+macros. The macro is called BOOST_PP_IS_EMPTY. The macro is by its nature flawed,
+since there is no generalized way of determining whether or not a 
+parameter is empty using the C++ preprocessor. But the macro will 
+work given some limited inputs or emptiness. Paul Mensonides, the 
+developer of Boost PP and the BOOST_PP_IS_EMPTY macro in that library, 
+also wrote a better macro, using variadic 
+macros, for determining whether or not a parameter is empty or not.
+This macro is also not perfect, since there is no perfect solution, 
+but will work correctly with almost all input. I have adapted his code
+for the VMD and developed my own slightly different code to work with the Visual C++ 
+compiler since Paul's code would not work as is because of deficiencies in the 
+Visual C++ preprocessor.
+
+The macro is called [macroref BOOST_VMD_IS_EMPTY] and will return 1 if its input 
+is empty or 0 if its input is not empty. The macro
+is a variadic macro which make take any input
+[footnote For VC++ 8 the input is not variadic data but a single parameter].
+
+The one situation where the macro may not work properly is if its
+input is a function-like macro name. The problem that will occur
+for a standard C++ conforming preprocessor is that if the function-like
+macro takes two or more parameters, a compiler error will occur.
+Otherwise the BOOST_VMD_IS_EMPTY macro will work properly even if the input
+is a function-like macro name with 0 or 1 parameter.
+
+The VC++ preprocessor is not a standard C++ conforming preprocessor in at least two 
+situations which cause the BOOST_VMD_IS_EMPTY macro to not work properly using 
+VC++ when the input is a function-like macro name. 
+
+The first situation is that if a macro taking 'n' number of parameters is invoked 
+with 0 to 'n-1' parameters, the compiler does not give an error, but only a warning. 
+
+ #define FMACRO(x.y) x + y
+ 
+ FMACRO(1)
+ 
+should give a compiler error but when invoked using VC++ it only gives a warning
+and VC++ continues macro substitution with 'y' as a placeholder.
+
+The second situation is that the expansion of a macro works incorrectly when the 
+expanded macro is a function-like macro name followed by a function-like macro invocation,
+in which case the macro re-expansion is erroneously done more than once. This latter
+case can be seen by this exmaple:
+
+ #define FMACRO1(parameter) FMACRO2 parameter()
+ #define FMACRO2() 1
+ #define FMACRO3() ()
+ 
+ FMACRO1(FMACRO3)
+ 
+ should expand to:
+ 
+ FMACRO2()
+ 
+ but in VC++ it expands to:
+ 
+ 1
+
+where after initially expanding the macro to:
+
+ FMACRO2 FMACRO3()
+ 
+VC++ erroneously rescans the sequence of tokens more than once rather than 
+rescan once for more macro names.
+
+With all of the above mentioned, the case(s) where BOOST_VMD_IS_EMPTY will work 
+incorrectly are very small, even with the erroneous VC++ preprocessor, 
+and I considered the macro worthwhile to use
+with the vast majority of possible input. The macro is used extensively in the 
+assert-like macros explained further on in the documentation and macro programmers
+may find this macro useful in their own programming efforts despite the slight 
+flaw in the way that it works.
+
+The end-user of VMD can include the individual header file 'vmd_is_empty.hpp'
+instead of the general header file 'vmd.hpp' for using this macro.
+   
+[endsect]
