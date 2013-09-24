@@ -8,6 +8,7 @@
   and removed the native macro for determining this from this library.
 * Updated documentation, especially to give fuller information of the use of the BOOST_VMD_EMPTY
   macro amnd its flaw and use with Visual C++.
+* Changed the directory structure to adhere to the Modular Boost structue.
 
 [heading Version 1.5]
 

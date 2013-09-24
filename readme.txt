@@ -1,9 +1,9 @@
 This is the Variadic Macro Data library, or VMD for short. 
 The Variadic Macro Data library is a library 
-of macros which provide important functionality for variadic 
-macros as well as integrating variadic macros with the Boost 
-preprocessor library ( Boost PP ). It integrates with Boost PP 
-without changing the latter library in any way.
+of variadic macros which enhance the functionality in
+the Boost preprocessor library ( Boost PP ). The library
+may also be seen as a repository for future enhancements to
+the Boost PP library functionality using variadic macros.
 
 If you want to contact me directly, my name is 
 Edward Diener and you can reach me at 
