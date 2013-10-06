@@ -1,6 +1,6 @@
 # VariadicMacroData documentation Jamfile
 #
-# Copyright (c) 2010-2011
+# Copyright (c) 2010-2013
 # Edward Diener
 #
 
@@ -98,12 +98,12 @@ boostbook standalone
   ;
 
 install css : [ glob $(BOOST_ROOT)/doc/src/*.css ]
-    : <location>html ;
+    : <location>../html ;
 install images : [ glob $(BOOST_ROOT)/doc/src/images/*.png ]
-    : <location>html/images ;
+    : <location>../html/images ;
 install pdfinstall
     : standalone
-    : <location>$(here) <install-type>PDF <name>vmd.pdf
+    : <location>.. <install-type>PDF <name>vmd.pdf
     ;
 explicit css ;
 explicit images ;
