@@ -50,8 +50,6 @@ doxygen vmd_reference
     <doxygen:param>MAX_INITIALIZER_LINES=0
     <doxygen:param>VERBATIM_HEADERS=NO
     <doxygen:param>PREDEFINED=BOOST_PP_VARIADICS
-    <doxygen:param>PREDEFINED=BOOST_VMD_ASSERT_DATA
-    <doxygen:param>PREDEFINED=BOOST_VMD_MSVC
     <reftitle>"Variadic Macro Data Reference"
 ;
 
@@ -92,18 +90,9 @@ boostbook standalone
   # better use SVG's instead:
   <format>pdf:<xsl:param>admon.graphics.extension=".svg"
   <format>pdf:<xsl:param>admon.graphics.path=$(boost-images)/
-  
-  <dependency>css
-  <dependency>images
   ;
 
-install css : [ glob $(BOOST_ROOT)/doc/src/*.css ]
-    : <location>../html ;
-install images : [ glob $(BOOST_ROOT)/doc/src/images/*.png ]
-    : <location>../html/images ;
 install pdfinstall
     : standalone
     : <location>.. <install-type>PDF <name>vmd.pdf
     ;
-explicit css ;
-explicit images ;
