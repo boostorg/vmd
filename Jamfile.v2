@@ -1,9 +1,6 @@
 #
-#   Copyright 2010 
+#   Copyright 2010-2013
 #   Edward Diener
-#
-#   This file is taken from the 'example' sandbox library
-#
 
 project variadic_macro_data
     : requirements
