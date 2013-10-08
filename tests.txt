@@ -1,0 +1,12 @@
+You can use the jamfile in the vmd/test directory to 
+run the tests for this library. From the vmd/test directory:
+
+ bjam toolset=xxx
+ 
+where xxx is a compiler on your system.
+
+The VMD library has been tested with VC++ 8, 9, 10, and 11
+with clang, and with gcc 4.3.0 on up. It may work with other
+compilers which have a C++ standard preprocessor and variadic
+macro support.
+

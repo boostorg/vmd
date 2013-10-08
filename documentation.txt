@@ -1,0 +1,26 @@
+The library comes with full documentation with an index, 
+in both HTML and PDF format. 
+
+For the HTML documentation invoke vmd/index.html.
+For the PDF documentation invoke vmd/vmd.pdf.
+
+You can use the jamfile in the vmd/doc directory to regenerate 
+the documentation for this library. From the vmd/doc directory:
+
+ bjam toolset=xxx
+ 
+where xxx is a compiler on your system.
+
+Add '--enable-index' to the command line to have an index 
+with the documentation: 
+
+ bjam --enable-index toolset=xxx
+ 
+Add 'pdf' on the command line to
+regenerate the PDF documentation:
+
+ bjam toolset=xxx pdf
+ 
+You can add both together for PDF documentation with an index: 
+ 
+ bjam --enable-index toolset=xxx pdf
