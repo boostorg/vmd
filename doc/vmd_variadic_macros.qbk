@@ -1,6 +1,6 @@
 [section:vmd_vmacros Variadic Macros]
 
-Variadic macros, as specified by C++0x, is a feature taken from the C99 
+Variadic macros, as specified by C++11, is a feature taken from the C99 
 specification. They are macros which take a final parameter denoted as 
 '...' which represents one or more final arguments to the macro as a 
 series of comma-separated tokens. In the macro expansion a special 

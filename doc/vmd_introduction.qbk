@@ -11,7 +11,7 @@ the Boost PP library functionality using variadic macros.
 The functionality of the library may be summed up as:
 
 # Provide a better way of testing for empty parameters.
-# Provide ways for testing for and removing parens.
+# Provide ways for testing for parens and for removing parens.
 # Provide support for verifying Boost PP data types.
    
 The library is a header only library and all macros in the 

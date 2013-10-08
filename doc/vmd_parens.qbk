@@ -1,6 +1,6 @@
 [section:vmd_test_parens Testing and removing parens]
 
-A common need when using macros and the Boost PP is determining
+A common need when using macros and Boost PP is determining
 whether a parameter begins with a set of parenthesis, within 
 which tokens may exist. This is the form of a Boost PP tuple.
 All Boost PP data types begin this way, and both Boost PP arrays and
@@ -18,7 +18,7 @@ any input[footnote For VC++ 8 the input is not variadic data but a single parame
 There may be other tokens after the set of parameters that begins the 
 input, and the macro still returns 1. 
 
-Another common need when using macros and the Boost PP is to 
+Another common need when using macros and Boost PP is to 
 remove the set of parenthesis from the beginning of a parameter.
 This is what [macroref BOOST_VMD_REMOVE_PARENS] does. if the parameter does 
 not contain a set of beginning parenthesis, the input parameter 

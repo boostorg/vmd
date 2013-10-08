@@ -20,12 +20,16 @@ is empty or 0 if its input is not empty. The macro
 is a variadic macro which make take any input
 [footnote For VC++ 8 the input is not variadic data but a single parameter].
 
+[heading Macro Flaw]
+
 The one situation where the macro may not work properly is if its
 input is a function-like macro name. The problem that will occur
 for a standard C++ conforming preprocessor is that if the function-like
 macro takes two or more parameters, a compiler error will occur.
 Otherwise the BOOST_VMD_IS_EMPTY macro will work properly even if the input
 is a function-like macro name with 0 or 1 parameter.
+
+[heading Macro Flaw with Visual C++]
 
 The VC++ preprocessor is not a standard C++ conforming preprocessor in at least two 
 situations which cause the BOOST_VMD_IS_EMPTY macro to not work properly using 
@@ -34,27 +38,27 @@ VC++ when the input is a function-like macro name.
 The first situation is that if a macro taking 'n' number of parameters is invoked 
 with 0 to 'n-1' parameters, the compiler does not give an error, but only a warning. 
 
- #define FMACRO(x.y) x + y
+ #define FMACRO(x,y) x + y
  
  FMACRO(1)
  
 should give a compiler error but when invoked using VC++ it only gives a warning
-and VC++ continues macro substitution with 'y' as a placeholder.
+and VC++ continues macro substitution with 'y' as a placemarker preprocessing token.
 
 The second situation is that the expansion of a macro works incorrectly when the 
 expanded macro is a function-like macro name followed by a function-like macro invocation,
 in which case the macro re-expansion is erroneously done more than once. This latter
 case can be seen by this exmaple:
 
- #define FMACRO1(parameter) FMACRO2 parameter()
- #define FMACRO2() 1
- #define FMACRO3() ()
+ #define FMACRO1(parameter) FMACRO3 parameter()
+ #define FMACRO2() ()
+ #define FMACRO3() 1
  
- FMACRO1(FMACRO3)
+ FMACRO1(FMACRO2)
  
  should expand to:
  
- FMACRO2()
+ FMACRO3()
  
  but in VC++ it expands to:
  
@@ -62,18 +66,27 @@ case can be seen by this exmaple:
 
 where after initially expanding the macro to:
 
- FMACRO2 FMACRO3()
+ FMACRO3 FMACRO2()
  
 VC++ erroneously rescans the sequence of tokens more than once rather than 
 rescan once for more macro names.
 
+What these preprocessor flaws in the VC++ compiler mean is that if
+a function-like macro name is passed as input to the macro, and the
+function-like macro when expanded is a set of parentheses '()' with 0
+or more tokens inside them, BOOST_VMD_IS_EMPTY will erroneously 
+return 1 rather than 0 when using the Visual C++ compiler.
+
+[heading Macro Flaw conclusion]
+
 With all of the above mentioned, the case(s) where BOOST_VMD_IS_EMPTY will work 
 incorrectly are very small, even with the erroneous VC++ preprocessor, 
-and I considered the macro worthwhile to use
-with the vast majority of possible input. The macro is used extensively in the 
-assert-like macros explained further on in the documentation and macro programmers
-may find this macro useful in their own programming efforts despite the slight 
-flaw in the way that it works.
+and I considered the macro worthwhile to use with the vast majority of possible input. 
+Obviously the macro should be used by the end-user when the possible input to it
+is constrained but it can still serve a purpose in preprocessor programming.
+The macro is used extensively in the assert-like macros explained further on in the 
+documentation and macro programmers may find this macro useful in their own programming 
+efforts despite the slight flaw in the way that it works.
 
 The end-user of VMD can include the individual header file 'vmd_is_empty.hpp'
 instead of the general header file 'vmd.hpp' for using this macro.
