@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Testing and removing parens</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.0">
+<link rel="home" href="../../../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.5">
+<link rel="up" href="../vmd_further_func.html" title="Further functionality">
+<link rel="prev" href="../vmd_further_func.html" title="Further functionality">
+<link rel="next" href="vmd_assert_data.html" title="Asserting Boost PP data types">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr><td valign="top"></td></tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../vmd_further_func.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_further_func.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_assert_data.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="the_variadic_macro_data_library.vmd_detail.vmd_further_func.vmd_test_parens"></a><a class="link" href="vmd_test_parens.html" title="Testing and removing parens">Testing
+        and removing parens</a>
+</h4></div></div></div>
+<p>
+          A common need when using macros and the Boost PP is determining whether
+          a parameter begins with a set of parenthesis, within which tokens may exist.
+          This is the form of a Boost PP tuple. All Boost PP data types begin this
+          way, and both Boost PP arrays and lists are tuples of a certain form, while
+          a Boost PP seq is a series of one or more single element tuples. Once again
+          I have taken the implementation from code which Paul Mensonides posted
+          and have changed it slightly for Visual C++.
+        </p>
+<p>
+          The macro <code class="computeroutput"><a class="link" href="../../../BOOST_VMD_IS_BEGIN_PARENS.html" title="Macro BOOST_VMD_IS_BEGIN_PARENS">BOOST_VMD_IS_BEGIN_PARENS</a></code>
+          takes as its input variadic data and determines whether it begins with
+          a set of parenthesis. It returns 1 if its input begins with a set of parenthesis,
+          else it returns 0. The macro is a variadic macro which make take any input<sup>[<a name="the_variadic_macro_data_library.f1" href="#ftn.the_variadic_macro_data_library.f1" class="footnote">2</a>]</sup>.
+        </p>
+<p>
+          There may be other tokens after the set of parameters that begins the input,
+          and the macro still returns 1.
+        </p>
+<p>
+          Another common need when using macros and the Boost PP is to remove the
+          set of parenthesis from the beginning of a parameter. This is what <code class="computeroutput"><a class="link" href="../../../BOOST_VMD_REMOVE_PARENS.html" title="Macro BOOST_VMD_REMOVE_PARENS">BOOST_VMD_REMOVE_PARENS</a></code> does.
+          if the parameter does not contain a set of beginning parenthesis, the input
+          parameter is returned as is, else the input parameter is returned with
+          the beginning parenthesis removed. No other parenthesis after the possible
+          beginning parenthesis is removed.
+        </p>
+<p>
+          The end-user of VMD can include the individual header file 'vmd_is_begin_parens.hpp'
+          instead of the general header file 'vmd.hpp' for using the BOOST_VMD_IS_BEGIN_PARENS
+          macro and the individual header file 'vmd_remove_parens.hpp' instead of
+          the general header file 'vmd.hpp' for using the BOOST_VMD_REMOVE_PARENS
+          macro.
+        </p>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a id="ftn.the_variadic_macro_data_library.f1" href="#the_variadic_macro_data_library.f1" class="para">2</a>] </sup>
+            For VC++ 8 the input is not variadic data but a single parameter.
+          </p></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010, 2011 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../vmd_further_func.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_further_func.html"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="vmd_assert_data.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
