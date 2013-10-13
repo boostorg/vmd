@@ -1,5 +1,5 @@
-#if !defined(VMD_IS_EMPTY_HPP)
-#define VMD_IS_EMPTY_HPP
+#if !defined(BOOST_VMD_IS_EMPTY_HPP)
+#define BOOST_VMD_IS_EMPTY_HPP
 
 #include <boost/vmd/detail/vmd_detail_setup.hpp>
 
@@ -51,7 +51,7 @@
 #if BOOST_VMD_MSVC_V8
 
 #define BOOST_VMD_IS_EMPTY(param) \
-    VMD_DETAIL_IS_EMPTY_IIF \
+    BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_PARENS \
         ( \
@@ -62,7 +62,7 @@
       0, \
       BOOST_VMD_IS_BEGIN_PARENS \
         ( \
-        VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param () \
+        BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param () \
         ) \
       ) \
 /**/
@@ -70,7 +70,7 @@
 #else
 
 #define BOOST_VMD_IS_EMPTY(...) \
-    VMD_DETAIL_IS_EMPTY_IIF \
+    BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_PARENS \
         ( \
@@ -81,11 +81,11 @@
       0, \
       BOOST_VMD_IS_BEGIN_PARENS \
         ( \
-        VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
+        BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
         ) \
       ) \
 /**/
 
 #endif /* BOOST_VMD_MSVC_V8 */
 #endif /* BOOST_PP_VARIADICS */
-#endif /* VMD_IS_EMPTY_HPP */
+#endif /* BOOST_VMD_IS_EMPTY_HPP */

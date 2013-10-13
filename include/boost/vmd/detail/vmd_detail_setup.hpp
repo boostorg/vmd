@@ -1,5 +1,5 @@
-#if !defined(VMD_DETAIL_SETUP_HPP)
-#define VMD_DETAIL_SETUP_HPP
+#if !defined(BOOST_VMD_DETAIL_SETUP_HPP)
+#define BOOST_VMD_DETAIL_SETUP_HPP
 
 #include <boost/preprocessor/config/config.hpp>
 
@@ -26,4 +26,4 @@
 #define BOOST_VMD_ASSERT_DATA 0
 #endif /* BOOST_PP_VARIADICS */
 
-#endif /* VMD_DETAIL_SETUP_HPP */
+#endif /* BOOST_VMD_DETAIL_SETUP_HPP */

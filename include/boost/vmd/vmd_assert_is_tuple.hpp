@@ -1,5 +1,5 @@
-#if !defined(VMD_ASSERT_IS_TUPLE_HPP)
-#define VMD_ASSERT_IS_TUPLE_HPP
+#if !defined(BOOST_VMD_ASSERT_IS_TUPLE_HPP)
+#define BOOST_VMD_ASSERT_IS_TUPLE_HPP
 
 #include <boost/vmd/detail/vmd_detail_setup.hpp>
 
@@ -78,13 +78,13 @@
 #include <boost/preprocessor/facilities/empty.hpp>
 
 #define BOOST_VMD_ASSERT_IS_TUPLE(tuple) \
-   VMD_DETAIL_ASSERT_IS_TUPLE_VC_CHECK_RETURN_FAILURE \
+   BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_VC_CHECK_RETURN_FAILURE \
      ( \
      BOOST_PP_IIF \
        ( \
        BOOST_VMD_IS_BEGIN_PARENS(tuple), \
-       VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
-       VMD_DETAIL_ASSERT_IS_TUPLE_GEN_ZERO \
+       BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
+       BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_GEN_ZERO \
        ) \
      (tuple) \
      ) \
@@ -98,8 +98,8 @@
      BOOST_PP_IIF \
        ( \
        BOOST_VMD_IS_BEGIN_PARENS(tuple), \
-       VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
-       VMD_DETAIL_GEN_ZERO \
+       BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
+       BOOST_VMD_DETAIL_GEN_ZERO \
        ) \
      (tuple) \
      ) \
@@ -108,4 +108,4 @@
 #endif /* BOOST_VMD_MSVC */
 #endif /* BOOST_VMD_ASSERT_DATA */
 #endif /* BOOST_PP_VARIADICS */
-#endif /* VMD_ASSERT_IS_TUPLE_HPP */
+#endif /* BOOST_VMD_ASSERT_IS_TUPLE_HPP */

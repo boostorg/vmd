@@ -1,5 +1,5 @@
-#if !defined(VMD_ASSERT_IS_LIST_HPP)
-#define VMD_ASSERT_IS_LIST_HPP
+#if !defined(BOOST_VMD_ASSERT_IS_LIST_HPP)
+#define BOOST_VMD_ASSERT_IS_LIST_HPP
 
 #include <boost/vmd/detail/vmd_detail_setup.hpp>
 
@@ -65,12 +65,12 @@
 #include <boost/vmd/detail/vmd_detail_assert_is_list.hpp>
 
 #define BOOST_VMD_ASSERT_IS_LIST(list) \
-    VMD_DETAIL_ASSERT_IS_LIST_CHECK_RETURN_FAILURE \
+    BOOST_VMD_DETAIL_ASSERT_IS_LIST_CHECK_RETURN_FAILURE \
       ( \
       BOOST_PP_WHILE \
         ( \
-        VMD_DETAIL_ASSERT_IS_LIST_PRED, \
-        VMD_DETAIL_ASSERT_IS_LIST_OP, \
+        BOOST_VMD_DETAIL_ASSERT_IS_LIST_PRED, \
+        BOOST_VMD_DETAIL_ASSERT_IS_LIST_OP, \
         list \
         ) \
       ) \
@@ -78,4 +78,4 @@
 
 #endif /* BOOST_VMD_ASSERT_DATA */
 #endif /* BOOST_PP_VARIADICS */
-#endif /* VMD_ASSERT_IS_LIST_HPP */
+#endif /* BOOST_VMD_ASSERT_IS_LIST_HPP */

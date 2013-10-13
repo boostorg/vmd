@@ -1,5 +1,5 @@
-#if !defined(VMD_REMOVE_PARENS_HPP)
-#define VMD_REMOVE_PARENS_HPP
+#if !defined(BOOST_VMD_REMOVE_PARENS_HPP)
+#define BOOST_VMD_REMOVE_PARENS_HPP
 
 #include <boost/vmd/detail/vmd_detail_setup.hpp>
 
@@ -34,7 +34,7 @@
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_PARENS(param), \
-      VMD_DETAIL_REMOVE_PARENS, \
+      BOOST_VMD_DETAIL_REMOVE_PARENS, \
       BOOST_PP_IDENTITY \
       ) \
     (param)() \
@@ -42,4 +42,4 @@
 
 #endif /* BOOST_PP_VARIADICS */
 
-#endif /* VMD_REMOVE_PARENS_HPP */
+#endif /* BOOST_VMD_REMOVE_PARENS_HPP */

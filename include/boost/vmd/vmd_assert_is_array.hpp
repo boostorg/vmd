@@ -1,5 +1,5 @@
-#if !defined(VMD_ASSERT_IS_ARRAY_HPP)
-#define VMD_ASSERT_IS_ARRAY_HPP
+#if !defined(BOOST_VMD_ASSERT_IS_ARRAY_HPP)
+#define BOOST_VMD_ASSERT_IS_ARRAY_HPP
 
 #include <boost/vmd/detail/vmd_detail_setup.hpp>
 
@@ -68,7 +68,7 @@
 
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
     BOOST_VMD_ASSERT_IS_TUPLE(array) \
-    VMD_DETAIL_ASSERT_IS_ARRAY_VC_CHECK_RETURN_FAILURE VMD_DETAIL_ASSERT_IS_ARRAY_VC_IMP(array) \
+    BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_VC_CHECK_RETURN_FAILURE BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_VC_IMP(array) \
 /**/
 
 #else
@@ -86,8 +86,8 @@
       BOOST_PP_IIF \
         ( \
         BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(array)), \
-        VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM, \
-        VMD_DETAIL_GEN_ZERO \
+        BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM, \
+        BOOST_VMD_DETAIL_GEN_ZERO \
         ) \
       (array) \
       ) \
@@ -96,4 +96,4 @@
 #endif /* BOOST_VMD_MSVC */
 #endif /* !BOOST_VMD_ASSERT_DATA */
 #endif /* BOOST_PP_VARIADICS */
-#endif /* VMD_ASSERT_IS_ARRAY_HPP */
+#endif /* BOOST_VMD_ASSERT_IS_ARRAY_HPP */
