@@ -39,6 +39,7 @@ test-suite variadic_macro_data
     : 
        [ run test_is_begin_parens.cpp ]
        [ run test_remove_parens.cpp ]
+       [ run test_check_if_value.cpp ]
        [ run test_is_empty.cpp ]
        [ compile-fail test_is_empty_fail.cpp ]
        [ compile-fail test_is_empty_fail2.cpp ]
@@ -94,6 +95,9 @@ test-suite variadic_macro_data_gh
        [ run test_remove_parens.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_remove_parens_gh ]
+       [ run test_check_if_value.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_check_if_value_gh ]
        [ run test_is_empty.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_empty_gh ]
