@@ -5,7 +5,15 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/preprocessor/arithmetic/inc.hpp>
+#include <boost/preprocessor/comparison/equal.hpp>
+#include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/facilities/expand.hpp>
+#include <boost/preprocessor/logical/nor.hpp>
+#include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/tuple/size.hpp>
+#include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/vmd_is_empty.hpp>
 #include <boost/vmd/detail/vmd_detail_check_if_value.hpp>
 
@@ -80,6 +88,59 @@
 
 #define BOOST_VMD_CHECK_IF_VALUE(param,key) \
     BOOST_PP_EXPAND(BOOST_VMD_IS_EMPTY BOOST_VMD_DETAIL_CHECK_IF_VALUE_CAT(param,key)) \
+/**/
+
+#define BOOST_VMD_CHECK_IF_VALUES_PRED(d,state) \
+	BOOST_PP_NOR \
+		( \
+		BOOST_PP_TUPLE_ELEM(3,state), \
+		BOOST_PP_EQUAL \
+			( \
+			BOOST_PP_TUPLE_ELEM(2,state), \
+			BOOST_PP_TUPLE_SIZE \
+				( \
+				BOOST_PP_TUPLE_ELEM(1,state) \
+				) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_CHECK_IF_VALUES_OP(d,state) \
+	( \
+	BOOST_PP_TUPLE_ELEM(0,state), \
+	BOOST_PP_TUPLE_ELEM(1,state), \
+	BOOST_PP_INC(BOOST_PP_TUPLE_ELEM(2,state)), \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EXPAND \
+			( \
+			BOOST_VMD_IS_EMPTY BOOST_VMD_DETAIL_CHECK_IF_VALUE_CAT \
+				( \
+				BOOST_PP_TUPLE_ELEM(0,state), \
+				BOOST_PP_TUPLE_ELEM \
+					( \
+					BOOST_PP_TUPLE_ELEM(2,state), \
+					BOOST_PP_TUPLE_ELEM(1,state) \
+					) \
+				) \
+			), \
+		BOOST_PP_INC(BOOST_PP_TUPLE_ELEM(2,state)), \
+		0 \
+		) \
+	) \
+/**/
+
+#define BOOST_VMD_CHECK_IF_VALUES(param,...) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		3, \
+		BOOST_PP_WHILE \
+			( \
+			BOOST_VMD_CHECK_IF_VALUES_PRED, \
+			BOOST_VMD_CHECK_IF_VALUES_OP, \
+			(param,BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__),0,0) \
+			) \
+		) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

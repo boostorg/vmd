@@ -39,7 +39,7 @@ test-suite variadic_macro_data
     : 
        [ run test_is_begin_parens.cpp ]
        [ run test_remove_parens.cpp ]
-       [ run test_check_if_value.cpp ]
+       [ run test_equal_identifier.cpp ]
        [ run test_is_empty.cpp ]
        [ compile-fail test_is_empty_fail.cpp ]
        [ compile-fail test_is_empty_fail2.cpp ]
