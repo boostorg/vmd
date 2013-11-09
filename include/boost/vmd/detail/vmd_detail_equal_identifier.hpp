@@ -5,14 +5,34 @@
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/facilities/expand.hpp>
 #include <boost/preprocessor/logical/nor.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
+#include <boost/preprocessor/variadic/elem.hpp>
+#include <boost/preprocessor/variadic/to_tuple.hpp>
+#include <boost/vmd/vmd_assert_is_tuple.hpp>
+#include <boost/vmd/vmd_is_begin_parens.hpp>
 #include <boost/vmd/vmd_is_empty.hpp>
 
 #define BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_PARENS ()
+
+#define BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_FIRST_ARG(keys) \
+    BOOST_VMD_ASSERT_IS_TUPLE(keys) \
+    keys \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_TUPLE(keys) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_BEGIN_PARENS(keys), \
+		BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_FIRST_ARG, \
+		BOOST_PP_VARIADIC_TO_TUPLE \
+		) \
+	(keys) \
+/**/
 
 #define BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_CAT(param,key) \
     	( \
@@ -67,6 +87,19 @@
 		0 \
 		) \
 	) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_GEN(parameter,keys) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		3, \
+		BOOST_PP_WHILE \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_PRED, \
+			BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_OP, \
+			(parameter,BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_TUPLE(keys),0,0) \
+			) \
+		) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_HPP */
