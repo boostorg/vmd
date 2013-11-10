@@ -95,9 +95,9 @@ test-suite variadic_macro_data_gh
        [ run test_remove_parens.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_remove_parens_gh ]
-       [ run test_check_if_value.cpp : : :
+       [ run test_equal_identifier.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_check_if_value_gh ]
+         test_equal_identifier_gh ]
        [ run test_is_empty.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_empty_gh ]

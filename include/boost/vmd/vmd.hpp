@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/vmd_check_if_value.hpp>
+#include <boost/vmd/vmd_equal_identifier.hpp>
 #include <boost/vmd/vmd_is_empty.hpp>
 #include <boost/vmd/vmd_is_begin_parens.hpp>
 #include <boost/vmd/vmd_remove_parens.hpp>
