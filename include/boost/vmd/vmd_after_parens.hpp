@@ -6,6 +6,7 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/vmd/vmd_gen_empty.hpp>
 #include <boost/vmd/vmd_is_begin_parens.hpp>
 #include <boost/vmd/detail/vmd_detail_after_parens.hpp>
 
@@ -32,7 +33,7 @@
       ( \
       BOOST_VMD_IS_BEGIN_PARENS(param), \
       BOOST_VMD_DETAIL_AFTER_PARENS, \
-      BOOST_VMD_DETAIL_RETURN_EMPTY \
+      BOOST_VMD_GEN_EMPTY \
       ) \
     (param) \
 /**/

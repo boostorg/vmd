@@ -3,9 +3,9 @@
 
 #include <boost/preprocessor/facilities/expand.hpp>
 #include <boost/preprocessor/punctuation/paren.hpp>
-#include <boost/vmd/detail/vmd_detail_return_empty.hpp>
+#include <boost/vmd/vmd_gen_empty.hpp>
 
-#define BOOST_VMD_DETAIL_BEGIN_PARENS_EXP2(...) ( __VA_ARGS__ ) BOOST_VMD_DETAIL_RETURN_EMPTY BOOST_PP_LPAREN()
+#define BOOST_VMD_DETAIL_BEGIN_PARENS_EXP2(...) ( __VA_ARGS__ ) BOOST_VMD_GEN_EMPTY BOOST_PP_LPAREN()
 #define BOOST_VMD_DETAIL_BEGIN_PARENS_EXP1(param) BOOST_VMD_DETAIL_BEGIN_PARENS_EXP2 param BOOST_PP_RPAREN()
 
 #define BOOST_VMD_DETAIL_BEGIN_PARENS(param) BOOST_PP_EXPAND(BOOST_VMD_DETAIL_BEGIN_PARENS_EXP1(param))
