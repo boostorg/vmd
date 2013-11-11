@@ -1,0 +1,6 @@
+#if !defined(BOOST_VMD_GEN_EMPTY_HPP)
+#define BOOST_VMD_GEN_EMPTY_HPP
+
+#define BOOST_VMD_GEN_EMPTY(...)
+
+#endif /* BOOST_VMD_GEN_EMPTY_HPP */
