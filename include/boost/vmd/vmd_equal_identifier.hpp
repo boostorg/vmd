@@ -6,9 +6,9 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/vmd/vmd_gen_zero.hpp>
 #include <boost/vmd/vmd_is_begin_parens.hpp>
 #include <boost/vmd/detail/vmd_detail_equal_identifier.hpp>
-#include <boost/vmd/detail/vmd_detail_gen_zero.hpp>
 
 /*
 
@@ -94,7 +94,7 @@
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_PARENS(parameter), \
-      BOOST_VMD_DETAIL_GEN_ZERO, \
+      BOOST_VMD_GEN_ZERO, \
       BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_GEN \
       ) \
 	(parameter,keys) \

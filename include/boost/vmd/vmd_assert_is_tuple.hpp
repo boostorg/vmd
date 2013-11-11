@@ -66,10 +66,10 @@
 #if !BOOST_VMD_MSVC
 
 #include <boost/preprocessor/debug/assert.hpp>
-#include <boost/vmd/detail/vmd_detail_gen_zero.hpp>
 
 #endif
 
+#include <boost/vmd/vmd_gen_zero.hpp>
 #include <boost/vmd/vmd_is_begin_parens.hpp>
 #include <boost/vmd/detail/vmd_detail_assert_is_tuple.hpp>
 
@@ -84,7 +84,7 @@
        ( \
        BOOST_VMD_IS_BEGIN_PARENS(tuple), \
        BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
-       BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_GEN_ZERO \
+       BOOST_VMD_GEN_ZERO \
        ) \
      (tuple) \
      ) \
@@ -99,7 +99,7 @@
        ( \
        BOOST_VMD_IS_BEGIN_PARENS(tuple), \
        BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
-       BOOST_VMD_DETAIL_GEN_ZERO \
+       BOOST_VMD_GEN_ZERO \
        ) \
      (tuple) \
      ) \

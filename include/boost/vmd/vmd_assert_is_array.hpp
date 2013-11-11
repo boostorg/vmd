@@ -77,7 +77,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/debug/assert.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
-#include <boost/vmd/detail/vmd_detail_gen_zero.hpp>
+#include <boost/vmd/vmd_gen_zero.hpp>
 
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
     BOOST_VMD_ASSERT_IS_TUPLE(array) \
@@ -87,7 +87,7 @@
         ( \
         BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(array)), \
         BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM, \
-        BOOST_VMD_DETAIL_GEN_ZERO \
+        BOOST_VMD_GEN_ZERO \
         ) \
       (array) \
       ) \

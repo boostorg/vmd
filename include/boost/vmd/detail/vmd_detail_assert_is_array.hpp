@@ -8,6 +8,7 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/vmd_assert_is_tuple.hpp>
+#include <boost/vmd/vmd_gen_zero.hpp>
 #include <boost/vmd/vmd_is_empty.hpp>
 
 #if BOOST_VMD_MSVC
@@ -33,15 +34,13 @@
     typedef char BOOST_VMD_IS_ARRAY_ASSERT_ERROR[-1]; \
 /**/
 
-#define BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_GEN_ZERO(x) 0
-
 #define BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_VC_IMP(x) \
     ( \
     BOOST_PP_IIF \
       ( \
       BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(x)), \
       BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM, \
-      BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_GEN_ZERO \
+      BOOST_VMD_GEN_ZERO \
       ) \
     (x) \
     ) \
@@ -58,14 +57,13 @@
       ( \
       BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,x)), \
       BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_NUMERIC_MATCH, \
-      BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_GEN_ZERO \
+      BOOST_VMD_GEN_ZERO \
       ) \
     (x) \
 /**/
 
 #else
 
-#include <boost/vmd/detail/vmd_detail_gen_zero.hpp>
 
 /*
 
@@ -78,7 +76,7 @@
       ( \
       BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,x)), \
       BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_NUMERIC_MATCH, \
-      BOOST_VMD_DETAIL_GEN_ZERO \
+      BOOST_VMD_GEN_ZERO \
       ) \
     (x) \
 /**/

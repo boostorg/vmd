@@ -10,6 +10,7 @@
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
+#include <boost/vmd/vmd_gen_zero.hpp>
 #include <boost/vmd/vmd_is_empty.hpp>
 #include <boost/vmd/vmd_is_begin_parens.hpp>
 
@@ -33,7 +34,7 @@
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_DETAIL_ASSERT_IS_SEQ_IS_SUCCESS(state), \
-      BOOST_VMD_DETAIL_ASSERT_IS_SEQ_GEN_ZERO, \
+      BOOST_VMD_GEN_ZERO, \
       BOOST_VMD_DETAIL_ASSERT_IS_SEQ_PRED_CHECK_FAILURE \
       ) \
     (state) \
@@ -246,7 +247,6 @@
 #define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_SHELPER_BOOST_VMD_IS_SEQ_SUCCESS
 #define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_FHELPER_BOOST_VMD_IS_SEQ_FAILURE
 #define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_GEN_ONE(x) 1
-#define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_GEN_ZERO(x) 0
 #define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_GEN_ONE_COMMA() 1,
 #define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_GEN_ZERO_COMMA() 0,
 #define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_GEN_FAILURE(x) BOOST_VMD_IS_SEQ_FAILURE
