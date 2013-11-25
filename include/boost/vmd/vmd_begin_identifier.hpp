@@ -7,8 +7,8 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/vmd/vmd_gen_zero.hpp>
-#include <boost/vmd/vmd_is_begin_parens.hpp>
 #include <boost/vmd/detail/vmd_detail_begin_identifier.hpp>
+#include <boost/vmd/detail/vmd_detail_paren_or_empty.hpp>
 
 /*
 
@@ -19,23 +19,24 @@
 /** \file
 */
 
-/** \brief Expands to the beginning set of parenthesis of a macro parameter.
+/** \brief Expands to the index of a beginning identifier of a macro parameter.
 
-    param = a macro parameter.
+    parameter = a macro parameter.
+    keys  	  = The variadic data may take one of two forms:
+    			it is either a C++ identifier as a unique 'key' ( see below )
+    			or a Boost PP tuple of the unique 'key's.
 
-    returns = the prepocessor tokens forming the beginning set of parenthesis.
-    		  If the param does not start with a set of parenthesis,
-    		  the return value is empty.
+    returns   = expands to the index, starting with 1, of the particular identifier it matches, otherwise expands to 0.
     
 */
-# define BOOST_VMD_BEGIN_IDENTIFIER(param,keys) \
+# define BOOST_VMD_BEGIN_IDENTIFIER(parameter,keys) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_PARENS(param), \
+      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
       BOOST_VMD_GEN_ZERO, \
       BOOST_VMD_DETAIL_BEGIN_IDENTIFIER \
       ) \
-    (param,keys) \
+    (parameter,keys) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

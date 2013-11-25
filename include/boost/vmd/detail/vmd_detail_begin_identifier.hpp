@@ -16,6 +16,7 @@
 #include <boost/vmd/vmd_assert_is_tuple.hpp>
 #include <boost/vmd/vmd_is_begin_parens.hpp>
 #include <boost/vmd/vmd_is_empty.hpp>
+#include <boost/vmd/detail/vmd_detail_paren_or_empty.hpp>
 
 #define BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_PARENS ()
 
@@ -76,14 +77,6 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_EM_OR_BG(param) \
-	BOOST_PP_BITOR \
-		{ \
-		BOOST_VMD_IS_EMPTY(param), \
-		BOOST_VMD_IS_BEGIN_PARENS(param) \
-		} \
-/**/
-
 #define BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_OP(d,state) \
 	( \
 	BOOST_PP_TUPLE_ELEM(0,state), \
@@ -93,7 +86,7 @@
 		( \
 		BOOST_PP_EXPAND \
 			( \
-			BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_EM_OR_BG BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_REST(state) \
+			BOOST_VMD_DETAIL_PAREN_OR_EMPTY BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_REST(state) \
 			), \
 		BOOST_PP_INC(BOOST_PP_TUPLE_ELEM(2,state)), \
 		0 \

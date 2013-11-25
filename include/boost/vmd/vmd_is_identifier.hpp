@@ -1,5 +1,5 @@
-#if !defined(BOOST_VMD_EQUAL_IDENTIFIER_HPP)
-#define BOOST_VMD_EQUAL_IDENTIFIER_HPP
+#if !defined(BOOST_VMD_IS_IDENTIFIER_HPP)
+#define BOOST_VMD_IS_IDENTIFIER_HPP
 
 #include <boost/vmd/detail/vmd_detail_setup.hpp>
 
@@ -8,7 +8,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/vmd/vmd_gen_zero.hpp>
 #include <boost/vmd/vmd_is_begin_parens.hpp>
-#include <boost/vmd/detail/vmd_detail_equal_identifier.hpp>
+#include <boost/vmd/detail/vmd_detail_is_identifier.hpp>
 
 /*
 
@@ -19,7 +19,7 @@
 /** \file
 */
 
-/** \def BOOST_VMD_EQUAL_IDENTIFIER(parameter,keys)
+/** \def BOOST_VMD_IS_IDENTIFIER(parameter,keys)
 
     \brief Tests whether a parameter is the same as a particular identifier.
 
@@ -55,11 +55,11 @@
     
     #define BOOST_VMD_MAP_'key''identifier'
     
-    where 'key' is a key passed to the BOOST_VMD_EQUAL_IDENTIFIER macro,
+    where 'key' is a key passed to the BOOST_VMD_IS_IDENTIFIER macro,
           'identifier' is the value to be tested against.
     
     As an example, let us suppose that within a library called 'plane_geometry' I want to
-    use the BOOST_VMD_EQUAL_IDENTIFIER macro 4 times, checking whether a parameter is equal 
+    use the BOOST_VMD_IS_IDENTIFIER macro 4 times, checking whether a parameter is equal 
     to 'SQUARE' the first time, 'TRIANGLE' the second time, 'CIRCLE' the third time, and any
     one of them the fourth time.
     
@@ -71,34 +71,34 @@
     
     If I want to check if some preprocessor argument 'x' is SQUARE I invoke:
     
-    BOOST_VMD_EQUAL_IDENTIFIER(x,PLANEGEOMETRY_1_) or 
-    BOOST_VMD_EQUAL_IDENTIFIER(x,(PLANEGEOMETRY_1_))
+    BOOST_VMD_IS_IDENTIFIER(x,PLANEGEOMETRY_1_) or 
+    BOOST_VMD_IS_IDENTIFIER(x,(PLANEGEOMETRY_1_))
     
     If I want to check if some preprocessor argument 'x' is TRIANGLE I invoke:
     
-    BOOST_VMD_EQUAL_IDENTIFIER(x,PLANEGEOMETRY_2_) or 
-    BOOST_VMD_EQUAL_IDENTIFIER(x,(PLANEGEOMETRY_2_))
+    BOOST_VMD_IS_IDENTIFIER(x,PLANEGEOMETRY_2_) or 
+    BOOST_VMD_IS_IDENTIFIER(x,(PLANEGEOMETRY_2_))
     
     If I want to check if some preprocessor argument 'x' is CIRCLE I invoke:
     
-    BOOST_VMD_EQUAL_IDENTIFIER(x,PLANEGEOMETRY_3_) or 
-    BOOST_VMD_EQUAL_IDENTIFIER(x,(PLANEGEOMETRY_3_))
+    BOOST_VMD_IS_IDENTIFIER(x,PLANEGEOMETRY_3_) or 
+    BOOST_VMD_IS_IDENTIFIER(x,(PLANEGEOMETRY_3_))
     
     If I want to check if some preprocessor argument 'x' is either a CIRCLE, TRIANGLE, or SQUARE I invoke:
     
-    BOOST_VMD_EQUAL_IDENTIFIER(x,(PLANEGEOMETRY_1_,PLANEGEOMETRY_2_,PLANEGEOMETRY_3_))
+    BOOST_VMD_IS_IDENTIFIER(x,(PLANEGEOMETRY_1_,PLANEGEOMETRY_2_,PLANEGEOMETRY_3_))
     
 */
 
-#define BOOST_VMD_EQUAL_IDENTIFIER(parameter,keys) \
+#define BOOST_VMD_IS_IDENTIFIER(parameter,keys) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_PARENS(parameter), \
       BOOST_VMD_GEN_ZERO, \
-      BOOST_VMD_DETAIL_EQUAL_IDENTIFIER_GEN \
+      BOOST_VMD_DETAIL_IS_IDENTIFIER_GEN \
       ) \
 	(parameter,keys) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
-#endif /* BOOST_VMD_EQUAL_IDENTIFIER_HPP */
+#endif /* BOOST_VMD_IS_IDENTIFIER_HPP */
