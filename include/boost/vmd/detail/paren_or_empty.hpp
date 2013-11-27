@@ -2,8 +2,8 @@
 #define BOOST_VMD_DETAIL_PAREN_OR_EMPTY_HPP
 
 #include <boost/preprocessor/logical/bitor.hpp>
-#include <boost/vmd/vmd_is_begin_parens.hpp>
-#include <boost/vmd/vmd_is_empty.hpp>
+#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_empty.hpp>
 
 #define BOOST_VMD_DETAIL_PAREN_OR_EMPTY(param) \
 	BOOST_PP_BITOR \

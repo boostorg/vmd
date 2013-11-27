@@ -1,14 +1,14 @@
 #if !defined(BOOST_VMD_REMOVE_PARENS_HPP)
 #define BOOST_VMD_REMOVE_PARENS_HPP
 
-#include <boost/vmd/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/facilities/identity.hpp>
-#include <boost/vmd/vmd_is_begin_parens.hpp>
-#include <boost/vmd/detail/vmd_detail_remove_parens.hpp>
+#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/detail/remove_parens.hpp>
 
 /*
 
@@ -41,5 +41,4 @@
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
-
 #endif /* BOOST_VMD_REMOVE_PARENS_HPP */

@@ -1,7 +1,7 @@
-!scan boost/vmd/vmd_is_empty.hpp
-!scan boost/vmd/vmd_is_begin_parens.hpp
-!scan boost/vmd/vmd_remove_parens.hpp
-!scan boost/vmd/vmd_assert_is_array.hpp
-!scan boost/vmd/vmd_assert_is_list.hpp
-!scan boost/vmd/vmd_assert_is_seq.hpp
-!scan boost/vmd/vmd_assert_is_tuple.hpp
+!scan boost/vmd/is_empty.hpp
+!scan boost/vmd/is_begin_parens.hpp
+!scan boost/vmd/remove_parens.hpp
+!scan boost/vmd/assert_is_array.hpp
+!scan boost/vmd/assert_is_list.hpp
+!scan boost/vmd/assert_is_seq.hpp
+!scan boost/vmd/assert_is_tuple.hpp

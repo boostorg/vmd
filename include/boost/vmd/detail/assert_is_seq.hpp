@@ -10,10 +10,10 @@
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
-#include <boost/vmd/vmd_gen_one.hpp>
-#include <boost/vmd/vmd_gen_zero.hpp>
-#include <boost/vmd/vmd_is_empty.hpp>
-#include <boost/vmd/vmd_is_begin_parens.hpp>
+#include <boost/vmd/gen_one.hpp>
+#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/is_begin_parens.hpp>
 
 #if BOOST_VMD_MSVC
 

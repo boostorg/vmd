@@ -1,11 +1,11 @@
 #if !defined(BOOST_VMD_IS_BEGIN_PARENS_HPP)
 #define BOOST_VMD_IS_BEGIN_PARENS_HPP
 
-#include <boost/vmd/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/detail/vmd_detail_is_begin_parens.hpp>
+#include <boost/vmd/detail/is_begin_parens.hpp>
 
 /*
 

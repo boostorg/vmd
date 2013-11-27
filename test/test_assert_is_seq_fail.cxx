@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/vmd_assert_is_seq.hpp>
+#include <boost/vmd/assert_is_seq.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 

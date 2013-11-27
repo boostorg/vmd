@@ -13,10 +13,10 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
-#include <boost/vmd/vmd_assert_is_tuple.hpp>
-#include <boost/vmd/vmd_is_begin_parens.hpp>
-#include <boost/vmd/vmd_is_empty.hpp>
-#include <boost/vmd/detail/vmd_detail_paren_or_empty.hpp>
+#include <boost/vmd/assert_is_tuple.hpp>
+#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/detail/paren_or_empty.hpp>
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_PARENS ()
 

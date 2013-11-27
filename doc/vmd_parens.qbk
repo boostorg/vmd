@@ -26,9 +26,9 @@ is returned as is, else the input parameter is returned with the
 beginning parenthesis removed. No other parenthesis after the 
 possible beginning parenthesis is removed.
 
-The end-user of VMD can include the individual header file 'vmd_is_begin_parens.hpp'
+The end-user of VMD can include the individual header file 'is_begin_parens.hpp'
 instead of the general header file 'vmd.hpp' for using the BOOST_VMD_IS_BEGIN_PARENS
-macro and the individual header file 'vmd_remove_parens.hpp'
+macro and the individual header file 'remove_parens.hpp'
 instead of the general header file 'vmd.hpp' for using the BOOST_VMD_REMOVE_PARENS
 macro.
 

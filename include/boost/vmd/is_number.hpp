@@ -1,11 +1,11 @@
 #if !defined(BOOST_VMD_IS_NUMBER_HPP)
 #define BOOST_VMD_IS_NUMBER_HPP
 
-#include <boost/vmd/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/detail/vmd_detail_is_number.hpp>
+#include <boost/vmd/detail/is_number.hpp>
 
 /*
 

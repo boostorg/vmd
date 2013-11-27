@@ -1,14 +1,14 @@
 #if !defined(BOOST_VMD_BEGIN_PARENS_HPP)
 #define BOOST_VMD_BEGIN_PARENS_HPP
 
-#include <boost/vmd/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/control/iif.hpp>
-#include <boost/vmd/vmd_gen_empty.hpp>
-#include <boost/vmd/vmd_is_begin_parens.hpp>
-#include <boost/vmd/detail/vmd_detail_begin_parens.hpp>
+#include <boost/vmd/gen_empty.hpp>
+#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/detail/begin_parens.hpp>
 
 /*
 
@@ -23,7 +23,7 @@
 
     param = a macro parameter.
 
-    returns = the prepocessor tokens forming the beginning set of parenthesis.
+    returns = the preprocessor tokens forming the beginning set of parenthesis.
     		  If the param does not start with a set of parenthesis,
     		  the return value is empty.
     
@@ -39,5 +39,4 @@
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
-
 #endif /* BOOST_VMD_BEGIN_PARENS_HPP */

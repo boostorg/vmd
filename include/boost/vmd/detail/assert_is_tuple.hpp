@@ -2,8 +2,8 @@
 #define BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_HPP
 
 #include <boost/preprocessor/facilities/empty.hpp>
-#include <boost/vmd/vmd_gen_empty.hpp>
-#include <boost/vmd/vmd_is_empty.hpp>
+#include <boost/vmd/gen_empty.hpp>
+#include <boost/vmd/is_empty.hpp>
 
 #if BOOST_VMD_MSVC
 

@@ -88,7 +88,7 @@ The macro is used extensively in the assert-like macros explained further on in 
 documentation and macro programmers may find this macro useful in their own programming 
 efforts despite the slight flaw in the way that it works.
 
-The end-user of VMD can include the individual header file 'vmd_is_empty.hpp'
+The end-user of VMD can include the individual header file 'is_empty.hpp'
 instead of the general header file 'vmd.hpp' for using this macro.
    
 [endsect]

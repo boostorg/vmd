@@ -1,14 +1,14 @@
 #if !defined(BOOST_VMD_BEGIN_IDENTIFIER_HPP)
 #define BOOST_VMD_BEGIN_IDENTIFIER_HPP
 
-#include <boost/vmd/detail/vmd_detail_setup.hpp>
+#include <boost/vmd/detail/setup.hpp>
 
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/control/iif.hpp>
-#include <boost/vmd/vmd_gen_zero.hpp>
-#include <boost/vmd/detail/vmd_detail_begin_identifier.hpp>
-#include <boost/vmd/detail/vmd_detail_paren_or_empty.hpp>
+#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/detail/begin_identifier.hpp>
+#include <boost/vmd/detail/paren_or_empty.hpp>
 
 /*
 
@@ -40,5 +40,4 @@
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
-
 #endif /* BOOST_VMD_BEGIN_IDENTIFIER_HPP */
