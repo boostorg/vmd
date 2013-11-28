@@ -22,7 +22,7 @@ The library is a header only library. This means that in order
 to use the library you only need to include the correct vmd header
 file. As an example to use the BOOST_VMD_IS_EMPTY macro you would:
 
- #include <boost/vmd/vmd_is_empty.hpp>
+ #include <boost/vmd/is_empty.hpp>
  
 and then invoke the macro in your code.
 
