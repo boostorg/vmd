@@ -37,15 +37,6 @@ project variadic_macro_data_tests : requirements <warnings>on
 
 test-suite variadic_macro_data
     : 
-       [ run test_is_begin_parens.cpp ]
-       [ run test_remove_parens.cpp ]
-       [ run test_is_identifier.cpp ]
-       [ run test_is_number.cpp ]
-       [ run test_is_empty.cpp ]
-       [ compile-fail test_is_empty_fail.cpp ]
-       [ compile-fail test_is_empty_fail2.cpp ]
-       [ compile-fail test_is_empty_fail3.cpp ]
-       [ compile-fail test_is_empty_fail4.cpp ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ compile-fail test_assert_is_tuple_fail.cpp :
@@ -86,37 +77,22 @@ test-suite variadic_macro_data
          <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ compile-fail test_assert_is_seq_fail4.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 ]
+       [ run test_begin_identifier.cpp ]
+       [ run test_begin_number.cpp ]
+       [ run test_begin_parens.cpp ]
+       [ run test_is_begin_parens.cpp ]
+       [ run test_is_empty.cpp ]
+       [ compile-fail test_is_empty_fail.cpp ]
+       [ compile-fail test_is_empty_fail2.cpp ]
+       [ compile-fail test_is_empty_fail3.cpp ]
+       [ compile-fail test_is_empty_fail4.cpp ]
+       [ run test_is_identifier.cpp ]
+       [ run test_is_number.cpp ]
+       [ run test_remove_parens.cpp ]
     ;
 
 test-suite variadic_macro_data_gh
    : 
-       [ run test_is_begin_parens.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_begin_parens_gh ]
-       [ run test_remove_parens.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_remove_parens_gh ]
-       [ run test_is_identifier.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_identifier_gh ]
-       [ run test_is_number.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_number_gh ]
-       [ run test_is_empty.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_empty_gh ]
-       [ compile-fail test_is_empty_fail.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_empty_fail_gh ]
-       [ compile-fail test_is_empty_fail2.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_empty_fail2_gh ]
-       [ compile-fail test_is_empty_fail3.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_empty_fail3_gh ]
-       [ compile-fail test_is_empty_fail4.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_empty_fail4_gh ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
@@ -197,4 +173,40 @@ test-suite variadic_macro_data_gh
          <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_assert_is_seq_fail4_gh ]
+       [ run test_begin_identifier.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_begin_identifier_gh ]
+       [ run test_begin_number.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_begin_number_gh ]
+       [ run test_begin_parens.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_begin_parens_gh ]
+       [ run test_is_begin_parens.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_begin_parens_gh ]
+       [ run test_is_empty.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_empty_gh ]
+       [ compile-fail test_is_empty_fail.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_empty_fail_gh ]
+       [ compile-fail test_is_empty_fail2.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_empty_fail2_gh ]
+       [ compile-fail test_is_empty_fail3.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_empty_fail3_gh ]
+       [ compile-fail test_is_empty_fail4.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_empty_fail4_gh ]
+       [ run test_is_identifier.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_identifier_gh ]
+       [ run test_is_number.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_number_gh ]
+       [ run test_remove_parens.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_remove_parens_gh ]
     ;

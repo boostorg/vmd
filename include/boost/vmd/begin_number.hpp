@@ -35,7 +35,7 @@
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
-      BOOST_VMD_GEN_EMPTY \
+      BOOST_VMD_GEN_EMPTY, \
       BOOST_VMD_DETAIL_BEGIN_NUMBER \
       ) \
     (parameter) \

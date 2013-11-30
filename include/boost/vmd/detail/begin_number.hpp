@@ -8,6 +8,7 @@
 #include <boost/vmd/gen_empty.hpp>
 #include <boost/vmd/detail/paren_or_empty.hpp>
 #include <boost/vmd/detail/begin_number_find.hpp>
+#include <boost/vmd/detail/is_number_find.hpp>
 
 #define BOOST_VMD_DETAIL_BEGIN_NUMBER_GET(parameter) \
 	BOOST_PP_EXPAND \
