@@ -3,9 +3,9 @@
 #else
 #include <boost/vmd/begin_parens.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/preprocessor/tuple/elem.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
+#include <boost/preprocessor/tuple/elem.hpp>
 
 int main()
   {
