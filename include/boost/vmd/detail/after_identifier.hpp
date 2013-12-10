@@ -50,6 +50,18 @@
     	) \
 /**/
 
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CAT_NO_PAREN(param,key) \
+    	BOOST_PP_CAT \
+    		( \
+   			BOOST_VMD_MAP_, \
+    		BOOST_PP_CAT \
+    			( \
+    			key, \
+   				param \
+    			) \
+    		) \
+/**/
+
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_PRED(d,state) \
 	BOOST_PP_NOR \
 		( \
@@ -81,8 +93,20 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST_NO_PAREN(state) \
+	BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CAT_NO_PAREN \
+		( \
+		BOOST_PP_TUPLE_ELEM(0,state), \
+		BOOST_PP_TUPLE_ELEM \
+			( \
+			BOOST_PP_TUPLE_ELEM(2,state), \
+			BOOST_PP_TUPLE_ELEM(1,state) \
+			) \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FOUND(state) \
-	(BOOST_PP_INC(BOOST_PP_TUPLE_ELEM(2,state)),BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state)) \
+	(BOOST_PP_INC(BOOST_PP_TUPLE_ELEM(2,state)),BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST_NO_PAREN(state)) \
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CONTINUE(state) \
