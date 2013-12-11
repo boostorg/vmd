@@ -38,6 +38,7 @@ project variadic_macro_data_tests : requirements <warnings>on
 test-suite variadic_macro_data
     : 
        [ run test_after_identifier.cpp ]
+       [ run test_after_number.cpp ]
        [ run test_after_parens.cpp ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 ]
@@ -98,6 +99,9 @@ test-suite variadic_macro_data_gh
        [ run test_after_identifier.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_identifier_gh ]
+       [ run test_after_number.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_number_gh ]
        [ run test_after_parens.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_parens_gh ]

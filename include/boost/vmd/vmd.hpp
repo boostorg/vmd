@@ -5,6 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/vmd/after_number.hpp>
 #include <boost/vmd/after_parens.hpp>
 #include <boost/vmd/after_identifier.hpp>
 #include <boost/vmd/assert_is_array.hpp>
