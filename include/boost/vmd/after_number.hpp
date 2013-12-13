@@ -27,6 +27,9 @@
    				If a beginning number is found, the first element
    				is the number and the second element is the preprocessor tokens after the number.
     
+	The number if found must be in the range of numbers for the Boost preprocessor library,
+	which is 0 to 256.
+    
 */
 # define BOOST_VMD_AFTER_NUMBER(parameter) \
     BOOST_PP_IIF \

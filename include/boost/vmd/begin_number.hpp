@@ -27,7 +27,7 @@
     		  If the parameter does not start with a number,
     		  the return value is empty.
     		  
-	The number if found must be in the range of numbers fot the Boost preprocessor library,
+	The number if found must be in the range of numbers for the Boost preprocessor library,
 	which is 0 to 256.
     
 */

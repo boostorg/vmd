@@ -16,7 +16,7 @@
 #include <boost/vmd/assert_is_tuple.hpp>
 #include <boost/vmd/is_begin_parens.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/detail/paren_or_empty.hpp>
+#include <boost/vmd/detail/paren_or_empty_or_number.hpp>
 
 #define BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_PARENS ()
 
@@ -86,7 +86,7 @@
 		( \
 		BOOST_PP_EXPAND \
 			( \
-			BOOST_VMD_DETAIL_PAREN_OR_EMPTY BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_REST(state) \
+			BOOST_VMD_DETAIL_PAREN_OR_EMPTY_OR_NUMBER BOOST_VMD_DETAIL_BEGIN_IDENTIFIER_REST(state) \
 			), \
 		BOOST_PP_INC(BOOST_PP_TUPLE_ELEM(2,state)), \
 		0 \

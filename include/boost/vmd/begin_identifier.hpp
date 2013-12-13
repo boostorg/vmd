@@ -23,7 +23,7 @@
 
     parameter = a macro parameter.
     keys  	  = The variadic data may take one of two forms:
-    			it is either a C++ identifier as a unique 'key' ( see below )
+    			it is either a C++ identifier as a unique 'key'
     			or a Boost PP tuple of the unique 'key's.
 
     returns   = expands to the index, starting with 1, of the particular identifier it matches, otherwise expands to 0.

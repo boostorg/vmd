@@ -16,7 +16,9 @@ int main()
 	#define A_TUPLE (*,#,zzz ())
 	#define JDATA somevalue
 	#define A_SEQ (num (split) clear)($)(#)
+	#define A_SEQ_2 (num 236 (split) clear)($)(#)
 	#define A_LIST (eeb (5),(grist,(&,BOOST_PP_NIL)))
+	#define A_LIST_2 (eeb (5),(grist 138,(&,BOOST_PP_NIL)))
 	
 	#define BOOST_VMD_MAP_VMD_TEST_0_zzz
 	#define BOOST_VMD_MAP_VMD_TEST_1_somevalue
@@ -33,6 +35,9 @@ int main()
 	BOOST_TEST(!BOOST_VMD_BEGIN_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_3_));
 	BOOST_TEST_EQ(BOOST_VMD_BEGIN_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),(VMD_TEST_30_,VMD_TEST_2_,WHATEVER)),2);
   
+	BOOST_TEST(BOOST_VMD_BEGIN_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ_2),VMD_TEST_2_));
+	BOOST_TEST(BOOST_VMD_BEGIN_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST_2,1),VMD_TEST_77_));
+	
 #endif
 
   	return boost::report_errors();
