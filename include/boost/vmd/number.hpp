@@ -1,5 +1,5 @@
-#if !defined(BOOST_VMD_AFTER_NUMBER_HPP)
-#define BOOST_VMD_AFTER_NUMBER_HPP
+#if !defined(BOOST_VMD_NUMBER_HPP)
+#define BOOST_VMD_NUMBER_HPP
 
 #include <boost/vmd/detail/setup.hpp>
 
@@ -31,7 +31,7 @@
 	which is 0 to 256.
     
 */
-# define BOOST_VMD_AFTER_NUMBER(parameter) \
+# define BOOST_VMD_NUMBER(parameter) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_DETAIL_PAREN_OR_EMPTY(param), \
@@ -42,4 +42,4 @@
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
-#endif /* BOOST_VMD_AFTER_NUMBER_HPP */
+#endif /* BOOST_VMD_NUMBER_HPP */

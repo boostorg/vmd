@@ -1,5 +1,5 @@
-#if !defined(BOOST_VMD_AFTER_IDENTIFIER_HPP)
-#define BOOST_VMD_AFTER_IDENTIFIER_HPP
+#if !defined(BOOST_VMD_IDENTIFIER_HPP)
+#define BOOST_VMD_IDENTIFIER_HPP
 
 #include <boost/vmd/detail/setup.hpp>
 
@@ -33,7 +33,7 @@
    				and the second element is the preprocessor tokens after the identifier.
     
 */
-# define BOOST_VMD_AFTER_IDENTIFIER(parameter,keys) \
+# define BOOST_VMD_IDENTIFIER(parameter,keys) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_DETAIL_PAREN_OR_EMPTY(param), \
@@ -44,4 +44,4 @@
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
-#endif /* BOOST_VMD_AFTER_IDENTIFIER_HPP */
+#endif /* BOOST_VMD_IDENTIFIER_HPP */

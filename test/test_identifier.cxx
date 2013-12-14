@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/after_identifier.hpp>
+#include <boost/vmd/identifier.hpp>
 #include <boost/vmd/is_begin_parens.hpp>
 #include <boost/vmd/is_empty.hpp>
 #endif
@@ -31,7 +31,7 @@ int main()
   	BOOST_PP_TUPLE_ELEM
   		(
   		0,
-  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(DUMMY1,VMD_TEST_0_))
+  		BOOST_VMD_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(DUMMY1,VMD_TEST_0_))
   		),
   	2
   	);
@@ -43,7 +43,7 @@ int main()
   		BOOST_PP_TUPLE_ELEM
   			(
   			1,
-  			BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),VMD_TEST_0_)
+  			BOOST_VMD_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),VMD_TEST_0_)
   			)
   		)
   	);
@@ -53,7 +53,7 @@ int main()
   	BOOST_PP_TUPLE_ELEM
   		(
   		0,
-  		BOOST_VMD_AFTER_IDENTIFIER(JDATA,(DUMMY1,DUMMY2,VMD_TEST_1_,DUMMY3))
+  		BOOST_VMD_IDENTIFIER(JDATA,(DUMMY1,DUMMY2,VMD_TEST_1_,DUMMY3))
   		),
   	3
   	);
@@ -65,7 +65,7 @@ int main()
   		BOOST_PP_TUPLE_ELEM
   			(
   			1,
-  			BOOST_VMD_AFTER_IDENTIFIER(JDATA,VMD_TEST_1_)
+  			BOOST_VMD_IDENTIFIER(JDATA,VMD_TEST_1_)
   			)
   		)
   	);
@@ -75,7 +75,7 @@ int main()
   	BOOST_PP_TUPLE_ELEM
   		(
   		0,
-  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),VMD_TEST_2_)
+  		BOOST_VMD_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),VMD_TEST_2_)
   		),
   	1
   	);
@@ -87,7 +87,7 @@ int main()
   		BOOST_PP_TUPLE_ELEM
   			(
   			1,
-  			BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),VMD_TEST_2_)
+  			BOOST_VMD_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),VMD_TEST_2_)
   			)
   		)
   	);
@@ -97,7 +97,7 @@ int main()
   	BOOST_PP_TUPLE_ELEM
   		(
   		0,
-  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),(VMD_TEST_3_,VMD_TEST_0_))
+  		BOOST_VMD_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),(VMD_TEST_3_,VMD_TEST_0_))
   		),
   	1
   	);
@@ -110,7 +110,7 @@ int main()
   		BOOST_PP_TUPLE_ELEM
   			(
   			1,
-  			BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),(VMD_TEST_3_))
+  			BOOST_VMD_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),(VMD_TEST_3_))
   			)
   		),
   	5
@@ -121,7 +121,7 @@ int main()
   	BOOST_PP_TUPLE_ELEM
   		(
   		0,
-  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_77_)
+  		BOOST_VMD_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_77_)
   		),
   	1
   	);
@@ -133,7 +133,7 @@ int main()
 		BOOST_PP_TUPLE_ELEM
 			(
 			1,
-			BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_77_)
+			BOOST_VMD_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_77_)
 			)
   		)
   	);
@@ -143,7 +143,7 @@ int main()
   	!BOOST_PP_TUPLE_ELEM
   		(
   		0,
-  		BOOST_VMD_AFTER_IDENTIFIER(JDATA,VMD_TEST_4_)
+  		BOOST_VMD_IDENTIFIER(JDATA,VMD_TEST_4_)
   		)
   	);
   
@@ -152,7 +152,7 @@ int main()
   	!BOOST_PP_TUPLE_ELEM
   		(
   		0,
-  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_3_)
+  		BOOST_VMD_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_3_)
   		)
   	);
   
@@ -161,7 +161,7 @@ int main()
   	BOOST_PP_TUPLE_ELEM
   		(
   		0,
-  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),(VMD_TEST_30_,VMD_TEST_2_,WHATEVER))
+  		BOOST_VMD_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),(VMD_TEST_30_,VMD_TEST_2_,WHATEVER))
   		),
   	2
   	);

@@ -1,5 +1,5 @@
-#if !defined(BOOST_VMD_AFTER_PARENS_HPP)
-#define BOOST_VMD_AFTER_PARENS_HPP
+#if !defined(BOOST_VMD_PARENS_HPP)
+#define BOOST_VMD_PARENS_HPP
 
 #include <boost/vmd/detail/setup.hpp>
 
@@ -28,7 +28,7 @@
    				of parenthesis and the second element is the preprocessor tokens after the beginning set of parenthesis.
     
 */
-# define BOOST_VMD_AFTER_PARENS(param) \
+# define BOOST_VMD_PARENS(param) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_PARENS(param), \
@@ -39,4 +39,4 @@
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
-#endif /* BOOST_VMD_AFTER_PARENS_HPP */
+#endif /* BOOST_VMD_PARENS_HPP */
