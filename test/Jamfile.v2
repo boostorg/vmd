@@ -83,6 +83,7 @@ test-suite variadic_macro_data
        [ run test_begin_identifier.cpp ]
        [ run test_begin_number.cpp ]
        [ run test_begin_parens.cpp ]
+       [ run test_is_begin_identifier.cpp ]
        [ run test_is_begin_parens.cpp ]
        [ run test_is_empty.cpp ]
        [ compile-fail test_is_empty_fail.cpp ]
@@ -194,6 +195,9 @@ test-suite variadic_macro_data_gh
        [ run test_begin_parens.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_begin_parens_gh ]
+       [ run test_is_begin_identifier.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_begin_identifier_gh ]
        [ run test_is_begin_parens.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_begin_parens_gh ]
