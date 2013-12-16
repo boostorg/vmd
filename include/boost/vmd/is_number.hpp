@@ -5,7 +5,8 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/detail/is_number.hpp>
+#include <boost/vmd/number.hpp>
+#include <boost/vmd/detail/is_entire.hpp>
 
 /*
 
@@ -40,7 +41,10 @@
 */
 
 #define BOOST_VMD_IS_NUMBER(param) \
-	BOOST_VMD_DETAIL_IS_NUMBER(param) \
+	BOOST_VMD_DETAIL_IS_ENTIRE \
+		( \
+		BOOST_VMD_NUMBER(param) \
+		) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

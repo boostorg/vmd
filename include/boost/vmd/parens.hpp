@@ -18,7 +18,7 @@
 /** \file
 */
 
-/** \brief Expands to the preprocessor tokens after a beginning set of parenthesis.
+/** \brief Expands to a tuple of the beginning parenthesis, and the preprocessor tokens after the beginning set of parenthesis, of a macro parameter.
 
     param = a macro parameter.
 

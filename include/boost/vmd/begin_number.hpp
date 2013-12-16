@@ -5,10 +5,8 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/control/iif.hpp>
-#include <boost/vmd/gen_empty.hpp>
-#include <boost/vmd/detail/begin_number.hpp>
-#include <boost/vmd/detail/paren_or_empty.hpp>
+#include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/vmd/number.hpp>
 
 /*
 
@@ -32,13 +30,11 @@
     
 */
 # define BOOST_VMD_BEGIN_NUMBER(parameter) \
-    BOOST_PP_IIF \
-      ( \
-      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
-      BOOST_VMD_GEN_EMPTY, \
-      BOOST_VMD_DETAIL_BEGIN_NUMBER \
-      ) \
-    (parameter) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		0, \
+		BOOST_VMD_NUMBER(parameter) \
+		) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

@@ -5,6 +5,9 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/vmd/after_identifier.hpp>
+#include <boost/vmd/after_number.hpp>
+#include <boost/vmd/after_parens.hpp>
 #include <boost/vmd/assert_is_array.hpp>
 #include <boost/vmd/assert_is_list.hpp>
 #include <boost/vmd/assert_is_seq.hpp>
@@ -19,6 +22,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/is_number.hpp>
+#include <boost/vmd/is_parens.hpp>
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/parens.hpp>
 #include <boost/vmd/remove_parens.hpp>

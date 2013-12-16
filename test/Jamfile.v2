@@ -37,6 +37,9 @@ project variadic_macro_data_tests : requirements <warnings>on
 
 test-suite variadic_macro_data
     : 
+       [ run test_after_identifier.cpp ]
+       [ run test_after_number.cpp ]
+       [ run test_after_parens.cpp ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ compile-fail test_assert_is_tuple_fail.cpp :
@@ -91,6 +94,7 @@ test-suite variadic_macro_data
        [ compile-fail test_is_empty_fail4.cpp ]
        [ run test_is_identifier.cpp ]
        [ run test_is_number.cpp ]
+       [ run test_is_parens.cpp ]
        [ run test_number.cpp ]
        [ run test_parens.cpp ]
        [ run test_remove_parens.cpp ]
@@ -98,6 +102,15 @@ test-suite variadic_macro_data
 
 test-suite variadic_macro_data_gh
    : 
+       [ run test_after_identifier.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_identifier_gh ]
+       [ run test_after_number.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_number_gh ]
+       [ run test_after_parens.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_parens_gh ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
@@ -220,12 +233,15 @@ test-suite variadic_macro_data_gh
        [ run test_is_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_number_gh ]
+       [ run test_is_parens.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_parens_gh ]
        [ run test_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_after_number_gh ]
+         test_number_gh ]
        [ run test_parens.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_after_parens_gh ]
+         test_parens_gh ]
        [ run test_remove_parens.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_remove_parens_gh ]
