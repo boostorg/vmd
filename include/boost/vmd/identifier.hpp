@@ -36,7 +36,7 @@
 # define BOOST_VMD_IDENTIFIER(parameter,keys) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(param), \
+      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
       BOOST_VMD_DETAIL_AFTER_IDENTIFIER_NOT_FOUND, \
       BOOST_VMD_DETAIL_AFTER_IDENTIFIER \
       ) \

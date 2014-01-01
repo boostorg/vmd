@@ -34,7 +34,7 @@
 # define BOOST_VMD_NUMBER(parameter) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(param), \
+      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
       BOOST_VMD_DETAIL_AFTER_NUMBER_NOT_FOUND, \
       BOOST_VMD_DETAIL_AFTER_NUMBER \
       ) \

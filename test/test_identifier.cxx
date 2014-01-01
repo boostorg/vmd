@@ -19,6 +19,8 @@ int main()
   #define JDATA somevalue
   #define A_SEQ (num (split) clear)($)(#)
   #define A_LIST (eeb (5),(grist,(&,BOOST_PP_NIL)))
+  #define PEMPTY
+  #define PPAREN (a b c)
 
   #define BOOST_VMD_MAP_VMD_TEST_0_zzz
   #define BOOST_VMD_MAP_VMD_TEST_1_somevalue
@@ -166,6 +168,12 @@ int main()
   	2
   	);
   
+	BOOST_TEST(!BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_IDENTIFIER(PEMPTY)));
+	BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_IDENTIFIER(PEMPTY))));
+	
+	BOOST_TEST(!BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_IDENTIFIER(PPAREN)));
+	BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_IDENTIFIER(PPAREN))));
+	
 #endif
 
   return boost::report_errors();
