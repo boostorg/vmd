@@ -18,7 +18,14 @@
 
 /** \brief Expands to a tuple of the number and the preprocessor tokens after the beginning number in a parameter.
 
-    parameter = a macro parameter.
+    ...       = One or two variadic parameters. These parameters are:
+    
+    parameter = the macro parameter to test for a number
+    cnumber   = an optional digit from 1-5 indicating the maximum amount of consecutive numbers in the parameter.
+                Specifying 1 is not necessary but allowed, as 1 is the default.
+                The actual cnumber may be more than the amount of consecutive numbers which exist.
+                The consecutive numbers must either end the parameter or have a set of parenthesis
+                after them for the first number to be found.
 
     returns   = the result is a tuple of two elements.
     			If a beginning number is not found, both elements of the tuple are empty.
