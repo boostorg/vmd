@@ -11,11 +11,15 @@
 #include <boost/preprocessor/facilities/expand.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/nor.hpp>
+#include <boost/preprocessor/seq/elem.hpp>
+#include <boost/preprocessor/seq/seq.hpp>
+#include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
+#include <boost/vmd/assert_is_seq.hpp>
 #include <boost/vmd/assert_is_tuple.hpp>
 #include <boost/vmd/gen_empty.hpp>
 #include <boost/vmd/gen_one.hpp>
@@ -42,21 +46,6 @@
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CAT(param,key) \
-    	( \
-    	BOOST_PP_CAT \
-    		( \
-   			BOOST_VMD_MAP_, \
-    		BOOST_PP_CAT \
-    			( \
-    			key, \
-   				param \
-    			) \
-    		) \
-    	BOOST_PP_EMPTY BOOST_VMD_DETAIL_AFTER_IDENTIFIER_PARENS \
-    	) \
-/**/
-
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CAT_NO_PAREN(param,key) \
     	BOOST_PP_CAT \
     		( \
    			BOOST_VMD_MAP_, \
@@ -88,7 +77,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state) \
-	BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CAT_NO_PAREN \
+	BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CAT \
 		( \
 		BOOST_PP_TUPLE_ELEM(0,state), \
 		BOOST_PP_TUPLE_ELEM \
@@ -130,6 +119,58 @@
 	(extra) \
 /**/
 
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TAIL(state) \
+	BOOST_PP_SEQ_TAIL(BOOST_PP_TUPLE_ELEM(4,state)) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE_RESULT(state) \
+	BOOST_VMD_DETAIL_AFTER_IDENTIFIER \
+		( \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state), \
+		BOOST_PP_SEQ_ELEM(0,BOOST_PP_TUPLE_ELEM(4,state)), \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_EQUAL \
+				( \
+				BOOST_PP_SEQ_SIZE(BOOST_PP_TUPLE_ELEM(4,state)), \
+				1 \
+				), \
+			BOOST_VMD_GEN_EMPTY, \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TAIL \
+			) \
+		(state) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE(state) \
+	BOOST_VMD_ASSERT_IS_SEQ(BOOST_PP_TUPLE_ELEM(4,state)) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EQUAL \
+			( \
+			BOOST_PP_TUPLE_ELEM \
+				( \
+				0, \
+				BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE_RESULT(state) \
+				), \
+			0 \
+			), \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CONTINUE, \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FOUND \
+		) \
+	(state) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID(state) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_BEGIN_PARENS(BOOST_PP_TUPLE_ELEM(4,state)), \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE, \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CONTINUE \
+		) \
+	(state) \
+/**/
+
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP(d,state) \
 	( \
 	BOOST_PP_TUPLE_ELEM(0,state), \
@@ -143,7 +184,7 @@
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER(BOOST_PP_TUPLE_ELEM(4,state)) \
 			), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FOUND, \
-		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CONTINUE \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID \
 		) \
 	(state), \
 	BOOST_PP_TUPLE_ELEM(4,state) \
