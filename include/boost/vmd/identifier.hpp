@@ -33,14 +33,14 @@
    				and the second element is the preprocessor tokens after the identifier.
     
 */
-# define BOOST_VMD_IDENTIFIER(parameter,keys) \
+# define BOOST_VMD_IDENTIFIER(parameter,...) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
       BOOST_VMD_DETAIL_AFTER_IDENTIFIER_NOT_FOUND, \
       BOOST_VMD_DETAIL_AFTER_IDENTIFIER \
       ) \
-    (parameter,keys) \
+    (parameter,__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
