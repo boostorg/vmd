@@ -5,6 +5,7 @@
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/comparison/greater.hpp>
+#include <boost/preprocessor/comparison/not_equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
@@ -144,21 +145,15 @@
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE(state) \
 	BOOST_VMD_ASSERT_IS_SEQ(BOOST_PP_TUPLE_ELEM(4,state)) \
-	BOOST_PP_IIF \
+	BOOST_PP_NOT_EQUAL \
 		( \
-		BOOST_PP_EQUAL \
+		BOOST_PP_TUPLE_ELEM \
 			( \
-			BOOST_PP_TUPLE_ELEM \
-				( \
-				0, \
-				BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE_RESULT(state) \
-				), \
-			0 \
+			0, \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE_RESULT(state) \
 			), \
-		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CONTINUE, \
-		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FOUND \
+		0 \
 		) \
-	(state) \
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID(state) \
@@ -166,7 +161,21 @@
 		( \
 		BOOST_VMD_IS_BEGIN_PARENS(BOOST_PP_TUPLE_ELEM(4,state)), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE, \
-		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CONTINUE \
+		BOOST_VMD_GEN_ZERO \
+		) \
+	(state) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST(state) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_PAREN_OR_EMPTY_OR_NUMBER \
+			( \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state), \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER(BOOST_PP_TUPLE_ELEM(4,state)) \
+			), \
+		BOOST_VMD_GEN_ONE, \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID \
 		) \
 	(state) \
 /**/
@@ -178,13 +187,9 @@
 	BOOST_PP_INC(BOOST_PP_TUPLE_ELEM(2,state)), \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_PAREN_OR_EMPTY_OR_NUMBER \
-			( \
-			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state), \
-			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER(BOOST_PP_TUPLE_ELEM(4,state)) \
-			), \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST(state), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FOUND, \
-		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CONTINUE \
 		) \
 	(state), \
 	BOOST_PP_TUPLE_ELEM(4,state) \
