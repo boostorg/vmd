@@ -106,4 +106,8 @@
 	(__VA_ARGS__) \
 /**/
 
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_NOT_FOUND(...) \
+	(0,) \
+/**/
+
 #endif /* BOOST_VMD_DETAIL_AFTER_IDENTIFIER_COMMON_HPP */

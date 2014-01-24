@@ -5,6 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/is_begin_parens.hpp>
 #include <boost/vmd/detail/is_empty.hpp>
 
@@ -59,12 +60,10 @@
         ) \
       ) \
       ( \
-      0, \
-      BOOST_VMD_IS_BEGIN_PARENS \
-        ( \
-        BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param () \
-        ) \
+      BOOST_VMD_GEN_ZERO, \
+      BOOST_VMD_DETAIL_IS_EMPTY_PROCESS \
       ) \
+    (param) \
 /**/
 
 #else
@@ -78,12 +77,10 @@
         ) \
       ) \
       ( \
-      0, \
-      BOOST_VMD_IS_BEGIN_PARENS \
-        ( \
-        BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
-        ) \
+      BOOST_VMD_GEN_ZERO, \
+      BOOST_VMD_DETAIL_IS_EMPTY_PROCESS \
       ) \
+    (__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_VMD_MSVC_V8 */

@@ -31,8 +31,8 @@
     The macro works through variadic macro support.
     The ppident can be either:
     
-    1) A preprocessor identifier, alphanumeric or underscore characaters.
-    2) An empty value. returns 0.
+    1) A preprocessor identifier, alphanumeric or underscore characters.
+    2) An empty value, returns 0.
     3) A set of beginning parens, returns 0.
     
     If it is not one of these possibilities a compiler error will occur.

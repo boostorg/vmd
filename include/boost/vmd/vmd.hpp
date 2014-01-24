@@ -15,6 +15,9 @@
 #include <boost/vmd/begin_identifier.hpp>
 #include <boost/vmd/begin_number.hpp>
 #include <boost/vmd/begin_parens.hpp>
+#include <boost/vmd/gen_empty.hpp>
+#include <boost/vmd/gen_one.hpp>
+#include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/identifier.hpp>
 #include <boost/vmd/is_begin_identifier.hpp>
 #include <boost/vmd/is_begin_number.hpp>

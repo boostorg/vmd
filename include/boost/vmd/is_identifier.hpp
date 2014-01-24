@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/identifier.hpp>
+#include <boost/vmd/detail/after_identifier_only.hpp>
 #include <boost/vmd/detail/is_identifier.hpp>
 
 /*
@@ -92,7 +92,7 @@
 #define BOOST_VMD_IS_IDENTIFIER(parameter,keys) \
 	BOOST_VMD_DETAIL_IS_IDENTIFIER \
 		( \
-		BOOST_VMD_IDENTIFIER(parameter,keys) \
+		BOOST_VMD_DETAIL_IDENTIFIER_ONLY(parameter,keys) \
 		) \
 /**/
 

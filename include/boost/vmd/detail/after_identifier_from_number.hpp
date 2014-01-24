@@ -9,12 +9,12 @@
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/detail/after_identifier_common.hpp>
 #include <boost/vmd/detail/after_identifier_main.hpp>
-#include <boost/vmd/detail/paren_or_empty_or_simple_number.hpp>
+#include <boost/vmd/detail/paren_or_empty.hpp>
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_TEST(d,state) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_PAREN_OR_EMPTY_OR_SIMPLE_NUMBER \
+		BOOST_VMD_DETAIL_PAREN_OR_EMPTY \
 			( \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state) \
 			), \

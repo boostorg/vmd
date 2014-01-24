@@ -72,8 +72,9 @@ VC++ erroneously rescans the sequence of tokens more than once rather than
 rescan once for more macro names.
 
 What these preprocessor flaws in the VC++ compiler mean is that if
-a function-like macro name is passed as input to the macro, and the
-function-like macro when expanded is a set of parentheses '()' with 0
+a function-like macro name, taking any number of parameters, 
+is passed as input to the macro, and the function-like macro when expanded 
+produces a set of parentheses '()' with 0
 or more tokens inside them, BOOST_VMD_IS_EMPTY will erroneously 
 return 1 rather than 0 when using the Visual C++ compiler.
 

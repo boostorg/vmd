@@ -68,10 +68,6 @@
 	) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_NOT_FOUND(parameter,keys) \
-	(0,) \
-/**/
-
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER(parameter,...) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
