@@ -161,7 +161,7 @@
 			3 \
 			), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_EINFO_DATA, \
-		BOOST_VMD_GEN_ONE \
+		BOOST_VMD_GEN_ZERO \
 		) \
 	(__VA_ARGS__) \
 /**/
