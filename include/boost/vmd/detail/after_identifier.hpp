@@ -91,6 +91,25 @@
 		) \
 /**/
 
+#if BOOST_VMD_MSVC
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CHECK_MAX(d,state) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_LESS_EQUAL_D \
+			( \
+			d, \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_SEQ_SIZE(state), \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_MAXIMUM \
+			), \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE, \
+		BOOST_VMD_GEN_ZERO \
+		) \
+	(d,state) \
+/**/
+
+#else
+
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CHECK_MAX(d,state) \
 	BOOST_VMD_ASSERT_IS_SEQ(BOOST_PP_TUPLE_ELEM(4,state)) \
 	BOOST_PP_IIF \
@@ -106,6 +125,8 @@
 		) \
 	(d,state) \
 /**/
+
+#endif
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID(d,state) \
 	BOOST_PP_IIF \
@@ -161,7 +182,7 @@
 			3 \
 			), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_EINFO_DATA, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_GEN_ONE \
 		) \
 	(__VA_ARGS__) \
 /**/

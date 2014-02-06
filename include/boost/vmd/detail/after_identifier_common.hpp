@@ -4,7 +4,7 @@
 #include <boost/preprocessor/arithmetic/inc.hpp>
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
-#include <boost/preprocessor/comparison/greater.hpp>
+#include <boost/preprocessor/comparison/not_equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/nor.hpp>
 #include <boost/preprocessor/seq/seq.hpp>
@@ -94,9 +94,8 @@
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CINFO(d,...) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_GREATER_D \
+		BOOST_PP_NOT_EQUAL \
 			( \
-			d, \
 			BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
 			1 \
 			), \

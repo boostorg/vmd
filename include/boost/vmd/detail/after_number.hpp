@@ -4,7 +4,7 @@
 #include <boost/preprocessor/arithmetic/dec.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/comparison/greater.hpp>
-#include <boost/preprocessor/comparison/less.hpp>
+#include <boost/preprocessor/comparison/less_equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/bool.hpp>
@@ -49,7 +49,7 @@
 		( \
 		BOOST_PP_BITOR \
 			( \
-			BOOST_PP_LESS \
+			BOOST_PP_LESS_EQUAL \
 				( \
 				BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__), \
 				BOOST_VMD_DETAIL_AFTER_NUMBER_MINIMUM \
@@ -97,6 +97,27 @@
 		) \
 /**/
 
+#if BOOST_VMD_MSVC
+
+#define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ(...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EQUAL \
+			( \
+			BOOST_PP_SEQ_SIZE \
+				( \
+				BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__) \
+				), \
+			1 \
+			), \
+		BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ_ONE, \
+		BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ_MANY \
+		) \
+	(__VA_ARGS__) \
+/**/
+
+#else
+
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ(...) \
 	BOOST_VMD_ASSERT_IS_SEQ(BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__)) \
 	BOOST_PP_IIF \
@@ -114,6 +135,8 @@
 		) \
 	(__VA_ARGS__) \
 /**/
+
+#endif
 
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENTIFIER(...) \
 	BOOST_PP_IIF \
@@ -203,6 +226,27 @@
 		) \
 /**/
 
+#if BOOST_VMD_MSVC
+
+#define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ(...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EQUAL \
+			( \
+			BOOST_PP_SEQ_SIZE \
+				( \
+				BOOST_PP_VARIADIC_ELEM(2,__VA_ARGS__) \
+				), \
+			1 \
+			), \
+		BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ_ONE, \
+		BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ_MANY \
+		) \
+	(__VA_ARGS__) \
+/**/
+
+#else
+
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ(...) \
 	BOOST_VMD_ASSERT_IS_SEQ(BOOST_PP_VARIADIC_ELEM(2,__VA_ARGS__)) \
 	BOOST_PP_IIF \
@@ -220,6 +264,8 @@
 		) \
 	(__VA_ARGS__) \
 /**/
+
+#endif
 
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_IDENTIFIER(...) \
 	BOOST_PP_IIF \
@@ -261,7 +307,7 @@
 	(__VA_ARGS__) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_NUMBER_0(...) \
+#define BOOST_VMD_DETAIL_AFTER_NUMBER_1(...) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_AFTER_NUMBER_NEXT_PEN_IDENT(__VA_ARGS__), \

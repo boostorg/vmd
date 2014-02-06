@@ -1,7 +1,7 @@
 #if !defined(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_MAIN_HPP)
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_MAIN_HPP
 
-#include <boost/preprocessor/comparison/greater.hpp>
+#include <boost/preprocessor/comparison/not_equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
@@ -19,7 +19,7 @@
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_BEGIN_CINFO(...) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_GREATER \
+		BOOST_PP_NOT_EQUAL \
 			( \
 			BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
 			1 \
