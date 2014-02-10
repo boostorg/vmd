@@ -62,6 +62,20 @@
     (x) \
 /**/
 
+/*
+
+  Check if the first element of the tuple is equal to the number of tuple elements of the second element
+
+*/
+
+#define BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_NUMERIC_MATCH(x) \
+	BOOST_PP_CAT \
+		( \
+		BOOST_VMD_ASSERT_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,x)), \
+		BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,x),BOOST_PP_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,x))) \
+		) \
+/**/
+
 #else
 
 
@@ -81,8 +95,6 @@
     (x) \
 /**/
 
-#endif /* BOOST_VMD_MSVC */
-
 /*
 
   Check if the first element of the tuple is equal to the number of tuple elements of the second element
@@ -91,13 +103,10 @@
 
 #define BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_NUMERIC_MATCH(x) \
     BOOST_VMD_ASSERT_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,x)) \
-    BOOST_PP_IIF \
-      ( \
-      BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,x),BOOST_PP_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,x))), \
-      1, \
-      0 \
-      ) \
+    BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,x),BOOST_PP_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,x))) \
 /**/
+
+#endif /* BOOST_VMD_MSVC */
 
 #define BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_NUM(x) BOOST_VMD_IS_EMPTY(BOOST_PP_CAT(BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_, x) BOOST_PP_EMPTY())
 #define BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_NUM_HELPER_1

@@ -57,10 +57,24 @@
 	BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__) \
 /**/
 
+#if BOOST_VMD_MSVC
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FIRST_ARG(keys) \
+	BOOST_PP_CAT \
+		( \
+		BOOST_VMD_ASSERT_IS_TUPLE(keys), \
+		keys \
+		) \
+/**/
+
+#else
+
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FIRST_ARG(keys) \
     BOOST_VMD_ASSERT_IS_TUPLE(keys) \
     keys \
 /**/
+
+#endif
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_TUPLE(keys) \
 	BOOST_PP_IIF \

@@ -2,6 +2,7 @@
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_HPP
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
+#include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/comparison/greater.hpp>
 #include <boost/preprocessor/comparison/less_equal.hpp>
@@ -100,20 +101,24 @@
 #if BOOST_VMD_MSVC
 
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ(...) \
-	BOOST_PP_IIF \
+	BOOST_PP_CAT \
 		( \
-		BOOST_PP_EQUAL \
+		BOOST_VMD_ASSERT_IS_SEQ(BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__)), \
+		BOOST_PP_IIF \
 			( \
-			BOOST_PP_SEQ_SIZE \
+			BOOST_PP_EQUAL \
 				( \
-				BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__) \
+				BOOST_PP_SEQ_SIZE \
+					( \
+					BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__) \
+					), \
+				1 \
 				), \
-			1 \
-			), \
-		BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ_ONE, \
-		BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ_MANY \
+			BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ_ONE, \
+			BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_SEQ_MANY \
+			) \
+		(__VA_ARGS__) \
 		) \
-	(__VA_ARGS__) \
 /**/
 
 #else
@@ -229,20 +234,24 @@
 #if BOOST_VMD_MSVC
 
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ(...) \
-	BOOST_PP_IIF \
+	BOOST_PP_CAT \
 		( \
-		BOOST_PP_EQUAL \
+		BOOST_VMD_ASSERT_IS_SEQ(BOOST_PP_VARIADIC_ELEM(2,__VA_ARGS__)), \
+		BOOST_PP_IIF \
 			( \
-			BOOST_PP_SEQ_SIZE \
+			BOOST_PP_EQUAL \
 				( \
-				BOOST_PP_VARIADIC_ELEM(2,__VA_ARGS__) \
+				BOOST_PP_SEQ_SIZE \
+					( \
+					BOOST_PP_VARIADIC_ELEM(2,__VA_ARGS__) \
+					), \
+				1 \
 				), \
-			1 \
-			), \
-		BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ_ONE, \
-		BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ_MANY \
+			BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ_ONE, \
+			BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_SEQ_MANY \
+			) \
+		(__VA_ARGS__) \
 		) \
-	(__VA_ARGS__) \
 /**/
 
 #else

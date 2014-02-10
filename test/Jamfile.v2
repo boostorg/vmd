@@ -33,6 +33,8 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>gcc-4.7.0:<cxxflags>-std=c++0x
                                                  <toolset>gcc-4.7.2:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.7.2:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.8.1:<cxxflags>-Wno-variadic-macros
+                                                 <toolset>gcc-4.8.1:<cxxflags>-std=c++0x
                                                  ;
 
 test-suite variadic_macro_data
