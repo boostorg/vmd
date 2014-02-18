@@ -96,7 +96,7 @@ test-suite variadic_macro_data
        [ compile-fail test_is_empty_fail4.cpp ]
        [ run test_is_identifier.cpp ]
        [ run test_is_number.cpp ]
-       [ run test_is_parens.cpp ]
+       [ run test_is_tuple.cpp ]
        [ run test_number.cpp ]
        [ run test_parens.cpp ]
        [ run test_remove_parens.cpp ]
@@ -235,9 +235,9 @@ test-suite variadic_macro_data_gh
        [ run test_is_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_number_gh ]
-       [ run test_is_parens.cpp : : :
+       [ run test_is_tuple.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_parens_gh ]
+         test_is_tuple_gh ]
        [ run test_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_number_gh ]

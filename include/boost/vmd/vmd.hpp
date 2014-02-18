@@ -25,7 +25,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/is_number.hpp>
-#include <boost/vmd/is_parens.hpp>
+#include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/parens.hpp>
 #include <boost/vmd/remove_parens.hpp>
