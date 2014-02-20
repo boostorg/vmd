@@ -61,36 +61,28 @@
 
 #else
 
-#include <boost/vmd/assert_is_tuple.hpp>
-#include <boost/vmd/detail/assert_is_array.hpp>
+#include <boost/vmd/is_array.hpp>
 
 #if BOOST_VMD_MSVC
 
+#include <boost/vmd/detail/assert_is_array.hpp>
+
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
-    BOOST_VMD_ASSERT_IS_TUPLE(array) \
-    BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_VC_CHECK_RETURN_FAILURE BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_VC_IMP(array) \
+    BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_VC_CHECK_RETURN_FAILURE \
+    	( \
+    	BOOST_VMD_IS_ARRAY(array) \
+    	) \
 /**/
 
 #else
 
-#include <boost/preprocessor/comparison/equal.hpp>
-#include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/debug/assert.hpp>
-#include <boost/preprocessor/tuple/size.hpp>
-#include <boost/vmd/gen_zero.hpp>
 
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
-    BOOST_VMD_ASSERT_IS_TUPLE(array) \
     BOOST_PP_ASSERT \
-      ( \
-      BOOST_PP_IIF \
-        ( \
-        BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(array)), \
-        BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_CHECK_ARRAY_FORM, \
-        BOOST_VMD_GEN_ZERO \
-        ) \
-      (array) \
-      ) \
+      	( \
+      	BOOST_VMD_IS_ARRAY(array) \
+      	) \
 /**/
 
 #endif /* BOOST_VMD_MSVC */

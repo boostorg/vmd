@@ -28,7 +28,7 @@
     to check or not check by defining the macro 
     BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
 
-    tuple = a possible pplib tuple.
+    tuple = a possible Boost pplib tuple.
 
     returns = Normally the macro returns nothing. 
     
@@ -44,15 +44,6 @@
               without producing output if the parameter is not a 
               pplib tuple.
               
-     There is no completely fool-proof way to check if a 
-     parameter is empty without possible producing a compiler 
-     error if it is not. Because a macro checking if a parameter 
-     is a pplib tuple needs to perform such a check, the best 
-     that one can do is to create a compiler error if a parameter 
-     is not a pplib tuple rather than having a macro which 
-     returns 1 or 0, depending on whether a parameter is a pplib 
-     tuple.
-    
 */
 
 #if !BOOST_VMD_ASSERT_DATA
@@ -61,47 +52,27 @@
 
 #else
 
-#include <boost/preprocessor/control/iif.hpp>
-
-#if !BOOST_VMD_MSVC
-
-#include <boost/preprocessor/debug/assert.hpp>
-
-#endif
-
-#include <boost/vmd/gen_zero.hpp>
-#include <boost/vmd/is_begin_parens.hpp>
-#include <boost/vmd/detail/assert_is_tuple.hpp>
+#include <boost/vmd/is_tuple.hpp>
 
 #if BOOST_VMD_MSVC
 
-#include <boost/preprocessor/facilities/empty.hpp>
+#include <boost/vmd/detail/assert_is_tuple.hpp>
 
 #define BOOST_VMD_ASSERT_IS_TUPLE(tuple) \
    BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_VC_CHECK_RETURN_FAILURE \
      ( \
-     BOOST_PP_IIF \
-       ( \
-       BOOST_VMD_IS_BEGIN_PARENS(tuple), \
-       BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
-       BOOST_VMD_GEN_ZERO \
-       ) \
-     (tuple) \
+     BOOST_VMD_IS_TUPLE(tuple) \
      ) \
 /**/
 
 #else
 
+#include <boost/preprocessor/debug/assert.hpp>
+
 #define BOOST_VMD_ASSERT_IS_TUPLE(tuple) \
    BOOST_PP_ASSERT \
      ( \
-     BOOST_PP_IIF \
-       ( \
-       BOOST_VMD_IS_BEGIN_PARENS(tuple), \
-       BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER, \
-       BOOST_VMD_GEN_ZERO \
-       ) \
-     (tuple) \
+     BOOST_VMD_IS_TUPLE(tuple) \
      ) \
 /**/
 

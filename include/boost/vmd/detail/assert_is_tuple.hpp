@@ -1,10 +1,6 @@
 #if !defined(BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_HPP)
 #define BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_HPP
 
-#include <boost/preprocessor/facilities/empty.hpp>
-#include <boost/vmd/gen_empty.hpp>
-#include <boost/vmd/is_empty.hpp>
-
 #if BOOST_VMD_MSVC
 
 #include <boost/preprocessor/control/iif.hpp>
@@ -30,9 +26,5 @@
 /**/
 
 #endif /* BOOST_VMD_MSVC */
-
-#define BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_IS_NOT_AFTER(x) \
-   BOOST_VMD_IS_EMPTY(BOOST_VMD_GEN_EMPTY x BOOST_PP_EMPTY()) \
-/**/
 
 #endif /* BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_HPP */
