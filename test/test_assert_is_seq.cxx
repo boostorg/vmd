@@ -17,8 +17,8 @@ int main()
   BOOST_VMD_ASSERT_IS_SEQ((x)(y))
   BOOST_VMD_ASSERT_IS_SEQ((x)(y)(z)(2)(3)(4))
   BOOST_VMD_ASSERT_IS_SEQ((x)(y)(z)((1,2))(3)(4))
-  BOOST_VMD_ASSERT_IS_SEQ((x)(y)(z)((1,2))(3)((4,(x,BOOST_VMD_NIL))))
-  BOOST_VMD_ASSERT_IS_SEQ((x)(y)((x)(y)(z)(2)(3)(4))((1,2))(3)((4,(x,BOOST_VMD_NIL))))
+  BOOST_VMD_ASSERT_IS_SEQ((x)(y)(z)((1,2))(3)((4,(x,BOOST_PP_NIL))))
+  BOOST_VMD_ASSERT_IS_SEQ((x)(y)((x)(y)(z)(2)(3)(4))((1,2))(3)((4,(x,BOOST_PP_NIL))))
   BOOST_VMD_ASSERT_IS_SEQ(BOOST_PP_TUPLE_ELEM(4,ATUPLE))
 
 #endif

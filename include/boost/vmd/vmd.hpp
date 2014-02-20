@@ -19,12 +19,15 @@
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/identifier.hpp>
+#include <boost/vmd/is_array.hpp>
 #include <boost/vmd/is_begin_identifier.hpp>
 #include <boost/vmd/is_begin_number.hpp>
 #include <boost/vmd/is_begin_parens.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_identifier.hpp>
+#include <boost/vmd/is_list.hpp>
 #include <boost/vmd/is_number.hpp>
+#include <boost/vmd/is_seq.hpp>
 #include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/parens.hpp>
