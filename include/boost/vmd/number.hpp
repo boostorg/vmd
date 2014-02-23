@@ -19,7 +19,7 @@
 /** \file
 */
 
-/** \brief Expands to a tuple of the number and the preprocessor tokens after the beginning number in a parameter.
+/** \brief Expands to a tuple of the beginning number and the preprocessor tokens after the beginning number in a parameter.
 
     ...       = One to three variadic parameters. These parameters are:
     

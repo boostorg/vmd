@@ -21,12 +21,12 @@
 /** \brief Expands to the index of a beginning identifier found and the preprocessor tokens after the beginning identifier.
 
     parameter = a macro parameter.
-    ...       = variadic parameters, maximum of 2
+    ...       = variadic parameters, maximum of 3
     
     The first variadic parameter is:
     
     key(s)    = The data may take one of two forms:
-    			it is either a C++ identifier as a unique 'key'
+    			it is either a single C++ identifier as a unique 'key'
     			or a Boost PP tuple of the unique 'key's.
 
                 The idea of a unique 'key' is not to duplicate any key that another library may use.
@@ -51,16 +51,34 @@
 					  
 	The second variadic parameter (optional) is:
 	
-				1) a number represented a maximum amount of subsequent Boost PP numbers following the identifier.
+				1) a Boost PP sequence where each element in the sequence contains the key(s) of subsequent identifiers,
+				   where a 'key' is explained in the first variadic parameter. In other words each sequence element 
+				   contains either a single key or a tuple of keys, ie '(key)' or '((key,key,key))'. The maximum number
+				   of sequence elements allowed is 4.
 				
 					OR
 					
-				2) a Boost PP sequence where each element in the sequence contains the key(s) of subsequent identifiers,
-				   where a 'key' is explained in the first variadic parameter. In other words each sequence element 
-				   contains either a single key or a tuple of keys, ie '(key)' or '((key,key,key))'.
+				2) a number represented a maximum amount of subsequent Boost PP numbers following the identifier. The
+				   maximum number for this amount is 5.
 				   
-				If the second optional parameter is not specified an identifier will also always be found 
-				if followed by a single Boost PP number, a Boost PP tuple, or nothing ( end of parameter ).
+				If the second optional parameter is not specified a beginning identifier will also always be found 
+				if followed by a single Boost PP number, a Boost PP tuple, or the end of the parameter.
+				
+				If the second optional parameter is a Boost PP sequence a beginning identifier will also be found
+				if, subsequent to matching 0 or more further keys, a Boost PP tuple or the end of the parameter
+				is found.
+				
+				If the second optional parameter is a number a beginning identifier will also be found
+				if, subsequent to matching 0 or more Boost PP numbers, a Boost PP tuple or the
+				end of the parameter is found.
+				
+	The third variadic parameter (optional) is a number represented a maximum amount of Boost PP numbers 
+	following the subsequent identifiers specified by the second variadic parameter. The maximum number 
+	for this amount is 5.
+	
+	If the second and third variadic parameters are specified, a beginning identifier will also be found if, 
+	subsequent to matching further keys followed by further numbers, a Boost PP tuple or the end of
+	the parameter is found.
 				
     returns   = the result is a tuple of two elements.
     			If a beginning identifier is not found, the first element 
