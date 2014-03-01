@@ -18,6 +18,8 @@
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/is_empty_tuple.hpp>
 #include <boost/vmd/detail/after_identifier_common.hpp>
 #include <boost/vmd/detail/after_identifier_from_number_re.hpp>
 #include <boost/vmd/detail/after_identifier_main.hpp>
@@ -143,7 +145,7 @@
 	) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER(parameter,...) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_LOOP(parameter,...) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		3, \
@@ -163,6 +165,16 @@
 				) \
 			) \
 		) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER(parameter,...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_HAS_KEYS(BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)), \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_LOOP, \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_NOT_FOUND \
+		) \
+	(parameter,__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_HPP */

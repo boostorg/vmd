@@ -6,7 +6,9 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/comparison/not_equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/nor.hpp>
+#include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/seq/seq.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
@@ -16,12 +18,40 @@
 #include <boost/vmd/assert_is_tuple.hpp>
 #include <boost/vmd/gen_empty.hpp>
 #include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/is_empty_tuple.hpp>
+#include <boost/vmd/detail/paren_or_empty.hpp>
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_HAS_KEYS(keys) \
+	BOOST_PP_NOT \
+		( \
+		BOOST_PP_BITOR \
+			( \
+			BOOST_VMD_IS_EMPTY(keys), \
+			BOOST_VMD_IS_EMPTY_TUPLE(keys) \
+			) \
+		) \
+/**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TAIL(state) \
 	BOOST_PP_SEQ_TAIL(BOOST_PP_TUPLE_ELEM(4,state)) \
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CAT(param,key) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_PAREN_OR_EMPTY(key), \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_JUST_PARAM, \
+		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_DO_CAT \
+		) \
+	(param,key) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_JUST_PARAM(param,key) \
+	param \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_DO_CAT(param,key) \
     	BOOST_PP_CAT \
     		( \
    			BOOST_VMD_MAP_, \
