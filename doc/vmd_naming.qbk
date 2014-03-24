@@ -12,6 +12,9 @@ in this library or Boost PP. These names and their data types are:
 # SEQ   = Boost PP sequence data type.
 
 I have used names in order to mimic the naming of Boost PP 
-as closely as possible. 
+as closely as possible. The words 'tuple', 'array', 'list',
+and 'seq' refer to these Boost PP data types unless otherwise
+noted. See the help for Boost PP for any explanation of these
+data types.
 
 [endsect]

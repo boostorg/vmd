@@ -4,6 +4,6 @@ There are macros which add low-level preprocessor functionality related to Boost
 through the use of variadic macros. These can be divided into two groups:
 
 * BOOST_VMD_EMPTY = Testing for empty input
-* BOOST_VMD_IS_BEGIN_PARENS and BOOST_VMD_REMOVE_PARENS = Handling parenthensis
+* BOOST_VMD_IS_BEGIN_TUPLE and BOOST_VMD_REMOVE_PARENS = Handling parenthensis
 
 [endsect]

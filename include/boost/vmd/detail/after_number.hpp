@@ -18,7 +18,7 @@
 #include <boost/vmd/assert_is_seq.hpp>
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/gen_zero.hpp>
-#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/after_identifier_from_number.hpp>
 #include <boost/vmd/detail/after_number_common.hpp>
@@ -169,7 +169,7 @@
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENTIFIER(...) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_PARENS \
+		BOOST_VMD_IS_BEGIN_TUPLE \
 			( \
 			BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__) \
 			), \
@@ -302,7 +302,7 @@
 #define BOOST_VMD_DETAIL_AFTER_NUMBER_CHECK_IDENT_IDENTIFIER(...) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_PARENS \
+		BOOST_VMD_IS_BEGIN_TUPLE \
 			( \
 			BOOST_PP_VARIADIC_ELEM(2,__VA_ARGS__) \
 			), \

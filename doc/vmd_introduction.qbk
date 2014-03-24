@@ -1,18 +1,17 @@
 [section:vmd_intro Introduction]
 
-Welcome to version 1.6 of the Variadic Macro Data library.
+Welcome to version 1.7 of the Variadic Macro Data library.
 
-The Variadic Macro Data library, or VMD for short, is a library 
-of variadic macros which enhance the functionality in
-the Boost preprocessor library ( Boost PP ). The library
-may also be seen as a repository for future enhancements to
-the Boost PP library functionality using variadic macros.
+The Variadic Macro Data library, referred to hereafter as VMD for 
+short, is a library of variadic macros which provide enhancements 
+to the functionality in the Boost preprocessor library ( Boost PP ). 
 
 The functionality of the library may be summed up as:
 
-# Provide a better way of testing for empty parameters.
-# Provide ways for testing for parens and for removing parens.
-# Provide support for verifying Boost PP data types.
+# Provide a better way of testing for empty parameters and empty preprocessor data.
+# Provide ways for testing/parsing for parens, numbers, and identifiers.
+# Provide support for testing/verifying Boost PP data types.
+# Provide some useful variadic macros not in Boost PP.
    
 The library is a header only library and all macros in the 
 library are included by a single header, whose name is 'vmd.hpp'.
@@ -21,8 +20,11 @@ in the library and will be denoted when that functionality is
 explained.
 
 All the macros in the library begin with the sequence 'BOOST_VMD_'
-to distinguish them from other macros the end-user might use.
+to distinguish them from other macros the end-user might use. Therefore
+the end-user should not use any C++ identifiers, whether in macros or
+otherwise, which being with the sequence 'BOOST_VMD_'.
 
-The library is dependent on Boost PP.
+Use of the library is only dependent on Boost PP. The library also 
+uses Boost detail lightweight_test.hpp for its own test.
 
 [endsect]

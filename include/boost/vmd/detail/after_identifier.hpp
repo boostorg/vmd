@@ -19,7 +19,7 @@
 #include <boost/vmd/gen_empty.hpp>
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/gen_zero.hpp>
-#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_number.hpp>
 #include <boost/vmd/detail/after_identifier_common.hpp>
@@ -42,7 +42,7 @@
 		BOOST_PP_BITOR \
 			( \
 			BOOST_VMD_IS_EMPTY(extra), \
-			BOOST_VMD_IS_BEGIN_PARENS(extra) \
+			BOOST_VMD_IS_BEGIN_TUPLE(extra) \
 			), \
 		BOOST_VMD_GEN_ONE, \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER_AMT \
@@ -135,7 +135,7 @@
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID(d,state) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_PARENS(BOOST_PP_TUPLE_ELEM(4,state)), \
+		BOOST_VMD_IS_BEGIN_TUPLE(BOOST_PP_TUPLE_ELEM(4,state)), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CHECK_MAX, \
 		BOOST_VMD_GEN_ZERO \
 		) \

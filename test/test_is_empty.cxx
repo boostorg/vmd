@@ -38,7 +38,7 @@ int main()
   BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN));  /* This produces the wrong result */
   BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN2)); /* This produces the wrong result */
   
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN5));  /* This should produce a compiler error but does not */
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(FUNC_GEN5));  /* This should produce a compiler error but does not and produces the incorrect result */
   BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN6)); /* This should produce a compiler error but does not */
 
 #else

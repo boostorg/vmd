@@ -1,6 +1,6 @@
 [library The Variadic Macro Data Library
     [quickbook 1.5]
-    [version 1.6]
+    [version 1.7]
     [id variadic_macro_data]
     [dirname vmd]
     [copyright 2010-2013 Tropic Software East Inc]
@@ -17,6 +17,7 @@
 [include vmd_detail.qbk]
 [include vmd_low_level.qbk]
 [include vmd_empty.qbk]
+[include vmd_constraints.qbk]
 [include vmd_parens.qbk]
 [include vmd_data_type.qbk]
 [include vmd_internal.qbk]

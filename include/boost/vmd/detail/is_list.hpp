@@ -12,7 +12,7 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE(x) \
@@ -38,7 +38,7 @@
 #define BOOST_VMD_DETAIL_IS_LIST_PRED(d,state) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_PARENS(state), \
+      BOOST_VMD_IS_BEGIN_TUPLE(state), \
       BOOST_VMD_GEN_ONE, \
       BOOST_VMD_DETAIL_IS_LIST_NOT_BOOST_PP_NIL \
       ) \
@@ -48,7 +48,7 @@
 #define BOOST_VMD_DETAIL_IS_LIST_OP(d,state) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_PARENS(state), \
+      BOOST_VMD_IS_BEGIN_TUPLE(state), \
       BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE, \
       BOOST_VMD_DETAIL_IS_LIST_PROCESS_IF_BOOST_PP_NIL \
       ) \

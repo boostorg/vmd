@@ -1,14 +1,16 @@
 [section:vmd_detail Functional groups]
 
-The macros in VMD can best be explained as falling into three groups.
-These are:
+The particular constructs for which VMD has advanced functionality 
+can be divided into these categories:
 
-# Macros which add low-level preprocessor functionality.
-# Macros which verify a Boost PP data type.
-# Macros which control internal variadic data functionality.
+# Emptiness
+# Parenthesis
+# Identifier
+# Number
+# Token sequences
+# Boost PP data types
+# Additional variadic macros
 
-A further general explanation of each of these groups follow, while 
-a specific explanation for each macro can be found in the reference 
-section.
+A further general explanation of each of these categories follow.
 
 [endsect]

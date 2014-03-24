@@ -1,5 +1,7 @@
 [section:vmd_history History]
 
+[heading Version 1.7]
+
 [heading Version 1.6]
 
 * Stripped off all functionality duplicated by the variadic macro functionality added to Boost PP.

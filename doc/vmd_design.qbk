@@ -37,7 +37,7 @@ substandard and therefore very difficult to get to work correctly when
 variadic macros must be used.
 
 Nonetheless I would like to keep this library as an adjunct to the 
-functionlity in Boost PP for using variadic macros. I believe that 
+functionality in Boost PP for using variadic macros. I believe that 
 others may jhave implemented their own expanded functionality using 
 variadic macros which may further be added to the library in the future.
 

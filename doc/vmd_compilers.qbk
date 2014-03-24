@@ -7,7 +7,7 @@ Other compilers which currently should work with this
 library are gcc on Linux and clang. Other compilers which may work with this 
 library are Digital Mars C++, and Borland C++ Builder 6/Codegear C++.
 
-For VC++ 8.0 the BOOST_VMD_IS_BEGIN_PARENS and BOOST_VMD_IS_EMPTY macros
+For VC++ 8.0 the BOOST_VMD_IS_BEGIN_TUPLE and BOOST_VMD_IS_EMPTY macros
 take a single parameter rather than variadic data because this 
 version of VC++ does not accept variadic data which may be empty.
 

@@ -17,7 +17,7 @@
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/assert_is_tuple.hpp>
 #include <boost/vmd/gen_empty.hpp>
-#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_empty_tuple.hpp>
 #include <boost/vmd/detail/paren_or_empty.hpp>
@@ -109,7 +109,7 @@
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_TUPLE(keys) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_PARENS(keys), \
+		BOOST_VMD_IS_BEGIN_TUPLE(keys), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FIRST_ARG, \
 		BOOST_PP_VARIADIC_TO_TUPLE \
 		) \

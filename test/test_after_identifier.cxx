@@ -2,7 +2,7 @@
 #include <boost/vmd/vmd.hpp>
 #else
 #include <boost/vmd/after_identifier.hpp>
-#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
@@ -28,7 +28,7 @@ int main()
 
   BOOST_TEST
   	(
-  	BOOST_VMD_IS_BEGIN_PARENS
+  	BOOST_VMD_IS_BEGIN_TUPLE
   		(
 		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),VMD_TEST_0_)
   		)
@@ -44,7 +44,7 @@ int main()
   
   BOOST_TEST
   	(
-  	BOOST_VMD_IS_BEGIN_PARENS
+  	BOOST_VMD_IS_BEGIN_TUPLE
   		(
   		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),VMD_TEST_2_)
   		)

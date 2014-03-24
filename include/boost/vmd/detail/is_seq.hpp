@@ -10,12 +10,12 @@
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/parens.hpp>
+#include <boost/vmd/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_SEQ_STATE_INIT(seq) \
 	BOOST_PP_TUPLE_PUSH_BACK \
 		( \
-		BOOST_VMD_PARENS(seq), \
+		BOOST_VMD_TUPLE(seq), \
 		BOOST_VMD_IS_SEQ_CONTINUE \
 		) \
 /**/
@@ -79,7 +79,7 @@
 #define BOOST_VMD_DETAIL_IS_SEQ_STATE_OP_SET_CONTINUE(d,state) \
 	BOOST_PP_TUPLE_PUSH_BACK \
 		( \
-		BOOST_VMD_PARENS \
+		BOOST_VMD_TUPLE \
 			( \
 			BOOST_PP_TUPLE_ELEM(1,state) \
 			), \

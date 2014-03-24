@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/parens.hpp>
+#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 
 /*
@@ -35,7 +35,7 @@
 #define BOOST_VMD_IS_TUPLE(param) \
 	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
-		BOOST_VMD_PARENS(param) \
+		BOOST_VMD_TUPLE(param) \
 		) \
 /**/
 

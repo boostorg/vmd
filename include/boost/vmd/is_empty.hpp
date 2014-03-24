@@ -6,7 +6,7 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/vmd/gen_zero.hpp>
-#include <boost/vmd/is_begin_parens.hpp>
+#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/detail/is_empty.hpp>
 
 /*
@@ -54,7 +54,7 @@
 #define BOOST_VMD_IS_EMPTY(param) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_PARENS \
+      BOOST_VMD_IS_BEGIN_TUPLE \
         ( \
         param \
         ) \
@@ -71,7 +71,7 @@
 #define BOOST_VMD_IS_EMPTY(...) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_PARENS \
+      BOOST_VMD_IS_BEGIN_TUPLE \
         ( \
         __VA_ARGS__ \
         ) \
