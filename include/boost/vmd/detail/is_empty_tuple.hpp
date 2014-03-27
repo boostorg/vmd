@@ -7,7 +7,6 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/is_tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_CEM(tuple) \
 	BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)) \
@@ -18,16 +17,6 @@
 		( \
 		BOOST_PP_EQUAL(BOOST_PP_TUPLE_SIZE(tuple),1), \
 		BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_CEM, \
-		BOOST_VMD_GEN_ZERO \
-		) \
-	(tuple) \
-/**/
-
-#define BOOST_VMD_DETAIL_IS_EMPTY_TUPLE(tuple) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_TUPLE(tuple), \
-		BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE, \
 		BOOST_VMD_GEN_ZERO \
 		) \
 	(tuple) \

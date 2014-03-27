@@ -21,16 +21,6 @@
 	(array) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_ARRAY(array) \
-    BOOST_PP_IIF \
-      ( \
-      BOOST_VMD_IS_TUPLE(array), \
-      BOOST_VMD_DETAIL_IS_ARRAY_CHECK_TUPLE_SIZE, \
-      BOOST_VMD_GEN_ZERO \
-      ) \
-    (array) \
-/**/
-
 /*
 
   Check if the first element of the tuple is equal to the number of tuple elements of the second element

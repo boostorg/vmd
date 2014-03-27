@@ -5,6 +5,9 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/facilities/identity.hpp>
+#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/detail/remove_parens.hpp>
 
 /*
@@ -28,7 +31,13 @@
     
 */
 #define BOOST_VMD_REMOVE_PARENS(param) \
-	BOOST_VMD_DETAIL_REMOVE_PARENS(param) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_VMD_IS_BEGIN_TUPLE(param), \
+      BOOST_VMD_DETAIL_REMOVE_PARENS_EXEC, \
+      BOOST_PP_IDENTITY \
+      ) \
+    (param)() \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

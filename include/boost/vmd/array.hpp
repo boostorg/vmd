@@ -5,6 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/array.hpp>
 
 /*
@@ -27,7 +28,10 @@
     
 */
 #define BOOST_VMD_ARRAY(param) \
-	BOOST_VMD_DETAIL_ARRAY(param) \
+	BOOST_VMD_DETAIL_ARRAY_CHECK_RETURN \
+		( \
+		BOOST_VMD_TUPLE(param) \
+		) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

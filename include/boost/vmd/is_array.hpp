@@ -29,10 +29,19 @@
     
 */
 
+#include <boost/preprocessor/control/iif.hpp>
+#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/detail/is_array.hpp>
 
 #define BOOST_VMD_IS_ARRAY(array) \
-	BOOST_VMD_DETAIL_IS_ARRAY(array) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_VMD_IS_TUPLE(array), \
+      BOOST_VMD_DETAIL_IS_ARRAY_CHECK_TUPLE_SIZE, \
+      BOOST_VMD_GEN_ZERO \
+      ) \
+    (array) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

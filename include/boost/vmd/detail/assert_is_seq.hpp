@@ -2,7 +2,6 @@
 #define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_HPP
 
 #include <boost/preprocessor/debug/assert.hpp>
-#include <boost/vmd/is_seq.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -35,19 +34,5 @@
 /**/
 
 #endif
-
-#define BOOST_VMD_DETAIL_ASSERT_IS_SEQ(seq) \
-    BOOST_VMD_DETAIL_ASSERT_IS_SEQ_STATE_CHECK_RETURN_FAILURE \
-      ( \
-      BOOST_VMD_IS_SEQ(seq) \
-      ) \
-/**/
-
-#define BOOST_VMD_DETAIL_ASSERT_IS_SEQ_D(d,seq) \
-    BOOST_VMD_DETAIL_ASSERT_IS_SEQ_STATE_CHECK_RETURN_FAILURE \
-      ( \
-      BOOST_VMD_IS_SEQ(seq) \
-      ) \
-/**/
 
 #endif /* BOOST_VMD_DETAIL_ASSERT_IS_SEQ_HPP */

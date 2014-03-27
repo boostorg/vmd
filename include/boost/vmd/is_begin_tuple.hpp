@@ -42,15 +42,32 @@
 #if BOOST_VMD_MSVC_V8
 
 #define BOOST_VMD_IS_BEGIN_TUPLE(param) \
-	BOOST_VMD_DETAIL_IS_BEGIN_TUPLE(param) \
+    BOOST_VMD_DETAIL_IS_BEGIN_TUPLE_SPLIT \
+      ( \
+      0, \
+      BOOST_VMD_DETAIL_IS_BEGIN_TUPLE_CAT \
+        ( \
+        BOOST_VMD_DETAIL_IS_BEGIN_TUPLE_IS_VARIADIC_R_, \
+        BOOST_VMD_DETAIL_IS_BEGIN_TUPLE_IS_VARIADIC_C param \
+        ) \
+      ) \
 /**/
 
 #else
 
 #define BOOST_VMD_IS_BEGIN_TUPLE(...) \
-	BOOST_VMD_DETAIL_IS_BEGIN_TUPLE(__VA_ARGS__) \
+    BOOST_VMD_DETAIL_IS_BEGIN_TUPLE_SPLIT \
+      ( \
+      0, \
+      BOOST_VMD_DETAIL_IS_BEGIN_TUPLE_CAT \
+        ( \
+        BOOST_VMD_DETAIL_IS_BEGIN_TUPLE_IS_VARIADIC_R_, \
+        BOOST_VMD_DETAIL_IS_BEGIN_TUPLE_IS_VARIADIC_C __VA_ARGS__ \
+        ) \
+      ) \
 /**/
 
 #endif /* BOOST_VMD_MSVC_V8 */
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_IS_BEGIN_TUPLE_HPP */

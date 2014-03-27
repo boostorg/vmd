@@ -2,7 +2,6 @@
 #define BOOST_VMD_DETAIL_ASSERT_IS_LIST_HPP
 
 #include <boost/preprocessor/debug/assert.hpp>
-#include <boost/vmd/is_list.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -38,12 +37,5 @@
 /**/
 
 #endif /* BOOST_VMD_MSVC */
-
-#define BOOST_VMD_DETAIL_ASSERT_IS_LIST(list) \
-    BOOST_VMD_DETAIL_ASSERT_IS_LIST_CHECK_RETURN_FAILURE \
-      ( \
-      BOOST_VMD_IS_LIST(list) \
-      ) \
-/**/
 
 #endif /* BOOST_VMD_DETAIL_ASSERT_IS_LIST_HPP */

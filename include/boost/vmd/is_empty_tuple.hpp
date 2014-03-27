@@ -5,6 +5,9 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/preprocessor/control/iif.hpp>
+#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/detail/is_empty_tuple.hpp>
 
 /*
@@ -32,7 +35,13 @@
 */
 
 #define BOOST_VMD_IS_EMPTY_TUPLE(param) \
-	BOOST_VMD_DETAIL_IS_EMPTY_TUPLE(param) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_TUPLE(param), \
+		BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE, \
+		BOOST_VMD_GEN_ZERO \
+		) \
+	(param) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

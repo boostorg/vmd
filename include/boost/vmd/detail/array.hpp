@@ -6,7 +6,6 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/is_array.hpp>
-#include <boost/vmd/detail/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_ARRAY_SUCCESS(tuple) tuple
 
@@ -42,13 +41,6 @@
 		BOOST_VMD_DETAIL_ARRAY_CHECK_FOR_ARRAY \
 		) \
 	(tuple) \
-/**/
-
-#define BOOST_VMD_DETAIL_ARRAY(array) \
-	BOOST_VMD_DETAIL_ARRAY_CHECK_RETURN \
-		( \
-		BOOST_VMD_DETAIL_TUPLE(array) \
-		) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_ARRAY_HPP */
