@@ -52,31 +52,12 @@
 
 #else
 
-#include <boost/vmd/is_tuple.hpp>
-
-#if BOOST_VMD_MSVC
-
 #include <boost/vmd/detail/assert_is_tuple.hpp>
 
 #define BOOST_VMD_ASSERT_IS_TUPLE(tuple) \
-   BOOST_VMD_DETAIL_ASSERT_IS_TUPLE_VC_CHECK_RETURN_FAILURE \
-     ( \
-     BOOST_VMD_IS_TUPLE(tuple) \
-     ) \
+	BOOST_VMD_DETAIL_ASSERT_IS_TUPLE(tuple) \
 /**/
 
-#else
-
-#include <boost/preprocessor/debug/assert.hpp>
-
-#define BOOST_VMD_ASSERT_IS_TUPLE(tuple) \
-   BOOST_PP_ASSERT \
-     ( \
-     BOOST_VMD_IS_TUPLE(tuple) \
-     ) \
-/**/
-
-#endif /* BOOST_VMD_MSVC */
 #endif /* BOOST_VMD_ASSERT_DATA */
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_ASSERT_IS_TUPLE_HPP */

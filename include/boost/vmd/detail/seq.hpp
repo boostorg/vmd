@@ -1,0 +1,7 @@
+#if !defined(BOOST_VMD_DETAIL_SEQ_HPP)
+#define BOOST_VMD_DETAIL_SEQ_HPP
+
+#define BOOST_VMD_DETAIL_SEQ(seq)
+/**/
+
+#endif /* BOOST_VMD_DETAIL_SEQ_HPP */

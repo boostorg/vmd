@@ -43,15 +43,6 @@
               For all other compilers a compiler error is forced 
               without producing output if the parameter is not a 
               pplib array.
-              
-     There is no completely fool-proof way to check if a 
-     parameter is empty without possible producing a compiler 
-     error if it is not. Because a macro checking if a parameter 
-     is a pplib array needs to perform such a check, the best 
-     that one can do is to create a compiler error if a parameter 
-     is not a pplib array rather than having a macro which 
-     returns 1 or 0, depending on whether a parameter is a pplib 
-     array.
     
 */
 
@@ -61,31 +52,12 @@
 
 #else
 
-#include <boost/vmd/is_array.hpp>
-
-#if BOOST_VMD_MSVC
-
 #include <boost/vmd/detail/assert_is_array.hpp>
 
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
-    BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_VC_CHECK_RETURN_FAILURE \
-    	( \
-    	BOOST_VMD_IS_ARRAY(array) \
-    	) \
+    BOOST_VMD_DETAIL_ASSERT_IS_ARRAY(array) \
 /**/
 
-#else
-
-#include <boost/preprocessor/debug/assert.hpp>
-
-#define BOOST_VMD_ASSERT_IS_ARRAY(array) \
-    BOOST_PP_ASSERT \
-      	( \
-      	BOOST_VMD_IS_ARRAY(array) \
-      	) \
-/**/
-
-#endif /* BOOST_VMD_MSVC */
 #endif /* !BOOST_VMD_ASSERT_DATA */
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_ASSERT_IS_ARRAY_HPP */

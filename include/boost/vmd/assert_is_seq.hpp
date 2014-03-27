@@ -53,21 +53,14 @@
 
 #else
 
-#include <boost/vmd/is_seq.hpp>
 #include <boost/vmd/detail/assert_is_seq.hpp>
 
 #define BOOST_VMD_ASSERT_IS_SEQ(seq) \
-    BOOST_VMD_DETAIL_ASSERT_IS_SEQ_STATE_CHECK_RETURN_FAILURE \
-      ( \
-      BOOST_VMD_IS_SEQ(seq) \
-      ) \
+	BOOST_VMD_DETAIL_ASSERT_IS_SEQ(seq) \
 /**/
 
 #define BOOST_VMD_ASSERT_IS_SEQ_D(d,seq) \
-    BOOST_VMD_DETAIL_ASSERT_IS_SEQ_STATE_CHECK_RETURN_FAILURE \
-      ( \
-      BOOST_VMD_IS_SEQ(seq) \
-      ) \
+	BOOST_VMD_DETAIL_ASSERT_IS_SEQ_D(d,seq) \
 /**/
 
 #endif /* BOOST_VMD_ASSERT_DATA */

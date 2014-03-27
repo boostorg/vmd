@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
-#include <boost/vmd/detail/after_tuple.hpp>
+#include <boost/vmd/detail/tuple.hpp>
 
 /*
 

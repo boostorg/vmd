@@ -1,0 +1,7 @@
+#if !defined(BOOST_VMD_DETAIL_LIST_HPP)
+#define BOOST_VMD_DETAIL_LIST_HPP
+
+#define BOOST_VMD_DETAIL_LIST(list) \
+/**/
+
+#endif /* BOOST_VMD_DETAIL_LIST_HPP */
