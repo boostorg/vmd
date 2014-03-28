@@ -5,9 +5,8 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/control/iif.hpp>
-#include <boost/vmd/is_begin_tuple.hpp>
-#include <boost/vmd/detail/tuple.hpp>
+#include <boost/preprocessor/control/while.hpp>
+#include <boost/vmd/detail/seq.hpp>
 
 /*
 
@@ -28,14 +27,29 @@
    				and the second element is the preprocessor tokens after the beginning sequence.
     
 */
-# define BOOST_VMD_SEQUENCE(param) \
-    BOOST_PP_IIF \
+
+#define BOOST_VMD_SEQ(seq) \
+    BOOST_VMD_DETAIL_SEQ_STATE_RESULT \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(param), \
-      BOOST_VMD_DETAIL_AFTER_TUPLE, \
-      BOOST_VMD_DETAIL_AFTER_TUPLE_NOT_FOUND \
+      BOOST_PP_WHILE \
+        ( \
+        BOOST_VMD_DETAIL_SEQ_STATE_PRED, \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP, \
+        BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
+        ) \
       ) \
-    (param) \
+/**/
+
+#define BOOST_VMD_SEQ_D(d,seq) \
+    BOOST_VMD_DETAIL_SEQ_STATE_RESULT \
+      ( \
+      BOOST_PP_WHILE_ ## d \
+        ( \
+        BOOST_VMD_DETAIL_SEQ_STATE_PRED, \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP, \
+        BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
+        ) \
+      ) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
