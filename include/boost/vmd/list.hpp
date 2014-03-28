@@ -5,9 +5,8 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/control/iif.hpp>
-#include <boost/vmd/is_begin_tuple.hpp>
-#include <boost/vmd/detail/tuple.hpp>
+#include <boost/vmd/tuple.hpp>
+#include <boost/vmd/detail/list.hpp>
 
 /*
 
@@ -29,13 +28,10 @@
     
 */
 # define BOOST_VMD_LIST(param) \
-    BOOST_PP_IIF \
-      ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(param), \
-      BOOST_VMD_DETAIL_AFTER_TUPLE, \
-      BOOST_VMD_DETAIL_AFTER_TUPLE_NOT_FOUND \
-      ) \
-    (param) \
+	BOOST_VMD_DETAIL_LIST_CHECK_RETURN \
+		( \
+		BOOST_VMD_TUPLE(param) \
+		) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
