@@ -8,6 +8,7 @@
 #include <boost/vmd/after_identifier.hpp>
 #include <boost/vmd/after_number.hpp>
 #include <boost/vmd/after_tuple.hpp>
+#include <boost/vmd/array.hpp>
 #include <boost/vmd/assert_is_array.hpp>
 #include <boost/vmd/assert_is_list.hpp>
 #include <boost/vmd/assert_is_seq.hpp>
@@ -30,8 +31,10 @@
 #include <boost/vmd/is_number.hpp>
 #include <boost/vmd/is_seq.hpp>
 #include <boost/vmd/is_tuple.hpp>
+#include <boost/vmd/list.hpp>
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/remove_parens.hpp>
+#include <boost/vmd/seq.hpp>
 #include <boost/vmd/tuple.hpp>
 
 #endif /* BOOST_PP_VARIADICS */
