@@ -1,31 +1,62 @@
 #if !defined(BOOST_VMD_DETAIL_ASSERT_HPP)
 #define BOOST_VMD_DETAIL_ASSERT_HPP
 
+#include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/if.hpp>
+#include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/debug/assert.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
+#include <boost/preprocessor/variadic/elem.hpp>
+#include <boost/preprocessor/variadic/size.hpp>
+#include <boost/vmd/gen_empty.hpp>
 
 #if BOOST_VMD_MSVC
 
-#define BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_OUTPUT() \
-    typedef char BOOST_VMD_ASSERT_ERROR[-1]; \
+#define BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_OUTPUT(errstr) \
+	BOOST_PP_ASSERT(0) \
+    typedef char errstr[-1]; \
 /**/
 
-#define BOOST_VMD_DETAIL_ASSERT(cond) \
-	BOOST_PP_ASSERT(cond) \
+#define BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_DEFAULT(...) \
+	BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_OUTPUT(BOOST_VMD_ASSERT_ERROR) \
+/**/
+
+#define BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_ERRSTR(...) \
+	BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_OUTPUT(BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_ASSERT_TRUE(...) \
+    BOOST_PP_IIF \
+    	( \
+    	BOOST_PP_EQUAL \
+    		( \
+    		BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
+    		1 \
+    		), \
+    	BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_DEFAULT, \
+    	BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_ERRSTR \
+    	) \
+    (__VA_ARGS__) \
+/**/
+
+#define BOOST_VMD_DETAIL_ASSERT(...) \
     BOOST_PP_IF \
       ( \
-      x, \
-      BOOST_PP_EMPTY, \
-      BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_OUTPUT \
+      BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__), \
+      BOOST_VMD_GEN_EMPTY, \
+      BOOST_VMD_DETAIL_ASSERT_TRUE \
       ) \
-    () \
+    (__VA_ARGS__) \
 /**/
 
 #else
 
-#define BOOST_VMD_DETAIL_ASSERT(cond) \
+#define BOOST_VMD_DETAIL_ASSERT_DO(cond) \
 	BOOST_PP_ASSERT(cond) \
+/**/
+
+#define BOOST_VMD_DETAIL_ASSERT(...) \
+	BOOST_VMD_DETAIL_ASSERT_DO(BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
 /**/
 
 #endif

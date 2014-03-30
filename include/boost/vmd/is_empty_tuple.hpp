@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/vmd/gen_zero.hpp>
-#include <boost/vmd/is_tuple.hpp>
+#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/is_empty_tuple.hpp>
 
 /*

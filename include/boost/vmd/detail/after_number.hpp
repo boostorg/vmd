@@ -15,7 +15,7 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
-#include <boost/vmd/assert_is_seq.hpp>
+#include <boost/vmd/seq.hpp>
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>

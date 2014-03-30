@@ -54,7 +54,7 @@ if the result of one of the assert macros were embedded in another macro, and th
 embedded macro just ignores any "output" from VC++ when the assert macro fails. 
 An admittedly artifical example using VC++ might be:
 
- #include <boost/vmd/assert_is_tuple.hpp>
+ #include <boost/vmd/tuple.hpp>
 
  #define IGNORE_TUPLE_CHECK(vcoutput) 
  #define USE_TUPLE(atuple) IGNORE_TUPLE_CHECK(BOOST_VMD_ASSERT_TUPLE(atuple)) PROCESS_TUPLE(atuple)
@@ -68,9 +68,9 @@ Individual header files can be used for each of the assert macros
 instead of including the general header file 'vmd.hpp'. The individual
 header files are:
 
-* 'assert_is_array.hpp' for the BOOST_VMD_ASSERT_IS_ARRAY macro
-* 'assert_is_list.hpp' for the BOOST_VMD_ASSERT_IS_LIST macro
-* 'assert_is_seq.hpp' for the BOOST_VMD_ASSERT_IS_SEQ macro
-* 'assert_is_tuple.hpp' for the BOOST_VMD_ASSERT_IS_TUPLE macro.
+* 'array.hpp' for the BOOST_VMD_ASSERT_IS_ARRAY macro
+* 'list.hpp' for the BOOST_VMD_ASSERT_IS_LIST macro
+* 'seq.hpp' for the BOOST_VMD_ASSERT_IS_SEQ macro
+* 'tuple.hpp' for the BOOST_VMD_ASSERT_IS_TUPLE macro.
 
 [endsect]

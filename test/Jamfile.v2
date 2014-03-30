@@ -43,6 +43,7 @@ test-suite variadic_macro_data
        [ run test_after_number.cpp ]
        [ run test_after_tuple.cpp ]
        [ run test_array.cpp ]
+       [ compile test_assert.cpp ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ compile-fail test_assert_is_tuple_fail.cpp :
@@ -139,6 +140,9 @@ test-suite variadic_macro_data_gh
        [ run test_array.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_array_gh ]
+       [ compile test_assert.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_gh ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 

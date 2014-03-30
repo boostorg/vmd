@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/after_identifier.hpp>
+#include <boost/vmd/identifier.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #endif

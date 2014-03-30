@@ -5,11 +5,13 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
+#include <boost/preprocessor/logical/bitand.hpp>
+#include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/is_tuple.hpp>
+#include <boost/vmd/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_TUPLE_SIZE(array) \
   	BOOST_PP_IIF \

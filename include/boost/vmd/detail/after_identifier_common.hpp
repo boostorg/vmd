@@ -15,11 +15,11 @@
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
-#include <boost/vmd/assert_is_tuple.hpp>
 #include <boost/vmd/gen_empty.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_empty_tuple.hpp>
+#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/paren_or_empty.hpp>
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_HAS_KEYS(keys) \

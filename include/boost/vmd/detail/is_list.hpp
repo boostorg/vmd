@@ -4,6 +4,7 @@
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/debug/assert.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
@@ -13,7 +14,7 @@
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
-#include <boost/vmd/is_tuple.hpp>
+#include <boost/vmd/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE(x) \
     BOOST_PP_IIF \
@@ -110,6 +111,18 @@
     	( \
         BOOST_VMD_DETAIL_IS_LIST_IS_FAILURE(x) \
         ) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST(list) \
+    BOOST_VMD_DETAIL_IS_LIST_RESULT \
+      ( \
+      BOOST_PP_WHILE \
+        ( \
+        BOOST_VMD_DETAIL_IS_LIST_PRED, \
+        BOOST_VMD_DETAIL_IS_LIST_OP, \
+        list \
+        ) \
+      ) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_IS_LIST_HPP */

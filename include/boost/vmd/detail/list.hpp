@@ -5,14 +5,14 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
-#include <boost/vmd/is_list.hpp>
+#include <boost/vmd/detail/is_list.hpp>
 
 #define BOOST_VMD_DETAIL_LIST_SUCCESS(tuple) tuple
 
 #define BOOST_VMD_DETAIL_LIST_CHECK_FOR_LIST(tuple) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_LIST \
+		BOOST_VMD_DETAIL_IS_LIST \
 			( \
 			BOOST_PP_TUPLE_ELEM \
 				( \
