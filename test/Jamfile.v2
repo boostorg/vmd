@@ -1,6 +1,6 @@
 # VariadicMacroData testing Jamfile
 #
-# Copyright (c) 2010-2013
+# Copyright (c) 2010-2014
 # Edward Diener
 #
 
@@ -39,11 +39,26 @@ project variadic_macro_data_tests : requirements <warnings>on
 
 test-suite variadic_macro_data
     : 
+       [ run test_after_array.cpp ]
        [ run test_after_identifier.cpp ]
+       [ run test_after_list.cpp ]
        [ run test_after_number.cpp ]
+       [ run test_after_seq.cpp ]
        [ run test_after_tuple.cpp ]
        [ run test_array.cpp ]
        [ compile test_assert.cpp ]
+       [ compile-fail test_assert_fail.cpp ]
+       [ compile-fail test_assert_fail_array.cpp ]
+       [ compile-fail test_assert_fail_identifier.cpp ]
+       [ compile-fail test_assert_fail_is_empty.cpp ]
+       [ compile-fail test_assert_fail_is_empty_tuple.cpp ]
+       [ compile-fail test_assert_fail_is_identifier.cpp ]
+       [ compile-fail test_assert_fail_is_number.cpp ]
+       [ compile-fail test_assert_fail_list.cpp ]
+       [ compile-fail test_assert_fail_number.cpp ]
+       [ compile-fail test_assert_fail_seq.cpp ]
+       [ compile-fail test_assert_fail_tuple.cpp ]
+       [ compile-fail test_assert_fail_vcstring.cpp ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ compile-fail test_assert_is_tuple_fail.cpp :
@@ -128,12 +143,21 @@ test-suite variadic_macro_data
 
 test-suite variadic_macro_data_gh
    : 
+       [ run test_after_array.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_array_gh ]
        [ run test_after_identifier.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_identifier_gh ]
+       [ run test_after_list.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_list_gh ]
        [ run test_after_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_number_gh ]
+       [ run test_after_seq.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_seq_gh ]
        [ run test_after_tuple.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_tuple_gh ]
@@ -143,6 +167,42 @@ test-suite variadic_macro_data_gh
        [ compile test_assert.cpp :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_assert_gh ]
+       [ compile-fail test_assert_fail.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_gh ]
+       [ compile-fail test_assert_fail_array.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_array_gh ]
+       [ compile-fail test_assert_fail_identifier.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_identifier_gh ]
+       [ compile-fail test_assert_fail_is_empty.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_is_empty_gh ]
+       [ compile-fail test_assert_fail_is_empty_tuple.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_is_empty_tuple_gh ]
+       [ compile-fail test_assert_fail_is_identifier.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_is_identifier_gh ]
+       [ compile-fail test_assert_fail_is_number.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_is_number_gh ]
+       [ compile-fail test_assert_fail_list.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_list_gh ]
+       [ compile-fail test_assert_fail_number.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_number_gh ]
+       [ compile-fail test_assert_fail_seq.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_seq_gh ]
+       [ compile-fail test_assert_fail_tuple.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_tuple_gh ]
+       [ compile-fail test_assert_fail_vcstring.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_fail_vcstring_gh ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
