@@ -148,29 +148,15 @@
 
 #else
 
-#if BOOST_VMD_MSVC
-
-#include <boost/vmd/detail/assert_is_array.hpp>
+#include <boost/vmd/assert.hpp>
 
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
-    BOOST_VMD_DETAIL_ASSERT_IS_ARRAY_VC_CHECK_RETURN_FAILURE \
-    	( \
-    	BOOST_VMD_IS_ARRAY(array) \
-    	) \
-/**/
-
-#else
-
-#include <boost/preprocessor/debug/assert.hpp>
-
-#define BOOST_VMD_ASSERT_IS_ARRAY(array) \
-    BOOST_PP_ASSERT \
+    BOOST_VMD_ASSERT \
       	( \
-      	BOOST_VMD_IS_ARRAY(array) \
+      	BOOST_VMD_IS_ARRAY(array), \
+      	BOOST_VMD_IS_ARRAY_ASSERT_ERROR \
       	) \
 /**/
-
-#endif
 
 #endif /* !BOOST_VMD_ASSERT_DATA */
 

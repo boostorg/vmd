@@ -145,12 +145,13 @@
 
 #else
 
-#include <boost/vmd/detail/assert_is_list.hpp>
+#include <boost/vmd/assert.hpp>
 
 #define BOOST_VMD_ASSERT_IS_LIST(list) \
-    BOOST_VMD_DETAIL_ASSERT_IS_LIST_CHECK_RETURN_FAILURE \
+    BOOST_VMD_ASSERT \
       ( \
-      BOOST_VMD_IS_LIST(list) \
+      BOOST_VMD_IS_LIST(list), \
+      BOOST_VMD_ASSERT_IS_LIST_ERROR \
       ) \
 /**/
 
