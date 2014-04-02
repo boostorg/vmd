@@ -26,6 +26,24 @@
 	(tuple)	\
 /**/
 
+#define BOOST_VMD_DETAIL_LIST_CHECK_FOR_LIST_D(d,tuple) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_IS_LIST_D \
+			( \
+			d, \
+			BOOST_PP_TUPLE_ELEM \
+				( \
+				0, \
+				tuple \
+				) \
+			), \
+		BOOST_VMD_DETAIL_LIST_SUCCESS, \
+		BOOST_VMD_DETAIL_EMPTY_RESULT \
+		) \
+	(tuple)	\
+/**/
+
 #define BOOST_VMD_DETAIL_LIST_CHECK_RETURN(tuple) \
 	BOOST_PP_IIF \
 		( \
@@ -41,6 +59,23 @@
 		BOOST_VMD_DETAIL_LIST_CHECK_FOR_LIST \
 		) \
 	(tuple) \
+/**/
+
+#define BOOST_VMD_DETAIL_LIST_CHECK_RETURN_D(d,tuple) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY \
+			( \
+			BOOST_PP_TUPLE_ELEM \
+				( \
+				0, \
+				tuple \
+				) \
+			), \
+		BOOST_VMD_DETAIL_EMPTY_RESULT, \
+		BOOST_VMD_DETAIL_LIST_CHECK_FOR_LIST_D \
+		) \
+	(d,tuple) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_LIST_HPP */

@@ -125,4 +125,16 @@
       ) \
 /**/
 
+#define BOOST_VMD_DETAIL_IS_LIST_D(d,list) \
+    BOOST_VMD_DETAIL_IS_LIST_RESULT \
+      ( \
+      BOOST_PP_WHILE_ ## d \
+        ( \
+        BOOST_VMD_DETAIL_IS_LIST_PRED, \
+        BOOST_VMD_DETAIL_IS_LIST_OP, \
+        list \
+        ) \
+      ) \
+/**/
+
 #endif /* BOOST_VMD_DETAIL_IS_LIST_HPP */

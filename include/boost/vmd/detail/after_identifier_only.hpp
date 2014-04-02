@@ -49,6 +49,24 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_ONLY_D(d,parameter,keys) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		3, \
+		BOOST_PP_WHILE_ ## d \
+			( \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_PRED, \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_ONLY_OP, \
+				( \
+				parameter, \
+				BOOST_VMD_DETAIL_AFTER_IDENTIFIER_TUPLE(keys), \
+				0, \
+				(0,) \
+				) \
+			) \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_IDENTIFIER_ONLY(parameter,keys) \
     BOOST_PP_IIF \
       ( \
@@ -57,6 +75,16 @@
       BOOST_VMD_DETAIL_AFTER_IDENTIFIER_ONLY \
       ) \
     (parameter,keys) \
+/**/
+
+#define BOOST_VMD_DETAIL_IDENTIFIER_ONLY_D(d,parameter,keys) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
+      BOOST_VMD_DETAIL_AFTER_IDENTIFIER_NOT_FOUND, \
+      BOOST_VMD_DETAIL_AFTER_IDENTIFIER_ONLY_D \
+      ) \
+    (d,parameter,keys) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_AFTER_IDENTIFIER_ONLY_HPP */

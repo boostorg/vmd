@@ -72,6 +72,14 @@
 		) \
 /**/
 
+#define BOOST_VMD_BEGIN_SEQ_D(d,param) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		0, \
+		BOOST_VMD_SEQ_D(d,param) \
+		) \
+/**/
+
 /** \brief Expands to the preprocessor tokens after the beginning sequence of a macro parameter.
 
     param = a macro parameter.
@@ -85,6 +93,14 @@
 		( \
 		1, \
 		BOOST_VMD_SEQ(param) \
+		) \
+/**/
+
+#define BOOST_VMD_AFTER_SEQ_D(d,param) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		1, \
+		BOOST_VMD_SEQ_D(d,param) \
 		) \
 /**/
 
@@ -102,6 +118,16 @@
 		BOOST_VMD_IS_EMPTY \
 			( \
 			BOOST_VMD_BEGIN_SEQ(param) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_IS_BEGIN_SEQ_D(d,param) \
+	BOOST_PP_NOT \
+		( \
+		BOOST_VMD_IS_EMPTY \
+			( \
+			BOOST_VMD_BEGIN_SEQ_D(d,param) \
 			) \
 		) \
 /**/

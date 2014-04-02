@@ -214,4 +214,27 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_D(d,parameter,...) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		3, \
+		BOOST_PP_WHILE_ ## d \
+			( \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_PRED, \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP, \
+				( \
+				parameter, \
+				BOOST_VMD_DETAIL_AFTER_IDENTIFIER_TUPLE \
+					( \
+					BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__) \
+					), \
+				0, \
+				(0,), \
+				BOOST_VMD_DETAIL_AFTER_IDENTIFIER_BEGIN_CINFO(__VA_ARGS__), \
+				BOOST_VMD_DETAIL_AFTER_IDENTIFIER_END_CINFO(__VA_ARGS__) \
+				) \
+			) \
+		) \
+/**/
+
 #endif /* BOOST_VMD_DETAIL_AFTER_IDENTIFIER_HPP */

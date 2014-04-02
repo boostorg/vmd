@@ -100,6 +100,16 @@
     (parameter,__VA_ARGS__) \
 /**/
 
+# define BOOST_VMD_IDENTIFIER_D(d,parameter,...) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
+      BOOST_VMD_DETAIL_AFTER_IDENTIFIER_NOT_FOUND, \
+      BOOST_VMD_DETAIL_AFTER_IDENTIFIER_D \
+      ) \
+    (d,parameter,__VA_ARGS__) \
+/**/
+
 /** \brief Expands to the index of a beginning identifier of a macro parameter.
 
     parameter = a macro parameter.
@@ -170,6 +180,14 @@
 		( \
 		0, \
 		BOOST_VMD_IDENTIFIER(parameter,__VA_ARGS__) \
+		) \
+/**/
+
+#define BOOST_VMD_BEGIN_IDENTIFIER_D(d,parameter,...) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		0, \
+		BOOST_VMD_IDENTIFIER_D(d,parameter,__VA_ARGS__) \
 		) \
 /**/
 
@@ -247,6 +265,14 @@
 		) \
 /**/
 
+#define BOOST_VMD_AFTER_IDENTIFIER_D(d,parameter,...) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		1, \
+		BOOST_VMD_IDENTIFIER_D(d,parameter,__VA_ARGS__) \
+		) \
+/**/
+
 /** \brief Tests whether a parameter begins with an identifier.
 
     parameter = a macro parameter.
@@ -317,6 +343,13 @@
 	BOOST_PP_BOOL \
 		( \
 		BOOST_VMD_BEGIN_IDENTIFIER(parameter,__VA_ARGS__) \
+		) \
+/**/
+
+# define BOOST_VMD_IS_BEGIN_IDENTIFIER_D(d,parameter,...) \
+	BOOST_PP_BOOL \
+		( \
+		BOOST_VMD_BEGIN_IDENTIFIER_D(d,parameter,__VA_ARGS__) \
 		) \
 /**/
 

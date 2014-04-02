@@ -38,6 +38,14 @@
 		) \
 /**/
 
+# define BOOST_VMD_LIST_D(d,param) \
+	BOOST_VMD_DETAIL_LIST_CHECK_RETURN_D \
+		( \
+		d, \
+		BOOST_VMD_TUPLE(param) \
+		) \
+/**/
+
 /** \brief Expands to the beginning list of a macro parameter.
 
     param = a macro parameter.
@@ -54,6 +62,14 @@
 		) \
 /**/
 
+#define BOOST_VMD_BEGIN_LIST_D(d,param) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		0, \
+		BOOST_VMD_LIST_D(d,param) \
+		) \
+/**/
+
 /** \brief Expands to the preprocessor tokens after the beginning list of a macro parameter.
 
     param = a macro parameter.
@@ -67,6 +83,14 @@
 		( \
 		1, \
 		BOOST_VMD_LIST(param) \
+		) \
+/**/
+
+#define BOOST_VMD_AFTER_LIST_D(d,param) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		1, \
+		BOOST_VMD_LIST_D(d,param) \
 		) \
 /**/
 
@@ -88,6 +112,16 @@
 		) \
 /**/
 
+#define BOOST_VMD_IS_BEGIN_LIST_D(d,param) \
+	BOOST_PP_NOT \
+		( \
+		BOOST_VMD_IS_EMPTY \
+			( \
+			BOOST_VMD_BEGIN_LIST_D(d,param) \
+			) \
+		) \
+/**/
+
 /** \def BOOST_VMD_IS_LIST(list)
 
     \brief Determines if a parameter is a Boost pplib list.
@@ -105,6 +139,10 @@
 
 #define BOOST_VMD_IS_LIST(list) \
 	BOOST_VMD_DETAIL_IS_LIST(list) \
+/**/
+
+#define BOOST_VMD_IS_LIST_D(d,list) \
+	BOOST_VMD_DETAIL_IS_LIST_D(d,list) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_LIST(list)
@@ -151,6 +189,14 @@
     BOOST_VMD_ASSERT \
       ( \
       BOOST_VMD_IS_LIST(list), \
+      BOOST_VMD_ASSERT_IS_LIST_ERROR \
+      ) \
+/**/
+
+#define BOOST_VMD_ASSERT_IS_LIST_D(d,list) \
+    BOOST_VMD_ASSERT \
+      ( \
+      BOOST_VMD_IS_LIST_D(d,list), \
       BOOST_VMD_ASSERT_IS_LIST_ERROR \
       ) \
 /**/
