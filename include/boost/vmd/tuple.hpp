@@ -10,6 +10,7 @@
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/tuple.hpp>
+#include <boost/vmd/detail/empty_result.hpp>
 
 /*
 
@@ -35,7 +36,7 @@
       ( \
       BOOST_VMD_IS_BEGIN_TUPLE(param), \
       BOOST_VMD_DETAIL_AFTER_TUPLE, \
-      BOOST_VMD_DETAIL_AFTER_TUPLE_NOT_FOUND \
+      BOOST_VMD_DETAIL_EMPTY_RESULT \
       ) \
     (param) \
 /**/

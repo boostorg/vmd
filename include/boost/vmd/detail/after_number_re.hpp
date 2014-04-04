@@ -10,6 +10,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/after_number_common.hpp>
 #include <boost/vmd/detail/after_number_re_common.hpp>
+#include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/is_number.hpp>
 #include <boost/vmd/detail/paren_or_empty.hpp>
 
@@ -180,7 +181,7 @@
 		( \
 		BOOST_VMD_DETAIL_AFTER_NUMBER_PEN_CAT(__VA_ARGS__)(__VA_ARGS__), \
 		BOOST_VMD_DETAIL_AFTER_NUMBER_GET, \
-		BOOST_VMD_DETAIL_AFTER_NUMBER_NOT_FOUND \
+		BOOST_VMD_DETAIL_EMPTY_RESULT \
 		) \
 	(__VA_ARGS__) \
 /**/
@@ -190,7 +191,7 @@
 		( \
 		BOOST_VMD_DETAIL_AFTER_NUMBER_PEN_CAT(__VA_ARGS__)(__VA_ARGS__), \
 		BOOST_VMD_DETAIL_AFTER_NUMBER_GET, \
-		BOOST_VMD_DETAIL_AFTER_NUMBER_NOT_FOUND \
+		BOOST_VMD_DETAIL_EMPTY_RESULT \
 		) \
 	(__VA_ARGS__) \
 /**/
@@ -200,7 +201,7 @@
 		( \
 		BOOST_VMD_DETAIL_AFTER_NUMBER_PEN_CAT(__VA_ARGS__)(__VA_ARGS__), \
 		BOOST_VMD_DETAIL_AFTER_NUMBER_GET, \
-		BOOST_VMD_DETAIL_AFTER_NUMBER_NOT_FOUND \
+		BOOST_VMD_DETAIL_EMPTY_RESULT \
 		) \
 	(__VA_ARGS__) \
 /**/

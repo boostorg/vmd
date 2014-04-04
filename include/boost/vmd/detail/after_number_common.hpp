@@ -27,8 +27,4 @@
 	) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_NUMBER_NOT_FOUND(...) \
-	(,) \
-/**/
-
 #endif /* BOOST_VMD_DETAIL_AFTER_NUMBER_COMMON_HPP */
