@@ -19,7 +19,6 @@
 #include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/is_empty_tuple.hpp>
 #include <boost/vmd/detail/after_identifier_common.hpp>
 #include <boost/vmd/detail/after_identifier_from_number_re.hpp>
 #include <boost/vmd/detail/after_identifier_main.hpp>

@@ -1,22 +1,22 @@
 [section:vmd_sequence_identifier_opt Parsing v-identifiers using optional parameters]
 
-While parsing an input sequence starting with a v-identifier can always be
-done for the fairly simple input sequences situations previously mentioned, 
+While parsing an v-sequence starting with a v-identifier can always be
+done for the fairly simple v-sequences situations previously mentioned, 
 it is more challenging to do so when the v-identifier is followed by one or 
 more other v-identifiers, or more than one v-number, or a combination of the 
-two possible input sequences. To do this one needs to use optional parameters 
+two possible v-sequences. To do this one needs to use optional parameters 
 to the BOOST_VMD_IDENTIFIER macro.
 
 Recall that the BOOST_VMD_IDENTIFIER macro takes two mandatory parameters,
-the input sequence and the v-key for the beginning identifier being parsed.
+the v-sequence and the v-key for the beginning identifier being parsed.
 The BOOST_VMD_IDENTIFIER macro also takes optional parameters to
 parse the more difficult sequences involving further v-identifiers or 
 v-numbers.
 
-[heading Complicated input sequences]
+[heading Complicated v-sequences]
 
 Before I explain the optional parameters here are the forms of the more difficult 
-input sequences which BOOST_VMD_IDENTIFIER can parse with their help:
+v-sequences which BOOST_VMD_IDENTIFIER can parse with their help:
 
  v-identifier v-identifier ... v-number-or-tuple-or-end-of-input
  v-identifier v-number v-number ... tuple-or-end-of-input
@@ -25,11 +25,11 @@ input sequences which BOOST_VMD_IDENTIFIER can parse with their help:
 These three supported situations also allow
 * a v-identifier to be followed by from one to four additional v-identifiers
 followed by either a single v-number ( followed by a tuple or end-of-sequence ), 
-tuple, or end of sequence.
+tuple, or end-of-sequence.
 * a v-identifier to be followed by from two to five v-numbers
-before encountering either a tuple or end of sequence.
+before encountering either a tuple or end-of-sequence.
 * a v-identifier to be followed by from one to four additional v-identifiers,
-followed by from two to five v-numbers before encountering a tuple or end of sequence.
+followed by from two to five v-numbers before encountering a tuple or end-of-sequence.
 
 Input sequences beginning with v-identifier(s), immediately followed by v-number(s), 
 immediately followed by further v-identifier(s) are not supported. But of course this 
@@ -39,23 +39,23 @@ supported in the third case above.
 
 I am not necessarily advocating using such complicated sequences. It is more likely
 that a better design may have v-identifiers or v-numbers be separate elements
-of a tuple rather than consecutive elements of some input sequence. While a reasonable
-case can be made for input sequences of consecutive v-identifiers, since
+of a tuple rather than consecutive elements of some v-sequence. While a reasonable
+case can be made for v-sequences of consecutive v-identifiers, since
 C++ mimics such syntax in a number of cases, certainly consecutive v-numbers would normally 
-better be served in a tuple or seq or as variadic data rather than in a macro input sequence,
+better be served in a tuple or seq or as variadic data rather than in a macro v-sequence,
 since the syntax of nnn nnn nnn nnn ... is not naturally seen in standard C++ as 
 opposed to nnn,nnn,nnn,nnn ... .
 
 [heading Using the optional 3rd parameter]
 
-In order to find a v-identifier at the beginning of a sequence when it could be followed
+In order to find a v-identifier at the beginning of a v-sequence when it could be followed
 by a maximum of four subsequent v-identifiers, the optional 3rd parameter to 
-BOOST_VMD_IDENTIFIER must be used. This is our input sequence of:
+BOOST_VMD_IDENTIFIER must be used. This is our v-sequence of:
 
  v-identifier v-identifier ... v-number-or-tuple-or-end-of-input
 
 This optional 3rd parameter is a seq, where each element is a v-key to possible subsequent 
-v-identifiers. You can specify more seq elements than are actually found in the input sequence 
+v-identifiers. You can specify more seq elements than are actually found in the input v-sequence 
 as long as the seq elements specified match v-identifiers that are found.
 
 Some examples:
@@ -71,7 +71,7 @@ Some examples:
  
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT6 /* input sequence */,
+   SOME_INPUT6 /* v-sequence */,
    MYLIB_KEY8_ /* CHERRY, key which matches */,
    /* The optional 3rd parameter as a seq */
    ((MYLIB_KEY11_ /* PEAR */,MYLIB_KEY7_ /* BANANA, which matches */))
@@ -89,7 +89,7 @@ expands to (1,BANANA PEACH (telem1,telem2))
  
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT7 /* input sequence */,
+   SOME_INPUT7 /* v-sequence */,
    (MYLIB_KEY6_ /* APPLE */,MYLIB_KEY11_ /* PEAR, key which matches */),
    /* The optional 3rd parameter as a seq */
    (MYLIB_KEY9_ /* ORANGE, which matches */)
@@ -101,9 +101,8 @@ expands to (1,BANANA PEACH (telem1,telem2))
 expands to (0,)
 
 The optional 3rd parameter is also used in order to find a v-identifier at
-the beginning of an input sequence when it is followed by more than one v-number
-in the sequence before a tuple or end-of-sequence is encountered. This is our 
-input sequence of:
+the beginning of a v-sequence when it is followed by more than one v-number
+before a tuple or end-of-sequence is encountered. This is our v-sequence of:
 
  v-identifier v-number v-number ... tuple-or-end-of-input
 
@@ -114,7 +113,7 @@ follow the beginning v-identifier and the parsing will still succeed as long
 as the beginning v-identifier is found. But if you specify a number that is less
 than the number of subsequent v-numbers, the parsing will fail. You never need
 to specify the optional 3rd parameter as a number if the v-identifier in the
-beginning of an input sequence is followed by a single v-number, but you are
+beginning of a v-sequence is followed by a single v-number, but you are
 allowed to do so.
 
 Some examples, using our key-identifier macros above:
@@ -123,7 +122,7 @@ Some examples, using our key-identifier macros above:
 
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT8 /* input sequence */,
+   SOME_INPUT8 /* v-sequence */,
    ( MYLIB_KEY10_ /* PEACH */, MYLIB_KEY6_ /* APPLE, key which matches */ ),
    /* The optional 3rd parameter as a number */
    3 /* succeeds because there are less than or equal to 3 following v-numbers */
@@ -135,7 +134,7 @@ expands to (2,37 142 (telem1,telem2))
  
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT9 /* input sequence */,
+   SOME_INPUT9 /* v-sequence */,
    MYLIB_KEY9_ /* ORANGE, key which matches */,
    /* The optional 3rd parameter as a number */
    2 /* fails because there are more than 2 following v-numbers */
@@ -147,7 +146,7 @@ expands to (0,)
  
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT10 /* input sequence */,
+   SOME_INPUT10 /* v-sequence */,
    MYLIB_KEY7_ /* BANANA, key which matches */,
    /* The optional 3rd parameter as a number */
    1 /* Not needed but it does no harm */
@@ -158,9 +157,9 @@ expands to (1,226)
 [heading Using the optional 4th parameter]
 
 The optional 4th parameter is used in order to find a v-identifier at
-the beginning of the input sequence when it is followed by v-identifiers
+the beginning of the v-sequence when it is followed by v-identifiers
 and more than one v-number before a tuple or end-of-sequence. This is our 
-input sequence of:
+v-sequence of:
 
  v-identifier v-identifier ... v-number v-number ...tuple-or-end-of-input
 
@@ -171,7 +170,7 @@ succeed if we encounter a single v-number ( followed by a tuple or
 end-of-sequence ), tuple, or end-of-sequence before the seq matches are 
 exhausted or, once we start matching v-numbers, if we encounter a tuple
 or end-of-sequnce before the number matches are exhausted. But once we 
-encounter consecutive v-numbers in the input sequence, we need to have 
+encounter consecutive v-numbers in the v-sequence, we need to have 
 matched exactly the number of seqs specified.
 
 Some examples, using our key-identifier macros above:
@@ -180,7 +179,7 @@ Some examples, using our key-identifier macros above:
  
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT11 /* input sequence */,
+   SOME_INPUT11 /* v-sequence */,
    MYLIB_KEY8_ /* CHERRY, key which matches */,
    ((MYLIB_KEY11_ /* PEAR */,MYLIB_KEY7_ /* BANANA, which matches */)),
    4 /* succeeds because there are less than or equal to 4 following v-numbers */
@@ -192,7 +191,7 @@ expands to (1,BANANA 25 99 234 (telem1,telem2))
  
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT12 /* input sequence */,
+   SOME_INPUT12 /* v-sequence */,
    (MYLIB_KEY11_ /* PEAR, key which matches */, MYLIB_KEY8_ /* CHERRY*/),
    ((MYLIB_KEY7_ /* BANANA */,MYLIB_KEY9_ /* ORANGE, which matches */))
    ((MYLIB_KEY9_ /* ORANGE */,MYLIB_KEY8_ /* CHERRY */)),
@@ -213,15 +212,15 @@ expands to (1,ORANGE)
  
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT13 /* input sequence */,
+   SOME_INPUT13 /* v-sequence */,
    MYLIB_KEY6_ /* APPLE, key which matches */,
    ((MYLIB_KEY7_ /* BANANA */,MYLIB_KEY9_ /* ORANGE */,MYLIB_KEY10_ /* PEACH, which matches*/))
    (MYLIB_KEY11_ /* PEAR, which matches */)
    (MYLIB_KEY8_ /* CHERRY, 
      this negates the match since consecutive v-numbers occur 
-     next in the input sequence and the 4th parameter is specified. 
+     next in the v-sequence and the 4th parameter is specified. 
      If the 4th parameter had not been specified then this seq
-     element would have been exraneous but would not have negated
+     element would have been extraneous but would not have negated
      the match. */),
    2
    )
@@ -232,7 +231,7 @@ expands to (0,)
  
  BOOST_VMD_IDENTIFIER
    (
-   SOME_INPUT14 /* input sequence */,
+   SOME_INPUT14 /* v-sequence */,
    MYLIB_KEY7_ /* BANANA, key which matches */,
    ((MYLIB_KEY7_ /* BANANA */,MYLIB_KEY8_ /* CHERRY, which matches */,MYLIB_KEY10_ /* PEACH */)),
    3 /* succeeds because there are less than or equal to 3 following v-numbers */

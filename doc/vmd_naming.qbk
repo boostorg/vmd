@@ -9,7 +9,7 @@ in this library or Boost PP. These names and their data types are:
 # TUPLE      = Boost PP tuple data type.
 # ARRAY      = Boost PP array data type.
 # LIST       = Boost PP list data type.
-# SEQ        = Boost PP sequence data type.
+# SEQ        = Boost PP seq data type.
 # IDENTIFIER = A VMD identifier
 # NUMBER     = A VMD number
 

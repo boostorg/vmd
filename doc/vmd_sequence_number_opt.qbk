@@ -1,21 +1,21 @@
 [section:vmd_sequence_number_opt Parsing v-numbers using optional parameters]
 
-While parsing an input sequence starting with a v-number can always be
-done for the fairly simple input sequences situations previously mentioned, 
+While parsing a v-sequence starting with a v-number can always be
+done for the fairly simple v-sequences situations previously mentioned, 
 it is more challenging to do so when the v-number is followed by one or 
 more other v-numbers, or one or more v-identifiers, or a combination of the 
-two possible input sequences. To do this one needs to use optional parameters 
+two possible v-sequences. To do this one needs to use optional parameters 
 to the BOOST_VMD_NUMBER macro.
 
 Recall that the BOOST_VMD_NUMBER macro takes a single mandatory parameter,
-the input sequence. The BOOST_VMD_NUMBER macro also takes optional parameters 
+the v-sequence. The BOOST_VMD_NUMBER macro also takes optional parameters 
 to parse the more difficult sequences involving further v-numbers or 
 v-identifiers.
 
-[heading Complicated input sequences]
+[heading Complicated v-sequences]
 
 Before I explain the optional parameters here are the forms of the more difficult 
-input sequences which BOOST_VMD_NUMBER can parse with their help:
+v-sequences which BOOST_VMD_NUMBER can parse with their help:
 
  v-number v-numbers ... tuple-or-end-of-input
  v-number v-identifiers ... tuple-or-end-of-input
@@ -23,12 +23,12 @@ input sequences which BOOST_VMD_NUMBER can parse with their help:
 
 These three supported situations also allow
 * a v-number to be followed by from one to four additional v-numbers
-followed by a tuple, or end of sequence.
+followed by a tuple, or end-of-sequence.
 * a v-number to be followed by from one to five v-identifiers
-followed by a tuple or end of sequence.
+followed by a tuple or end-of-sequence.
 * a v-number to be followed by from one to four additional v-numbers,
 followed by from one to five v-identifiers before encountering a tuple 
-or end of sequence.
+or end-of-sequence.
 
 Input sequences beginning with v-number(s), immediately followed by v-identifier(s), 
 immediately followed by further v-number(s) are not supported. But of course this 
@@ -38,9 +38,9 @@ supported by the third case above.
 
 [heading Using the optional 2nd parameter]
 
-In order to find a v-number at the beginning of a sequence when it could be followed
+In order to find a v-number at the beginning of a v-sequence when it could be followed
 by a maximum of four subsequent v-numbers, the optional 2nd parameter to 
-BOOST_VMD_NUMBER must be used. This is our input sequence of:
+BOOST_VMD_NUMBER must be used. This is our v-sequence of:
 
  v-number v-numbers ... tuple-or-end-of-input
 
@@ -51,7 +51,7 @@ number of v-numbers which follow the beginning v-identifier and the parsing will
 still succeed as long as the beginning v-number is found. But if you specify a 
 number that is less than the number of subsequent v-numbers, the parsing will fail. 
 You never need to specify the optional 2nd parameter as a number if the v-number in the
-beginning of an input sequence is followed by a tuple or end-of-input, but you are
+beginning of a v-sequence is followed by a tuple or end-of-input, but you are
 allowed to do so.
 
 Some examples:
@@ -60,7 +60,7 @@ Some examples:
 
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N7 /* input sequence */,
+   SOME_INPUT_N7 /* v-sequence */,
    /* The optional 2nd parameter as a number */
    3 /* succeeds because there are less than or equal to 3 following v-numbers */
    )
@@ -71,7 +71,7 @@ expands to (37,142 (telem1,telem2))
  
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N8 /* input sequence */,
+   SOME_INPUT_N8 /* v-sequence */,
    /* The optional 3rd parameter as a number */
    2 /* fails because there are more than 2 following v-numbers */
    )
@@ -82,7 +82,7 @@ expands to (,)
  
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N9 /* input sequence */,
+   SOME_INPUT_N9 /* v-sequence */,
    /* The optional 3rd parameter as a number */
    1 /* Not needed but it does no harm */
    )
@@ -90,14 +90,13 @@ expands to (,)
 expands to (226,)
  
 The optional 2nd parameter is also used in order to find a v-number at the 
-beginning of an input sequence when it is followed by one or more v-identifiers
-in the sequence before a tuple or end-of-sequence is encountered. This is our 
-input sequence of:
+beginning of a v-sequence when it is followed by one or more v-identifiers
+before a tuple or end-of-sequence is encountered. This is our v-sequence of:
 
  v-number v-identifiers ... tuple-or-end-of-input
  
 This optional 3rd parameter is a seq, where each element is a v-key to possible subsequent 
-v-identifiers. You can specify more seq elements than are actually found in the input sequence 
+v-identifiers. You can specify more seq elements than are actually found in the v-sequence 
 as long as the seq elements specified match v-identifiers that are found.
 
 Some examples:
@@ -113,7 +112,7 @@ Some examples:
  
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N10 /* input sequence */,
+   SOME_INPUT_N10 /* v-sequence */,
    /* The optional 2nd parameter as a seq */
    ((MYLIB_KEY8_ /* CHERRY, which matches */,MYLIB_KEY7_ /* BANANA */))
    ((MYLIB_KEY11_ /* PEAR */,MYLIB_KEY7_ /* BANANA, which matches */))
@@ -131,7 +130,7 @@ expands to (165,CHERRY BANANA PEACH (telem1,telem2))
  
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N11 /* input sequence */,
+   SOME_INPUT_N11 /* v-sequence */,
    /* The optional 2nd parameter as a seq */
    ((MYLIB_KEY7_ /* BANANA */,MYLIB_KEY11_ /* PEAR, which matches */))
    (MYLIB_KEY9_ /* ORANGE, which matches */)
@@ -145,9 +144,9 @@ expands to (,)
 [heading Using the optional 3rd parameter]
 
 The optional 3rd parameter is used in order to find a v-number at
-the beginning of the input sequence when it is followed by one to four v-numbers
+the beginning of the v-sequence when it is followed by one to four v-numbers
 and one to five v-identifiers before a tuple or end-of-sequence. This is our 
-input sequence of:
+v-sequence of:
 
  v-number v-numbers ... v-identifiers ... tuple-or-end-of-input
 
@@ -157,7 +156,7 @@ for subsequent v-identifiers. When we use both optional parameters we may still
 succeed if we encounter a tuple or end-of-sequence before the v-number matches are 
 exhausted or, once we start matching v-identifiers, if we encounter a tuple
 or end-of-sequence before the v-identifiers matches are exhausted. But once we 
-encounter v-identifiers in the input sequence, we need to have 
+encounter v-identifiers in the v-sequence, we need to have 
 matched exactly the number of subsequent v-numbers specified.
 
 Some examples, using our key-identifier macros above:
@@ -166,7 +165,7 @@ Some examples, using our key-identifier macros above:
  
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N12 /* input sequence */,
+   SOME_INPUT_N12 /* v-sequence */,
    2, which matches the 2 subsequent v-numbers
    (MYLIB_KEY8_ /* CHERRY, which matches */)
    ((MYLIB_KEY11_ /* PEAR */,MYLIB_KEY7_ /* BANANA, which matches */))
@@ -178,7 +177,7 @@ expands to (25,99 234 CHERRY BANANA (telem1,telem2))
  
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N13 /* input sequence */,
+   SOME_INPUT_N13 /* v-sequence */,
    1, which matches the 1 subsequent v-number
    ((MYLIB_KEY11_ /* PEAR, which matches */, MYLIB_KEY8_ /* CHERRY*/))
    ((MYLIB_KEY7_ /* BANANA */,MYLIB_KEY9_ /* ORANGE, which matches */))
@@ -196,7 +195,7 @@ expands to (8,253 PEAR ORANGE)
  
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N14 /* input sequence */,
+   SOME_INPUT_N14 /* v-sequence */,
    4, /* Succeeds because he number is greater or equal to the amount of 
          subsequent v-numbers and there are no subsequent v-identifiers
          in the input before a tuple or end-of-sequence is encoumntered */
@@ -214,7 +213,7 @@ expands to (37,42 156 254)
  
  BOOST_VMD_NUMBER
    (
-   SOME_INPUT_N15 /* input sequence */,
+   SOME_INPUT_N15 /* v-sequence */,
    4, /* Fails because there must be exactly the correct number of subsequent 
          v-numbers if there are subsequent v-identifiers */
    (MYLIB_KEY7_ /* BANANA, which matches */)

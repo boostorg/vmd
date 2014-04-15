@@ -3,7 +3,7 @@
 A number of macros are helper versions of BOOST_VMD_NUMBER,
 having the same single mandatory parameter and two optional parameters
 which BOOST_VMD_NUMBER takes. All these macros work with a v-number
-occuring at the beginning of an argument's possible sequence of v-types.
+occuring at the beginning of a v-sequence.
 
 These macros are:
 

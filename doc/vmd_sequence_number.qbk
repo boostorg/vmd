@@ -1,13 +1,13 @@
 [section:vmd_sequence_number Parsing v-numbers]
 
-The macro BOOST_VMD_NUMBER looks for a v-number at the beginning of an input sequence. 
-Just like BOOST_VMD_IS_NUMBER it takes as a mandatory parameter an input sequence as 
+The macro BOOST_VMD_NUMBER looks for a v-number at the beginning of a v-sequence. 
+Just like BOOST_VMD_IS_NUMBER it takes as a mandatory parameter a v-sequence as 
 the first parameter. It returns a tuple of two elements. The first tuple element is the 
 number if a v-number has been found or is an empty element if a v-number has not been found. 
-The second tuple element is the rest of the input sequence if a v-number has been found or 
+The second tuple element is the rest of the v-sequence if a v-number has been found or 
 an empty element if no v-number has been found. Notice that a v-number can be found and the 
-rest of the input sequence can be empty, so one always needs to check the first tuple element 
-to determine if the v-number was found at the beginning of the input sequence or not.
+rest of the v-sequence can be empty, so one always needs to check the first tuple element 
+to determine if the v-number was found at the beginning of the v-sequence or not.
 
 [heading Usage]
 
@@ -19,10 +19,10 @@ or include the specific header:
 
  #include <boost/vmd/number.hpp>
 
-[heading Simple input sequences]
+[heading Simple v-sequences]
 
-A beginning v-number in an input sequence can always be parsed using just the 
-mandatory input sequence parameter if the v-number is followed by:
+A beginning v-number in a v-sequence can always be parsed using just the 
+mandatory v-sequence parameter if the v-number is followed by:
 
 * tuple ...
 * end-of-sequence
@@ -30,7 +30,7 @@ mandatory input sequence parameter if the v-number is followed by:
 A 'tuple' here refers to any pair of parenthesis, such as an array, a list, 
 or the beginning of a seq.
 
-As we will see more complicated input sequences beginning with a v-number
+As we will see more complicated v-sequences beginning with a v-number
 can be parsed using the optional parameters of BOOST_VMD_NUMBER. These optional
 parameters will be discussed later.
 
@@ -58,7 +58,7 @@ expands to (5,(seq1)(seq2) 47)
  
  BOOST_VMD_NUMBER(SOME_INPUT_N4)
  
-expands to (,) since the input sequence does not beginning with a v-number
+expands to (,) since the v-sequence does not beginning with a v-number
 
  #define SOME_INPUT_N5 79 120 (tupe1,tupe2)
  #define SOME_INPUT_N6 79 name (tupe1,tupe2)
@@ -68,7 +68,7 @@ expands to (,) since the input sequence does not beginning with a v-number
  
 either one expands to (,)
 
-The beginning number is not followed by a tuple or end of sequence.
+The beginning number is not followed by a tuple or end-of-sequence.
 See the next topic for how to parse these using the optional parameters
 of BOOST_VMD_NUMBER.
 

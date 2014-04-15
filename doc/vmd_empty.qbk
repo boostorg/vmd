@@ -154,9 +154,10 @@ is a variadic macro which make take any input
 
 [heading Macro Flaw with a standard C++ compiler]
 
-The one situation where the macro does not work properly is if its
-input resolves to a function-like macro name or a sequence of tokens ending with 
+The one situation where the macro does not work properly is if its input resolves 
+to a function-like macro name or a sequence of preprocessor tokens ending with 
 a function-like macro name and the function-like macro takes two or more parameters.
+
 Here is a simple example:
 
  #define FMACRO(x,y) any_output
@@ -165,7 +166,7 @@ Here is a simple example:
  BOOST_VMD_IS_EMPTY(some_input FMACRO)
  
 In the first case the name of a function-like macro is being passed to
-BOOST_VMD_IS_EMPTY while in the second case a sequence of tokens is being
+BOOST_VMD_IS_EMPTY while in the second case a sequence of preprocessing tokens is being
 passed to BOOST_VMD_IS_EMPTY ending with the name of a function-like macro.
 The function-like macro also has two ( or more ) parameters. In both the 
 cases above a compiler error will result from the use of BOOST_VMD_IS_EMPTY.
@@ -228,7 +229,7 @@ where after initially expanding the macro to:
 
  FMACRO3 FMACRO2()
  
-VC++ erroneously rescans the sequence of tokens more than once rather than 
+VC++ erroneously rescans the sequence of preprocessing tokens more than once rather than 
 rescan just one more time for more macro names.
 
 What these two particular preprocessor flaws in the VC++ compiler mean is that although

@@ -5,7 +5,6 @@
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/is_empty_tuple.hpp>
 #include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/is_number.hpp>
 #include <boost/vmd/list.hpp>

@@ -2,7 +2,7 @@
 
 [heading Macro parameter syntax]
 
-In the normal use of Boost PP data is passed as arguments to a macro in
+In the normal use of Boost PP, data is passed as arguments to a macro in
 discrete units so that each parameter expects a single data type. A typical
 macro might be:
 
@@ -11,7 +11,7 @@ macro might be:
 where the 'atuple', having the form of ( data1, data2, data3 ), itself may 
 contain different data types of elements.
  
-There is the standard macro design and internally it is the easiest way
+This is the standard macro design and internally it is the easiest way
 to pass macro data back and forth. The Boost PP library has a rich set of 
 functionality to deal with all of its high-level data types and variadic data
 also offers another alternative to representing data with its own simpler
@@ -58,7 +58,8 @@ overly complicated when it comes to the syntactical side of things in a
 computer language. A macro parameter syntactical possibility has to be
 understandable to be used.
 * Using VMD to parse the individual types of a single parameter takes more 
-preprocessing time than functionality offered with Boost PP data types.
+preprocessing time than functionality offered with Boost PP data types,
+because a good deal of it is based on preprocessor recursion techniques.
 
 [heading Using VMD to parse input]
 
@@ -90,13 +91,18 @@ or
  
 or
 
- identifier += 4.3;
+ identifier += 4.3
  
 etc. etc.
  
 you will not be able to parse the data using VMD since '&', "string literal",
 '+', '+=', and "4.3" are preprocessor tokens which are not top-level v-types and 
-therefore VMD cannot handle them.
+therefore VMD cannot handle them at the parsing level. You can still of course
+pass such data as preprocessing input to macros but you cannot use VMD to recognize
+the parts of such data.
+
+This is similar to the fact that VMD cannot tell you what type preprocessor data
+is as a whole, using a VMD identifying macro, if the type is not one that VMD can handle.
 
 On the other hand you can still use VMD to parse such tokens in the input if you use
 Boost PP data types as top-level v-types to do so. Such as:
@@ -115,13 +121,10 @@ or
 
  identifier ( += ) 4 ( . ) 3
  
-and of course if you do not need to parse such tokens individually using VMD
-you can dispense with such top-level manipulations.
-
 I will be calling such input data, which consists of more than one v-type,
-by the term of an 'input sequence'.
+by the term of a 'v-sequence'.
 
-The succeeding topics explain the VMD functionality for parsing an input
-sequence for each individual v-type.
+The succeeding topics explain the VMD functionality for parsing a v-sequence
+for each individual v-type.
 
 [endsect]

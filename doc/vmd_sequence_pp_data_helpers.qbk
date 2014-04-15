@@ -1,8 +1,7 @@
 [section:vmd_sequence_pp_data_helpers PP-data helper macros]
 
 A number of macros are helper versions of each of the parsing Boost PP
-data type macros. All of them take as a parameter the input sequence
-to parse.
+data type macros. All of them take as a parameter the v-sequence to parse.
 
 These macros are:
 

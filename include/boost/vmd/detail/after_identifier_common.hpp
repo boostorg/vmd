@@ -18,7 +18,6 @@
 #include <boost/vmd/gen_empty.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/is_empty_tuple.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/paren_or_empty.hpp>
 

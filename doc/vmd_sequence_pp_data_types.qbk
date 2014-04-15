@@ -1,9 +1,9 @@
 [section:vmd_sequence_pp_data_types Parsing Boost PP data types]
 
 There are macros for the Boost PP data types that can parse the
-particular data type at the beginning of an input sequence. Unlike
+particular data type at the beginning of a v-sequence. Unlike
 the equivalent functionality for v-identifiers and v-numbers the
-only parameter that is needed is the input sequence itself. 
+only parameter that is needed is the v-sequence itself. 
 
 The macros are:
 
@@ -13,10 +13,10 @@ The macros are:
 * BOOST_VMD_TUPLE for a tuple
 
 Each of these macros expand to a tuple of two elements. If the
-particular data type is found at the beginning of the input sequence
+particular data type is found at the beginning of the v-sequence
 the first tuple element is that data type and the second tuple element
-is the rest of the input sequence. If the particular data type is not
-found at the beginning of the input sequence both tuple elements are
+is the rest of the input v-sequence. If the particular data type is not
+found at the beginning of the v-sequence both tuple elements are
 empty.
 
 [heading Usage]
@@ -35,8 +35,8 @@ or include the appropriate specific header:
 [heading Data types and tuples]
 
 An array and a list are also tuples. A seq is a series of single element
-tuples. Therefore if an input sequence begins with an array, list, or seq
-and you use BOOST_VMD_TUPLE passing that input sequence you will successfully
+tuples. Therefore if a v-sequence begins with an array, list, or seq
+and you use BOOST_VMD_TUPLE passing that v-sequence you will successfully
 find the beginning tuple. In the case of an array or a list what is returned
 will be exacly the same as a tuple. In the case of a seq what is returned will
 only be the same if the seq is a single one-element tuple.
