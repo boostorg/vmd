@@ -1,0 +1,127 @@
+[section:vmd_sequence Parsing v-type sequences]
+
+[heading Macro parameter syntax]
+
+In the normal use of Boost PP data is passed as arguments to a macro in
+discrete units so that each parameter expects a single data type. A typical
+macro might be:
+
+ #define AMACRO(anumber,atuple,anidentifier) someoutput
+ 
+where the 'atuple', having the form of ( data1, data2, data3 ), itself may 
+contain different data types of elements.
+ 
+There is the standard macro design and internally it is the easiest way
+to pass macro data back and forth. The Boost PP library has a rich set of 
+functionality to deal with all of its high-level data types and variadic data
+also offers another alternative to representing data with its own simpler
+functionality.
+
+Occasionally designers of macros, especially for the use of others programmers within
+a particular library, have expressed the need for a macro parameter to allow a more
+C/C++ like syntax where a single parameter might mimic a C++ function-call or a
+C-like type modification syntax, or some other more complicated construct. 
+Something along the lines of:
+
+ areturn afunction ( aparameter1, aparameter2, aparameter3 )
+ 
+or 
+
+ ( type ) data
+ 
+etc. etc.
+
+In other words, from a syntactical level when designing possible macro input,
+is it possible to design parameter data to look more like C/C++ when macros
+are used in a library and still do a certain amount of preprocessor metaprogramming
+with such mixed token input ?
+
+The VMD has functionality which allows more than one type of preprocessing token, 
+excluding an 'empty' token which always refers to entire input, to be part of a 
+single parameter of input data, as long as all the top-level data of a parameter 
+is of different v-types. What this means is that if some input consists of a 
+sequence of v-types it is possible to extract the data for each v-type in the 
+sequence.
+
+In practicality what this means is that, given the examples just above, if 
+'areturn', 'afunction', and 'data' are v-identifiers it would be possible to
+parse either of the two inputs above so that one could identify the different
+v-types involved and do preprocessor metaprogramming based on those results.
+
+Before I give an explanation of how this is done using VMD functionality I
+would like to make two points:
+
+* I am offering the possibility of more various syntaxes for the
+preprocessor metaprogrammer but I am aware that this can be easily abused. 
+In general keeping things simple is usually better than making things 
+overly complicated when it comes to the syntactical side of things in a 
+computer language. A macro parameter syntactical possibility has to be
+understandable to be used.
+* Using VMD to parse the individual types of a single parameter takes more 
+preprocessing time than functionality offered with Boost PP data types.
+
+[heading Using VMD to parse input]
+
+We have seen how VMD can test input to a macro for a particular v-type.
+In these cases the input must be entirely of that particular type in order
+to return non-zero as opposed to 0.
+
+VMD also has functionality to extract from input a particular v-type
+at the beginning of the input along with the remaining preprocessing tokens
+of that input. What this means is that given some input you can, 
+as an example, extract the beginning tuple as well as the rest of the input.
+By recursively applying this technique to the rest of the input you can parse
+the input for its top-level data.
+
+The one constraint using this technique is that the top-level input must consist 
+of v-types, in other words preprocessor tokens which VMD understands. Therefore if 
+your data is one of the examples above, you will be successful in using VMD. However 
+if your preprocessor data takes the form of:
+
+ &name identifier ( param )
+ 
+or
+
+ identifier "string literal"
+ 
+or 
+
+ identifier + number
+ 
+or
+
+ identifier += 4.3;
+ 
+etc. etc.
+ 
+you will not be able to parse the data using VMD since '&', "string literal",
+'+', '+=', and "4.3" are preprocessor tokens which are not top-level v-types and 
+therefore VMD cannot handle them.
+
+On the other hand you can still use VMD to parse such tokens in the input if you use
+Boost PP data types as top-level v-types to do so. Such as:
+
+ ( &name ) identifier ( param )
+ 
+or
+
+ identifier ( "string literal" )
+ 
+or
+
+ identifier ( + ) number
+ 
+or
+
+ identifier ( += ) 4 ( . ) 3
+ 
+and of course if you do not need to parse such tokens individually using VMD
+you can dispense with such top-level manipulations.
+
+I will be calling such input data, which consists of more than one v-type,
+by the term of an 'input sequence'.
+
+The succeeding topics explain the VMD functionality for parsing an input
+sequence for each individual v-type.
+
+[endsect]

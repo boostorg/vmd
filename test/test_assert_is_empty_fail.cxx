@@ -8,11 +8,11 @@
 int main()
   {
   
-#if BOOST_PP_VARIADICS && !BOOST_VMD_MSVC
+#if BOOST_PP_VARIADICS && BOOST_VMD_ASSERT_DATA && !BOOST_VMD_MSVC
 
-  #define FUNC_GEN() (y,z)
+  #define FUNC_GEN(x,y) anything
   
-  BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN));
+  BOOST_VMD_ASSERT_IS_EMPTY(FUNC_GEN))
   
 #else
 

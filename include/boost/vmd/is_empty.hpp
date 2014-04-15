@@ -66,6 +66,24 @@
     (param) \
 /**/
 
+#if !BOOST_VMD_ASSERT_DATA
+
+#define BOOST_VMD_ASSERT_IS_EMPTY(param)
+
+#else
+
+#include <boost/vmd/assert.hpp>
+
+#define BOOST_VMD_ASSERT_IS_EMPTY(param) \
+    BOOST_VMD_ASSERT \
+      	( \
+      	BOOST_VMD_IS_EMPTY(param), \
+      	BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
+      	) \
+/**/
+
+#endif // !BOOST_VMD_ASSERT_DATA
+
 #else
 
 #define BOOST_VMD_IS_EMPTY(...) \
@@ -83,6 +101,25 @@
     (__VA_ARGS__) \
 /**/
 
+#if !BOOST_VMD_ASSERT_DATA
+
+#define BOOST_VMD_ASSERT_IS_EMPTY(...)
+
+#else
+
+#include <boost/vmd/assert.hpp>
+
+#define BOOST_VMD_ASSERT_IS_EMPTY(...) \
+    BOOST_VMD_ASSERT \
+      	( \
+      	BOOST_VMD_IS_EMPTY(__VA_ARGS__), \
+      	BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
+      	) \
+/**/
+
+#endif // !BOOST_VMD_ASSERT_DATA
+
 #endif /* BOOST_VMD_MSVC_V8 */
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_IS_EMPTY_HPP */

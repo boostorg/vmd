@@ -3,16 +3,15 @@
 #else
 #include <boost/vmd/is_empty.hpp>
 #endif
+#include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
 int main()
   {
   
-#if BOOST_PP_VARIADICS && !BOOST_VMD_MSVC
+#if BOOST_PP_VARIADICS && BOOST_VMD_ASSERT_DATA
 
-  #define FUNC_GEN() (&)
-  
-  BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN));
+  BOOST_VMD_ASSERT_IS_EMPTY(x BOOST_PP_EMPTY())
   
 #else
 

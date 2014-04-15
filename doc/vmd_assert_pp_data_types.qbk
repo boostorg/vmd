@@ -1,7 +1,6 @@
-[section:vmd_assert_data Verifying Boost PP data types]
+[section:vmd_assert_data Boost PP data types]
 
-There is no way to determine whether a macro parameter is a
-given Boost PP data type. But one can come close to this 
+But one can come close to this 
 functionality using variadic macros and the test for emptiness
 in the VMD library which the BOOST_VMD_IS_EMPTY macro gives.
 Therefore I have developed four macros, for each of the four 

@@ -103,5 +103,32 @@
 		) \
 /**/
 
+#if !BOOST_VMD_ASSERT_DATA
+
+#define BOOST_VMD_ASSERT_IS_IDENTIFIER(parameter,keys)
+#define BOOST_VMD_ASSERT_IS_IDENTIFIER_D(d,parameter,keys)
+
+#else
+
+#include <boost/vmd/assert.hpp>
+
+#define BOOST_VMD_ASSERT_IS_IDENTIFIER(parameter,keys) \
+    BOOST_VMD_ASSERT \
+      	( \
+      	BOOST_VMD_IS_IDENTIFIER(parameter,keys), \
+      	BOOST_VMD_IDENTIFIER_ASSERT_ERROR \
+      	) \
+/**/
+
+#define BOOST_VMD_ASSERT_IS_IDENTIFIER_D(d,parameter,keys) \
+    BOOST_VMD_ASSERT \
+      	( \
+      	BOOST_VMD_IS_IDENTIFIER_D(d,parameter,keys), \
+      	BOOST_VMD_IDENTIFIER_ASSERT_ERROR \
+      	) \
+/**/
+
+#endif // !BOOST_VMD_ASSERT_DATA
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_IS_IDENTIFIER_HPP */

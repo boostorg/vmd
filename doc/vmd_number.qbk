@@ -1,0 +1,84 @@
+[section:vmd_number Numbers]
+
+A number in VMD, herafter called a 'v-number', is a preprocessing 'pp-number', 
+limited to a Boost PP number. This is an integral literal between 0 and 256.
+The form of the number does not contain leading zeros. Acceptable as v-numbers are:
+
+ 0
+ 127
+ 33
+ 254
+ 18
+ 
+but not:
+
+ 033
+ 06
+ 009
+ 00
+ 
+As can be seen from the explanation of a v-identifier, a v-number is merely
+a small subset of all possible v-identifiers, for which VMD internally provides
+key-identifier macros to test. Therefore the particular constraint on the input
+to test is exactly the same as for v-identifiers.
+ 
+The constraint is that the beginning input character, ignoring any whitespace, passed
+as the input to test must be either:
+
+* an identifier character, ie. an alphanumeric or an underscore
+* the left parenthesis of a tuple. 
+
+If this is not the case a preprocessing error will occur.
+
+Given the input:
+
+ s_anything : can be tested
+ S_anything : can be tested
+ s_anYthiNg : can be tested
+ s&_anYthiNg : can be tested
+ _anything : can be tested
+ _Anything : can be tested
+ _anytH?Ing : can be tested
+ 24 : can be tested
+ 245e2: can be tested
+ (anything) : can be tested, tuple
+ (anything) anything : can be tested, tuple + identifier
+ 
+ %_anything : will give a preprocessing error due to the constraint
+ (_anything : will give a preprocessing error due to the constraint, since a single '(' does not form a tuple
+
+The macro used to test for a particular v-number in VMD is called BOOST_VMD_IS_NUMBER.
+The macro takes a single parameter, the input to test against.
+
+The macro returns 1 if the parameter is a Boost PP number, otherwise the maco returns 0.
+
+[heading Example]
+
+Let us look at an example of how to use BOOST_VMD_IS_NUMBER.
+
+ BOOST_VMD_IS_NUMBER(input)
+ 
+ returns:
+ 
+ if input = 0, 1
+ if input = 44, 1
+ if input = SQUARE, 0
+ if input = 44 DATA, 0 since there are tokens after the number
+ if input = 044, 0 since no leading zeros are allowed for our Boost PP numbers
+ if input = 256, 1
+ if input = 257, 0 since it falls outside the Boost PP number range
+ if input = %44, does not meet the constraint therefore a preprocessing error occurs
+ if input = 44.0, 0 since the number is a floating point literal
+ if input = ( 44 ), 0 since the macro begins with a tuple and this can be tested for
+
+[heading Example]
+
+To use the BOOST_VMD_IS_NUMBER macro either include the general header:
+
+ #include <boost/vmd/vmd.hpp>
+ 
+or include the specific header:
+
+ #include <boost/vmd/is_number.hpp>
+
+[endsect]

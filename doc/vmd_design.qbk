@@ -26,8 +26,8 @@ preprocessor, whose conformance to the C++ standard for macro processing is nota
 incorrect in a number of areas. But I still felt this functionality could be used
 in select situations and might be useful to others. Using this functionality
 I was able to build up some other macros which tested for the various Boost PP
-data types. I also was able to add in functionlity, based on Paul Mendsonides
-excellent work, for handling parens in preproccessing data.
+data types. I also was able to add in functionality, based on Paul Mendsonides
+excellent work, for handling tuples in preproccessing data.
 
 All of this particular functionality is impossible to do effectively 
 without the use of variadic macros. But I have kept these features at a 
@@ -38,7 +38,7 @@ variadic macros must be used.
 
 Nonetheless I would like to keep this library as an adjunct to the 
 functionality in Boost PP for using variadic macros. I believe that 
-others may jhave implemented their own expanded functionality using 
+others may have implemented their own expanded functionality using 
 variadic macros which may further be added to the library in the future.
 
 [endsect]

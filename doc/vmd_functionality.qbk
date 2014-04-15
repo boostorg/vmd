@@ -14,7 +14,7 @@ VMD does not attempt to improve on the excellent functionality
 of Boost PP when dealing internally with preprocessor data. Rather
 VMD offers alternative constructs and functionality for 
 representing preprocessor data which a preprocessor metaprogrammer
-might find useful.
+might find useful, as well as means of parsing/testing for data.
 
 The alternative syntactical constructs
 can be combined with Boost PP data, and variadic data, to provide

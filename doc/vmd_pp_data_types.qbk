@@ -1,0 +1,64 @@
+[section:vmd_pp_data_types Boost PP data types]
+
+VMD is able to determine whether or not preprocessing input
+is a given Boost PP data type. The VMD macros to do this are:
+
+BOOST_VMD_IS_ARRAY for an array
+BOOST_VMD_IS_LIST for a list
+BOOST_VMD_IS_SEQ for a seq
+BOOST_VMD_IS_TUPLE for a tuple
+
+Each of these macros take a single parameter as input and
+return 1 if the parameter is the appropriate data type and
+0 if it is not.
+
+One thing to realize is that both an array and a list are also
+a tuple. So if one has:
+
+ #define ANARRAY (3,(a,b,c))
+ #define ALIST (a,(b,(c,BOOST_PP_NIL)))
+ #define ATUPLE (a,b,c)
+ #define ASEQ (a)(b)(c)
+ 
+then
+ 
+ BOOST_VMD_IS_TUPLE(ANARRAY) returns 1
+ BOOST_VMD_IS_TUPLE(ALIST) returns 1
+ BOOST_VMD_IS_TUPLE(ATUPLE) returns 1
+ BOOST_VMD_IS_TUPLE(ASEQ) returns 0
+ 
+Another thing to realize is that a single element tuple
+is also a one element seq. So if one has:
+
+ #define ASE_TUPLE (a)
+ 
+then
+
+ BOOST_VMD_IS_TUPLE(ASE_TUPLE) returns 1
+ BOOST_VMD_IS_SEQ(ASE_TUPLE) returns 1
+ 
+Unlike the processing of v-identifiers or v-numbers, there
+is no constraint about the beginning of the input causing a 
+preprocessing error since preprocessor concatenation is not used 
+to determine any of these data types.
+
+[heading Usage]
+
+Individual header files can be used for each of these macros 
+instead of including the general header file 'vmd.hpp'. The individual
+header files are:
+
+* 'array.hpp' for the BOOST_VMD_IS_ARRAY macro
+* 'list.hpp' for the BOOST_VMD_IS_LIST macro
+* 'seq.hpp' for the BOOST_VMD_IS_SEQ macro
+* 'tuple.hpp' for the BOOST_VMD_IS_TUPLE macro.
+
+As an example, to use BOOST_VMD_IS_TUPLE you can include the general header file:
+
+ #include <boost/vmd/vmd.hpp>
+
+or you can include the individual header file:
+
+ #include <boost/vmd/tuple.hpp>
+
+[endsect]

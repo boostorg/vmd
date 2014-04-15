@@ -6,15 +6,19 @@ where VMD stands for 'Variadic Macro Data'.
 Following the prefix, certain names in the macros refer to data types 
 in this library or Boost PP. These names and their data types are:
 
-# TUPLE = Boost PP tuple data type.
-# ARRAY = Boost PP array data type.
-# LIST  = Boost PP list data type.
-# SEQ   = Boost PP sequence data type.
+# TUPLE      = Boost PP tuple data type.
+# ARRAY      = Boost PP array data type.
+# LIST       = Boost PP list data type.
+# SEQ        = Boost PP sequence data type.
+# IDENTIFIER = A VMD identifier
+# NUMBER     = A VMD number
 
-I have used names in order to mimic the naming of Boost PP 
-as closely as possible. The words 'tuple', 'array', 'list',
+I have used most of these names in order to mimic the naming of Boost PP 
+as closely as possible. Subsequent use of the words 'tuple', 'array', 'list',
 and 'seq' refer to these Boost PP data types unless otherwise
 noted. See the help for Boost PP for any explanation of these
-data types.
+data types. For a VMD identifier I use the term 'v-identifier' and
+for a VMD number I use the term 'v-number'. Documentation for these
+in VMD will follow.
 
 [endsect]

@@ -3,6 +3,12 @@
 
 #include <boost/preprocessor/config/config.hpp>
 
+#if defined(BOOST_VMD_MSVC)
+#undef BOOST_VMD_MSVC
+#endif
+#if defined(BOOST_VMD_MSVC_V8)
+#undef BOOST_VMD_MSVC_V8
+#endif
 #if BOOST_PP_VARIADICS
 #define BOOST_VMD_MSVC BOOST_PP_VARIADICS_MSVC
 #if BOOST_VMD_MSVC && defined(_MSC_VER) && _MSC_VER == 1400

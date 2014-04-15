@@ -1,16 +1,15 @@
 [section:vmd_detail Functional groups]
 
-The particular constructs for which VMD has advanced functionality 
+The particular constructs for which VMD has functionality 
 can be divided into these categories:
 
 # Emptiness
-# Parenthesis
-# Identifier
-# Number
-# Token sequences
-# Boost PP data types
+# Identifiers
+# Numbers
+# Boost PP data types ( array, list, seqence, and tuple )
+# Data sequences
 # Additional variadic macros
 
-A further general explanation of each of these categories follow.
+A further general explanation of each of these categories follow in the appropriate place.
 
 [endsect]

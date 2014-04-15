@@ -1,0 +1,99 @@
+[section:vmd_sequence_identifier Parsing v-identifiers]
+
+The macro BOOST_VMD_IDENTIFIER looks for a v-identifier at the beginning
+of an input sequence. Just like BOOST_VMD_IS_IDENTIFIER it takes as mandatory parameters 
+an input sequence as the first parameter and a v-key as the second parameter. It returns 
+a tuple of two elements. The first tuple element is the same return value as BOOST_VMD_IS_IDENTIFIER; 
+an index, starting with 1, of the v-identifier corresponding to its v-key or 0 if no 
+v-identifier is found. The second tuple element is the rest of the input sequence if a 
+v-identifier is found or an empty element if no v-identifier is found. Notice that a 
+v-identifier can be found and the rest of the input sequence can be empty, so one always 
+needs to check the first tuple element to determine if the v-identifier was found at the 
+beginning of the input sequence or not.
+
+[heading Usage]
+
+To use the BOOST_VMD_IDENTIFIER macro either include the general header:
+
+ #include <boost/vmd/vmd.hpp>
+ 
+or include the specific header:
+
+ #include <boost/vmd/identifier.hpp>
+
+[heading Simple input sequences]
+
+A beginning v-identifier in an input sequence can always be parsed using the mandatory 
+parameters if the v-identifier is followed by:
+
+* tuple ...
+* v-number tuple ...
+* v-number end-of_sequence
+* end-of-sequence
+
+A 'tuple' here refers to any pair of parenthesis, such as an array, a list, 
+or the beginning of a seq.
+
+As we will see more complicated input sequences beginning with a v-identifier
+can be parsed using the optional parameters of BOOST_VMD_IDENTIFIER. These
+optional parameters will be discussed later.
+
+Some examples:
+
+ #define BOOST_VMD_MAP_MYLIB_KEY1_CIRCLE
+ #define BOOST_VMD_MAP_MYLIB_KEY2_SQUARE
+ #define BOOST_VMD_MAP_MYLIB_KEY3_RECTANGLE
+ #define BOOST_VMD_MAP_MYLIB_KEY4_TRIANGLE
+ #define BOOST_VMD_MAP_MYLIB_KEY5_SHAPE
+ 
+ #define SOME_INPUT1 CIRCLE (atuple_elem1,atuple_elem2) any_vtypes
+ 
+ BOOST_VMD_IDENTIFIER
+   (
+   SOME_INPUT1 /* input sequence */,
+   MYLIB_KEY1_ /* CIRCLE, key which matches */
+   )
+ 
+expands to (1,(atuple_elem1,atuple_elem2) any_vtypes)
+ 
+ #define SOME_INPUT2 SQUARE 147 (atuple_elem1,atuple_elem2) any_vtypes
+ 
+ BOOST_VMD_IDENTIFIER
+   (
+   SOME_INPUT2 /* input sequence */,
+   (MYLIB_KEY1_ /* CIRCLE */,MYLIB_KEY2_ /* SQUARE, key which matches */)
+   )
+ 
+expands to (2,147 (atuple_elem1,atuple_elem2) any_vtypes)
+ 
+ #define SOME_INPUT3 RECTANGLE 33
+ 
+ BOOST_VMD_IDENTIFIER
+   (
+   SOME_INPUT3 /* input sequence */,
+   MYLIB_KEY3_ /* RECTANGLE, key which matches */
+   )
+ 
+expands to (1,33)
+ 
+ #define SOME_INPUT4 TRIANGLE
+ 
+ BOOST_VMD_IDENTIFIER
+   (
+   SOME_INPUT4 /* input sequence */,
+   (MYLIB_KEY1_ /* CIRCLE */,MYLIB_KEY2_ /* SQUARE */,MYLIB_KEY3_ /* TRIANGLE, key which matches */)
+   )
+ 
+expands to (3,)
+
+ #define SOME_INPUT5 AVIDENT any_vtypes
+ 
+ BOOST_VMD_IDENTIFIER
+   (
+   SOME_INPUT5 /* input sequence */,
+   MYLIB_KEY5_ /* SHAPE, key does not match */
+   )
+ 
+expands to (0,) because the v-identifier was not found at the beginning of the input.
+ 
+[endsect]

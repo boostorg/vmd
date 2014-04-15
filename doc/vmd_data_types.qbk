@@ -1,0 +1,38 @@
+[section:vmd_data_types Data types]
+
+The VMD library has functionality for testing and parsing preprocessor
+"data types".
+
+The C++ preprocessor defines preprocessor data as preprocessing tokens. 
+The types of preprocessing tokens can be seen in section 2.5 of the C++ standard document.
+
+The VMD library works with a subset of two of these types of preprocessor tokens 
+as "data types". These are the "identifier" and "pp-number" preprocessor tokens.
+
+VMD identifiers, or 'v-identifiers' for short, are sequences of preprocessing tokens consisting 
+of alphanumeric characters and the underscore ( _ ) character. This is very similar to a 
+preprocessor token identifier with the difference being that a v-identifier can start with a 
+numeric character, allowing v-identifiers to also be positive integral literals. VMD offers
+functionality for parsing v-identifiers both as a separate element or in a sequence of preprocessing 
+tokens.
+
+VMD numbers, or 'v-numbers' for short, are Boost PP numbers, ie. preprocessing tokens of 
+whole numbers between 0 and 256 inclusive. These are a small subset of preprocessor token 
+"pp-numbers". VMD offers functionality for parsing v-numbers both as a separate element or 
+in a sequence of preprocessing tokens. A v-number is really a closed set of v-identifiers 
+for which VMD offers specific functionality.
+
+The Boost PP library supports four individual high-level data types. These are arrays, 
+lists, sequences, and tuples, although when using variadic macros arrays are really 
+obsolete since tuples have all the functionality of arrays with a simpler syntax. A further 
+data type supported by Boost PP is variadic data, which is a comma separated grouping of 
+preprocessor elements.
+
+VMD has functionality to work with the four Boost PP high-level data types. VMD can 
+test the Boost PP data types and parse them in a sequence of preprocessor tokens.
+
+The ability to identify emptiness as well as these six types of "data types" represents
+a large part of the functionality which VMD has to offer. I will collectively be calling
+these "data types" by the name of "v-types" in the subsequent documentation.
+
+[endsect]

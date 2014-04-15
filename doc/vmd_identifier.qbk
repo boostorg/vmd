@@ -1,0 +1,119 @@
+[section:vmd_identifier Identifiers]
+
+An identifier in VMD, hereafter called a 'v-identifier', is either of two possibilities:
+
+* a preprocessing token 'identifier', which is essentially a sequence 
+of alphanumeric characters and the underscore 
+character with the first character not being a numeric character.
+
+* a preprocessing token 'pp-number' that is an integral literal token.
+
+ SOMENAME
+ SOME_NAME
+ _SOME_NAME
+ SOME_123_NAME
+ some_123_name
+ sOMe_123_NAmE
+ 2367
+ 43e11
+ 0
+ 22
+ 654792
+ 0x1256
+
+One of the difficulties with identifiers in preprocessor metaprogramming 
+is safely testing for a particular one. VMD has a means of doing this within
+a particular constraint for the characters that serve as the input.
+
+The constraint is that the beginning input character, ignoring any whitespace, passed
+as the input to test must be either:
+
+* an identifier character, ie. an alphanumeric or an underscore
+* the left parenthesis of a tuple. 
+
+If this is not the case a preprocessing error will occur.
+
+Given the input:
+
+ s_anything : can be tested
+ S_anything : can be tested
+ s_anYthiNg : can be tested
+ _anything : can be tested
+ _Anything : can be tested
+ _anytHIng : can be tested
+ 24 : can be tested
+ 245e2: can be tested
+ (anything) : can be tested, tuple
+ (anything) anything : can be tested, tuple + identifier
+ 
+ %_anything : will give a preprocessing error due to the constraint
+ (_anything : will give a preprocessing error due to the constraint, since a single '(' does not form a tuple
+
+The macro used to test for a particular identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
+The macro takes two parameters. The first parameter is the input to test against, while the
+second parameter is the 'key', hereafter called a v-key. The v-key can be used to test against 
+any one of a number of possible identifiers, since the v-key can be either a single token or 
+a tuple of tokens.
+
+The form of a v-key is that of a v-identifier itself, except that the v-key
+should not begin with an underscore character ( _ ).
+
+In order to use a v-key the programmer invoking this macro must define an object-like
+macro, called a key-identifier macro, whose form is:
+
+ #define BOOST_VMD_MAP_'v-key''v-identifier'
+ 
+A key-identifier macro must generate no output. The v-key portion must be unique,
+for each identifier to be tested, and which will not be duplicated within the translation unit.
+Two of the easiest ways to create a unique v-key across the translation unit is:
+
+* preface all v-keys with a single unique preface for the library or application in which 
+BOOST_VMD_IS_IDENTIFIER is being used, followed by some distinct v-key name.
+* generate a GUID and use its hex representation as the unique v-key.
+
+The programmer can define any number of key-identifier macros, one for each identifier he wishes to test.
+Once the key-identifier macro is defined, the v-key is passed as the second parameter to 
+BOOST_VMD_IS_IDENTIFIER to see if the first parameter is the same as the v-identifier.
+
+Since the second parameter can be a single token or a tuple of tokens, the BOOST_VMD_IS_IDENTIFIER macro 
+returns a number, from 0 to the number of tokens passed. A return of 0 indicates that the
+v-identifier was not found, while a return of a non-zero indicates the v-identifier was found and,
+in the case of multiple tokens passed as a tuple, indicates which one of the v-identifiers was
+found ( 1 for the first token, 2 for the second token, etc. ). The programmer can then use a Boost PP
+comparison macro, such as BOOST_PP_EQUAL, to determine which v-identifier is found. The programmer can
+also use BOOST_PP_IF or BOOST_PP_IIF ( with a single token v-key ) with the result to branch as part of his 
+preprocessor metaprogramming logic.
+
+[heading Example]
+
+Let us look at an example of how to use BOOST_VMD_IS_IDENTIFIER.
+
+ #define BOOST_VMD_MAP_MYLIB_KEY1_CIRCLE
+ #define BOOST_VMD_MAP_MYLIB_KEY2_SQUARE
+ #define BOOST_VMD_MAP_MYLIB_KEY3_TRIANGLE
+ #define BOOST_VMD_MAP_MYLIB_KEY4_RECTANGLE
+ 
+ BOOST_VMD_IS_IDENTIFIER(input,(MYLIB_KEY1_,MYLIB_KEY2_,MYLIB_KEY3_,MYLIB_KEY4_))
+ 
+ returns:
+ 
+ if input = CIRCLE, 1
+ if input = SQUARE, 2
+ if input = TRIANGLE, 3
+ if input = RECTANGLE, 4
+ if input = PARALLELOGRAM, 0 since there is no match of any of the keys
+ if input = CIRCLE DATA, 0 since there are tokens after the identifier 
+ if input = %NAME, does not meet the constraint therefore a preprocessing error occurs
+ if input = ( NAME ) NAME, 0 since the macro begins with a tuple and this can be tested for
+
+[heading Usage]
+
+To use the BOOST_VMD_IS_IDENTIFIER macro either include the general header:
+
+ #include <boost/vmd/vmd.hpp>
+ 
+or include the specific header:
+
+ #include <boost/vmd/is_identifier.hpp>
+
+[endsect]

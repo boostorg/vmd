@@ -14,7 +14,7 @@ Consider these two function-like macros:
  #define SMACRO() someoutput
  #define EMACRO(x) otheroutput x
  
-The first macro takes no parameters so invoking it would always be done by
+The first macro takes no parameters so invoking it must always be done by
  
  SMACRO()
  
@@ -88,7 +88,7 @@ the second element is empty.
  
 Again either invocation is valid C++ but it is usually not what the
 designed of the macro has desired, even if in both cases the macro designer
-has specified that the second parameter should be a tuple for the macro
+has specified that the second parameter must be a tuple for the macro
 to work properly.
  
 [heading Returning emptiness]
@@ -96,7 +96,8 @@ to work properly.
 Similar to passing empty arguments in various ways to a macro,
 the data which a macro returns ( or 'generates' may be a better term )
 could be empty, in various ways. Again I am not necessarily promoting
-this idea but merely pointing it out as valid C++ preprocessing.
+this idea a a common occurrence of macro design but merely pointing it 
+out as valid C++ preprocessing.
 
  #define RMACRO(x,y,z)
  
@@ -104,7 +105,7 @@ this idea but merely pointing it out as valid C++ preprocessing.
  
 It is perfectly valid C++ to return "nothing" from a macro invocation.
 In fact a number of macros in Boost PP do that based on the preprocessor
-metaprogramming logic of the macro.
+metaprogramming logic of the macro, and are documented as such.
 
 Similarly one could return nothing as part or all of a Boost PP
 data type or even as part of variadic macro data.
@@ -133,8 +134,9 @@ a parameter is empty of not, written without the use of variadic
 macros. The macro is called BOOST_PP_IS_EMPTY. The macro is by its nature flawed,
 since there is no generalized way of determining whether or not a 
 parameter is empty using the C++ preprocessor. But the macro will 
-work given inputs limited in a few ways or actual emptiness. Probably because the
-macro is flawed the Boost PP library did not want to document this macro for
+work given input limited in various ways or having actual emptiness. Probably because the
+macro is flawed, and because there really is no perfect way of testing for emptiness
+in the C++ preprocessor, the Boost PP library did not want to document this macro for
 use by others.
 
 Paul Mensonides, the developer of Boost PP and the BOOST_PP_IS_EMPTY macro 
@@ -143,7 +145,7 @@ macros, for determining whether or not a parameter is empty or not, which
 he published on the Internet in response to a discussion about emptiness.
 This macro is also not perfect, since there is no perfect solution, 
 but will work correctly with almost all input. I have adapted his code
-for the VMD and developed my own slightly different code.
+for the VMD and developed my own very slightly different code.
 
 The macro is called [macroref BOOST_VMD_IS_EMPTY] and will return 1 if its input 
 is empty or 0 if its input is not empty. The macro
@@ -248,22 +250,32 @@ Here is an example of the failure:
  BOOST_VMD_IS_EMPTY(FMACRO) // erroneously returns 1, instead of 0
  
 As with a standard C++ conforming compiler, we have a rare corner case where
-the BOOST_VMD_IS_EMPTY will not work properly, but I want to reiterate that 
-there is no perfect solution in C++ to the detection of emptiness even for a 
-C++ compiler whose preprocessor is complete conformant, which VC++ obviously is not.
+the BOOST_VMD_IS_EMPTY will not work properly, but unfortunately in this very
+similar but even rarer corner case with VC++, we will silently get an incorrect result
+rather a compiler error.
+
+I want to reiterate that there is no perfect solution in C++ to the detection of 
+emptiness even for a C++ compiler whose preprocessor is complete conformant, which 
+VC++ obviously is not.
 
 [heading Macro Flaw conclusion]
 
 With all of the above mentioned, the case(s) where BOOST_VMD_IS_EMPTY will work 
 incorrectly are very small, even with the erroneous VC++ preprocessor, 
-and I consider the macro worthwhile to use with the vast majority of possible input.
+and I consider the macro worthwhile to use since it works correctly with the vast 
+majority of possible preprocessor input.
+
 The case where it will not work, with both a C++ standard confoming preprocessor or
 with Visual C++, occurs when he name of a function-like macro is part of the input
-to BOOST_VMD_IS_EMPTY. Obviously the macro should be used by the end-user when the 
-possible input to it is constrained to eliminate the corner case. But this can
-be done both in the case where the end-user uses BOOST_VMD_IS_EMPTY and when another
-macro uses BOOST_VMD_IS_EMPTY for its own purposes, as a number of other macros in
-VMD do. Therefore I believe the macro is quite useful, despite the corner case flaw
+to BOOST_VMD_IS_EMPTY. Obviously the macro should be used by the preprocessor 
+metaprogrammer when the possible input to it is constrained to eliminate the erroneous
+case.
+
+Furthermore, since emptiness can correctly be tested for in nearly every situation, the
+macro can be used internally when the preprocessor metaprogrammer wants to return data
+from a macro and all or part of that data could be empty.
+
+Therefore I believe the macro is quite useful, despite the corner case flaw
 which makes it imperfect. Consequently I believe that the preprocessor metaprogrammer
 can use the concept of empty preprocessor data in the design of his own macros.
 
