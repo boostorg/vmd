@@ -11,9 +11,13 @@
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
+#include <boost/preprocessor/variadic/elem.hpp>
+#include <boost/preprocessor/variadic/size.hpp>
 #include <boost/vmd/gen_one.hpp>
-#include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
+#include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE(x) \
@@ -113,7 +117,7 @@
         ) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_LIST(list) \
+#define BOOST_VMD_DETAIL_IS_LIST_WLOOP(list) \
     BOOST_VMD_DETAIL_IS_LIST_RESULT \
       ( \
       BOOST_PP_WHILE \
@@ -125,7 +129,7 @@
       ) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_LIST_D(d,list) \
+#define BOOST_VMD_DETAIL_IS_LIST_WLOOP_D(d,list) \
     BOOST_VMD_DETAIL_IS_LIST_RESULT \
       ( \
       BOOST_PP_WHILE_ ## d \
@@ -135,6 +139,89 @@
         list \
         ) \
       ) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_CHECK_EMPTY_LIST_NUMBER(...) \
+	BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_CHECK_EMPTY_LIST(...) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_PP_EQUAL \
+      	( \
+      	BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
+      	1 \
+      	), \
+      BOOST_VMD_GEN_ZERO, \
+      BOOST_VMD_DETAIL_IS_LIST_CHECK_EMPTY_LIST_NUMBER \
+      ) \
+    (__VA_ARGS__) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_CHECK_EMPTY_LIST_D(d,...) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_PP_EQUAL_D \
+      	( \
+      	d, \
+      	BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
+      	1 \
+      	), \
+      BOOST_VMD_GEN_ZERO, \
+      BOOST_VMD_DETAIL_IS_LIST_CHECK_EMPTY_LIST_NUMBER \
+      ) \
+    (__VA_ARGS__) \
+/**/
+
+#define BOOST_VMD_MAP_VMD_DETAIL_NULL_LIST_BOOST_PP_NIL
+
+#define BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS(list) \
+	BOOST_VMD_IS_IDENTIFIER(list,VMD_DETAIL_NULL_LIST_) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D(d,list) \
+	BOOST_VMD_IS_IDENTIFIER_D(d,list,VMD_DETAIL_NULL_LIST_) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST(...) \
+    BOOST_PP_IIF \
+    	( \
+    	BOOST_VMD_DETAIL_IS_LIST_CHECK_EMPTY_LIST(__VA_ARGS__), \
+    	BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS, \
+    	BOOST_VMD_GEN_ZERO \
+    	) \
+    (BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_D(d,...) \
+    BOOST_PP_IIF \
+    	( \
+    	BOOST_VMD_DETAIL_IS_LIST_CHECK_EMPTY_LIST_D(d,__VA_ARGS__), \
+    	BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D, \
+    	BOOST_VMD_GEN_ZERO \
+    	) \
+    (d,BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST(...) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST(__VA_ARGS__), \
+      BOOST_VMD_GEN_ONE, \
+      BOOST_VMD_DETAIL_IS_LIST_WLOOP \
+      ) \
+    (BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_D(d,...) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_D(d,__VA_ARGS__), \
+      BOOST_VMD_GEN_ONE, \
+      BOOST_VMD_DETAIL_IS_LIST_WLOOP_D \
+      ) \
+    (d,BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_IS_LIST_HPP */

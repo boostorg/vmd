@@ -8,7 +8,6 @@
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/list.hpp>
 #include <boost/vmd/detail/is_list.hpp>
 
@@ -31,19 +30,12 @@
    				and the second element is the preprocessor tokens after the beginning list.
     
 */
-# define BOOST_VMD_LIST(param) \
-	BOOST_VMD_DETAIL_LIST_CHECK_RETURN \
-		( \
-		BOOST_VMD_TUPLE(param) \
-		) \
+# define BOOST_VMD_LIST(...) \
+	BOOST_VMD_DETAIL_LIST(__VA_ARGS__) \
 /**/
 
-# define BOOST_VMD_LIST_D(d,param) \
-	BOOST_VMD_DETAIL_LIST_CHECK_RETURN_D \
-		( \
-		d, \
-		BOOST_VMD_TUPLE(param) \
-		) \
+# define BOOST_VMD_LIST_D(d,...) \
+	BOOST_VMD_DETAIL_LIST_D(d,__VA_ARGS__) \
 /**/
 
 /** \brief Expands to the beginning list of a macro parameter.
@@ -54,19 +46,19 @@
     			If the param does not start with a list, expands to nothing.
     
 */
-#define BOOST_VMD_BEGIN_LIST(param) \
+#define BOOST_VMD_BEGIN_LIST(...) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		0, \
-		BOOST_VMD_LIST(param) \
+		BOOST_VMD_LIST(__VA_ARGS__) \
 		) \
 /**/
 
-#define BOOST_VMD_BEGIN_LIST_D(d,param) \
+#define BOOST_VMD_BEGIN_LIST_D(d,...) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		0, \
-		BOOST_VMD_LIST_D(d,param) \
+		BOOST_VMD_LIST_D(d,__VA_ARGS__) \
 		) \
 /**/
 
@@ -78,19 +70,19 @@
     			If the param does not start with a list, expands to nothing.
     
 */
-#define BOOST_VMD_AFTER_LIST(param) \
+#define BOOST_VMD_AFTER_LIST(...) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_LIST(param) \
+		BOOST_VMD_LIST(__VA_ARGS__) \
 		) \
 /**/
 
-#define BOOST_VMD_AFTER_LIST_D(d,param) \
+#define BOOST_VMD_AFTER_LIST_D(d,...) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_LIST_D(d,param) \
+		BOOST_VMD_LIST_D(d,__VA_ARGS__) \
 		) \
 /**/
 
@@ -102,22 +94,22 @@
               0 if it does not.
     
 */
-#define BOOST_VMD_IS_BEGIN_LIST(param) \
+#define BOOST_VMD_IS_BEGIN_LIST(...) \
 	BOOST_PP_NOT \
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
-			BOOST_VMD_BEGIN_LIST(param) \
+			BOOST_VMD_BEGIN_LIST(__VA_ARGS__) \
 			) \
 		) \
 /**/
 
-#define BOOST_VMD_IS_BEGIN_LIST_D(d,param) \
+#define BOOST_VMD_IS_BEGIN_LIST_D(d,...) \
 	BOOST_PP_NOT \
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
-			BOOST_VMD_BEGIN_LIST_D(d,param) \
+			BOOST_VMD_BEGIN_LIST_D(d,__VA_ARGS__) \
 			) \
 		) \
 /**/
@@ -131,18 +123,33 @@
     The macro works through variadic macro support.
     It returns 1 if it is a list, else if returns 0.
     
-    list = a possible pplib list.
+    ... = variadic parameters, maximum of 2
+    
+    The first variadic parameter is:
+    
+    input as a possible Boost PP list.
 
+	The second variadic parameter (optional) is:
+	
+	1 if an empty list should also be checked,
+	0 ( default ) if an empty list should not also be checked.
+	
+	An empty list consists of the identifier 'BOOST_PP_NIL'.
+	
+	If an empty list should also be checked and the first parameter
+	does not begin with an alphanumeric or underscore character,
+	is a tuple, or is empty, a compiler error will occur.
+	
     returns = 1 if it a list, else returns 0.
     
 */
 
-#define BOOST_VMD_IS_LIST(list) \
-	BOOST_VMD_DETAIL_IS_LIST(list) \
+#define BOOST_VMD_IS_LIST(...) \
+	BOOST_VMD_DETAIL_IS_LIST(__VA_ARGS__) \
 /**/
 
-#define BOOST_VMD_IS_LIST_D(d,list) \
-	BOOST_VMD_DETAIL_IS_LIST_D(d,list) \
+#define BOOST_VMD_IS_LIST_D(d,...) \
+	BOOST_VMD_DETAIL_IS_LIST_D(d,__VA_ARGS__) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_LIST(list)
@@ -188,7 +195,7 @@
 #define BOOST_VMD_ASSERT_IS_LIST(list) \
     BOOST_VMD_ASSERT \
       ( \
-      BOOST_VMD_IS_LIST(list), \
+      BOOST_VMD_IS_LIST(list,1), \
       BOOST_VMD_ASSERT_IS_LIST_ERROR \
       ) \
 /**/
@@ -196,7 +203,7 @@
 #define BOOST_VMD_ASSERT_IS_LIST_D(d,list) \
     BOOST_VMD_ASSERT \
       ( \
-      BOOST_VMD_IS_LIST_D(d,list), \
+      BOOST_VMD_IS_LIST_D(d,list,1), \
       BOOST_VMD_ASSERT_IS_LIST_ERROR \
       ) \
 /**/

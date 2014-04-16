@@ -17,7 +17,7 @@ int main()
   #define JDATA ggh 
   #define KDATA (a,(b,BOOST_PP_NIL)) name
   #define NOT_LIST y6(x,BOOST_PP_NIL)
-  #define NOT_LIST2 &(^^,(!,BOOST_PP_NIL))
+  #define NOT_LIST2 44(^^,(!,BOOST_PP_NIL))
   #define A_SEQ (r)($)(#)
   #define AN_ARRAY (4,(5,7,f,x))
   
