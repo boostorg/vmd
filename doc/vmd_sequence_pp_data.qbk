@@ -3,7 +3,7 @@
 There are macros for the Boost PP data types that can parse the
 particular data type at the beginning of a v-sequence. Unlike
 the equivalent functionality for v-identifiers and v-numbers the
-only parameter that is allowed is the v-sequence itself. 
+only parameter that is allowed is the v-sequence itself.
 
 The macros are:
 
@@ -34,11 +34,11 @@ or include the appropriate specific header:
 
 [heading Data types and tuples]
 
-An array and a list are also tuples. A seq is a series of single element
-tuples. Therefore if an v-sequence begins with an array, list, or seq
+An array and a non-empty list are also tuples. A seq is a series of single element
+tuples. Therefore if an v-sequence begins with an array, non-empty list, or seq
 and you use BOOST_VMD_TUPLE passing that v-sequence you will successfully
-find the beginning tuple. In the case of an array or a list what is returned
-will be exacly the same as a tuple. In the case of a seq what is returned will
+find the beginning tuple. In the case of an array or a non-empty list what is returned
+will be exactly the same as a tuple. In the case of a seq what is returned will
 only be the same if the seq is a single one-element tuple.
 
 As an example:
@@ -67,7 +67,7 @@ expands to ((a)(b)(c),anything)
  
 expands to ((a),(b)(c) anything)
 
-On the other hand not every tuple is a list or array
+On the other hand not every tuple is a non-empty list or array
 while only a single element tuple is also a seq.
 
 As an example:
@@ -86,7 +86,7 @@ expands to ((z,(a,b,c)),data) since there is a beginning tuple
  
  BOOST_VMD_LIST(INPUT_D5)
  
-expands to (,) since the beginning tuple is not a list
+expands to (,) since the beginning tuple is not a list ( missing BOOST_PP_NIL terminator )
 
  BOOST_VMD_TUPLE(INPUT_D5)
  

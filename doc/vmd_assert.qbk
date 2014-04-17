@@ -62,11 +62,11 @@ macros are:
 * seq, BOOST_VMD_ASSERT_IS_SEQ
 * tuple, BOOST_VMD_ASSERT_IS_TUPLE
 
-Each of these macros take as parameters the exact same arguments as their
+Each of these macros take as parameters the exact same argument as their
 corresponding identifying macros. But instead of returning non-zero or 0, each of these
 macros produce a compiler error if the type of the input is not correct. However
-each of these macros only work when the macro BOOST_VMD_ASSERT_DATA is set
-to 1. By default BOOST_VMD_ASSERT_DATA is only set to 1 in compiler debug mode.
+each of these macros only check for its assertion when the macro BOOST_VMD_ASSERT_DATA 
+is set to 1. By default BOOST_VMD_ASSERT_DATA is only set to 1 in compiler debug mode.
 The programmer can manually set BOOST_VMD_ASSERT_DATA to 1 prior to using one
 the data types assert macros if he wishes.
 
@@ -86,13 +86,9 @@ or include the specific header:
  #include <boost/vmd/seq.hpp> // BOOST_VMD_ASSERT_IS_SEQ
  #include <boost/vmd/tuple.hpp> // BOOST_VMD_ASSERT_IS_TUPLE
  
-Each of these macros are in the same header file as their corresponding identifying
-macros. The programmer can also include <boost/vmd/vmd.hpp> instead of including the
-individual header file.
-
 [heading Assertions and VC++ ]
 
-The VC++ compiler has one more quirk when dealing with BOOST_VMD_ASSERT and the 
+The VC++ compiler has a quirk when dealing with BOOST_VMD_ASSERT and the 
 v-type assert macros. If you invoke one of the assert macros within another
 macro which would normally generate output preprocessor tokens, it is necessary when using
 VC++ to concatenate the result of the assert macro to whatever other preprocessor data

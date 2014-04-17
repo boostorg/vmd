@@ -8,12 +8,12 @@ BOOST_VMD_IS_LIST for a list
 BOOST_VMD_IS_SEQ for a seq
 BOOST_VMD_IS_TUPLE for a tuple
 
-Each of these macros take a single parameter as input and
-return 1 if the parameter is the appropriate data type and
+Each of these macros take a single parameter as input and 
+return 1 if the parameter is the appropriate data type and 
 0 if it is not.
 
-One thing to realize is that both an array and a list are also
-a tuple. So if one has:
+One thing to realize is that both an array and a non-empty 
+list are also a tuple. So if one has:
 
  #define ANARRAY (3,(a,b,c))
  #define ALIST (a,(b,(c,BOOST_PP_NIL)))
@@ -44,21 +44,16 @@ to determine any of these data types.
 
 [heading Usage]
 
-Individual header files can be used for each of these macros 
-instead of including the general header file 'vmd.hpp'. The individual
-header files are:
-
-* 'array.hpp' for the BOOST_VMD_IS_ARRAY macro
-* 'list.hpp' for the BOOST_VMD_IS_LIST macro
-* 'seq.hpp' for the BOOST_VMD_IS_SEQ macro
-* 'tuple.hpp' for the BOOST_VMD_IS_TUPLE macro.
-
-As an example, to use BOOST_VMD_IS_TUPLE you can include the general header file:
+You can use the geneal header file:
 
  #include <boost/vmd/vmd.hpp>
+ 
+or you can use individual header files for each of these macros.
+The individual header files are:
 
-or you can include the individual header file:
-
- #include <boost/vmd/tuple.hpp>
+ #include <boost/vmd/array.hpp> //  for the BOOST_VMD_IS_ARRAY macro
+ #include <boost/vmd/list.hpp> //  for the BOOST_VMD_IS_LIST macro
+ #include <boost/vmd/seq.hpp> //  for the BOOST_VMD_IS_SEQ macro
+ #include <boost/vmd/tuple.hpp> // for the BOOST_VMD_IS_TUPLE macro.
 
 [endsect]
