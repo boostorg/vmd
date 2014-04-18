@@ -44,12 +44,19 @@
     (x) \
 /**/
 
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY(x) \
+	BOOST_VMD_IS_EMPTY \
+		( \
+		BOOST_PP_TUPLE_ELEM(1,x) \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH(x) \
     BOOST_PP_IF \
     	( \
     	BOOST_PP_TUPLE_ELEM(0,x), \
     	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_PROCESS, \
-    	BOOST_VMD_IS_EMPTY \
+    	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY \
     	) \
     (x) \
 /**/
