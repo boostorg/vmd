@@ -3,6 +3,7 @@
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
+#include <boost/preprocessor/control/if.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
@@ -33,13 +34,23 @@
     BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,x),BOOST_PP_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,x))) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH(x) \
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_PROCESS(x) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,x)), \
       BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_SIZE, \
       BOOST_VMD_GEN_ZERO \
       ) \
+    (x) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH(x) \
+    BOOST_PP_IF \
+    	( \
+    	BOOST_PP_TUPLE_ELEM(0,x), \
+    	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_PROCESS, \
+    	BOOST_VMD_IS_EMPTY \
+    	) \
     (x) \
 /**/
 
@@ -60,6 +71,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_NUM(x) BOOST_VMD_IS_EMPTY(BOOST_PP_CAT(BOOST_VMD_DETAIL_IS_ARRAY_NUM_HELPER_, x) BOOST_PP_EMPTY())
+#define BOOST_VMD_DETAIL_IS_ARRAY_NUM_HELPER_0
 #define BOOST_VMD_DETAIL_IS_ARRAY_NUM_HELPER_1
 #define BOOST_VMD_DETAIL_IS_ARRAY_NUM_HELPER_2
 #define BOOST_VMD_DETAIL_IS_ARRAY_NUM_HELPER_3
