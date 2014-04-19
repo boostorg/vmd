@@ -5,7 +5,9 @@
 #include <boost/vmd/is_empty.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
+#include <boost/preprocessor/array/data.hpp>
 #include <boost/preprocessor/array/elem.hpp>
+#include <boost/preprocessor/array/size.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 
 int main()
@@ -18,12 +20,15 @@ int main()
   #define JDATA ggh
   #define KDATA (2,(a,b)) name
   #define A_SEQ ((1,(25)))((1,(26)))((1,(27)))
+  #define AN_EMPTY_ARRAY_PLUS (0,) 131
   
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_BEGIN_ARRAY(anything)));
   BOOST_TEST_EQ(BOOST_PP_ARRAY_ELEM(1,BOOST_VMD_BEGIN_ARRAY(AN_ARRAY_PLUS)),34);
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_BEGIN_ARRAY(PLUS_ANARRAY)));
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_BEGIN_ARRAY(JDATA)));
   BOOST_TEST_EQ(BOOST_PP_ARRAY_ELEM(0,BOOST_VMD_BEGIN_ARRAY(BOOST_PP_SEQ_ELEM(2,A_SEQ))),27);
+  BOOST_TEST(!BOOST_PP_ARRAY_SIZE(BOOST_VMD_BEGIN_ARRAY(AN_EMPTY_ARRAY_PLUS)));
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_PP_ARRAY_DATA(BOOST_VMD_BEGIN_ARRAY(AN_EMPTY_ARRAY_PLUS))));
   
 #endif
 

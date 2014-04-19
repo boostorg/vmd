@@ -11,6 +11,7 @@ int main()
 #if BOOST_PP_VARIADICS
 
   #define AN_ARRAY (7,(5,7,f,x,%,$,U))
+  #define AN_EMPTY_ARRAY (0,)
   
   BOOST_TEST
   	(
@@ -25,6 +26,11 @@ int main()
   BOOST_TEST
   	(
   	BOOST_VMD_IS_ARRAY(AN_ARRAY)
+  	);
+	
+  BOOST_TEST
+  	(
+  	BOOST_VMD_IS_ARRAY(AN_EMPTY_ARRAY)
   	);
 	
 #endif
