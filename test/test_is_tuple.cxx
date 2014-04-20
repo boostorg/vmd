@@ -11,6 +11,14 @@ int main()
 #if BOOST_PP_VARIADICS
 
   #define A_TUPLE (*,#,zz)
+  
+#if !BOOST_VMD_MSVC_V8  
+
+  #define AN_EMPTY_TUPLE ()
+  #define AN_EMPTY_TUPLE_PLUS () 83
+  
+#endif
+
   #define A_TUPLE2 (*,#,(zz,44,(e7)))
   #define A_TUPLE_PLUS (mmf,34,^^,!) 456
   #define PLUS_ATUPLE yyt (j,ii%)
@@ -34,6 +42,14 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_TUPLE(A_SEQ));
   BOOST_TEST(BOOST_VMD_IS_TUPLE(AN_ARRAY));
   BOOST_TEST(BOOST_VMD_IS_TUPLE(A_LIST));
+  
+#if !BOOST_VMD_MSVC_V8  
+
+  BOOST_TEST(BOOST_VMD_IS_TUPLE(AN_EMPTY_TUPLE));
+  BOOST_TEST(!BOOST_VMD_IS_TUPLE(AN_EMPTY_TUPLE_PLUS));
+  
+#endif
+
   BOOST_TEST(!BOOST_VMD_IS_TUPLE((y)2(x)));
   
 #endif

@@ -22,6 +22,12 @@ int main()
   #define AN_ARRAY (4,(5,7,f,x))
   #define A_LIST (e,(g,(&,BOOST_PP_NIL)))
   
+#if !BOOST_VMD_MSVC_V8  
+
+  #define AN_EMPTY_SEQ_PLUS () 83
+  
+#endif
+  
   BOOST_TEST(!BOOST_VMD_IS_BEGIN_SEQ());
   BOOST_TEST(BOOST_VMD_IS_BEGIN_SEQ(A_SEQ));
   BOOST_TEST(BOOST_VMD_IS_BEGIN_SEQ(A_SEQ2));
@@ -34,6 +40,13 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_BEGIN_SEQ(AN_ARRAY));
   BOOST_TEST(!BOOST_VMD_IS_BEGIN_SEQ(A_LIST));
   BOOST_TEST(BOOST_VMD_IS_BEGIN_SEQ((y)2(x)));
+  
+#if !BOOST_VMD_MSVC_V8  
+
+  BOOST_TEST(BOOST_VMD_IS_BEGIN_SEQ(AN_EMPTY_SEQ_PLUS));
+  
+#endif
+
   
 #endif
 

@@ -10,6 +10,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/array.hpp>
+#include <boost/vmd/detail/is_empty_array.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 
 /*
@@ -108,6 +109,30 @@
 		( \
 		BOOST_VMD_ARRAY(array) \
 		) \
+/**/
+
+/** \def BOOST_VMD_IS_EMPTY_ARRAY(param)
+
+    \brief Tests whether an array is an empty Boost PP array.
+
+    An empty Boost PP array is a two element tuple where the first
+    size element is 0 and the second tuple element is empty.
+    
+    param = a preprocessor parameter
+
+    returns = 1 if the param is an empty Boost PP array
+              0 if it is not.
+              
+*/
+
+#define BOOST_VMD_IS_EMPTY_ARRAY(param) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_ARRAY(param), \
+		BOOST_VMD_DETAIL_IS_EMPTY_ARRAY_SIZE, \
+		BOOST_VMD_GEN_ZERO \
+		) \
+	(param) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_ARRAY(array)

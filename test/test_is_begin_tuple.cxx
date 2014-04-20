@@ -21,6 +21,12 @@ int main()
   #define AN_ARRAY (4,(5,7,f,x))
   #define A_LIST (e,(g,(&,BOOST_PP_NIL)))
   
+#if !BOOST_VMD_MSVC_V8  
+
+  #define AN_EMPTY_TUPLE_PLUS () 83
+  
+#endif
+
   BOOST_TEST(!BOOST_VMD_IS_BEGIN_TUPLE());
   BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE(A_TUPLE));
   BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE(A_TUPLE2));
@@ -34,6 +40,12 @@ int main()
   BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE(A_LIST));
   BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE((y)2(x)));
   
+#if !BOOST_VMD_MSVC_V8  
+
+  BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE(AN_EMPTY_TUPLE_PLUS));
+  
+#endif
+
 #endif
 
   return boost::report_errors();

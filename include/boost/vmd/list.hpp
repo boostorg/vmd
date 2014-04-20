@@ -5,8 +5,10 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/vmd/gen_zero.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/list.hpp>
 #include <boost/vmd/detail/is_list.hpp>
@@ -135,6 +137,40 @@
 
 #define BOOST_VMD_IS_LIST_D(d,param) \
 	BOOST_VMD_DETAIL_IS_LIST_D(d,param) \
+/**/
+
+/** \def BOOST_VMD_IS_EMPTY_LIST(param)
+
+    \brief Tests whether a list is an empty Boost PP list.
+
+    An empty Boost PP list consists of the single identifier 'BOOST_PP_NIL'.
+    This identifier also serves as a list terminator for a non-empty list.
+    
+    param = a preprocessor parameter
+
+    returns = 1 if the param is an empty Boost PP list
+              0 if it is not.
+              
+*/
+
+#define BOOST_VMD_IS_EMPTY_LIST(param) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_LIST(param), \
+		BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS, \
+		BOOST_VMD_GEN_ZERO \
+		) \
+	(param) \
+/**/
+
+#define BOOST_VMD_IS_EMPTY_LIST_D(d,param) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_LIST_D(d,param), \
+		BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D, \
+		BOOST_VMD_GEN_ZERO \
+		) \
+	(d,param) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_LIST(param)
