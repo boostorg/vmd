@@ -29,8 +29,7 @@
               
     The macro works through variadic macro support.
     
-    The code for the non-VC++ version of this is taken from a 
-    posting by Paul Mensonides.
+    The code is taken from a posting by Paul Mensonides.
     
     This macro is not a test for only a tuple
     since the parameter may have other tokens 
