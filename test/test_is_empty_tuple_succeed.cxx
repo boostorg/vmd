@@ -1,4 +1,3 @@
-#include <boost/vmd/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/control/if.hpp>
@@ -7,7 +6,7 @@
 int main()
   {
   
-#if BOOST_PP_VARIADICS && !BOOST_VMD_MSVC
+#if BOOST_PP_VARIADICS
 
 #define TN_GEN_ONE(p) (1)
 #define TN_GEN_ZERO(p) (0)

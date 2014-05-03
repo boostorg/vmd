@@ -400,9 +400,9 @@ test-suite variadic_macro_data_gh
        [ run test_is_empty_tuple_succeed.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_empty_tuple_succeed_gh ]
-       [ compile-fail test_is_empty_tuple_fail.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_empty_tuple_fail_gh ]
+#       [ compile-fail test_is_empty_tuple_fail.cpp :
+#         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+#         test_is_empty_tuple_fail_gh ]
        [ run test_is_identifier.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_identifier_gh ]
