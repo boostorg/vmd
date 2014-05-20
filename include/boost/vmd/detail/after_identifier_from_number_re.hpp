@@ -10,7 +10,6 @@
 #include <boost/preprocessor/seq/seq.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/vmd/gen_empty.hpp>
 #include <boost/vmd/gen_one.hpp>
 #include <boost/vmd/detail/paren_or_empty.hpp>
 #include <boost/vmd/detail/after_identifier_common.hpp>
