@@ -7,6 +7,7 @@
 
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/array.hpp>
@@ -125,14 +126,18 @@
               
 */
 
-#define BOOST_VMD_IS_EMPTY_ARRAY(param) \
+#define BOOST_VMD_IS_EMPTY_ARRAY_IRESULT(param) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_ARRAY(param), \
 		BOOST_VMD_DETAIL_IS_EMPTY_ARRAY_SIZE, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(param) \
+/**/
+
+#define BOOST_VMD_IS_EMPTY_ARRAY(param) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_ARRAY_IRESULT(param)) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_ARRAY(array)

@@ -7,10 +7,9 @@
 
 #include <boost/vmd/array.hpp>
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/gen_empty.hpp>
-#include <boost/vmd/gen_one.hpp>
-#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/empty.hpp>
 #include <boost/vmd/identifier.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_identifier.hpp>

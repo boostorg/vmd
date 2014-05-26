@@ -13,8 +13,7 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
-#include <boost/vmd/gen_one.hpp>
-#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_identifier.hpp>
@@ -40,14 +39,18 @@
     (x) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_LIST_PRED(d,state) \
+#define BOOST_VMD_DETAIL_IS_LIST_PRED_IRESULT(d,state) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_TUPLE(state), \
-      BOOST_VMD_GEN_ONE, \
+      BOOST_VMD_IDENTITY(1), \
       BOOST_VMD_DETAIL_IS_LIST_NOT_BOOST_PP_NIL \
       ) \
     (state) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_PRED(d,state) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_IS_LIST_PRED_IRESULT(d,state)) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_LIST_OP(d,state) \

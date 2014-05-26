@@ -6,7 +6,7 @@
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
-#include <boost/vmd/gen_empty.hpp>
+#include <boost/vmd/empty.hpp>
 #include <boost/vmd/detail/after_identifier_common.hpp>
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_MAXIMUM 4 \
@@ -25,7 +25,7 @@
 			1 \
 			), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CINFO_DATA, \
-		BOOST_VMD_GEN_EMPTY \
+		BOOST_VMD_EMPTY \
 		) \
 	(__VA_ARGS__) \
 /**/

@@ -8,7 +8,7 @@
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
-#include <boost/vmd/gen_empty.hpp>
+#include <boost/vmd/empty.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -43,7 +43,7 @@
     BOOST_PP_IF \
       ( \
       BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__), \
-      BOOST_VMD_GEN_EMPTY, \
+      BOOST_VMD_EMPTY, \
       BOOST_VMD_DETAIL_ASSERT_TRUE \
       ) \
     (__VA_ARGS__) \

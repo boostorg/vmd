@@ -15,7 +15,7 @@
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
-#include <boost/vmd/gen_empty.hpp>
+#include <boost/vmd/empty.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
@@ -143,7 +143,7 @@
 			1 \
 			), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_CINFO_DATA, \
-		BOOST_VMD_GEN_EMPTY \
+		BOOST_VMD_EMPTY \
 		) \
 	(__VA_ARGS__) \
 /**/

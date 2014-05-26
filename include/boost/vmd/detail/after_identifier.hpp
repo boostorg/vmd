@@ -16,9 +16,8 @@
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/vmd/seq.hpp>
-#include <boost/vmd/gen_empty.hpp>
-#include <boost/vmd/gen_one.hpp>
-#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/empty.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_number.hpp>
@@ -36,7 +35,7 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER(extra) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER_IRESULT(extra) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_BITOR \
@@ -44,10 +43,14 @@
 			BOOST_VMD_IS_EMPTY(extra), \
 			BOOST_VMD_IS_BEGIN_TUPLE(extra) \
 			), \
-		BOOST_VMD_GEN_ONE, \
+		BOOST_VMD_IDENTITY(1), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER_AMT \
 		) \
 	(extra) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER(extra) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER_IRESULT(extra)) \
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_BEGIN_CAT(state) \
@@ -71,7 +74,7 @@
 				BOOST_PP_SEQ_SIZE(BOOST_PP_TUPLE_ELEM(4,state)), \
 				1 \
 				), \
-			BOOST_VMD_GEN_EMPTY, \
+			BOOST_VMD_EMPTY, \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TAIL \
 			) \
 		(state), \
@@ -106,7 +109,7 @@
 				BOOST_VMD_DETAIL_AFTER_IDENTIFIER_MAXIMUM \
 				), \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE, \
-			BOOST_VMD_GEN_ZERO \
+			BOOST_VMD_IDENTITY(0) \
 			) \
 		(d,state) \
 		) \
@@ -125,24 +128,28 @@
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_MAXIMUM \
 			), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(d,state) \
 /**/
 
 #endif
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID(d,state) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID_IRESULT(d,state) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_BEGIN_TUPLE(BOOST_PP_TUPLE_ELEM(4,state)), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_CHECK_MAX, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(d,state) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST(d,state) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID(d,state) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID_IRESULT(d,state)) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_IRESULT(d,state) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_PAREN_OR_EMPTY_OR_NUMBER \
@@ -150,10 +157,14 @@
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state), \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_GET_NUMBER(BOOST_PP_TUPLE_ELEM(4,state)) \
 			), \
-		BOOST_VMD_GEN_ONE, \
+		BOOST_VMD_IDENTITY(1), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_FID \
 		) \
 	(d,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST(d,state) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_IRESULT(d,state)) \
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP(d,state) \
@@ -177,7 +188,7 @@
 	BOOST_PP_VARIADIC_ELEM(2,__VA_ARGS__) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_END_CINFO(...) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_END_CINFO_IRESULT(...) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_EQUAL \
@@ -186,9 +197,13 @@
 			3 \
 			), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_EINFO_DATA, \
-		BOOST_VMD_GEN_ONE \
+		BOOST_VMD_IDENTITY(1) \
 		) \
 	(__VA_ARGS__) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_END_CINFO(...) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_END_CINFO_IRESULT(__VA_ARGS__)) \
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER(parameter,...) \

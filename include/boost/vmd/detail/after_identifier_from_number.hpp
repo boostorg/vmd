@@ -14,9 +14,8 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/seq.hpp>
-#include <boost/vmd/gen_empty.hpp>
-#include <boost/vmd/gen_one.hpp>
-#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/empty.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/after_identifier_common.hpp>
@@ -45,7 +44,7 @@
 				BOOST_PP_SEQ_SIZE(BOOST_PP_TUPLE_ELEM(4,state)), \
 				1 \
 				), \
-			BOOST_VMD_GEN_EMPTY, \
+			BOOST_VMD_EMPTY, \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TAIL \
 			) \
 		(state) \
@@ -79,7 +78,7 @@
 				BOOST_VMD_DETAIL_AFTER_IDENTIFIER_MAXIMUM \
 				), \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_RECURSE, \
-			BOOST_VMD_GEN_ZERO \
+			BOOST_VMD_IDENTITY(0) \
 			) \
 		(d,state) \
 		) \
@@ -98,34 +97,42 @@
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_MAXIMUM \
 			), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_RECURSE, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(d,state) \
 /**/
 
 #endif
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_FID(d,state) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_FID_IRESULT(d,state) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_BEGIN_TUPLE(BOOST_PP_TUPLE_ELEM(4,state)), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_CHECK_MAX, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(d,state) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_TEST(d,state) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_FID(d,state) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_FID_IRESULT(d,state)) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_TEST_IRESULT(d,state) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_PAREN_OR_EMPTY \
 			( \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state) \
 			), \
-		BOOST_VMD_GEN_ONE, \
+		BOOST_VMD_IDENTITY(1), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_FID \
 		) \
 	(d,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_TEST(d,state) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP_TEST_IRESULT(d,state)) \
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_FROM_NUMBER_OP(d,state) \

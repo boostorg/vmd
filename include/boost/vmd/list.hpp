@@ -8,7 +8,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/list.hpp>
 #include <boost/vmd/detail/is_list.hpp>
@@ -153,24 +153,32 @@
               
 */
 
-#define BOOST_VMD_IS_EMPTY_LIST(param) \
+#define BOOST_VMD_IS_EMPTY_LIST_IRESULT(param) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_LIST(param), \
 		BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(param) \
 /**/
 
-#define BOOST_VMD_IS_EMPTY_LIST_D(d,param) \
+#define BOOST_VMD_IS_EMPTY_LIST_D_IRESULT(d,param) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_LIST_D(d,param), \
 		BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(d,param) \
+/**/
+
+#define BOOST_VMD_IS_EMPTY_LIST(param) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_LIST_IRESULT(param)) \
+/**/
+
+#define BOOST_VMD_IS_EMPTY_LIST_D(d,param) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_LIST_D_IRESULT(d,param)) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_LIST(param)

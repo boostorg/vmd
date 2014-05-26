@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/vmd/gen_zero.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/detail/is_empty_tuple.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
@@ -113,14 +113,18 @@
               
 */
 
-#define BOOST_VMD_IS_EMPTY_TUPLE(param) \
+#define BOOST_VMD_IS_EMPTY_TUPLE_IRESULT(param) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_TUPLE(param), \
 		BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE, \
-		BOOST_VMD_GEN_ZERO \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(param) \
+/**/
+
+#define BOOST_VMD_IS_EMPTY_TUPLE(param) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_TUPLE_IRESULT(param)) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_TUPLE(tuple)

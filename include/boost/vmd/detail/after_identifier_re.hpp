@@ -10,8 +10,8 @@
 #include <boost/preprocessor/seq/seq.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/vmd/gen_empty.hpp>
-#include <boost/vmd/gen_one.hpp>
+#include <boost/vmd/empty.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/detail/paren_or_empty_or_number.hpp>
 #include <boost/vmd/detail/paren_or_empty_or_simple_number.hpp>
 #include <boost/vmd/detail/after_identifier_common.hpp>
@@ -44,7 +44,7 @@
 		d, \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state), \
 		BOOST_PP_SEQ_ELEM(0,BOOST_PP_TUPLE_ELEM(4,state)), \
-		BOOST_VMD_GEN_EMPTY(state), \
+		BOOST_VMD_EMPTY(state), \
 		BOOST_PP_TUPLE_ELEM(5,state) \
 		) \
 /**/
@@ -85,43 +85,55 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_3(d,state) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_3_IRESULT(d,state) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_PAREN_OR_EMPTY_OR_SIMPLE_NUMBER \
 			( \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state) \
 			), \
-		BOOST_VMD_GEN_ONE, \
+		BOOST_VMD_IDENTITY(1), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE_3 \
 		) \
 	(d,state) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_2(d,state) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_2_IRESULT(d,state) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_PAREN_OR_EMPTY_OR_SIMPLE_NUMBER \
 			( \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state) \
 			), \
-		BOOST_VMD_GEN_ONE, \
+		BOOST_VMD_IDENTITY(1), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE_2 \
 		) \
 	(d,state) \
 /**/
 
-#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_1(d,state) \
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_1_IRESULT(d,state) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_PAREN_OR_EMPTY_OR_SIMPLE_NUMBER \
 			( \
 			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_REST(state) \
 			), \
-		BOOST_VMD_GEN_ONE, \
+		BOOST_VMD_IDENTITY(1), \
 		BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_RECURSE_1 \
 		) \
 	(d,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_3(d,state) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_3_IRESULT(d,state)) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_2(d,state) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_2_IRESULT(d,state)) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_1(d,state) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_1_IRESULT(d,state)) \
 /**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_OP_TEST_0(state) \
