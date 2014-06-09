@@ -9,7 +9,6 @@
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/seq.hpp>
 
@@ -160,24 +159,6 @@
 		( \
 		BOOST_VMD_SEQ_D(d,seq) \
 		) \
-/**/
-
-/** \def BOOST_VMD_IS_EMPTY_SEQ(param)
-
-    \brief Tests whether a parameter is a Boost PP seq with a single empty element.
-
-    The macro checks to see if a parameter is a Boost PP seq with a single empty element.
-    An "empty" seq is exactly the same as an "empty" tuple.
-    
-    param = a preprocessor parameter
-
-    returns = 1 if the param is an empty Boost PP seq
-              0 if it is not.
-              
-*/
-
-#define BOOST_VMD_IS_EMPTY_SEQ(param) \
-	BOOST_VMD_IS_EMPTY_TUPLE(param) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_SEQ(seq)

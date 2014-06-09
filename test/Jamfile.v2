@@ -51,7 +51,6 @@ test-suite variadic_macro_data
        [ compile-fail test_assert_fail_array.cpp ]
        [ compile-fail test_assert_fail_identifier.cpp ]
        [ compile-fail test_assert_fail_is_empty.cpp ]
-       [ compile-fail test_assert_fail_is_empty_tuple.cpp ]
        [ compile-fail test_assert_fail_is_identifier.cpp ]
        [ compile-fail test_assert_fail_is_number.cpp ]
        [ compile-fail test_assert_fail_list.cpp ]
@@ -135,7 +134,6 @@ test-suite variadic_macro_data
        [ run test_is_begin_tuple.cpp ]
        [ run test_is_empty.cpp ]
        [ compile-fail test_is_empty_fail.cpp ]
-       [ run test_is_empty_tuple.cpp ]
        [ run test_is_identifier.cpp ]
        [ run test_is_list.cpp ]
        [ run-fail test_is_list_fail.cpp ]
@@ -198,9 +196,6 @@ test-suite variadic_macro_data_gh
        [ compile-fail test_assert_fail_is_empty.cpp :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_assert_fail_is_empty_gh ]
-       [ compile-fail test_assert_fail_is_empty_tuple.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_assert_fail_is_empty_tuple_gh ]
        [ compile-fail test_assert_fail_is_identifier.cpp :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_assert_fail_is_identifier_gh ]
@@ -394,15 +389,9 @@ test-suite variadic_macro_data_gh
        [ compile-fail test_is_empty_fail.cpp :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_empty_fail_gh ]
-       [ run test_is_empty_tuple.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_empty_tuple_gh ]
        [ run test_is_empty_tuple_succeed.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_empty_tuple_succeed_gh ]
-#       [ compile-fail test_is_empty_tuple_fail.cpp :
-#         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-#         test_is_empty_tuple_fail_gh ]
        [ run test_is_identifier.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_identifier_gh ]

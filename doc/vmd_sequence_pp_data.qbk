@@ -16,7 +16,7 @@ Each of these macros expand to a tuple of two elements. If the
 particular data type is found at the beginning of the v-sequence
 the first tuple element is that data type and the second tuple element
 is the rest of the input v-sequence. If the particular data type is not
-found at the beginning of the input v-sequence both tuple elements are
+found at the beginning of the input v-sequence of both tuple elements is
 empty.
 
 [heading Usage]
@@ -35,8 +35,8 @@ or include the appropriate specific header:
 [heading Data types and tuples]
 
 An array and a non-empty list are also tuples. A seq is a series of single element
-tuples. Therefore if an v-sequence begins with an array, non-empty list, or seq
-and you use BOOST_VMD_TUPLE passing that v-sequence you will successfully
+tuples. Therefore if an v-sequence begins with an array, non-empty list, or seq,
+and you use BOOST_VMD_TUPLE passing that v-sequence, you will successfully
 find the beginning tuple. In the case of an array or a non-empty list what is returned
 will be exactly the same as a tuple. In the case of a seq what is returned will
 only be the same if the seq is a single one-element tuple.

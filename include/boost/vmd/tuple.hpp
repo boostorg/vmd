@@ -7,9 +7,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
-#include <boost/vmd/detail/is_empty_tuple.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/tuple.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
@@ -96,35 +94,6 @@
 		( \
 		BOOST_VMD_TUPLE(param) \
 		) \
-/**/
-
-/** \def BOOST_VMD_IS_EMPTY_TUPLE(param)
-
-    \brief Tests whether a parameter is a Boost PP tuple with a single empty element.
-
-    The macro checks to see if a parameter is a Boost PP tuple with a single empty element.
-    A Boost PP tuple is a parameter enclosed by a set of parenthesis
-    with no prerocessing tokens before or after the parenthesis.
-    
-    param = a preprocessor parameter
-
-    returns = 1 if the param is an empty Boost PP tuple
-              0 if it is not.
-              
-*/
-
-#define BOOST_VMD_IS_EMPTY_TUPLE_IRESULT(param) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_TUPLE(param), \
-		BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(param) \
-/**/
-
-#define BOOST_VMD_IS_EMPTY_TUPLE(param) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_TUPLE_IRESULT(param)) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_TUPLE(tuple)

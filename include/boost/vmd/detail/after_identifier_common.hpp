@@ -16,10 +16,26 @@
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/empty.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
+#include <boost/vmd/detail/is_empty_tuple.hpp>
 #include <boost/vmd/detail/paren_or_empty.hpp>
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_IS_EMPTY_TUPLE_IRESULT(param) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_TUPLE(param), \
+		BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE, \
+		BOOST_VMD_IDENTITY(0) \
+		) \
+	(param) \
+/**/
+
+#define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_EMPTY_TUPLE(keys) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_AFTER_IDENTIFIER_IS_EMPTY_TUPLE_IRESULT(keys)) \
+/**/
 
 #define BOOST_VMD_DETAIL_AFTER_IDENTIFIER_HAS_KEYS(keys) \
 	BOOST_PP_NOT \
@@ -27,7 +43,7 @@
 		BOOST_PP_BITOR \
 			( \
 			BOOST_VMD_IS_EMPTY(keys), \
-			BOOST_VMD_IS_EMPTY_TUPLE(keys) \
+			BOOST_VMD_DETAIL_AFTER_IDENTIFIER_EMPTY_TUPLE(keys) \
 			) \
 		) \
 /**/
