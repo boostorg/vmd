@@ -19,7 +19,7 @@ int main()
   #define JDATA ggh
   #define KDATA (2,(a,b)) name
   #define A_SEQ ((1,(25)))((1,(26)))((1,(27)))
-  #define AN_EMPTY_ARRAY_PLUS (0,) 46
+  #define AN_EMPTY_ARRAY_PLUS (0,()) 46
   
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ARRAY(anything))));
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ARRAY(anything))));

@@ -20,7 +20,7 @@ int main()
   #define A_SEQ (r)($)(#)
   #define AN_ARRAY (4,(5,7,f,x))
   #define A_LIST (e,(g,(&,BOOST_PP_NIL)))
-  #define AN_EMPTY_ARRAY (0,) data
+  #define AN_EMPTY_ARRAY (0,()) data
   
   BOOST_TEST(!BOOST_VMD_IS_BEGIN_ARRAY());
   BOOST_TEST(BOOST_VMD_IS_BEGIN_ARRAY(A_ARRAY));
