@@ -12,7 +12,7 @@
 #define BOOST_VMD_DETAIL_ARRAY_CHECK_FOR_ARRAY(tuple) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_IS_ARRAY_CHECK_TUPLE_SIZE \
+		BOOST_VMD_DETAIL_IS_ARRAY \
 			( \
 			BOOST_PP_TUPLE_ELEM \
 				( \
@@ -26,7 +26,7 @@
 	(tuple)	\
 /**/
 
-#define BOOST_VMD_DETAIL_ARRAY_CHECK_RETURN(tuple) \
+#define BOOST_VMD_DETAIL_ARRAY(tuple) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_EMPTY \

@@ -11,8 +11,8 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/array.hpp>
+#include <boost/vmd/detail/is_array.hpp>
 #include <boost/vmd/detail/is_empty_array.hpp>
-#include <boost/vmd/detail/is_entire.hpp>
 
 /*
 
@@ -34,7 +34,7 @@
     
 */
 #define BOOST_VMD_ARRAY(param) \
-	BOOST_VMD_DETAIL_ARRAY_CHECK_RETURN \
+	BOOST_VMD_DETAIL_ARRAY \
 		( \
 		BOOST_VMD_TUPLE(param) \
 		) \
@@ -106,9 +106,9 @@
 */
 
 #define BOOST_VMD_IS_ARRAY(array) \
-	BOOST_VMD_DETAIL_IS_ENTIRE \
+	BOOST_VMD_DETAIL_IS_ARRAY_ENTIRE \
 		( \
-		BOOST_VMD_ARRAY(array) \
+		BOOST_VMD_TUPLE(array) \
 		) \
 /**/
 
