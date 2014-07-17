@@ -14,6 +14,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/is_number.hpp>
+#include <boost/vmd/is_parens_empty.hpp>
 #include <boost/vmd/list.hpp>
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/remove_parens.hpp>
