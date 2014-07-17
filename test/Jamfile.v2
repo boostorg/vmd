@@ -142,6 +142,7 @@ test-suite variadic_macro_data
        [ run-fail test_is_list_fail3.cpp ]
        [ run-fail test_is_list_fail4.cpp ]
        [ run test_is_number.cpp ]
+       [ run test_is_parens_empty.cpp ]
        [ run test_is_seq.cpp ]
        [ run-fail test_is_seq_fail.cpp ]
        [ run-fail test_is_seq_fail2.cpp ]
@@ -153,6 +154,7 @@ test-suite variadic_macro_data
        [ run-fail test_is_tuple_fail3.cpp ]
        [ run-fail test_is_tuple_fail4.cpp ]
        [ run test_list.cpp ]
+       [ run test_list_empty.cpp ]
        [ run test_number.cpp ]
        [ run test_remove_parens.cpp ]
        [ run test_seq.cpp ]
@@ -417,6 +419,9 @@ test-suite variadic_macro_data_gh
        [ run test_is_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_number_gh ]
+       [ run test_is_parens_empty.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_is_parens_empty_gh ]
        [ run test_is_seq.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_seq_gh ]
@@ -450,6 +455,9 @@ test-suite variadic_macro_data_gh
        [ run test_list.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_list_gh ]
+       [ run test_list_empty.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_list_empty_gh ]
        [ run test_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_number_gh ]
