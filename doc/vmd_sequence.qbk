@@ -36,7 +36,7 @@ is it possible to design parameter data to look more like C/C++ when macros
 are used in a library and still do a certain amount of preprocessor metaprogramming
 with such mixed token input ?
 
-The VMD has functionality which allows more than one type of preprocessing token, 
+VMD has functionality which allows more than one type of preprocessing token, 
 excluding an 'empty' token which always refers to entire input, to be part of a 
 single parameter of input data, as long as all the top-level data of a parameter 
 is of different v-types. What this means is that if some input consists of a 

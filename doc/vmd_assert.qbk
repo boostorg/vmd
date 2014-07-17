@@ -64,13 +64,14 @@ macros are:
 
 Each of these macros take as parameters the exact same argument as their
 corresponding identifying macros. But instead of returning non-zero or 0, each of these
-macros produce a compiler error if the type of the input is not correct. However
-each of these macros only check for its assertion when the macro BOOST_VMD_ASSERT_DATA 
+macros produce a compiler error if the type of the input is not correct. 
+
+Each of these macros only check for its assertion when the macro BOOST_VMD_ASSERT_DATA 
 is set to 1. By default BOOST_VMD_ASSERT_DATA is only set to 1 in compiler debug mode.
 The programmer can manually set BOOST_VMD_ASSERT_DATA to 1 prior to using one
 the data types assert macros if he wishes.
 
-[heading BOOST_VMD_ASSERT Usage]
+[heading BOOST_VMD_ASSERT_... Usage]
 
 To use the individual BOOST_VMD_ASSERT_... macros either include the general header:
 

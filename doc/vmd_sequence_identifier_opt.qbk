@@ -22,7 +22,7 @@ v-sequences which BOOST_VMD_IDENTIFIER can parse with their help:
  v-identifier v-number v-number ... tuple-or-end-of-input
  v-identifier v-identifier ... v-number v-number ...tuple-or-end-of-input
 
-These three supported situations also allow
+These three supported situations allow
 * a v-identifier to be followed by from one to four additional v-identifiers
 followed by either a single v-number ( followed by a tuple or end-of-sequence ), 
 tuple, or end-of-sequence.
@@ -31,7 +31,7 @@ before encountering either a tuple or end-of-sequence.
 * a v-identifier to be followed by from one to four additional v-identifiers,
 followed by from two to five v-numbers before encountering a tuple or end-of-sequence.
 
-Input sequences beginning with v-identifier(s), immediately followed by v-number(s), 
+Parsing input sequences beginning with v-identifier(s), immediately followed by v-number(s), 
 immediately followed by further v-identifier(s) are not supported. But of course this 
 can be modified by having v-identifier(s), immediately followed followed by v-number(s), 
 immediately followed followed by a tuple, followed by further v-identifier(s), which is 

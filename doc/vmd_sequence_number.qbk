@@ -5,8 +5,8 @@ Just like BOOST_VMD_IS_NUMBER it takes as a mandatory parameter a v-sequence as
 the first parameter. It returns a tuple of two elements. The first tuple element is the 
 number if a v-number has been found or is an empty element if a v-number has not been found. 
 The second tuple element is the rest of the v-sequence if a v-number has been found or 
-an empty element if no v-number has been found. Notice that a v-number can be found and the 
-rest of the v-sequence can be empty, so one always needs to check the first tuple element 
+an empty element if no v-number has been found. Since a v-number can be found and the 
+rest of the v-sequence can be empty, one always needs to check the first tuple element 
 to determine if the v-number was found at the beginning of the v-sequence or not.
 
 [heading Usage]
@@ -66,10 +66,10 @@ expands to (,) since the v-sequence does not beginning with a v-number
  BOOST_VMD_NUMBER(SOME_INPUT_N5)
  BOOST_VMD_NUMBER(SOME_INPUT_N6)
  
-either one expands to (,)
+either one expands to (,) since the beginning number is not followed 
+by a tuple or end-of-sequence.
 
-The beginning number is not followed by a tuple or end-of-sequence.
-See the next topic for how to parse these using the optional parameters
-of BOOST_VMD_NUMBER.
+See the next topic for how to parse this last example using the 
+optional parameters of BOOST_VMD_NUMBER.
 
 [endsect]

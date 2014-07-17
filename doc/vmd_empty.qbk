@@ -187,7 +187,7 @@ compiler error rather than an incorrect result.
 [heading Macro Flaw with Visual C++]
 
 The VC++ preprocessor is not a standard C++ conforming preprocessor in at least two 
-situations which combine to create a single corner case which causes the 
+relevant situations. Theses situations combine to create a single corner case which causes the 
 BOOST_VMD_IS_EMPTY macro to not work properly using VC++ when the input resolves to a 
 function-like macro name.
 
@@ -253,7 +253,7 @@ Here is an example of the failure:
 As with a standard C++ conforming compiler, we have a rare corner case where
 the BOOST_VMD_IS_EMPTY will not work properly, but unfortunately in this very
 similar but even rarer corner case with VC++, we will silently get an incorrect result
-rather a compiler error.
+rather than a compiler error.
 
 I want to reiterate that there is no perfect solution in C++ to the detection of 
 emptiness even for a C++ compiler whose preprocessor is complete conformant, which 

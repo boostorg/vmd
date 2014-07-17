@@ -35,7 +35,7 @@ or include the appropriate specific header:
 [heading Data types and tuples]
 
 An array and a non-empty list are also tuples. A seq is a series of single element
-tuples. Therefore if an v-sequence begins with an array, non-empty list, or seq,
+tuples. Therefore if a v-sequence begins with an array, non-empty list, or seq,
 and you use BOOST_VMD_TUPLE passing that v-sequence, you will successfully
 find the beginning tuple. In the case of an array or a non-empty list what is returned
 will be exactly the same as a tuple. In the case of a seq what is returned will

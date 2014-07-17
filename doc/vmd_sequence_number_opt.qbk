@@ -30,7 +30,7 @@ followed by a tuple or end-of-sequence.
 followed by from one to five v-identifiers before encountering a tuple 
 or end-of-sequence.
 
-Input sequences beginning with v-number(s), immediately followed by v-identifier(s), 
+Parsing input sequences beginning with v-number(s), immediately followed by v-identifier(s), 
 immediately followed by further v-number(s) are not supported. But of course this 
 can be modified by having v-number(s), immediately followed followed by v-identifier(s), 
 immediately followed followed by a tuple, followed by further v-number(s), which is 
@@ -72,7 +72,7 @@ expands to (37,142 (telem1,telem2))
  BOOST_VMD_NUMBER
    (
    SOME_INPUT_N8 /* v-sequence */,
-   /* The optional 3rd parameter as a number */
+   /* The optional 2nd parameter as a number */
    2 /* fails because there are more than 2 following v-numbers */
    )
    
@@ -83,7 +83,7 @@ expands to (,)
  BOOST_VMD_NUMBER
    (
    SOME_INPUT_N9 /* v-sequence */,
-   /* The optional 3rd parameter as a number */
+   /* The optional 2nd parameter as a number */
    1 /* Not needed but it does no harm */
    )
    
@@ -95,7 +95,7 @@ before a tuple or end-of-sequence is encountered. This is our v-sequence of:
 
  v-number v-identifiers ... tuple-or-end-of-input
  
-This optional 3rd parameter is a seq, where each element is a v-key to possible subsequent 
+This optional 2nd parameter is a seq, where each element is a v-key to possible subsequent 
 v-identifiers. You can specify more seq elements than are actually found in the v-sequence 
 as long as the seq elements specified match v-identifiers that are found.
 
@@ -157,7 +157,7 @@ succeed if we encounter a tuple or end-of-sequence before the v-number matches a
 exhausted or, once we start matching v-identifiers, if we encounter a tuple
 or end-of-sequence before the v-identifiers matches are exhausted. But once we 
 encounter v-identifiers in the v-sequence, we need to have 
-matched exactly the number of subsequent v-numbers specified.
+matched exactly the number of v-numbers specified.
 
 Some examples, using our key-identifier macros above:
 

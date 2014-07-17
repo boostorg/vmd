@@ -2,8 +2,9 @@
 
 A number of macros are helper versions of BOOST_VMD_IDENTIFIER,
 having the same two mandatory parameters and two optional parameters
-which BOOST_VMD_IDENTIFIER takes. All these macros work with a v-identifier
-occuring at the beginning of a v-sequence.
+which BOOST_VMD_IDENTIFIER takes. All these macros work, just like 
+BOOST_VMD_IDENTIFIER, to parse a v-identifier occuring at the 
+beginning of a v-sequence.
 
 These macros are:
 
