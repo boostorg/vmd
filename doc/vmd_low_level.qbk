@@ -1,9 +1,0 @@
-[section:vmd_low_level Low-level preprocessor functionality]
-
-There are macros which add low-level preprocessor functionality related to Boost PP
-through the use of variadic macros. These can be divided into two groups:
-
-* BOOST_VMD_EMPTY = Testing for empty input
-* BOOST_VMD_IS_BEGIN_TUPLE and BOOST_VMD_REMOVE_PARENS = Handling parenthensis
-
-[endsect]

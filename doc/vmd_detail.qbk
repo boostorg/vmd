@@ -6,7 +6,7 @@ can be divided into these categories:
 # Emptiness
 # Identifiers
 # Numbers
-# Boost PP data types ( array, list, seqence, and tuple )
+# Boost PP data types ( array, list, seq, and tuple )
 # Data sequences
 # Additional variadic macros
 

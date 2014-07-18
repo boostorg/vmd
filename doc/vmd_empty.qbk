@@ -187,7 +187,7 @@ compiler error rather than an incorrect result.
 [heading Macro Flaw with Visual C++]
 
 The VC++ preprocessor is not a standard C++ conforming preprocessor in at least two 
-relevant situations. Theses situations combine to create a single corner case which causes the 
+relevant situations. These situations combine to create a single corner case which causes the 
 BOOST_VMD_IS_EMPTY macro to not work properly using VC++ when the input resolves to a 
 function-like macro name.
 

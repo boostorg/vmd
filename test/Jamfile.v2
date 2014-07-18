@@ -156,7 +156,6 @@ test-suite variadic_macro_data
        [ run test_list.cpp ]
        [ run test_list_empty.cpp ]
        [ run test_number.cpp ]
-       [ run test_remove_parens.cpp ]
        [ run test_seq.cpp ]
        [ run test_tuple.cpp ]
     ;
@@ -461,9 +460,6 @@ test-suite variadic_macro_data_gh
        [ run test_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_number_gh ]
-       [ run test_remove_parens.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_remove_parens_gh ]
        [ run test_seq.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_seq_gh ]
