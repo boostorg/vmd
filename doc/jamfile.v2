@@ -35,13 +35,20 @@ else
 
 doxygen vmd_reference
   :
+    $(here)/../../../boost/vmd/array.hpp
+    $(here)/../../../boost/vmd/assert.hpp
+    $(here)/../../../boost/vmd/empty.hpp
+    $(here)/../../../boost/vmd/identifier.hpp
+    $(here)/../../../boost/vmd/identity.hpp
+    $(here)/../../../boost/vmd/is_begin_tuple.hpp
     $(here)/../../../boost/vmd/is_empty.hpp
-    $(here)/../../../boost/vmd/is_begin_parens.hpp
-    $(here)/../../../boost/vmd/remove_parens.hpp
-    $(here)/../../../boost/vmd/assert_is_array.hpp
-    $(here)/../../../boost/vmd/assert_is_list.hpp
-    $(here)/../../../boost/vmd/assert_is_seq.hpp
-    $(here)/../../../boost/vmd/assert_is_tuple.hpp
+    $(here)/../../../boost/vmd/is_identifier.hpp
+    $(here)/../../../boost/vmd/is_number.hpp
+    $(here)/../../../boost/vmd/is_parens_empty.hpp
+    $(here)/../../../boost/vmd/list.hpp
+    $(here)/../../../boost/vmd/number.hpp
+    $(here)/../../../boost/vmd/seq.hpp
+    $(here)/../../../boost/vmd/tuple.hpp
   : 
     <doxygen:param>PROJECT_NAME="VMD"
     <doxygen:param>PROJECT_NUMBER=1

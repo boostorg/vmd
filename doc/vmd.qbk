@@ -34,6 +34,7 @@
 [include vmd_sequence_pp_data_helpers.qbk]
 [include vmd_identity.qbk]
 [include vmd_empty_pp_data_types.qbk]
+[include vmd_reentrant.qbk]
 [include vmd_dynamic_typing.qbk]
 [include vmd_vc_isms.qbk]
 [include vmd_reference.qbk]

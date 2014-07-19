@@ -23,7 +23,7 @@ in a sequence of preprocessing tokens. A v-number is really a closed set of v-id
 for which VMD offers specific functionality.
 
 The Boost PP library supports four individual high-level data types. These are arrays, 
-lists, sequences, and tuples, although when using variadic macros arrays are really 
+lists, seqs, and tuples, although when using variadic macros arrays are really 
 obsolete since tuples have all the functionality of arrays with a simpler syntax. A further 
 data type supported by Boost PP is variadic data, which is a comma separated grouping of 
 preprocessor elements.

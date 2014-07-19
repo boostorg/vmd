@@ -44,3 +44,5 @@ or include the appropriate specific header:
  #include <boost/vmd/tuple.hpp>
 
 [endsect]
+
+[endsect]

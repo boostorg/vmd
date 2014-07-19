@@ -37,7 +37,7 @@ A Boost PP list can be empty, and an empty list takes the form of:
 This is a truly empty list, whose size is 0 and which contains no list data.
 The VMD library has functionality to identify an empty list using the
 BOOST_VMD_IS_EMPTY_LIST macro. This macro takes a parameter as input and 
-determines whether or not it is an empty array, expanding to 1 if it is and 
+determines whether or not it is an empty list, expanding to 1 if it is and 
 0 if it is not.
 
 [heading Usage for BOOST_VMD_IS_EMPTY_LIST]

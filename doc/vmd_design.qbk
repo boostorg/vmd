@@ -30,15 +30,17 @@ data types. I also was able to add in functionality, based on Paul Mendsonides
 excellent work, for handling tuples in preproccessing data.
 
 All of this particular functionality is impossible to do effectively 
-without the use of variadic macros. But I have kept these features at a 
+without the use of variadic macros. But I had kept these features at a 
 minimum because of the difficulty of using variadic macros with compilers, 
 most notably Visual C++, whose implementation of variadic macros is 
 substandard and therefore very difficult to get to work correctly when 
 variadic macros must be used.
 
-Nonetheless I would like to keep this library as an adjunct to the 
-functionality in Boost PP for using variadic macros. I believe that 
-others may have implemented their own expanded functionality using 
-variadic macros which may further be added to the library in the future.
+I then realized that if I am going to have a library which takes advantage
+of variadic macros I should see what I could do in the area of parsing 
+preprocessor data. This has led to a reorganization of the library as
+a set of macros largely for parsing preprocessor data. All of this is now built
+on top of my use of the almost perfect checking for emptiness which Paul
+Mensonides originally created.
 
 [endsect]

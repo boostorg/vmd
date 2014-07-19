@@ -5,10 +5,10 @@ An identifier in VMD, hereafter called a 'v-identifier', is either of two possib
 * a preprocessing token 'identifier', which is essentially a sequence 
 of alphanumeric characters and the underscore 
 character with the first character not being a numeric character.
-
 * a preprocessing token 'pp-number' that is an integral literal token.
 
- SOMENAME
+Here are some examples:
+
  SOME_NAME
  _SOME_NAME
  SOME_123_NAME
@@ -44,7 +44,7 @@ Given the input:
  24 : can be tested
  245e2: can be tested
  (anything) : can be tested, tuple
- (anything) anything : can be tested, tuple + identifier
+ (anything) anything : can be tested, tuple and further input
  
  %_anything : will give a preprocessing error due to the constraint
  (_anything : will give a preprocessing error due to the constraint, since a single '(' does not form a tuple

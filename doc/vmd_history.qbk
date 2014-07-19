@@ -2,6 +2,12 @@
 
 [heading Version 1.7]
 
+* The library has been reengineered to provide vastly added functionality. This includes:
+  * Adding functionality for parsing v-types.
+  * Adding functionality for parsing sequencies of v-types.
+  * Adding improved ASSERT macros.
+  * Adding BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY.
+
 [heading Version 1.6]
 
 * Stripped off all functionality duplicated by the variadic macro functionality added to Boost PP.

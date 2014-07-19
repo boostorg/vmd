@@ -1,0 +1,40 @@
+[section:vmd_reentrant Boost PP reentrant versions]
+
+A number of macros in VMD have equivalent reentrant versions which are
+meant to be used in a BOOST_PP_WHILE loop. These are versions which have
+an underscore D suffix and have the exact same functionality as their unsuffixed
+equivalents. They can be used in BOOST_PP_WHILE loops to provide slightly
+quicker preprocessing but, as the documentation for BOOST_PP_WHILE and
+BOOST_PP_WHILE_##d explain, they do not have to be used.
+
+These macros are:
+
+Identifiers
+
+* BOOST_VMD_IDENTIFIER_D
+* BOOST_VMD_BEGIN_IDENTIFIER_D
+* BOOST_VMD_AFTER_IDENTIFIER_D
+* BOOST_VMD_IS_BEGIN_IDENTIFIER_D
+* BOOST_VMD_IS_IDENTIFIER_D
+* BOOST_VMD_ASSERT_IS_IDENTIFIER_D
+
+Lists
+
+* BOOST_VMD_LIST_D
+* BOOST_VMD_BEGIN_LIST_D
+* BOOST_VMD_AFTER_LIST_D
+* BOOST_VMD_IS_BEGIN_LIST_D
+* BOOST_VMD_IS_LIST_D
+* BOOST_VMD_IS_EMPTY_LIST_D
+* BOOST_VMD_ASSERT_IS_LIST_D
+
+Seqs
+
+* BOOST_VMD_SEQ_D
+* BOOST_VMD_BEGIN_SEQ_D
+* BOOST_VMD_AFTER_SEQ_D
+* BOOST_VMD_IS_BEGIN_SEQ_D
+* BOOST_VMD_IS_SEQ_D
+* BOOST_VMD_ASSERT_IS_SEQ_D
+
+[endsect]

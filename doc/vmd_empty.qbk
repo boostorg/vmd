@@ -201,7 +201,7 @@ with 0 to 'n-1' parameters, the compiler does not give an error, but only a warn
 should give a compiler error, as it does when using a C++ standard-conforming  
 compiler, but when invoked using VC++ it only gives a warning
 and VC++ continues macro substitution with 'y' as a placemarker preprocessing token.
-This non-standard conforming action acually eliminates the case where BOOST_VMD_IS_EMPTY
+This non-standard conforming action actually eliminates the case where BOOST_VMD_IS_EMPTY
 does not work properly with a standard C++ conforming compiler. But of course it has the
 potential of producing incorrect output in other macro processing situations unrelated
 to the BOOST_VMD_IS_EMPTY invocation, where a compiler error should occur.

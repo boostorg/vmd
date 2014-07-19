@@ -3,10 +3,10 @@
 VMD is able to determine whether or not preprocessing input
 is a given Boost PP data type. The VMD macros to do this are:
 
-BOOST_VMD_IS_ARRAY for an array
-BOOST_VMD_IS_LIST for a list
-BOOST_VMD_IS_SEQ for a seq
-BOOST_VMD_IS_TUPLE for a tuple
+* BOOST_VMD_IS_ARRAY for an array
+* BOOST_VMD_IS_LIST for a list
+* BOOST_VMD_IS_SEQ for a seq
+* BOOST_VMD_IS_TUPLE for a tuple
 
 Each of these macros take a single parameter as input and 
 return 1 if the parameter is the appropriate data type and 
