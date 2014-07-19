@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>V-identifiers helper macros</title>
+<link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="../../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="up" href="../vmd_sequence.html" title="Parsing v-type sequences">
+<link rel="prev" href="vmd_sequence_identifier_opt.html" title="Parsing v-identifiers using optional parameters">
+<link rel="next" href="vmd_sequence_number.html" title="Parsing v-numbers">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_sequence_identifier_opt.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_sequence.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_sequence_number.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="variadic_macro_data.vmd_sequence.vmd_sequence_identifier_helpers"></a><a class="link" href="vmd_sequence_identifier_helpers.html" title="V-identifiers helper macros">V-identifiers
+      helper macros</a>
+</h3></div></div></div>
+<p>
+        A number of macros are helper versions of BOOST_VMD_IDENTIFIER, having the
+        same two mandatory parameters and two optional parameters which BOOST_VMD_IDENTIFIER
+        takes. All these macros work, just like BOOST_VMD_IDENTIFIER, to parse a
+        v-identifier occuring at the beginning of a v-sequence.
+      </p>
+<p>
+        These macros are:
+      </p>
+<p>
+        BOOST_VMD_BEGIN_IDENTIFIER: expands to just the index, starting with 1, of
+        the beginning identifier found, or 0 if no beginning identifier has been
+        found.
+      </p>
+<p>
+        BOOST_VMD_AFTER_IDENTIFIER: expands to the preprocessor tokens after the
+        beginning identifier. If the identifier is not found, expands to nothing.
+      </p>
+<p>
+        BOOST_VMD_IS_BEGIN_IDENTIFIER: expands to 1 if input begins with an identifier,
+        else expands to 0 if it does not.
+      </p>
+<h5>
+<a name="variadic_macro_data.vmd_sequence.vmd_sequence_identifier_helpers.h0"></a>
+        <span class="phrase"><a name="variadic_macro_data.vmd_sequence.vmd_sequence_identifier_helpers.usage"></a></span><a class="link" href="vmd_sequence_identifier_helpers.html#variadic_macro_data.vmd_sequence.vmd_sequence_identifier_helpers.usage">Usage</a>
+      </h5>
+<p>
+        All of these helper macros are in the same header file as the BOOST_VMD_IDENTIFIER
+        macro.
+      </p>
+<p>
+        You can use the general header file:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        or include the specific header:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">identifier</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_sequence_identifier_opt.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_sequence.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_sequence_number.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

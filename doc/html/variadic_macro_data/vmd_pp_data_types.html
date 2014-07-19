@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Boost PP data types</title>
+<link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="prev" href="vmd_number.html" title="Numbers">
+<link rel="next" href="vmd_identifying.html" title="Identifying data types">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_number.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_identifying.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="variadic_macro_data.vmd_pp_data_types"></a><a class="link" href="vmd_pp_data_types.html" title="Boost PP data types">Boost PP data types</a>
+</h2></div></div></div>
+<p>
+      VMD is able to determine whether or not preprocessing input is a given Boost
+      PP data type. The VMD macros to do this are:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          BOOST_VMD_IS_ARRAY for an array
+        </li>
+<li class="listitem">
+          BOOST_VMD_IS_LIST for a list
+        </li>
+<li class="listitem">
+          BOOST_VMD_IS_SEQ for a seq
+        </li>
+<li class="listitem">
+          BOOST_VMD_IS_TUPLE for a tuple
+        </li>
+</ul></div>
+<p>
+      Each of these macros take a single parameter as input and return 1 if the parameter
+      is the appropriate data type and 0 if it is not.
+    </p>
+<p>
+      One thing to realize is that both an array and a non-empty list are also a
+      tuple. So if one has:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">ANARRAY</span> <span class="special">(</span><span class="number">3</span><span class="special">,(</span><span class="identifier">a</span><span class="special">,</span><span class="identifier">b</span><span class="special">,</span><span class="identifier">c</span><span class="special">))</span>
+<span class="preprocessor">#define</span> <span class="identifier">ALIST</span> <span class="special">(</span><span class="identifier">a</span><span class="special">,(</span><span class="identifier">b</span><span class="special">,(</span><span class="identifier">c</span><span class="special">,</span><span class="identifier">BOOST_PP_NIL</span><span class="special">)))</span>
+<span class="preprocessor">#define</span> <span class="identifier">ATUPLE</span> <span class="special">(</span><span class="identifier">a</span><span class="special">,</span><span class="identifier">b</span><span class="special">,</span><span class="identifier">c</span><span class="special">)</span>
+<span class="preprocessor">#define</span> <span class="identifier">ASEQ</span> <span class="special">(</span><span class="identifier">a</span><span class="special">)(</span><span class="identifier">b</span><span class="special">)(</span><span class="identifier">c</span><span class="special">)</span>
+</pre>
+<p>
+      then
+    </p>
+<pre class="programlisting"><span class="identifier">BOOST_VMD_IS_TUPLE</span><span class="special">(</span><span class="identifier">ANARRAY</span><span class="special">)</span> <span class="identifier">returns</span> <span class="number">1</span>
+<span class="identifier">BOOST_VMD_IS_TUPLE</span><span class="special">(</span><span class="identifier">ALIST</span><span class="special">)</span> <span class="identifier">returns</span> <span class="number">1</span>
+<span class="identifier">BOOST_VMD_IS_TUPLE</span><span class="special">(</span><span class="identifier">ATUPLE</span><span class="special">)</span> <span class="identifier">returns</span> <span class="number">1</span>
+<span class="identifier">BOOST_VMD_IS_TUPLE</span><span class="special">(</span><span class="identifier">ASEQ</span><span class="special">)</span> <span class="identifier">returns</span> <span class="number">0</span>
+</pre>
+<p>
+      Another thing to realize is that a single element tuple is also a one element
+      seq. So if one has:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">ASE_TUPLE</span> <span class="special">(</span><span class="identifier">a</span><span class="special">)</span>
+</pre>
+<p>
+      then
+    </p>
+<pre class="programlisting"><span class="identifier">BOOST_VMD_IS_TUPLE</span><span class="special">(</span><span class="identifier">ASE_TUPLE</span><span class="special">)</span> <span class="identifier">returns</span> <span class="number">1</span>
+<span class="identifier">BOOST_VMD_IS_SEQ</span><span class="special">(</span><span class="identifier">ASE_TUPLE</span><span class="special">)</span> <span class="identifier">returns</span> <span class="number">1</span>
+</pre>
+<p>
+      Unlike the processing of v-identifiers or v-numbers, there is no constraint
+      about the beginning of the input causing a preprocessing error since preprocessor
+      concatenation is not used to determine any of these data types.
+    </p>
+<h4>
+<a name="variadic_macro_data.vmd_pp_data_types.h0"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_pp_data_types.usage"></a></span><a class="link" href="vmd_pp_data_types.html#variadic_macro_data.vmd_pp_data_types.usage">Usage</a>
+    </h4>
+<p>
+      You can use the geneal header file:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+      or you can use individual header files for each of these macros. The individual
+      header files are:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">array</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">//  for the BOOST_VMD_IS_ARRAY macro</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">//  for the BOOST_VMD_IS_LIST macro</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">seq</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">//  for the BOOST_VMD_IS_SEQ macro</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">tuple</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// for the BOOST_VMD_IS_TUPLE macro.</span>
+</pre>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_number.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_identifying.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

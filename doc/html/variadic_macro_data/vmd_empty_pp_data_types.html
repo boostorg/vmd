@@ -1,0 +1,360 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Emptiness and Boost PP data types</title>
+<link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="prev" href="vmd_identity.html" title="Generating emptiness and identity">
+<link rel="next" href="vmd_reentrant.html" title="Boost PP reentrant versions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_identity.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_reentrant.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="variadic_macro_data.vmd_empty_pp_data_types"></a><a class="link" href="vmd_empty_pp_data_types.html" title="Emptiness and Boost PP data types">Emptiness
+    and Boost PP data types</a>
+</h2></div></div></div>
+<p>
+      While the VMD library supports the identification of empty input through the
+      BOOST_VMD_IS_EMPTY macro, it is also possible to use Boost PP data types to
+      pass empty data.
+    </p>
+<h4>
+<a name="variadic_macro_data.vmd_empty_pp_data_types.h0"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_empty_pp_data_types.empty_arrays"></a></span><a class="link" href="vmd_empty_pp_data_types.html#variadic_macro_data.vmd_empty_pp_data_types.empty_arrays">Empty arrays</a>
+    </h4>
+<p>
+      The Boost PP array is largely obsolete when variadic macros are used, since
+      the Boost PP tuple contains all of the functionality of the array, except in
+      a single area. The array can truly be empty, and an empty array takes the form
+      of:
+    </p>
+<pre class="programlisting"><span class="special">(</span><span class="number">0</span><span class="special">,())</span>
+</pre>
+<p>
+      This is an empty array since its size is 0 and its data is empty. The VMD library
+      has functionality to identify an empty array using the BOOST_VMD_IS_EMPTY_ARRAY
+      macro. This macro takes a parameter as input and determines whether or not
+      it is an empty array, expanding to 1 if it is and 0 if it is not.
+    </p>
+<h4>
+<a name="variadic_macro_data.vmd_empty_pp_data_types.h1"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_empty_pp_data_types.usage_for_boost_vmd_is_empty_arr"></a></span><a class="link" href="vmd_empty_pp_data_types.html#variadic_macro_data.vmd_empty_pp_data_types.usage_for_boost_vmd_is_empty_arr">Usage
+      for BOOST_VMD_IS_EMPTY_ARRAY</a>
+    </h4>
+<p>
+      To use the BOOST_VMD_IS_EMPTY_ARRAY macro either include the general header:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+      or include the specific header:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">array</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<h4>
+<a name="variadic_macro_data.vmd_empty_pp_data_types.h2"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_empty_pp_data_types.empty_lists"></a></span><a class="link" href="vmd_empty_pp_data_types.html#variadic_macro_data.vmd_empty_pp_data_types.empty_lists">Empty lists</a>
+    </h4>
+<p>
+      A Boost PP list can be empty, and an empty list takes the form of:
+    </p>
+<pre class="programlisting"><span class="identifier">BOOST_PP_NIL</span>
+</pre>
+<p>
+      This is a truly empty list, whose size is 0 and which contains no list data.
+      The VMD library has functionality to identify an empty list using the BOOST_VMD_IS_EMPTY_LIST
+      macro. This macro takes a parameter as input and determines whether or not
+      it is an empty list, expanding to 1 if it is and 0 if it is not.
+    </p>
+<h4>
+<a name="variadic_macro_data.vmd_empty_pp_data_types.h3"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_empty_pp_data_types.usage_for_boost_vmd_is_empty_lis"></a></span><a class="link" href="vmd_empty_pp_data_types.html#variadic_macro_data.vmd_empty_pp_data_types.usage_for_boost_vmd_is_empty_lis">Usage
+      for BOOST_VMD_IS_EMPTY_LIST</a>
+    </h4>
+<p>
+      To use the BOOST_VMD_IS_EMPTY_LIST macro either include the general header:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+      or include the specific header:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<h4>
+<a name="variadic_macro_data.vmd_empty_pp_data_types.h4"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_empty_pp_data_types.emptiness_with_seqs_and_tuples"></a></span><a class="link" href="vmd_empty_pp_data_types.html#variadic_macro_data.vmd_empty_pp_data_types.emptiness_with_seqs_and_tuples">Emptiness
+      with seqs and tuples</a>
+    </h4>
+<p>
+      The Boost PP data types of a seq or a tuple are never empty. All seqs or tuples
+      have a minimum size of 1. The form of:
+    </p>
+<pre class="programlisting"><span class="special">()</span>
+</pre>
+<p>
+      can be either a seq whose single element contains no data or a tuple containing
+      a single element of no data. In both cases the size of the seq or tuple are
+      1 even if the data is empty.
+    </p>
+<p>
+      Even though a seq or a tuple is never empty you can choose to consider a seq
+      or tuple whose single element data is empty as an empty construct. The VMD
+      library has a macro called BOOST_VMD_IS_PARENS_EMPTY to identify this construct.
+      The macro takes a single parameter and returns 1 if the parameter is a set
+      of parenthesis with no data, or 0 if it is not.
+    </p>
+<h4>
+<a name="variadic_macro_data.vmd_empty_pp_data_types.h5"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_empty_pp_data_types.usage_for_boost_vmd_is_parens_em"></a></span><a class="link" href="vmd_empty_pp_data_types.html#variadic_macro_data.vmd_empty_pp_data_types.usage_for_boost_vmd_is_parens_em">Usage
+      for BOOST_VMD_IS_PARENS_EMPTY</a>
+    </h4>
+<p>
+      To use the BOOST_VMD_IS_PARENS_EMPTY macro either include the general header:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+      or include the specific header:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">is_parens_empty</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<h4>
+<a name="variadic_macro_data.vmd_empty_pp_data_types.h6"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_empty_pp_data_types.conversions_of_empty_data"></a></span><a class="link" href="vmd_empty_pp_data_types.html#variadic_macro_data.vmd_empty_pp_data_types.conversions_of_empty_data">Conversions
+      of "empty" data</a>
+    </h4>
+<p>
+      The Boost PP array and list can be empty but a seq or a tuple are never considered
+      empty, even if we use the form of a seq or tuple which represents a set of
+      parenthesis which contains no data. Because of this we can convert between
+      an empty array or an empty list, but if we convert from an empty array or list
+      to a seq or tuple we get undefined behavior. On the other side if we convert
+      from a seq or a tuple which is represented by a set of parenthesis which contain
+      no data, we end up with an array or list whose size is 1 but whose single element
+      contains no data. The following table illustrated these conversions in Boost
+      PP:
+    </p>
+<div class="table">
+<a name="variadic_macro_data.vmd_empty_pp_data_types.dppconv"></a><p class="title"><b>Table&#160;1.1.&#160;Boost PP data conversions for "empty" data</b></p>
+<div class="table-contents"><table class="table" summary='Boost PP data conversions for "empty" data'>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+              <p>
+                Data type
+              </p>
+            </th>
+<th>
+              <p>
+                To array
+              </p>
+            </th>
+<th>
+              <p>
+                To list
+              </p>
+            </th>
+<th>
+              <p>
+                To seq
+              </p>
+            </th>
+<th>
+              <p>
+                To tuple
+              </p>
+            </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+              <p>
+                Array
+              </p>
+            </td>
+<td>
+              <p>
+                N/A
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_ARRAY_TO_LIST
+              </p>
+              <p>
+                result = empty list, BOOST_PP_NIL
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_ARRAY_TO_SEQ
+              </p>
+              <p>
+                result = undefined behavior
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_ARRAY_TO_TUPLE
+              </p>
+              <p>
+                result = undefined behavior
+              </p>
+            </td>
+</tr>
+<tr>
+<td>
+              <p>
+                List
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_LIST_TO_ARRAY BOOST_PP_LIST_TO_ARRAY_D
+              </p>
+              <p>
+                result = empty array, (0,())
+              </p>
+            </td>
+<td>
+              <p>
+                N/A
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_LIST_TO_SEQ BOOST_PP_LIST_TO_SEQ_R
+              </p>
+              <p>
+                result = undefined behavior
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_LIST_TO_TUPLE BOOST_PP_LIST_TO_TUPLE_R
+              </p>
+              <p>
+                result = undefined behavior
+              </p>
+            </td>
+</tr>
+<tr>
+<td>
+              <p>
+                Seq
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_SEQ_TO_ARRAY
+              </p>
+              <p>
+                result = (1,())
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_SEQ_TO_LIST(
+              </p>
+              <p>
+                result = ((),BOOST_PP_NIL)
+              </p>
+            </td>
+<td>
+              <p>
+                N/A
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_SEQ_TO_TUPLE
+              </p>
+              <p>
+                result = empty parenthesis, ()
+              </p>
+            </td>
+</tr>
+<tr>
+<td>
+              <p>
+                Tuple
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_TUPLE_TO_ARRAY
+              </p>
+              <p>
+                result = (1,())
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_TUPLE_TO_LIST
+              </p>
+              <p>
+                result = ((),BOOST_PP_NIL)
+              </p>
+            </td>
+<td>
+              <p>
+                BOOST_PP_TUPLE_TO_SEQ
+              </p>
+              <p>
+                result = empty parenthesis, ()
+              </p>
+            </td>
+<td>
+              <p>
+                N/A
+              </p>
+            </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><h4>
+<a name="variadic_macro_data.vmd_empty_pp_data_types.h7"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_empty_pp_data_types.empty_parenthesis_and_vc"></a></span><a class="link" href="vmd_empty_pp_data_types.html#variadic_macro_data.vmd_empty_pp_data_types.empty_parenthesis_and_vc">Empty
+      parenthesis and VC++</a>
+    </h4>
+<p>
+      Visual C++ 9 through 12 handles empty parenthesis correctly when it is passed
+      as preprocessor data but Visual C++ 8 ( Visual Studio 2005 ) becomes confused
+      by empty parenthesis passed as possibly parameter data between macros, so this
+      technique for passing empty data as seqs or tuples should be avoided if the
+      compiler being used could be VC++8. A C++ standard comforming preprocessor
+      should have no problems handling data as an empty parenthesis.
+    </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_identity.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_reentrant.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

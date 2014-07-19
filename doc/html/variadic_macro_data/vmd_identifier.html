@@ -1,0 +1,194 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Identifiers</title>
+<link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="prev" href="vmd_data_types.html" title="Data types">
+<link rel="next" href="vmd_number.html" title="Numbers">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_data_types.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_number.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="variadic_macro_data.vmd_identifier"></a><a class="link" href="vmd_identifier.html" title="Identifiers">Identifiers</a>
+</h2></div></div></div>
+<p>
+      An identifier in VMD, hereafter called a 'v-identifier', is either of two possibilities:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          a preprocessing token 'identifier', which is essentially a sequence of
+          alphanumeric characters and the underscore character with the first character
+          not being a numeric character.
+        </li>
+<li class="listitem">
+          a preprocessing token 'pp-number' that is an integral literal token.
+        </li>
+</ul></div>
+<p>
+      Here are some examples:
+    </p>
+<pre class="programlisting"><span class="identifier">SOME_NAME</span>
+<span class="identifier">_SOME_NAME</span>
+<span class="identifier">SOME_123_NAME</span>
+<span class="identifier">some_123_name</span>
+<span class="identifier">sOMe_123_NAmE</span>
+<span class="number">2367</span>
+<span class="number">43e11</span>
+<span class="number">0</span>
+<span class="number">22</span>
+<span class="number">654792</span>
+<span class="number">0x1256</span>
+</pre>
+<p>
+      One of the difficulties with identifiers in preprocessor metaprogramming is
+      safely testing for a particular one. VMD has a means of doing this within a
+      particular constraint for the characters that serve as the input.
+    </p>
+<p>
+      The constraint is that the beginning input character, ignoring any whitespace,
+      passed as the input to test must be either:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          an identifier character, ie. an alphanumeric or an underscore
+        </li>
+<li class="listitem">
+          the left parenthesis of a tuple.
+        </li>
+</ul></div>
+<p>
+      If this is not the case a preprocessing error will occur.
+    </p>
+<p>
+      Given the input:
+    </p>
+<pre class="programlisting"><span class="identifier">s_anything</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span>
+<span class="identifier">S_anything</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span>
+<span class="identifier">s_anYthiNg</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span>
+<span class="identifier">_anything</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span>
+<span class="identifier">_Anything</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span>
+<span class="identifier">_anytHIng</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span>
+<span class="number">24</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span>
+<span class="number">245e2</span><span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span>
+<span class="special">(</span><span class="identifier">anything</span><span class="special">)</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span><span class="special">,</span> <span class="identifier">tuple</span>
+<span class="special">(</span><span class="identifier">anything</span><span class="special">)</span> <span class="identifier">anything</span> <span class="special">:</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span><span class="special">,</span> <span class="identifier">tuple</span> <span class="keyword">and</span> <span class="identifier">further</span> <span class="identifier">input</span>
+
+<span class="special">%</span><span class="identifier">_anything</span> <span class="special">:</span> <span class="identifier">will</span> <span class="identifier">give</span> <span class="identifier">a</span> <span class="identifier">preprocessing</span> <span class="identifier">error</span> <span class="identifier">due</span> <span class="identifier">to</span> <span class="identifier">the</span> <span class="identifier">constraint</span>
+<span class="special">(</span><span class="identifier">_anything</span> <span class="special">:</span> <span class="identifier">will</span> <span class="identifier">give</span> <span class="identifier">a</span> <span class="identifier">preprocessing</span> <span class="identifier">error</span> <span class="identifier">due</span> <span class="identifier">to</span> <span class="identifier">the</span> <span class="identifier">constraint</span><span class="special">,</span> <span class="identifier">since</span> <span class="identifier">a</span> <span class="identifier">single</span> <span class="char">'('</span> <span class="identifier">does</span> <span class="keyword">not</span> <span class="identifier">form</span> <span class="identifier">a</span> <span class="identifier">tuple</span>
+</pre>
+<p>
+      The macro used to test for a particular identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
+      The macro takes two parameters. The first parameter is the input to test against,
+      while the second parameter is the 'key', hereafter called a v-key. The v-key
+      can be used to test against any one of a number of possible identifiers, since
+      the v-key can be either a single token or a tuple of tokens.
+    </p>
+<p>
+      The form of a v-key is that of a v-identifier itself, except that the v-key
+      should not begin with an underscore character ( _ ).
+    </p>
+<p>
+      In order to use a v-key the programmer invoking this macro must define an object-like
+      macro, called a key-identifier macro, whose form is:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_</span><span class="char">'v-key'</span><span class="char">'v-identifier'</span>
+</pre>
+<p>
+      A key-identifier macro must generate no output. The v-key portion must be unique,
+      for each identifier to be tested, and which will not be duplicated within the
+      translation unit. Two of the easiest ways to create a unique v-key across the
+      translation unit is:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          preface all v-keys with a single unique preface for the library or application
+          in which BOOST_VMD_IS_IDENTIFIER is being used, followed by some distinct
+          v-key name.
+        </li>
+<li class="listitem">
+          generate a GUID and use its hex representation as the unique v-key.
+        </li>
+</ul></div>
+<p>
+      The programmer can define any number of key-identifier macros, one for each
+      identifier he wishes to test. Once the key-identifier macro is defined, the
+      v-key is passed as the second parameter to BOOST_VMD_IS_IDENTIFIER to see if
+      the first parameter is the same as the v-identifier.
+    </p>
+<p>
+      Since the second parameter can be a single token or a tuple of tokens, the
+      BOOST_VMD_IS_IDENTIFIER macro returns a number, from 0 to the number of tokens
+      passed. A return of 0 indicates that the v-identifier was not found, while
+      a return of a non-zero indicates the v-identifier was found and, in the case
+      of multiple tokens passed as a tuple, indicates which one of the v-identifiers
+      was found ( 1 for the first token, 2 for the second token, etc. ). The programmer
+      can then use a Boost PP comparison macro, such as BOOST_PP_EQUAL, to determine
+      which v-identifier is found. The programmer can also use BOOST_PP_IF or BOOST_PP_IIF
+      ( with a single token v-key ) with the result to branch as part of his preprocessor
+      metaprogramming logic.
+    </p>
+<h4>
+<a name="variadic_macro_data.vmd_identifier.h0"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_identifier.example"></a></span><a class="link" href="vmd_identifier.html#variadic_macro_data.vmd_identifier.example">Example</a>
+    </h4>
+<p>
+      Let us look at an example of how to use BOOST_VMD_IS_IDENTIFIER.
+    </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY1_CIRCLE</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY2_SQUARE</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY3_TRIANGLE</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY4_RECTANGLE</span>
+
+<span class="identifier">BOOST_VMD_IS_IDENTIFIER</span><span class="special">(</span><span class="identifier">input</span><span class="special">,(</span><span class="identifier">MYLIB_KEY1_</span><span class="special">,</span><span class="identifier">MYLIB_KEY2_</span><span class="special">,</span><span class="identifier">MYLIB_KEY3_</span><span class="special">,</span><span class="identifier">MYLIB_KEY4_</span><span class="special">))</span>
+
+<span class="identifier">returns</span><span class="special">:</span>
+
+<span class="keyword">if</span> <span class="identifier">input</span> <span class="special">=</span> <span class="identifier">CIRCLE</span><span class="special">,</span> <span class="number">1</span>
+<span class="keyword">if</span> <span class="identifier">input</span> <span class="special">=</span> <span class="identifier">SQUARE</span><span class="special">,</span> <span class="number">2</span>
+<span class="keyword">if</span> <span class="identifier">input</span> <span class="special">=</span> <span class="identifier">TRIANGLE</span><span class="special">,</span> <span class="number">3</span>
+<span class="keyword">if</span> <span class="identifier">input</span> <span class="special">=</span> <span class="identifier">RECTANGLE</span><span class="special">,</span> <span class="number">4</span>
+<span class="keyword">if</span> <span class="identifier">input</span> <span class="special">=</span> <span class="identifier">PARALLELOGRAM</span><span class="special">,</span> <span class="number">0</span> <span class="identifier">since</span> <span class="identifier">there</span> <span class="identifier">is</span> <span class="identifier">no</span> <span class="identifier">match</span> <span class="identifier">of</span> <span class="identifier">any</span> <span class="identifier">of</span> <span class="identifier">the</span> <span class="identifier">keys</span>
+<span class="keyword">if</span> <span class="identifier">input</span> <span class="special">=</span> <span class="identifier">CIRCLE</span> <span class="identifier">DATA</span><span class="special">,</span> <span class="number">0</span> <span class="identifier">since</span> <span class="identifier">there</span> <span class="identifier">are</span> <span class="identifier">tokens</span> <span class="identifier">after</span> <span class="identifier">the</span> <span class="identifier">identifier</span>
+<span class="keyword">if</span> <span class="identifier">input</span> <span class="special">=</span> <span class="special">%</span><span class="identifier">NAME</span><span class="special">,</span> <span class="identifier">does</span> <span class="keyword">not</span> <span class="identifier">meet</span> <span class="identifier">the</span> <span class="identifier">constraint</span> <span class="identifier">therefore</span> <span class="identifier">a</span> <span class="identifier">preprocessing</span> <span class="identifier">error</span> <span class="identifier">occurs</span>
+<span class="keyword">if</span> <span class="identifier">input</span> <span class="special">=</span> <span class="special">(</span> <span class="identifier">NAME</span> <span class="special">)</span> <span class="identifier">NAME</span><span class="special">,</span> <span class="number">0</span> <span class="identifier">since</span> <span class="identifier">the</span> <span class="identifier">macro</span> <span class="identifier">begins</span> <span class="identifier">with</span> <span class="identifier">a</span> <span class="identifier">tuple</span> <span class="keyword">and</span> <span class="keyword">this</span> <span class="identifier">can</span> <span class="identifier">be</span> <span class="identifier">tested</span> <span class="keyword">for</span>
+</pre>
+<h4>
+<a name="variadic_macro_data.vmd_identifier.h1"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_identifier.usage"></a></span><a class="link" href="vmd_identifier.html#variadic_macro_data.vmd_identifier.usage">Usage</a>
+    </h4>
+<p>
+      To use the BOOST_VMD_IS_IDENTIFIER macro either include the general header:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+      or include the specific header:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">is_identifier</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_data_types.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_number.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

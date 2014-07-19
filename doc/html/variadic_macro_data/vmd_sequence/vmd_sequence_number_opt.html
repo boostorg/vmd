@@ -1,0 +1,292 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Parsing v-numbers using optional parameters</title>
+<link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="../../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="up" href="../vmd_sequence.html" title="Parsing v-type sequences">
+<link rel="prev" href="vmd_sequence_number.html" title="Parsing v-numbers">
+<link rel="next" href="vmd_sequence_number_helper.html" title="V-number helper macros">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_sequence_number.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_sequence.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_sequence_number_helper.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="variadic_macro_data.vmd_sequence.vmd_sequence_number_opt"></a><a class="link" href="vmd_sequence_number_opt.html" title="Parsing v-numbers using optional parameters">Parsing
+      v-numbers using optional parameters</a>
+</h3></div></div></div>
+<p>
+        While parsing a v-sequence starting with a v-number can always be done for
+        the fairly simple v-sequences situations previously mentioned, it is more
+        challenging to do so when the v-number is followed by one or more other v-numbers,
+        or one or more v-identifiers, or a combination of the two possible v-sequences.
+        To do this one needs to use optional parameters to the BOOST_VMD_NUMBER macro.
+      </p>
+<p>
+        Recall that the BOOST_VMD_NUMBER macro takes a single mandatory parameter,
+        the v-sequence. The BOOST_VMD_NUMBER macro also takes optional parameters
+        to parse the more difficult sequences involving further v-numbers or v-identifiers.
+      </p>
+<h5>
+<a name="variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.h0"></a>
+        <span class="phrase"><a name="variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.complicated_v_sequences"></a></span><a class="link" href="vmd_sequence_number_opt.html#variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.complicated_v_sequences">Complicated
+        v-sequences</a>
+      </h5>
+<p>
+        Before I explain the optional parameters here are the forms of the more difficult
+        v-sequences which BOOST_VMD_NUMBER can parse with their help:
+      </p>
+<pre class="programlisting"><span class="identifier">v</span><span class="special">-</span><span class="identifier">number</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">numbers</span> <span class="special">...</span> <span class="identifier">tuple</span><span class="special">-</span><span class="keyword">or</span><span class="special">-</span><span class="identifier">end</span><span class="special">-</span><span class="identifier">of</span><span class="special">-</span><span class="identifier">input</span>
+<span class="identifier">v</span><span class="special">-</span><span class="identifier">number</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">identifiers</span> <span class="special">...</span> <span class="identifier">tuple</span><span class="special">-</span><span class="keyword">or</span><span class="special">-</span><span class="identifier">end</span><span class="special">-</span><span class="identifier">of</span><span class="special">-</span><span class="identifier">input</span>
+<span class="identifier">v</span><span class="special">-</span><span class="identifier">number</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">numbers</span> <span class="special">...</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">identifiers</span> <span class="special">...</span> <span class="identifier">tuple</span><span class="special">-</span><span class="keyword">or</span><span class="special">-</span><span class="identifier">end</span><span class="special">-</span><span class="identifier">of</span><span class="special">-</span><span class="identifier">input</span>
+</pre>
+<p>
+        These three supported situations also allow * a v-number to be followed by
+        from one to four additional v-numbers followed by a tuple, or end-of-sequence.
+        * a v-number to be followed by from one to five v-identifiers followed by
+        a tuple or end-of-sequence. * a v-number to be followed by from one to four
+        additional v-numbers, followed by from one to five v-identifiers before encountering
+        a tuple or end-of-sequence.
+      </p>
+<p>
+        Parsing input sequences beginning with v-number(s), immediately followed
+        by v-identifier(s), immediately followed by further v-number(s) are not supported.
+        But of course this can be modified by having v-number(s), immediately followed
+        followed by v-identifier(s), immediately followed followed by a tuple, followed
+        by further v-number(s), which is supported by the third case above.
+      </p>
+<h5>
+<a name="variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.h1"></a>
+        <span class="phrase"><a name="variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.using_the_optional_2nd_parameter"></a></span><a class="link" href="vmd_sequence_number_opt.html#variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.using_the_optional_2nd_parameter">Using
+        the optional 2nd parameter</a>
+      </h5>
+<p>
+        In order to find a v-number at the beginning of a v-sequence when it could
+        be followed by a maximum of four subsequent v-numbers, the optional 2nd parameter
+        to BOOST_VMD_NUMBER must be used. This is our v-sequence of:
+      </p>
+<pre class="programlisting"><span class="identifier">v</span><span class="special">-</span><span class="identifier">number</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">numbers</span> <span class="special">...</span> <span class="identifier">tuple</span><span class="special">-</span><span class="keyword">or</span><span class="special">-</span><span class="identifier">end</span><span class="special">-</span><span class="identifier">of</span><span class="special">-</span><span class="identifier">input</span>
+</pre>
+<p>
+        In this case the optional 2nd parameter is just a number, with a maximum
+        of four, which specifies the maximum number of subsequent v-numbers which
+        can follow the beginning v-number. You can specify a number which is greater
+        than the actual number of v-numbers which follow the beginning v-identifier
+        and the parsing will still succeed as long as the beginning v-number is found.
+        But if you specify a number that is less than the number of subsequent v-numbers,
+        the parsing will fail. You never need to specify the optional 2nd parameter
+        as a number if the v-number in the beginning of a v-sequence is followed
+        by a tuple or end-of-input, but you are allowed to do so.
+      </p>
+<p>
+        Some examples:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N7</span> <span class="number">37</span> <span class="number">142</span> <span class="special">(</span><span class="identifier">telem1</span><span class="special">,</span><span class="identifier">telem2</span><span class="special">)</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N7</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="comment">/* The optional 2nd parameter as a number */</span>
+  <span class="number">3</span> <span class="comment">/* succeeds because there are less than or equal to 3 following v-numbers */</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (37,142 (telem1,telem2))
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N8</span> <span class="number">25</span> <span class="number">99</span> <span class="number">234</span> <span class="number">56</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N8</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="comment">/* The optional 2nd parameter as a number */</span>
+  <span class="number">2</span> <span class="comment">/* fails because there are more than 2 following v-numbers */</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (,)
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N9</span> <span class="number">226</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N9</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="comment">/* The optional 2nd parameter as a number */</span>
+  <span class="number">1</span> <span class="comment">/* Not needed but it does no harm */</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (226,)
+      </p>
+<p>
+        The optional 2nd parameter is also used in order to find a v-number at the
+        beginning of a v-sequence when it is followed by one or more v-identifiers
+        before a tuple or end-of-sequence is encountered. This is our v-sequence
+        of:
+      </p>
+<pre class="programlisting"><span class="identifier">v</span><span class="special">-</span><span class="identifier">number</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">identifiers</span> <span class="special">...</span> <span class="identifier">tuple</span><span class="special">-</span><span class="keyword">or</span><span class="special">-</span><span class="identifier">end</span><span class="special">-</span><span class="identifier">of</span><span class="special">-</span><span class="identifier">input</span>
+</pre>
+<p>
+        This optional 2nd parameter is a seq, where each element is a v-key to possible
+        subsequent v-identifiers. You can specify more seq elements than are actually
+        found in the v-sequence as long as the seq elements specified match v-identifiers
+        that are found.
+      </p>
+<p>
+        Some examples:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY6_APPLE</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY7_BANANA</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY8_CHERRY</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY9_ORANGE</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY10_PEACH</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_MAP_MYLIB_KEY11_PEAR</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N10</span> <span class="number">165</span> <span class="identifier">CHERRY</span> <span class="identifier">BANANA</span> <span class="identifier">PEACH</span> <span class="special">(</span><span class="identifier">telem1</span><span class="special">,</span><span class="identifier">telem2</span><span class="special">)</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N10</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="comment">/* The optional 2nd parameter as a seq */</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY8_</span> <span class="comment">/* CHERRY, which matches */</span><span class="special">,</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA */</span><span class="special">))</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY11_</span> <span class="comment">/* PEAR */</span><span class="special">,</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA, which matches */</span><span class="special">))</span>
+  <span class="special">(</span><span class="identifier">MYLIB_KEY10_</span> <span class="comment">/* PEACH, which matches */</span><span class="special">)</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY6_</span> <span class="comment">/* APPLE */</span><span class="special">,</span><span class="identifier">MYLIB_KEY9_</span> <span class="comment">/* ORANGE */</span><span class="special">))</span>
+  <span class="comment">/* This last seq element is extraneous for the particular input
+     because the first three seq elements cover the three
+     v-identifiers. But this shows you can have extra seq elements
+     without affecting the ability to match */</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (165,CHERRY BANANA PEACH (telem1,telem2))
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N11</span> <span class="number">27</span> <span class="identifier">PEAR</span> <span class="identifier">ORANGE</span> <span class="identifier">APPLE</span> <span class="identifier">PEACH</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N11</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="comment">/* The optional 2nd parameter as a seq */</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA */</span><span class="special">,</span><span class="identifier">MYLIB_KEY11_</span> <span class="comment">/* PEAR, which matches */</span><span class="special">))</span>
+  <span class="special">(</span><span class="identifier">MYLIB_KEY9_</span> <span class="comment">/* ORANGE, which matches */</span><span class="special">)</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA */</span><span class="special">,</span><span class="identifier">MYLIB_KEY6_</span> <span class="comment">/* APPLE, which matches */</span><span class="special">))</span>
+  <span class="comment">/* No subsequent seq element to match PEACH so beginning v-identifier
+     is not found */</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (,)
+      </p>
+<h5>
+<a name="variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.h2"></a>
+        <span class="phrase"><a name="variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.using_the_optional_3rd_parameter"></a></span><a class="link" href="vmd_sequence_number_opt.html#variadic_macro_data.vmd_sequence.vmd_sequence_number_opt.using_the_optional_3rd_parameter">Using
+        the optional 3rd parameter</a>
+      </h5>
+<p>
+        The optional 3rd parameter is used in order to find a v-number at the beginning
+        of the v-sequence when it is followed by one to four v-numbers and one to
+        five v-identifiers before a tuple or end-of-sequence. This is our v-sequence
+        of:
+      </p>
+<pre class="programlisting"><span class="identifier">v</span><span class="special">-</span><span class="identifier">number</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">numbers</span> <span class="special">...</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">identifiers</span> <span class="special">...</span> <span class="identifier">tuple</span><span class="special">-</span><span class="keyword">or</span><span class="special">-</span><span class="identifier">end</span><span class="special">-</span><span class="identifier">of</span><span class="special">-</span><span class="identifier">input</span>
+</pre>
+<p>
+        In this situation the optional 2nd parameter is the number we used for subsequent
+        v-numbers and the optional 3rd parameter is the seq we used for subsequent
+        v-identifiers. When we use both optional parameters we may still succeed
+        if we encounter a tuple or end-of-sequence before the v-number matches are
+        exhausted or, once we start matching v-identifiers, if we encounter a tuple
+        or end-of-sequence before the v-identifiers matches are exhausted. But once
+        we encounter v-identifiers in the v-sequence, we need to have matched exactly
+        the number of v-numbers specified.
+      </p>
+<p>
+        Some examples, using our key-identifier macros above:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N12</span> <span class="number">25</span> <span class="number">99</span> <span class="number">234</span> <span class="identifier">CHERRY</span> <span class="identifier">BANANA</span> <span class="special">(</span><span class="identifier">telem1</span><span class="special">,</span><span class="identifier">telem2</span><span class="special">)</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N12</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="number">2</span><span class="special">,</span> <span class="identifier">which</span> <span class="identifier">matches</span> <span class="identifier">the</span> <span class="number">2</span> <span class="identifier">subsequent</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">numbers</span>
+  <span class="special">(</span><span class="identifier">MYLIB_KEY8_</span> <span class="comment">/* CHERRY, which matches */</span><span class="special">)</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY11_</span> <span class="comment">/* PEAR */</span><span class="special">,</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA, which matches */</span><span class="special">))</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (25,99 234 CHERRY BANANA (telem1,telem2))
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N13</span> <span class="number">8</span> <span class="number">253</span> <span class="identifier">PEAR</span> <span class="identifier">ORANGE</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N13</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="number">1</span><span class="special">,</span> <span class="identifier">which</span> <span class="identifier">matches</span> <span class="identifier">the</span> <span class="number">1</span> <span class="identifier">subsequent</span> <span class="identifier">v</span><span class="special">-</span><span class="identifier">number</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY11_</span> <span class="comment">/* PEAR, which matches */</span><span class="special">,</span> <span class="identifier">MYLIB_KEY8_</span> <span class="comment">/* CHERRY*/</span><span class="special">))</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA */</span><span class="special">,</span><span class="identifier">MYLIB_KEY9_</span> <span class="comment">/* ORANGE, which matches */</span><span class="special">))</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY9_</span> <span class="comment">/* ORANGE */</span><span class="special">,</span><span class="identifier">MYLIB_KEY8_</span> <span class="comment">/* CHERRY */</span><span class="special">))</span>
+  <span class="comment">/* This last seq element is extraneous for the particular input
+     because the first two seq element covers the subsequent
+     v-identifiers. This shows you can have extra seq elements without
+     affecting the ability to match as long as you have the correct number
+     of subsequent v-numbers specified. */</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (8,253 PEAR ORANGE)
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N14</span> <span class="number">37</span> <span class="number">42</span> <span class="number">156</span> <span class="number">254</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N14</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="number">4</span><span class="special">,</span> <span class="comment">/* Succeeds because he number is greater or equal to the amount of
+        subsequent v-numbers and there are no subsequent v-identifiers
+        in the input before a tuple or end-of-sequence is encoumntered */</span>
+  <span class="comment">/* The 3rd parameter seq is extraneous for the given input because there
+     are no subsequent v-identifiers to match, but do not negate the
+     match because it i specified */</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA */</span><span class="special">,</span><span class="identifier">MYLIB_KEY9_</span> <span class="comment">/* ORANGE */</span><span class="special">,</span><span class="identifier">MYLIB_KEY10_</span> <span class="comment">/* PEACH */</span><span class="special">))</span>
+  <span class="special">(</span><span class="identifier">MYLIB_KEY11_</span> <span class="comment">/* PEAR, which matches */</span><span class="special">)</span>
+  <span class="special">(</span><span class="identifier">MYLIB_KEY8_</span> <span class="comment">/* CHERRY */</span><span class="special">)</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (37,42 156 254)
+      </p>
+<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">SOME_INPUT_N15</span> <span class="number">142</span> <span class="number">50</span> <span class="number">133</span> <span class="number">29</span> <span class="identifier">BANANA</span> <span class="identifier">CHERRY</span>
+
+<span class="identifier">BOOST_VMD_NUMBER</span>
+  <span class="special">(</span>
+  <span class="identifier">SOME_INPUT_N15</span> <span class="comment">/* v-sequence */</span><span class="special">,</span>
+  <span class="number">4</span><span class="special">,</span> <span class="comment">/* Fails because there must be exactly the correct number of subsequent
+        v-numbers if there are subsequent v-identifiers */</span>
+  <span class="special">(</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA, which matches */</span><span class="special">)</span>
+  <span class="special">((</span><span class="identifier">MYLIB_KEY7_</span> <span class="comment">/* BANANA */</span><span class="special">,</span><span class="identifier">MYLIB_KEY8_</span> <span class="comment">/* CHERRY, which matches */</span><span class="special">,</span><span class="identifier">MYLIB_KEY10_</span> <span class="comment">/* PEACH */</span><span class="special">))</span>
+  <span class="special">)</span>
+</pre>
+<p>
+        expands to (,)
+      </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_sequence_number.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../vmd_sequence.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_sequence_number_helper.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
