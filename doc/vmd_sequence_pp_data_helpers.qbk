@@ -5,27 +5,27 @@ data type macros. All of them take as a parameter the v-sequence to parse.
 
 These macros are:
 
-BOOST_VMD_BEGIN_ARRAY: 
-BOOST_VMD_BEGIN_LIST: 
-BOOST_VMD_BEGIN_SEQ: 
-BOOST_VMD_BEGIN_TUPLE: 
+* BOOST_VMD_BEGIN_ARRAY: 
+* BOOST_VMD_BEGIN_LIST: 
+* BOOST_VMD_BEGIN_SEQ: 
+* BOOST_VMD_BEGIN_TUPLE: 
 
 expands to the appropriate beginning Boost PP data type or nothing
 if the appropriate beginning Boost PP data type is not found.
 
-BOOST_VMD_AFTER_ARRAY: 
-BOOST_VMD_AFTER_LIST: 
-BOOST_VMD_AFTER_SEQ: 
-BOOST_VMD_AFTER_TUPLE: 
+* BOOST_VMD_AFTER_ARRAY: 
+* BOOST_VMD_AFTER_LIST: 
+* BOOST_VMD_AFTER_SEQ: 
+* BOOST_VMD_AFTER_TUPLE: 
 
 expands to the preprocessor tokens after the beginning appropriate 
 Boost PP data type. If the beginning Boost PP data type is not found, 
 expands to nothing.
 
-BOOST_VMD_IS_BEGIN_ARRAY: 
-BOOST_VMD_IS_BEGIN_LIST: 
-BOOST_VMD_IS_BEGIN_SEQ: 
-BOOST_VMD_IS_BEGIN_TUPLE: 
+* BOOST_VMD_IS_BEGIN_ARRAY: 
+* BOOST_VMD_IS_BEGIN_LIST: 
+* BOOST_VMD_IS_BEGIN_SEQ: 
+* BOOST_VMD_IS_BEGIN_TUPLE: 
 
 expands to 1 if input begins with the appropriate Boost PP data type,
 else expands to 0 if it does not.
