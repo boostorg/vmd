@@ -41,6 +41,16 @@ int main()
   	BOOST_PP_TUPLE_ELEM
   		(
   		2,
+  		BOOST_VMD_IDENTIFIER(zzz (),(dummy1,zzz))
+  		),
+  	1
+  	);
+  	
+  BOOST_TEST_EQ
+  	(
+  	BOOST_PP_TUPLE_ELEM
+  		(
+  		2,
   		BOOST_VMD_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(dummy1,zzz))
   		),
   	1
@@ -152,8 +162,11 @@ int main()
   	(
   	BOOST_VMD_IS_EMPTY
   		(
-  		0,
-  		BOOST_VMD_IDENTIFIER(JDATA,grist)
+		BOOST_PP_TUPLE_ELEM
+			(
+			0,
+			BOOST_VMD_IDENTIFIER(JDATA,grist)
+			)
   		)
   	);
   

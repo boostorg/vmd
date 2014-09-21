@@ -19,9 +19,6 @@ int main()
 	#define A_SEQ (73 (split) clear)(red)(green 44)
 	#define A_LIST (17 (5),(grist,(yellow,BOOST_PP_NIL)))
 	
-    #define BOOST_VMD_MAP_VMD_TEST_1_somevalue
-    #define BOOST_VMD_MAP_VMD_TEST_2_num
-    
 	BOOST_TEST_EQ(BOOST_VMD_BEGIN_NUMBER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE)),145);
 	BOOST_TEST_EQ(BOOST_VMD_BEGIN_NUMBER(JDATA),43);
 	BOOST_TEST_EQ(BOOST_VMD_BEGIN_NUMBER(BOOST_PP_SEQ_ELEM(0,A_SEQ)),73);

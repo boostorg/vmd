@@ -12,8 +12,6 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/is_identifier.hpp>
-#include <boost/vmd/is_number.hpp>
 #include <boost/vmd/is_parens_empty.hpp>
 #include <boost/vmd/list.hpp>
 #include <boost/vmd/number.hpp>

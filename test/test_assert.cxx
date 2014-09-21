@@ -5,8 +5,6 @@
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/is_identifier.hpp>
-#include <boost/vmd/is_number.hpp>
 #include <boost/vmd/list.hpp>
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/seq.hpp>
@@ -38,8 +36,10 @@ int main()
   #define A_SEQ (73 (split) clear)(red)(green 44)
   #define A_SEQ_PLUS (mmf)(34)(^^)(!) 456
   
-  #define BOOST_VMD_MAP_VMD_TEST_0_zzz
-  #define BOOST_VMD_MAP_VMD_TEST_1_somevalue
+  #define BOOST_VMD_REGISTER_zzz (zzz)
+  #define BOOST_VMD_DETECT_zzz_zzz
+  #define BOOST_VMD_REGISTER_somevalue (somevalue)
+  #define BOOST_VMD_DETECT_somevalue_somevalue
   
   BOOST_VMD_ASSERT(25)
   BOOST_VMD_ASSERT(BOOST_PP_DEC(2))
@@ -60,15 +60,15 @@ int main()
   		(
 		BOOST_PP_TUPLE_ELEM
 			(
-			0,
-			BOOST_VMD_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(DUMMY1,VMD_TEST_0_))
+			2,
+			BOOST_VMD_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(dummy1,zzz))
 			),
-		2
+		1
   		)
   	)
   	
   BOOST_VMD_ASSERT(BOOST_VMD_IS_EMPTY(DATA BOOST_PP_EMPTY()))
-  BOOST_VMD_ASSERT(BOOST_VMD_IS_IDENTIFIER(JDATA,VMD_TEST_1_))
+  BOOST_VMD_ASSERT(BOOST_VMD_IS_IDENTIFIER(JDATA,somevalue))
   BOOST_VMD_ASSERT(BOOST_VMD_IS_NUMBER(BOOST_PP_LIST_AT(A_LIST,2)))
   BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_LIST(A_LIST_PLUS)),56))
   BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_NUMBER(BOOST_PP_SEQ_ELEM(0,A_SEQ))),73))

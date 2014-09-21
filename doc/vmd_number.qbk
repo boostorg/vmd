@@ -79,6 +79,6 @@ To use the BOOST_VMD_IS_NUMBER macro either include the general header:
  
 or include the specific header:
 
- #include <boost/vmd/is_number.hpp>
+ #include <boost/vmd/number.hpp>
 
 [endsect]

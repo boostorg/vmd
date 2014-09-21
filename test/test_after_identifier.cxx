@@ -20,17 +20,22 @@ int main()
   #define A_SEQ (num (split) clear)($)(#)
   #define A_LIST (eeb (5),(grist,(&,BOOST_PP_NIL)))
 
-  #define BOOST_VMD_MAP_VMD_TEST_0_zzz
-  #define BOOST_VMD_MAP_VMD_TEST_1_somevalue
-  #define BOOST_VMD_MAP_VMD_TEST_2_num
-  #define BOOST_VMD_MAP_VMD_TEST_3_eeb
-  #define BOOST_VMD_MAP_VMD_TEST_77_grist
-
+  #define BOOST_VMD_REGISTER_zzz (zzz)
+  #define BOOST_VMD_DETECT_zzz_zzz
+  #define BOOST_VMD_REGISTER_somevalue (somevalue)
+  #define BOOST_VMD_DETECT_somevalue_somevalue
+  #define BOOST_VMD_REGISTER_num (num)
+  #define BOOST_VMD_DETECT_num_num
+  #define BOOST_VMD_REGISTER_eeb (eeb)
+  #define BOOST_VMD_DETECT_eeb_eeb
+  #define BOOST_VMD_REGISTER_grist (grist)
+  #define BOOST_VMD_DETECT_grist_grist
+  
   BOOST_TEST
   	(
   	BOOST_VMD_IS_BEGIN_TUPLE
   		(
-		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),VMD_TEST_0_)
+		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),zzz)
   		)
   	);
   
@@ -38,7 +43,7 @@ int main()
   	(
   	BOOST_VMD_IS_EMPTY
   		(
-		BOOST_VMD_AFTER_IDENTIFIER(JDATA,VMD_TEST_1_)
+		BOOST_VMD_AFTER_IDENTIFIER(JDATA,somevalue)
   		)
   	);
   
@@ -46,7 +51,7 @@ int main()
   	(
   	BOOST_VMD_IS_BEGIN_TUPLE
   		(
-  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),VMD_TEST_2_)
+  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),num)
   		)
   	);
   
@@ -55,7 +60,7 @@ int main()
   	BOOST_PP_TUPLE_ELEM
   		(
   		0,
- 		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),(VMD_TEST_3_))
+ 		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),(eeb))
   		),
   	5
   	);
@@ -64,7 +69,7 @@ int main()
   	(
   	BOOST_VMD_IS_EMPTY
   		(
-		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_77_)
+		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),grist)
   		)
   	);
   	
@@ -72,7 +77,7 @@ int main()
   	(
   	BOOST_VMD_IS_EMPTY
   		(
-  		BOOST_VMD_AFTER_IDENTIFIER(JDATA,VMD_TEST_4_)
+  		BOOST_VMD_AFTER_IDENTIFIER(JDATA,babble)
   		)
   	);
   
@@ -80,7 +85,7 @@ int main()
   	(
   	BOOST_VMD_IS_EMPTY
   		(
-  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),VMD_TEST_3_)
+  		BOOST_VMD_AFTER_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),eeb)
   		)
   	);
   

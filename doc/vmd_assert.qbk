@@ -80,8 +80,8 @@ To use the individual BOOST_VMD_ASSERT_... macros either include the general hea
 or include the specific header:
 
  #include <boost/vmd/is_empty.hpp> // BOOST_VMD_ASSERT_IS_EMPTY
- #include <boost/vmd/is_identifier.hpp> // BOOST_VMD_ASSERT_IS_IDENTIFIER
- #include <boost/vmd/is_number.hpp> // BOOST_VMD_ASSERT_IS_NUMBER
+ #include <boost/vmd/identifier.hpp> // BOOST_VMD_ASSERT_IS_IDENTIFIER
+ #include <boost/vmd/number.hpp> // BOOST_VMD_ASSERT_IS_NUMBER
  #include <boost/vmd/array.hpp> // BOOST_VMD_ASSERT_IS_ARRAY
  #include <boost/vmd/list.hpp> // BOOST_VMD_ASSERT_IS_LIST
  #include <boost/vmd/seq.hpp> // BOOST_VMD_ASSERT_IS_SEQ

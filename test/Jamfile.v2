@@ -158,17 +158,6 @@ test-suite variadic_macro_data
        [ run test_number.cpp ]
        [ run test_seq.cpp ]
        [ run test_tuple.cpp ]
-#       [ run test_after_identifier2.cpp ]
-#       [ run test_after_number2.cpp ]
-#       [ compile test_assert2.cpp ]
-#       [ compile-fail test_assert_fail_identifier2.cpp ]
-#       [ run test_begin_identifier2.cpp ]
-#       [ run test_begin_number2.cpp ]
-#       [ run test_identifier2.cpp ]
-#       [ run test_is_begin_identifier2.cpp ]
-       [ run test_number2.cpp ]
-#       [ run test_is_begin_number2.cpp ]
-#       [ compile-fail test_assert_fail_number2.cpp ]
     ;
 
 test-suite variadic_macro_data_gh

@@ -15,7 +15,8 @@ int main()
 
   #define A_TUPLE (*,#,zzz ())
   
-  #define BOOST_VMD_MAP_VMD_TEST_0_zzz
+  #define BOOST_VMD_REGISTER_zzz (zzz)
+  #define BOOST_VMD_DETECT_zzz_zzz
   
   BOOST_VMD_ASSERT
   	(
@@ -23,10 +24,10 @@ int main()
   		(
 		BOOST_PP_TUPLE_ELEM
 			(
-			0,
-			BOOST_VMD_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(DUMMY1,VMD_TEST_0_))
+			2,
+			BOOST_VMD_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(dummy1,zzz))
 			),
-		1
+		0
   		),
   	BOOST_VMD_TEST_FAIL_IDENTIFIER
   	)

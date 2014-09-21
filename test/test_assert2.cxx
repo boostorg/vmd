@@ -40,8 +40,6 @@ int main()
   #define BOOST_VMD_DETECT_zzz_zzz
   #define BOOST_VMD_REGISTER_somevalue (somevalue)
   #define BOOST_VMD_DETECT_somevalue_somevalue
-//  #define BOOST_VMD_MAP_VMD_TEST_0_zzz
-//  #define BOOST_VMD_MAP_VMD_TEST_1_somevalue
   
   BOOST_VMD_ASSERT(25)
   BOOST_VMD_ASSERT(BOOST_PP_DEC(2))

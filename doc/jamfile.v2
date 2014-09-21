@@ -42,8 +42,6 @@ doxygen vmd_reference
     $(here)/../../../boost/vmd/identity.hpp
     $(here)/../../../boost/vmd/is_begin_tuple.hpp
     $(here)/../../../boost/vmd/is_empty.hpp
-    $(here)/../../../boost/vmd/is_identifier.hpp
-    $(here)/../../../boost/vmd/is_number.hpp
     $(here)/../../../boost/vmd/is_parens_empty.hpp
     $(here)/../../../boost/vmd/list.hpp
     $(here)/../../../boost/vmd/number.hpp

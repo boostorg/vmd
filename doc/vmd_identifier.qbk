@@ -114,6 +114,6 @@ To use the BOOST_VMD_IS_IDENTIFIER macro either include the general header:
  
 or include the specific header:
 
- #include <boost/vmd/is_identifier.hpp>
+ #include <boost/vmd/identifier.hpp>
 
 [endsect]

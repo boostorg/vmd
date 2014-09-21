@@ -5,8 +5,6 @@
 !scan boost/vmd/identity.hpp
 !scan boost/vmd/is_begin_tuple.hpp
 !scan boost/vmd/is_empty.hpp
-!scan boost/vmd/is_identifier.hpp
-!scan boost/vmd/is_number.hpp
 !scan boost/vmd/is_parens_empty.hpp
 !scan boost/vmd/list.hpp
 !scan boost/vmd/number.hpp
