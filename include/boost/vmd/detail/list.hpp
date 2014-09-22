@@ -3,7 +3,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/preprocessor/tuple/replace.hpp>
+#include <boost/preprocessor/tuple/pop_back.hpp>
 #include <boost/vmd/identifier.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
@@ -83,11 +83,11 @@
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_EMPTY_LIST(list) \
-	BOOST_VMD_IDENTIFIER(list,VMD_DETAIL_NULL_LIST_) \
+	BOOST_VMD_IDENTIFIER(list,BOOST_PP_NIL) \
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_EMPTY_LIST_D(d,list) \
-	BOOST_VMD_IDENTIFIER_D(d,list,VMD_DETAIL_NULL_LIST_) \
+	BOOST_VMD_IDENTIFIER_D(d,list,BOOST_PP_NIL) \
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_TUPLE(param) \
@@ -106,31 +106,20 @@
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_RETURN_EMPTY(tuple) \
-	BOOST_PP_TUPLE_REPLACE(tuple,0,BOOST_PP_NIL) \
-/**/
-
-#define BOOST_VMD_DETAIL_LIST_RETURN_EMPTY_D(d,tuple) \
-	BOOST_PP_TUPLE_REPLACE_D(d,tuple,0,BOOST_PP_NIL) \
+	BOOST_PP_TUPLE_POP_BACK(tuple) \
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_EMPTY_PROCESS(tuple) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_TUPLE_ELEM(0,tuple), \
-		BOOST_VMD_DETAIL_LIST_RETURN_EMPTY, \
-		BOOST_VMD_DETAIL_EMPTY_RESULT \
+		BOOST_VMD_IS_EMPTY \
+			( \
+			BOOST_PP_TUPLE_ELEM(0,tuple) \
+			), \
+		BOOST_VMD_DETAIL_EMPTY_RESULT, \
+		BOOST_VMD_DETAIL_LIST_RETURN_EMPTY \
 		) \
 	(tuple) \
-/**/
-
-#define BOOST_VMD_DETAIL_LIST_EMPTY_PROCESS_D(d,tuple) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_TUPLE_ELEM(0,tuple), \
-		BOOST_VMD_DETAIL_LIST_RETURN_EMPTY_D, \
-		BOOST_VMD_DETAIL_EMPTY_RESULT \
-		) \
-	(d,tuple) \
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_EMPTY(list) \
@@ -141,9 +130,8 @@
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_EMPTY_D(d,list) \
-	BOOST_VMD_DETAIL_LIST_EMPTY_PROCESS_D \
+	BOOST_VMD_DETAIL_LIST_EMPTY_PROCESS \
 		( \
-		d, \
 		BOOST_VMD_DETAIL_LIST_EMPTY_LIST_D(d,list) \
 		) \
 /**/

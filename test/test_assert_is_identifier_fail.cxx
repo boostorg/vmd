@@ -10,10 +10,12 @@ int main()
   
 #if BOOST_PP_VARIADICS && BOOST_VMD_ASSERT_DATA
 
-	#define BOOST_VMD_MAP_VMD_TEST_0_zzz
-	#define BOOST_VMD_MAP_VMD_TEST_1_somevalue
-	
-    BOOST_VMD_ASSERT_IS_IDENTIFIER(zzz,VMD_TEST_1_)
+    #define BOOST_VMD_REGISTER_zzz (zzz)
+    #define BOOST_VMD_DETECT_zzz_zzz
+    #define BOOST_VMD_REGISTER_somevalue (somevalue)
+    #define BOOST_VMD_DETECT_somevalue_somevalue
+    
+    BOOST_VMD_ASSERT_IS_IDENTIFIER(zzz,somevalue)
 	
 #else
 	
