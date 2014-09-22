@@ -8,13 +8,13 @@
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
+#include <boost/vmd/detail/idprefix.hpp>
 #include <boost/vmd/detail/is_number_concatenate.hpp>
-#include <boost/vmd/detail/paren_or_empty.hpp>
 
 #define BOOST_VMD_DETAIL_IS_NUMBER_CONCATENATE(parameter) \
 	BOOST_PP_CAT \
 		( \
-		BOOST_VMD_INO_, \
+		BOOST_VMD_DETAIL_IDENTIFIER_REGISTRATION_PREFIX, \
 		parameter \
 		) \
 /**/
@@ -29,7 +29,7 @@
 #define BOOST_VMD_DETAIL_IS_NUMBER_IRESULT(parameter) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_PAREN_OR_EMPTY(parameter), \
+		BOOST_VMD_IS_BEGIN_TUPLE(parameter), \
 		BOOST_VMD_IDENTITY(0), \
 		BOOST_VMD_DETAIL_IS_NUMBER_CONC \
 		) \
@@ -84,7 +84,7 @@
 #define BOOST_VMD_DETAIL_NUMBER(vseq) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(vseq), \
+      BOOST_VMD_IS_BEGIN_TUPLE(vseq), \
       BOOST_VMD_DETAIL_EMPTY_RESULT, \
       BOOST_VMD_DETAIL_NUMBER_PROCESS \
       ) \

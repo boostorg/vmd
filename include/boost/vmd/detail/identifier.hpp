@@ -20,10 +20,7 @@
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
-#include <boost/vmd/detail/paren_or_empty.hpp>
-
-#define BOOST_VMD_DETAIL_IDENTIFIER_DETECTION_PREFIX BOOST_VMD_DETECT_
-#define BOOST_VMD_DETAIL_IDENTIFIER_REGISTRATION_PREFIX BOOST_VMD_REGISTER_
+#include <boost/vmd/detail/idprefix.hpp>
 
 #define BOOST_VMD_DETAIL_IDENTIFIER_STATE_EX_ID(state) \
 	BOOST_PP_TUPLE_ELEM \
@@ -403,7 +400,7 @@
 #define BOOST_VMD_DETAIL_IDENTIFIER_EX(vseq,...) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(vseq), \
+      BOOST_VMD_IS_BEGIN_TUPLE(vseq), \
       BOOST_VMD_DETAIL_IDENTIFIER_FAILURE, \
       BOOST_VMD_DETAIL_IDENTIFIER_SEQUENCE \
       ) \
@@ -413,7 +410,7 @@
 #define BOOST_VMD_DETAIL_IDENTIFIER_EX_D(d,vseq,...) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_DETAIL_PAREN_OR_EMPTY(vseq), \
+      BOOST_VMD_IS_BEGIN_TUPLE(vseq), \
       BOOST_VMD_DETAIL_IDENTIFIER_FAILURE, \
       BOOST_VMD_DETAIL_IDENTIFIER_SEQUENCE \
       ) \
