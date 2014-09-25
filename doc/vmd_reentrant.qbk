@@ -1,4 +1,4 @@
-[section:vmd_reentrant Boost PP reentrant versions]
+[section:vmd_reentrant Boost PP re-entrant versions]
 
 A number of macros in VMD have equivalent reentrant versions which are
 meant to be used in a BOOST_PP_WHILE loop. These are versions which have

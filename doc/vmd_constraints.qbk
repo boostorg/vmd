@@ -49,7 +49,7 @@ values, without the checking mechanism itself possibly creating a preprocessing 
 This does not mean that one should give up attempting to check macro input constraints. If it can be done
 I see the value of such checks and a number of VMD macros, discussed later, are designed as preprocessing 
 input constraint checking macros. But the most important thing when dealing with macro input constraints is that they 
-should be carefully documented and that the programmer should know that if the constraints are not met, either
+should be carefully documented, and that the programmer should know that if the constraints are not met either
 preprocessing errors or incorrect macro results could be the results.
 
 In this the VMD library is less conservative than the Boost PP library. Paul Mensonides design for Boost PP
@@ -60,7 +60,7 @@ erroneous results are preprocessor errors or incorrect output from a VMD macro. 
 everything that the preprocessor is capable of doing to check the input constraints, and carefully documents 
 for each macro in the library what the input for each could be in order to avoid erroneous output.
 
-I believe that documented macro input constraints are just as valid in the preprocessor as 
+Documented macro input constraints are just as valid in the preprocessor as 
 compile-time/run-time constraints are valid in C++, even if the detection of such constraints 
 and/or the handling of constraints that are not met are far more difficult,
 if not impossible, in the preprocessor than in the compile-time/run-time processing of C++.

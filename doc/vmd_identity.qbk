@@ -79,9 +79,9 @@ making a change to either of our two examples:
          MACRO_CALL_IF_PARAMETER_1, \
          SOME_FIXED_VALUE BOOST_PP_EMPTY \
          ) \
-     (parameter1,parameter2)
+     (parameter2)
      
- #define MACRO_CALL_IF_PARAMETER_1(parameter1,parameter2) some_processing_using_both_parameters
+ #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_both_parameters
  
 or
 
@@ -91,15 +91,15 @@ or
          MACRO_CALL_IF_PARAMETER_1, \
          BOOST_PP_IDENTITY(SOME_FIXED_VALUE) \
          ) \
-     (parameter1,parameter2)
+     (parameter2)
      
- #define MACRO_CALL_IF_PARAMETER_1(parameter1,parameter2) some_processing_using_both_parameters
+ #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_both_parameters
  
 will produce a preprocessing error since the final invocation to either
 BOOST_PP_EMPTY or BOOST_PP_IDENTITY can not be done with 1 or more parameters.
 
 It would be much more useful if the final invocation could be done with
-any nymber of parameters. This is where variadic macros solve the problem. 
+any number of parameters. This is where variadic macros solve the problem. 
 The BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY macros have the exact same 
 functionality as their Boost PP counterparts but the final invocation can 
 be made with any number of parameters, and those parameters are just ignored.
@@ -112,9 +112,9 @@ Now for our two examples we can have:
          MACRO_CALL_IF_PARAMETER_1, \
          SOME_FIXED_VALUE BOOST_VMD_EMPTY \
          ) \
-     (parameter1,parameter2)
+     (parameter2)
      
- #define MACRO_CALL_IF_PARAMETER_1(parameter1,parameter2) some_processing_using_parameters
+ #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_parameters
  
 or
 
@@ -124,9 +124,9 @@ or
          MACRO_CALL_IF_PARAMETER_1, \
          BOOST_VMD_IDENTITY(SOME_FIXED_VALUE) \
          ) \
-     (parameter1,parameter2)
+     (parameter2)
      
- #define MACRO_CALL_IF_PARAMETER_1(parameter1,parameter2) some_processing_using_parameters
+ #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_parameters
  
 and our macros will compile without preprocessing errors and work as expected.
 Both BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY will take any number of parameters

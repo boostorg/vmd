@@ -19,7 +19,7 @@ but not:
  
 As can be seen from the explanation of a v-identifier, a v-number is merely
 a small subset of all possible v-identifiers, for which VMD internally provides
-key-identifier macros to test. Therefore the particular constraint on the input
+registration macros for use. Therefore the particular constraint on the input
 to test is exactly the same as for v-identifiers.
  
 The constraint is that the beginning input character, ignoring any whitespace, passed
@@ -50,7 +50,14 @@ Given the input:
 The macro used to test for a particular v-number in VMD is called BOOST_VMD_IS_NUMBER.
 The macro takes a single parameter, the input to test against.
 
-The macro returns 1 if the parameter is a Boost PP number, otherwise the maco returns 0.
+The macro returns 1 if the parameter is a Boost PP number, otherwise the macro returns 0.
+
+Unlike BOOST_VMD_IS_IDENTIFIER there is no need for a second parameter to test for a 
+particular v-number, nor is there need for v-number pre-detection macros, The reason for this
+is because Boost PP already has a large set of functionality to test for particular v-numbers,
+as well as the relationship and manipulation of v-numbers in its own library. See the Boost PP
+functionality for arithmetic, comparsion, and logical operations for working with v-numbers 
+directly in Boost PP.
 
 [heading Example]
 
@@ -66,12 +73,12 @@ Let us look at an example of how to use BOOST_VMD_IS_NUMBER.
  if input = 44 DATA, 0 since there are tokens after the number
  if input = 044, 0 since no leading zeros are allowed for our Boost PP numbers
  if input = 256, 1
- if input = 257, 0 since it falls outside the Boost PP number range
+ if input = 257, 0 since it falls outside the Boost PP number range of 0-256
  if input = %44, does not meet the constraint therefore a preprocessing error occurs
  if input = 44.0, 0 since the number is a floating point literal
  if input = ( 44 ), 0 since the macro begins with a tuple and this can be tested for
 
-[heading Example]
+[heading Usage]
 
 To use the BOOST_VMD_IS_NUMBER macro either include the general header:
 

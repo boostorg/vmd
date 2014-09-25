@@ -48,16 +48,19 @@ In practicality what this means is that, given the examples just above, if
 parse either of the two inputs above so that one could identify the different
 v-types involved and do preprocessor metaprogramming based on those results.
 
-Before I give an explanation of how this is done using VMD functionality I
+I will be calling such input data, which consists of all top-level v-types,
+by the term of a 'v-sequence'.
+
+Before I give an explanation of how to use a v-sequence using VMD functionality I
 would like to make two points:
 
-* I am offering the possibility of more various syntaxes for the
+* I am offering the possibility of working with a v-sequence for the
 preprocessor metaprogrammer but I am aware that this can be easily abused. 
 In general keeping things simple is usually better than making things 
 overly complicated when it comes to the syntactical side of things in a 
 computer language. A macro parameter syntactical possibility has to be
 understandable to be used.
-* Using VMD to parse the individual types of a single parameter takes more 
+* Using VMD to parse the individual v-types of a v-sequence takes more 
 preprocessing time than functionality offered with Boost PP data types,
 because a good deal of it is based on preprocessor recursion techniques.
 
@@ -67,15 +70,15 @@ We have seen how VMD can test input to a macro for a particular v-type.
 In these cases the input must be entirely of that particular type in order
 to return non-zero as opposed to 0.
 
-VMD also has functionality to extract from input a particular v-type
+VMD also has functionality to extract from v-sequence input a particular v-type
 at the beginning of the input along with the remaining preprocessing tokens
-of that input. What this means is that given some input you can, 
+of that input. What this means is that given some v-sequence you can, 
 as an example, extract the beginning tuple as well as the rest of the input.
 By recursively applying this technique to the rest of the input you can parse
 the input for its top-level data.
 
-The one constraint using this technique is that the top-level input must consist 
-of v-types, in other words preprocessor tokens which VMD understands. Therefore if 
+The one constraint using this technique is that a v-sequence at the top-level must 
+consist of v-types, in other words preprocessor tokens which VMD understands. Therefore if 
 your data is one of the examples above, you will be successful in using VMD. However 
 if your preprocessor data takes the form of:
 
@@ -121,8 +124,5 @@ or
 
  identifier ( += ) 4 ( . ) 3
  
-I will be calling such input data, which consists of more than one v-type,
-by the term of a 'v-sequence'.
-
 The succeeding topics explain the VMD functionality for parsing a v-sequence
 for each individual v-type.

@@ -49,62 +49,99 @@ Given the input:
  %_anything : will give a preprocessing error due to the constraint
  (_anything : will give a preprocessing error due to the constraint, since a single '(' does not form a tuple
 
-The macro used to test for a particular identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
-The macro takes two parameters. The first parameter is the input to test against, while the
-second parameter is the 'key', hereafter called a v-key. The v-key can be used to test against 
-any one of a number of possible identifiers, since the v-key can be either a single token or 
-a tuple of tokens.
+[heading Identifying a v-identifier]
 
-The form of a v-key is that of a v-identifier itself, except that the v-key
-should not begin with an underscore character ( _ ).
+In VMD the only way a v-identifier can be identified in preprocessor input is by a process called
+registration. In order to 'register' a v-identifier to be recognized by VMD the end-user must create,
+for every identifier to be recognized as a v-identifier, an object-like macro whose form is:
 
-In order to use a v-key the programmer invoking this macro must define an object-like
-macro, called a key-identifier macro, whose form is:
-
- #define BOOST_VMD_MAP_'v-key''v-identifier'
+ #define BOOST_VMD_REGISTER_v-identifier (v-identifier)
  
-A key-identifier macro must generate no output. The v-key portion must be unique,
-for each identifier to be tested, and which will not be duplicated within the translation unit.
-Two of the easiest ways to create a unique v-key across the translation unit is:
+where 'v-identifier' is a particular v-identifier we wish to identify. This is called in
+VMD a registration macro.
 
-* preface all v-keys with a single unique preface for the library or application in which 
-BOOST_VMD_IS_IDENTIFIER is being used, followed by some distinct v-key name.
-* generate a GUID and use its hex representation as the unique v-key.
+It is recommended that such registration macros be created in a header file which
+can be included before the end-user uses the identifier macros of VMD, which will be
+explained below and further in the VMD documentation.
 
-The programmer can define any number of key-identifier macros, one for each identifier he wishes to test.
-Once the key-identifier macro is defined, the v-key is passed as the second parameter to 
-BOOST_VMD_IS_IDENTIFIER to see if the first parameter is the same as the v-identifier.
+If a particular registration macro occurs more than once it is
+not a preprocessing error, so duplicating a registration macro will not lead to any problems
+since each registration macro of the same name will have the exact same object-like macro
+expansion.
 
-Since the second parameter can be a single token or a tuple of tokens, the BOOST_VMD_IS_IDENTIFIER macro 
-returns a number, from 0 to the number of tokens passed. A return of 0 indicates that the
-v-identifier was not found, while a return of a non-zero indicates the v-identifier was found and,
-in the case of multiple tokens passed as a tuple, indicates which one of the v-identifiers was
-found ( 1 for the first token, 2 for the second token, etc. ). The programmer can then use a Boost PP
-comparison macro, such as BOOST_PP_EQUAL, to determine which v-identifier is found. The programmer can
-also use BOOST_PP_IF or BOOST_PP_IIF ( with a single token v-key ) with the result to branch as part of his 
-preprocessor metaprogramming logic.
+Within a given translation unit it could potentially happen
+that registration macros have been included by header files which a particular end-user
+of VMD has not created. This should also not lead to particular problems since registration
+is a process for adding v-identifiers for any particular transalation unit. As we shall see
+VMD has macros for not only finding any v-identifier in preprocessor input but for also finding
+particular v-identifiers in preprocessor input.
 
-[heading Example]
+[heading Testing for a v-identifier]
 
-Let us look at an example of how to use BOOST_VMD_IS_IDENTIFIER.
+The macro used to test for an identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
+The macro takes two parameters. The first parameter is the input to test against, while the optional
+second parameter is the actual identifier(s) to test against. This optional second parameter can be a single
+v-identifier or a tuple of v-identifier tokens. Without the optional second parameter we are merely asking
+whether the input represents any v-identifier which has been registered when the macro is invoked.
 
- #define BOOST_VMD_MAP_MYLIB_KEY1_CIRCLE
- #define BOOST_VMD_MAP_MYLIB_KEY2_SQUARE
- #define BOOST_VMD_MAP_MYLIB_KEY3_TRIANGLE
- #define BOOST_VMD_MAP_MYLIB_KEY4_RECTANGLE
+When  we invoke BOOST_VMD_IS_IDENTIFIER passing input that is any of the registered v-identifiers, 
+BOOST_VMD_IS_IDENTIFIER returns 1, otherwise it returns 0.
+
+As an example:
+
+ #define BOOST_VMD_REGISTER_yellow (yellow)
+ #define BOOST_VMD_REGISTER_green  (green)
+ #define BOOST_VMD_REGISTER_blue   (blue)
  
- BOOST_VMD_IS_IDENTIFIER(input,(MYLIB_KEY1_,MYLIB_KEY2_,MYLIB_KEY3_,MYLIB_KEY4_))
+ BOOST_VMD_IS_IDENTIFIER(some_input) // returns 1 if 'some_input is 'yellow','green', or 'blue'
+ BOOST_VMD_IS_IDENTIFIER(some_input) // returns 0 if 'some_input' is 'purple'
  
- returns:
+Essentially only registered identifiers can be found in VMD as v-identifiers.
+
+But now lets suppose we want to find, using BOOST_VMD_IS_IDENTIFIER, a particular registered 
+identifier in our input and not just any registered v-identifier. In order to find a particular 
+registered identifier we need to create a macro whose form is:
+
+ BOOST_VMD_DETECT_v-identifier_v-identifier
  
- if input = CIRCLE, 1
- if input = SQUARE, 2
- if input = TRIANGLE, 3
- if input = RECTANGLE, 4
- if input = PARALLELOGRAM, 0 since there is no match of any of the keys
- if input = CIRCLE DATA, 0 since there are tokens after the identifier 
- if input = %NAME, does not meet the constraint therefore a preprocessing error occurs
- if input = ( NAME ) NAME, 0 since the macro begins with a tuple and this can be tested for
+where 'v-identifier' is a particular v-identifier we wish to find.
+This object-like macro expands to no output.
+
+The term for creating this macro is that we have potentially 'pre-detected'
+the v-identifier and I will use the term pre-detected as the process of creating
+the BOOST_VMD_DETECT macro.
+
+Once we have registered and pre-detected a v-identifier we can test whether 
+particular input can be found. We do this by passing the
+second optional parameter to BOOST_VMD_IS_IDENTIFER. This optional parameter
+is either a single v-identifier or a tuple of v-identifiers which our input
+must match. Using the second optional parameter we are asking not only
+if our input is any of the registered v-identifiers but also if it is one
+or more pre-detected v-identifiers.
+
+As an example:
+
+ #define BOOST_VMD_REGISTER_yellow (yellow)
+ #define BOOST_VMD_REGISTER_green (green)
+ #define BOOST_VMD_REGISTER_blue (blue)
+ #define BOOST_VMD_REGISTER_red (red)
+ 
+ #define BOOST_VMD_DETECT_yellow_yellow
+ #define BOOST_VMD_DETECT_green_green
+ #define BOOST_VMD_DETECT_blue_blue
+ 
+ BOOST_VMD_IS_IDENTIFIER(some_input,yellow) // returns 1 only if 'some_input is 'yellow', else 0
+ BOOST_VMD_IS_IDENTIFIER(some_input,(yellow,green)) // returns 1 if 'some_input' is 'yellow' or 'green', else 0
+ 
+ BOOST_VMD_IS_IDENTIFIER(some_input,red) // always returns 0, even if 'some_input' is 'red' since 'red' has not been pre-detected
+
+whereas
+ 
+ BOOST_VMD_IS_IDENTIFIER(some_input) // returns 1 if 'some_input' is 'red' since 'red' has been registered
+ 
+If you invoke BOOST_VMD_IS_IDENTIFIER with the second optional parameter, the invocation will
+only return 1 if the input matches one the v-identifier(s) of the second optional parameter and the 
+v-identifier it matches has been pre-detected.
 
 [heading Usage]
 

@@ -1,22 +1,25 @@
 [section:vmd_sequence_identifier_helpers V-identifiers helper macros]
 
 A number of macros are helper versions of BOOST_VMD_IDENTIFIER,
-having the same two mandatory parameters and two optional parameters
+having the same mandatory parameter and optional parameter
 which BOOST_VMD_IDENTIFIER takes. All these macros work, just like 
 BOOST_VMD_IDENTIFIER, to parse a v-identifier occuring at the 
 beginning of a v-sequence.
 
 These macros are:
 
-BOOST_VMD_BEGIN_IDENTIFIER: expands to just the index, starting with
-1, of the beginning identifier found, or 0 if no beginning identifier
-has been found.
+* BOOST_VMD_BEGIN_IDENTIFIER: If the optional parameter is not specified
+expands to the beginning v-identifier if found, else expands to nothing. 
+If the optional parameter is specified expands to a 2 element tuple where 
+the first element is the beginning v-identifier and the second element is 
+an index, starting with 0, to which one of the optional parameters was found; 
+if the identifier is not found both tuple elements are empty.
 
-BOOST_VMD_AFTER_IDENTIFIER: expands to the preprocessor tokens after
+* BOOST_VMD_AFTER_IDENTIFIER: expands to the preprocessor tokens after
 the beginning identifier. If the identifier is not found, expands to 
 nothing.
 
-BOOST_VMD_IS_BEGIN_IDENTIFIER: expands to 1 if input begins with an
+* BOOST_VMD_IS_BEGIN_IDENTIFIER: expands to 1 if input begins with an
 identifier, else expands to 0 if it does not.
  
 [heading Usage]

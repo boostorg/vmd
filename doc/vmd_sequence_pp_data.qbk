@@ -1,8 +1,8 @@
 [section:vmd_sequence_pp_data Parsing Boost PP data]
 
 There are macros for the Boost PP data types that can parse the
-particular data type at the beginning of a v-sequence. Unlike
-the equivalent functionality for v-identifiers and v-numbers the
+particular data type at the beginning of a v-sequence.
+Like the equivalent functionality for v-numbers the
 only parameter that is allowed is the v-sequence itself.
 
 The macros are:
@@ -16,7 +16,7 @@ Each of these macros expand to a tuple of two elements. If the
 particular data type is found at the beginning of the v-sequence
 the first tuple element is that data type and the second tuple element
 is the rest of the input v-sequence. If the particular data type is not
-found at the beginning of the input v-sequence of both tuple elements is
+found at the beginning of the input v-sequence both tuple elements are
 empty.
 
 [heading Usage]

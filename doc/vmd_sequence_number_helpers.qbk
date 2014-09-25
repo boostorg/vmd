@@ -1,20 +1,21 @@
 [section:vmd_sequence_number_helper V-number helper macros]
 
 A number of macros are helper versions of BOOST_VMD_NUMBER,
-having the same single mandatory parameter and two optional parameters
-which BOOST_VMD_NUMBER takes. All these macros work with a v-number
-occuring at the beginning of a v-sequence.
+having the same single parameter which BOOST_VMD_NUMBER takes. 
+All these macros work with a v-number occuring at the beginning 
+of a v-sequence.
 
 These macros are:
 
-BOOST_VMD_BEGIN_NUMBER: expands to the beginning v-number or nothing
+* BOOST_VMD_BEGIN_NUMBER: expands to the beginning v-number or nothing
 if no beginning v-number has been found.
 
-BOOST_VMD_AFTER_NUMBER: expands to the preprocessor tokens after
+* BOOST_VMD_AFTER_NUMBER: expands to the preprocessor tokens after
 the beginning v-number. If the v-number is not found, expands to 
-nothing.
+nothing but may also expand to nothing i the v-sequence input consists
+only of a v-number.
 
-BOOST_VMD_IS_BEGIN_NUMBER: expands to 1 if input begins with a
+* BOOST_VMD_IS_BEGIN_NUMBER: expands to 1 if input begins with a
 v-number, else expands to 0 if it does not.
  
 [heading Usage]

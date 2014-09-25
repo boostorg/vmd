@@ -31,9 +31,7 @@ currently depends on the 'develop' branch of the Boost PP library in
 the modular boost structure. Once Boost 1.56 is released the 'develop'
 branch of Boost PP in modular-boost will be merged to the 'master' branch.
 
-The library is NOT a Boost library but it is in the Boost review queue
-and is eagerly looking for a review manager. Please contact Edward Diener
-at eldiener@tropicsoft.com if you are interested as serving as the review
-manager for the library.
+The library is NOT a Boost library. It has been reviewed and the outcome
+of the review is still pending.
 
 [endsect]

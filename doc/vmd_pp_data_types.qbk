@@ -12,7 +12,7 @@ Each of these macros take a single parameter as input and
 return 1 if the parameter is the appropriate data type and 
 0 if it is not.
 
-One thing to realize is that both an array and a non-empty 
+Something to realize is that both an array and a non-empty 
 list are also a tuple. So if one has:
 
  #define ANARRAY (3,(a,b,c))
@@ -37,11 +37,6 @@ then
  BOOST_VMD_IS_TUPLE(ASE_TUPLE) returns 1
  BOOST_VMD_IS_SEQ(ASE_TUPLE) returns 1
  
-Unlike the processing of v-identifiers or v-numbers, there
-is no constraint about the beginning of the input causing a 
-preprocessing error since preprocessor concatenation is not used 
-to determine any of these data types.
-
 [heading Usage]
 
 You can use the geneal header file:
