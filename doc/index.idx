@@ -9,4 +9,5 @@
 !scan boost/vmd/list.hpp
 !scan boost/vmd/number.hpp
 !scan boost/vmd/seq.hpp
+!scan boost/vmd/sequence.hpp
 !scan boost/vmd/tuple.hpp

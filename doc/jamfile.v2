@@ -46,6 +46,7 @@ doxygen vmd_reference
     $(here)/../../../boost/vmd/list.hpp
     $(here)/../../../boost/vmd/number.hpp
     $(here)/../../../boost/vmd/seq.hpp
+    $(here)/../../../boost/vmd/sequence.hpp
     $(here)/../../../boost/vmd/tuple.hpp
   : 
     <doxygen:param>PROJECT_NAME="VMD"
