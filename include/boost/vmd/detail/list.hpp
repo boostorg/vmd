@@ -105,10 +105,6 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_LIST_RETURN_EMPTY(tuple) \
-	BOOST_PP_TUPLE_POP_BACK(tuple) \
-/**/
-
 #define BOOST_VMD_DETAIL_LIST_EMPTY_PROCESS(tuple) \
 	BOOST_PP_IIF \
 		( \
@@ -117,7 +113,7 @@
 			BOOST_PP_TUPLE_ELEM(0,tuple) \
 			), \
 		BOOST_VMD_DETAIL_EMPTY_RESULT, \
-		BOOST_VMD_DETAIL_LIST_RETURN_EMPTY \
+		BOOST_VMD_DETAIL_LIST_SUCCESS \
 		) \
 	(tuple) \
 /**/
