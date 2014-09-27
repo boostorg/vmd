@@ -9,6 +9,7 @@
 #include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/seq/push_back.hpp>
+#include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
@@ -77,27 +78,60 @@
 	) \
 /**/
 
-#define	BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND(state,tuple) \
+#define	BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(state) \
+	BOOST_PP_CAT \
+		( \
+		BOOST_VMD_TYPE_, \
+		BOOST_VMD_DETAIL_SEQUENCE_STATE_GET_TYPE(state) \
+		) \
+/**/
+
+#define	BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_PROCESS(state,tuple) \
 	( \
 	BOOST_PP_TUPLE_ELEM(1,tuple), \
 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD \
 		( \
 		state, \
 			( \
-			BOOST_PP_CAT \
-				( \
-				BOOST_VMD_TYPE_, \
-				BOOST_VMD_DETAIL_SEQUENCE_STATE_GET_TYPE \
-					( \
-					state \
-					) \
-				), \
+			BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(state), \
 			BOOST_PP_TUPLE_ELEM(0,tuple) \
 			) \
 		), \
 	BOOST_VMD_DETAIL_SEQUENCE_STATE_TYPES(state), \
 	BOOST_PP_INC(BOOST_PP_TUPLE_SIZE(BOOST_VMD_DETAIL_SEQUENCE_STATE_TYPES(state))) \
 	) \
+/**/
+
+#define	BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_SEQ_SINGLE(tuple) \
+	BOOST_PP_EQUAL(BOOST_PP_SEQ_SIZE(BOOST_PP_TUPLE_ELEM(0,tuple)),1) \
+/**/
+
+#define	BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_ISEQ(state,tuple) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EQUAL \
+			( \
+			BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(state), \
+			BOOST_VMD_TYPE_SEQ \
+			), \
+		BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_SEQ_SINGLE, \
+		BOOST_VMD_IDENTITY(0) \
+		) \
+	(tuple) \
+/**/
+
+#define	BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_SEQ(state,tuple) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_ISEQ(state,tuple)) \
+/**/
+
+#define	BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND(state,tuple) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_SEQ(state,tuple), \
+		BOOST_VMD_DETAIL_SEQUENCE_INCREMENT_INDEX, \
+		BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_PROCESS \
+		) \
+	(state,tuple) \
 /**/
 
 #define	BOOST_VMD_DETAIL_SEQUENCE_INCREMENT_INDEX(state,tuple) \
