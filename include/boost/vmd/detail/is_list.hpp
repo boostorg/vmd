@@ -172,7 +172,7 @@
       BOOST_VMD_DETAIL_IS_LIST_WLOOP_D, \
       BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D \
       ) \
-    (param) \
+    (d,param) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_IS_LIST_HPP */
