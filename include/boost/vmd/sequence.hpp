@@ -23,7 +23,7 @@
 	BOOST_VMD_DETAIL_SEQUENCE_SIZE(vseq) \
 /**/
 
-#define BOOST_VMD_SEQUENCE_SIZE(d,vseq) \
+#define BOOST_VMD_SEQUENCE_SIZE_D(d,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_SIZE_D(d,vseq) \
 /**/
 
