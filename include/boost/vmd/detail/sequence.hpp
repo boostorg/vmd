@@ -2,6 +2,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_HPP
 
 #include <boost/preprocessor/arithmetic/inc.hpp>
+#include <boost/preprocessor/array/push_back.hpp>
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/comparison/greater.hpp>
@@ -9,11 +10,15 @@
 #include <boost/preprocessor/comparison/not_equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/control/while.hpp>
+#include <boost/preprocessor/list/append.hpp>
+#include <boost/preprocessor/list/transform.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/seq/push_back.hpp>
 #include <boost/preprocessor/seq/size.hpp>
+#include <boost/preprocessor/seq/to_array.hpp>
+#include <boost/preprocessor/seq/to_tuple.hpp>
 #include <boost/preprocessor/seq/transform.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
@@ -30,6 +35,7 @@
 #include <boost/vmd/seq.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/types.hpp>
+#include <boost/vmd/detail/empty_result.hpp>
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT_ELEM 0
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ELEM 1
@@ -69,22 +75,28 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_STATE_RESULT_ADD_FROM_EMPTY(state,ttuple) \
+#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_FROM_EMPTY(state,ttuple) \
 	(ttuple) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_STATE_RESULT_ADD_TO_SEQ(state,ttuple) \
+#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_TO_SEQ(state,ttuple) \
 	BOOST_PP_SEQ_PUSH_BACK(BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT(state),ttuple) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_TO_TUPLE(state,ttuple) \
+	BOOST_PP_TUPLE_PUSH_BACK(BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT(state),ttuple) \
 /**/
 
 // Array
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_2(state,ttuple) \
+	BOOST_PP_ARRAY_PUSH_BACK(BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT(state),ttuple) \
 /**/
 
 // List
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_3(state,ttuple) \
+	BOOST_PP_LIST_APPEND(BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT(state),(ttuple,BOOST_PP_NIL)) \
 /**/
 
 // Seq
@@ -93,8 +105,8 @@
 	BOOST_PP_IIF \
 	 	( \
 	 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_IS_EMPTY(state), \
-	 	BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_STATE_RESULT_ADD_FROM_EMPTY, \
-	 	BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_STATE_RESULT_ADD_TO_SEQ \
+	 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_FROM_EMPTY, \
+	 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_TO_SEQ \
 	 	) \
 	 (state,ttuple) \
 /**/
@@ -102,6 +114,13 @@
 // Tuple
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_5(state,ttuple) \
+	BOOST_PP_IIF \
+	 	( \
+	 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_IS_EMPTY(state), \
+	 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_FROM_EMPTY, \
+	 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_TO_TUPLE \
+	 	) \
+	 (state,ttuple) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_GET_NAME(state) \
@@ -433,6 +452,78 @@
 	(d,state) \
 /**/
 
+#define BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE_CHECK(output) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EQUAL(output,BOOST_VMD_TYPE_ARRAY), \
+		(0,()), \
+		BOOST_PP_NIL \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE(output) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_BITOR \
+			( \
+			BOOST_PP_EQUAL(output,BOOST_VMD_TYPE_SEQ), \
+			BOOST_PP_EQUAL(output,BOOST_VMD_TYPE_TUPLE) \
+			), \
+		BOOST_VMD_EMPTY, \
+		BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE_CHECK \
+		) \
+	(output) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS(vseq,elem,output) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		0, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE(vseq,elem,output) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_D(d,vseq,elem,output) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		0, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE_D(d,vseq,elem,output) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE_GET(state) \
+	( \
+	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT(state), \
+	BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT(state) \
+	) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE(vseq,elem,output) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE_GET \
+		( \
+		BOOST_PP_WHILE \
+			( \
+			BOOST_VMD_DETAIL_SEQUENCE_PRED, \
+			BOOST_VMD_DETAIL_SEQUENCE_OP, \
+			(vseq,BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE(output),elem,output) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE_D(d,vseq,elem,output) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE_GET \
+		( \
+		BOOST_PP_WHILE_ ## d \
+			( \
+			BOOST_VMD_DETAIL_SEQUENCE_PRED, \
+			BOOST_VMD_DETAIL_SEQUENCE_OP, \
+			(vseq,BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE(output),elem,output) \
+			) \
+		) \
+/**/
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_FSEQ_CHELM(seq,elem) \
 	BOOST_PP_IIF \
 		( \
@@ -453,73 +544,267 @@
 	(seq,elem) \
 /**/
 
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_FSEQ_CHELM_EXTRACT(tuple,elem) \
+	BOOST_PP_TUPLE_REPLACE \
+		( \
+		tuple, \
+		0, \
+		BOOST_PP_SEQ_ELEM(elem,BOOST_PP_TUPLE_ELEM(0,tuple)) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_FSEQ_CHELM(tuple,elem) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_GREATER(BOOST_PP_SEQ_SIZE(BOOST_PP_TUPLE_ELEM(0,tuple)),elem), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_FSEQ_CHELM_EXTRACT, \
+		BOOST_VMD_DETAIL_EMPTY_RESULT \
+		) \
+	(tuple,elem) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_FSEQ(tuple,elem) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+		BOOST_VMD_DETAIL_EMPTY_RESULT, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_FSEQ_CHELM \
+		) \
+	(tuple,elem) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_RP(seq) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(seq), \
+		BOOST_VMD_EMPTY, \
+		BOOST_PP_SEQ_TO_TUPLE \
+		) \
+	(seq) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_RP_EMPTY(seq) \
+	(0,()) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_RP(seq) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(seq), \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_RP_EMPTY, \
+		BOOST_PP_SEQ_TO_ARRAY \
+		) \
+	(seq) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_LIST_OP(s,data,elem) \
+	BOOST_PP_TUPLE_ELEM(data,elem) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST_TR(list) \
+	BOOST_PP_LIST_TRANSFORM(BOOST_VMD_DETAIL_SEQUENCE_TO_LIST_OP,1,list) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_OP(s,data,elem) \
+	BOOST_PP_TUPLE_ELEM(data,elem) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_TR(seq) \
+	BOOST_PP_SEQ_TRANSFORM(BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_OP,1,seq) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE_TUPLE(selem) \
+	BOOST_PP_TUPLE_ELEM(1,selem) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE(selem) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(selem), \
+		BOOST_VMD_EMPTY, \
+		BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE_TUPLE \
+		) \
+	(selem) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_ICE_REP(tuple) \
+	BOOST_PP_TUPLE_REPLACE \
+		( \
+		tuple, \
+		0, \
+		BOOST_PP_TUPLE_ELEM(1,BOOST_PP_TUPLE_ELEM(0,tuple)) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_ICE(tuple) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+		BOOST_VMD_IDENTITY(tuple), \
+		BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_ICE_REP \
+		) \
+	(tuple) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_CE(tuple) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_ICE(tuple)) \
+/**/
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+// ELEM
+
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM(vseq,elem) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_FSEQ(BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS(vseq,elem,BOOST_VMD_TYPE_SEQ),elem) \
-/**/
-
-#define BOOST_VMD_DETAIL_SEQUENCE_SIZE(vseq) \
-/**/
-
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS(vseq,elem,output) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		1, \
-		BOOST_PP_WHILE \
-			( \
-			BOOST_VMD_DETAIL_SEQUENCE_PRED, \
-			BOOST_VMD_DETAIL_SEQUENCE_OP, \
-			(vseq,,elem,output) \
-			) \
-		) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,vseq,elem) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_FSEQ(BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_D(d,vseq,elem,BOOST_VMD_TYPE_SEQ),elem) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_SIZE_D(d,vseq) \
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM(vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE(BOOST_VMD_DETAIL_SEQUENCE_ELEM(vseq,elem)) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_D(d,vseq,elem,output) \
-	BOOST_PP_TUPLE_ELEM \
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_D(d,vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE(BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,vseq,elem)) \
+/**/
+
+// ELEM SPLIT
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT(vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_FSEQ \
 		( \
-		1, \
-		BOOST_PP_WHILE_ ## d \
-			( \
-			BOOST_VMD_DETAIL_SEQUENCE_PRED, \
-			BOOST_VMD_DETAIL_SEQUENCE_OP, \
-			(vseq,,elem,output) \
-			) \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE(vseq,elem,BOOST_VMD_TYPE_SEQ), \
+		elem \
 		) \
 /**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_FSEQ \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_TUPLE_D(d,vseq,elem,BOOST_VMD_TYPE_SEQ), \
+		elem \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT(vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_CE \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT(vseq,elem) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_D(d,vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_CE \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,vseq,elem) \
+		) \
+/**/
+
+// SIZE
+
+#define BOOST_VMD_DETAIL_SEQUENCE_SIZE(vseq) \
+	BOOST_PP_ARRAY_SIZE(BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY(vseq)) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_SIZE_D(d,vseq) \
+	BOOST_PP_ARRAY_SIZE(BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_D(d,vseq)) \
+/**/
+
+// ARRAY
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY(vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS(vseq,,BOOST_VMD_TYPE_ARRAY) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_D(d,vseq,,BOOST_VMD_TYPE_ARRAY) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_ARRAY(vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_RP \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ(vseq) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_ARRAY_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_RP \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_D(d,vseq) \
+		) \
+/**/
+
+// LIST
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_LIST(vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS(vseq,,BOOST_VMD_TYPE_LIST) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_LIST_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_D(d,vseq,,BOOST_VMD_TYPE_LIST)
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST(vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST_TR \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_LIST(vseq) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST_TR \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_LIST_D(d,vseq) \
+		) \
+/**/
+
+// SEQ
 
 #define BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ(vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS(vseq,,BOOST_VMD_TYPE_SEQ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_D(d,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_D(d,vseq,,BOOST_VMD_TYPE_SEQ)
-/**/
-
-#define BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_SEQ_OP(s,data,elem) \
-	BOOST_PP_TUPLE_ELEM(data,elem) \
-/**/
-
-#define BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_DATA_SEQ(seq) \
-	BOOST_PP_SEQ_TRANSFORM(BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_SEQ_OP,1,seq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_D(d,vseq,,BOOST_VMD_TYPE_SEQ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ(vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_DATA_SEQ \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_TR \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ(vseq) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_D(d,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_DATA_SEQ \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_TR \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_D(d,vseq) \
+		) \
+/**/
+
+// TUPLE
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE(vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS(vseq,,BOOST_VMD_TYPE_TUPLE) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_PROCESS_D(d,vseq,,BOOST_VMD_TYPE_TUPLE) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_TUPLE(vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_RP \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ(vseq) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_TUPLE_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_RP \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_D(d,vseq) \
 		) \
 /**/
 
