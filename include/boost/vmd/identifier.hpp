@@ -54,7 +54,7 @@
     
     The beginning v-identifier must be registered to be found.
     
-    Identifiers are detected in VMD with:
+    Identifiers are pre-detected in VMD with:
     
     #define BOOST_VMD_DETECT_XXX_XXX where XXX is a v-identifier.
     
@@ -100,7 +100,7 @@
     
     The beginning v-identifier must be registered to be found.
     
-    Identifiers are detected in VMD with:
+    Identifiers are pre-detected in VMD with:
     
     #define BOOST_VMD_DETECT_XXX_XXX where XXX is a v-identifier.
     
@@ -150,7 +150,7 @@
     
     The beginning v-identifier must be registered to be found.
     
-    Identifiers are detected in VMD with:
+    Identifiers are pre-detected in VMD with:
     
     #define BOOST_VMD_DETECT_XXX_XXX where XXX is a v-identifier.
     
@@ -196,7 +196,7 @@
     
     The beginning v-identifier must be registered to be found.
     
-    V-identifiers are detected in VMD with:
+    V-identifiers are pre-detected in VMD with:
     
     #define BOOST_VMD_DETECT_XXX_XXX where XXX is a v-identifier.
     
@@ -241,7 +241,7 @@
     
     The beginning v-identifier must be registered to be found.
     
-    V-identifiers are detected in VMD with:
+    V-identifiers are pre-detected in VMD with:
     
     #define BOOST_VMD_DETECT_XXX_XXX where XXX is a v-identifier.
     
