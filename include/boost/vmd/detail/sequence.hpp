@@ -21,6 +21,7 @@
 #include <boost/preprocessor/seq/to_tuple.hpp>
 #include <boost/preprocessor/seq/transform.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/tuple/enum.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
@@ -650,6 +651,16 @@
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_ICE(tuple)) \
 /**/
 
+#define BOOST_VMD_DETAIL_SEQUENCE_ENUM_PROCESS(tuple) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(tuple), \
+		BOOST_VMD_EMPTY, \
+		BOOST_PP_TUPLE_ENUM \
+		) \
+	(tuple) \
+/**/
+
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
 // ELEM
@@ -805,6 +816,36 @@
 	BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_RP \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_D(d,vseq) \
+		) \
+/**/
+
+// ENUM
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ENUM(vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ENUM_PROCESS \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE(vseq) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ENUM_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ENUM_PROCESS \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_D(d,vseq) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ENUM(vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ENUM_PROCESS \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_TUPLE(vseq) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_DATA_ENUM_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQUENCE_ENUM_PROCESS \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_TUPLE_D(d,vseq) \
 		) \
 /**/
 
