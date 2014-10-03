@@ -38,8 +38,8 @@
 	( \
 	BOOST_PP_EMPTY(), \
 	BOOST_PP_EMPTY(), \
-	BOOST_PP_EMPTY(), \
-	BOOST_PP_EMPTY() \
+	BOOST_PP_TUPLE_ELEM(2,state), \
+	BOOST_PP_TUPLE_ELEM(3,state) \
 	) \
 /**/
 
