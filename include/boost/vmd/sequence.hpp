@@ -17,6 +17,8 @@
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,vseq,elem) \
 /**/
 
+// ELEM_DATA
+
 #define BOOST_VMD_SEQUENCE_DATA_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM(vseq,elem) \
 /**/
@@ -34,6 +36,8 @@
 #define BOOST_VMD_SEQUENCE_ELEM_SPLIT_D(d,elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,vseq,elem) \
 /**/
+
+// ELEM_SPLIT_DATA
 
 #define BOOST_VMD_SEQUENCE_DATA_ELEM_SPLIT(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT(vseq,elem) \
