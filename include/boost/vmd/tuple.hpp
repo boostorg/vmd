@@ -5,12 +5,9 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/tuple.hpp>
-#include <boost/vmd/detail/empty_result.hpp>
 
 /*
 
@@ -31,14 +28,8 @@
    				and the second element is the preprocessor tokens after the beginning tuple.
     
 */
-# define BOOST_VMD_TUPLE(param) \
-    BOOST_PP_IIF \
-      ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(param), \
-      BOOST_VMD_DETAIL_AFTER_TUPLE, \
-      BOOST_VMD_DETAIL_EMPTY_RESULT \
-      ) \
-    (param) \
+#define BOOST_VMD_TUPLE(param) \
+	BOOST_VMD_DETAIL_TUPLE(param) \
 /**/
 
 /** \brief Expands to the beginning tuple of a macro parameter.

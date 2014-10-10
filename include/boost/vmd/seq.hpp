@@ -5,7 +5,6 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
@@ -33,27 +32,11 @@
 */
 
 #define BOOST_VMD_SEQ(seq) \
-    BOOST_VMD_DETAIL_SEQ_STATE_RESULT \
-      ( \
-      BOOST_PP_WHILE \
-        ( \
-        BOOST_VMD_DETAIL_SEQ_STATE_PRED, \
-        BOOST_VMD_DETAIL_SEQ_STATE_OP, \
-        BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
-        ) \
-      ) \
+    BOOST_VMD_DETAIL_SEQ(seq) \
 /**/
 
 #define BOOST_VMD_SEQ_D(d,seq) \
-    BOOST_VMD_DETAIL_SEQ_STATE_RESULT \
-      ( \
-      BOOST_PP_WHILE_ ## d \
-        ( \
-        BOOST_VMD_DETAIL_SEQ_STATE_PRED, \
-        BOOST_VMD_DETAIL_SEQ_STATE_OP, \
-        BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
-        ) \
-      ) \
+    BOOST_VMD_DETAIL_SEQ_D(d,seq) \
 /**/
 
 /** \brief Expands to the beginning sequence of a macro parameter.

@@ -3,6 +3,7 @@
 
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/seq/push_back.hpp>
@@ -133,6 +134,30 @@
 	BOOST_PP_TUPLE_ELEM(2,state), \
 	BOOST_PP_TUPLE_ELEM(3,state) \
 	) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQ(seq) \
+    BOOST_VMD_DETAIL_SEQ_STATE_RESULT \
+      ( \
+      BOOST_PP_WHILE \
+        ( \
+        BOOST_VMD_DETAIL_SEQ_STATE_PRED, \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP, \
+        BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
+        ) \
+      ) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQ_D(d,seq) \
+    BOOST_VMD_DETAIL_SEQ_STATE_RESULT \
+      ( \
+      BOOST_PP_WHILE_ ## d \
+        ( \
+        BOOST_VMD_DETAIL_SEQ_STATE_PRED, \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP, \
+        BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
+        ) \
+      ) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_SEQ_HPP */

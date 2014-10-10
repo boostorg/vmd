@@ -34,10 +34,7 @@
     
 */
 #define BOOST_VMD_ARRAY(param) \
-	BOOST_VMD_DETAIL_ARRAY \
-		( \
-		BOOST_VMD_TUPLE(param) \
-		) \
+	BOOST_VMD_DETAIL_ARRAY(param) \
 /**/
 
 /** \brief Expands to the beginning array of a macro parameter.

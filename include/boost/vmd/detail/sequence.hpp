@@ -25,18 +25,18 @@
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
-#include <boost/vmd/array.hpp>
 #include <boost/vmd/empty.hpp>
-#include <boost/vmd/identifier.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/list.hpp>
-#include <boost/vmd/number.hpp>
-#include <boost/vmd/seq.hpp>
-#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/types.hpp>
+#include <boost/vmd/detail/array.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
+#include <boost/vmd/detail/identifier.hpp>
+#include <boost/vmd/detail/list.hpp>
+#include <boost/vmd/detail/number.hpp>
+#include <boost/vmd/detail/seq.hpp>
+#include <boost/vmd/detail/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT_ELEM 0
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ELEM 1
@@ -261,7 +261,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_GCLRT(state) \
 	BOOST_PP_CAT \
 		( \
-		BOOST_VMD_, \
+		BOOST_VMD_DETAIL_, \
 		BOOST_PP_CAT(BOOST_VMD_DETAIL_SEQUENCE_STATE_GET_TYPE(state),_D) \
 		) \
 /**/
@@ -269,7 +269,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_GCLPL(state) \
 	BOOST_PP_CAT \
 		( \
-		BOOST_VMD_, \
+		BOOST_VMD_DETAIL_, \
 		BOOST_VMD_DETAIL_SEQUENCE_STATE_GET_TYPE(state) \
 		) \
 /**/
