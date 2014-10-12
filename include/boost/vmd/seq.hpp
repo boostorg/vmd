@@ -10,6 +10,9 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/seq.hpp>
+#if BOOST_VMD_ASSERT_DATA
+#include <boost/vmd/assert.hpp>
+#endif
 
 /*
 
@@ -182,8 +185,6 @@
 #define BOOST_VMD_ASSERT_IS_SEQ_D(d,seq)
 
 #else
-
-#include <boost/vmd/assert.hpp>
 
 #define BOOST_VMD_ASSERT_IS_SEQ(seq) \
     BOOST_VMD_ASSERT \

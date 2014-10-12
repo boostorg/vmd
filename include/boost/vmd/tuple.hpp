@@ -8,6 +8,9 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/tuple.hpp>
+#if BOOST_VMD_ASSERT_DATA
+#include <boost/vmd/assert.hpp>
+#endif
 
 /*
 
@@ -124,8 +127,6 @@
 #define BOOST_VMD_ASSERT_IS_TUPLE(tuple)
 
 #else
-
-#include <boost/vmd/assert.hpp>
 
 #define BOOST_VMD_ASSERT_IS_TUPLE(tuple) \
    BOOST_VMD_ASSERT \

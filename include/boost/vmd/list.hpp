@@ -12,6 +12,9 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/list.hpp>
 #include <boost/vmd/detail/is_list.hpp>
+#if BOOST_VMD_ASSERT_DATA
+#include <boost/vmd/assert.hpp>
+#endif
 
 /*
 
@@ -219,8 +222,6 @@
 #define BOOST_VMD_ASSERT_IS_LIST_D(d,param)
 
 #else
-
-#include <boost/vmd/assert.hpp>
 
 #define BOOST_VMD_ASSERT_IS_LIST(param) \
     BOOST_VMD_ASSERT \

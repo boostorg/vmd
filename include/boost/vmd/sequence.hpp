@@ -16,7 +16,7 @@
 /** \file
 */
 
-// SEQUENCE
+// ELEM SPLIT
 
 /** \brief Expands to a tuple of the v-sequence type/element and the preprocessor tokens after the v-sequence element.
 
@@ -31,7 +31,7 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_SEQUENCE(elem,vseq) \
+#define BOOST_VMD_ELEM_SPLIT(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT(vseq,elem) \
 /**/
 
@@ -49,11 +49,11 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_SEQUENCE_D(d,elem,vseq) \
+#define BOOST_VMD_ELEM_SPLIT_D(d,elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,vseq,elem) \
 /**/
 
-// DATA
+// DATA ELEM SPLIT
 
 /** \brief Expands to a tuple of the v-sequence element and the preprocessor tokens after the v-sequence element.
 
@@ -67,7 +67,7 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_DATA(elem,vseq) \
+#define BOOST_VMD_DATA_ELEM_SPLIT(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT(vseq,elem) \
 /**/
 
@@ -84,7 +84,7 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_DATA_D(d,elem,vseq) \
+#define BOOST_VMD_DATA_ELEM_SPLIT_D(d,elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_D(d,vseq,elem) \
 /**/
 
@@ -119,7 +119,7 @@
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,vseq,elem) \
 /**/
 
-// ELEM_DATA
+// DATA ELEM
 
 /** \brief Expands to the v-sequence element.
 
@@ -148,7 +148,7 @@
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_D(d,vseq,elem) \
 /**/
 
-// AFTER
+// ELEM AFTER
 
 /** \brief Expands to the preprocessor tokens after a v-sequence element.
 
@@ -159,7 +159,7 @@
     			returns nothing, otherwise expands to the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_AFTER(elem,vseq) \
+#define BOOST_VMD_ELEM_AFTER(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_AFTER(vseq,elem) \
 /**/
 
@@ -173,7 +173,7 @@
     			returns nothing, otherwise expands to the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_AFTER_D(d,elem,vseq) \
+#define BOOST_VMD_ELEM_AFTER_D(d,elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_AFTER_D(d,vseq,elem) \
 /**/
 

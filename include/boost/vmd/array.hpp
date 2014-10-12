@@ -13,6 +13,9 @@
 #include <boost/vmd/detail/array.hpp>
 #include <boost/vmd/detail/is_array.hpp>
 #include <boost/vmd/detail/is_empty_array.hpp>
+#if BOOST_VMD_ASSERT_DATA
+#include <boost/vmd/assert.hpp>
+#endif
 
 /*
 
@@ -174,8 +177,6 @@
 #define BOOST_VMD_ASSERT_IS_ARRAY(array)
 
 #else
-
-#include <boost/vmd/assert.hpp>
 
 #define BOOST_VMD_ASSERT_IS_ARRAY(array) \
     BOOST_VMD_ASSERT \
