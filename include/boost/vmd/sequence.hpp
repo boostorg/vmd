@@ -21,7 +21,17 @@
 /** \brief Expands to a tuple of the v-sequence type/element and the preprocessor tokens after the v-sequence element.
 
 	elem      = A v-sequence element number. From 0 to v-sequence size - 1.
-    vseq      = A v-sequence to test.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
+    found is only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order 
+    to determine the element type, the element found is tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = the result is a tuple of two elements.
     			If the v-sequence is empty or the element number is not in the range
@@ -31,15 +41,25 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_ELEM_SPLIT(elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT(vseq,elem) \
+#define BOOST_VMD_ELEM_SPLIT(elem,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT(elem,__VA_ARGS__) \
 /**/
 
 /** \brief Reentrant - expands to a tuple of the v-sequence type/element and the preprocessor tokens after the v-sequence element.
 
 	d         = The next available BOOST_PP_WHILE iteration.
 	elem      = A v-sequence element number. From 0 to v-sequence size - 1.
-    vseq      = A v-sequence to test.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
+    found is only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order 
+    to determine the element type, the element found is tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = the result is a tuple of two elements.
     			If the v-sequence is empty or the element number is not in the range
@@ -49,8 +69,8 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_ELEM_SPLIT_D(d,elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,vseq,elem) \
+#define BOOST_VMD_ELEM_SPLIT_D(d,elem,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,elem,__VA_ARGS__) \
 /**/
 
 // DATA ELEM SPLIT
@@ -68,7 +88,7 @@
     
 */
 #define BOOST_VMD_DATA_ELEM_SPLIT(elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT(vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT(elem,vseq) \
 /**/
 
 /** \brief Reentrant - expands to a tuple of the v-sequence element and the preprocessor tokens after the v-sequence element.
@@ -85,7 +105,7 @@
     
 */
 #define BOOST_VMD_DATA_ELEM_SPLIT_D(d,elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_D(d,vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_D(d,elem,vseq) \
 /**/
 
 // ELEM
@@ -93,30 +113,50 @@
 /** \brief Expands to a tuple of the v-sequence type/element.
 
 	elem      = A v-sequence element number. From 0 to v-sequence size - 1.
-    vseq      = A v-sequence to test.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
+    found is only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order 
+    to determine the element type, the element found is tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = If the v-sequence is empty or the element number is not in the range
     			returns nothing, otherwise returns the v-type as a tuple with the type being
     			the first value and the element being the second value.
     
 */
-#define BOOST_VMD_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM(vseq,elem) \
+#define BOOST_VMD_ELEM(elem,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM(elem,__VA_ARGS__) \
 /**/
 
 /** \brief Reentrant - expands to a tuple of the v-sequence type/element.
 
 	d         = The next available BOOST_PP_WHILE iteration.
 	elem      = A v-sequence element number. From 0 to v-sequence size - 1.
-    vseq      = A v-sequence to test.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
+    found is only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order 
+    to determine the element type, the element found is tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = If the v-sequence is empty or the element number is not in the range
     			returns nothing, otherwise returns the v-type as a tuple with the type being
     			the first value and the element being the second value.
     
 */
-#define BOOST_VMD_ELEM_D(d,elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,vseq,elem) \
+#define BOOST_VMD_ELEM_D(d,elem,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,elem,__VA_ARGS__) \
 /**/
 
 // DATA ELEM
@@ -131,7 +171,7 @@
     
 */
 #define BOOST_VMD_DATA_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM(vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM(elem,vseq) \
 /**/
 
 /** \brief Reentrant - expands to the v-sequence element.
@@ -145,7 +185,7 @@
     
 */
 #define BOOST_VMD_DATA_ELEM_D(d,elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_D(d,vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_D(d,elem,vseq) \
 /**/
 
 // ELEM AFTER
@@ -160,7 +200,7 @@
     
 */
 #define BOOST_VMD_ELEM_AFTER(elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_AFTER(vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_AFTER(elem,vseq) \
 /**/
 
 /** \brief Reentrant - expands to the preprocessor tokens after a v-sequence element.
@@ -174,7 +214,7 @@
     
 */
 #define BOOST_VMD_ELEM_AFTER_D(d,elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_AFTER_D(d,vseq,elem) \
+	BOOST_VMD_DETAIL_SEQUENCE_AFTER_D(d,elem,vseq) \
 /**/
 
 // SIZE
@@ -208,29 +248,49 @@
 
 /** \brief Expands to an array whose elements are the v-types of a v-sequence.
 
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = A Boost PP array. If the v-sequence is empty the array is a 0-size array
     			with no elements, othwerwise it is an array whose each element is a v-type,
     			as a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_TO_ARRAY(vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY(vseq) \
+#define BOOST_VMD_TO_ARRAY(...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY(__VA_ARGS__) \
 /**/
 
 /** \brief Reentrant - expands to an array whose elements are the v-types of a v-sequence.
 
 	d         = The next available BOOST_PP_WHILE iteration.
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = A Boost PP array. If the v-sequence is empty the array is a 0-size array
     			with no elements, othwerwise it is an array whose each element is a v-type,
     			as a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_TO_ARRAY_D(d,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_D(d,vseq) \
+#define BOOST_VMD_TO_ARRAY_D(d,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_D(d,__VA_ARGS__) \
 /**/
 
 // TO_ARRAY_DATA
@@ -264,29 +324,49 @@
 
 /** \brief Expands to a list whose elements are the v-types of a v-sequence.
 
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = A Boost PP list. If the v-sequence is empty the list is a 0-size list
     			with no elements, othwerwise it is a list whose each element is a v-type,
     			as a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_TO_LIST(vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_LIST(vseq) \
+#define BOOST_VMD_TO_LIST(...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_LIST(__VA_ARGS__) \
 /**/
 
 /** \brief Reentrant - expands to a list whose elements are the v-types of a v-sequence.
 
 	d         = The next available BOOST_PP_WHILE iteration.
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = A Boost PP list. If the v-sequence is empty the list is a 0-size list
     			with no elements, othwerwise it is a list whose each element is a v-type,
     			as a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_TO_LIST_D(d,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_LIST_D(d,vseq) \
+#define BOOST_VMD_TO_LIST_D(d,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_LIST_D(d,__VA_ARGS__) \
 /**/
 
 // TO_LIST_DATA
@@ -320,29 +400,50 @@
 
 /** \brief Expands to a seq whose elements are the v-types of a v-sequence.
 
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
+
 
     returns   = A Boost PP seq. If the v-sequence is empty expands to nothing,
     			othwerwise it is a seq whose each element is a v-type,
     			as a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_TO_SEQ(vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ(vseq) \
+#define BOOST_VMD_TO_SEQ(...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ(__VA_ARGS__) \
 /**/
 
 /** \brief Reentrant - expands to a seq whose elements are the v-types of a v-sequence.
 
 	d         = The next available BOOST_PP_WHILE iteration.
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = A Boost PP seq. If the v-sequence is empty expands to nothing,
     			othwerwise it is a seq whose each element is a v-type,
     			as a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_TO_SEQ_D(d,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_D(d,vseq) \
+#define BOOST_VMD_TO_SEQ_D(d,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_D(d,__VA_ARGS__) \
 /**/
 
 // TO_SEQ_DATA
@@ -376,29 +477,49 @@
 
 /** \brief Expands to a tuple whose elements are the v-types of a v-sequence.
 
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = A Boost PP tuple. If the v-sequence is empty expands to nothing,
     			otherwise it is a tuple whose each element is a v-type,
     			which is a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_TO_TUPLE(vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE(vseq) \
+#define BOOST_VMD_TO_TUPLE(...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE(__VA_ARGS__) \
 /**/
 
 /** \brief Reentrant - expands to a tuple whose elements are the v-types of a v-sequence.
 
 	d         = The next available BOOST_PP_WHILE iteration.
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = A Boost PP tuple. If the v-sequence is empty expands to nothing,
     			otherwise it is a tuple whose each element is a v-type,
     			which is a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_TO_TUPLE_D(d,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_D(d,vseq) \
+#define BOOST_VMD_TO_TUPLE_D(d,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_D(d,__VA_ARGS__) \
 /**/
 
 // TO_TUPLE_DATA
@@ -432,29 +553,49 @@
 
 /** \brief Expands to comma-separated elements which are the v-types of a v-sequence.
 
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = Comma-separated data. If the v-sequence is empty expands to nothing,
     			otherwise it is comma-separated data whose each element is a v-type,
     			which is a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_ENUM(vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_ENUM(vseq) \
+#define BOOST_VMD_ENUM(...) \
+	BOOST_VMD_DETAIL_SEQUENCE_ENUM(__VA_ARGS__) \
 /**/
 
 /** \brief Reentrant - expands to comma-separated elements which are the v-types of a v-sequence.
 
 	d         = The next available BOOST_PP_WHILE iteration.
-    vseq      = A v-sequence to be converted.
+    ...       = A maximum of 2 variadic parameters.
+    
+    The first variadic parameter is mandatory and is the v-sequence to test.
+    
+    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
+    or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
+    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
+    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    determine the element type, the elements are tested for a possible array and 
+    a possible list before being tested for a possible tuple. For the dangers of testing
+    a tuple as an array or a list, see the main documentation.
 
     returns   = Comma-separated data. If the v-sequence is empty expands to nothing,
     			othwerwise it is comma-separated data whose each element is a v-type,
     			which is a 2-element tuple of a type and a value.
     
 */
-#define BOOST_VMD_ENUM_D(d,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_ENUM_D(d,vseq) \
+#define BOOST_VMD_ENUM_D(d,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_ENUM_D(d,__VA_ARGS__) \
 /**/
 
 // ENUM_DATA

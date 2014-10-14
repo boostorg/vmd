@@ -1,0 +1,34 @@
+#if !defined(BOOST_VMD_LIST_ELEM_HPP)
+#define BOOST_VMD_LIST_ELEM_HPP
+
+#include <boost/vmd/detail/setup.hpp>
+
+#if BOOST_PP_VARIADICS
+
+#include <boost/vmd/detail/after_list.hpp>
+#include <boost/vmd/detail/elem_list.hpp>
+#include <boost/vmd/detail/split_list.hpp>
+
+/*
+
+  The succeeding comments in this file are in doxygen format.
+
+*/
+
+/** \file
+*/
+
+#define BOOST_VMD_LIST_ELEM(elem,vseq) \
+	BOOST_VMD_DETAIL_ELEM_SPLIT_LIST(elem,vseq) \
+/**/
+
+#define BOOST_VMD_BEGIN_LIST_ELEM(elem,vseq) \
+	BOOST_VMD_DETAIL_ELEM_LIST(elem,vseq) \
+/**/
+
+#define BOOST_VMD_AFTER_LIST_ELEM(elem,vseq) \
+	BOOST_VMD_DETAIL_ELEM_AFTER_LIST(elem,vseq) \
+/**/
+
+#endif /* BOOST_PP_VARIADICS */
+#endif /* BOOST_VMD_LIST_ELEM_HPP */

@@ -166,7 +166,7 @@
 	(param) \
 /**/
 
-#define BOOST_VMD_IS_EMPTY_LIST_D_IRESULT(d,param) \
+#define BOOST_VMD_IS_EMPTY_LIST_IRESULT_D(d,param) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_LIST_D(d,param), \
@@ -181,7 +181,7 @@
 /**/
 
 #define BOOST_VMD_IS_EMPTY_LIST_D(d,param) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_LIST_D_IRESULT(d,param)) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_LIST_IRESULT_D(d,param)) \
 /**/
 
 /** \def BOOST_VMD_ASSERT_IS_LIST(param)
