@@ -16,7 +16,7 @@
 /** \file
 */
 
-// ELEM SPLIT
+// ELEM
 
 /** \brief Expands to a tuple of the v-sequence type/element and the preprocessor tokens after the v-sequence element.
 
@@ -28,10 +28,11 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
-    found is only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order 
-    to determine the element type, the element found is tested for a possible array and 
-    a possible list before being tested for a possible tuple. For the dangers of testing
-    a tuple as an array or a list, see the main documentation.
+    found is tested for a possible tuple, rather than the specific tuples of an array or
+    a list. With BOOST_VMD_SPECIFIC_TUPLE, in order to determine the element type, the 
+    element found is tested for a possible array and a possible list before being tested 
+    for a possible tuple. For the dangers of testing a tuple as an array or a list, 
+    see the main documentation.
 
     returns   = the result is a tuple of two elements.
     			If the v-sequence is empty or the element number is not in the range
@@ -41,7 +42,7 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_ELEM_SPLIT(elem,...) \
+#define BOOST_VMD_ELEM(elem,...) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT(elem,__VA_ARGS__) \
 /**/
 
@@ -56,10 +57,11 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
-    found is only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order 
-    to determine the element type, the element found is tested for a possible array and 
-    a possible list before being tested for a possible tuple. For the dangers of testing
-    a tuple as an array or a list, see the main documentation.
+    found is tested for a possible tuple, rather than the specific tuples of an array or
+    a list. With BOOST_VMD_SPECIFIC_TUPLE, in order to determine the element type, the 
+    element found is tested for a possible array and a possible list before being tested 
+    for a possible tuple. For the dangers of testing a tuple as an array or a list, 
+    see the main documentation.
 
     returns   = the result is a tuple of two elements.
     			If the v-sequence is empty or the element number is not in the range
@@ -69,11 +71,11 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_ELEM_SPLIT_D(d,elem,...) \
+#define BOOST_VMD_ELEM_D(d,elem,...) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,elem,__VA_ARGS__) \
 /**/
 
-// DATA ELEM SPLIT
+// DATA ELEM
 
 /** \brief Expands to a tuple of the v-sequence element and the preprocessor tokens after the v-sequence element.
 
@@ -87,7 +89,7 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_DATA_ELEM_SPLIT(elem,vseq) \
+#define BOOST_VMD_DATA_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT(elem,vseq) \
 /**/
 
@@ -104,11 +106,11 @@
    				* The second tuple element are the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_DATA_ELEM_SPLIT_D(d,elem,vseq) \
+#define BOOST_VMD_DATA_ELEM_D(d,elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_D(d,elem,vseq) \
 /**/
 
-// ELEM
+// BEGIN ELEM
 
 /** \brief Expands to a tuple of the v-sequence type/element.
 
@@ -120,17 +122,18 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
-    found is only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order 
-    to determine the element type, the element found is tested for a possible array and 
-    a possible list before being tested for a possible tuple. For the dangers of testing
-    a tuple as an array or a list, see the main documentation.
+    found is tested for a possible tuple, rather than the specific tuples of an array or
+    a list. With BOOST_VMD_SPECIFIC_TUPLE, in order to determine the element type, the 
+    element found is tested for a possible array and a possible list before being tested 
+    for a possible tuple. For the dangers of testing a tuple as an array or a list, 
+    see the main documentation.
 
     returns   = If the v-sequence is empty or the element number is not in the range
     			returns nothing, otherwise returns the v-type as a tuple with the type being
     			the first value and the element being the second value.
     
 */
-#define BOOST_VMD_ELEM(elem,...) \
+#define BOOST_VMD_BEGIN_ELEM(elem,...) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM(elem,__VA_ARGS__) \
 /**/
 
@@ -145,21 +148,22 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
-    found is only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order 
-    to determine the element type, the element found is tested for a possible array and 
-    a possible list before being tested for a possible tuple. For the dangers of testing
-    a tuple as an array or a list, see the main documentation.
-
+    found is tested for a possible tuple, rather than the specific tuples of an array or
+    a list. With BOOST_VMD_SPECIFIC_TUPLE, in order to determine the element type, the 
+    element found is tested for a possible array and a possible list before being tested 
+    for a possible tuple. For the dangers of testing a tuple as an array or a list, 
+    see the main documentation.
+    
     returns   = If the v-sequence is empty or the element number is not in the range
     			returns nothing, otherwise returns the v-type as a tuple with the type being
     			the first value and the element being the second value.
     
 */
-#define BOOST_VMD_ELEM_D(d,elem,...) \
+#define BOOST_VMD_BEGIN_ELEM_D(d,elem,...) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,elem,__VA_ARGS__) \
 /**/
 
-// DATA ELEM
+// DATA BEGIN ELEM
 
 /** \brief Expands to the v-sequence element.
 
@@ -170,7 +174,7 @@
     			returns nothing, otherwise returns the v-type element value.
     
 */
-#define BOOST_VMD_DATA_ELEM(elem,vseq) \
+#define BOOST_VMD_DATA_BEGIN_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM(elem,vseq) \
 /**/
 
@@ -184,11 +188,11 @@
     			returns nothing, otherwise returns the v-type element value.
     
 */
-#define BOOST_VMD_DATA_ELEM_D(d,elem,vseq) \
+#define BOOST_VMD_DATA_BEGIN_ELEM_D(d,elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_D(d,elem,vseq) \
 /**/
 
-// ELEM AFTER
+// AFTER ELEM
 
 /** \brief Expands to the preprocessor tokens after a v-sequence element.
 
@@ -199,7 +203,7 @@
     			returns nothing, otherwise expands to the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_ELEM_AFTER(elem,vseq) \
+#define BOOST_VMD_AFTER_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_AFTER(elem,vseq) \
 /**/
 
@@ -213,7 +217,7 @@
     			returns nothing, otherwise expands to the preprocessor tokens after the v-type found.
     
 */
-#define BOOST_VMD_ELEM_AFTER_D(d,elem,vseq) \
+#define BOOST_VMD_AFTER_ELEM_D(d,elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_AFTER_D(d,elem,vseq) \
 /**/
 
@@ -255,7 +259,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -279,7 +283,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -331,7 +335,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -355,7 +359,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -407,7 +411,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -432,7 +436,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -484,7 +488,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -508,7 +512,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -560,7 +564,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
@@ -584,7 +588,7 @@
     The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
     or BOOST_VMD_SPECIFIC_TUPLE, with the latter value the default value. 
     With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are only tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
+    are tested for a possible tuple. With BOOST_VMD_SPECIFIC_TUPLE, in order to 
     determine the element type, the elements are tested for a possible array and 
     a possible list before being tested for a possible tuple. For the dangers of testing
     a tuple as an array or a list, see the main documentation.
