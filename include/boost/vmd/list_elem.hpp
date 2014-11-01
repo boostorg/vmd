@@ -22,7 +22,7 @@
 	BOOST_VMD_DETAIL_ELEM_SPLIT_LIST(elem,vseq) \
 /**/
 
-#define BOOST_VMD_BEGIN_LIST_ELEM(elem,vseq) \
+#define BOOST_VMD_ONLY_LIST_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_ELEM_LIST(elem,vseq) \
 /**/
 

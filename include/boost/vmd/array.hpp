@@ -28,7 +28,7 @@
 
 /** \brief Expands to a tuple of the beginning array, and the preprocessor tokens after the beginning array, of a macro parameter.
 
-    param = a macro parameter.
+    param     = a macro parameter.
 
     returns   = the result is a tuple of two elements.
     			If the param does not start with an array, both elements of the tuple are empty.

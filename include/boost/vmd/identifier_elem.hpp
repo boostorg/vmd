@@ -22,7 +22,7 @@
 	BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER(elem,vseq) \
 /**/
 
-#define BOOST_VMD_BEGIN_IDENTIFIER_ELEM(elem,vseq) \
+#define BOOST_VMD_ONLY_IDENTIFIER_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_ELEM_IDENTIFIER(elem,vseq) \
 /**/
 

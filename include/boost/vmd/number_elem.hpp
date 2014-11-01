@@ -22,7 +22,7 @@
 	BOOST_VMD_DETAIL_ELEM_SPLIT_NUMBER(elem,vseq) \
 /**/
 
-#define BOOST_VMD_BEGIN_NUMBER_ELEM(elem,vseq) \
+#define BOOST_VMD_ONLY_NUMBER_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_ELEM_NUMBER(elem,vseq) \
 /**/
 

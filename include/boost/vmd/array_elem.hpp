@@ -22,7 +22,7 @@
 	BOOST_VMD_DETAIL_ELEM_SPLIT_ARRAY(elem,vseq) \
 /**/
 
-#define BOOST_VMD_BEGIN_ARRAY_ELEM(elem,vseq) \
+#define BOOST_VMD_ONLY_ARRAY_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_ELEM_ARRAY(elem,vseq) \
 /**/
 

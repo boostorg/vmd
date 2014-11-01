@@ -22,7 +22,7 @@
 	BOOST_VMD_DETAIL_ELEM_SPLIT_TUPLE(elem,vseq) \
 /**/
 
-#define BOOST_VMD_BEGIN_TUPLE_ELEM(elem,vseq) \
+#define BOOST_VMD_ONLY_TUPLE_ELEM(elem,vseq) \
 	BOOST_VMD_DETAIL_ELEM_TUPLE(elem,vseq) \
 /**/
 
