@@ -12,12 +12,11 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/sequence.hpp>
 #include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/empty_result.hpp>
-#include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/make_tuple.hpp>
+#include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/split.hpp>
 
-#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_IIDS(tuple,...) \
+#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_IDS(tuple,...) \
 	BOOST_PP_IF \
 		( \
 		BOOST_VMD_DETAIL_MATCH_IDENTIFIER \
@@ -25,14 +24,9 @@
 			BOOST_PP_TUPLE_ELEM(0,tuple), \
 			BOOST_VMD_DETAIL_MAKE_TUPLE(BOOST_PP_VARIADIC_ELEM(1,__VA_ARGS__)) \
 			), \
-		BOOST_VMD_IDENTITY(tuple), \
-		BOOST_VMD_DETAIL_EMPTY_RESULT \
+		tuple, \
+		(,) \
 		) \
-	(tuple) \
-/**/
-
-#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_IDS(tuple,...) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_IIDS(tuple,__VA_ARGS__)) \
 /**/
 
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_IPRE(tuple,...) \
