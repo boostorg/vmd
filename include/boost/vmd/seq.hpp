@@ -23,14 +23,14 @@
 /** \file
 */
 
-/** \brief Expands to a tuple of the beginning sequence, and the preprocessor tokens after the beginning sequence, of a macro parameter.
+/** \brief Expands to a tuple of the beginning seq, and the preprocessor tokens after the beginning seq, of a macro parameter.
 
     param = a macro parameter.
 
     returns   = the result is a tuple of two elements.
-    			If the param does not start with a sequence, both elements of the tuple are empty.
-   				If the param does start with a sequence, the first element is the beginning sequence
-   				and the second element is the preprocessor tokens after the beginning sequence.
+    			If the param does not start with a seq, both elements of the tuple are empty.
+   				If the param does start with a seq, the first element is the beginning seq
+   				and the second element is the preprocessor tokens after the beginning seq.
     
 */
 
@@ -42,12 +42,12 @@
     BOOST_VMD_DETAIL_SEQ_D(d,seq) \
 /**/
 
-/** \brief Expands to the beginning sequence of a macro parameter.
+/** \brief Expands to the beginning seq of a macro parameter.
 
     param = a macro parameter.
 
-    returns   = A beginning sequence of the macro parameter.
-    			If the param does not start with a sequence, expands to nothing.
+    returns   = A beginning seq of the macro parameter.
+    			If the param does not start with a seq, expands to nothing.
     
 */
 #define BOOST_VMD_BEGIN_SEQ(param) \
@@ -66,12 +66,12 @@
 		) \
 /**/
 
-/** \brief Expands to the preprocessor tokens after the beginning sequence of a macro parameter.
+/** \brief Expands to the preprocessor tokens after the beginning seq of a macro parameter.
 
     param = a macro parameter.
 
-    returns   = The preprocessor tokens after the beginning sequence of the macro parameter.
-    			If the param does not start with a sequence, expands to nothing.
+    returns   = The preprocessor tokens after the beginning seq of the macro parameter.
+    			If the param does not start with a seq, expands to nothing.
     
 */
 #define BOOST_VMD_AFTER_SEQ(param) \
@@ -90,11 +90,11 @@
 		) \
 /**/
 
-/** \brief Tests whether a parameter begins with a sequence.
+/** \brief Tests whether a parameter begins with a seq.
 
     param = a macro parameter.
 
-    returns = 1 if the param begins with a sequence,
+    returns = 1 if the param begins with a seq,
               0 if it does not.
     
 */

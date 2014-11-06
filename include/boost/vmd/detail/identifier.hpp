@@ -6,6 +6,7 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
+#include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/enum.hpp>
@@ -298,7 +299,11 @@
 #define BOOST_VMD_DETAIL_IDENTIFIER_EX(vseq,...) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(vseq), \
+      BOOST_PP_BITOR \
+      	( \
+      	BOOST_VMD_IS_EMPTY(vseq), \
+      	BOOST_VMD_IS_BEGIN_TUPLE(vseq) \
+      	), \
       BOOST_VMD_DETAIL_IDENTIFIER_FAILURE, \
       BOOST_VMD_DETAIL_IDENTIFIER_SEQUENCE \
       ) \
@@ -308,7 +313,11 @@
 #define BOOST_VMD_DETAIL_IDENTIFIER_EX_D(d,vseq,...) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(vseq), \
+      BOOST_PP_BITOR \
+      	( \
+      	BOOST_VMD_IS_EMPTY(vseq), \
+      	BOOST_VMD_IS_BEGIN_TUPLE(vseq) \
+      	), \
       BOOST_VMD_DETAIL_IDENTIFIER_FAILURE, \
       BOOST_VMD_DETAIL_IDENTIFIER_SEQUENCE_D \
       ) \

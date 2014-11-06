@@ -17,6 +17,7 @@
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/identifier.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE(x) \
@@ -155,7 +156,7 @@
 	BOOST_VMD_IS_IDENTIFIER_D(d,list,BOOST_PP_NIL) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_LIST(param) \
+#define BOOST_VMD_DETAIL_IS_LIST_PROCESS(param) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_TUPLE(param), \
@@ -165,7 +166,21 @@
     (param) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_LIST_D(d,param) \
+#define BOOST_VMD_DETAIL_IS_ILIST(param) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_VMD_IS_EMPTY(param), \
+      BOOST_VMD_IDENTITY(0), \
+      BOOST_VMD_DETAIL_IS_LIST_PROCESS \
+      ) \
+    (param) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST(param) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_IS_ILIST(param)) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_PROCESS_D(d,param) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_BEGIN_TUPLE(param), \
@@ -173,6 +188,20 @@
       BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D \
       ) \
     (d,param) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_ILIST_D(d,param) \
+    BOOST_PP_IIF \
+      ( \
+      BOOST_VMD_IS_EMPTY(param), \
+      BOOST_VMD_IDENTITY(0), \
+      BOOST_VMD_DETAIL_IS_LIST_PROCESS_D \
+      ) \
+    (d,param) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_LIST_D(d,param) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_IS_ILIST_D(d,param)) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_IS_LIST_HPP */

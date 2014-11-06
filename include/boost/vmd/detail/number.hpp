@@ -4,11 +4,13 @@
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
+#include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
@@ -49,7 +51,11 @@
 #define BOOST_VMD_DETAIL_IS_NUMBER_IRESULT(parameter) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_TUPLE(parameter), \
+		BOOST_PP_BITOR \
+			( \
+			BOOST_PP_IS_EMPTY(parameter), \
+			BOOST_VMD_IS_BEGIN_TUPLE(parameter) \
+			), \
 		BOOST_VMD_IDENTITY(0), \
 		BOOST_VMD_DETAIL_IS_NUMBER_CONC \
 		) \
@@ -150,7 +156,11 @@
 #define BOOST_VMD_DETAIL_NUMBER(vseq) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(vseq), \
+      BOOST_PP_BITOR \
+      	( \
+      	BOOST_VMD_IS_EMPTY(vseq), \
+      	BOOST_VMD_IS_BEGIN_TUPLE(vseq) \
+      	), \
       BOOST_VMD_DETAIL_EMPTY_RESULT, \
       BOOST_VMD_DETAIL_NUMBER_PROCESS \
       ) \

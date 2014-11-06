@@ -12,6 +12,7 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
+#include <boost/vmd/detail/empty_result.hpp>
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
 	BOOST_PP_TUPLE_PUSH_BACK \
@@ -136,7 +137,7 @@
 	) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQ(seq) \
+#define BOOST_VMD_DETAIL_SEQ_PROCESS(seq) \
     BOOST_VMD_DETAIL_SEQ_STATE_RESULT \
       ( \
       BOOST_PP_WHILE \
@@ -148,7 +149,17 @@
       ) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQ_D(d,seq) \
+#define BOOST_VMD_DETAIL_SEQ(seq) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(seq), \
+		BOOST_VMD_DETAIL_EMPTY_RESULT, \
+		BOOST_VMD_DETAIL_SEQ_PROCESS \
+		) \
+	(seq) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQ_PROCESS_D(d,seq) \
     BOOST_VMD_DETAIL_SEQ_STATE_RESULT \
       ( \
       BOOST_PP_WHILE_ ## d \
@@ -158,6 +169,16 @@
         BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
         ) \
       ) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQ_D(d,seq) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(seq), \
+		BOOST_VMD_DETAIL_EMPTY_RESULT, \
+		BOOST_VMD_DETAIL_SEQ_PROCESS_D \
+		) \
+	(d,seq) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_SEQ_HPP */

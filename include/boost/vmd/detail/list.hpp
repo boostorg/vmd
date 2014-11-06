@@ -132,7 +132,7 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_LIST(list) \
+#define BOOST_VMD_DETAIL_LIST_PROCESS(list) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_BEGIN_TUPLE(list), \
@@ -142,12 +142,32 @@
 	(list) \
 /**/
 
-#define BOOST_VMD_DETAIL_LIST_D(d,list) \
+#define BOOST_VMD_DETAIL_LIST(list) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(list), \
+		BOOST_VMD_DETAIL_EMPTY_RESULT, \
+		BOOST_VMD_DETAIL_LIST_PROCESS \
+		) \
+	(list) \
+/**/
+
+#define BOOST_VMD_DETAIL_LIST_PROCESS_D(d,list) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_BEGIN_TUPLE(list), \
 		BOOST_VMD_DETAIL_LIST_TUPLE_D, \
 		BOOST_VMD_DETAIL_LIST_EMPTY_D \
+		) \
+	(d,list) \
+/**/
+
+#define BOOST_VMD_DETAIL_LIST_D(d,list) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(list), \
+		BOOST_VMD_DETAIL_EMPTY_RESULT, \
+		BOOST_VMD_DETAIL_LIST_PROCESS_D \
 		) \
 	(d,list) \
 /**/
