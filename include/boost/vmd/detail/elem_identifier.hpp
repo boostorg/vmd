@@ -57,7 +57,7 @@
 				( \
 				elem, \
 				BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__), \
-				BOOST_VMD_TYPE_IDENTIFIER \
+				BOOST_VMD_SPECIFIC_IDENTIFIER \
 				), \
 			BOOST_VMD_TYPE_IDENTIFIER \
 			), \

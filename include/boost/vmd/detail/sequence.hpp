@@ -38,9 +38,9 @@
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/seq.hpp>
 #include <boost/vmd/tuple.hpp>
-#include <boost/vmd/tuple_processing.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
+#include <boost/vmd/detail/is_from.hpp>
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT_ELEM 0
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ELEM 1
@@ -372,19 +372,19 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_OP_PAREN_TUPLE_TYPES_ELEM_FROM(d,from) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_EQUAL_D(d,from,BOOST_VMD_GENERAL_TUPLE), \
+		BOOST_VMD_DETAIL_IS_GENERAL_TUPLE(from), \
 		((SEQ,1),(TUPLE,0)), \
 		BOOST_PP_IIF \
 			( \
-			BOOST_PP_EQUAL_D(d,from,BOOST_VMD_SPECIFIC_TUPLE), \
+			BOOST_VMD_DETAIL_IS_EXACT_TUPLE(from), \
 			((SEQ,1),(LIST,1),(ARRAY,0),(TUPLE,0)), \
 			BOOST_PP_IIF \
 				( \
-				BOOST_PP_EQUAL_D(d,from,BOOST_VMD_TYPE_ARRAY), \
+				BOOST_VMD_DETAIL_IS_SPECIFIC_ARRAY(from), \
 				((SEQ,1),(ARRAY,0),(TUPLE,0)), \
 				BOOST_PP_IIF \
 					( \
-					BOOST_PP_EQUAL_D(d,from,BOOST_VMD_TYPE_LIST), \
+					BOOST_VMD_DETAIL_IS_SPECIFIC_LIST(from), \
 					((SEQ,1),(LIST,1),(TUPLE,0)), \
 					((SEQ,1),(TUPLE,0)) \
 					) \
@@ -404,9 +404,9 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_OP_PAREN_TUPLE_TYPES_ANY_NOE_CHC(d,state) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_STATE_FROM(state), \
-		((SEQ,1),(LIST,1),(ARRAY,0),(TUPLE,0)), \
-		((SEQ,1),(TUPLE,0)) \
+		BOOST_VMD_DETAIL_IS_GENERAL_TUPLE(BOOST_VMD_DETAIL_SEQUENCE_STATE_FROM(state)), \
+		((SEQ,1),(TUPLE,0)), \
+		((SEQ,1),(LIST,1),(ARRAY,0),(TUPLE,0)) \
 		) \
 /**/
 
@@ -640,7 +640,7 @@
 			BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
 			1 \
 			), \
-		BOOST_VMD_IDENTITY(BOOST_VMD_SPECIFIC_TUPLE), \
+		BOOST_VMD_IDENTITY(BOOST_VMD_EXACT_TUPLE), \
 		BOOST_PP_VARIADIC_ELEM \
 		) \
 	(1,__VA_ARGS__) \
@@ -852,7 +852,7 @@
 			BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
 			1 \
 			), \
-		BOOST_VMD_IDENTITY(BOOST_VMD_SPECIFIC_TUPLE), \
+		BOOST_VMD_IDENTITY(BOOST_VMD_EXACT_TUPLE), \
 		BOOST_PP_VARIADIC_ELEM \
 		) \
 	(1,__VA_ARGS__) \
