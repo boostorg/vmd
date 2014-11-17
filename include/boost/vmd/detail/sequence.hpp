@@ -23,11 +23,13 @@
 #include <boost/preprocessor/seq/transform.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/enum.hpp>
+#include <boost/preprocessor/tuple/pop_front.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
+#include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/array.hpp>
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identifier.hpp>
@@ -372,11 +374,11 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_OP_PAREN_TUPLE_TYPES_ELEM_FROM(d,from) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_IS_GENERAL_TUPLE(from), \
+		BOOST_VMD_DETAIL_IS_RETURN_GENERAL_TUPLE_TYPE(from), \
 		((SEQ,1),(TUPLE,0)), \
 		BOOST_PP_IIF \
 			( \
-			BOOST_VMD_DETAIL_IS_EXACT_TUPLE(from), \
+			BOOST_VMD_DETAIL_IS_RETURN_EXACT_TYPE(from), \
 			((SEQ,1),(LIST,1),(ARRAY,0),(TUPLE,0)), \
 			BOOST_PP_IIF \
 				( \
@@ -404,7 +406,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_OP_PAREN_TUPLE_TYPES_ANY_NOE_CHC(d,state) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_IS_GENERAL_TUPLE(BOOST_VMD_DETAIL_SEQUENCE_STATE_FROM(state)), \
+		BOOST_VMD_DETAIL_IS_RETURN_GENERAL_TUPLE_TYPE(BOOST_VMD_DETAIL_SEQUENCE_STATE_FROM(state)), \
 		((SEQ,1),(TUPLE,0)), \
 		((SEQ,1),(LIST,1),(ARRAY,0),(TUPLE,0)) \
 		) \
@@ -640,7 +642,7 @@
 			BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
 			1 \
 			), \
-		BOOST_VMD_IDENTITY(BOOST_VMD_EXACT_TUPLE), \
+		BOOST_VMD_IDENTITY(BOOST_VMD_RETURN_EXACT_TYPE), \
 		BOOST_PP_VARIADIC_ELEM \
 		) \
 	(1,__VA_ARGS__) \
@@ -852,7 +854,7 @@
 			BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
 			1 \
 			), \
-		BOOST_VMD_IDENTITY(BOOST_VMD_EXACT_TUPLE), \
+		BOOST_VMD_IDENTITY(BOOST_VMD_RETURN_EXACT_TYPE), \
 		BOOST_PP_VARIADIC_ELEM \
 		) \
 	(1,__VA_ARGS__) \
@@ -868,7 +870,243 @@
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_INPUT(state) \
+	BOOST_PP_TUPLE_ELEM(0,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_INDEX(state) \
+	BOOST_PP_TUPLE_ELEM(1,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_SIZE(state) \
+	BOOST_PP_TUPLE_ELEM(2,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_RESULT(state) \
+	BOOST_PP_TUPLE_ELEM(3,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_CURRENT(state) \
+	BOOST_PP_VARIADIC_ELEM(BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_INDEX(state),BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_INPUT(state)) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_TYPE(state) \
+	BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_RESULT(state)) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_AFTER(state) \
+	BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_RESULT(state)) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_PRED(d,state) \
+	BOOST_PP_GREATER_D(d,BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_SIZE(state),BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_INDEX(state))
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_RETURN_TYPE(d,state,number) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_INDEX \
+		( \
+		d, \
+		BOOST_PP_TUPLE_REPLACE_D \
+			( \
+			d, \
+			state, \
+			3, \
+			BOOST_PP_TUPLE_REPLACE_D \
+				( \
+				d, \
+				BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_RESULT(state), \
+				0, \
+				number \
+				) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_AFTER(d,state,number) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_INDEX \
+		( \
+		d, \
+		BOOST_PP_TUPLE_REPLACE_D \
+			( \
+			d, \
+			state, \
+			3, \
+			BOOST_PP_TUPLE_REPLACE_D \
+				( \
+				d, \
+				BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_RESULT(state), \
+				1, \
+				number \
+				) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_GTT(d,state) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_RETURN_TYPE(d,state,2) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_ET(d,state) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_RETURN_TYPE(d,state,1) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_SA(d,state) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_RETURN_TYPE(d,state,3) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_SL(d,state) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_RETURN_TYPE(d,state,4) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_NT(d,state) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_RETURN_TYPE(d,state,0) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_AFT(d,state) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_AFTER(d,state,1) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_NOAFT(d,state) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_AFTER(d,state,0) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_INDEX(d,state) \
+	BOOST_PP_TUPLE_REPLACE_D \
+		( \
+		d, \
+		state, \
+		1, \
+		BOOST_PP_INC(BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_INDEX(state)) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT(d,state,id) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_IS_RETURN_GENERAL_TUPLE_TYPE(id), \
+		BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_GTT, \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_IS_RETURN_EXACT_TYPE(id), \
+			BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_ET, \
+			BOOST_PP_IIF \
+				( \
+				BOOST_VMD_DETAIL_IS_SPECIFIC_ARRAY(id), \
+				BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_SA, \
+				BOOST_PP_IIF \
+					( \
+					BOOST_VMD_DETAIL_IS_SPECIFIC_LIST(id), \
+					BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_SL, \
+					BOOST_PP_IIF \
+						( \
+						BOOST_VMD_DETAIL_IS_RETURN_NO_TYPE(id), \
+						BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_NT, \
+						BOOST_PP_IIF \
+							( \
+							BOOST_VMD_DETAIL_IS_RETURN_AFTER(id), \
+							BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_AFT, \
+							BOOST_PP_IIF \
+								( \
+								BOOST_VMD_DETAIL_IS_RETURN_NO_AFTER(id), \
+								BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_NOAFT, \
+								BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT_INDEX \
+								) \
+							) \
+						) \
+					) \
+				) \
+			) \
+		) \
+	(d,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS_OP(d,state) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS_OP_CURRENT(d,state,BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_CURRENT(state)) \
+/**/
+
+/*
+
+  Returns a two-element tuple of number values.
+  
+  First tuple element  = 0 No type return
+                         1 Exact type return
+                         2 General tuple type return
+                         3 Array return
+                         4 List return
+                         
+  Second tuple element = 0 No after return
+                         1 After return
+                         
+  Input                = Modifiers
+  
+*/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_MODS(...) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		3, \
+		BOOST_PP_WHILE \
+			( \
+			BOOST_VMD_DETAIL_SEQUENCE_MODS_PRED, \
+			BOOST_VMD_DETAIL_SEQUENCE_MODS_OP, \
+				( \
+				__VA_ARGS__, \
+				0, \
+				BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
+				(0,0) \
+				) \
+			) \
+		) \
+/**/
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_POP_VARIADIC(...) \
+	BOOST_PP_TUPLE_ENUM \
+		( \
+		BOOST_PP_TUPLE_POP_FRONT \
+			( \
+			BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__) \
+			) \
+		) \
+/**/
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
 // ELEM
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_IND(vseq,elem,mods) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_MODS_VAR(...) \
+	BOOST_VMD_DETAIL_SEQUENCE_MODS \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_POP_VARIADIC(__VA_ARGS__) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_IMODS(...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EQUAL(BOOST_PP_VARIADIC_SIZE(__VA_ARGS__),1), \
+		BOOST_VMD_IDENTITY((0,0)), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_MODS_VAR \
+		) \
+	(__VA_ARGS__) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_MODS(...) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_IMODS(__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW(elem,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_IND \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_VSEQ(__VA_ARGS__), \
+		elem, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_MODS(__VA_ARGS__) \
+		) \
+/**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM(elem,...) \
 	BOOST_PP_EXPR_IIF \
@@ -908,11 +1146,11 @@
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE(BOOST_VMD_DETAIL_SEQUENCE_ELEM(elem,vseq,BOOST_VMD_GENERAL_TUPLE)) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE(BOOST_VMD_DETAIL_SEQUENCE_ELEM(elem,vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE)) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_D(d,elem,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE(BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,elem,vseq,BOOST_VMD_GENERAL_TUPLE)) \
+	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_CE(BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,elem,vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE)) \
 /**/
 
 // ELEM SPLIT
@@ -959,14 +1197,14 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT(elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_CE \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT(elem,vseq,BOOST_VMD_GENERAL_TUPLE) \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT(elem,vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_D(d,elem,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_ELEM_SPLIT_CE \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,elem,vseq,BOOST_VMD_GENERAL_TUPLE) \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_SPLIT_D(d,elem,vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE) \
 		) \
 /**/
 
@@ -983,11 +1221,11 @@
 // SIZE
 
 #define BOOST_VMD_DETAIL_SEQUENCE_SIZE(vseq) \
-	BOOST_PP_ARRAY_SIZE(BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY(vseq,BOOST_VMD_GENERAL_TUPLE)) \
+	BOOST_PP_ARRAY_SIZE(BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY(vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE)) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_SIZE_D(d,vseq) \
-	BOOST_PP_ARRAY_SIZE(BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_D(d,vseq,BOOST_VMD_GENERAL_TUPLE)) \
+	BOOST_PP_ARRAY_SIZE(BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_D(d,vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE)) \
 /**/
 
 // ARRAY
@@ -1073,14 +1311,14 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST(vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST_TR \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_TO_LIST(vseq,BOOST_VMD_GENERAL_TUPLE) \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_LIST(vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST_D(d,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_LIST_TR \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_TO_LIST_D(d,vseq,BOOST_VMD_GENERAL_TUPLE) \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_LIST_D(d,vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE) \
 		) \
 /**/
 
@@ -1118,14 +1356,14 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ(vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_TR \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ(vseq,BOOST_VMD_GENERAL_TUPLE) \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ(vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_D(d,vseq) \
 	BOOST_VMD_DETAIL_SEQUENCE_DATA_TO_SEQ_TR \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_D(d,vseq,BOOST_VMD_GENERAL_TUPLE) \
+		BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_D(d,vseq,BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE) \
 		) \
 /**/
 

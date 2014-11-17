@@ -25,11 +25,11 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the element 
     found is tested among other types for a possible tuple, rather than the specific tuples 
-    of an array or a list. With BOOST_VMD_EXACT_TUPLE, in order to determine the element 
+    of an array or a list. With BOOST_VMD_RETURN_EXACT_TYPE, in order to determine the element 
     type, the element found is tested among other types for a possible array and a possible list 
     before being tested for a possible tuple. For the dangers of testing a tuple as an array or 
     a list, see the main documentation.
@@ -54,11 +54,11 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the element 
     found is tested among other types for a possible tuple, rather than the specific tuples 
-    of an array or a list. With BOOST_VMD_EXACT_TUPLE, in order to determine the element 
+    of an array or a list. With BOOST_VMD_RETURN_EXACT_TYPE, in order to determine the element 
     type, the element found is tested among other types for a possible array and a possible list 
     before being tested for a possible tuple. For the dangers of testing a tuple as an array or 
     a list, see the main documentation.
@@ -119,11 +119,11 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the element 
     found is tested among other types for a possible tuple, rather than the specific tuples 
-    of an array or a list. With BOOST_VMD_EXACT_TUPLE, in order to determine the element 
+    of an array or a list. With BOOST_VMD_RETURN_EXACT_TYPE, in order to determine the element 
     type, the element found is tested among other types for a possible array and a possible list 
     before being tested for a possible tuple. For the dangers of testing a tuple as an array or 
     a list, see the main documentation.
@@ -145,11 +145,11 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the element 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the element 
     found is tested among other types for a possible tuple, rather than the specific tuples 
-    of an array or a list. With BOOST_VMD_EXACT_TUPLE, in order to determine the element 
+    of an array or a list. With BOOST_VMD_RETURN_EXACT_TYPE, in order to determine the element 
     type, the element found is tested among other types for a possible array and a possible list 
     before being tested for a possible tuple. For the dangers of testing a tuple as an array or 
     a list, see the main documentation.
@@ -256,10 +256,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -280,10 +280,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -332,10 +332,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -356,10 +356,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -408,10 +408,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -432,10 +432,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -484,10 +484,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -508,10 +508,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -560,10 +560,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
@@ -584,10 +584,10 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_GENERAL_TUPLE
-    or BOOST_VMD_EXACT_TUPLE, with the latter value the default value. 
-    With BOOST_VMD_GENERAL_TUPLE, in order to determine the element type, the elements 
-    are tested among other types for a possible tuple. With BOOST_VMD_EXACT_TUPLE, 
+    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    or BOOST_VMD_RETURN_EXACT_TYPE, with the latter value the default value. 
+    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    are tested among other types for a possible tuple. With BOOST_VMD_RETURN_EXACT_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
     For the dangers of testing a tuple as an array or a list, see the main documentation.
