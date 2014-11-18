@@ -886,6 +886,16 @@
 	BOOST_PP_NOT(BOOST_VMD_IS_EMPTY(vseq)) \
 /**/
 
+#define BOOST_VMD_DETAIL_SEQUENCE_POP_VARIADIC(...) \
+	BOOST_PP_TUPLE_ENUM \
+		( \
+		BOOST_PP_TUPLE_POP_FRONT \
+			( \
+			BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__) \
+			) \
+		) \
+/**/
+
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_MODS_STATE_INPUT(state) \
@@ -1077,22 +1087,6 @@
 		) \
 /**/
 
-/*--------------------------------------------------------------------------------------------------------------------------*/
-
-#define BOOST_VMD_DETAIL_SEQUENCE_POP_VARIADIC(...) \
-	BOOST_PP_TUPLE_ENUM \
-		( \
-		BOOST_PP_TUPLE_POP_FRONT \
-			( \
-			BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__) \
-			) \
-		) \
-/**/
-
-/*--------------------------------------------------------------------------------------------------------------------------*/
-
-// ELEM
-
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_MODS_VAR(defv,...) \
 	BOOST_VMD_DETAIL_SEQUENCE_MODS \
 		( \
@@ -1114,6 +1108,10 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_MODS(defv,...) \
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_SEQUENCE_ELEM_NEW_IMODS(defv,__VA_ARGS__)) \
 /**/
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+// ELEM
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM(elem,...) \
 	BOOST_PP_EXPR_IIF \
