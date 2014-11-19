@@ -170,7 +170,13 @@ test-suite variadic_macro_data
        [ run test_number_elem.cpp ]
        [ run test_seq.cpp ]
        [ run test_seq_elem.cpp ]
-       [ run test_sequence.cpp ]
+       [ run test_sequence_elem.cpp ]
+       [ run test_sequence_enum.cpp ]
+       [ run test_sequence_size.cpp ]
+       [ run test_sequence_to_array.cpp ]
+       [ run test_sequence_to_list.cpp ]
+       [ run test_sequence_to_seq.cpp ]
+       [ run test_sequence_to_tuple.cpp ]
        [ run test_tuple.cpp ]
        [ run test_tuple_elem.cpp ]
     ;
@@ -493,9 +499,27 @@ test-suite variadic_macro_data_gh
        [ run test_seq_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_seq_elem_gh ]
-       [ run test_sequence.cpp : : :
+       [ run test_sequence_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_sequence_gh ]
+         test_sequence_elem_gh ]
+       [ run test_sequence_enum.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_enum_gh ]
+       [ run test_sequence_size.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_size_gh ]
+       [ run test_sequence_to_array.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_to_array_gh ]
+       [ run test_sequence_to_list.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_to_list_gh ]
+       [ run test_sequence_to_seq.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_to_seq_gh ]
+       [ run test_sequence_to_tuple.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_to_tuple_gh ]
        [ run test_tuple.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_tuple_gh ]
