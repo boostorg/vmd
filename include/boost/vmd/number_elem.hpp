@@ -7,7 +7,6 @@
 
 #include <boost/vmd/detail/after_number.hpp>
 #include <boost/vmd/detail/elem_number.hpp>
-#include <boost/vmd/detail/split_number.hpp>
 
 /*
 
@@ -18,12 +17,8 @@
 /** \file
 */
 
-#define BOOST_VMD_NUMBER_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_SPLIT_NUMBER(elem,vseq) \
-/**/
-
-#define BOOST_VMD_ONLY_NUMBER_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_NUMBER(elem,vseq) \
+#define BOOST_VMD_NUMBER_ELEM(elem,...) \
+	BOOST_VMD_DETAIL_ELEM_NUMBER(elem,__VA_ARGS__) \
 /**/
 
 #define BOOST_VMD_AFTER_NUMBER_ELEM(elem,vseq) \

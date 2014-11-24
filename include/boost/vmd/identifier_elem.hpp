@@ -7,7 +7,6 @@
 
 #include <boost/vmd/detail/after_identifier.hpp>
 #include <boost/vmd/detail/elem_identifier.hpp>
-#include <boost/vmd/detail/split_identifier.hpp>
 
 /*
 
@@ -19,10 +18,6 @@
 */
 
 #define BOOST_VMD_IDENTIFIER_ELEM(elem,...) \
-	BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER(elem,__VA_ARGS__) \
-/**/
-
-#define BOOST_VMD_ONLY_IDENTIFIER_ELEM(elem,...) \
 	BOOST_VMD_DETAIL_ELEM_IDENTIFIER(elem,__VA_ARGS__) \
 /**/
 

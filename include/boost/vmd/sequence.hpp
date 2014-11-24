@@ -43,7 +43,7 @@
     
 */
 #define BOOST_VMD_ELEM(elem,...) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM(elem,__VA_ARGS__) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM(BOOST_VMD_ALLOW_ALL,elem,__VA_ARGS__) \
 /**/
 
 /** \brief Reentrant - expands to a tuple of the v-sequence type/element and the preprocessor tokens after the v-sequence element.
@@ -72,7 +72,7 @@
     
 */
 #define BOOST_VMD_ELEM_D(d,elem,...) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,elem,__VA_ARGS__) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,BOOST_VMD_ALLOW_ALL,elem,__VA_ARGS__) \
 /**/
 
 // AFTER ELEM

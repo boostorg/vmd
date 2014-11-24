@@ -7,7 +7,6 @@
 
 #include <boost/vmd/detail/after_tuple.hpp>
 #include <boost/vmd/detail/elem_tuple.hpp>
-#include <boost/vmd/detail/split_tuple.hpp>
 
 /*
 
@@ -18,12 +17,8 @@
 /** \file
 */
 
-#define BOOST_VMD_TUPLE_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_SPLIT_TUPLE(elem,vseq) \
-/**/
-
-#define BOOST_VMD_ONLY_TUPLE_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_TUPLE(elem,vseq) \
+#define BOOST_VMD_TUPLE_ELEM(elem,...) \
+	BOOST_VMD_DETAIL_ELEM_TUPLE(elem,__VA_ARGS__) \
 /**/
 
 #define BOOST_VMD_AFTER_TUPLE_ELEM(elem,vseq) \

@@ -7,7 +7,6 @@
 
 #include <boost/vmd/detail/after_seq.hpp>
 #include <boost/vmd/detail/elem_seq.hpp>
-#include <boost/vmd/detail/split_seq.hpp>
 
 /*
 
@@ -18,12 +17,8 @@
 /** \file
 */
 
-#define BOOST_VMD_SEQ_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_SPLIT_SEQ(elem,vseq) \
-/**/
-
-#define BOOST_VMD_ONLY_SEQ_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_SEQ(elem,vseq) \
+#define BOOST_VMD_SEQ_ELEM(elem,...) \
+	BOOST_VMD_DETAIL_ELEM_SEQ(elem,__VA_ARGS__) \
 /**/
 
 #define BOOST_VMD_AFTER_SEQ_ELEM(elem,vseq) \

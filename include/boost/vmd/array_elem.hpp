@@ -7,7 +7,6 @@
 
 #include <boost/vmd/detail/after_array.hpp>
 #include <boost/vmd/detail/elem_array.hpp>
-#include <boost/vmd/detail/split_array.hpp>
 
 /*
 
@@ -18,12 +17,8 @@
 /** \file
 */
 
-#define BOOST_VMD_ARRAY_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_SPLIT_ARRAY(elem,vseq) \
-/**/
-
-#define BOOST_VMD_ONLY_ARRAY_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_ARRAY(elem,vseq) \
+#define BOOST_VMD_ARRAY_ELEM(elem,...) \
+	BOOST_VMD_DETAIL_ELEM_ARRAY(elem,__VA_ARGS__) \
 /**/
 
 #define BOOST_VMD_AFTER_ARRAY_ELEM(elem,vseq) \
