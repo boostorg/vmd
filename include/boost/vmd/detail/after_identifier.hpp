@@ -20,11 +20,7 @@
 		BOOST_VMD_DETAIL_MATCH_IDENTIFIER \
 			( \
 			BOOST_PP_TUPLE_ELEM(1,BOOST_PP_TUPLE_ELEM(0,tuple)), \
-			BOOST_PP_TUPLE_ELEM \
-				( \
-				BOOST_VMD_DETAIL_MODS_TUPLE_OTHER, \
-				mods \
-				) \
+			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
 			), \
 		after \
 		) \
@@ -37,11 +33,7 @@
 			( \
 			BOOST_VMD_IS_EMPTY \
 				( \
-				BOOST_PP_TUPLE_ELEM \
-					( \
-					BOOST_VMD_DETAIL_MODS_TUPLE_OTHER, \
-					mods \
-					) \
+				BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
 				), \
 			BOOST_VMD_IS_EMPTY \
 				( \

@@ -35,11 +35,11 @@
 */
 
 #define BOOST_VMD_SEQ(seq) \
-    BOOST_VMD_DETAIL_SEQ(seq) \
+    BOOST_VMD_DETAIL_INTERNAL_SEQ(seq) \
 /**/
 
 #define BOOST_VMD_SEQ_D(d,seq) \
-    BOOST_VMD_DETAIL_SEQ_D(d,seq) \
+    BOOST_VMD_DETAIL_INTERNAL_SEQ_D(d,seq) \
 /**/
 
 /** \brief Expands to the beginning seq of a macro parameter.
@@ -50,20 +50,12 @@
     			If the param does not start with a seq, expands to nothing.
     
 */
-#define BOOST_VMD_BEGIN_SEQ(param) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		0, \
-		BOOST_VMD_SEQ(param) \
-		) \
+#define BOOST_VMD_BEGIN_SEQ(...) \
+	BOOST_VMD_DETAIL_SEQ(__VA_ARGS__) \
 /**/
 
-#define BOOST_VMD_BEGIN_SEQ_D(d,param) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		0, \
-		BOOST_VMD_SEQ_D(d,param) \
-		) \
+#define BOOST_VMD_BEGIN_SEQ_D(d,...) \
+	BOOST_VMD_DETAIL_SEQ_D(d,__VA_ARGS__) \
 /**/
 
 /** \brief Expands to the preprocessor tokens after the beginning seq of a macro parameter.
@@ -78,7 +70,7 @@
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_SEQ(param) \
+		BOOST_VMD_BEGIN_SEQ(param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -136,7 +128,7 @@
 #define BOOST_VMD_IS_SEQ(seq) \
 	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
-		BOOST_VMD_SEQ(seq) \
+		BOOST_VMD_BEGIN_SEQ(seq,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

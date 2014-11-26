@@ -21,51 +21,32 @@
 /** \file
 */
 
-/** \brief Expands to a tuple of the beginning tuple, and the preprocessor tokens after the beginning tuple, of a macro parameter.
 
-    param = a macro parameter.
+/** \brief Expands to the beginning tuple of a vsequence.
 
-    returns   = the result is a tuple of two elements.
-    			If the param does not start with a tuple, both elements of the tuple are empty.
-   				If the param does start with a tuple, the first element is the beginning tuple
-   				and the second element is the preprocessor tokens after the beginning tuple.
-    
-*/
-#define BOOST_VMD_TUPLE(param) \
-	BOOST_VMD_DETAIL_TUPLE(param) \
-/**/
-
-/** \brief Expands to the beginning tuple of a macro parameter.
-
-    param = a macro parameter.
+    vseq = a vsequence.
 
     returns = the preprocessor tokens forming the beginning tuple.
     		  If the param does not start with a tuple,
     		  the return value is empty.
     
 */
-# define BOOST_VMD_BEGIN_TUPLE(param) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		0, \
-		BOOST_VMD_TUPLE(param) \
-		) \
+# define BOOST_VMD_BEGIN_TUPLE(...) \
+	BOOST_VMD_DETAIL_TUPLE(__VA_ARGS__) \
 /**/
+
+# define BOOST_VMD_TUPLE(vseq) BOOST_VMD_DETAIL_INTERNAL_TUPLE(vseq)
 
 /** \brief Expands to the preprocessor tokens after the beginning tuple of a macro parameter.
 
-    parameter = a macro parameter.
+    vseq = a vsequence.
 
     returns   = expands to the preprocessor tokens after the tuple.
     			If the tuple is not found, expands to nothing.
     
 */
-#define BOOST_VMD_AFTER_TUPLE(parameter) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		1, \
-		BOOST_VMD_TUPLE(parameter) \
-		) \
+#define BOOST_VMD_AFTER_TUPLE(vseq) \
+	BOOST_VMD_DETAIL_AFTER_TUPLE(vseq) \
 /**/
 
 /** \def BOOST_VMD_IS_TUPLE(param)
@@ -86,7 +67,7 @@
 #define BOOST_VMD_IS_TUPLE(param) \
 	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
-		BOOST_VMD_TUPLE(param) \
+		BOOST_VMD_BEGIN_TUPLE(param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

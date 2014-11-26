@@ -37,7 +37,7 @@
     
 */
 # define BOOST_VMD_NUMBER(vseq) \
-	BOOST_VMD_DETAIL_NUMBER(vseq) \
+	BOOST_VMD_DETAIL_INTERNAL_NUMBER(vseq) \
 /**/
 
 /** \brief Expands to the beginning number of a macro parameter.
@@ -52,12 +52,8 @@
 	which is 0 to 256.
     
 */
-# define BOOST_VMD_BEGIN_NUMBER(vseq) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		0, \
-		BOOST_VMD_NUMBER(vseq) \
-		) \
+# define BOOST_VMD_BEGIN_NUMBER(...) \
+	BOOST_VMD_DETAIL_NUMBER(__VA_ARGS__) \
 /**/
 
 /** \brief Expands to the preprocessor tokens after a number of a macro parameter.
@@ -72,7 +68,7 @@
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_NUMBER(vseq) \
+		BOOST_VMD_BEGIN_NUMBER(vseq,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

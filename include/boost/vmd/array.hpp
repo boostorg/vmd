@@ -26,18 +26,8 @@
 /** \file
 */
 
-/** \brief Expands to a tuple of the beginning array, and the preprocessor tokens after the beginning array, of a macro parameter.
-
-    param     = a macro parameter.
-
-    returns   = the result is a tuple of two elements.
-    			If the param does not start with an array, both elements of the tuple are empty.
-   				If the param does start with an array, the first element is the array
-   				and the second element is the preprocessor tokens after the beginning array.
-    
-*/
 #define BOOST_VMD_ARRAY(param) \
-	BOOST_VMD_DETAIL_ARRAY(param) \
+	BOOST_VMD_DETAIL_INTERNAL_ARRAY(param) \
 /**/
 
 /** \brief Expands to the beginning array of a macro parameter.
@@ -48,12 +38,8 @@
     			If the param does not start with an array, expands to nothing.
     
 */
-#define BOOST_VMD_BEGIN_ARRAY(param) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		0, \
-		BOOST_VMD_ARRAY(param) \
-		) \
+#define BOOST_VMD_BEGIN_ARRAY(...) \
+	BOOST_VMD_DETAIL_ARRAY(__VA_ARGS__) \
 /**/
 
 /** \brief Expands to the preprocessor tokens after the beginning array of a macro parameter.
@@ -68,7 +54,7 @@
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_ARRAY(param) \
+		BOOST_VMD_BEGIN_ARRAY(param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -108,7 +94,7 @@
 #define BOOST_VMD_IS_ARRAY(array) \
 	BOOST_VMD_DETAIL_IS_ARRAY_ENTIRE \
 		( \
-		BOOST_VMD_TUPLE(array) \
+		BOOST_VMD_BEGIN_TUPLE(array,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

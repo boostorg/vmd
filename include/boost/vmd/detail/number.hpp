@@ -8,6 +8,7 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
+#include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
@@ -16,6 +17,7 @@
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/idprefix.hpp>
 #include <boost/vmd/detail/is_number_concatenate.hpp>
+#include <boost/vmd/detail/mods.hpp>
 
 #define BOOST_VMD_DETAIL_NUMBER_REGISTRATION_PREFIX BOOST_VMD_SUBSET_REGISTER_
 
@@ -80,7 +82,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER_GET(tvseq) \
-	BOOST_VMD_DETAIL_NUMBER_GET_TP(BOOST_VMD_TUPLE(tvseq)) \
+	BOOST_VMD_DETAIL_NUMBER_GET_TP(BOOST_VMD_BEGIN_TUPLE(tvseq,BOOST_VMD_RETURN_AFTER)) \
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_TYPE(tuple) \
@@ -153,7 +155,7 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NUMBER(vseq) \
+#define BOOST_VMD_DETAIL_NUMBER_SPLIT(vseq) \
     BOOST_PP_IIF \
       ( \
       BOOST_PP_BITOR \
@@ -165,6 +167,27 @@
       BOOST_VMD_DETAIL_NUMBER_PROCESS \
       ) \
     (vseq) \
+/**/
+
+#define BOOST_VMD_DETAIL_NUMBER_BEGIN(vseq) \
+	BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_NUMBER_SPLIT(vseq)) \
+/**/
+
+#define BOOST_VMD_DETAIL_NUMBER(...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_MODS_IS_RESULT_AFTER \
+			( \
+			BOOST_VMD_DETAIL_NEW_MODS(BOOST_VMD_ALLOW_AFTER,__VA_ARGS__) \
+			), \
+		BOOST_VMD_DETAIL_NUMBER_SPLIT, \
+		BOOST_VMD_DETAIL_NUMBER_BEGIN \
+		) \
+	(BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_INTERNAL_NUMBER(vseq) \
+	BOOST_VMD_DETAIL_NUMBER(vseq,BOOST_VMD_RETURN_AFTER) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_NUMBER_HPP */

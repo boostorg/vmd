@@ -36,11 +36,11 @@
     
 */
 # define BOOST_VMD_LIST(param) \
-	BOOST_VMD_DETAIL_LIST(param) \
+	BOOST_VMD_DETAIL_INTERNAL_LIST(param) \
 /**/
 
 # define BOOST_VMD_LIST_D(d,param) \
-	BOOST_VMD_DETAIL_LIST_D(d,param) \
+	BOOST_VMD_DETAIL_INTERNAL_LIST_D(d,param) \
 /**/
 
 /** \brief Expands to the beginning list of a macro parameter.
@@ -51,20 +51,12 @@
     			If the param does not start with a list, expands to nothing.
     
 */
-#define BOOST_VMD_BEGIN_LIST(param) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		0, \
-		BOOST_VMD_LIST(param) \
-		) \
+#define BOOST_VMD_BEGIN_LIST(...) \
+	BOOST_VMD_DETAIL_LIST(__VA_ARGS__) \
 /**/
 
-#define BOOST_VMD_BEGIN_LIST_D(d,param) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		0, \
-		BOOST_VMD_LIST_D(d,param) \
-		) \
+#define BOOST_VMD_BEGIN_LIST_D(d,...) \
+	BOOST_VMD_DETAIL_LIST_D(d,__VA_ARGS__) \
 /**/
 
 /** \brief Expands to the preprocessor tokens after the beginning list of a macro parameter.
@@ -79,7 +71,7 @@
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_LIST(param) \
+		BOOST_VMD_BEGIN_LIST(param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -87,7 +79,7 @@
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_LIST_D(d,param) \
+		BOOST_VMD_BEGIN_LIST_D(d,param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

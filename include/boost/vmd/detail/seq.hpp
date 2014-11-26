@@ -10,16 +10,18 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
+#include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
+#include <boost/vmd/detail/mods.hpp>
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
 	BOOST_PP_TUPLE_PUSH_BACK \
 		( \
 		BOOST_PP_TUPLE_PUSH_BACK \
 			( \
-			BOOST_VMD_TUPLE(seq), \
+			BOOST_VMD_BEGIN_TUPLE(seq,BOOST_VMD_RETURN_AFTER), \
 			BOOST_PP_EMPTY() \
 			), \
 		BOOST_PP_EMPTY() \
@@ -84,7 +86,7 @@
 		( \
 		BOOST_PP_TUPLE_PUSH_BACK \
 			( \
-			BOOST_VMD_TUPLE(BOOST_PP_TUPLE_ELEM(1,state)), \
+			BOOST_VMD_BEGIN_TUPLE(BOOST_PP_TUPLE_ELEM(1,state),BOOST_VMD_RETURN_AFTER), \
 			BOOST_PP_IIF \
 				( \
 				BOOST_VMD_IS_EMPTY \
@@ -149,7 +151,7 @@
       ) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQ(seq) \
+#define BOOST_VMD_DETAIL_SEQ_SPLIT(seq) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_EMPTY(seq), \
@@ -157,6 +159,10 @@
 		BOOST_VMD_DETAIL_SEQ_PROCESS \
 		) \
 	(seq) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQ_BEGIN(seq) \
+	BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_SEQ_SPLIT(seq)) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_PROCESS_D(d,seq) \
@@ -171,7 +177,7 @@
       ) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQ_D(d,seq) \
+#define BOOST_VMD_DETAIL_SEQ_SPLIT_D(d,seq) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_EMPTY(seq), \
@@ -179,6 +185,44 @@
 		BOOST_VMD_DETAIL_SEQ_PROCESS_D \
 		) \
 	(d,seq) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQ_BEGIN_D(d,seq) \
+	BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_SEQ_SPLIT_D(d,seq)) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQ_D(d,...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_MODS_IS_RESULT_AFTER \
+			( \
+			BOOST_VMD_DETAIL_NEW_MODS(BOOST_VMD_ALLOW_AFTER,__VA_ARGS__) \
+			), \
+		BOOST_VMD_DETAIL_SEQ_SPLIT_D, \
+		BOOST_VMD_DETAIL_SEQ_BEGIN_D \
+		) \
+	(d,BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQ(...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_MODS_IS_RESULT_AFTER \
+			( \
+			BOOST_VMD_DETAIL_NEW_MODS(BOOST_VMD_ALLOW_AFTER,__VA_ARGS__) \
+			), \
+		BOOST_VMD_DETAIL_SEQ_SPLIT, \
+		BOOST_VMD_DETAIL_SEQ_BEGIN \
+		) \
+	(BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_INTERNAL_SEQ(vseq) \
+	BOOST_VMD_DETAIL_SEQ(vseq,BOOST_VMD_RETURN_AFTER) \
+/**/
+
+#define BOOST_VMD_DETAIL_INTERNAL_SEQ_D(d,vseq) \
+	BOOST_VMD_DETAIL_SEQ_D(d,vseq,BOOST_VMD_RETURN_AFTER) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_SEQ_HPP */
