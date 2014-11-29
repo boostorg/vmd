@@ -454,9 +454,37 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_MODS_D(d,allow,...) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		3, \
+		BOOST_PP_WHILE_ ## d \
+			( \
+			BOOST_VMD_DETAIL_MODS_PRED, \
+			BOOST_VMD_DETAIL_MODS_OP, \
+				( \
+				BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__), \
+				0, \
+				BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
+				(0,0,0,), \
+				allow \
+				) \
+			) \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_NEW_MODS_VAR(allow,...) \
 	BOOST_VMD_DETAIL_MODS \
 		( \
+		allow, \
+		BOOST_VMD_DETAIL_VARIADIC_POP_FRONT(__VA_ARGS__) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_NEW_MODS_VAR_D(d,allow,...) \
+	BOOST_VMD_DETAIL_MODS_D \
+		( \
+		d, \
 		allow, \
 		BOOST_VMD_DETAIL_VARIADIC_POP_FRONT(__VA_ARGS__) \
 		) \
@@ -470,6 +498,16 @@
 		BOOST_VMD_DETAIL_NEW_MODS_VAR \
 		) \
 	(allow,__VA_ARGS__) \
+/**/
+
+#define BOOST_VMD_DETAIL_NEW_IMODS_D(d,allow,...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EQUAL(BOOST_PP_VARIADIC_SIZE(__VA_ARGS__),1), \
+		BOOST_VMD_IDENTITY((0,0,0,)), \
+		BOOST_VMD_DETAIL_NEW_MODS_VAR_D \
+		) \
+	(d,allow,__VA_ARGS__) \
 /**/
 
 /*
@@ -510,6 +548,10 @@
 
 #define BOOST_VMD_DETAIL_NEW_MODS(allow,...) \
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_NEW_IMODS(allow,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_NEW_MODS_D(d,allow,...) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_NEW_IMODS_D(d,allow,__VA_ARGS__)) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_MODS_HPP */

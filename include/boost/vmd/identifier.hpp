@@ -62,12 +62,12 @@
     of an optional v-id, that v-id will never match a beginning v-identifier.
     			
 */
-# define BOOST_VMD_IDENTIFIER(...) \
-	BOOST_VMD_DETAIL_IDENTIFIER(__VA_ARGS__) \
+#define BOOST_VMD_IDENTIFIER(vseq) \
+	BOOST_VMD_DETAIL_INTERNAL_IDENTIFIER(vseq) \
 /**/
 
-# define BOOST_VMD_IDENTIFIER_D(d,...) \
-	BOOST_VMD_DETAIL_IDENTIFIER_D(d,__VA_ARGS__) \
+#define BOOST_VMD_IDENTIFIER_D(d,vseq) \
+	BOOST_VMD_DETAIL_INTERNAL_IDENTIFIER_D(d,vseq) \
 /**/
 
 /** \brief Looks for a beginning identifier in a v-sequence.
@@ -109,19 +109,11 @@
     			
 */
 #define BOOST_VMD_BEGIN_IDENTIFIER(...) \
-	BOOST_VMD_DETAIL_BEGIN_IDENTIFIER \
-		( \
-		BOOST_VMD_IDENTIFIER(__VA_ARGS__), \
-		BOOST_PP_VARIADIC_SIZE(__VA_ARGS__) \
-		) \
+	BOOST_VMD_DETAIL_IDENTIFIER(__VA_ARGS__) \
 /**/
 
 #define BOOST_VMD_BEGIN_IDENTIFIER_D(d,...) \
-	BOOST_VMD_DETAIL_BEGIN_IDENTIFIER \
-		( \
-		BOOST_VMD_IDENTIFIER_D(d,__VA_ARGS__), \
-		BOOST_PP_VARIADIC_SIZE(__VA_ARGS__) \
-		) \
+	BOOST_VMD_DETAIL_IDENTIFIER_D(d,__VA_ARGS__) \
 /**/
 
 /** \brief Expands to the preprocessor tokens after the beginning v-identifier of a v-sequence.
@@ -159,17 +151,11 @@
     			
 */
 #define BOOST_VMD_AFTER_IDENTIFIER(...) \
-	BOOST_VMD_DETAIL_AFTER_IDENTIFIER \
-		( \
-		BOOST_VMD_IDENTIFIER(__VA_ARGS__) \
-		) \
+	BOOST_VMD_DETAIL_AFTER_IDENTIFIER(__VA_ARGS__) \
 /**/
 
 #define BOOST_VMD_AFTER_IDENTIFIER_D(d,...) \
-	BOOST_VMD_DETAIL_AFTER_IDENTIFIER \
-		( \
-		BOOST_VMD_IDENTIFIER_D(d,__VA_ARGS__) \
-		) \
+	BOOST_VMD_DETAIL_AFTER_IDENTIFIER_D(d,__VA_ARGS__) \
 /**/
 
 /** \brief Tests whether a v-sequence begins with a v-identifier.
@@ -204,18 +190,12 @@
     of an optional v-id, that v-id will never match a beginning v-identifier.
     			
 */
-# define BOOST_VMD_IS_BEGIN_IDENTIFIER(...) \
-	BOOST_VMD_DETAIL_IS_BEGIN_IDENTIFIER \
-		( \
-		BOOST_VMD_BEGIN_IDENTIFIER(__VA_ARGS__) \
-		) \
+#define BOOST_VMD_IS_BEGIN_IDENTIFIER(...) \
+	BOOST_VMD_DETAIL_IS_BEGIN_IDENTIFIER(__VA_ARGS__) \
 /**/
 
-# define BOOST_VMD_IS_BEGIN_IDENTIFIER_D(d,...) \
-	BOOST_VMD_DETAIL_IS_BEGIN_IDENTIFIER \
-		( \
-		BOOST_VMD_BEGIN_IDENTIFIER_D(d,__VA_ARGS__) \
-		) \
+#define BOOST_VMD_IS_BEGIN_IDENTIFIER_D(d,...) \
+	BOOST_VMD_DETAIL_IS_BEGIN_IDENTIFIER_D(d,__VA_ARGS__) \
 /**/
 
 /** \brief Tests whether a parameter is a v-identifier.
@@ -250,17 +230,11 @@
     			
 */
 #define BOOST_VMD_IS_IDENTIFIER(...) \
-	BOOST_VMD_DETAIL_IS_IDENTIFIER \
-		( \
-		BOOST_VMD_IDENTIFIER(__VA_ARGS__) \
-		) \
+	BOOST_VMD_DETAIL_IS_IDENTIFIER(__VA_ARGS__) \
 /**/
 
 #define BOOST_VMD_IS_IDENTIFIER_D(d,...) \
-	BOOST_VMD_DETAIL_IS_IDENTIFIER \
-		( \
-		BOOST_VMD_IDENTIFIER_D(d,__VA_ARGS__) \
-		) \
+	BOOST_VMD_DETAIL_IS_IDENTIFIER_D(d,__VA_ARGS__) \
 /**/
 
 #if !BOOST_VMD_ASSERT_DATA
