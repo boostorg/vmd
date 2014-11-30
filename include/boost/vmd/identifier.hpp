@@ -63,11 +63,9 @@
     			
 */
 #define BOOST_VMD_IDENTIFIER(vseq) \
-	BOOST_VMD_DETAIL_INTERNAL_IDENTIFIER(vseq) \
 /**/
 
 #define BOOST_VMD_IDENTIFIER_D(d,vseq) \
-	BOOST_VMD_DETAIL_INTERNAL_IDENTIFIER_D(d,vseq) \
 /**/
 
 /** \brief Looks for a beginning identifier in a v-sequence.

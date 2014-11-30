@@ -35,11 +35,9 @@
 */
 
 #define BOOST_VMD_SEQ(seq) \
-    BOOST_VMD_DETAIL_INTERNAL_SEQ(seq) \
 /**/
 
 #define BOOST_VMD_SEQ_D(d,seq) \
-    BOOST_VMD_DETAIL_INTERNAL_SEQ_D(d,seq) \
 /**/
 
 /** \brief Expands to the beginning seq of a macro parameter.
@@ -78,7 +76,7 @@
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_SEQ_D(d,param) \
+		BOOST_VMD_BEGIN_SEQ_D(d,param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -135,7 +133,7 @@
 #define BOOST_VMD_IS_SEQ_D(d,seq) \
 	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
-		BOOST_VMD_SEQ_D(d,seq) \
+		BOOST_VMD_BEGIN_SEQ_D(d,seq,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

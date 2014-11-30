@@ -35,7 +35,7 @@
 	BOOST_VMD_DETAIL_TUPLE(__VA_ARGS__) \
 /**/
 
-# define BOOST_VMD_TUPLE(vseq) BOOST_VMD_DETAIL_INTERNAL_TUPLE(vseq)
+#define BOOST_VMD_TUPLE(vseq)
 
 /** \brief Expands to the preprocessor tokens after the beginning tuple of a macro parameter.
 

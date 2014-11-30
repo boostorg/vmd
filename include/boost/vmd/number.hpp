@@ -36,8 +36,7 @@
 	which is 0 to 256.
     
 */
-# define BOOST_VMD_NUMBER(vseq) \
-	BOOST_VMD_DETAIL_INTERNAL_NUMBER(vseq) \
+#define BOOST_VMD_NUMBER(vseq) \
 /**/
 
 /** \brief Expands to the beginning number of a macro parameter.

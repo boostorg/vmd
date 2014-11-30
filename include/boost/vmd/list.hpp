@@ -35,12 +35,10 @@
    				and the second element is the preprocessor tokens after the beginning list.
     
 */
-# define BOOST_VMD_LIST(param) \
-	BOOST_VMD_DETAIL_INTERNAL_LIST(param) \
+#define BOOST_VMD_LIST(param) \
 /**/
 
-# define BOOST_VMD_LIST_D(d,param) \
-	BOOST_VMD_DETAIL_INTERNAL_LIST_D(d,param) \
+#define BOOST_VMD_LIST_D(d,param) \
 /**/
 
 /** \brief Expands to the beginning list of a macro parameter.
