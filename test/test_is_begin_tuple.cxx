@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/is_begin_tuple.hpp>
+#include <boost/vmd/tuple.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 
@@ -35,7 +35,7 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_BEGIN_TUPLE(JDATA));
   BOOST_TEST(!BOOST_VMD_IS_BEGIN_TUPLE(NOT_TUPLE));
   BOOST_TEST(!BOOST_VMD_IS_BEGIN_TUPLE(NOT_TUPLE2));
-  BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE(A_SEQ));
+  BOOST_TEST(!BOOST_VMD_IS_BEGIN_TUPLE(A_SEQ));
   BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE(AN_ARRAY));
   BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE(A_LIST));
   BOOST_TEST(BOOST_VMD_IS_BEGIN_TUPLE((y)2(x)));

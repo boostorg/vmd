@@ -6,6 +6,7 @@
 #include <boost/preprocessor/comparison/greater.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/control/while.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
@@ -424,7 +425,7 @@
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT(d,state,id) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_TUPLE(id), \
+		BOOST_PP_IS_BEGIN_PARENS(id), \
 		BOOST_VMD_DETAIL_MODS_OP_CURRENT_TUPLE, \
 		BOOST_VMD_DETAIL_MODS_OP_CURRENT_ID \
 		) \

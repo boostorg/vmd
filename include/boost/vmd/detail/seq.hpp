@@ -15,13 +15,14 @@
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/parens.hpp>
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
 	BOOST_PP_TUPLE_PUSH_BACK \
 		( \
 		BOOST_PP_TUPLE_PUSH_BACK \
 			( \
-			BOOST_VMD_BEGIN_TUPLE(seq,BOOST_VMD_RETURN_AFTER), \
+			BOOST_VMD_DETAIL_PARENS(seq,BOOST_VMD_RETURN_AFTER), \
 			BOOST_PP_EMPTY() \
 			), \
 		BOOST_PP_EMPTY() \
@@ -86,7 +87,7 @@
 		( \
 		BOOST_PP_TUPLE_PUSH_BACK \
 			( \
-			BOOST_VMD_BEGIN_TUPLE(BOOST_PP_TUPLE_ELEM(1,state),BOOST_VMD_RETURN_AFTER), \
+			BOOST_VMD_DETAIL_PARENS(BOOST_PP_TUPLE_ELEM(1,state),BOOST_VMD_RETURN_AFTER), \
 			BOOST_PP_IIF \
 				( \
 				BOOST_VMD_IS_EMPTY \

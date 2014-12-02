@@ -9,12 +9,12 @@
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/identifier.hpp>
 #include <boost/vmd/identity.hpp>
@@ -43,7 +43,7 @@
 #define BOOST_VMD_DETAIL_IS_LIST_PRED_IRESULT(d,state) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(state), \
+      BOOST_PP_IS_BEGIN_PARENS(state), \
       BOOST_VMD_IDENTITY(1), \
       BOOST_VMD_DETAIL_IS_LIST_NOT_BOOST_PP_NIL \
       ) \
@@ -57,7 +57,7 @@
 #define BOOST_VMD_DETAIL_IS_LIST_OP(d,state) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(state), \
+      BOOST_PP_IS_BEGIN_PARENS(state), \
       BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE, \
       BOOST_VMD_DETAIL_IS_LIST_PROCESS_IF_BOOST_PP_NIL \
       ) \
@@ -159,7 +159,7 @@
 #define BOOST_VMD_DETAIL_IS_LIST_PROCESS(param) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(param), \
+      BOOST_PP_IS_BEGIN_PARENS(param), \
       BOOST_VMD_DETAIL_IS_LIST_WLOOP, \
       BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS \
       ) \
@@ -183,7 +183,7 @@
 #define BOOST_VMD_DETAIL_IS_LIST_PROCESS_D(d,param) \
     BOOST_PP_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE(param), \
+      BOOST_PP_IS_BEGIN_PARENS(param), \
       BOOST_VMD_DETAIL_IS_LIST_WLOOP_D, \
       BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D \
       ) \

@@ -14,6 +14,7 @@
 #include <boost/preprocessor/list/append.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/seq/push_back.hpp>
 #include <boost/preprocessor/seq/size.hpp>
@@ -27,7 +28,6 @@
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identifier.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/list.hpp>
 #include <boost/vmd/number.hpp>
@@ -574,7 +574,7 @@
 		( \
 		BOOST_PP_IIF \
 			( \
-			BOOST_VMD_IS_BEGIN_TUPLE \
+			BOOST_PP_IS_BEGIN_PARENS \
 				( \
 				BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT(state) \
 				), \

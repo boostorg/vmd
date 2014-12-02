@@ -39,7 +39,7 @@
     		  the return value is empty.
     
 */
-# define BOOST_VMD_BEGIN_TUPLE(...) \
+#define BOOST_VMD_BEGIN_TUPLE(...) \
 	BOOST_VMD_DETAIL_TUPLE(__VA_ARGS__) \
 /**/
 
@@ -54,6 +54,10 @@
 */
 #define BOOST_VMD_AFTER_TUPLE(vseq) \
 	BOOST_VMD_DETAIL_AFTER_TUPLE(vseq) \
+/**/
+
+#define BOOST_VMD_IS_BEGIN_TUPLE(vseq) \
+	BOOST_VMD_DETAIL_IS_BEGIN_TUPLE(vseq) \
 /**/
 
 /** \def BOOST_VMD_IS_TUPLE(param)

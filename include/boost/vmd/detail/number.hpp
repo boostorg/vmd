@@ -5,12 +5,12 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/types.hpp>
@@ -18,6 +18,7 @@
 #include <boost/vmd/detail/idprefix.hpp>
 #include <boost/vmd/detail/is_number_concatenate.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/parens.hpp>
 
 #define BOOST_VMD_DETAIL_NUMBER_REGISTRATION_PREFIX BOOST_VMD_SUBSET_REGISTER_
 
@@ -56,7 +57,7 @@
 		BOOST_PP_BITOR \
 			( \
 			BOOST_PP_IS_EMPTY(parameter), \
-			BOOST_VMD_IS_BEGIN_TUPLE(parameter) \
+			BOOST_PP_IS_BEGIN_PARENS(parameter) \
 			), \
 		BOOST_VMD_IDENTITY(0), \
 		BOOST_VMD_DETAIL_IS_NUMBER_CONC \
@@ -82,7 +83,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER_GET(tvseq) \
-	BOOST_VMD_DETAIL_NUMBER_GET_TP(BOOST_VMD_BEGIN_TUPLE(tvseq,BOOST_VMD_RETURN_AFTER)) \
+	BOOST_VMD_DETAIL_NUMBER_GET_TP(BOOST_VMD_DETAIL_PARENS(tvseq,BOOST_VMD_RETURN_AFTER)) \
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_TYPE(tuple) \
@@ -117,14 +118,14 @@
 #define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST(tvseq) \
 	BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE \
 		( \
-		BOOST_VMD_BEGIN_TUPLE(tvseq) \
+		BOOST_VMD_DETAIL_PARENS(tvseq) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_IVSEQ(tvseq) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_TUPLE(tvseq), \
+		BOOST_PP_IS_BEGIN_PARENS(tvseq), \
 		BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST, \
 		BOOST_VMD_IDENTITY(0) \
 		) \
@@ -161,7 +162,7 @@
       BOOST_PP_BITOR \
       	( \
       	BOOST_VMD_IS_EMPTY(vseq), \
-      	BOOST_VMD_IS_BEGIN_TUPLE(vseq) \
+      	BOOST_PP_IS_BEGIN_PARENS(vseq) \
       	), \
       BOOST_VMD_DETAIL_EMPTY_RESULT, \
       BOOST_VMD_DETAIL_NUMBER_PROCESS \

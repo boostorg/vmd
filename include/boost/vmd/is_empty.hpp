@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/is_begin_tuple.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/vmd/detail/is_empty.hpp>
 
 /*
@@ -53,7 +53,7 @@
 #define BOOST_VMD_IS_EMPTY(param) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE \
+      BOOST_PP_IS_BEGIN_PARENS \
         ( \
         param \
         ) \
@@ -88,7 +88,7 @@
 #define BOOST_VMD_IS_EMPTY(...) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE \
+      BOOST_PP_IS_BEGIN_PARENS \
         ( \
         __VA_ARGS__ \
         ) \

@@ -9,16 +9,17 @@
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/enum.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/idprefix.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/parens.hpp>
 
 #define BOOST_VMD_DETAIL_IDENTIFIER_PROCESS_KEYS_SUCCESS(id,rest,keymatch,mods) \
 	BOOST_VMD_DETAIL_IDENTIFIER_SUCCESS_MODS(id,rest,BOOST_PP_DEC(keymatch),mods) \
@@ -88,7 +89,7 @@
 #define BOOST_VMD_DETAIL_IDENTIFIER_SPLIT_SEQUENCE_CONCAT(vcseq) \
 	BOOST_VMD_DETAIL_IDENTIFIER_SPLIT_SEQUENCE_CONCAT_DATA \
 		( \
-		BOOST_VMD_BEGIN_TUPLE(vcseq,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_DETAIL_PARENS(vcseq,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -117,7 +118,7 @@
 #define BOOST_VMD_DETAIL_IDENTIFIER_GETID_SEQUENCE(vseq) \
 	BOOST_VMD_DETAIL_IDENTIFIER_GETID_TID \
 		( \
-		BOOST_VMD_BEGIN_TUPLE(BOOST_VMD_DETAIL_IDENTIFIER_CONCATENATE(vseq)) \
+		BOOST_VMD_DETAIL_PARENS(BOOST_VMD_DETAIL_IDENTIFIER_CONCATENATE(vseq)) \
 		) \
 /**/
 
@@ -369,7 +370,7 @@
       BOOST_PP_BITOR \
       	( \
       	BOOST_VMD_IS_EMPTY(vseq), \
-      	BOOST_VMD_IS_BEGIN_TUPLE(vseq) \
+      	BOOST_PP_IS_BEGIN_PARENS(vseq) \
       	), \
       BOOST_VMD_DETAIL_IDENTIFIER_EX_FAILURE, \
       BOOST_VMD_DETAIL_IDENTIFIER_SEQUENCE \
@@ -383,7 +384,7 @@
       BOOST_PP_BITOR \
       	( \
       	BOOST_VMD_IS_EMPTY(vseq), \
-      	BOOST_VMD_IS_BEGIN_TUPLE(vseq) \
+      	BOOST_PP_IS_BEGIN_PARENS(vseq) \
       	), \
       BOOST_VMD_DETAIL_IDENTIFIER_EX_FAILURE_D, \
       BOOST_VMD_DETAIL_IDENTIFIER_SEQUENCE_D \

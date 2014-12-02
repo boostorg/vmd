@@ -2,16 +2,17 @@
 #define BOOST_VMD_DETAIL_LIST_HPP
 
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/pop_back.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identifier.hpp>
-#include <boost/vmd/is_begin_tuple.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/is_list.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/parens.hpp>
 
 #define BOOST_VMD_DETAIL_LIST_CHECK_FOR_LIST(tuple) \
 	BOOST_PP_IIF \
@@ -91,7 +92,7 @@
 #define BOOST_VMD_DETAIL_LIST_TUPLE(param) \
 	BOOST_VMD_DETAIL_LIST_CHECK_RETURN \
 		( \
-		BOOST_VMD_BEGIN_TUPLE(param,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_DETAIL_PARENS(param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -99,7 +100,7 @@
 	BOOST_VMD_DETAIL_LIST_CHECK_RETURN_D \
 		( \
 		d, \
-		BOOST_VMD_BEGIN_TUPLE(param,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_DETAIL_PARENS(param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -132,7 +133,7 @@
 #define BOOST_VMD_DETAIL_LIST_PROCESS(list) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_TUPLE(list), \
+		BOOST_PP_IS_BEGIN_PARENS(list), \
 		BOOST_VMD_DETAIL_LIST_TUPLE, \
 		BOOST_VMD_DETAIL_LIST_EMPTY \
 		) \
@@ -156,7 +157,7 @@
 #define BOOST_VMD_DETAIL_LIST_PROCESS_D(d,list) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_BEGIN_TUPLE(list), \
+		BOOST_PP_IS_BEGIN_PARENS(list), \
 		BOOST_VMD_DETAIL_LIST_TUPLE_D, \
 		BOOST_VMD_DETAIL_LIST_EMPTY_D \
 		) \
