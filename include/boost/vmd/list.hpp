@@ -5,6 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
@@ -35,10 +36,20 @@
    				and the second element is the preprocessor tokens after the beginning list.
     
 */
-#define BOOST_VMD_LIST(param) \
+#define BOOST_VMD_LIST(vseq) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_LIST(vseq), \
+		vseq \
+		) \
 /**/
 
-#define BOOST_VMD_LIST_D(d,param) \
+#define BOOST_VMD_LIST_D(d,vseq) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_LIST_D(d,vseq), \
+		vseq \
+		) \
 /**/
 
 /** \brief Expands to the beginning list of a macro parameter.

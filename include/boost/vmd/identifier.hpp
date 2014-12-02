@@ -5,10 +5,8 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/control/iif.hpp>
-#include <boost/preprocessor/logical/bool.hpp>
-#include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/preprocessor/variadic/size.hpp>
+// #include <boost/preprocessor/control/expr_iif.hpp>
+// #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/detail/identifier.hpp>
 #if BOOST_VMD_ASSERT_DATA
 #include <boost/vmd/assert.hpp>
@@ -62,10 +60,20 @@
     of an optional v-id, that v-id will never match a beginning v-identifier.
     			
 */
-#define BOOST_VMD_IDENTIFIER(vseq) \
+#define BOOST_VMD_IDENTIFIER(...) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_IDENTIFIER(__VA_ARGS__), \
+		BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__) \
+		) \
 /**/
 
-#define BOOST_VMD_IDENTIFIER_D(d,vseq) \
+#define BOOST_VMD_IDENTIFIER_D(d,...) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_IDENTIFIER_D(d,__VA_ARGS__), \
+		BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__) \
+		) \
 /**/
 
 /** \brief Looks for a beginning identifier in a v-sequence.

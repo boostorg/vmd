@@ -5,6 +5,8 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/preprocessor/control/expr_iif.hpp>
+#include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/identity.hpp>
@@ -26,12 +28,17 @@
 /** \file
 */
 
-#define BOOST_VMD_ARRAY(param) \
+#define BOOST_VMD_ARRAY(vseq) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_ARRAY(vseq), \
+		vseq \
+		) \
 /**/
 
 /** \brief Expands to the beginning array of a macro parameter.
 
-    param = a macro parameter.
+    ... = a macro parameter.
 
     returns   = A beginning array of the macro parameter.
     			If the param does not start with an array, expands to nothing.
@@ -43,17 +50,17 @@
 
 /** \brief Expands to the preprocessor tokens after the beginning array of a macro parameter.
 
-    param = a macro parameter.
+    veq = a vsequence
 
     returns   = The preprocessor tokens after the beginning array of the macro parameter.
     			If the param does not start with an array, expands to nothing.
     
 */
-#define BOOST_VMD_AFTER_ARRAY(param) \
+#define BOOST_VMD_AFTER_ARRAY(vseq) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_BEGIN_ARRAY(param,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_BEGIN_ARRAY(vseq,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

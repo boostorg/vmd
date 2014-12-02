@@ -5,6 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
@@ -34,10 +35,20 @@
     
 */
 
-#define BOOST_VMD_SEQ(seq) \
+#define BOOST_VMD_SEQ(vseq) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_SEQ(vseq), \
+		vseq \
+		) \
 /**/
 
-#define BOOST_VMD_SEQ_D(d,seq) \
+#define BOOST_VMD_SEQ_D(d,vseq) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_SEQ_D(d,vseq), \
+		vseq \
+		) \
 /**/
 
 /** \brief Expands to the beginning seq of a macro parameter.

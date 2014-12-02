@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
@@ -37,6 +37,11 @@
     
 */
 #define BOOST_VMD_NUMBER(vseq) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_NUMBER(vseq), \
+		vseq \
+		) \
 /**/
 
 /** \brief Expands to the beginning number of a macro parameter.

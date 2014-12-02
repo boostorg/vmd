@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/tuple.hpp>
 #if BOOST_VMD_ASSERT_DATA
@@ -22,6 +22,14 @@
 */
 
 
+#define BOOST_VMD_TUPLE(vseq) \
+	BOOST_PP_EXPR_IIF \
+		( \
+		BOOST_VMD_IS_TUPLE(vseq), \
+		vseq \
+		) \
+/**/
+
 /** \brief Expands to the beginning tuple of a vsequence.
 
     vseq = a vsequence.
@@ -35,7 +43,6 @@
 	BOOST_VMD_DETAIL_TUPLE(__VA_ARGS__) \
 /**/
 
-#define BOOST_VMD_TUPLE(vseq)
 
 /** \brief Expands to the preprocessor tokens after the beginning tuple of a macro parameter.
 
