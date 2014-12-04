@@ -9,6 +9,7 @@
 #include <boost/vmd/array_elem.hpp>
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/empty.hpp>
+#include <boost/vmd/equal.hpp>
 #include <boost/vmd/identifier.hpp>
 #include <boost/vmd/identifier_elem.hpp>
 #include <boost/vmd/identity.hpp>

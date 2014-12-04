@@ -12,6 +12,8 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/list/append.hpp>
+#include <boost/preprocessor/logical/bitand.hpp>
+#include <boost/preprocessor/logical/bitnor.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/not.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
@@ -24,6 +26,7 @@
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
+#include <boost/preprocessor/variadic/size.hpp>
 #include <boost/vmd/array.hpp>
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identifier.hpp>
@@ -36,6 +39,7 @@
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/variadic_pop_front.hpp>
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT_ELEM 0
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ELEM 1
@@ -859,6 +863,77 @@
 	(d,elem,vseq,nm) \
 /**/
 
+#define BOOST_VMD_DETAIL_TYPE_TUPLE_SEQUENCE(tuple) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,tuple)), \
+		BOOST_PP_TUPLE_ELEM(0,BOOST_PP_TUPLE_ELEM(0,tuple)), \
+		BOOST_VMD_TYPE_VSEQUENCE \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_TYPE_TUPLE_I(tuple) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+		BOOST_VMD_IDENTITY(BOOST_VMD_TYPE_EMPTY), \
+		BOOST_VMD_DETAIL_TYPE_TUPLE_SEQUENCE \
+		) \
+	(tuple) \
+/**/
+
+#define BOOST_VMD_DETAIL_TYPE_TUPLE(tuple) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_TYPE_TUPLE_I(tuple)) \
+/**/
+
+#define BOOST_VMD_DETAIL_TYPE_SINGLE(...) \
+	BOOST_VMD_DETAIL_TYPE_TUPLE \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM \
+			( \
+			BOOST_VMD_ALLOW_ALL, \
+			0, \
+			__VA_ARGS__, \
+			BOOST_VMD_RETURN_AFTER, \
+			BOOST_VMD_RETURN_TYPE \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_TYPE_MORE(...) \
+	BOOST_VMD_DETAIL_TYPE_TUPLE \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM \
+			( \
+			BOOST_VMD_ALLOW_ALL, \
+			0, \
+			BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__), \
+			BOOST_VMD_RETURN_AFTER, \
+			BOOST_VMD_RETURN_TYPE, \
+			BOOST_VMD_DETAIL_VARIADIC_POP_FRONT(__VA_ARGS__) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_MULTI_TUPLE(tuple) \
+	BOOST_PP_BITNOR \
+		( \
+		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,tuple)) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_UNARY_TUPLE(tuple) \
+	BOOST_PP_BITAND \
+		( \
+		BOOST_PP_NOT \
+			( \
+			BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)) \
+			), \
+		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,tuple)) \
+		) \
+/**/
+
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
 // ELEM
@@ -1044,6 +1119,34 @@
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE_D(d,__VA_ARGS__) \
 		) \
+/**/
+
+// UNARY
+
+#define BOOST_VMD_DETAIL_IS_UNARY(vseq) \
+	BOOST_VMD_DETAIL_IS_UNARY_TUPLE \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM(BOOST_VMD_ALLOW_AFTER,0,vseq,BOOST_VMD_RETURN_AFTER) \
+		) \
+/**/
+
+// MULTI
+
+#define BOOST_VMD_DETAIL_IS_MULTI(vseq) \
+	BOOST_VMD_DETAIL_IS_MULTI_TUPLE \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM(BOOST_VMD_ALLOW_AFTER,0,vseq,BOOST_VMD_RETURN_AFTER) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_TYPE(...) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_EQUAL(BOOST_PP_VARIADIC_SIZE(__VA_ARGS__),1), \
+		BOOST_VMD_DETAIL_TYPE_SINGLE, \
+		BOOST_VMD_DETAIL_TYPE_MORE \
+		) \
+	(__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_SEQUENCE_HPP */
