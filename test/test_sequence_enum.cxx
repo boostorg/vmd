@@ -6,7 +6,7 @@
 #include <boost/vmd/list.hpp>
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/seq.hpp>
-#include <boost/vmd/sequence.hpp>
+#include <boost/vmd/generic/enum.hpp>
 #include <boost/vmd/tuple.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>

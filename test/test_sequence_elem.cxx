@@ -1,23 +1,15 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/identifier.hpp>
+#include <boost/vmd/identifier/is_begin_identifier.hpp>
+#include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/list.hpp>
-#include <boost/vmd/number.hpp>
-#include <boost/vmd/seq.hpp>
-#include <boost/vmd/sequence.hpp>
-#include <boost/vmd/tuple.hpp>
+#include <boost/vmd/number/is_begin_number.hpp>
+#include <boost/vmd/generic/elem.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
-#include <boost/preprocessor/array/elem.hpp>
-#include <boost/preprocessor/array/size.hpp>
-#include <boost/preprocessor/list/at.hpp>
-#include <boost/preprocessor/list/size.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/preprocessor/variadic/size.hpp>
 
 int main()
   {
@@ -42,35 +34,28 @@ int main()
   #define ASEQUENCE3 ASEQ ANUMBER2 ATUPLE
   #define ASEQUENCE4
   
-  /* ELEM */
+  /* DATA ELEM */
   
   BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(2,BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ELEM(1,ASEQUENCE3,BOOST_VMD_RETURN_TYPE,BOOST_VMD_RETURN_AFTER))),2);
   BOOST_TEST_EQ(BOOST_PP_SEQ_ELEM(0,BOOST_PP_TUPLE_ELEM(1,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(1,ASEQUENCE2,BOOST_VMD_RETURN_TYPE,BOOST_VMD_RETURN_AFTER)))),25);
   BOOST_TEST(BOOST_VMD_IS_BEGIN_IDENTIFIER(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ELEM(2,ASEQUENCE,BOOST_VMD_RETURN_TYPE,BOOST_VMD_RETURN_AFTER))));
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(2,ASEQUENCE4,BOOST_VMD_RETURN_TYPE,BOOST_VMD_RETURN_AFTER))));
   
-  /* DATA ELEM */
+  /* ELEM */
   
   BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(2,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(2,ASEQUENCE,BOOST_VMD_RETURN_AFTER))),2);
   BOOST_TEST_EQ(BOOST_PP_SEQ_ELEM(0,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(1,ASEQUENCE2,BOOST_VMD_RETURN_AFTER))),25);
   BOOST_TEST(BOOST_VMD_IS_BEGIN_NUMBER(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ELEM(0,ASEQUENCE3,BOOST_VMD_RETURN_AFTER))));
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(0,ASEQUENCE4,BOOST_VMD_RETURN_AFTER))));
   
-  /* AFTER ELEM */
-  
-  BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(3,BOOST_VMD_AFTER_ELEM(1,ASEQUENCE3)),3);
-  BOOST_TEST(BOOST_VMD_IS_BEGIN_IDENTIFIER(BOOST_VMD_AFTER_ELEM(2,ASEQUENCE)));
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_AFTER_ELEM(3,ASEQUENCE4)));
-  BOOST_TEST_EQ(BOOST_VMD_SIZE(BOOST_VMD_AFTER_ELEM(1,ASEQUENCE2)),3);
-  
-  /* ONLY ELEM */
+  /* DATA ONLY ELEM */
   
   BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(4,ASEQUENCE,BOOST_VMD_RETURN_TYPE)),BOOST_VMD_TYPE_ARRAY);
   BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ELEM(3,ASEQUENCE2,BOOST_VMD_RETURN_TYPE)),249);
   BOOST_TEST_EQ(BOOST_PP_SEQ_ELEM(2,BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ELEM(0,ASEQUENCE3,BOOST_VMD_RETURN_TYPE))),27);
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(3,ASEQUENCE3,BOOST_VMD_RETURN_TYPE)));
   
-  /* DATA ONLY ELEM */
+  /* ONLY ELEM */
   
   BOOST_TEST(BOOST_VMD_IS_IDENTIFIER(BOOST_VMD_ELEM(3,ASEQUENCE),(tvt,aaa,ggh)));
   BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(3,BOOST_VMD_ELEM(4,ASEQUENCE2)),3);

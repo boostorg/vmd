@@ -3,7 +3,7 @@
 #else
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple.hpp>
+#include <boost/vmd/tuple/begin_tuple.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>

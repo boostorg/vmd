@@ -172,6 +172,7 @@ test-suite variadic_macro_data
        [ run test_number_elem.cpp ]
        [ run test_seq.cpp ]
        [ run test_seq_elem.cpp ]
+       [ run test_sequence_after_elem.cpp ]
        [ run test_sequence_elem.cpp ]
        [ run test_sequence_enum.cpp ]
        [ run test_sequence_size.cpp ]
@@ -508,6 +509,9 @@ test-suite variadic_macro_data_gh
        [ run test_seq_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_seq_elem_gh ]
+       [ run test_sequence_after_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_after_elem_gh ]
        [ run test_sequence_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_sequence_elem_gh ]

@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/tuple.hpp>
+#include <boost/vmd/tuple/assert_is_tuple.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 

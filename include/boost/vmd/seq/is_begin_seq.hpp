@@ -5,9 +5,9 @@
 
 #if BOOST_PP_VARIADICS
 
-// #include <boost/preprocessor/logical/not.hpp>
-// #include <boost/vmd/is_empty.hpp>
-// #include <boost/vmd/seq/begin_seq.hpp>
+#include <boost/preprocessor/logical/not.hpp>
+#include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/seq/begin_seq.hpp>
 
 /*
 

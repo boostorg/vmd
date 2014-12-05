@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/identifier.hpp>
+#include <boost/vmd/identifier/assert_is_identifier.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 
