@@ -16,7 +16,7 @@
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/mods.hpp>
-#include <boost/vmd/detail/split_identifier.hpp>
+#include <boost/vmd/detail/elem_split_identifier.hpp>
 
 #define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_IDS(id,mods) \
 	BOOST_PP_EXPR_IF \

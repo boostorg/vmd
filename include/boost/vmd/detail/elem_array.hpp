@@ -7,7 +7,7 @@
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/elem.hpp>
 #include <boost/vmd/detail/mods.hpp>
-#include <boost/vmd/detail/split_array.hpp>
+#include <boost/vmd/detail/elem_split_array.hpp>
 
 #define BOOST_VMD_DETAIL_ELEM_ARRAY_PROCESS(elem,...) \
 	BOOST_VMD_DETAIL_ELEM(BOOST_VMD_ELEM(elem,__VA_ARGS__,BOOST_VMD_SPECIFIC_ARRAY),BOOST_VMD_TYPE_ARRAY) \

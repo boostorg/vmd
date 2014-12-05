@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/detail/after_tuple.hpp>
+#include <boost/vmd/detail/elem_after_tuple.hpp>
 #include <boost/vmd/detail/elem_tuple.hpp>
 
 /*

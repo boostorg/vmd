@@ -7,7 +7,7 @@
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/elem.hpp>
 #include <boost/vmd/detail/mods.hpp>
-#include <boost/vmd/detail/split_list.hpp>
+#include <boost/vmd/detail/elem_split_list.hpp>
 
 #define BOOST_VMD_DETAIL_ELEM_LIST_PROCESS(elem,...) \
 	BOOST_VMD_DETAIL_ELEM(BOOST_VMD_ELEM(elem,__VA_ARGS__,BOOST_VMD_SPECIFIC_LIST),BOOST_VMD_TYPE_LIST) \

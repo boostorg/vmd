@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/detail/after_array.hpp>
+#include <boost/vmd/detail/elem_after_array.hpp>
 #include <boost/vmd/detail/elem_array.hpp>
 
 /*

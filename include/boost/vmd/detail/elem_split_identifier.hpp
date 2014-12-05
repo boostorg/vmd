@@ -13,7 +13,7 @@
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/mods.hpp>
-#include <boost/vmd/detail/split.hpp>
+#include <boost/vmd/detail/elem_split.hpp>
 
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_IDS(tuple,mods) \
 	BOOST_PP_IF \

@@ -10,7 +10,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/sequence.hpp>
 #include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/after.hpp>
+#include <boost/vmd/detail/elem_after.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/mods.hpp>
 
