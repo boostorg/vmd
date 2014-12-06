@@ -33,7 +33,7 @@
               
 */
 
-#define BOOST_VMD_IS_EMPTY_ARRAY_IRESULT(param) \
+#define BOOST_VMD_IS_EMPTY_ARRAY_IR(param) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_ARRAY(param), \
@@ -44,7 +44,7 @@
 /**/
 
 #define BOOST_VMD_IS_EMPTY_ARRAY(param) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_ARRAY_IRESULT(param)) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_ARRAY_IR(param)) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

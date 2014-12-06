@@ -13,7 +13,7 @@
 #include <boost/vmd/detail/is_array.hpp>
 #include <boost/vmd/detail/mods.hpp>
 
-#define BOOST_VMD_DETAIL_ARRAY_ICHECK_FOR_ARRAY(tuple) \
+#define BOOST_VMD_DETAIL_ARRAY_CHECK_FOR_ARRAY_IR(tuple) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_IS_ARRAY \
@@ -31,7 +31,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_ARRAY_CHECK_FOR_ARRAY(tuple) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_ARRAY_ICHECK_FOR_ARRAY(tuple)) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_ARRAY_CHECK_FOR_ARRAY_IR(tuple)) \
 /**/
 
 #define BOOST_VMD_DETAIL_ARRAY_PROCESS(tuple) \
