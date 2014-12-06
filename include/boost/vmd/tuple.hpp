@@ -6,11 +6,13 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/vmd/tuple/after_tuple.hpp>
+#include <boost/vmd/tuple/after_tuple_elem.hpp>
 #include <boost/vmd/tuple/assert_is_tuple.hpp>
 #include <boost/vmd/tuple/begin_tuple.hpp>
 #include <boost/vmd/tuple/is_begin_tuple.hpp>
 #include <boost/vmd/tuple/is_tuple.hpp>
 #include <boost/vmd/tuple/tuple.hpp>
+#include <boost/vmd/tuple/tuple_elem.hpp>
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_TUPLE_HPP */

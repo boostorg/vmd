@@ -6,24 +6,18 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/vmd/array.hpp>
-#include <boost/vmd/array_elem.hpp>
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/equal.hpp>
+#include <boost/vmd/generic.hpp>
 #include <boost/vmd/identifier.hpp>
-#include <boost/vmd/identifier_elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_parens_empty.hpp>
 #include <boost/vmd/list.hpp>
-#include <boost/vmd/list_elem.hpp>
 #include <boost/vmd/number.hpp>
-#include <boost/vmd/number_elem.hpp>
 #include <boost/vmd/seq.hpp>
-#include <boost/vmd/seq_elem.hpp>
-#include <boost/vmd/sequence.hpp>
 #include <boost/vmd/tuple.hpp>
-#include <boost/vmd/tuple_elem.hpp>
 #include <boost/vmd/types.hpp>
 
 #endif /* BOOST_PP_VARIADICS */

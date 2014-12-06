@@ -15,7 +15,6 @@
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/idprefix.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/mods.hpp>

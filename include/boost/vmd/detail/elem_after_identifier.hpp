@@ -6,9 +6,9 @@
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
+#include <boost/vmd/generic/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/sequence.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/elem_after.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>

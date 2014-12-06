@@ -1,7 +1,7 @@
 #if !defined(BOOST_VMD_DETAIL_AFTER_SEQ_HPP)
 #define BOOST_VMD_DETAIL_AFTER_SEQ_HPP
 
-#include <boost/vmd/sequence.hpp>
+#include <boost/vmd/generic/elem.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/elem_after.hpp>
 

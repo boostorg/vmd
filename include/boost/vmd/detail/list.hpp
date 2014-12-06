@@ -6,9 +6,8 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/pop_back.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/vmd/identifier.hpp>
+#include <boost/vmd/identifier/begin_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/is_list.hpp>
 #include <boost/vmd/detail/mods.hpp>

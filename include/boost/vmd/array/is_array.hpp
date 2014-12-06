@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/tuple.hpp>
+#include <boost/vmd/tuple/begin_tuple.hpp>
 #include <boost/vmd/detail/is_array.hpp>
 #include <boost/vmd/detail/is_from.hpp>
 

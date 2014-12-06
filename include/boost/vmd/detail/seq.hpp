@@ -12,7 +12,6 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/parens.hpp>

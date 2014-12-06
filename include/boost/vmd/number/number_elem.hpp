@@ -5,7 +5,6 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/detail/elem_after_number.hpp>
 #include <boost/vmd/detail/elem_number.hpp>
 
 /*
@@ -19,10 +18,6 @@
 
 #define BOOST_VMD_NUMBER_ELEM(elem,...) \
 	BOOST_VMD_DETAIL_ELEM_NUMBER(elem,__VA_ARGS__) \
-/**/
-
-#define BOOST_VMD_AFTER_NUMBER_ELEM(elem,vseq) \
-	BOOST_VMD_DETAIL_ELEM_AFTER_NUMBER(elem,vseq) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

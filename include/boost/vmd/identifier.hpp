@@ -6,9 +6,11 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/vmd/identifier/after_identifier.hpp>
+#include <boost/vmd/identifier/after_identifier_elem.hpp>
 #include <boost/vmd/identifier/assert_is_identifier.hpp>
 #include <boost/vmd/identifier/begin_identifier.hpp>
 #include <boost/vmd/identifier/identifier.hpp>
+#include <boost/vmd/identifier/identifier_elem.hpp>
 #include <boost/vmd/identifier/is_begin_identifier.hpp>
 #include <boost/vmd/identifier/is_identifier.hpp>
 

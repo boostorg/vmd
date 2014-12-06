@@ -5,7 +5,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/sequence.hpp>
+#include <boost/vmd/generic/type.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 

@@ -48,11 +48,17 @@ project variadic_macro_data_tests : requirements <warnings>on
 test-suite variadic_macro_data
     : 
        [ run test_after_array.cpp ]
+       [ run test_after_array_elem.cpp ]
        [ run test_after_identifier.cpp ]
+       [ run test_after_identifier_elem.cpp ]
        [ run test_after_list.cpp ]
+       [ run test_after_list_elem.cpp ]
        [ run test_after_number.cpp ]
+       [ run test_after_number_elem.cpp ]
        [ run test_after_seq.cpp ]
+       [ run test_after_seq_elem.cpp ]
        [ run test_after_tuple.cpp ]
+       [ run test_after_tuple_elem.cpp ]
        [ run test_array.cpp ]
        [ run test_array_elem.cpp ]
        [ run test_array_empty.cpp ]
@@ -190,21 +196,39 @@ test-suite variadic_macro_data_gh
        [ run test_after_array.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_array_gh ]
+       [ run test_after_array_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_array_elem_gh ]
        [ run test_after_identifier.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_identifier_gh ]
+       [ run test_after_identifier_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_identifier_elem_gh ]
        [ run test_after_list.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_list_gh ]
+       [ run test_after_list_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_list_elem_gh ]
        [ run test_after_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_number_gh ]
+       [ run test_after_number_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_number_elem_gh ]
        [ run test_after_seq.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_seq_gh ]
+       [ run test_after_seq_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_seq_elem_gh ]
        [ run test_after_tuple.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_tuple_gh ]
+       [ run test_after_tuple_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_after_tuple_elem_gh ]
        [ run test_array.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_array_gh ]
