@@ -1,23 +1,16 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/identifier.hpp>
-#include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/list.hpp>
-#include <boost/vmd/number.hpp>
-#include <boost/vmd/seq.hpp>
+#include <boost/vmd/identifier/is_identifier.hpp>
+#include <boost/vmd/seq/is_seq.hpp>
 #include <boost/vmd/generic/to_array.hpp>
-#include <boost/vmd/tuple.hpp>
+#include <boost/vmd/types.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/array/elem.hpp>
 #include <boost/preprocessor/array/size.hpp>
 #include <boost/preprocessor/list/at.hpp>
-#include <boost/preprocessor/list/size.hpp>
-#include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/preprocessor/variadic/size.hpp>
 
 int main()
   {

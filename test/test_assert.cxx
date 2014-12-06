@@ -1,14 +1,16 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/array.hpp>
+#include <boost/vmd/array/begin_array.hpp>
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/identifier.hpp>
+#include <boost/vmd/identifier/begin_identifier.hpp>
+#include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/list.hpp>
-#include <boost/vmd/number.hpp>
-#include <boost/vmd/seq.hpp>
-#include <boost/vmd/tuple.hpp>
+#include <boost/vmd/list/begin_list.hpp>
+#include <boost/vmd/number/begin_number.hpp>
+#include <boost/vmd/number/is_number.hpp>
+#include <boost/vmd/seq/begin_seq.hpp>
+#include <boost/vmd/tuple/begin_tuple.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/arithmetic/dec.hpp>
