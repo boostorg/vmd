@@ -20,5 +20,9 @@
 	BOOST_VMD_DETAIL_TYPE(__VA_ARGS__) \
 /**/
 
+#define BOOST_VMD_TYPE_D(d,...) \
+	BOOST_VMD_DETAIL_TYPE_D(d,__VA_ARGS__) \
+/**/
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_TYPE_HPP */

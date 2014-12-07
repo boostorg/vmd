@@ -20,5 +20,9 @@
 	BOOST_VMD_DETAIL_ELEM_ARRAY(elem,__VA_ARGS__) \
 /**/
 
+#define BOOST_VMD_ARRAY_ELEM_D(d,elem,...) \
+	BOOST_VMD_DETAIL_ELEM_ARRAY_D(d,elem,__VA_ARGS__) \
+/**/
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_ARRAY_ELEM_HPP */

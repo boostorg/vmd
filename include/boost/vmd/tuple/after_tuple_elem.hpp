@@ -20,5 +20,9 @@
 	BOOST_VMD_DETAIL_ELEM_AFTER_TUPLE(elem,vseq) \
 /**/
 
+#define BOOST_VMD_AFTER_TUPLE_ELEM_D(d,elem,vseq) \
+	BOOST_VMD_DETAIL_ELEM_AFTER_TUPLE_D(d,elem,vseq) \
+/**/
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_AFTER_TUPLE_ELEM_HPP */

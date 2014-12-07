@@ -20,5 +20,9 @@
 	BOOST_VMD_DETAIL_IS_UNARY(vseq) \
 /**/
 
+#define BOOST_VMD_IS_UNARY_D(d,vseq) \
+	BOOST_VMD_DETAIL_IS_UNARY_D(d,vseq) \
+/**/
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_IS_UNARY_HPP */

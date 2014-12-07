@@ -20,5 +20,9 @@
 	BOOST_VMD_DETAIL_ELEM_AFTER_ARRAY(elem,vseq) \
 /**/
 
+#define BOOST_VMD_AFTER_ARRAY_ELEM_D(d,elem,vseq) \
+	BOOST_VMD_DETAIL_ELEM_AFTER_ARRAY_D(d,elem,vseq) \
+/**/
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_AFTER_ARRAY_ELEM_HPP */

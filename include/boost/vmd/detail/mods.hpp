@@ -8,14 +8,14 @@
 #include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/tuple/pop_front.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
-#include <boost/preprocessor/variadic/size.hpp>
+#include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/is_from.hpp>
-#include <boost/vmd/detail/variadic_pop_front.hpp>
 
 #define BOOST_VMD_DETAIL_MODS_NO_RETURN 0
 #define BOOST_VMD_DETAIL_MODS_RETURN 1
@@ -436,7 +436,7 @@
 	BOOST_VMD_DETAIL_MODS_OP_CURRENT(d,state,BOOST_VMD_DETAIL_MODS_STATE_CURRENT(state)) \
 /**/
 
-#define BOOST_VMD_DETAIL_MODS(allow,...) \
+#define BOOST_VMD_DETAIL_MODS_LOOP(allow,tuple) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		3, \
@@ -445,9 +445,9 @@
 			BOOST_VMD_DETAIL_MODS_PRED, \
 			BOOST_VMD_DETAIL_MODS_OP, \
 				( \
-				BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__), \
+				tuple, \
 				0, \
-				BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
+				BOOST_PP_TUPLE_SIZE(tuple), \
 				(0,0,0,), \
 				allow \
 				) \
@@ -455,7 +455,7 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_MODS_D(d,allow,...) \
+#define BOOST_VMD_DETAIL_MODS_LOOP_D(d,allow,tuple) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		3, \
@@ -464,9 +464,9 @@
 			BOOST_VMD_DETAIL_MODS_PRED, \
 			BOOST_VMD_DETAIL_MODS_OP, \
 				( \
-				BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__), \
+				tuple, \
 				0, \
-				BOOST_PP_VARIADIC_SIZE(__VA_ARGS__), \
+				BOOST_PP_TUPLE_SIZE(tuple), \
 				(0,0,0,), \
 				allow \
 				) \
@@ -474,46 +474,46 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NEW_MODS_VAR(allow,...) \
-	BOOST_VMD_DETAIL_MODS \
+#define BOOST_VMD_DETAIL_NEW_MODS_VAR(allow,tuple) \
+	BOOST_VMD_DETAIL_MODS_LOOP \
 		( \
 		allow, \
-		BOOST_VMD_DETAIL_VARIADIC_POP_FRONT(__VA_ARGS__) \
+		BOOST_PP_TUPLE_POP_FRONT(tuple) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NEW_MODS_VAR_D(d,allow,...) \
-	BOOST_VMD_DETAIL_MODS_D \
+#define BOOST_VMD_DETAIL_NEW_MODS_VAR_D(d,allow,tuple) \
+	BOOST_VMD_DETAIL_MODS_LOOP_D \
 		( \
 		d, \
 		allow, \
-		BOOST_VMD_DETAIL_VARIADIC_POP_FRONT(__VA_ARGS__) \
+		BOOST_PP_TUPLE_POP_FRONT(tuple) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NEW_MODS_IR(allow,...) \
+#define BOOST_VMD_DETAIL_NEW_MODS_IR(allow,tuple) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_EQUAL(BOOST_PP_VARIADIC_SIZE(__VA_ARGS__),1), \
+		BOOST_PP_EQUAL(BOOST_PP_TUPLE_SIZE(tuple),1), \
 		BOOST_VMD_IDENTITY((0,0,0,)), \
 		BOOST_VMD_DETAIL_NEW_MODS_VAR \
 		) \
-	(allow,__VA_ARGS__) \
+	(allow,tuple) \
 /**/
 
-#define BOOST_VMD_DETAIL_NEW_MODS_IR_D(d,allow,...) \
+#define BOOST_VMD_DETAIL_NEW_MODS_IR_D(d,allow,tuple) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_EQUAL(BOOST_PP_VARIADIC_SIZE(__VA_ARGS__),1), \
+		BOOST_PP_EQUAL(BOOST_PP_TUPLE_SIZE(tuple),1), \
 		BOOST_VMD_IDENTITY((0,0,0,)), \
 		BOOST_VMD_DETAIL_NEW_MODS_VAR_D \
 		) \
-	(d,allow,__VA_ARGS__) \
+	(d,allow,tuple) \
 /**/
 
 /*
 
-  Returns a three-element tuple of number values.
+  Returns a four-element tuple:
   
   First tuple element  = 0 No type return
                          1 Exact type return
@@ -527,7 +527,7 @@
   Third tuple element  = 0 No identifier index
                          1 Identifier Index
                          
-  Third tuple element  = Tuple of other identifiers
+  Fourth tuple element = Tuple of other identifiers
                          
   Input                = allow, either
                          BOOST_VMD_ALLOW_ALL
@@ -548,11 +548,11 @@
 */
 
 #define BOOST_VMD_DETAIL_NEW_MODS(allow,...) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_NEW_MODS_IR(allow,__VA_ARGS__)) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_NEW_MODS_IR(allow,BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__))) \
 /**/
 
 #define BOOST_VMD_DETAIL_NEW_MODS_D(d,allow,...) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_NEW_MODS_IR_D(d,allow,__VA_ARGS__)) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_NEW_MODS_IR_D(d,allow,BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__))) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_MODS_HPP */

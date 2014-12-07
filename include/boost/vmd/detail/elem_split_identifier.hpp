@@ -108,18 +108,12 @@
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_PRE_IR(tuple,mods,cempty)) \
 /**/
 
-#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER(elem,vseq,mods) \
+#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_SPL(tuple,mods) \
 	BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_PRE \
 		( \
 		BOOST_VMD_DETAIL_ELEM_SPLIT \
 			( \
-			BOOST_VMD_ELEM \
-				( \
-				elem, \
-				vseq, \
-				BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, \
-				BOOST_VMD_RETURN_AFTER \
-				), \
+			tuple, \
 			BOOST_VMD_TYPE_IDENTIFIER \
 			), \
 		mods, \
@@ -127,6 +121,35 @@
 			( \
 			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
 			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER(elem,vseq,mods) \
+	BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_SPL \
+		( \
+		BOOST_VMD_ELEM \
+			( \
+			elem, \
+			vseq, \
+			BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, \
+			BOOST_VMD_RETURN_AFTER \
+			), \
+		mods \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_D(d,elem,vseq,mods) \
+	BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_SPL \
+		( \
+		BOOST_VMD_ELEM_D \
+			( \
+			d, \
+			elem, \
+			vseq, \
+			BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, \
+			BOOST_VMD_RETURN_AFTER \
+			), \
+		mods \
 		) \
 /**/
 

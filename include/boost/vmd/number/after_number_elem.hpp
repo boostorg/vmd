@@ -20,5 +20,9 @@
 	BOOST_VMD_DETAIL_ELEM_AFTER_NUMBER(elem,vseq) \
 /**/
 
+#define BOOST_VMD_AFTER_NUMBER_ELEM_D(d,elem,vseq) \
+	BOOST_VMD_DETAIL_ELEM_AFTER_NUMBER_D(d,elem,vseq) \
+/**/
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_AFTER_NUMBER_ELEM_HPP */

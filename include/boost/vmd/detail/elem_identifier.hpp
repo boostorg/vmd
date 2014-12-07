@@ -107,17 +107,12 @@
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_PRE_IR(id,mods,cempty)) \
 /**/
 
-#define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_PROCESS(elem,vseq,mods) \
+#define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_PROCESS_TP(id,mods) \
 	BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_PRE \
 		( \
 		BOOST_VMD_DETAIL_ELEM \
 			( \
-			BOOST_VMD_ELEM \
-				( \
-				elem, \
-				vseq, \
-				BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE \
-				), \
+			id, \
 			BOOST_VMD_TYPE_IDENTIFIER \
 			), \
 		mods, \
@@ -125,6 +120,33 @@
 			( \
 			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
 			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_PROCESS(elem,vseq,mods) \
+	BOOST_VMD_DETAIL_ELEM_IDENTIFIER_PROCESS_TP \
+		( \
+		BOOST_VMD_ELEM \
+			( \
+			elem, \
+			vseq, \
+			BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE \
+			), \
+		mods \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_PROCESS_D(d,elem,vseq,mods) \
+	BOOST_VMD_DETAIL_ELEM_IDENTIFIER_PROCESS_TP \
+		( \
+		BOOST_VMD_ELEM_D \
+			( \
+			d, \
+			elem, \
+			vseq, \
+			BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE \
+			), \
+		mods \
 		) \
 /**/
 
@@ -138,9 +160,29 @@
 	(elem,vseq,mods) \
 /**/
 
+#define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_MODS_D(d,elem,vseq,mods) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_TUPLE_ELEM(BOOST_VMD_DETAIL_MODS_TUPLE_AFTER,mods), \
+		BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_D, \
+        BOOST_VMD_DETAIL_ELEM_IDENTIFIER_PROCESS_D \
+		) \
+	(d,elem,vseq,mods) \
+/**/
+
 #define BOOST_VMD_DETAIL_ELEM_IDENTIFIER(elem,...) \
 	BOOST_VMD_DETAIL_ELEM_IDENTIFIER_MODS \
 		( \
+		elem, \
+		BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__), \
+		BOOST_VMD_DETAIL_NEW_MODS(BOOST_VMD_ALLOW_INDEX,__VA_ARGS__) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_D(d,elem,...) \
+	BOOST_VMD_DETAIL_ELEM_IDENTIFIER_MODS_D \
+		( \
+		d, \
 		elem, \
 		BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__), \
 		BOOST_VMD_DETAIL_NEW_MODS(BOOST_VMD_ALLOW_INDEX,__VA_ARGS__) \

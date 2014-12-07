@@ -8,14 +8,7 @@
 #include <boost/vmd/generic/type.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_CMP_ID(vseq1,vseq2) \
-	BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER(vseq1,vseq2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_CMP_NM(vseq1,vseq2) \
-	BOOST_PP_EQUAL(vseq1,vseq2) \
-/**/
+#include <boost/vmd/detail/equal_type.hpp>
 
 #define BOOST_VMD_DETAIL_EQUAL_CNI_CMP_IR(vseq1,vseq2,vtype1,vtype2) \
 	BOOST_PP_IIF \
@@ -25,8 +18,8 @@
 		BOOST_PP_IIF \
 			( \
 			BOOST_VMD_DETAIL_EQUAL_TYPE(vtype1,BOOST_VMD_TYPE_IDENTIFIER), \
-			BOOST_VMD_DETAIL_EQUAL_CNI_CMP_ID, \
-			BOOST_VMD_DETAIL_EQUAL_CNI_CMP_NM \
+			BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER, \
+			BOOST_PP_EQUAL \
 			) \
 		) \
 	(vseq1,vseq2) \
@@ -86,8 +79,14 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_TYPE(type1,type2) \
-	BOOST_PP_EQUAL(type1,type2) \
+#define BOOST_VMD_DETAIL_EQUAL_D(d,vseq1,vseq2) \
+	BOOST_VMD_DETAIL_EQUAL_WT \
+		( \
+		vseq1, \
+		vseq2, \
+		BOOST_VMD_TYPE_D(d,vseq1), \
+		BOOST_VMD_TYPE_D(d,vseq2) \
+		) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_EQUAL_HPP */

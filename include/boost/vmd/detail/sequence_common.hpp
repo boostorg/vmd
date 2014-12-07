@@ -542,8 +542,9 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_OP_ID(d,state) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_IS_EMPTY_LIST \
+		BOOST_VMD_IS_EMPTY_LIST_D \
 			( \
+			d, \
 			BOOST_VMD_BEGIN_IDENTIFIER_D \
 				( \
 				d, \
