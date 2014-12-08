@@ -63,6 +63,20 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_VELEM_D(d,tuple,mods) \
+	BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_CHK_PRE \
+		( \
+		BOOST_VMD_DETAIL_ELEM_AFTER_D \
+			( \
+			d, \
+			tuple, \
+			BOOST_VMD_TYPE_IDENTIFIER \
+			), \
+		tuple, \
+		mods \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_PROCESS(elem,vseq,mods) \
 	BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_VELEM \
 		( \
@@ -78,8 +92,9 @@
 /**/
 
 #define BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_PROCESS_D(d,elem,vseq,mods) \
-	BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_VELEM \
+	BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_VELEM_D \
 		( \
+		d, \
 		BOOST_VMD_ELEM_D \
 			( \
 			d, \

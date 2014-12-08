@@ -8,4 +8,8 @@
 	BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_DETAIL_ELEM_SPLIT(tuple,type)) \
 /**/
 
+#define BOOST_VMD_DETAIL_ELEM_AFTER_D(d,tuple,type) \
+	BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_DETAIL_ELEM_SPLIT_D(d,tuple,type)) \
+/**/
+
 #endif /* BOOST_VMD_DETAIL_AFTER_HPP */

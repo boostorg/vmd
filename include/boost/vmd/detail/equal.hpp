@@ -25,8 +25,31 @@
 	(vseq1,vseq2) \
 /**/
 
+#define BOOST_VMD_DETAIL_EQUAL_MATCH_SINGLE_IDENTIFIER(d,vseq1,vseq2) \
+	BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER(vseq1,vseq2) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_CNI_CMP_IR_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_EMPTY), \
+		BOOST_VMD_IDENTITY(1), \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_IDENTIFIER), \
+			BOOST_VMD_DETAIL_EQUAL_MATCH_SINGLE_IDENTIFIER, \
+			BOOST_PP_EQUAL_D \
+			) \
+		) \
+	(d,vseq1,vseq2) \
+/**/
+
 #define BOOST_VMD_DETAIL_EQUAL_CNI_CMP(vseq1,vseq2,vtype1,vtype2) \
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_CMP_IR(vseq1,vseq2,vtype1,vtype2)) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_CNI_CMP_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_CMP_IR_D(d,vseq1,vseq2,vtype1,vtype2)) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_CNI_IR(vseq1,vseq2,vtype1,vtype2) \
@@ -47,8 +70,30 @@
 	(vseq1,vseq2,vtype1,vtype2) \
 /**/
 
+#define BOOST_VMD_DETAIL_EQUAL_CNI_IR_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_BITOR \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_EMPTY), \
+			BOOST_PP_BITOR \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_IDENTIFIER), \
+				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_NUMBER) \
+				) \
+			), \
+		BOOST_VMD_DETAIL_EQUAL_CNI_CMP_D,	\
+		BOOST_VMD_IDENTITY(0) \
+		) \
+	(d,vseq1,vseq2,vtype1,vtype2) \
+/**/
+
 #define BOOST_VMD_DETAIL_EQUAL_CNI(vseq1,vseq2,vtype1,vtype2) \
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_IR(vseq1,vseq2,vtype1,vtype2)) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_CNI_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_IR_D(d,vseq1,vseq2,vtype1,vtype2)) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_WT_IR(vseq1,vseq2,vtype1,vtype2) \
@@ -65,8 +110,27 @@
 	(vseq1,vseq2,vtype1,vtype2) \
 /**/
 
+#define BOOST_VMD_DETAIL_EQUAL_WT_IR_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+			( \
+			d, \
+			vtype1, \
+			vtype2 \
+			), \
+		BOOST_VMD_DETAIL_EQUAL_CNI_D, \
+		BOOST_VMD_IDENTITY(0) \
+		) \
+	(d,vseq1,vseq2,vtype1,vtype2) \
+/**/
+
 #define BOOST_VMD_DETAIL_EQUAL_WT(vseq1,vseq2,vtype1,vtype2) \
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_WT_IR(vseq1,vseq2,vtype1,vtype2)) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_WT_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_WT_IR_D(d,vseq1,vseq2,vtype1,vtype2)) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL(vseq1,vseq2) \
@@ -80,8 +144,9 @@
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_D(d,vseq1,vseq2) \
-	BOOST_VMD_DETAIL_EQUAL_WT \
+	BOOST_VMD_DETAIL_EQUAL_WT_D \
 		( \
+		d, \
 		vseq1, \
 		vseq2, \
 		BOOST_VMD_TYPE_D(d,vseq1), \

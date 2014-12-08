@@ -118,8 +118,9 @@
 #define BOOST_VMD_DETAIL_SEQ_STATE_OP(d,state) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_EQUAL \
+		BOOST_PP_EQUAL_D \
 			( \
+			d, \
 			1, \
 			BOOST_PP_TUPLE_SIZE \
 				( \

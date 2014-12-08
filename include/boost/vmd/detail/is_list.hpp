@@ -20,20 +20,20 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/tuple/is_tuple.hpp>
 
-#define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE(x) \
+#define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE(d,x) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_IS_TUPLE(x), \
       BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE_SIZE, \
       BOOST_VMD_DETAIL_IS_LIST_ASSERT \
       ) \
-    (x) \
+    (d,x) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE_SIZE(x) \
+#define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE_SIZE(d,x) \
     BOOST_PP_IIF \
       ( \
-      BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(x)), \
+      BOOST_PP_EQUAL_D(d,2,BOOST_PP_TUPLE_SIZE(x)), \
       BOOST_VMD_DETAIL_IS_LIST_RETURN_SECOND, \
       BOOST_VMD_DETAIL_IS_LIST_ASSERT \
       ) \
@@ -61,10 +61,10 @@
       BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE, \
       BOOST_VMD_DETAIL_IS_LIST_PROCESS_IF_BOOST_PP_NIL \
       ) \
-    (state) \
+    (d,state) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_LIST_PROCESS_IF_BOOST_PP_NIL(x) \
+#define BOOST_VMD_DETAIL_IS_LIST_PROCESS_IF_BOOST_PP_NIL(d,x) \
     BOOST_PP_IIF \
       ( \
       BOOST_VMD_DETAIL_IS_LIST_BOOST_PP_NIL(x), \
@@ -73,7 +73,7 @@
       ) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_LIST_ASSERT(x) \
+#define BOOST_VMD_DETAIL_IS_LIST_ASSERT(...) \
     BOOST_VMD_IS_LIST_FAILURE \
 /**/
 
