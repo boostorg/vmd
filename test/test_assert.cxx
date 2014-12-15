@@ -18,7 +18,7 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/list/at.hpp>
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 
@@ -75,7 +75,7 @@ int main()
   BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_BEGIN_LIST(A_LIST_PLUS,BOOST_VMD_RETURN_AFTER)),56))
   BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_BEGIN_NUMBER(BOOST_PP_SEQ_ELEM(0,A_SEQ),BOOST_VMD_RETURN_AFTER)),73))
   BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_SEQ_ELEM(1,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_BEGIN_SEQ(A_SEQ_PLUS,BOOST_VMD_RETURN_AFTER))),34))
-  BOOST_VMD_ASSERT(BOOST_PP_NOT(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_BEGIN_TUPLE(KDATA,BOOST_VMD_RETURN_AFTER)))))
+  BOOST_VMD_ASSERT(BOOST_PP_COMPL(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_BEGIN_TUPLE(KDATA,BOOST_VMD_RETURN_AFTER)))))
   
 #endif
 
