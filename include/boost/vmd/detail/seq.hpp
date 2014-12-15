@@ -5,7 +5,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/control/while.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/seq/push_back.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
@@ -29,7 +29,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_PRED(d,state) \
-	BOOST_PP_NOT \
+	BOOST_PP_COMPL \
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \

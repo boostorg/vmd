@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/number/begin_number.hpp>
 
@@ -30,7 +30,7 @@
     
 */
 # define BOOST_VMD_IS_BEGIN_NUMBER(vseq) \
-	BOOST_PP_NOT \
+	BOOST_PP_COMPL \
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \

@@ -8,7 +8,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/enum.hpp>
@@ -198,7 +198,7 @@
 	BOOST_PP_BITAND \
 		( \
 		BOOST_VMD_DETAIL_MODS_IS_RESULT_INDEX(mods), \
-		BOOST_PP_NOT \
+		BOOST_PP_COMPL \
 			( \
 			BOOST_VMD_IS_EMPTY \
 				( \
@@ -436,7 +436,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_IS_BEGIN_IDENTIFIER(...) \
-	BOOST_PP_NOT \
+	BOOST_PP_COMPL \
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
@@ -446,7 +446,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_IS_BEGIN_IDENTIFIER_D(d,...) \
-	BOOST_PP_NOT \
+	BOOST_PP_COMPL \
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
@@ -458,7 +458,7 @@
 #define BOOST_VMD_DETAIL_IS_IDENTIFIER_TRES(tuple) \
 	BOOST_PP_BITAND \
 		( \
-		BOOST_PP_NOT \
+		BOOST_PP_COMPL \
 			( \
 			BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)) \
 			), \

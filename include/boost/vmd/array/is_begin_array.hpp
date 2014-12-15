@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/array/begin_array.hpp>
 #include <boost/vmd/is_empty.hpp>
 
@@ -27,7 +27,7 @@
     
 */
 #define BOOST_VMD_IS_BEGIN_ARRAY(param) \
-	BOOST_PP_NOT \
+	BOOST_PP_COMPL \
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \

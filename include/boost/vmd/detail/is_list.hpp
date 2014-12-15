@@ -8,7 +8,7 @@
 #include <boost/preprocessor/debug/assert.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
@@ -78,7 +78,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_IS_LIST_NOT_BOOST_PP_NIL(x) \
-    BOOST_PP_NOT \
+    BOOST_PP_COMPL \
       ( \
       BOOST_PP_BITOR \
         ( \
@@ -115,7 +115,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_IS_LIST_RESULT(x) \
-	BOOST_PP_NOT \
+	BOOST_PP_COMPL \
     	( \
         BOOST_VMD_DETAIL_IS_LIST_IS_FAILURE(x) \
         ) \

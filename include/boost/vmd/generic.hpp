@@ -8,8 +8,10 @@
 #include <boost/vmd/generic/after_elem.hpp>
 #include <boost/vmd/generic/elem.hpp>
 #include <boost/vmd/generic/enum.hpp>
+#include <boost/vmd/generic/equal.hpp>
 #include <boost/vmd/generic/is_multi.hpp>
 #include <boost/vmd/generic/is_unary.hpp>
+#include <boost/vmd/generic/not_equal.hpp>
 #include <boost/vmd/generic/size.hpp>
 #include <boost/vmd/generic/to_array.hpp>
 #include <boost/vmd/generic/to_list.hpp>

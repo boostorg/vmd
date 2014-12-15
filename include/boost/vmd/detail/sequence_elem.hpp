@@ -4,7 +4,7 @@
 #include <boost/preprocessor/comparison/greater.hpp>
 #include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/preprocessor/control/iif.hpp>
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
@@ -128,7 +128,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_NOT_EMPTY(vseq) \
-	BOOST_PP_NOT(BOOST_VMD_IS_EMPTY(vseq)) \
+	BOOST_PP_COMPL(BOOST_VMD_IS_EMPTY(vseq)) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PROCESS(elem,vseq,nm) \

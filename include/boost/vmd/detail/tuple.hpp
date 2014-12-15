@@ -4,7 +4,7 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/facilities/expand.hpp>
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/punctuation/paren.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
@@ -132,7 +132,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_IS_BEGIN_TUPLE(vseq) \
-	BOOST_PP_NOT \
+	BOOST_PP_COMPL \
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \

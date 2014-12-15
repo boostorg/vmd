@@ -5,10 +5,10 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/empty.hpp>
 #if BOOST_VMD_MSVC
 #include <boost/preprocessor/cat.hpp>
 #endif
+#include <boost/vmd/empty.hpp>
 
 #define BOOST_VMD_IDENTITY(item) item BOOST_VMD_EMPTY
 

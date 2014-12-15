@@ -1,157 +1,21 @@
 #if !defined(BOOST_VMD_DETAIL_EQUAL_HPP)
 #define BOOST_VMD_DETAIL_EQUAL_HPP
 
-#include <boost/preprocessor/comparison/equal.hpp>
-#include <boost/preprocessor/control/iif.hpp>
-#include <boost/preprocessor/logical/bitor.hpp>
-#include <boost/vmd/identity.hpp>
-#include <boost/vmd/generic/type.hpp>
-#include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/match_identifier.hpp>
-#include <boost/vmd/detail/equal_type.hpp>
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_CMP_IR(vseq1,vseq2,vtype1,vtype2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE(vtype1,BOOST_VMD_TYPE_EMPTY), \
-		BOOST_VMD_IDENTITY(1), \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE(vtype1,BOOST_VMD_TYPE_IDENTIFIER), \
-			BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER, \
-			BOOST_PP_EQUAL \
-			) \
-		) \
-	(vseq1,vseq2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_MATCH_SINGLE_IDENTIFIER(d,vseq1,vseq2) \
-	BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER(vseq1,vseq2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_CMP_IR_D(d,vseq1,vseq2,vtype1,vtype2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_EMPTY), \
-		BOOST_VMD_IDENTITY(1), \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_IDENTIFIER), \
-			BOOST_VMD_DETAIL_EQUAL_MATCH_SINGLE_IDENTIFIER, \
-			BOOST_PP_EQUAL_D \
-			) \
-		) \
-	(d,vseq1,vseq2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_CMP(vseq1,vseq2,vtype1,vtype2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_CMP_IR(vseq1,vseq2,vtype1,vtype2)) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_CMP_D(d,vseq1,vseq2,vtype1,vtype2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_CMP_IR_D(d,vseq1,vseq2,vtype1,vtype2)) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_IR(vseq1,vseq2,vtype1,vtype2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITOR \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE(vtype1,BOOST_VMD_TYPE_EMPTY), \
-			BOOST_PP_BITOR \
-				( \
-				BOOST_VMD_DETAIL_EQUAL_TYPE(vtype1,BOOST_VMD_TYPE_IDENTIFIER), \
-				BOOST_VMD_DETAIL_EQUAL_TYPE(vtype1,BOOST_VMD_TYPE_NUMBER) \
-				) \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_CNI_CMP,	\
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(vseq1,vseq2,vtype1,vtype2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_IR_D(d,vseq1,vseq2,vtype1,vtype2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITOR \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_EMPTY), \
-			BOOST_PP_BITOR \
-				( \
-				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_IDENTIFIER), \
-				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_NUMBER) \
-				) \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_CNI_CMP_D,	\
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(d,vseq1,vseq2,vtype1,vtype2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI(vseq1,vseq2,vtype1,vtype2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_IR(vseq1,vseq2,vtype1,vtype2)) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_D(d,vseq1,vseq2,vtype1,vtype2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_IR_D(d,vseq1,vseq2,vtype1,vtype2)) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_WT_IR(vseq1,vseq2,vtype1,vtype2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE \
-			( \
-			vtype1, \
-			vtype2 \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_CNI, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(vseq1,vseq2,vtype1,vtype2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_WT_IR_D(d,vseq1,vseq2,vtype1,vtype2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
-			( \
-			d, \
-			vtype1, \
-			vtype2 \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_CNI_D, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(d,vseq1,vseq2,vtype1,vtype2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_WT(vseq1,vseq2,vtype1,vtype2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_WT_IR(vseq1,vseq2,vtype1,vtype2)) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_WT_D(d,vseq1,vseq2,vtype1,vtype2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_WT_IR_D(d,vseq1,vseq2,vtype1,vtype2)) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL(vseq1,vseq2) \
-	BOOST_VMD_DETAIL_EQUAL_WT \
-		( \
-		vseq1, \
-		vseq2, \
-		BOOST_VMD_TYPE(vseq1), \
-		BOOST_VMD_TYPE(vseq2) \
-		) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_D(d,vseq1,vseq2) \
-	BOOST_VMD_DETAIL_EQUAL_WT_D \
-		( \
-		d, \
-		vseq1, \
-		vseq2, \
-		BOOST_VMD_TYPE_D(d,vseq1), \
-		BOOST_VMD_TYPE_D(d,vseq2) \
-		) \
-/**/
+#include <boost/vmd/detail/recurse/equal/equal_1.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_2.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_3.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_4.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_5.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_6.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_7.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_8.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_9.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_10.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_11.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_12.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_13.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_14.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_15.hpp>
+#include <boost/vmd/detail/recurse/equal/equal_16.hpp>
 
 #endif /* BOOST_VMD_DETAIL_EQUAL_HPP */

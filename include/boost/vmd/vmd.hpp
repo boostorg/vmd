@@ -8,7 +8,6 @@
 #include <boost/vmd/array.hpp>
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/empty.hpp>
-#include <boost/vmd/equal.hpp>
 #include <boost/vmd/generic.hpp>
 #include <boost/vmd/identifier.hpp>
 #include <boost/vmd/identity.hpp>

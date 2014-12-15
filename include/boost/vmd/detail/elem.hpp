@@ -4,7 +4,7 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/preprocessor/control/iif.hpp>
-#include <boost/preprocessor/logical/not.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/is_empty.hpp>
@@ -37,7 +37,7 @@
 #define BOOST_VMD_DETAIL_ELEM(tuple,type) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_NOT \
+		BOOST_PP_COMPL \
 			( \
 			BOOST_VMD_IS_EMPTY(tuple) \
 			), \
@@ -50,7 +50,7 @@
 #define BOOST_VMD_DETAIL_ELEM_D(d,tuple,type) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_NOT \
+		BOOST_PP_COMPL \
 			( \
 			BOOST_VMD_IS_EMPTY(tuple) \
 			), \
