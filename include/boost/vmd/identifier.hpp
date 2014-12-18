@@ -11,6 +11,8 @@
 #include <boost/vmd/identifier/begin_identifier.hpp>
 #include <boost/vmd/identifier/identifier.hpp>
 #include <boost/vmd/identifier/identifier_elem.hpp>
+#include <boost/vmd/identifier/identifier_equal.hpp>
+#include <boost/vmd/identifier/identifier_not_equal.hpp>
 #include <boost/vmd/identifier/is_begin_identifier.hpp>
 #include <boost/vmd/identifier/is_identifier.hpp>
 

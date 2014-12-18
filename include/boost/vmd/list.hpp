@@ -14,6 +14,8 @@
 #include <boost/vmd/list/is_list.hpp>
 #include <boost/vmd/list/list.hpp>
 #include <boost/vmd/list/list_elem.hpp>
+#include <boost/vmd/list/list_equal.hpp>
+#include <boost/vmd/list/list_not_equal.hpp>
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_LIST_HPP */

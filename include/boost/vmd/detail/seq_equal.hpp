@@ -17,12 +17,6 @@
 	BOOST_VMD_DETAIL_DATA_EQUAL_D(d,sqf,sqs,BOOST_PP_SEQ_SIZE,BOOST_PP_SEQ_ELEM) \
 /**/
 
-/*
-
-	Check if the types are both arrays
-
-*/
-
 #define BOOST_VMD_DETAIL_SEQ_EQUAL_IR(sqf,sqs) \
 	BOOST_PP_IIF \
 		( \

@@ -13,6 +13,8 @@
 #include <boost/vmd/number/is_number.hpp>
 #include <boost/vmd/number/number.hpp>
 #include <boost/vmd/number/number_elem.hpp>
+#include <boost/vmd/number/number_equal.hpp>
+#include <boost/vmd/number/number_not_equal.hpp>
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_NUMBER_HPP */

@@ -17,12 +17,6 @@
 	BOOST_VMD_DETAIL_DATA_EQUAL_D(d,tpf,tps,BOOST_PP_TUPLE_SIZE,BOOST_PP_TUPLE_ELEM) \
 /**/
 
-/*
-
-	Check if the types are both arrays
-
-*/
-
 #define BOOST_VMD_DETAIL_TUPLE_EQUAL_IR(tpf,tps) \
 	BOOST_PP_IIF \
 		( \

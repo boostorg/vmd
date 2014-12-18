@@ -1,6 +1,10 @@
 #if !defined(BOOST_VMD_DETAIL_DATA_EQUAL_HEADERS_HPP)
 #define BOOST_VMD_DETAIL_DATA_EQUAL_HEADERS_HPP
 
+#if BOOST_VMD_MSVC
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/facilities/empty.hpp>
+#endif
 #include <boost/preprocessor/array/size.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>

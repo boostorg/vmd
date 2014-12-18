@@ -3,6 +3,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/generic/type.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
@@ -38,6 +39,13 @@
 
 #define BOOST_VMD_DETAIL_IDENTIFIER_EQUAL(idf,ids) \
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_IDENTIFIER_EQUAL_IR(idf,ids)) \
+/**/
+
+#define BOOST_VMD_DETAIL_IDENTIFIER_NOT_EQUAL(idf,ids) \
+	BOOST_PP_COMPL \
+		( \
+		BOOST_VMD_DETAIL_IDENTIFIER_EQUAL(arf,ars) \
+		) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_IDENTIFIER_EQUAL_HPP */

@@ -17,12 +17,6 @@
 	BOOST_VMD_DETAIL_DATA_EQUAL_D(d,arf,ars,BOOST_PP_ARRAY_SIZE,BOOST_PP_ARRAY_ELEM) \
 /**/
 
-/*
-
-	Check if the types are both arrays
-
-*/
-
 #define BOOST_VMD_DETAIL_ARRAY_EQUAL_IR(arf,ars) \
 	BOOST_PP_IIF \
 		( \

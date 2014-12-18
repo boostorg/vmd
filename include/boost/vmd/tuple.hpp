@@ -13,6 +13,8 @@
 #include <boost/vmd/tuple/is_tuple.hpp>
 #include <boost/vmd/tuple/tuple.hpp>
 #include <boost/vmd/tuple/tuple_elem.hpp>
+#include <boost/vmd/tuple/tuple_equal.hpp>
+#include <boost/vmd/tuple/tuple_not_equal.hpp>
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_TUPLE_HPP */
