@@ -41,7 +41,7 @@
 	(d,state) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_5_LOOP(dataf,datas,sz,eaccess) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_5_LOOP(dataf,datas,sz,vtype) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		0, \
@@ -54,14 +54,14 @@
 				dataf, \
 				datas, \
 				sz, \
-				eaccess, \
+				vtype, \
 				0 \
 				) \
 			) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_5_LOOP_D(d,dataf,datas,sz,eaccess) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_5_LOOP_D(d,dataf,datas,sz,vtype) \
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		0, \
@@ -74,55 +74,70 @@
 				dataf, \
 				datas, \
 				sz, \
-				eaccess, \
+				vtype, \
 				0 \
 				) \
 			) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_IR(dataf,datas,szf,szs,eaccess) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_IR(dataf,datas,szf,szs,vtype) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_EQUAL(szf,szs), \
 		BOOST_VMD_DETAIL_DATA_EQUAL_5_LOOP, \
 		BOOST_VMD_IDENTITY(0) \
 		) \
-	(dataf,datas,szf,eaccess) \
+	(dataf,datas,szf,vtype) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_IR_D(d,dataf,datas,szf,szs,eaccess) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_IR_D(d,dataf,datas,szf,szs,vtype) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_EQUAL_D(d,szf,szs), \
 		BOOST_VMD_DETAIL_DATA_EQUAL_5_LOOP_D, \
 		BOOST_VMD_IDENTITY(0) \
 		) \
-	(d,dataf,datas,szf,eaccess) \
+	(d,dataf,datas,szf,vtype) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ(dataf,datas,szf,szs,eaccess) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_IR(dataf,datas,szf,szs,eaccess)) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ(dataf,datas,szf,szs,vtype) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_IR(dataf,datas,szf,szs,vtype)) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_D(d,dataf,datas,szf,szs,eaccess) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_IR_D(d,dataf,datas,szf,szs,eaccess)) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_D(d,dataf,datas,szf,szs,vtype) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_IR_D(d,dataf,datas,szf,szs,vtype)) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_5_PAR_3(dataf,datas,esize,eaccess) \
-	BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ(dataf,datas,esize(dataf),esize(datas),eaccess) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_5_PAR_2(dataf,datas,vtype) \
+	BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ \
+		( \
+		dataf, \
+		datas, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_GET_SIZE(dataf,vtype), \
+		BOOST_VMD_DETAIL_DATA_EQUAL_GET_SIZE(datas,vtype), \
+		vtype \
+		) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_5_PAR_D_3(d,dataf,datas,esize,eaccess) \
-	BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_D(d,dataf,datas,esize(dataf),esize(datas),eaccess) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_5_PAR_D_2(d,dataf,datas,vtype) \
+	BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_D \
+		( \
+		d, \
+		dataf, \
+		datas, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_GET_SIZE_D(d,dataf,vtype), \
+		BOOST_VMD_DETAIL_DATA_EQUAL_GET_SIZE_D(d,datas,vtype), \
+		vtype \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_5_PAR_1(dataf,datas) \
-	BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ(dataf,datas,BOOST_PP_LIST_SIZE(dataf),BOOST_PP_LIST_SIZE(datas),BOOST_PP_LIST_AT_D) \
+	BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ(dataf,datas,BOOST_PP_LIST_SIZE(dataf),BOOST_PP_LIST_SIZE(datas),BOOST_VMD_TYPE_LIST) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_5_PAR_D_1(d,dataf,datas) \
-	BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_D(d,dataf,datas,BOOST_PP_LIST_SIZE_D(d,dataf),BOOST_PP_LIST_SIZE_D(d,datas),BOOST_PP_LIST_AT_D) \
+	BOOST_VMD_DETAIL_DATA_EQUAL_5_SZ_D(d,dataf,datas,BOOST_PP_LIST_SIZE_D(d,dataf),BOOST_PP_LIST_SIZE_D(d,datas),BOOST_VMD_TYPE_LIST) \
 /**/
 
 #if BOOST_VMD_MSVC
