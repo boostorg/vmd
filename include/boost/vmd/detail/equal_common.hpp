@@ -5,9 +5,12 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
+#include <boost/preprocessor/logical/bitxor.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/vmd/generic/type.hpp>
 #include <boost/vmd/identity.hpp>
+#include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
@@ -86,5 +89,32 @@
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_BOTH_EMPTY(...) 1
+
+#define BOOST_VMD_DETAIL_EQUAL_CHK_MATCH(bp1,bp2) \
+	BOOST_PP_COMPL \
+		( \
+		BOOST_PP_BITXOR \
+			( \
+			bp1, \
+			bp2 \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_CHK_PARENS_MATCH(vseq1,vseq2) \
+	BOOST_VMD_DETAIL_EQUAL_CHK_MATCH \
+		( \
+		BOOST_PP_IS_BEGIN_PARENS(vseq1), \
+		BOOST_PP_IS_BEGIN_PARENS(vseq2) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_CHK_EMPTY_MATCH(vseq1,vseq2) \
+	BOOST_VMD_DETAIL_EQUAL_CHK_MATCH \
+		( \
+		BOOST_VMD_IS_EMPTY(vseq1), \
+		BOOST_VMD_IS_EMPTY(vseq2) \
+		) \
+/**/
 
 #endif /* BOOST_VMD_DETAIL_EQUAL_COMMON_HPP */

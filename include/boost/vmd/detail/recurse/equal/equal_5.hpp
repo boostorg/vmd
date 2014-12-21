@@ -133,21 +133,43 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_5(vseq1,vseq2) \
+#define BOOST_VMD_DETAIL_EQUAL_5_EBP_IR(vseq1,vseq2,be1,be2) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_BITAND \
 			( \
-			BOOST_VMD_IS_EMPTY(vseq1), \
-			BOOST_VMD_IS_EMPTY(vseq2) \
+			BOOST_VMD_DETAIL_EQUAL_CHK_MATCH(be1,be2), \
+			BOOST_VMD_DETAIL_EQUAL_CHK_PARENS_MATCH(vseq1,vseq2) \
 			), \
-		BOOST_VMD_DETAIL_EQUAL_BOTH_EMPTY, \
-		BOOST_VMD_DETAIL_EQUAL_5_GTYPE \
+		BOOST_VMD_DETAIL_EQUAL_5_GTYPE, \
+		BOOST_VMD_IDENTITY(0) \
 		) \
 	(vseq1,vseq2) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_5_D(d,vseq1,vseq2) \
+#define BOOST_VMD_DETAIL_EQUAL_5_EBP_IR_D(d,vseq1,vseq2,be1,be2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_BITAND \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_CHK_MATCH(be1,be2), \
+			BOOST_VMD_DETAIL_EQUAL_CHK_PARENS_MATCH(vseq1,vseq2) \
+			), \
+		BOOST_VMD_DETAIL_EQUAL_5_GTYPE_D, \
+		BOOST_VMD_IDENTITY(0) \
+		) \
+	(d,vseq1,vseq2) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_5_EBP(vseq1,vseq2,be1,be2) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_5_EBP_IR(vseq1,vseq2,be1,be2)) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_5_EBP_D(d,vseq1,vseq2,be1,be2) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_5_EBP_IR_D(d,vseq1,vseq2,be1,be2)) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_5_EMPTY(vseq1,vseq2,be1,be2) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_BITAND \
@@ -156,9 +178,44 @@
 			BOOST_VMD_IS_EMPTY(vseq2) \
 			), \
 		BOOST_VMD_DETAIL_EQUAL_BOTH_EMPTY, \
-		BOOST_VMD_DETAIL_EQUAL_5_GTYPE_D \
+		BOOST_VMD_DETAIL_EQUAL_5_EBP \
 		) \
-	(d,vseq1,vseq2) \
+	(vseq1,vseq2,be1,be2) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_5_EMPTY_D(d,vseq1,vseq2,be1,be2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_PP_BITAND \
+			( \
+			BOOST_VMD_IS_EMPTY(vseq1), \
+			BOOST_VMD_IS_EMPTY(vseq2) \
+			), \
+		BOOST_VMD_DETAIL_EQUAL_BOTH_EMPTY, \
+		BOOST_VMD_DETAIL_EQUAL_5_EBP_D \
+		) \
+	(d,vseq1,vseq2,be1,be2) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_5(vseq1,vseq2) \
+	BOOST_VMD_DETAIL_EQUAL_5_EMPTY \
+		( \
+		vseq1, \
+		vseq2, \
+		BOOST_VMD_IS_EMPTY(vseq1), \
+		BOOST_VMD_IS_EMPTY(vseq2) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_5_D(d,vseq1,vseq2) \
+	BOOST_VMD_DETAIL_EQUAL_5_EMPTY_D \
+		( \
+		d, \
+		vseq1, \
+		vseq2, \
+		BOOST_VMD_IS_EMPTY(vseq1), \
+		BOOST_VMD_IS_EMPTY(vseq2) \
+		) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_EQUAL_5_HPP */
