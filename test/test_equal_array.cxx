@@ -14,21 +14,14 @@ int main()
   #define BOOST_VMD_REGISTER_bbb (bbb)
   #define BOOST_VMD_REGISTER_ccc (ccc)
   #define BOOST_VMD_REGISTER_ddd (ddd)
-  #define BOOST_VMD_REGISTER_eee (eee)
   #define BOOST_VMD_DETECT_aaa_aaa
   #define BOOST_VMD_DETECT_bbb_bbb
   #define BOOST_VMD_DETECT_ccc_ccc
   #define BOOST_VMD_DETECT_ddd_ddd
-  #define BOOST_VMD_DETECT_eee_eee
   
-  #define ANARRAY (3,(aaa,bbb,38))
-  #define ANARRAY2 (3,(bbb,aaa,38))
-  #define ANARRAY3 (3,(aaa,bbb,38))
   #define ANARRAY4 (3,(aaa,(aaa,(bbb,(ccc,BOOST_PP_NIL))),(ccc,ddd,(1)(2))))
-  #define ANARRAY5 (3,(aaa,bbb,(ccc,ddd,(1)(3))))
   #define ANARRAY6 (3,(aaa,(aaa,(bbb,(ccc,BOOST_PP_NIL))),(ccc,ddd,(1)(2))))
   
-  BOOST_TEST(BOOST_VMD_EQUAL(ANARRAY,ANARRAY3));
   BOOST_TEST(BOOST_VMD_EQUAL(ANARRAY4,ANARRAY6));
 
 #endif
