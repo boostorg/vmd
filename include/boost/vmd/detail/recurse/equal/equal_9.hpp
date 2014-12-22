@@ -172,11 +172,7 @@
 #define BOOST_VMD_DETAIL_EQUAL_9_EMPTY(vseq1,vseq2,be1,be2) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_IS_EMPTY(vseq1), \
-			BOOST_VMD_IS_EMPTY(vseq2) \
-			), \
+		BOOST_PP_BITAND(be1,be2), \
 		BOOST_VMD_DETAIL_EQUAL_BOTH_EMPTY, \
 		BOOST_VMD_DETAIL_EQUAL_9_EBP \
 		) \
@@ -186,11 +182,7 @@
 #define BOOST_VMD_DETAIL_EQUAL_9_EMPTY_D(d,vseq1,vseq2,be1,be2) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_IS_EMPTY(vseq1), \
-			BOOST_VMD_IS_EMPTY(vseq2) \
-			), \
+		BOOST_PP_BITAND(be1,be2), \
 		BOOST_VMD_DETAIL_EQUAL_BOTH_EMPTY, \
 		BOOST_VMD_DETAIL_EQUAL_9_EBP_D \
 		) \

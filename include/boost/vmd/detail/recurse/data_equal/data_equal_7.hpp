@@ -3,42 +3,90 @@
 
 #include <boost/vmd/detail/recurse/data_equal/data_equal_headers.hpp>
 
+#define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_PARENS_IR(d,em1,em2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_DATA_EQUAL_IS_BOTH_COMPOSITE(em1,em2), \
+		BOOST_VMD_IDENTITY(2), \
+		BOOST_VMD_EQUAL_D \
+		) \
+	(d,em1,em2) \
+/**/
+
+#define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_PARENS_IR_D(d,em1,em2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_DATA_EQUAL_IS_BOTH_COMPOSITE(em1,em2), \
+		BOOST_VMD_IDENTITY(2), \
+		BOOST_VMD_EQUAL_D \
+		) \
+	(d,em1,em2) \
+/**/
+
+#define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_PARENS(d,em1,em2) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_PARENS_IR(d,em1,em2)) \
+/**/
+
+#define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_PARENS_D(d,em1,em2) \
+	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_PARENS_IR_D(d,em1,em2)) \
+/**/
+
+#define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP(d,state,em1,em2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_DATA_EQUAL_STATE_COMP_PROCESSING(d,state), \
+		BOOST_VMD_EQUAL_D, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_PARENS \
+		) \
+	(d,em1,em2) \
+/**/
+
+#define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_D(d,state,em1,em2) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_DATA_EQUAL_STATE_COMP_PROCESSING(d,state), \
+		BOOST_VMD_EQUAL_D, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_PARENS_D \
+		) \
+	(d,em1,em2) \
+/**/
+
 #define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ(d,state) \
-	BOOST_VMD_EQUAL_D \
+	BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP \
 		( \
 		d, \
+		state, \
 		BOOST_VMD_DETAIL_DATA_EQUAL_STATE_GET_FIRST_ELEMENT(d,state), \
 		BOOST_VMD_DETAIL_DATA_EQUAL_STATE_GET_SECOND_ELEMENT(d,state) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_D(d,state) \
-	BOOST_VMD_EQUAL_D \
+	BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_CMP_D \
 		( \
 		d, \
+		state, \
 		BOOST_VMD_DETAIL_DATA_EQUAL_STATE_GET_FIRST_ELEMENT(d,state), \
 		BOOST_VMD_DETAIL_DATA_EQUAL_STATE_GET_SECOND_ELEMENT(d,state) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP(d,state) \
-	BOOST_PP_IIF \
+	BOOST_VMD_DETAIL_DATA_EQUAL_OP_RESULT \
 		( \
-		BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ(d,state), \
-		BOOST_VMD_DETAIL_DATA_EQUAL_OP_SUCCESS, \
-		BOOST_VMD_DETAIL_DATA_EQUAL_OP_FAILURE \
+		d, \
+		state, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ(d,state) \
 		) \
-	(d,state) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_D(d,state) \
-	BOOST_PP_IIF \
+	BOOST_VMD_DETAIL_DATA_EQUAL_OP_RESULT \
 		( \
-		BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_D(d,state), \
-		BOOST_VMD_DETAIL_DATA_EQUAL_OP_SUCCESS, \
-		BOOST_VMD_DETAIL_DATA_EQUAL_OP_FAILURE \
+		d, \
+		state, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_7_OP_TEQ_D(d,state) \
 		) \
-	(d,state) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_7_LOOP(dataf,datas,sz,vtype) \
@@ -55,7 +103,7 @@
 				datas, \
 				sz, \
 				vtype, \
-				0 \
+				0, \
 				) \
 			) \
 		) \
@@ -75,7 +123,7 @@
 				datas, \
 				sz, \
 				vtype, \
-				0 \
+				0, \
 				) \
 			) \
 		) \
