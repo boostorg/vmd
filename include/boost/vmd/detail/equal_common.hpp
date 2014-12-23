@@ -52,40 +52,38 @@
 	(d,vseq1,vseq2) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_CNI_SMP_IR(vseq1,vseq2,vtype) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITOR \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE(vtype,BOOST_VMD_TYPE_IDENTIFIER), \
-			BOOST_VMD_DETAIL_EQUAL_TYPE(vtype,BOOST_VMD_TYPE_NUMBER) \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_CNI_CMP,	\
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(vseq1,vseq2,vtype) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_CNI_SMP_IR_D(d,vseq1,vseq2,vtype) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITOR \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype,BOOST_VMD_TYPE_IDENTIFIER), \
-			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype,BOOST_VMD_TYPE_NUMBER) \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_CNI_CMP_D,	\
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(d,vseq1,vseq2,vtype) \
-/**/
-
 #define BOOST_VMD_DETAIL_EQUAL_CNI_SMP(vseq1,vseq2,vtype) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_SMP_IR(vseq1,vseq2,vtype)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITOR \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_TYPE(vtype,BOOST_VMD_TYPE_IDENTIFIER), \
+				BOOST_VMD_DETAIL_EQUAL_TYPE(vtype,BOOST_VMD_TYPE_NUMBER) \
+				), \
+			BOOST_VMD_DETAIL_EQUAL_CNI_CMP,	\
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(vseq1,vseq2,vtype) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_CNI_SMP_D(d,vseq1,vseq2,vtype) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_CNI_SMP_IR_D(d,vseq1,vseq2,vtype)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITOR \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype,BOOST_VMD_TYPE_IDENTIFIER), \
+				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype,BOOST_VMD_TYPE_NUMBER) \
+				), \
+			BOOST_VMD_DETAIL_EQUAL_CNI_CMP_D,	\
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,vseq1,vseq2,vtype) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_BOTH_EMPTY(...) 1

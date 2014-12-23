@@ -47,41 +47,39 @@
 	(d,vseq1,vseq2,vtype) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_WT_IR(vseq1,vseq2,vtype1,vtype2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE \
-			( \
-			vtype1, \
-			vtype2 \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_CNI, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(vseq1,vseq2,vtype1) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_WT_IR_D(d,vseq1,vseq2,vtype1,vtype2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
-			( \
-			d, \
-			vtype1, \
-			vtype2 \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_CNI_D, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(d,vseq1,vseq2,vtype1) \
-/**/
-
 #define BOOST_VMD_DETAIL_EQUAL_WT(vseq1,vseq2,vtype1,vtype2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_WT_IR(vseq1,vseq2,vtype1,vtype2)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_TYPE \
+				( \
+				vtype1, \
+				vtype2 \
+				), \
+			BOOST_VMD_DETAIL_EQUAL_CNI, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(vseq1,vseq2,vtype1) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_WT_D(d,vseq1,vseq2,vtype1,vtype2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_WT_IR_D(d,vseq1,vseq2,vtype1,vtype2)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+				( \
+				d, \
+				vtype1, \
+				vtype2 \
+				), \
+			BOOST_VMD_DETAIL_EQUAL_CNI_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,vseq1,vseq2,vtype1) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_GTYPE(vseq1,vseq2) \
@@ -105,40 +103,38 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_EBP_IR(vseq1,vseq2,be1,be2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_CHK_MATCH(be1,be2), \
-			BOOST_VMD_DETAIL_EQUAL_CHK_PARENS_MATCH(vseq1,vseq2) \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_GTYPE, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(vseq1,vseq2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_EBP_IR_D(d,vseq1,vseq2,be1,be2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_CHK_MATCH(be1,be2), \
-			BOOST_VMD_DETAIL_EQUAL_CHK_PARENS_MATCH(vseq1,vseq2) \
-			), \
-		BOOST_VMD_DETAIL_EQUAL_GTYPE_D, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(d,vseq1,vseq2) \
-/**/
-
 #define BOOST_VMD_DETAIL_EQUAL_EBP(vseq1,vseq2,be1,be2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_EBP_IR(vseq1,vseq2,be1,be2)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITAND \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_CHK_MATCH(be1,be2), \
+				BOOST_VMD_DETAIL_EQUAL_CHK_PARENS_MATCH(vseq1,vseq2) \
+				), \
+			BOOST_VMD_DETAIL_EQUAL_GTYPE, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(vseq1,vseq2) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_EBP_D(d,vseq1,vseq2,be1,be2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_EQUAL_EBP_IR_D(d,vseq1,vseq2,be1,be2)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITAND \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_CHK_MATCH(be1,be2), \
+				BOOST_VMD_DETAIL_EQUAL_CHK_PARENS_MATCH(vseq1,vseq2) \
+				), \
+			BOOST_VMD_DETAIL_EQUAL_GTYPE_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,vseq1,vseq2) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_EMPTY(vseq1,vseq2,be1,be2) \

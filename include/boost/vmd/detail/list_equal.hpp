@@ -10,32 +10,30 @@
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/recurse/data_equal/data_equal_specific.hpp>
 
-#define BOOST_VMD_DETAIL_LIST_EQUAL_IR(lsf,lss) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_DATA_EQUAL_TYPE(lsf,lss,BOOST_VMD_TYPE_LIST), \
-		BOOST_VMD_DETAIL_DATA_EQUAL_SPECIFIC, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(lsf,lss,BOOST_VMD_TYPE_LIST) \
-/**/
-
-#define BOOST_VMD_DETAIL_LIST_EQUAL_IR_D(d,lsf,lss) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_DATA_EQUAL_TYPE_D(d,lsf,lss,BOOST_VMD_TYPE_LIST), \
-		BOOST_VMD_DETAIL_DATA_EQUAL_SPECIFIC_D, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(d,lsf,lss,BOOST_VMD_TYPE_LIST) \
-/**/
-
 #define BOOST_VMD_DETAIL_LIST_EQUAL(lsf,lss) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_LIST_EQUAL_IR(lsf,lss)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_DATA_EQUAL_TYPE(lsf,lss,BOOST_VMD_TYPE_LIST), \
+			BOOST_VMD_DETAIL_DATA_EQUAL_SPECIFIC, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(lsf,lss,BOOST_VMD_TYPE_LIST) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_EQUAL_D(d,lsf,lss) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_LIST_EQUAL_IR_D(d,lsf,lss)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_DATA_EQUAL_TYPE_D(d,lsf,lss,BOOST_VMD_TYPE_LIST), \
+			BOOST_VMD_DETAIL_DATA_EQUAL_SPECIFIC_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,lsf,lss,BOOST_VMD_TYPE_LIST) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_NOT_EQUAL(lsf,lss) \

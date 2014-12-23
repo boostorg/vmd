@@ -15,30 +15,29 @@
 
 */
 
-#define BOOST_VMD_DETAIL_NUMBER_EQUAL_IR(nmf,nms) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE \
-				( \
-				BOOST_VMD_TYPE(nmf), \
-				BOOST_VMD_TYPE_NUMBER \
-				), \
-			BOOST_VMD_DETAIL_EQUAL_TYPE \
-				( \
-				BOOST_VMD_TYPE(nms), \
-				BOOST_VMD_TYPE_NUMBER \
-				) \
-			), \
-		BOOST_PP_EQUAL, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(nmf,nms) \
-/**/
-
 #define BOOST_VMD_DETAIL_NUMBER_EQUAL(nmf,nms) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_NUMBER_EQUAL_IR(nmf,nms)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITAND \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_TYPE \
+					( \
+					BOOST_VMD_TYPE(nmf), \
+					BOOST_VMD_TYPE_NUMBER \
+					), \
+				BOOST_VMD_DETAIL_EQUAL_TYPE \
+					( \
+					BOOST_VMD_TYPE(nms), \
+					BOOST_VMD_TYPE_NUMBER \
+					) \
+				), \
+			BOOST_PP_EQUAL, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(nmf,nms) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER_NOT_EQUAL(nmf,nms) \

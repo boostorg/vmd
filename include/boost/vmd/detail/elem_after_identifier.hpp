@@ -26,28 +26,27 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_CHK_PRE_IR(after,tuple,mods) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITOR \
-			( \
-			BOOST_VMD_IS_EMPTY \
-				( \
-				BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
-				), \
-			BOOST_VMD_IS_EMPTY \
-				( \
-				after \
-				) \
-			), \
-		BOOST_VMD_IDENTITY(after), \
-		BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_CHK_IDS \
-		) \
-	(after,tuple,mods) \
-/**/
-
 #define BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_CHK_PRE(after,tuple,mods) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_CHK_PRE_IR(after,tuple,mods)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITOR \
+				( \
+				BOOST_VMD_IS_EMPTY \
+					( \
+					BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
+					), \
+				BOOST_VMD_IS_EMPTY \
+					( \
+					after \
+					) \
+				), \
+			BOOST_VMD_IDENTITY(after), \
+			BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_CHK_IDS \
+			) \
+		(after,tuple,mods) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_ELEM_AFTER_IDENTIFIER_VELEM(tuple,mods) \

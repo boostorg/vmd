@@ -15,30 +15,29 @@
 
 */
 
-#define BOOST_VMD_DETAIL_IDENTIFIER_EQUAL_IR(idf,ids) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE \
-				( \
-				BOOST_VMD_TYPE(idf), \
-				BOOST_VMD_TYPE_IDENTIFIER \
-				), \
-			BOOST_VMD_DETAIL_EQUAL_TYPE \
-				( \
-				BOOST_VMD_TYPE(ids), \
-				BOOST_VMD_TYPE_IDENTIFIER \
-				) \
-			), \
-		BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(idf,ids) \
-/**/
-
 #define BOOST_VMD_DETAIL_IDENTIFIER_EQUAL(idf,ids) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_IDENTIFIER_EQUAL_IR(idf,ids)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITAND \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_TYPE \
+					( \
+					BOOST_VMD_TYPE(idf), \
+					BOOST_VMD_TYPE_IDENTIFIER \
+					), \
+				BOOST_VMD_DETAIL_EQUAL_TYPE \
+					( \
+					BOOST_VMD_TYPE(ids), \
+					BOOST_VMD_TYPE_IDENTIFIER \
+					) \
+				), \
+			BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(idf,ids) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_IDENTIFIER_NOT_EQUAL(idf,ids) \

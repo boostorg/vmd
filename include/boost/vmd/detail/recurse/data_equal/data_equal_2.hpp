@@ -3,32 +3,30 @@
 
 #include <boost/vmd/detail/recurse/data_equal/data_equal_headers.hpp>
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_2_OP_TEQ_CMP_PARENS_IR(d,em1,em2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_DATA_EQUAL_IS_BOTH_COMPOSITE(em1,em2), \
-		BOOST_VMD_IDENTITY(2), \
-		BOOST_VMD_EQUAL_D \
-		) \
-	(d,em1,em2) \
-/**/
-
-#define BOOST_VMD_DETAIL_DATA_EQUAL_2_OP_TEQ_CMP_PARENS_IR_D(d,em1,em2) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_DATA_EQUAL_IS_BOTH_COMPOSITE(em1,em2), \
-		BOOST_VMD_IDENTITY(2), \
-		BOOST_VMD_EQUAL_D \
-		) \
-	(d,em1,em2) \
-/**/
-
 #define BOOST_VMD_DETAIL_DATA_EQUAL_2_OP_TEQ_CMP_PARENS(d,em1,em2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_2_OP_TEQ_CMP_PARENS_IR(d,em1,em2)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_DATA_EQUAL_IS_BOTH_COMPOSITE(em1,em2), \
+			BOOST_VMD_IDENTITY(2), \
+			BOOST_VMD_EQUAL_D \
+			) \
+		(d,em1,em2) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_2_OP_TEQ_CMP_PARENS_D(d,em1,em2) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_2_OP_TEQ_CMP_PARENS_IR_D(d,em1,em2)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_DATA_EQUAL_IS_BOTH_COMPOSITE(em1,em2), \
+			BOOST_VMD_IDENTITY(2), \
+			BOOST_VMD_EQUAL_D \
+			) \
+		(d,em1,em2) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_2_OP_TEQ_CMP(d,state,em1,em2) \
@@ -129,32 +127,30 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_2_SZ_IR(dataf,datas,szf,szs,vtype) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_EQUAL(szf,szs), \
-		BOOST_VMD_DETAIL_DATA_EQUAL_2_LOOP, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(dataf,datas,szf,vtype) \
-/**/
-
-#define BOOST_VMD_DETAIL_DATA_EQUAL_2_SZ_IR_D(d,dataf,datas,szf,szs,vtype) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_EQUAL_D(d,szf,szs), \
-		BOOST_VMD_DETAIL_DATA_EQUAL_2_LOOP_D, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(d,dataf,datas,szf,vtype) \
-/**/
-
 #define BOOST_VMD_DETAIL_DATA_EQUAL_2_SZ(dataf,datas,szf,szs,vtype) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_2_SZ_IR(dataf,datas,szf,szs,vtype)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_EQUAL(szf,szs), \
+			BOOST_VMD_DETAIL_DATA_EQUAL_2_LOOP, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(dataf,datas,szf,vtype) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_2_SZ_D(d,dataf,datas,szf,szs,vtype) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_2_SZ_IR_D(d,dataf,datas,szf,szs,vtype)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_EQUAL_D(d,szf,szs), \
+			BOOST_VMD_DETAIL_DATA_EQUAL_2_LOOP_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,dataf,datas,szf,vtype) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_2(dataf,datas,vtype) \

@@ -30,18 +30,17 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_NUMBER_CONC_CTUPLE_IR(vpar) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_TUPLE(vpar), \
-		BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(vpar) \
-/**/
-
 #define BOOST_VMD_DETAIL_IS_NUMBER_CONC_CTUPLE(vpar) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_IS_NUMBER_CONC_CTUPLE_IR(vpar)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_TUPLE(vpar), \
+			BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(vpar) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_NUMBER_CONC(parameter) \
@@ -51,22 +50,21 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_NUMBER_IR(parameter) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_BITOR \
-			( \
-			BOOST_PP_IS_EMPTY(parameter), \
-			BOOST_PP_IS_BEGIN_PARENS(parameter) \
-			), \
-		BOOST_VMD_IDENTITY(0), \
-		BOOST_VMD_DETAIL_IS_NUMBER_CONC \
-		) \
-	(parameter) \
-/**/
-
 #define BOOST_VMD_DETAIL_IS_NUMBER(parameter) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_IS_NUMBER_IR(parameter)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITOR \
+				( \
+				BOOST_PP_IS_EMPTY(parameter), \
+				BOOST_PP_IS_BEGIN_PARENS(parameter) \
+				), \
+			BOOST_VMD_IDENTITY(0), \
+			BOOST_VMD_DETAIL_IS_NUMBER_CONC \
+			) \
+		(parameter) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER_GET_TP(tuple) \
@@ -94,24 +92,20 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_IR(tuple) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_EQUAL \
-			( \
-			BOOST_PP_TUPLE_SIZE(tuple), \
-			2 \
-			), \
-		BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_TYPE, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(tuple) \
-/**/
-
 #define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE(tuple) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_IR(tuple) \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_EQUAL \
+				( \
+				BOOST_PP_TUPLE_SIZE(tuple), \
+				2 \
+				), \
+			BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_TYPE, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(tuple) \
 		) \
 /**/
 
@@ -122,20 +116,16 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_VSEQ_IR(tvseq) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_IS_BEGIN_PARENS(tvseq), \
-		BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(tvseq) \
-/**/
-
 #define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN(tvseq) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_VSEQ_IR(tvseq) \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_IS_BEGIN_PARENS(tvseq), \
+			BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(tvseq) \
 		) \
 /**/
 

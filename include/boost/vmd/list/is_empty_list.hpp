@@ -32,32 +32,30 @@
               
 */
 
-#define BOOST_VMD_IS_EMPTY_LIST_IR(param) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_LIST(param), \
-		BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(param) \
-/**/
-
-#define BOOST_VMD_IS_EMPTY_LIST_IR_D(d,param) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_LIST_D(d,param), \
-		BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D, \
-		BOOST_VMD_IDENTITY(0) \
-		) \
-	(d,param) \
-/**/
-
 #define BOOST_VMD_IS_EMPTY_LIST(param) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_LIST_IR(param)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_LIST(param), \
+			BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(param) \
+		) \
 /**/
 
 #define BOOST_VMD_IS_EMPTY_LIST_D(d,param) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_IS_EMPTY_LIST_IR_D(d,param)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_LIST_D(d,param), \
+			BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,param) \
+		) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

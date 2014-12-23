@@ -69,18 +69,17 @@
 	(id,mods) \
 /**/
 
-#define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_NE_IND_FALSE_IR(id,mods) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_EMPTY(id), \
-		BOOST_VMD_IDENTITY(id), \
-		BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_IDS \
-		) \
-	(id,mods) \
-/**/
-
 #define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_INDF(id,mods) \
-	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_NE_IND_FALSE_IR(id,mods)) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_EMPTY(id), \
+			BOOST_VMD_IDENTITY(id), \
+			BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_IDS \
+			) \
+		(id,mods) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_NE(id,mods) \
@@ -94,26 +93,26 @@
 /**/
 
 #define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_PRE_IR(id,mods,cempty) \
-	BOOST_PP_IIF \
+	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		cempty, \
-		BOOST_VMD_IDENTITY(id), \
-		BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_NE \
+		BOOST_PP_IIF \
+			( \
+			cempty, \
+			BOOST_VMD_IDENTITY(id), \
+			BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_NE \
+			) \
+		(id,mods) \
 		) \
-	(id,mods) \
 /**/
 
 #define BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_PRE(id,mods) \
-	BOOST_VMD_IDENTITY_RESULT \
+	BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_PRE_IR \
 		( \
-		BOOST_VMD_DETAIL_ELEM_IDENTIFIER_CHK_PRE_IR \
+		id, \
+		mods, \
+		BOOST_VMD_IS_EMPTY \
 			( \
-			id, \
-			mods, \
-			BOOST_VMD_IS_EMPTY \
-				( \
-				BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
-				) \
+			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
 			) \
 		) \
 /**/

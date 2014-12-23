@@ -71,17 +71,20 @@
 	(tuple,mods) \
 /**/
 
-#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_NDF_IR(tuple,mods) \
-	BOOST_PP_IIF \
+#define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_NDF(tuple,mods) \
+	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		BOOST_VMD_IS_EMPTY \
+		BOOST_PP_IIF \
 			( \
-			BOOST_PP_TUPLE_ELEM(0,tuple) \
-			), \
-		BOOST_VMD_IDENTITY(tuple), \
-		BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_IDS \
+			BOOST_VMD_IS_EMPTY \
+				( \
+				BOOST_PP_TUPLE_ELEM(0,tuple) \
+				), \
+			BOOST_VMD_IDENTITY(tuple), \
+			BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_IDS \
+			) \
+		(tuple,mods) \
 		) \
-	(tuple,mods) \
 /**/
 
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_NE(tuple,mods) \
@@ -89,32 +92,32 @@
 		( \
 		BOOST_VMD_DETAIL_MODS_IS_RESULT_INDEX(mods), \
 		BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_INDT, \
-		BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_NDF_IR \
+		BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_NDF \
 		) \
 	(tuple,mods) \
 /**/
 	
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_PRE_IR(tuple,mods,cempty) \
-	BOOST_PP_IIF \
+	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		cempty, \
-		BOOST_VMD_IDENTITY(tuple), \
-		BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_NE \
+		BOOST_PP_IIF \
+			( \
+			cempty, \
+			BOOST_VMD_IDENTITY(tuple), \
+			BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_NE \
+			) \
+		(tuple,mods) \
 		) \
-	(tuple,mods) \
 /**/
 
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_PRE(tuple,mods) \
-	BOOST_VMD_IDENTITY_RESULT \
+	BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_PRE_IR \
 		( \
-		BOOST_VMD_DETAIL_ELEM_SPLIT_IDENTIFIER_CHK_PRE_IR \
+		tuple, \
+		mods, \
+		BOOST_VMD_IS_EMPTY \
 			( \
-			tuple, \
-			mods, \
-			BOOST_VMD_IS_EMPTY \
-				( \
-				BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
-				) \
+			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
 			) \
 		) \
 /**/
