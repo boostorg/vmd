@@ -11,6 +11,5 @@
 #include <boost/vmd/detail/data_equal.hpp>
 #include <boost/vmd/detail/equal_common.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
-#include <boost/vmd/detail/list_equal.hpp>
 
 #endif /* BOOST_VMD_DETAIL_EQUAL_HEADERS_HPP */

@@ -157,7 +157,7 @@
 	BOOST_VMD_IDENTITY_RESULT(BOOST_VMD_DETAIL_DATA_EQUAL_12_SZ_IR_D(d,dataf,datas,szf,szs,vtype)) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_12_PAR_2(dataf,datas,vtype) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_12(dataf,datas,vtype) \
 	BOOST_VMD_DETAIL_DATA_EQUAL_12_SZ \
 		( \
 		dataf, \
@@ -168,7 +168,7 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_DATA_EQUAL_12_PAR_D_2(d,dataf,datas,vtype) \
+#define BOOST_VMD_DETAIL_DATA_EQUAL_12_D(d,dataf,datas,vtype) \
 	BOOST_VMD_DETAIL_DATA_EQUAL_12_SZ_D \
 		( \
 		d, \
@@ -179,35 +179,5 @@
 		vtype \
 		) \
 /**/
-
-#define BOOST_VMD_DETAIL_DATA_EQUAL_12_PAR_1(dataf,datas) \
-	BOOST_VMD_DETAIL_DATA_EQUAL_12_SZ(dataf,datas,BOOST_PP_LIST_SIZE(dataf),BOOST_PP_LIST_SIZE(datas),BOOST_VMD_TYPE_LIST) \
-/**/
-
-#define BOOST_VMD_DETAIL_DATA_EQUAL_12_PAR_D_1(d,dataf,datas) \
-	BOOST_VMD_DETAIL_DATA_EQUAL_12_SZ_D(d,dataf,datas,BOOST_PP_LIST_SIZE_D(d,dataf),BOOST_PP_LIST_SIZE_D(d,datas),BOOST_VMD_TYPE_LIST) \
-/**/
-
-#if BOOST_VMD_MSVC
-
-#define BOOST_VMD_DETAIL_DATA_EQUAL_12(dataf,...) \
-	BOOST_PP_CAT(BOOST_PP_OVERLOAD(BOOST_VMD_DETAIL_DATA_EQUAL_12_PAR_,__VA_ARGS__)(dataf,__VA_ARGS__),BOOST_PP_EMPTY()) \
-/**/
-
-#define BOOST_VMD_DETAIL_DATA_EQUAL_12_D(d,dataf,...) \
-	BOOST_PP_CAT(BOOST_PP_OVERLOAD(BOOST_VMD_DETAIL_DATA_EQUAL_12_PAR_D_,__VA_ARGS__)(d,dataf,__VA_ARGS__),BOOST_PP_EMPTY()) \
-/**/
-
-#else
-
-#define BOOST_VMD_DETAIL_DATA_EQUAL_12(dataf,...) \
-	BOOST_PP_OVERLOAD(BOOST_VMD_DETAIL_DATA_EQUAL_12_PAR_,__VA_ARGS__)(dataf,__VA_ARGS__) \
-/**/
-
-#define BOOST_VMD_DETAIL_DATA_EQUAL_12_D(d,dataf,...) \
-	BOOST_PP_OVERLOAD(BOOST_VMD_DETAIL_DATA_EQUAL_12_PAR_D_,__VA_ARGS__)(d,dataf,__VA_ARGS__) \
-/**/
-
-#endif
 
 #endif /* BOOST_VMD_DETAIL_DATA_EQUAL_12_HPP */

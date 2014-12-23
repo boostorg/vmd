@@ -3,34 +3,6 @@
 
 #include <boost/vmd/detail/recurse/equal/equal_headers.hpp>
 
-#define BOOST_VMD_DETAIL_EQUAL_8_CNI_CLIST_FND(vseq1,vseq2,vtype) \
-	BOOST_VMD_DETAIL_LIST_EQUAL_8_NC(vseq1,vseq2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_8_CNI_CLIST_FND_D(d,vseq1,vseq2,vtype) \
-	BOOST_VMD_DETAIL_LIST_EQUAL_8_NC_D(d,vseq1,vseq2) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_8_CNI_CLIST(vseq1,vseq2,vtype) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE(vtype,BOOST_VMD_TYPE_LIST), \
-		BOOST_VMD_DETAIL_EQUAL_8_CNI_CLIST_FND, \
-		BOOST_VMD_DETAIL_DATA_EQUAL_8 \
-		) \
-	(vseq1,vseq2,vtype) \
-/**/
-
-#define BOOST_VMD_DETAIL_EQUAL_8_CNI_CLIST_D(d,vseq1,vseq2,vtype) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype,BOOST_VMD_TYPE_LIST), \
-		BOOST_VMD_DETAIL_EQUAL_8_CNI_CLIST_FND_D, \
-		BOOST_VMD_DETAIL_DATA_EQUAL_8_D \
-		) \
-	(d,vseq1,vseq2,vtype) \
-/**/
-
 #define BOOST_VMD_DETAIL_EQUAL_8_CNI(vseq1,vseq2,vtype) \
 	BOOST_PP_IIF \
 		( \
@@ -47,7 +19,7 @@
 				BOOST_VMD_DETAIL_EQUAL_TYPE(vtype,BOOST_VMD_TYPE_TUPLE) \
 				) \
 			), \
-		BOOST_VMD_DETAIL_EQUAL_8_CNI_CLIST, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_8, \
 		BOOST_VMD_DETAIL_EQUAL_CNI_SMP \
 		) \
 	(vseq1,vseq2,vtype) \
@@ -69,7 +41,7 @@
 				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype,BOOST_VMD_TYPE_TUPLE) \
 				) \
 			), \
-		BOOST_VMD_DETAIL_EQUAL_8_CNI_CLIST_D, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_8_D, \
 		BOOST_VMD_DETAIL_EQUAL_CNI_SMP_D \
 		) \
 	(d,vseq1,vseq2,vtype) \

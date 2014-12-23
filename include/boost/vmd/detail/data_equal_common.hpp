@@ -22,6 +22,7 @@
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/types.hpp>
+#include <boost/vmd/generic/type.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_IS_BOTH_COMPOSITE(vseq1,vseq2) \
@@ -364,6 +365,40 @@
 			) \
 		) \
 	(d,state) \
+/**/
+
+#define BOOST_VMD_DETAIL_DATA_EQUAL_TYPE(emf,ems,vtype) \
+	BOOST_PP_BITAND \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE \
+			( \
+			BOOST_VMD_TYPE(emf), \
+			vtype \
+			), \
+		BOOST_VMD_DETAIL_EQUAL_TYPE \
+			( \
+			BOOST_VMD_TYPE(ems), \
+			vtype \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_DATA_EQUAL_TYPE_D(d,emf,ems,vtype) \
+	BOOST_PP_BITAND \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+			( \
+			d, \
+			BOOST_VMD_TYPE(emf), \
+			vtype \
+			), \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+			( \
+			d, \
+			BOOST_VMD_TYPE(ems), \
+			vtype \
+			) \
+		) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_DATA_EQUAL_COMMON_HPP */

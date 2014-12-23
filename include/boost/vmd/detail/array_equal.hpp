@@ -6,61 +6,27 @@
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/generic/type.hpp>
 #include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/data_equal.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
-
-#define BOOST_VMD_DETAIL_ARRAY_EQUAL_NC(arf,ars) \
-	BOOST_VMD_DETAIL_DATA_EQUAL(arf,ars,BOOST_PP_ARRAY_SIZE,BOOST_PP_ARRAY_ELEM) \
-/**/
-
-#define BOOST_VMD_DETAIL_ARRAY_EQUAL_NC_D(d,arf,ars) \
-	BOOST_VMD_DETAIL_DATA_EQUAL_D(d,arf,ars,BOOST_PP_ARRAY_SIZE,BOOST_PP_ARRAY_ELEM) \
-/**/
+#include <boost/vmd/detail/recurse/data_equal/data_equal_specific.hpp>
 
 #define BOOST_VMD_DETAIL_ARRAY_EQUAL_IR(arf,ars) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE \
-				( \
-				BOOST_VMD_TYPE(arf), \
-				BOOST_VMD_TYPE_ARRAY \
-				), \
-			BOOST_VMD_DETAIL_EQUAL_TYPE \
-				( \
-				BOOST_VMD_TYPE(ars), \
-				BOOST_VMD_TYPE_ARRAY \
-				) \
-			), \
-		BOOST_VMD_DETAIL_ARRAY_EQUAL_NC, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_TYPE(arf,ars,BOOST_VMD_TYPE_ARRAY), \
+		BOOST_VMD_DETAIL_DATA_EQUAL_SPECIFIC, \
 		BOOST_VMD_IDENTITY(0) \
 		) \
-	(arf,ars) \
+	(arf,ars,BOOST_VMD_TYPE_ARRAY) \
 /**/
 
 #define BOOST_VMD_DETAIL_ARRAY_EQUAL_IR_D(d,arf,ars) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
-				( \
-				d, \
-				BOOST_VMD_TYPE(arf), \
-				BOOST_VMD_TYPE_ARRAY \
-				), \
-			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
-				( \
-				d, \
-				BOOST_VMD_TYPE(ars), \
-				BOOST_VMD_TYPE_ARRAY \
-				) \
-			), \
-		BOOST_VMD_DETAIL_ARRAY_EQUAL_NC_D, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_TYPE_D(d,arf,ars,BOOST_VMD_TYPE_ARRAY), \
+		BOOST_VMD_DETAIL_DATA_EQUAL_SPECIFIC_D, \
 		BOOST_VMD_IDENTITY(0) \
 		) \
-	(d,arf,ars) \
+	(d,arf,ars,BOOST_VMD_TYPE_ARRAY) \
 /**/
 
 #define BOOST_VMD_DETAIL_ARRAY_EQUAL(arf,ars) \

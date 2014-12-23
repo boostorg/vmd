@@ -6,61 +6,27 @@
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/generic/type.hpp>
 #include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/data_equal.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
-
-#define BOOST_VMD_DETAIL_SEQ_EQUAL_NC(sqf,sqs) \
-	BOOST_VMD_DETAIL_DATA_EQUAL(sqf,sqs,BOOST_PP_SEQ_SIZE,BOOST_PP_SEQ_ELEM) \
-/**/
-
-#define BOOST_VMD_DETAIL_SEQ_EQUAL_NC_D(d,sqf,sqs) \
-	BOOST_VMD_DETAIL_DATA_EQUAL_D(d,sqf,sqs,BOOST_PP_SEQ_SIZE,BOOST_PP_SEQ_ELEM) \
-/**/
+#include <boost/vmd/detail/recurse/data_equal/data_equal_specific.hpp>
 
 #define BOOST_VMD_DETAIL_SEQ_EQUAL_IR(sqf,sqs) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE \
-				( \
-				BOOST_VMD_TYPE(sqf), \
-				BOOST_VMD_TYPE_SEQ \
-				), \
-			BOOST_VMD_DETAIL_EQUAL_TYPE \
-				( \
-				BOOST_VMD_TYPE(sqs), \
-				BOOST_VMD_TYPE_SEQ \
-				) \
-			), \
-		BOOST_VMD_DETAIL_SEQ_EQUAL_NC, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_TYPE(lsf,lss,BOOST_VMD_TYPE_SEQ), \
+		BOOST_VMD_DETAIL_DATA_EQUAL_SPECIFIC, \
 		BOOST_VMD_IDENTITY(0) \
 		) \
-	(sqf,sqs) \
+	(sqf,sqs,BOOST_VMD_TYPE_SEQ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_EQUAL_IR_D(d,sqf,sqs) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_BITAND \
-			( \
-			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
-				( \
-				d, \
-				BOOST_VMD_TYPE(sqf), \
-				BOOST_VMD_TYPE_SEQ \
-				), \
-			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
-				( \
-				d, \
-				BOOST_VMD_TYPE(sqs), \
-				BOOST_VMD_TYPE_SEQ \
-				) \
-			), \
-		BOOST_VMD_DETAIL_SEQ_EQUAL_NC_D, \
+		BOOST_VMD_DETAIL_DATA_EQUAL_TYPE_D(d,lsf,lss,BOOST_VMD_TYPE_SEQ), \
+		BOOST_VMD_DETAIL_DATA_EQUAL_SPECIFIC_D, \
 		BOOST_VMD_IDENTITY(0) \
 		) \
-	(d,sqf,sqs) \
+	(d,sqf,sqs,BOOST_VMD_TYPE_SEQ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_EQUAL(sqf,sqs) \
