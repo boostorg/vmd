@@ -16,19 +16,17 @@ int main()
   #define BOOST_VMD_REGISTER_dvd (dvd)
   #define BOOST_VMD_DETECT_dvd_dvd
   
-  #define ANIDENTIFIER ggh
-  #define ANIDENTIFIER2 dvd
-  #define ANUMBER 249
-  #define ANUMBER2 17
-  #define ASEQ (25)(26)(27)
-  #define ASEQ2 (1)(2)(3)
   #define ATUPLE (0,(ggh,45,(2,(89,(dvd)(57)(99)))),170)
   #define ATUPLE2 (0,(ggh,45,(2,(89,(dvd)(57)(99)))),170)
-  #define ALIST (0,(1,(2,(3,BOOST_PP_NIL))))
-  #define ALIST2 (0,(1,(2,(4,BOOST_PP_NIL))))
-  #define ANARRAY (3,(ggh,dvd,38))
-  #define ANARRAY2 (3,(dvd,ggh,38))
-  #define ASEQUENCE4
+  #define ATUPLE3 (0,(ggh,45,(2,(89,(ggh)(57)(99)))),170)
+  #define ATUPLE4 (0,1,(2,3,4,(5,6,7,8)))
+  #define ATUPLE5 (0,1,(2,3,4,(5,6,7,8)))
+  #define ATUPLE6 (0,1,(2,3,4,(5,6,7,9)))
+  
+  BOOST_TEST(BOOST_VMD_EQUAL(ATUPLE,ATUPLE2));
+  BOOST_TEST(BOOST_VMD_EQUAL(ATUPLE4,ATUPLE5));
+  BOOST_TEST(BOOST_VMD_NOT_EQUAL(ATUPLE2,ATUPLE3));
+  BOOST_TEST(BOOST_VMD_NOT_EQUAL(ATUPLE4,ATUPLE6));
   
 #endif
 
