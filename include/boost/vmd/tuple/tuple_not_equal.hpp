@@ -1,5 +1,5 @@
-#if !defined(BOOST_VMD_TUPLE_EQUAL_HPP)
-#define BOOST_VMD_TUPLE_EQUAL_HPP
+#if !defined(BOOST_VMD_TUPLE_NOT_EQUAL_HPP)
+#define BOOST_VMD_TUPLE_NOT_EQUAL_HPP
 
 #include <boost/vmd/detail/setup.hpp>
 
@@ -25,4 +25,4 @@
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
-#endif /* BOOST_VMD_TUPLE_EQUAL_HPP */
+#endif /* BOOST_VMD_TUPLE_NOT_EQUAL_HPP */
