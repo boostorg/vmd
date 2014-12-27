@@ -543,11 +543,11 @@
                          
   						 ..., modifiers, first variadic is discarded
                          Possible modifiers are:
-                         BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE = (2,0)
+                         BOOST_VMD_PARSE_ONLY_TUPLE = (2,0)
                          BOOST_VMD_RETURN_TYPE = (1,0)
                          BOOST_VMD_RETURN_NO_TYPE = (0,0)
-                         BOOST_VMD_SPECIFIC_ARRAY = (3,0)
-                         BOOST_VMD_SPECIFIC_LIST = (4,0)
+                         BOOST_VMD_PARSE_ARRAY = (3,0)
+                         BOOST_VMD_PARSE_LIST = (4,0)
                          BOOST_VMD_RETURN_AFTER = (0,1)
                          BOOST_VMD_RETURN_NO_AFTER = (0,0)
   

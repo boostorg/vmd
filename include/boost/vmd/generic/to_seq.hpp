@@ -24,9 +24,9 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    The second optional variadic parameter can be either BOOST_VMD_PARSE_ONLY_TUPLE
     or BOOST_VMD_RETURN_TYPE, with the latter value the default value. 
-    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    With BOOST_VMD_PARSE_ONLY_TUPLE, in order to determine the element type, the elements 
     are tested among other types for a possible tuple. With BOOST_VMD_RETURN_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
@@ -48,9 +48,9 @@
     
     The first variadic parameter is mandatory and is the v-sequence to test.
     
-    The second optional variadic parameter can be either BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE
+    The second optional variadic parameter can be either BOOST_VMD_PARSE_ONLY_TUPLE
     or BOOST_VMD_RETURN_TYPE, with the latter value the default value. 
-    With BOOST_VMD_RETURN_GENERAL_TUPLE_TYPE, in order to determine the element type, the elements 
+    With BOOST_VMD_PARSE_ONLY_TUPLE, in order to determine the element type, the elements 
     are tested among other types for a possible tuple. With BOOST_VMD_RETURN_TYPE, 
     in order to determine the element type, the elements are tested among other types 
     for a possible array and a possible list before being tested for a possible tuple. 
