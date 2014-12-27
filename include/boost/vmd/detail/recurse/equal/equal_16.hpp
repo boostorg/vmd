@@ -3,7 +3,7 @@
 
 #include <boost/vmd/detail/recurse/equal/equal_headers.hpp>
 
-#define BOOST_VMD_DETAIL_EQUAL_16_CNI(vseq1,vseq2,vtype) \
+#define BOOST_VMD_DETAIL_EQUAL_16_CNI_CHK(vseq1,vseq2,vtype) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_BITOR \
@@ -25,7 +25,7 @@
 	(vseq1,vseq2,vtype) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_16_CNI_D(d,vseq1,vseq2,vtype) \
+#define BOOST_VMD_DETAIL_EQUAL_16_CNI_CHK_D(d,vseq1,vseq2,vtype) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_BITOR \
@@ -43,6 +43,54 @@
 			), \
 		BOOST_VMD_DETAIL_DATA_EQUAL_16_D, \
 		BOOST_VMD_DETAIL_EQUAL_CNI_SMP_D \
+		) \
+	(d,vseq1,vseq2,vtype) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_16_VSEQ(vseq1,vseq2,vtype) \
+	BOOST_VMD_DETAIL_DATA_EQUAL_16 \
+		( \
+		BOOST_VMD_TO_SEQ(vseq1), \
+		BOOST_VMD_TO_SEQ(vseq2), \
+		BOOST_VMD_TYPE_SEQ \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_16_VSEQ_D(d,vseq1,vseq2,vtype) \
+	BOOST_VMD_DETAIL_DATA_EQUAL_16_D \
+		( \
+		d, \
+		BOOST_VMD_TO_SEQ_D(d,vseq1), \
+		BOOST_VMD_TO_SEQ_D(d,vseq2), \
+		BOOST_VMD_TYPE_SEQ \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_16_CNI(vseq1,vseq2,vtype) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE \
+			( \
+			vtype, \
+			BOOST_VMD_TYPE_VSEQUENCE \
+			), \
+		BOOST_VMD_DETAIL_EQUAL_16_VSEQ, \
+		BOOST_VMD_DETAIL_EQUAL_16_CNI_CHK \
+		) \
+	(vseq1,vseq2,vtype) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_16_CNI_D(d,vseq1,vseq2,vtype) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+			( \
+			d, \
+			vtype, \
+			BOOST_VMD_TYPE_VSEQUENCE \
+			), \
+		BOOST_VMD_DETAIL_EQUAL_16_VSEQ_D, \
+		BOOST_VMD_DETAIL_EQUAL_16_CNI_CHK_D \
 		) \
 	(d,vseq1,vseq2,vtype) \
 /**/

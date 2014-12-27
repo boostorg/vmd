@@ -4,6 +4,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
+#include <boost/vmd/generic/to_seq.hpp>
 #include <boost/vmd/generic/type.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
