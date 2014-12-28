@@ -150,6 +150,7 @@ test-suite variadic_macro_data
        [ run test_equal_array.cpp ]
        [ run test_equal_identifier.cpp ]
        [ run test_equal_list.cpp ]
+       [ run test_equal_multi.cpp ]
        [ run test_equal_number.cpp ]
        [ run test_equal_seq.cpp ]
        [ run test_equal_tuple.cpp ]
@@ -443,6 +444,9 @@ test-suite variadic_macro_data_gh
        [ run test_equal_list.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_equal_list_gh ]
+       [ run test_equal_multi.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_multi_gh ]
        [ run test_equal_number.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_equal_number_gh ]
