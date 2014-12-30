@@ -6,7 +6,7 @@
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/detail/is_from.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/sequence_elem.hpp>
 
 #define BOOST_VMD_DETAIL_IS_MULTI_TUPLE(tuple) \

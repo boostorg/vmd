@@ -9,7 +9,7 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/is_from.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/sequence_elem.hpp>
 #include <boost/vmd/detail/variadic_pop_front.hpp>
 

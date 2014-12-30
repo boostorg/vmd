@@ -15,7 +15,7 @@
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/detail/is_from.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 
 #define BOOST_VMD_DETAIL_MODS_NO_RETURN 0
 #define BOOST_VMD_DETAIL_MODS_RETURN 1
@@ -266,7 +266,7 @@
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_ALLOW_ALL(d,state,id) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_IS_RETURN_GENERAL_TUPLE_TYPE(id), \
+		BOOST_VMD_DETAIL_IS_PARSE_ONLY_TUPLE(id), \
 		BOOST_VMD_DETAIL_MODS_OP_CURRENT_GTT, \
 		BOOST_PP_IIF \
 			( \
@@ -274,11 +274,11 @@
 			BOOST_VMD_DETAIL_MODS_OP_CURRENT_ET, \
 			BOOST_PP_IIF \
 				( \
-				BOOST_VMD_DETAIL_IS_SPECIFIC_ARRAY(id), \
+				BOOST_VMD_DETAIL_IS_PARSE_ARRAY(id), \
 				BOOST_VMD_DETAIL_MODS_OP_CURRENT_SA, \
 				BOOST_PP_IIF \
 					( \
-					BOOST_VMD_DETAIL_IS_SPECIFIC_LIST(id), \
+					BOOST_VMD_DETAIL_IS_PARSE_LIST(id), \
 					BOOST_VMD_DETAIL_MODS_OP_CURRENT_SL, \
 					BOOST_PP_IIF \
 						( \
@@ -306,7 +306,7 @@
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_ALLOW_RETURN(d,state,id) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_IS_RETURN_GENERAL_TUPLE_TYPE(id), \
+		BOOST_VMD_DETAIL_IS_PARSE_ONLY_TUPLE(id), \
 		BOOST_VMD_DETAIL_MODS_OP_CURRENT_GTT, \
 		BOOST_PP_IIF \
 			( \
@@ -314,11 +314,11 @@
 			BOOST_VMD_DETAIL_MODS_OP_CURRENT_ET, \
 			BOOST_PP_IIF \
 				( \
-				BOOST_VMD_DETAIL_IS_SPECIFIC_ARRAY(id), \
+				BOOST_VMD_DETAIL_IS_PARSE_ARRAY(id), \
 				BOOST_VMD_DETAIL_MODS_OP_CURRENT_SA, \
 				BOOST_PP_IIF \
 					( \
-					BOOST_VMD_DETAIL_IS_SPECIFIC_LIST(id), \
+					BOOST_VMD_DETAIL_IS_PARSE_LIST(id), \
 					BOOST_VMD_DETAIL_MODS_OP_CURRENT_SL, \
 					BOOST_PP_IIF \
 						( \

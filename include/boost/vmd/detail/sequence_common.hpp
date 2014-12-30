@@ -30,7 +30,7 @@
 #include <boost/vmd/seq/begin_seq.hpp>
 #include <boost/vmd/tuple/begin_tuple.hpp>
 #include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/is_from.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/mods.hpp>
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT_ELEM 0

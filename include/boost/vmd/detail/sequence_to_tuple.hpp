@@ -3,7 +3,7 @@
 
 #include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/is_from.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/sequence_elem.hpp>
 

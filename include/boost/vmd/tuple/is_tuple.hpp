@@ -7,7 +7,7 @@
 
 #include <boost/vmd/tuple/begin_tuple.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
-#include <boost/vmd/detail/is_from.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 
 /*
 

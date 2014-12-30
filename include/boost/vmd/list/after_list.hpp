@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/list/begin_list.hpp>
-#include <boost/vmd/detail/is_from.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 
 /*
 
