@@ -15,7 +15,6 @@
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/mods.hpp>
-#include <boost/vmd/detail/only_after.hpp>
 #include <boost/vmd/detail/sequence_common.hpp>
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_FSEQ_ONLY_CHELM(seq,elem) \
@@ -245,12 +244,7 @@
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_VSEQ(__VA_ARGS__), \
 		BOOST_VMD_DETAIL_NEW_MODS \
 			( \
-			BOOST_PP_IIF \
-				( \
-				BOOST_VMD_DETAIL_ONLY_AFTER(__VA_ARGS__), \
-				BOOST_VMD_ALLOW_AFTER, \
-				allow \
-				), \
+			allow, \
 			__VA_ARGS__ \
 			) \
 		) \
@@ -262,14 +256,10 @@
 		d, \
 		elem, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_VSEQ(__VA_ARGS__), \
-		BOOST_VMD_DETAIL_NEW_MODS \
+		BOOST_VMD_DETAIL_NEW_MODS_D \
 			( \
-			BOOST_PP_IIF \
-				( \
-				BOOST_VMD_DETAIL_ONLY_AFTER_D(d,__VA_ARGS__), \
-				BOOST_VMD_ALLOW_AFTER, \
-				allow \
-				), \
+			d, \
+			allow, \
 			__VA_ARGS__ \
 			) \
 		) \
