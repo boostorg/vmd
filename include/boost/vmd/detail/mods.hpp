@@ -26,11 +26,14 @@
 #define BOOST_VMD_DETAIL_MODS_RETURN_AFTER 1
 #define BOOST_VMD_DETAIL_MODS_NO_INDEX 0
 #define BOOST_VMD_DETAIL_MODS_RETURN_INDEX 1
+#define BOOST_VMD_DETAIL_MODS_NO_ONLY_AFTER 0
+#define BOOST_VMD_DETAIL_MODS_RETURN_ONLY_AFTER 1
 
 #define BOOST_VMD_DETAIL_MODS_TUPLE_RETURN 0
 #define BOOST_VMD_DETAIL_MODS_TUPLE_AFTER 1
 #define BOOST_VMD_DETAIL_MODS_TUPLE_INDEX 2
 #define BOOST_VMD_DETAIL_MODS_TUPLE_OTHER 3
+#define BOOST_VMD_DETAIL_MODS_TUPLE_ONLY_AFTER 4
 
 #define BOOST_VMD_DETAIL_MODS_DATA_INPUT 0
 #define BOOST_VMD_DETAIL_MODS_DATA_INDEX 1
@@ -86,12 +89,20 @@
 	BOOST_PP_TUPLE_ELEM(BOOST_VMD_DETAIL_MODS_TUPLE_AFTER,BOOST_VMD_DETAIL_MODS_STATE_RESULT(state)) \
 /**/
 
+#define BOOST_VMD_DETAIL_MODS_STATE_ONLY_AFTER(state) \
+	BOOST_PP_TUPLE_ELEM(BOOST_VMD_DETAIL_MODS_TUPLE_ONLY_AFTER,BOOST_VMD_DETAIL_MODS_STATE_RESULT(state)) \
+/**/
+
 #define BOOST_VMD_DETAIL_MODS_STATE_TINDEX(state) \
 	BOOST_PP_TUPLE_ELEM(BOOST_VMD_DETAIL_MODS_TUPLE_INDEX,BOOST_VMD_DETAIL_MODS_STATE_RESULT(state)) \
 /**/
 
 #define BOOST_VMD_DETAIL_MODS_IS_RESULT_AFTER(result) \
 	BOOST_PP_TUPLE_ELEM(BOOST_VMD_DETAIL_MODS_TUPLE_AFTER,result) \
+/**/
+
+#define BOOST_VMD_DETAIL_MODS_IS_RESULT_ONLY_AFTER(result) \
+	BOOST_PP_TUPLE_ELEM(BOOST_VMD_DETAIL_MODS_TUPLE_ONLY_AFTER,result) \
 /**/
 
 #define BOOST_VMD_DETAIL_MODS_IS_RESULT_INDEX(result) \
@@ -122,11 +133,11 @@
 				BOOST_VMD_DETAIL_MODS_TUPLE_RETURN, \
 				number \
 				) \
-			), \
+			) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_MODS_OP_CURRENT_AFTER(d,state,number) \
+#define BOOST_VMD_DETAIL_MODS_OP_CURRENT_ONLY_AFTER(d,state,id) \
 	BOOST_VMD_DETAIL_MODS_OP_CURRENT_UPDATE \
 		( \
 		d, \
@@ -138,11 +149,17 @@
 			BOOST_PP_TUPLE_REPLACE_D \
 				( \
 				d, \
-				BOOST_VMD_DETAIL_MODS_STATE_RESULT(state), \
+				BOOST_PP_TUPLE_REPLACE_D \
+					( \
+					d, \
+					BOOST_VMD_DETAIL_MODS_STATE_RESULT(state), \
+					BOOST_VMD_DETAIL_MODS_TUPLE_ONLY_AFTER, \
+					1 \
+					), \
 				BOOST_VMD_DETAIL_MODS_TUPLE_AFTER, \
-				number \
+				1 \
 				) \
-			), \
+			) \
 		) \
 /**/
 
@@ -162,7 +179,7 @@
 				BOOST_VMD_DETAIL_MODS_TUPLE_INDEX, \
 				number \
 				) \
-			), \
+			) \
 		) \
 /**/
 
@@ -187,11 +204,49 @@
 /**/
 
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_AFT(d,state,id) \
-	BOOST_VMD_DETAIL_MODS_OP_CURRENT_AFTER(d,state,BOOST_VMD_DETAIL_MODS_RETURN_AFTER) \
+	BOOST_VMD_DETAIL_MODS_OP_CURRENT_UPDATE \
+		( \
+		d, \
+		BOOST_PP_TUPLE_REPLACE_D \
+			( \
+			d, \
+			state, \
+			BOOST_VMD_DETAIL_MODS_DATA_RESULT, \
+			BOOST_PP_TUPLE_REPLACE_D \
+				( \
+				d, \
+				BOOST_VMD_DETAIL_MODS_STATE_RESULT(state), \
+				BOOST_VMD_DETAIL_MODS_TUPLE_AFTER, \
+				BOOST_VMD_DETAIL_MODS_RETURN_AFTER \
+				) \
+			) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_NOAFT(d,state,id) \
-	BOOST_VMD_DETAIL_MODS_OP_CURRENT_AFTER(d,state,BOOST_VMD_DETAIL_MODS_NO_AFTER) \
+	BOOST_VMD_DETAIL_MODS_OP_CURRENT_UPDATE \
+		( \
+		d, \
+		BOOST_PP_TUPLE_REPLACE_D \
+			( \
+			d, \
+			state, \
+			BOOST_VMD_DETAIL_MODS_DATA_RESULT, \
+			BOOST_PP_TUPLE_REPLACE_D \
+				( \
+				d, \
+				BOOST_PP_TUPLE_REPLACE_D \
+					( \
+					d, \
+					BOOST_VMD_DETAIL_MODS_STATE_RESULT(state), \
+					BOOST_VMD_DETAIL_MODS_TUPLE_ONLY_AFTER, \
+					0 \
+					), \
+				BOOST_VMD_DETAIL_MODS_TUPLE_AFTER, \
+				BOOST_VMD_DETAIL_MODS_NO_AFTER \
+				) \
+			) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_IND(d,state,id) \
@@ -249,11 +304,11 @@
 			state, \
 			BOOST_VMD_DETAIL_MODS_DATA_RESULT, \
 			BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_CTUPLE(d,state,id) \
-			), \
+			) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_MODS_OP_CURRENT_UPDATE(d,state,id) \
+#define BOOST_VMD_DETAIL_MODS_OP_CURRENT_UPDATE(d,state) \
 	BOOST_PP_TUPLE_REPLACE_D \
 		( \
 		d, \
@@ -292,7 +347,12 @@
 								( \
 								BOOST_VMD_DETAIL_IS_RETURN_NO_AFTER(id), \
 								BOOST_VMD_DETAIL_MODS_OP_CURRENT_NOAFT, \
-								BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN \
+								BOOST_PP_IIF \
+									( \
+									BOOST_VMD_DETAIL_IS_RETURN_ONLY_AFTER(id), \
+									BOOST_VMD_DETAIL_MODS_OP_CURRENT_ONLY_AFTER, \
+									BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN \
+									) \
 								) \
 							) \
 						) \
@@ -342,7 +402,12 @@
 			( \
 			BOOST_VMD_DETAIL_IS_RETURN_NO_AFTER(id), \
 			BOOST_VMD_DETAIL_MODS_OP_CURRENT_NOAFT, \
-			BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN \
+			BOOST_PP_IIF \
+				( \
+				BOOST_VMD_DETAIL_IS_RETURN_ONLY_AFTER(id), \
+				BOOST_VMD_DETAIL_MODS_OP_CURRENT_ONLY_AFTER, \
+				BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN \
+				) \
 			) \
 		) \
 	(d,state,id) \
@@ -359,13 +424,18 @@
 			BOOST_VMD_DETAIL_MODS_OP_CURRENT_NOAFT, \
 			BOOST_PP_IIF \
 				( \
-				BOOST_VMD_DETAIL_IS_RETURN_INDEX(id), \
-				BOOST_VMD_DETAIL_MODS_OP_CURRENT_IND, \
+				BOOST_VMD_DETAIL_IS_RETURN_ONLY_AFTER(id), \
+				BOOST_VMD_DETAIL_MODS_OP_CURRENT_ONLY_AFTER, \
 				BOOST_PP_IIF \
 					( \
-					BOOST_VMD_DETAIL_IS_RETURN_NO_INDEX(id), \
-					BOOST_VMD_DETAIL_MODS_OP_CURRENT_NO_IND, \
-					BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN \
+					BOOST_VMD_DETAIL_IS_RETURN_INDEX(id), \
+					BOOST_VMD_DETAIL_MODS_OP_CURRENT_IND, \
+					BOOST_PP_IIF \
+						( \
+						BOOST_VMD_DETAIL_IS_RETURN_NO_INDEX(id), \
+						BOOST_VMD_DETAIL_MODS_OP_CURRENT_NO_IND, \
+						BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN \
+						) \
 					) \
 				) \
 			) \
@@ -374,7 +444,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_ALLOW_UPDATE(d,state,id) \
-	BOOST_VMD_DETAIL_MODS_OP_CURRENT_UPDATE(d,state,id) \
+	BOOST_VMD_DETAIL_MODS_OP_CURRENT_UPDATE(d,state) \
 /**/
 
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_ID(d,state,id) \
@@ -418,7 +488,7 @@
 				BOOST_VMD_DETAIL_MODS_TUPLE_OTHER, \
 				id \
 				) \
-			), \
+			) \
 		) \
 /**/
 
@@ -448,7 +518,7 @@
 				tuple, \
 				0, \
 				BOOST_PP_TUPLE_SIZE(tuple), \
-				(0,0,0,), \
+				(0,0,0,,0), \
 				allow \
 				) \
 			) \
@@ -467,7 +537,7 @@
 				tuple, \
 				0, \
 				BOOST_PP_TUPLE_SIZE(tuple), \
-				(0,0,0,), \
+				(0,0,0,,0), \
 				allow \
 				) \
 			) \
@@ -497,7 +567,7 @@
 		BOOST_PP_IIF \
 			( \
 			BOOST_PP_EQUAL(BOOST_PP_TUPLE_SIZE(tuple),1), \
-			BOOST_VMD_IDENTITY((0,0,0,)), \
+			BOOST_VMD_IDENTITY((0,0,0,,0)), \
 			BOOST_VMD_DETAIL_NEW_MODS_VAR \
 			) \
 		(allow,tuple) \
@@ -510,7 +580,7 @@
 		BOOST_PP_IIF \
 			( \
 			BOOST_PP_EQUAL_D(d,BOOST_PP_TUPLE_SIZE(tuple),1), \
-			BOOST_VMD_IDENTITY((0,0,0,)), \
+			BOOST_VMD_IDENTITY((0,0,0,,0)), \
 			BOOST_VMD_DETAIL_NEW_MODS_VAR_D \
 			) \
 		(d,allow,tuple) \
@@ -534,6 +604,9 @@
                          1 Identifier Index
                          
   Fourth tuple element = Tuple of other identifiers
+  
+  Fifth tuple element  = 0 No after only return
+                         1 After only return
                          
   Input                = allow, either
                          BOOST_VMD_ALLOW_ALL

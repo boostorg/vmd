@@ -10,10 +10,12 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/empty.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/only_after.hpp>
 #include <boost/vmd/detail/sequence_common.hpp>
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_FSEQ_ONLY_CHELM(seq,elem) \
@@ -187,7 +189,7 @@
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY_RES_D(d,nm) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM(elem,vseq,nm) \
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_CE(elem,vseq,nm) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_NOT_EMPTY(vseq), \
@@ -197,7 +199,7 @@
 	(elem,vseq,nm) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_D(d,elem,vseq,nm) \
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_CE_D(d,elem,vseq,nm) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_NOT_EMPTY(vseq), \
@@ -207,12 +209,50 @@
 	(d,elem,vseq,nm) \
 /**/
 
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_COA(res,nm) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_MODS_IS_RESULT_ONLY_AFTER(nm), \
+			BOOST_PP_TUPLE_ELEM, \
+			BOOST_VMD_IDENTITY(res) \
+			) \
+		(1,res) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM(elem,vseq,nm) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_COA \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_CE(elem,vseq,nm), \
+		nm \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_D(d,elem,vseq,nm) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_COA \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_CE_D(d,elem,vseq,nm), \
+		nm \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM(allow,elem,...) \
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM \
 		( \
 		elem, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_VSEQ(__VA_ARGS__), \
-		BOOST_VMD_DETAIL_NEW_MODS(allow,__VA_ARGS__) \
+		BOOST_VMD_DETAIL_NEW_MODS \
+			( \
+			BOOST_PP_IIF \
+				( \
+				BOOST_VMD_DETAIL_ONLY_AFTER(__VA_ARGS__), \
+				BOOST_VMD_ALLOW_AFTER, \
+				allow \
+				), \
+			__VA_ARGS__ \
+			) \
 		) \
 /**/
 
@@ -222,7 +262,16 @@
 		d, \
 		elem, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_VSEQ(__VA_ARGS__), \
-		BOOST_VMD_DETAIL_NEW_MODS(allow,__VA_ARGS__) \
+		BOOST_VMD_DETAIL_NEW_MODS \
+			( \
+			BOOST_PP_IIF \
+				( \
+				BOOST_VMD_DETAIL_ONLY_AFTER_D(d,__VA_ARGS__), \
+				BOOST_VMD_ALLOW_AFTER, \
+				allow \
+				), \
+			__VA_ARGS__ \
+			) \
 		) \
 /**/
 
