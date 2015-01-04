@@ -5,9 +5,9 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/tuple/begin_tuple.hpp>
 #include <boost/vmd/detail/is_array.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
+#include <boost/vmd/detail/tuple.hpp>
 
 /*
 
@@ -36,7 +36,7 @@
 #define BOOST_VMD_IS_ARRAY(array) \
 	BOOST_VMD_DETAIL_IS_ARRAY_ENTIRE \
 		( \
-		BOOST_VMD_BEGIN_TUPLE(array,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_DETAIL_TUPLE(array,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

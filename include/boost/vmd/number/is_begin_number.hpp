@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/number/begin_number.hpp>
+#include <boost/vmd/detail/number.hpp>
 
 /*
 
@@ -34,7 +34,7 @@
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
-			BOOST_VMD_BEGIN_NUMBER(vseq) \
+			BOOST_VMD_DETAIL_NUMBER(vseq) \
 			) \
 		) \
 /**/

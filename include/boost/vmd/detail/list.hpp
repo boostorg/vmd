@@ -6,9 +6,9 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/pop_back.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/vmd/identifier/begin_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
+#include <boost/vmd/detail/identifier.hpp>
 #include <boost/vmd/detail/is_list.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/parens.hpp>
@@ -81,11 +81,11 @@
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_EMPTY_LIST(list) \
-	BOOST_VMD_BEGIN_IDENTIFIER(list,BOOST_PP_NIL,BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX) \
+	BOOST_VMD_DETAIL_IDENTIFIER(list,BOOST_PP_NIL,BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX) \
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_EMPTY_LIST_D(d,list) \
-	BOOST_VMD_BEGIN_IDENTIFIER_D(d,list,BOOST_PP_NIL,BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX) \
+	BOOST_VMD_DETAIL_IDENTIFIER_D(d,list,BOOST_PP_NIL,BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX) \
 /**/
 
 #define BOOST_VMD_DETAIL_LIST_TUPLE(param) \

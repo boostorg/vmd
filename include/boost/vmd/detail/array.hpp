@@ -8,10 +8,10 @@
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple/begin_tuple.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/is_array.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_ARRAY_CHECK_FOR_ARRAY(tuple) \
 	BOOST_VMD_IDENTITY_RESULT \
@@ -53,7 +53,7 @@
 #define BOOST_VMD_DETAIL_ARRAY_SPLIT(param) \
 	BOOST_VMD_DETAIL_ARRAY_PROCESS \
 		( \
-		BOOST_VMD_BEGIN_TUPLE(param,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_DETAIL_TUPLE(param,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -78,7 +78,7 @@
 #define BOOST_VMD_DETAIL_ARRAY_BEGIN(param) \
 	BOOST_VMD_DETAIL_ARRAY_BEGIN_TUPLE \
 		( \
-		BOOST_VMD_BEGIN_TUPLE(param) \
+		BOOST_VMD_DETAIL_TUPLE(param) \
 		) \
 /**/
 

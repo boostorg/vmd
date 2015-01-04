@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/seq/begin_seq.hpp>
+#include <boost/vmd/detail/seq.hpp>
 
 /*
 
@@ -31,7 +31,7 @@
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
-			BOOST_VMD_BEGIN_SEQ(param) \
+			BOOST_VMD_DETAIL_SEQ(param) \
 			) \
 		) \
 /**/
@@ -41,7 +41,7 @@
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
-			BOOST_VMD_BEGIN_SEQ_D(d,param) \
+			BOOST_VMD_DETAIL_SEQ_D(d,param) \
 			) \
 		) \
 /**/

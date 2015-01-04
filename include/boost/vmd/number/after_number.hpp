@@ -6,8 +6,8 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/vmd/number/begin_number.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
+#include <boost/vmd/detail/number.hpp>
 
 /*
 
@@ -30,7 +30,7 @@
 	BOOST_PP_TUPLE_ELEM \
 		( \
 		1, \
-		BOOST_VMD_BEGIN_NUMBER(vseq,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_DETAIL_NUMBER(vseq,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 

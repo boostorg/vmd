@@ -18,20 +18,19 @@
 #include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
-#include <boost/vmd/array/begin_array.hpp>
 #include <boost/vmd/empty.hpp>
-#include <boost/vmd/identifier/begin_identifier.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/list/after_list.hpp>
-#include <boost/vmd/list/begin_list.hpp>
 #include <boost/vmd/list/is_empty_list.hpp>
-#include <boost/vmd/number/begin_number.hpp>
-#include <boost/vmd/seq/begin_seq.hpp>
-#include <boost/vmd/tuple/begin_tuple.hpp>
 #include <boost/vmd/types.hpp>
+#include <boost/vmd/detail/array.hpp>
+#include <boost/vmd/detail/identifier.hpp>
+#include <boost/vmd/detail/list.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/number.hpp>
+#include <boost/vmd/detail/seq.hpp>
+#include <boost/vmd/detail/tuple.hpp>
 
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT_ELEM 0
 #define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ELEM 1
@@ -357,7 +356,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_GCLRT(state) \
 	BOOST_PP_CAT \
 		( \
-		BOOST_VMD_BEGIN_, \
+		BOOST_VMD_DETAIL_, \
 		BOOST_PP_CAT(BOOST_VMD_DETAIL_SEQUENCE_STATE_GET_TYPE(state),_D) \
 		) \
 /**/
@@ -365,7 +364,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_GCLPL(state) \
 	BOOST_PP_CAT \
 		( \
-		BOOST_VMD_BEGIN_, \
+		BOOST_VMD_DETAIL_, \
 		BOOST_VMD_DETAIL_SEQUENCE_STATE_GET_TYPE(state) \
 		) \
 /**/
@@ -545,7 +544,7 @@
 
 #define BOOST_VMD_DETAIL_SEQUENCE_OP_ID_EL(d,state) \
 	( \
-	BOOST_VMD_AFTER_LIST_D(d,BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT(state)), \
+	BOOST_VMD_DETAIL_LIST_D(d,BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT(state),BOOST_VMD_RETURN_ONLY_AFTER), \
 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD(d,state,(BOOST_VMD_TYPE_LIST,BOOST_PP_NIL)), \
 	BOOST_VMD_DETAIL_SEQUENCE_STATE_ELEM(state), \
 	BOOST_VMD_DETAIL_SEQUENCE_STATE_OUTTYPE(state), \
@@ -559,7 +558,7 @@
 		BOOST_VMD_IS_EMPTY_LIST_D \
 			( \
 			d, \
-			BOOST_VMD_BEGIN_IDENTIFIER_D \
+			BOOST_VMD_DETAIL_IDENTIFIER_D \
 				( \
 				d, \
 				BOOST_VMD_DETAIL_SEQUENCE_STATE_INPUT(state) \

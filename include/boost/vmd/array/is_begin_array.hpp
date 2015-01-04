@@ -6,8 +6,8 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/logical/compl.hpp>
-#include <boost/vmd/array/begin_array.hpp>
 #include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/detail/array.hpp>
 
 /*
 
@@ -31,7 +31,7 @@
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
-			BOOST_VMD_BEGIN_ARRAY(param) \
+			BOOST_VMD_DETAIL_ARRAY(param) \
 			) \
 		) \
 /**/

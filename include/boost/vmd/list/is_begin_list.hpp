@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/list/begin_list.hpp>
+#include <boost/vmd/detail/list.hpp>
 
 /*
 
@@ -31,7 +31,7 @@
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
-			BOOST_VMD_BEGIN_LIST(param) \
+			BOOST_VMD_DETAIL_LIST(param) \
 			) \
 		) \
 /**/
@@ -41,7 +41,7 @@
 		( \
 		BOOST_VMD_IS_EMPTY \
 			( \
-			BOOST_VMD_BEGIN_LIST_D(d,param) \
+			BOOST_VMD_DETAIL_LIST_D(d,param) \
 			) \
 		) \
 /**/

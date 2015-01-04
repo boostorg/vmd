@@ -5,7 +5,6 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/generic/after_elem.hpp>
 #include <boost/vmd/generic/elem.hpp>
 #include <boost/vmd/generic/enum.hpp>
 #include <boost/vmd/generic/equal.hpp>

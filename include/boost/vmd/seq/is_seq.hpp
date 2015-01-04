@@ -5,9 +5,9 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/seq/begin_seq.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
+#include <boost/vmd/detail/seq.hpp>
 
 /*
 
@@ -36,14 +36,14 @@
 #define BOOST_VMD_IS_SEQ(seq) \
 	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
-		BOOST_VMD_BEGIN_SEQ(seq,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_DETAIL_SEQ(seq,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
 #define BOOST_VMD_IS_SEQ_D(d,seq) \
 	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
-		BOOST_VMD_BEGIN_SEQ_D(d,seq,BOOST_VMD_RETURN_AFTER) \
+		BOOST_VMD_DETAIL_SEQ_D(d,seq,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
