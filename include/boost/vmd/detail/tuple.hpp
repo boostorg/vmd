@@ -3,10 +3,7 @@
 
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
-#include <boost/preprocessor/facilities/expand.hpp>
-#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
-#include <boost/preprocessor/punctuation/paren.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/empty.hpp>
@@ -14,16 +11,10 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/parens.hpp>
   
-#define BOOST_VMD_DETAIL_BEGIN_TUPLE_EXP2(...) ( __VA_ARGS__ ) BOOST_VMD_EMPTY BOOST_PP_LPAREN()
-#define BOOST_VMD_DETAIL_BEGIN_TUPLE_EXP1(param) BOOST_VMD_DETAIL_BEGIN_TUPLE_EXP2 param BOOST_PP_RPAREN()
-#define BOOST_VMD_DETAIL_BEGIN_TUPLE(param) BOOST_PP_EXPAND(BOOST_VMD_DETAIL_BEGIN_TUPLE_EXP1(param))
-
-#define BOOST_VMD_DETAIL_AFTER_TUPLE_DATA(tuple) BOOST_VMD_EMPTY tuple
-#define BOOST_VMD_DETAIL_SPLIT_TUPLE(tuple) (BOOST_VMD_DETAIL_BEGIN_TUPLE(tuple),BOOST_VMD_DETAIL_AFTER_TUPLE_DATA(tuple))
-
 #define BOOST_VMD_DETAIL_TUPLE_BST_CS(vseq) \
-	BOOST_PP_EQUAL(BOOST_PP_TUPLE_SIZE(BOOST_VMD_DETAIL_BEGIN_TUPLE(vseq)),1) \
+	BOOST_PP_EQUAL(BOOST_PP_TUPLE_SIZE(BOOST_VMD_DETAIL_BEGIN_PARENS(vseq)),1) \
 /**/
 
 #define BOOST_VMD_DETAIL_TUPLE_BST(vseq) \
@@ -40,7 +31,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_TUPLE_BSEQ_NXT(vseq) \
-	BOOST_VMD_DETAIL_TUPLE_BST(BOOST_VMD_DETAIL_AFTER_TUPLE_DATA(vseq)) \
+	BOOST_VMD_DETAIL_TUPLE_BST(BOOST_VMD_DETAIL_AFTER_PARENS_DATA(vseq)) \
 /**/
 
 #define BOOST_VMD_DETAIL_TUPLE_BSEQ(vseq) \
@@ -61,7 +52,7 @@
 		( \
 		BOOST_VMD_DETAIL_TUPLE_BSEQ(vseq), \
 		BOOST_VMD_EMPTY, \
-		BOOST_VMD_DETAIL_AFTER_TUPLE_DATA \
+		BOOST_VMD_DETAIL_AFTER_PARENS_DATA \
 		) \
 	(vseq) \
 /**/
@@ -81,7 +72,7 @@
 		( \
 		BOOST_VMD_DETAIL_TUPLE_BSEQ(vseq), \
 		BOOST_VMD_DETAIL_EMPTY_RESULT, \
-		BOOST_VMD_DETAIL_SPLIT_TUPLE \
+		BOOST_VMD_DETAIL_SPLIT_PARENS \
 		) \
 	(vseq) \
 /**/
@@ -101,7 +92,7 @@
 		( \
 		BOOST_VMD_DETAIL_TUPLE_BSEQ(vseq), \
 		BOOST_VMD_EMPTY, \
-		BOOST_VMD_DETAIL_BEGIN_TUPLE \
+		BOOST_VMD_DETAIL_BEGIN_PARENS \
 		) \
 	(vseq) \
 /**/
@@ -127,16 +118,6 @@
 		BOOST_VMD_DETAIL_TUPLE_PROCESS \
 		) \
 	(BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
-/**/
-
-#define BOOST_VMD_DETAIL_IS_BEGIN_TUPLE(vseq) \
-	BOOST_PP_COMPL \
-		( \
-		BOOST_VMD_IS_EMPTY \
-			( \
-			BOOST_VMD_DETAIL_TUPLE_PROCESS(vseq) \
-			) \
-		) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_TUPLE_HPP */
