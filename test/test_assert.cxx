@@ -1,16 +1,16 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/array/begin_array.hpp>
+#include <boost/vmd/array/array_elem.hpp>
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/identifier/begin_identifier.hpp>
+#include <boost/vmd/identifier/identifier_elem.hpp>
 #include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/list/begin_list.hpp>
-#include <boost/vmd/number/begin_number.hpp>
+#include <boost/vmd/list/list_elem.hpp>
+#include <boost/vmd/number/number_elem.hpp>
 #include <boost/vmd/number/is_number.hpp>
-#include <boost/vmd/seq/begin_seq.hpp>
-#include <boost/vmd/tuple/begin_tuple.hpp>
+#include <boost/vmd/seq/seq_elem.hpp>
+#include <boost/vmd/tuple/tuple_elem.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/arithmetic/dec.hpp>
@@ -55,7 +55,7 @@ int main()
   		)
   	)
   	
-  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_BEGIN_ARRAY(AN_ARRAY_PLUS,BOOST_VMD_RETURN_AFTER)),156))
+  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ARRAY_ELEM(0,AN_ARRAY_PLUS,BOOST_VMD_RETURN_AFTER)),156))
   BOOST_VMD_ASSERT
   	(
   	BOOST_PP_EQUAL
@@ -63,7 +63,7 @@ int main()
 		BOOST_PP_TUPLE_ELEM
 			(
 			2,
-			BOOST_VMD_BEGIN_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(dummy1,zzz),BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX)
+			BOOST_VMD_IDENTIFIER_ELEM(0,BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(dummy1,zzz),BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX)
 			),
 		1
   		)
@@ -72,10 +72,10 @@ int main()
   BOOST_VMD_ASSERT(BOOST_VMD_IS_EMPTY(DATA BOOST_PP_EMPTY()))
   BOOST_VMD_ASSERT(BOOST_VMD_IS_IDENTIFIER(JDATA,somevalue))
   BOOST_VMD_ASSERT(BOOST_VMD_IS_NUMBER(BOOST_PP_LIST_AT(A_LIST,2)))
-  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_BEGIN_LIST(A_LIST_PLUS,BOOST_VMD_RETURN_AFTER)),56))
-  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_BEGIN_NUMBER(BOOST_PP_SEQ_ELEM(0,A_SEQ),BOOST_VMD_RETURN_AFTER)),73))
-  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_SEQ_ELEM(1,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_BEGIN_SEQ(A_SEQ_PLUS,BOOST_VMD_RETURN_AFTER))),34))
-  BOOST_VMD_ASSERT(BOOST_PP_COMPL(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_BEGIN_TUPLE(KDATA,BOOST_VMD_RETURN_AFTER)))))
+  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_LIST_ELEM(0,A_LIST_PLUS,BOOST_VMD_RETURN_AFTER)),56))
+  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_NUMBER_ELEM(0,BOOST_PP_SEQ_ELEM(0,A_SEQ),BOOST_VMD_RETURN_AFTER)),73))
+  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_SEQ_ELEM(1,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_SEQ_ELEM(0,A_SEQ_PLUS,BOOST_VMD_RETURN_AFTER))),34))
+  BOOST_VMD_ASSERT(BOOST_PP_COMPL(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_TUPLE_ELEM(0,KDATA,BOOST_VMD_RETURN_AFTER)))))
   
 #endif
 

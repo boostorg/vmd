@@ -2,7 +2,7 @@
 #include <boost/vmd/vmd.hpp>
 #else
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/identifier/begin_identifier.hpp>
+#include <boost/vmd/identifier/identifier_elem.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
@@ -25,7 +25,7 @@ int main()
 		BOOST_PP_TUPLE_ELEM
 			(
 			2,
-			BOOST_VMD_BEGIN_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(dummy1,zzz),BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX)
+			BOOST_VMD_IDENTIFIER_ELEM(0,BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(dummy1,zzz),BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX)
 			),
 		0
   		),

@@ -1,9 +1,10 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/identifier/is_begin_identifier.hpp>
+#include <boost/vmd/identifier/identifier_elem.hpp>
+#include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/generic/after_elem.hpp>
+#include <boost/vmd/generic/elem.hpp>
 #include <boost/vmd/generic/size.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
@@ -34,10 +35,10 @@ int main()
   
   /* AFTER ELEM */
   
-  BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(3,BOOST_VMD_AFTER_ELEM(1,ASEQUENCE3)),3);
-  BOOST_TEST(BOOST_VMD_IS_BEGIN_IDENTIFIER(BOOST_VMD_AFTER_ELEM(2,ASEQUENCE)));
-  BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_AFTER_ELEM(3,ASEQUENCE4)));
-  BOOST_TEST_EQ(BOOST_VMD_SIZE(BOOST_VMD_AFTER_ELEM(1,ASEQUENCE2)),3);
+  BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(3,BOOST_VMD_ELEM(1,ASEQUENCE3,BOOST_VMD_RETURN_ONLY_AFTER)),3);
+  BOOST_TEST(BOOST_VMD_IS_IDENTIFIER(BOOST_VMD_IDENTIFIER_ELEM(0,BOOST_VMD_ELEM(2,ASEQUENCE,BOOST_VMD_RETURN_ONLY_AFTER))));
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(3,ASEQUENCE4,BOOST_VMD_RETURN_ONLY_AFTER)));
+  BOOST_TEST_EQ(BOOST_VMD_SIZE(BOOST_VMD_ELEM(1,ASEQUENCE2,BOOST_VMD_RETURN_ONLY_AFTER)),3);
   
 #endif
 

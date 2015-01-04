@@ -2,7 +2,7 @@
 #include <boost/vmd/vmd.hpp>
 #else
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/number/begin_number.hpp>
+#include <boost/vmd/number/number_elem.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
@@ -16,7 +16,7 @@ int main()
 
   #define A_SEQ (73 (split) clear)(red)(green 44)
   
-  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_BEGIN_NUMBER(BOOST_PP_SEQ_ELEM(0,A_SEQ),BOOST_VMD_RETURN_AFTER)),72),BOOST_VMD_TEST_FAIL_NUMBER)
+  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_NUMBER_ELEM(0,BOOST_PP_SEQ_ELEM(0,A_SEQ),BOOST_VMD_RETURN_AFTER)),72),BOOST_VMD_TEST_FAIL_NUMBER)
   
 #else
   
