@@ -7,7 +7,6 @@
 
 #include <boost/vmd/seq/assert_is_seq.hpp>
 #include <boost/vmd/seq/is_seq.hpp>
-#include <boost/vmd/seq/seq.hpp>
 #include <boost/vmd/seq/seq_elem.hpp>
 #include <boost/vmd/seq/seq_equal.hpp>
 #include <boost/vmd/seq/seq_not_equal.hpp>

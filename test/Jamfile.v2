@@ -61,7 +61,6 @@ test-suite variadic_macro_data
        [ run test_after_number_elem.cpp ]
        [ run test_after_seq_elem.cpp ]
        [ run test_after_tuple_elem.cpp ]
-       [ run test_array.cpp ]
        [ run test_array_elem.cpp ]
        [ run test_array_empty.cpp ]
        [ run test_array_equal.cpp ]
@@ -142,7 +141,6 @@ test-suite variadic_macro_data
        [ run test_equal_number.cpp ]
        [ run test_equal_seq.cpp ]
        [ run test_equal_tuple.cpp ]
-       [ run test_identifier.cpp ]
        [ run test_identifier_elem.cpp ]
        [ run test_identifier_elem2.cpp ]
        [ run test_identifier_equal.cpp ]
@@ -171,14 +169,11 @@ test-suite variadic_macro_data
        [ run-fail test_is_tuple_fail2.cpp ]
        [ run-fail test_is_tuple_fail3.cpp ]
        [ run-fail test_is_tuple_fail4.cpp ]
-       [ run test_list.cpp ]
        [ run test_list_elem.cpp ]
        [ run test_list_empty.cpp ]
        [ run test_list_equal.cpp ]
-       [ run test_number.cpp ]
        [ run test_number_elem.cpp ]
        [ run test_number_equal.cpp ]
-       [ run test_seq.cpp ]
        [ run test_seq_elem.cpp ]
        [ run test_seq_equal.cpp ]
        [ run test_sequence_after_elem.cpp ]
@@ -189,7 +184,6 @@ test-suite variadic_macro_data
        [ run test_sequence_to_list.cpp ]
        [ run test_sequence_to_seq.cpp ]
        [ run test_sequence_to_tuple.cpp ]
-       [ run test_tuple.cpp ]
        [ run test_tuple_elem.cpp ]
        [ run test_tuple_equal.cpp ]
        [ run test_type.cpp ]
@@ -215,9 +209,6 @@ test-suite variadic_macro_data_gh
        [ run test_after_tuple_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_after_tuple_elem_gh ]
-       [ run test_array.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_array_gh ]
        [ run test_array_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_array_elem_gh ]
@@ -402,9 +393,6 @@ test-suite variadic_macro_data_gh
        [ run test_equal_tuple.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_equal_tuple_gh ]
-       [ run test_identifier.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_identifier_gh ]
        [ run test_identifier_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_identifier_elem_gh ]
@@ -492,9 +480,6 @@ test-suite variadic_macro_data_gh
        [ run-fail test_is_tuple_fail4.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_tuple_fail4_gh ]
-       [ run test_list.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_list_gh ]
        [ run test_list_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_list_elem_gh ]
@@ -504,18 +489,12 @@ test-suite variadic_macro_data_gh
        [ run test_list_equal.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_list_equal_gh ]
-       [ run test_number.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_number_gh ]
        [ run test_number_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_number_elem_gh ]
        [ run test_number_equal.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_number_equal_gh ]
-       [ run test_seq.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_seq_gh ]
        [ run test_seq_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_seq_elem_gh ]
@@ -546,9 +525,6 @@ test-suite variadic_macro_data_gh
        [ run test_sequence_to_tuple.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_sequence_to_tuple_gh ]
-       [ run test_tuple.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_tuple_gh ]
        [ run test_tuple_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_tuple_elem_gh ]

@@ -5,7 +5,6 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/array/array.hpp>
 #include <boost/vmd/array/array_elem.hpp>
 #include <boost/vmd/array/array_equal.hpp>
 #include <boost/vmd/array/array_not_equal.hpp>

@@ -7,7 +7,6 @@
 
 #include <boost/vmd/tuple/assert_is_tuple.hpp>
 #include <boost/vmd/tuple/is_tuple.hpp>
-#include <boost/vmd/tuple/tuple.hpp>
 #include <boost/vmd/tuple/tuple_elem.hpp>
 #include <boost/vmd/tuple/tuple_equal.hpp>
 #include <boost/vmd/tuple/tuple_not_equal.hpp>
