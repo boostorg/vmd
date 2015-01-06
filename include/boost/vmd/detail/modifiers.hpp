@@ -1,7 +1,7 @@
 #if !defined(BOOST_VMD_DETAIL_MODIFIERS_HPP)
 #define BOOST_VMD_DETAIL_MODIFIERS_HPP
 
-#include <boost/vmd/detail/match_identifier.hpp>
+#include <boost/vmd/detail/match_single_identifier.hpp>
 
 #define BOOST_VMD_REGISTER_BOOST_VMD_PARSE_ONLY_TUPLE (BOOST_VMD_PARSE_ONLY_TUPLE)
 #define BOOST_VMD_REGISTER_BOOST_VMD_PARSE_ARRAY (BOOST_VMD_PARSE_ARRAY)

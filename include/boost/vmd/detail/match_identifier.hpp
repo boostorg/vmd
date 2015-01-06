@@ -13,6 +13,7 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/idprefix.hpp>
+#include <boost/vmd/detail/match_identifier_common.hpp>
 
 #define BOOST_VMD_DETAIL_MATCH_IDENTIFIER_STATE_ID(state) \
 	BOOST_PP_TUPLE_ELEM(0,state) \
@@ -40,29 +41,6 @@
 
 #define BOOST_VMD_DETAIL_MATCH_IDENTIFIER_STATE_RESULT(state) \
 	BOOST_PP_TUPLE_ELEM(4,state) \
-/**/
-
-#define BOOST_VMD_DETAIL_MATCH_IDENTIFIER_OP_CREATE_ID_RESULT(id,keyid) \
-	BOOST_PP_CAT \
-		( \
-		BOOST_VMD_DETAIL_IDENTIFIER_DETECTION_PREFIX, \
-		BOOST_PP_CAT \
-			( \
-			keyid, \
-			BOOST_PP_CAT \
-				( \
-				_, \
-				id \
-				) \
-			) \
-		) \
-/**/
-
-#define BOOST_VMD_DETAIL_MATCH_IDENTIFIER_OP_CMP_IDS(id,keyid) \
-	BOOST_VMD_IS_EMPTY \
-		( \
-		BOOST_VMD_DETAIL_MATCH_IDENTIFIER_OP_CREATE_ID_RESULT(id,keyid) \
-		) \
 /**/
 
 #define BOOST_VMD_DETAIL_MATCH_IDENTIFIER_PRED(d,state) \
@@ -171,10 +149,6 @@
 				) \
 			) \
 		) \
-/**/
-
-#define BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER(id,key) \
-	BOOST_VMD_DETAIL_MATCH_IDENTIFIER_OP_CMP_IDS(id,key) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_MATCH_IDENTIFIER_HPP */

@@ -12,7 +12,7 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/match_identifier.hpp>
+#include <boost/vmd/detail/match_single_identifier.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 
 #define BOOST_VMD_DETAIL_EQUAL_CONCAT_1 (1)
