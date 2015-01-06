@@ -24,6 +24,7 @@
 #include <boost/vmd/list/is_empty_list.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/array.hpp>
+#include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/identifier.hpp>
 #include <boost/vmd/detail/list.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
@@ -295,7 +296,7 @@
 		( \
 		BOOST_PP_IIF \
 			( \
-			BOOST_PP_EQUAL_D \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
 				( \
 				d, \
 				BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(state), \
@@ -647,7 +648,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE_CHECK(output) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_EQUAL(output,BOOST_VMD_TYPE_ARRAY), \
+		BOOST_VMD_DETAIL_EQUAL_TYPE(output,BOOST_VMD_TYPE_ARRAY), \
 		(0,()), \
 		BOOST_PP_NIL \
 		) \
@@ -656,7 +657,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE_CHECK_D(d,output) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_EQUAL_D(d,output,BOOST_VMD_TYPE_ARRAY), \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,output,BOOST_VMD_TYPE_ARRAY), \
 		(0,()), \
 		BOOST_PP_NIL \
 		) \
@@ -667,8 +668,8 @@
 		( \
 		BOOST_PP_BITOR \
 			( \
-			BOOST_PP_EQUAL(output,BOOST_VMD_TYPE_SEQ), \
-			BOOST_PP_EQUAL(output,BOOST_VMD_TYPE_TUPLE) \
+			BOOST_VMD_DETAIL_EQUAL_TYPE(output,BOOST_VMD_TYPE_SEQ), \
+			BOOST_VMD_DETAIL_EQUAL_TYPE(output,BOOST_VMD_TYPE_TUPLE) \
 			), \
 		BOOST_VMD_EMPTY, \
 		BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE_CHECK \
@@ -681,8 +682,8 @@
 		( \
 		BOOST_PP_BITOR \
 			( \
-			BOOST_PP_EQUAL_D(d,output,BOOST_VMD_TYPE_SEQ), \
-			BOOST_PP_EQUAL_D(d,output,BOOST_VMD_TYPE_TUPLE) \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,output,BOOST_VMD_TYPE_SEQ), \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,output,BOOST_VMD_TYPE_TUPLE) \
 			), \
 		BOOST_VMD_EMPTY, \
 		BOOST_VMD_DETAIL_SEQUENCE_EMPTY_TYPE_CHECK_D \

@@ -8,11 +8,12 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/detail/equal_type.hpp>
 
 #define BOOST_VMD_DETAIL_ELEM_PROCESS(tuple,type) \
 	BOOST_PP_EXPR_IIF \
 		( \
-		BOOST_PP_EQUAL \
+		BOOST_VMD_DETAIL_EQUAL_TYPE \
 			( \
 			BOOST_PP_TUPLE_ELEM(0,tuple), \
 			type \
@@ -24,7 +25,7 @@
 #define BOOST_VMD_DETAIL_ELEM_PROCESS_D(d,tuple,type) \
 	BOOST_PP_EXPR_IIF \
 		( \
-		BOOST_PP_EQUAL_D \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
 			( \
 			d, \
 			BOOST_PP_TUPLE_ELEM(0,tuple), \

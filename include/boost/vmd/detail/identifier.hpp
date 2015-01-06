@@ -16,6 +16,7 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/idprefix.hpp>
+#include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/parens.hpp>
@@ -453,26 +454,15 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_IDENTIFIER_TRES(tuple) \
-	BOOST_PP_BITAND \
-		( \
-		BOOST_PP_COMPL \
-			( \
-			BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)) \
-			), \
-		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,tuple)) \
-		) \
-/**/
-
 #define BOOST_VMD_DETAIL_IS_IDENTIFIER(...) \
-	BOOST_VMD_DETAIL_IS_IDENTIFIER_TRES \
+	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
 		BOOST_VMD_DETAIL_IDENTIFIER(__VA_ARGS__,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_IDENTIFIER_D(d,...) \
-	BOOST_VMD_DETAIL_IS_IDENTIFIER_TRES \
+	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
 		BOOST_VMD_DETAIL_IDENTIFIER_D(d,__VA_ARGS__,BOOST_VMD_RETURN_AFTER) \
 		) \

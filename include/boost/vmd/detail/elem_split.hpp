@@ -7,6 +7,7 @@
 #include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
+#include <boost/vmd/detail/equal_type.hpp>
 
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_CT_EXTRACT(tuple) \
 	BOOST_PP_TUPLE_REPLACE \
@@ -30,7 +31,7 @@
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_CT(tuple,type) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_EQUAL \
+		BOOST_VMD_DETAIL_EQUAL_TYPE \
 			( \
 			type, \
 			BOOST_PP_TUPLE_ELEM(0,BOOST_PP_TUPLE_ELEM(0,tuple)) \
@@ -44,7 +45,7 @@
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_CT_D(d,tuple,type) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_PP_EQUAL_D \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
 			( \
 			d, \
 			type, \

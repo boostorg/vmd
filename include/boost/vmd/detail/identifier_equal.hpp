@@ -4,9 +4,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/compl.hpp>
-#include <boost/vmd/generic/type.hpp>
-#include <boost/vmd/types.hpp>
-#include <boost/vmd/detail/equal_type.hpp>
+#include <boost/vmd/detail/identifier.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 
 /*
@@ -22,16 +20,8 @@
 			( \
 			BOOST_PP_BITAND \
 				( \
-				BOOST_VMD_DETAIL_EQUAL_TYPE \
-					( \
-					BOOST_VMD_TYPE(idf), \
-					BOOST_VMD_TYPE_IDENTIFIER \
-					), \
-				BOOST_VMD_DETAIL_EQUAL_TYPE \
-					( \
-					BOOST_VMD_TYPE(ids), \
-					BOOST_VMD_TYPE_IDENTIFIER \
-					) \
+				BOOST_VMD_DETAIL_IS_IDENTIFIER(idf), \
+				BOOST_VMD_DETAIL_IS_IDENTIFIER(ids) \
 				), \
 			BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER, \
 			BOOST_VMD_IDENTITY(0) \

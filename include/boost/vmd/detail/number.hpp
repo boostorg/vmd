@@ -12,12 +12,13 @@
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple/is_tuple.hpp>
 #include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
-#include <boost/vmd/detail/idprefix.hpp>
+#include <boost/vmd/detail/equal_type.hpp>
+#include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/is_number_concatenate.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/parens.hpp>
 
 #define BOOST_VMD_DETAIL_NUMBER_REGISTRATION_PREFIX BOOST_VMD_SUBSET_REGISTER_
@@ -30,40 +31,10 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_NUMBER_CONC_CTUPLE(vpar) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_IS_TUPLE(vpar), \
-			BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(vpar) \
-		) \
-/**/
-
-#define BOOST_VMD_DETAIL_IS_NUMBER_CONC(parameter) \
-	BOOST_VMD_DETAIL_IS_NUMBER_CONC_CTUPLE \
-		( \
-		BOOST_VMD_DETAIL_IS_NUMBER_CONCATENATE(parameter) \
-		) \
-/**/
-
 #define BOOST_VMD_DETAIL_IS_NUMBER(parameter) \
-	BOOST_VMD_IDENTITY_RESULT \
+	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_PP_BITOR \
-				( \
-				BOOST_PP_IS_EMPTY(parameter), \
-				BOOST_PP_IS_BEGIN_PARENS(parameter) \
-				), \
-			BOOST_VMD_IDENTITY(0), \
-			BOOST_VMD_DETAIL_IS_NUMBER_CONC \
-			) \
-		(parameter) \
+		BOOST_VMD_DETAIL_NUMBER(parameter,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
@@ -85,7 +56,7 @@
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_TYPE(tuple) \
-	BOOST_PP_EQUAL \
+	BOOST_VMD_DETAIL_EQUAL_TYPE \
 		( \
 		BOOST_PP_TUPLE_ELEM(0,tuple), \
 		BOOST_VMD_TYPE_NUMBER \
