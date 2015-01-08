@@ -6,7 +6,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/number/is_number.hpp>
 #include <boost/vmd/number/number_elem.hpp>
-#include <boost/vmd/generic/elem.hpp>
+#include <boost/vmd/elem.hpp>
 #include <boost/vmd/type/type_equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>

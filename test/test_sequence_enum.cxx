@@ -3,7 +3,7 @@
 #else
 #include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/generic/enum.hpp>
+#include <boost/vmd/enum.hpp>
 #include <boost/vmd/type/type_equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>

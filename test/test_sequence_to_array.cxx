@@ -3,7 +3,7 @@
 #else
 #include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/seq/is_seq.hpp>
-#include <boost/vmd/generic/to_array.hpp>
+#include <boost/vmd/to_array.hpp>
 #include <boost/vmd/type/type_equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>

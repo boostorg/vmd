@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/generic/get_type.hpp>
+#include <boost/vmd/get_type.hpp>
 #include <boost/vmd/type/type_equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>

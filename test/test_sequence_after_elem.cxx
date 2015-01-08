@@ -4,8 +4,8 @@
 #include <boost/vmd/identifier/identifier_elem.hpp>
 #include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/generic/elem.hpp>
-#include <boost/vmd/generic/size.hpp>
+#include <boost/vmd/elem.hpp>
+#include <boost/vmd/size.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>

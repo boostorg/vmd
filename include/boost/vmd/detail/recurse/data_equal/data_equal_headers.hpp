@@ -9,7 +9,7 @@
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
-#include <boost/vmd/generic/equal.hpp>
+#include <boost/vmd/equal.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/detail/data_equal_common.hpp>
 

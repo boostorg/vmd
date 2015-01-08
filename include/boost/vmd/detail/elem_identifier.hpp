@@ -9,7 +9,7 @@
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/vmd/generic/elem.hpp>
+#include <boost/vmd/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/elem.hpp>

@@ -2,7 +2,7 @@
 #include <boost/vmd/vmd.hpp>
 #else
 #include <boost/vmd/identifier/is_identifier.hpp>
-#include <boost/vmd/generic/to_list.hpp>
+#include <boost/vmd/to_list.hpp>
 #include <boost/vmd/type/type_equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>

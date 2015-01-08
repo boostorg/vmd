@@ -21,7 +21,7 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/generic/get_type.hpp>
+#include <boost/vmd/get_type.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 
 #define BOOST_VMD_DETAIL_DATA_EQUAL_IS_BOTH_COMPOSITE(vseq1,vseq2) \

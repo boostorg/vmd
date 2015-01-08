@@ -5,7 +5,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/vmd/generic/elem.hpp>
+#include <boost/vmd/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/detail/elem.hpp>
 #include <boost/vmd/detail/elem_split_list.hpp>

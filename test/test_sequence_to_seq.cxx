@@ -2,7 +2,7 @@
 #include <boost/vmd/vmd.hpp>
 #else
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/generic/to_seq.hpp>
+#include <boost/vmd/to_seq.hpp>
 #include <boost/vmd/tuple/is_tuple.hpp>
 #include <boost/vmd/type/type_equal.hpp>
 #endif

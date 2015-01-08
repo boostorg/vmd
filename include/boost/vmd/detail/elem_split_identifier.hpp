@@ -7,7 +7,7 @@
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
-#include <boost/vmd/generic/elem.hpp>
+#include <boost/vmd/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>

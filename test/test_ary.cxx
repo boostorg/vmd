@@ -1,8 +1,8 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/generic/is_unary.hpp>
-#include <boost/vmd/generic/is_multi.hpp>
+#include <boost/vmd/is_unary.hpp>
+#include <boost/vmd/is_multi.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 

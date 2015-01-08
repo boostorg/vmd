@@ -1,7 +1,7 @@
 #if !defined(BOOST_VMD_DETAIL_SPLIT_NUMBER_HPP)
 #define BOOST_VMD_DETAIL_SPLIT_NUMBER_HPP
 
-#include <boost/vmd/generic/elem.hpp>
+#include <boost/vmd/elem.hpp>
 #include <boost/vmd/detail/elem_split.hpp>
 
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_NUMBER(elem,...) \
