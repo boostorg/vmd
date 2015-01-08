@@ -5,8 +5,7 @@
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/types.hpp>
-#include <boost/vmd/generic/type.hpp>
+#include <boost/vmd/generic/get_type.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/recurse/data_equal/data_equal_specific.hpp>
 

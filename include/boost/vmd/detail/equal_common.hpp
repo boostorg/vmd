@@ -8,10 +8,9 @@
 #include <boost/preprocessor/logical/bitxor.hpp>
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
-#include <boost/vmd/generic/type.hpp>
+#include <boost/vmd/generic/get_type.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/match_single_identifier.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 

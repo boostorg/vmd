@@ -135,8 +135,8 @@
 		( \
 		vseq1, \
 		vseq2, \
-		BOOST_VMD_TYPE(vseq1), \
-		BOOST_VMD_TYPE(vseq2) \
+		BOOST_VMD_GET_TYPE(vseq1), \
+		BOOST_VMD_GET_TYPE(vseq2) \
 		) \
 /**/
 
@@ -146,8 +146,8 @@
 		d, \
 		vseq1, \
 		vseq2, \
-		BOOST_VMD_TYPE_D(d,vseq1), \
-		BOOST_VMD_TYPE_D(d,vseq2) \
+		BOOST_VMD_GET_TYPE_D(d,vseq1), \
+		BOOST_VMD_GET_TYPE_D(d,vseq2) \
 		) \
 /**/
 

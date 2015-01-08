@@ -12,7 +12,6 @@
 #include <boost/vmd/generic/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/elem.hpp>
 #include <boost/vmd/detail/elem_split_identifier.hpp>
 #include <boost/vmd/detail/empty_result.hpp>

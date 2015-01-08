@@ -7,7 +7,6 @@
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/generic/elem.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/elem.hpp>
 #include <boost/vmd/detail/elem_split_tuple.hpp>
 #include <boost/vmd/detail/mods.hpp>

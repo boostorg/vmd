@@ -2,7 +2,6 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_TO_SEQ_HPP
 
 #include <boost/preprocessor/control/expr_iif.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/sequence_elem.hpp>

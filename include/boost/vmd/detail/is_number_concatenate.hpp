@@ -1,8 +1,6 @@
 #if !defined(BOOST_VMD_DETAIL_IS_NUMBER_CONCATENATE_HPP)
 #define BOOST_VMD_DETAIL_IS_NUMBER_CONCATENATE_HPP
 
-#include <boost/vmd/types.hpp>
-
 #define BOOST_VMD_REGISTER_0 (0)
 #define BOOST_VMD_REGISTER_1 (1)
 #define BOOST_VMD_REGISTER_2 (2)

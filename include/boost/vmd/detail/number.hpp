@@ -12,7 +12,6 @@
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/is_entire.hpp>

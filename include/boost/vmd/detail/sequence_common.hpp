@@ -22,7 +22,6 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/list/is_empty_list.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/array.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/identifier.hpp>
@@ -136,19 +135,19 @@
 
 // Array
 
-#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_2(d,state,data) \
+#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_BOOST_VMD_TYPE_ARRAY(d,state,data) \
 	BOOST_PP_ARRAY_PUSH_BACK(BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT(state),data) \
 /**/
 
 // List
 
-#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_3(d,state,data) \
+#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_BOOST_VMD_TYPE_LIST(d,state,data) \
 	BOOST_PP_LIST_APPEND_D(d,BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT(state),(data,BOOST_PP_NIL)) \
 /**/
 
 // Seq
 
-#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_4(d,state,data) \
+#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_BOOST_VMD_TYPE_SEQ(d,state,data) \
 	BOOST_PP_IIF \
 	 	( \
 	 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_IS_EMPTY(state), \
@@ -160,7 +159,7 @@
 
 // Tuple
 
-#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_5(d,state,data) \
+#define BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_ADD_BOOST_VMD_TYPE_TUPLE(d,state,data) \
 	BOOST_PP_IIF \
 	 	( \
 	 	BOOST_VMD_DETAIL_SEQUENCE_STATE_RESULT_IS_EMPTY(state), \

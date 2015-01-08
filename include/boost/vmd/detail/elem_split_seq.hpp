@@ -2,7 +2,6 @@
 #define BOOST_VMD_DETAIL_SPLIT_SEQ_HPP
 
 #include <boost/vmd/generic/elem.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/elem_split.hpp>
 
 #define BOOST_VMD_DETAIL_ELEM_SPLIT_SEQ(elem,...) \

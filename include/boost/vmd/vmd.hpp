@@ -17,7 +17,7 @@
 #include <boost/vmd/number.hpp>
 #include <boost/vmd/seq.hpp>
 #include <boost/vmd/tuple.hpp>
-#include <boost/vmd/types.hpp>
+#include <boost/vmd/type.hpp>
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VARIADIC_MACRO_DATA_HPP */

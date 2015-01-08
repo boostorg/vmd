@@ -16,7 +16,7 @@
 #include <boost/vmd/generic/to_list.hpp>
 #include <boost/vmd/generic/to_seq.hpp>
 #include <boost/vmd/generic/to_tuple.hpp>
-#include <boost/vmd/generic/type.hpp>
+#include <boost/vmd/generic/get_type.hpp>
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_GENERIC_HPP */

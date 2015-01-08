@@ -12,7 +12,6 @@
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/only_after.hpp>

@@ -8,12 +8,11 @@
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/sequence_elem.hpp>
 #include <boost/vmd/detail/variadic_pop_front.hpp>
 
-#define BOOST_VMD_DETAIL_TYPE_TUPLE_SEQUENCE(tuple) \
+#define BOOST_VMD_DETAIL_SEQUENCE_TYPE_TUPLE_SEQUENCE(tuple) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,tuple)), \
@@ -22,21 +21,21 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_TYPE_TUPLE(tuple) \
+#define BOOST_VMD_DETAIL_SEQUENCE_TYPE_TUPLE(tuple) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
 		BOOST_PP_IIF \
 			( \
 			BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
 			BOOST_VMD_IDENTITY(BOOST_VMD_TYPE_EMPTY), \
-			BOOST_VMD_DETAIL_TYPE_TUPLE_SEQUENCE \
+			BOOST_VMD_DETAIL_SEQUENCE_TYPE_TUPLE_SEQUENCE \
 			) \
 		(tuple) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_TYPE_SINGLE(...) \
-	BOOST_VMD_DETAIL_TYPE_TUPLE \
+#define BOOST_VMD_DETAIL_SEQUENCE_TYPE_SINGLE(...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TYPE_TUPLE \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM \
 			( \
@@ -49,8 +48,8 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_TYPE_SINGLE_D(d,...) \
-	BOOST_VMD_DETAIL_TYPE_TUPLE \
+#define BOOST_VMD_DETAIL_SEQUENCE_TYPE_SINGLE_D(d,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TYPE_TUPLE \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_D \
 			( \
@@ -64,8 +63,8 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_TYPE_MORE(...) \
-	BOOST_VMD_DETAIL_TYPE_TUPLE \
+#define BOOST_VMD_DETAIL_SEQUENCE_TYPE_MORE(...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TYPE_TUPLE \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM \
 			( \
@@ -79,8 +78,8 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_TYPE_MORE_D(d,...) \
-	BOOST_VMD_DETAIL_TYPE_TUPLE \
+#define BOOST_VMD_DETAIL_SEQUENCE_TYPE_MORE_D(d,...) \
+	BOOST_VMD_DETAIL_SEQUENCE_TYPE_TUPLE \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_D \
 			( \
@@ -95,22 +94,22 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_TYPE(...) \
+#define BOOST_VMD_DETAIL_SEQUENCE_TYPE(...) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_EQUAL(BOOST_PP_VARIADIC_SIZE(__VA_ARGS__),1), \
-		BOOST_VMD_DETAIL_TYPE_SINGLE, \
-		BOOST_VMD_DETAIL_TYPE_MORE \
+		BOOST_VMD_DETAIL_SEQUENCE_TYPE_SINGLE, \
+		BOOST_VMD_DETAIL_SEQUENCE_TYPE_MORE \
 		) \
 	(__VA_ARGS__) \
 /**/
 
-#define BOOST_VMD_DETAIL_TYPE_D(d,...) \
+#define BOOST_VMD_DETAIL_SEQUENCE_TYPE_D(d,...) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_PP_EQUAL_D(d,BOOST_PP_VARIADIC_SIZE(__VA_ARGS__),1), \
-		BOOST_VMD_DETAIL_TYPE_SINGLE_D, \
-		BOOST_VMD_DETAIL_TYPE_MORE_D \
+		BOOST_VMD_DETAIL_SEQUENCE_TYPE_SINGLE_D, \
+		BOOST_VMD_DETAIL_SEQUENCE_TYPE_MORE_D \
 		) \
 	(d,__VA_ARGS__) \
 /**/
