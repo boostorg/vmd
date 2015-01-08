@@ -169,6 +169,7 @@ test-suite variadic_macro_data
        [ run-fail test_is_tuple_fail2.cpp ]
        [ run-fail test_is_tuple_fail3.cpp ]
        [ run-fail test_is_tuple_fail4.cpp ]
+       [ run test_is_type.cpp ]
        [ run test_list_elem.cpp ]
        [ run test_list_empty.cpp ]
        [ run test_list_equal.cpp ]
@@ -187,6 +188,7 @@ test-suite variadic_macro_data
        [ run test_tuple_elem.cpp ]
        [ run test_tuple_equal.cpp ]
        [ run test_type.cpp ]
+       [ run test_type_equal.cpp ]
     ;
 
 test-suite variadic_macro_data_gh

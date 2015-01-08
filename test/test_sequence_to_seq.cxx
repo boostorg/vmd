@@ -3,8 +3,8 @@
 #else
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/generic/to_seq.hpp>
-#include <boost/vmd/types.hpp>
 #include <boost/vmd/tuple/is_tuple.hpp>
+#include <boost/vmd/type/type_equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/list/at.hpp>
@@ -36,7 +36,7 @@ int main()
   
   /* TO_SEQ */
   
-  BOOST_TEST(BOOST_VMD_EQUAL_TYPE(BOOST_PP_TUPLE_ELEM(0,BOOST_PP_SEQ_ELEM(1,BOOST_VMD_TO_SEQ(ASEQUENCE3,BOOST_VMD_RETURN_TYPE))),BOOST_VMD_TYPE_NUMBER));
+  BOOST_TEST(BOOST_VMD_TYPE_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_PP_SEQ_ELEM(1,BOOST_VMD_TO_SEQ(ASEQUENCE3,BOOST_VMD_RETURN_TYPE))),BOOST_VMD_TYPE_NUMBER));
   BOOST_TEST(BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,BOOST_PP_SEQ_ELEM(4,BOOST_VMD_TO_SEQ(ASEQUENCE2,BOOST_VMD_RETURN_TYPE)))));
   BOOST_TEST_EQ(BOOST_PP_LIST_AT(BOOST_PP_TUPLE_ELEM(1,BOOST_PP_SEQ_ELEM(1,BOOST_VMD_TO_SEQ(ASEQUENCE,BOOST_VMD_RETURN_TYPE))),3),3);
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_TO_SEQ(ASEQUENCE4,BOOST_VMD_RETURN_TYPE)));

@@ -7,7 +7,7 @@
 #include <boost/vmd/number/is_number.hpp>
 #include <boost/vmd/number/number_elem.hpp>
 #include <boost/vmd/generic/elem.hpp>
-#include <boost/vmd/types.hpp>
+#include <boost/vmd/type/type_equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
@@ -52,7 +52,7 @@ int main()
   
   /* DATA ONLY ELEM */
   
-  BOOST_TEST(BOOST_VMD_EQUAL_TYPE(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(4,ASEQUENCE,BOOST_VMD_RETURN_TYPE)),BOOST_VMD_TYPE_ARRAY));
+  BOOST_TEST(BOOST_VMD_TYPE_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(4,ASEQUENCE,BOOST_VMD_RETURN_TYPE)),BOOST_VMD_TYPE_ARRAY));
   BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ELEM(3,ASEQUENCE2,BOOST_VMD_RETURN_TYPE)),249);
   BOOST_TEST_EQ(BOOST_PP_SEQ_ELEM(2,BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ELEM(0,ASEQUENCE3,BOOST_VMD_RETURN_TYPE))),27);
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(3,ASEQUENCE3,BOOST_VMD_RETURN_TYPE)));
