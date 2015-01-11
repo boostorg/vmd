@@ -30,13 +30,6 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_NUMBER(parameter) \
-	BOOST_VMD_DETAIL_IS_ENTIRE \
-		( \
-		BOOST_VMD_DETAIL_NUMBER(parameter,BOOST_VMD_RETURN_AFTER) \
-		) \
-/**/
-
 #define BOOST_VMD_DETAIL_NUMBER_GET_TP(tuple) \
 	BOOST_PP_TUPLE_REPLACE \
 		( \
@@ -145,6 +138,13 @@
 		BOOST_VMD_DETAIL_NUMBER_BEGIN \
 		) \
 	(BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_NUMBER(parameter) \
+	BOOST_VMD_DETAIL_IS_ENTIRE \
+		( \
+		BOOST_VMD_DETAIL_NUMBER(parameter,BOOST_VMD_RETURN_AFTER) \
+		) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_NUMBER_HPP */
