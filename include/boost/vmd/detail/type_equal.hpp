@@ -5,7 +5,7 @@
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/detail/is_type_concatenate.hpp>
+#include <boost/vmd/detail/type_registration.hpp>
 #include <boost/vmd/detail/match_single_identifier.hpp>
 #include <boost/vmd/detail/type.hpp>
 

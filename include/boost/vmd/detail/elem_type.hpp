@@ -9,7 +9,7 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/detail/elem.hpp>
 #include <boost/vmd/detail/elem_split_type.hpp>
-#include <boost/vmd/detail/is_type_concatenate.hpp>
+#include <boost/vmd/detail/type_registration.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/only_after.hpp>

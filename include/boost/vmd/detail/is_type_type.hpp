@@ -1,7 +1,7 @@
 #if !defined(BOOST_VMD_DETAIL_IS_TYPE_TYPE_HPP)
 #define BOOST_VMD_DETAIL_IS_TYPE_TYPE_HPP
 
-#include <boost/vmd/detail/is_type_concatenate.hpp>
+#include <boost/vmd/detail/type_registration.hpp>
 #include <boost/vmd/detail/match_single_identifier.hpp>
 
 /*

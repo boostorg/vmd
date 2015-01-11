@@ -15,7 +15,7 @@
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
-#include <boost/vmd/detail/is_number_concatenate.hpp>
+#include <boost/vmd/detail/number_registration.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/parens.hpp>

@@ -14,7 +14,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
-#include <boost/vmd/detail/is_type_concatenate.hpp>
+#include <boost/vmd/detail/type_registration.hpp>
 #include <boost/vmd/detail/is_type_type.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/modifiers.hpp>

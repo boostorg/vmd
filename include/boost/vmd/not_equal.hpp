@@ -6,7 +6,7 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/logical/compl.hpp>
-#include <boost/vmd/generic/equal.hpp>
+#include <boost/vmd/equal.hpp>
 
 #define BOOST_VMD_NOT_EQUAL(vseq1,vseq2) \
 	BOOST_PP_COMPL(BOOST_VMD_EQUAL(vseq1,vseq2)) \
