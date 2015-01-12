@@ -1,130 +1,88 @@
 #if !defined(BOOST_VMD_DETAIL_NUMBER_HPP)
 #define BOOST_VMD_DETAIL_NUMBER_HPP
 
-#include <boost/preprocessor/cat.hpp>
-#include <boost/preprocessor/comparison/equal.hpp>
+#include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/preprocessor/control/iif.hpp>
-#include <boost/preprocessor/logical/bitor.hpp>
-#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/preprocessor/tuple/replace.hpp>
-#include <boost/preprocessor/tuple/size.hpp>
-#include <boost/preprocessor/variadic/elem.hpp>
+#include <boost/vmd/empty.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
+#include <boost/vmd/detail/identifier.hpp>
+#include <boost/vmd/detail/identifier_type.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
-#include <boost/vmd/detail/number_registration.hpp>
-#include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
-#include <boost/vmd/detail/parens.hpp>
+#include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/type_registration.hpp>
 
-#define BOOST_VMD_DETAIL_NUMBER_REGISTRATION_PREFIX BOOST_VMD_SUBSET_REGISTER_
-
-#define BOOST_VMD_DETAIL_IS_NUMBER_CONCATENATE(parameter) \
-	BOOST_PP_CAT \
+#define BOOST_VMD_DETAIL_NUMBER_CHECK_ONLY_ID_TYPE(id) \
+	BOOST_PP_EXPR_IIF \
 		( \
-		BOOST_VMD_DETAIL_NUMBER_REGISTRATION_PREFIX, \
-		parameter \
-		) \
-/**/
-
-#define BOOST_VMD_DETAIL_NUMBER_GET_TP(tuple) \
-	BOOST_PP_TUPLE_REPLACE \
-		( \
-		tuple, \
-		0, \
-		BOOST_PP_TUPLE_ELEM \
+		BOOST_VMD_DETAIL_EQUAL_TYPE \
 			( \
-			1, \
-			BOOST_PP_TUPLE_ELEM(0,tuple) \
-			) \
+			BOOST_VMD_TYPE_NUMBER, \
+			BOOST_VMD_DETAIL_IDENTIFIER_TYPE(id) \
+			), \
+		id \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NUMBER_GET(tvseq) \
-	BOOST_VMD_DETAIL_NUMBER_GET_TP(BOOST_VMD_DETAIL_PARENS(tvseq,BOOST_VMD_RETURN_AFTER)) \
-/**/
-
-#define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_TYPE(tuple) \
-	BOOST_VMD_DETAIL_EQUAL_TYPE \
-		( \
-		BOOST_PP_TUPLE_ELEM(0,tuple), \
-		BOOST_VMD_TYPE_NUMBER \
-		) \
-/**/
-
-#define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE(tuple) \
+#define BOOST_VMD_DETAIL_NUMBER_CHECK_ID_TYPE(tuple) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
 		BOOST_PP_IIF \
 			( \
-			BOOST_PP_EQUAL \
+			BOOST_VMD_DETAIL_EQUAL_TYPE \
 				( \
-				BOOST_PP_TUPLE_SIZE(tuple), \
-				2 \
+				BOOST_VMD_TYPE_NUMBER, \
+				BOOST_VMD_DETAIL_IDENTIFIER_TYPE(BOOST_PP_TUPLE_ELEM(0,tuple)) \
 				), \
-			BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE_TYPE, \
-			BOOST_VMD_IDENTITY(0) \
+			BOOST_VMD_IDENTITY(tuple), \
+			BOOST_VMD_DETAIL_EMPTY_RESULT \
 			) \
 		(tuple) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST(tvseq) \
-	BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST_TUPLE \
-		( \
-		BOOST_VMD_DETAIL_PARENS(tvseq) \
-		) \
-/**/
-
-#define BOOST_VMD_DETAIL_NUMBER_NEXT_PEN(tvseq) \
+#define BOOST_VMD_DETAIL_NUMBER_SPLIT_TRES(tuple) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
 		BOOST_PP_IIF \
 			( \
-			BOOST_PP_IS_BEGIN_PARENS(tvseq), \
-			BOOST_VMD_DETAIL_NUMBER_NEXT_PEN_TEST, \
-			BOOST_VMD_IDENTITY(0) \
+			BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+			BOOST_VMD_IDENTITY(tuple), \
+			BOOST_VMD_DETAIL_NUMBER_CHECK_ID_TYPE \
 			) \
-		(tvseq) \
+		(tuple) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NUMBER_PROCESS_VSEQ(tvseq) \
-	BOOST_PP_IIF \
+#define BOOST_VMD_DETAIL_NUMBER_TRES_ID(id) \
+	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		BOOST_VMD_DETAIL_NUMBER_NEXT_PEN(tvseq), \
-		BOOST_VMD_DETAIL_NUMBER_GET, \
-		BOOST_VMD_DETAIL_EMPTY_RESULT \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_EMPTY(id), \
+			BOOST_VMD_IDENTITY(id), \
+			BOOST_VMD_DETAIL_NUMBER_CHECK_ONLY_ID_TYPE \
+			) \
+		(id) \
 		) \
-	(tvseq) \
 /**/
 
-#define BOOST_VMD_DETAIL_NUMBER_PROCESS(vseq) \
-	BOOST_VMD_DETAIL_NUMBER_PROCESS_VSEQ \
+#define BOOST_VMD_DETAIL_NUMBER_SPLIT(...) \
+	BOOST_VMD_DETAIL_NUMBER_SPLIT_TRES \
 		( \
-		BOOST_VMD_DETAIL_IS_NUMBER_CONCATENATE(vseq) \
+		BOOST_VMD_DETAIL_IDENTIFIER(__VA_ARGS__,BOOST_VMD_RETURN_NO_INDEX) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_NUMBER_SPLIT(vseq) \
-    BOOST_PP_IIF \
-      ( \
-      BOOST_PP_BITOR \
-      	( \
-      	BOOST_VMD_IS_EMPTY(vseq), \
-      	BOOST_PP_IS_BEGIN_PARENS(vseq) \
-      	), \
-      BOOST_VMD_DETAIL_EMPTY_RESULT, \
-      BOOST_VMD_DETAIL_NUMBER_PROCESS \
-      ) \
-    (vseq) \
-/**/
-
-#define BOOST_VMD_DETAIL_NUMBER_BEGIN(vseq) \
-	BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_NUMBER_SPLIT(vseq)) \
+#define BOOST_VMD_DETAIL_NUMBER_BEGIN(...) \
+	BOOST_VMD_DETAIL_NUMBER_TRES_ID \
+		( \
+		BOOST_VMD_DETAIL_IDENTIFIER(__VA_ARGS__,BOOST_VMD_RETURN_NO_INDEX) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_NUMBER(...) \
@@ -137,7 +95,7 @@
 		BOOST_VMD_DETAIL_NUMBER_SPLIT, \
 		BOOST_VMD_DETAIL_NUMBER_BEGIN \
 		) \
-	(BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+	(__VA_ARGS__) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_NUMBER(parameter) \
