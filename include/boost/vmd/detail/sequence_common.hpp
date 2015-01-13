@@ -25,10 +25,10 @@
 #include <boost/vmd/detail/array.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/identifier.hpp>
+#include <boost/vmd/detail/identifier_type.hpp>
 #include <boost/vmd/detail/list.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 #include <boost/vmd/detail/mods.hpp>
-#include <boost/vmd/detail/number.hpp>
 #include <boost/vmd/detail/seq.hpp>
 #include <boost/vmd/detail/tuple.hpp>
 
@@ -258,11 +258,29 @@
 	) \
 /**/
 
-#define	BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(state) \
-	BOOST_PP_CAT \
+#define	BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE_CHECK_ID(d,type,id) \
+	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		BOOST_VMD_TYPE_, \
-		BOOST_VMD_DETAIL_SEQUENCE_STATE_GET_TYPE(state) \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,type,BOOST_VMD_TYPE_IDENTIFIER), \
+			BOOST_VMD_DETAIL_IDENTIFIER_TYPE_D, \
+			BOOST_VMD_IDENTITY(type) \
+			) \
+		(d,id) \
+		) \
+/**/
+
+#define	BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(d,state,tuple) \
+	BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE_CHECK_ID \
+		( \
+		d, \
+		BOOST_PP_CAT \
+			( \
+			BOOST_VMD_TYPE_, \
+			BOOST_VMD_DETAIL_SEQUENCE_STATE_GET_TYPE(state) \
+			), \
+		BOOST_PP_TUPLE_ELEM(0,tuple) \
 		) \
 /**/
 
@@ -274,7 +292,7 @@
 		d, \
 		state, \
 			( \
-			BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(state), \
+			BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(d,state,tuple), \
 			BOOST_PP_TUPLE_ELEM(0,tuple) \
 			) \
 		), \
@@ -298,7 +316,7 @@
 			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
 				( \
 				d, \
-				BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(state), \
+				BOOST_VMD_DETAIL_SEQUENCE_GET_FULL_TYPE(d,state,tuple), \
 				BOOST_VMD_TYPE_SEQ \
 				), \
 			BOOST_VMD_DETAIL_SEQUENCE_TYPE_FOUND_SEQ_SINGLE, \
@@ -538,7 +556,7 @@
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_INNER_PRED, \
 		BOOST_VMD_DETAIL_SEQUENCE_INNER_OP, \
-		BOOST_PP_TUPLE_PUSH_BACK(BOOST_PP_TUPLE_PUSH_BACK(state,((NUMBER,0),(IDENTIFIER,1))),0) \
+		BOOST_PP_TUPLE_PUSH_BACK(BOOST_PP_TUPLE_PUSH_BACK(state,((IDENTIFIER,1))),0) \
 		) \
 /**/
 
