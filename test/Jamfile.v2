@@ -134,6 +134,10 @@ test-suite variadic_macro_data
          <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ compile-fail test_assert_is_tuple_fail4.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 ]
+       [ compile test_assert_is_type.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1 ]
+       [ compile-fail test_assert_is_type_fail.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ run test_equal.cpp ]
        [ run test_equal_array.cpp ]
        [ run test_equal_identifier.cpp ]
@@ -376,6 +380,14 @@ test-suite variadic_macro_data_gh
          <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_assert_is_tuple_fail4_gh ]
+       [ compile test_assert_is_type.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_is_type_gh ]
+       [ compile-fail test_assert_is_type_fail.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_assert_is_type_fail_gh ]
        [ run test_equal.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_equal_gh ]

@@ -11,6 +11,7 @@
 #include <boost/vmd/number/is_number.hpp>
 #include <boost/vmd/seq/seq_elem.hpp>
 #include <boost/vmd/tuple/tuple_elem.hpp>
+#include <boost/vmd/type/is_type.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/arithmetic/dec.hpp>
@@ -36,6 +37,7 @@ int main()
   #define A_LIST (eeb,(grist,(152,BOOST_PP_NIL)))
   #define A_LIST_PLUS (mmf,(34,(^^,(!,BOOST_PP_NIL)))) 56
   #define A_SEQ (73 (split) clear)(red)(green 44)
+  #define A_SEQ2 (73 (split) clear)(BOOST_VMD_TYPE_LIST)(green 44)
   #define A_SEQ_PLUS (mmf)(34)(^^)(!) 456
   
   #define BOOST_VMD_REGISTER_zzz (zzz)
@@ -76,6 +78,8 @@ int main()
   BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_NUMBER_ELEM(0,BOOST_PP_SEQ_ELEM(0,A_SEQ),BOOST_VMD_RETURN_AFTER)),73))
   BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_SEQ_ELEM(1,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_SEQ_ELEM(0,A_SEQ_PLUS,BOOST_VMD_RETURN_AFTER))),34))
   BOOST_VMD_ASSERT(BOOST_PP_COMPL(BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_TUPLE_ELEM(0,KDATA,BOOST_VMD_RETURN_AFTER)))))
+  
+  BOOST_VMD_ASSERT(BOOST_VMD_IS_TYPE(BOOST_PP_SEQ_ELEM(1,A_SEQ2)))
   
 #endif
 
