@@ -17,7 +17,6 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/identifier/is_identifier.hpp>
-#include <boost/vmd/identity.hpp>
 #include <boost/vmd/tuple/is_tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE(d,x) \

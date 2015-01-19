@@ -5,9 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/detail/is_entire.hpp>
-#include <boost/vmd/detail/modifiers.hpp>
-#include <boost/vmd/detail/tuple.hpp>
+#include <boost/vmd/detail/is_tuple.hpp>
 
 /*
 
@@ -34,10 +32,7 @@
 */
 
 #define BOOST_VMD_IS_TUPLE(param) \
-	BOOST_VMD_DETAIL_IS_ENTIRE \
-		( \
-		BOOST_VMD_DETAIL_TUPLE(param,BOOST_VMD_RETURN_AFTER) \
-		) \
+	BOOST_VMD_DETAIL_IS_TUPLE(param) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

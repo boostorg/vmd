@@ -2,7 +2,6 @@
 #define BOOST_VMD_DETAIL_IDENTIFIER_HPP
 
 #include <boost/preprocessor/arithmetic/dec.hpp>
-#include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/expr_iif.hpp>
 #include <boost/preprocessor/control/iif.hpp>
@@ -11,11 +10,10 @@
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
-#include <boost/preprocessor/tuple/enum.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/detail/idprefix.hpp>
+#include <boost/vmd/detail/identifier_concat.hpp>
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/mods.hpp>
@@ -72,8 +70,9 @@
 
 #define BOOST_VMD_DETAIL_IDENTIFIER_MAKE_SPLIT(tuple) \
 	( \
-	BOOST_PP_TUPLE_ENUM \
+	BOOST_PP_TUPLE_ELEM \
 		( \
+		0, \
 		BOOST_PP_TUPLE_ELEM(0,tuple) \
 		), \
 	BOOST_PP_TUPLE_ELEM(1,tuple) \
@@ -103,14 +102,6 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IDENTIFIER_CONCATENATE(vseq) \
-	BOOST_PP_CAT \
-		( \
-		BOOST_VMD_DETAIL_IDENTIFIER_REGISTRATION_PREFIX, \
-		vseq \
-		) \
-/**/
-
 #define BOOST_VMD_DETAIL_IDENTIFIER_GETID_TID(tid) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
@@ -118,9 +109,9 @@
 			( \
 			BOOST_VMD_IS_EMPTY(tid), \
 			BOOST_VMD_IDENTITY(tid), \
-			BOOST_PP_TUPLE_ENUM \
+			BOOST_PP_TUPLE_ELEM \
 			) \
-		(tid) \
+		(0,tid) \
 		) \
 /**/
 
@@ -418,14 +409,14 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_IDENTIFIER(...) \
+#define BOOST_VMD_DETAIL_IS_IDENTIFIER_MULTIPLE(...) \
 	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
 		BOOST_VMD_DETAIL_IDENTIFIER(__VA_ARGS__,BOOST_VMD_RETURN_AFTER) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_IDENTIFIER_D(d,...) \
+#define BOOST_VMD_DETAIL_IS_IDENTIFIER_MULTIPLE_D(d,...) \
 	BOOST_VMD_DETAIL_IS_ENTIRE \
 		( \
 		BOOST_VMD_DETAIL_IDENTIFIER_D(d,__VA_ARGS__,BOOST_VMD_RETURN_AFTER) \

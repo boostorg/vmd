@@ -15,6 +15,8 @@
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/detail/identifier_type.hpp>
+#include <boost/vmd/detail/is_type_type.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 
 #define BOOST_VMD_DETAIL_MODS_NO_RETURN 0
@@ -34,6 +36,7 @@
 #define BOOST_VMD_DETAIL_MODS_TUPLE_INDEX 2
 #define BOOST_VMD_DETAIL_MODS_TUPLE_OTHER 3
 #define BOOST_VMD_DETAIL_MODS_TUPLE_ONLY_AFTER 4
+#define BOOST_VMD_DETAIL_MODS_TUPLE_TYPE 5
 
 #define BOOST_VMD_DETAIL_MODS_DATA_INPUT 0
 #define BOOST_VMD_DETAIL_MODS_DATA_INDEX 1
@@ -111,6 +114,10 @@
 
 #define BOOST_VMD_DETAIL_MODS_RESULT_OTHER(result) \
 	BOOST_PP_TUPLE_ELEM(BOOST_VMD_DETAIL_MODS_TUPLE_OTHER,result) \
+/**/
+
+#define BOOST_VMD_DETAIL_MODS_RESULT_TYPE(result) \
+	BOOST_PP_TUPLE_ELEM(BOOST_VMD_DETAIL_MODS_TUPLE_TYPE,result) \
 /**/
 
 #define BOOST_VMD_DETAIL_MODS_PRED(d,state) \
@@ -294,6 +301,16 @@
 	(d,state,id) \
 /**/
 
+#define BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_TYPE(d,state,id) \
+	BOOST_PP_TUPLE_REPLACE_D \
+		( \
+		d, \
+		BOOST_VMD_DETAIL_MODS_STATE_RESULT(state), \
+		BOOST_VMD_DETAIL_MODS_TUPLE_TYPE, \
+		id \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN(d,state,id) \
 	BOOST_VMD_DETAIL_MODS_OP_CURRENT_UPDATE \
 		( \
@@ -303,7 +320,16 @@
 			d, \
 			state, \
 			BOOST_VMD_DETAIL_MODS_DATA_RESULT, \
-			BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_CTUPLE(d,state,id) \
+			BOOST_PP_IIF \
+				( \
+				BOOST_VMD_DETAIL_IS_TYPE_TYPE \
+					( \
+					BOOST_VMD_DETAIL_IDENTIFIER_TYPE_D(d,id) \
+					), \
+				BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_TYPE, \
+				BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_CTUPLE \
+				) \
+			(d,state,id) \
 			) \
 		) \
 /**/
@@ -321,7 +347,7 @@
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_ALLOW_ALL(d,state,id) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_IS_PARSE_ONLY_TUPLE(id), \
+		BOOST_VMD_DETAIL_IS_RETURN_TYPE_TUPLE(id), \
 		BOOST_VMD_DETAIL_MODS_OP_CURRENT_GTT, \
 		BOOST_PP_IIF \
 			( \
@@ -329,11 +355,11 @@
 			BOOST_VMD_DETAIL_MODS_OP_CURRENT_ET, \
 			BOOST_PP_IIF \
 				( \
-				BOOST_VMD_DETAIL_IS_PARSE_ARRAY(id), \
+				BOOST_VMD_DETAIL_IS_RETURN_TYPE_ARRAY(id), \
 				BOOST_VMD_DETAIL_MODS_OP_CURRENT_SA, \
 				BOOST_PP_IIF \
 					( \
-					BOOST_VMD_DETAIL_IS_PARSE_LIST(id), \
+					BOOST_VMD_DETAIL_IS_RETURN_TYPE_LIST(id), \
 					BOOST_VMD_DETAIL_MODS_OP_CURRENT_SL, \
 					BOOST_PP_IIF \
 						( \
@@ -366,7 +392,7 @@
 #define BOOST_VMD_DETAIL_MODS_OP_CURRENT_ALLOW_RETURN(d,state,id) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_IS_PARSE_ONLY_TUPLE(id), \
+		BOOST_VMD_DETAIL_IS_RETURN_TYPE_TUPLE(id), \
 		BOOST_VMD_DETAIL_MODS_OP_CURRENT_GTT, \
 		BOOST_PP_IIF \
 			( \
@@ -374,11 +400,11 @@
 			BOOST_VMD_DETAIL_MODS_OP_CURRENT_ET, \
 			BOOST_PP_IIF \
 				( \
-				BOOST_VMD_DETAIL_IS_PARSE_ARRAY(id), \
+				BOOST_VMD_DETAIL_IS_RETURN_TYPE_ARRAY(id), \
 				BOOST_VMD_DETAIL_MODS_OP_CURRENT_SA, \
 				BOOST_PP_IIF \
 					( \
-					BOOST_VMD_DETAIL_IS_PARSE_LIST(id), \
+					BOOST_VMD_DETAIL_IS_RETURN_TYPE_LIST(id), \
 					BOOST_VMD_DETAIL_MODS_OP_CURRENT_SL, \
 					BOOST_PP_IIF \
 						( \
@@ -518,7 +544,7 @@
 				tuple, \
 				0, \
 				BOOST_PP_TUPLE_SIZE(tuple), \
-				(0,0,0,,0), \
+				(0,0,0,,0,), \
 				allow \
 				) \
 			) \
@@ -537,7 +563,7 @@
 				tuple, \
 				0, \
 				BOOST_PP_TUPLE_SIZE(tuple), \
-				(0,0,0,,0), \
+				(0,0,0,,0,), \
 				allow \
 				) \
 			) \
@@ -567,7 +593,7 @@
 		BOOST_PP_IIF \
 			( \
 			BOOST_PP_EQUAL(BOOST_PP_TUPLE_SIZE(tuple),1), \
-			BOOST_VMD_IDENTITY((0,0,0,,0)), \
+			BOOST_VMD_IDENTITY((0,0,0,,0,)), \
 			BOOST_VMD_DETAIL_NEW_MODS_VAR \
 			) \
 		(allow,tuple) \
@@ -580,7 +606,7 @@
 		BOOST_PP_IIF \
 			( \
 			BOOST_PP_EQUAL_D(d,BOOST_PP_TUPLE_SIZE(tuple),1), \
-			BOOST_VMD_IDENTITY((0,0,0,,0)), \
+			BOOST_VMD_IDENTITY((0,0,0,,0,)), \
 			BOOST_VMD_DETAIL_NEW_MODS_VAR_D \
 			) \
 		(d,allow,tuple) \
@@ -589,7 +615,7 @@
 
 /*
 
-  Returns a four-element tuple:
+  Returns a six-element tuple:
   
   First tuple element  = 0 No type return
                          1 Exact type return
@@ -608,6 +634,8 @@
   Fifth tuple element  = 0 No after only return
                          1 After only return
                          
+  Sixth tuple element  = Type identifier
+                         
   Input                = allow, either
                          BOOST_VMD_ALLOW_ALL
                          BOOST_VMD_ALLOW_RETURN
@@ -616,11 +644,11 @@
                          
   						 ..., modifiers, first variadic is discarded
                          Possible modifiers are:
-                         BOOST_VMD_PARSE_ONLY_TUPLE = (2,0)
+                         BOOST_VMD_RETURN_TYPE_TUPLE = (2,0)
                          BOOST_VMD_RETURN_TYPE = (1,0)
                          BOOST_VMD_RETURN_NO_TYPE = (0,0)
-                         BOOST_VMD_PARSE_ARRAY = (3,0)
-                         BOOST_VMD_PARSE_LIST = (4,0)
+                         BOOST_VMD_RETURN_TYPE_ARRAY = (3,0)
+                         BOOST_VMD_RETURN_TYPE_LIST = (4,0)
                          BOOST_VMD_RETURN_AFTER = (0,1)
                          BOOST_VMD_RETURN_NO_AFTER = (0,0)
   

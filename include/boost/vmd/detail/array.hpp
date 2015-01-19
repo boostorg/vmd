@@ -9,7 +9,7 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
-#include <boost/vmd/detail/is_array.hpp>
+#include <boost/vmd/detail/is_array_common.hpp>
 #include <boost/vmd/detail/mods.hpp>
 #include <boost/vmd/detail/tuple.hpp>
 
@@ -18,7 +18,7 @@
 		( \
 		BOOST_PP_IIF \
 			( \
-			BOOST_VMD_DETAIL_IS_ARRAY \
+			BOOST_VMD_DETAIL_IS_ARRAY_SYNTAX \
 				( \
 				BOOST_PP_TUPLE_ELEM \
 					( \
@@ -60,7 +60,7 @@
 #define BOOST_VMD_DETAIL_ARRAY_BEGIN_CHECK_FOR_ARRAY(tuple) \
 	BOOST_PP_EXPR_IIF \
 		( \
-		BOOST_VMD_DETAIL_IS_ARRAY(tuple), \
+		BOOST_VMD_DETAIL_IS_ARRAY_SYNTAX(tuple), \
 		tuple \
 		) \
 /**/

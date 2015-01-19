@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/detail/identifier.hpp>
+#include <boost/vmd/detail/is_identifier.hpp>
 
 /*
 

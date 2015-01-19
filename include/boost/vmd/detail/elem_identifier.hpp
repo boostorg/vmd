@@ -128,7 +128,7 @@
 				( \
 				elem, \
 				vseq, \
-				BOOST_VMD_PARSE_ONLY_TUPLE \
+				BOOST_VMD_RETURN_TYPE_TUPLE \
 				), \
 			BOOST_VMD_TYPE_IDENTIFIER \
 			), \
@@ -147,7 +147,7 @@
 				d, \
 				elem, \
 				vseq, \
-				BOOST_VMD_PARSE_ONLY_TUPLE \
+				BOOST_VMD_RETURN_TYPE_TUPLE \
 				), \
 			BOOST_VMD_TYPE_IDENTIFIER \
 			), \

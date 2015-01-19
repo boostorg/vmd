@@ -4,7 +4,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/compl.hpp>
-#include <boost/vmd/detail/identifier.hpp>
+#include <boost/vmd/detail/is_identifier.hpp>
 #include <boost/vmd/detail/match_single_identifier.hpp>
 
 /*
