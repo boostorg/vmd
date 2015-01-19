@@ -98,11 +98,4 @@
 	(__VA_ARGS__) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_NUMBER(parameter) \
-	BOOST_VMD_DETAIL_IS_ENTIRE \
-		( \
-		BOOST_VMD_DETAIL_NUMBER(parameter,BOOST_VMD_RETURN_AFTER) \
-		) \
-/**/
-
 #endif /* BOOST_VMD_DETAIL_NUMBER_HPP */

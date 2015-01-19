@@ -5,7 +5,7 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/compl.hpp>
-#include <boost/vmd/detail/number.hpp>
+#include <boost/vmd/detail/is_number.hpp>
 
 /*
 

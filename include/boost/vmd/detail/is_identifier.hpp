@@ -4,6 +4,7 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
@@ -13,17 +14,18 @@
 #include <boost/vmd/tuple/is_tuple.hpp>
 #include <boost/vmd/detail/identifier.hpp>
 #include <boost/vmd/detail/identifier_concat.hpp>
-#include <boost/vmd/detail/match_single_identifier.hpp>
 
-#define BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_MATCH(tup,id) \
-	BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER \
+#define BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_MATCH(tup) \
+	BOOST_PP_COMPL \
 		( \
-		id, \
-		BOOST_PP_TUPLE_ELEM(0,tup) \
+		BOOST_VMD_IS_EMPTY \
+			( \
+			BOOST_PP_TUPLE_ELEM(0,tup) \
+			) \
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_TUPLE(ptup,id) \
+#define BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_TUPLE(ptup) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
 		BOOST_PP_IIF \
@@ -32,15 +34,14 @@
 			BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_MATCH, \
 			BOOST_VMD_IDENTITY(0) \
 			) \
-		(ptup,id) \
+		(ptup) \
 		) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_ID(vseq) \
 	BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_TUPLE \
 		( \
-		BOOST_VMD_DETAIL_IDENTIFIER_CONCATENATE(vseq), \
-		vseq \
+		BOOST_VMD_DETAIL_IDENTIFIER_CONCATENATE(vseq) \
 		) \
 /**/
 

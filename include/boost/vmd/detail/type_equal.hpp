@@ -7,7 +7,7 @@
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/detail/type_registration.hpp>
 #include <boost/vmd/detail/match_single_identifier.hpp>
-#include <boost/vmd/detail/type.hpp>
+#include <boost/vmd/detail/is_type.hpp>
 
 #define BOOST_VMD_DETAIL_TYPE_EQUAL(nmf,nms) \
 	BOOST_VMD_IDENTITY_RESULT \
