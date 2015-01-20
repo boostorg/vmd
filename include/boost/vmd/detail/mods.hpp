@@ -15,8 +15,7 @@
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/detail/identifier_type.hpp>
-#include <boost/vmd/detail/is_type_type.hpp>
+#include <boost/vmd/type/is_type.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 
 #define BOOST_VMD_DETAIL_MODS_NO_RETURN 0
@@ -322,10 +321,7 @@
 			BOOST_VMD_DETAIL_MODS_DATA_RESULT, \
 			BOOST_PP_IIF \
 				( \
-				BOOST_VMD_DETAIL_IS_TYPE_TYPE \
-					( \
-					BOOST_VMD_DETAIL_IDENTIFIER_TYPE_D(d,id) \
-					), \
+				BOOST_VMD_IS_TYPE_D(d,id), \
 				BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_TYPE, \
 				BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_CTUPLE \
 				) \

@@ -43,5 +43,9 @@
 	BOOST_VMD_DETAIL_IS_TYPE(ppident) \
 /**/
 
+#define BOOST_VMD_IS_TYPE_D(d,ppident) \
+	BOOST_VMD_DETAIL_IS_TYPE_D(d,ppident) \
+/**/
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_IS_TYPE_HPP */
