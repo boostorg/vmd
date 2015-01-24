@@ -300,11 +300,31 @@
 	(d,state,id) \
 /**/
 
-#define BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_TYPE(d,state,id) \
+#define BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_TYPE_RETURN(d,state,id) \
 	BOOST_PP_TUPLE_REPLACE_D \
 		( \
 		d, \
 		BOOST_VMD_DETAIL_MODS_STATE_RESULT(state), \
+		BOOST_VMD_DETAIL_MODS_TUPLE_RETURN, \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,id,BOOST_VMD_TYPE_ARRAY), \
+			BOOST_VMD_DETAIL_MODS_RETURN_ARRAY, \
+			BOOST_PP_IIF \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,id,BOOST_VMD_TYPE_LIST), \
+				BOOST_VMD_DETAIL_MODS_RETURN_LIST, \
+				BOOST_VMD_DETAIL_MODS_RETURN_TUPLE \
+				) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_TYPE(d,state,id) \
+	BOOST_PP_TUPLE_REPLACE_D \
+		( \
+		d, \
+		BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_TYPE_RETURN(d,state,id), \
 		BOOST_VMD_DETAIL_MODS_TUPLE_TYPE, \
 		id \
 		) \
@@ -321,7 +341,11 @@
 			BOOST_VMD_DETAIL_MODS_DATA_RESULT, \
 			BOOST_PP_IIF \
 				( \
-				BOOST_VMD_IS_TYPE_D(d,id), \
+				BOOST_PP_BITAND \
+					( \
+					BOOST_VMD_DETAIL_MODS_STATE_IS_ALLOW_ALL(state), \
+					BOOST_VMD_IS_TYPE_D(d,id) \
+					), \
 				BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_TYPE, \
 				BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN_CTUPLE \
 				) \
@@ -640,13 +664,15 @@
                          
   						 ..., modifiers, first variadic is discarded
                          Possible modifiers are:
-                         BOOST_VMD_RETURN_TYPE_TUPLE = (2,0)
-                         BOOST_VMD_RETURN_TYPE = (1,0)
+                         
                          BOOST_VMD_RETURN_NO_TYPE = (0,0)
+                         BOOST_VMD_RETURN_TYPE = (1,0)
+                         BOOST_VMD_RETURN_TYPE_TUPLE = (2,0)
                          BOOST_VMD_RETURN_TYPE_ARRAY = (3,0)
                          BOOST_VMD_RETURN_TYPE_LIST = (4,0)
-                         BOOST_VMD_RETURN_AFTER = (0,1)
+                         
                          BOOST_VMD_RETURN_NO_AFTER = (0,0)
+                         BOOST_VMD_RETURN_AFTER = (0,1)
   
 */
 
