@@ -13,10 +13,12 @@
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/tuple/push_back.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
@@ -24,6 +26,47 @@
 #include <boost/vmd/detail/not_empty.hpp>
 #include <boost/vmd/detail/only_after.hpp>
 #include <boost/vmd/detail/sequence_common.hpp>
+
+/*
+
+	Given modifications and the requested type, 
+	determine whether or not we should be checking for specific identifiers
+	
+	1 = check for specific identifiers
+	0 = do no check for specific identifiers
+
+*/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_CHECK_FOR_IDENTIFIERS(nm,type) \
+	BOOST_PP_BITAND \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE \
+			( \
+			type, \
+			BOOST_VMD_TYPE_IDENTIFIER \
+			), \
+		BOOST_VMD_DETAIL_NOT_EMPTY \
+			( \
+			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(nm) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_CHECK_FOR_IDENTIFIERS_D(d,nm,type) \
+	BOOST_PP_BITAND \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+			( \
+			d, \
+			type, \
+			BOOST_VMD_TYPE_IDENTIFIER \
+			), \
+		BOOST_VMD_DETAIL_NOT_EMPTY \
+			( \
+			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(nm) \
+			) \
+		) \
+/**/
 
 /*
 
@@ -134,6 +177,38 @@
 	BOOST_PP_TUPLE_ELEM(0,res) \
 /**/
 
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_TUPLE(res) \
+	BOOST_PP_TUPLE_ELEM \
+		( \
+		1, \
+		BOOST_PP_TUPLE_ELEM(0,res) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_ONLY(res) \
+	BOOST_PP_TUPLE_ELEM(1,res) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA(res,nm) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_AFTER(nm), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_TUPLE, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_ONLY \
+		) \
+	(res) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_D(d,res,nm) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_AFTER_D(d,nm), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_TUPLE, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_ONLY \
+		) \
+	(res) \
+/**/
+
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE(res,nm) \
 	BOOST_PP_IIF \
 		( \
@@ -147,7 +222,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE_D(d,res,nm) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_AFTER(d,nm), \
+		BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_AFTER_D(d,nm), \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE_TUPLE, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE_ONLY \
 		) \
@@ -444,18 +519,7 @@
 		( \
 		BOOST_PP_IIF \
 			( \
-			BOOST_PP_BITAND \
-				( \
-				BOOST_VMD_DETAIL_EQUAL_TYPE \
-					( \
-					type, \
-					BOOST_VMD_TYPE_IDENTIFIER \
-					), \
-				BOOST_VMD_DETAIL_NOT_EMPTY \
-					( \
-					BOOST_VMD_DETAIL_MODS_RESULT_OTHER(nm) \
-					) \
-				), \
+			BOOST_VMD_DETAIL_SEQUENCE_ELEM_CHECK_FOR_IDENTIFIERS(nm,type), \
 			BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_ONLY_ID_TUP,	\
 			BOOST_VMD_IDENTITY(data) \
 			) \
@@ -468,19 +532,7 @@
 		( \
 		BOOST_PP_IIF \
 			( \
-			BOOST_PP_BITAND \
-				( \
-				BOOST_VMD_EQUAL_TYPE_D \
-					( \
-					d, \
-					type, \
-					BOOST_VMD_TYPE_IDENTIFIER \
-					), \
-				BOOST_VMD_DETAIL_NOT_EMPTY \
-					( \
-					BOOST_VMD_DETAIL_MODS_RESULT_OTHER(nm) \
-					) \
-				), \
+			BOOST_VMD_DETAIL_SEQUENCE_ELEM_CHECK_FOR_IDENTIFIERS_D(d,nm,type), \
 			BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_ONLY_ID_TUP_D,	\
 			BOOST_VMD_IDENTITY(data) \
 			) \
@@ -534,7 +586,7 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT(res,nm,type) \
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ONLY_CAFTER(res,nm,type) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_MODS_IS_RESULT_ONLY_AFTER(nm), \
@@ -544,12 +596,157 @@
 	(res,nm,type) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_D(d,res,nm,type) \
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ONLY_CAFTER_D(d,res,nm,type) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_MODS_IS_RESULT_ONLY_AFTER(nm), \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_FIN_D, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_CHANGE_D \
+		) \
+	(d,res,nm,type) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_SUCCESS(res,nm,type,index) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ONLY_CAFTER \
+		( \
+		BOOST_PP_TUPLE_PUSH_BACK(res,BOOST_PP_DEC(index)), \
+		nm, \
+		type \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_SUCCESS_D(d,res,nm,type,index) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ONLY_CAFTER_D \
+		( \
+		d, \
+		BOOST_PP_TUPLE_PUSH_BACK(res,BOOST_PP_DEC(index)), \
+		nm, \
+		type \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_FAILURE(res,nm,type,index) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_FAILURE_RESULT(nm) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_FAILURE_D(d,res,nm,type,index) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_FAILURE_RESULT_D(d,nm) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_INDEX_JRES(res,nm,type,index) \
+	BOOST_PP_IF \
+		( \
+		index, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_SUCCESS, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_FAILURE \
+		) \
+	(res,nm,type,index)	\
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_INDEX_JRES_D(d,res,nm,type,index) \
+	BOOST_PP_IF \
+		( \
+		index, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_SUCCESS_D, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_FAILURE_D \
+		) \
+	(d,res,nm,type,index)	\
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_JRES_FAILURE(res,nm,type) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_FAILURE_RESULT(nm) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_JRES_FAILURE_D(d,res,nm,type) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_FAILURE_RESULT_D(d,nm) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_JRES(res,nm,type,index) \
+	BOOST_PP_IF \
+		( \
+		index, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ONLY_CAFTER, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_JRES_FAILURE \
+		) \
+	(res,nm,type) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_JRES_D(d,res,nm,type,index) \
+	BOOST_PP_IF \
+		( \
+		index, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ONLY_CAFTER_D, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_JRES_FAILURE_D \
+		) \
+	(d,res,nm,type) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ID_RES(res,nm,type,index) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_MODS_IS_RESULT_INDEX(nm), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_INDEX_JRES, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_JRES \
+		) \
+	(res,nm,type,index)	\
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ID_RES_D(d,res,nm,type,index) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_MODS_IS_RESULT_INDEX(nm), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_INDEX_JRES_D, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_JRES_D \
+		) \
+	(d,res,nm,type,index)	\
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ID(res,nm,type) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ID_RES \
+		( \
+		res, \
+		nm, \
+		type, \
+		BOOST_VMD_DETAIL_MATCH_IDENTIFIER \
+			( \
+			BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA(res,nm), \
+			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(nm) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ID_D(d,res,nm,type) \
+	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ID_RES_D \
+		( \
+		d, \
+		res, \
+		nm, \
+		type, \
+		BOOST_VMD_DETAIL_MATCH_IDENTIFIER_D \
+			( \
+			d, \
+			BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_D(d,res,nm), \
+			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(nm) \
+			) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT(res,nm,type) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_CHECK_FOR_IDENTIFIERS(nm,type), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ID, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ONLY_CAFTER, \
+		) \
+	(res,nm,type) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_D(d,res,nm,type) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_CHECK_FOR_IDENTIFIERS_D(d,nm,type), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ID_D, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_SPLIT_ONLY_CAFTER_D, \
 		) \
 	(d,res,nm,type) \
 /**/
@@ -582,14 +779,71 @@
 	BOOST_VMD_DETAIL_SEQUENCE_ELEM_FAILURE_RESULT_D(d,nm) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT(res,nm,type) \
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_ID(res,nm,type) \
+	BOOST_VMD_IS_IDENTIFIER \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA(res) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_ID_D(d,res,nm,type) \
+	BOOST_VMD_IS_IDENTIFIER_D \
+		( \
+		d, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_D(d,res) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_OTHER(res,nm,type) \
+	BOOST_VMD_DETAIL_EQUAL_TYPE \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE(res,nm), \
+		type \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_OTHER_D(d,res,nm,type) \
+	BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+		( \
+		d, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE_D(d,res,nm), \
+		type \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE(res,nm,type) \
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_EQUAL_TYPE \
 			( \
-			BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE(res,nm), \
+			BOOST_VMD_TYPE_IDENTIFIER, \
 			type \
 			), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_ID, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_OTHER \
+		) \
+	(res,nm,type) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_D(d,res,nm,type) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+			( \
+			d, \
+			BOOST_VMD_TYPE_IDENTIFIER, \
+			type \
+			), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_ID_D, \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_OTHER_D \
+		) \
+	(d,res,nm,type) \
+/**/
+
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT(res,nm,type) \
+	BOOST_PP_IIF \
+		( \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE(res,nm,type), \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_FAILED \
 		) \
@@ -599,11 +853,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_D(d,res,nm,type) \
 	BOOST_PP_IIF \
 		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
-			( \
-			BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE_D(d,res,nm), \
-			type \
-			), \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_D(d,res,nm,type), \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_CHECK_D, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_PT_FAILED_D \
 		) \
