@@ -189,6 +189,12 @@
 	BOOST_PP_TUPLE_ELEM(1,res) \
 /**/
 
+/*
+
+  Gets the 'data' of the result given the result and modifications
+
+*/
+
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA(res,nm) \
 	BOOST_PP_IIF \
 		( \
@@ -208,6 +214,12 @@
 		) \
 	(res) \
 /**/
+
+/*
+
+  Gets the 'type' of the result given the result and modifications
+
+*/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_TYPE(res,nm) \
 	BOOST_PP_IIF \
@@ -235,6 +247,14 @@
 		BOOST_PP_TUPLE_ELEM(0,res) \
 		) \
 /**/
+
+/*
+
+	Determines whether the result from the element access has failed or not
+	
+	returns 1 if it has failed, otherwise 0.
+
+*/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_HAS_FAILED(res,nm) \
 	BOOST_PP_IIF \
@@ -399,7 +419,7 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY_RES(nm) \
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY(elem,vseq,nm) \
 	BOOST_PP_EXPR_IIF \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_AFTER(nm), \
@@ -407,20 +427,12 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY_RES_D(d,nm) \
+#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY_D(d,elem,vseq,nm) \
 	BOOST_PP_EXPR_IIF \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_AFTER_D(d,nm), \
 		(,) \
 		) \
-/**/
-
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY(elem,vseq,nm) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY_RES(nm) \
-/**/
-
-#define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY_D(d,elem,vseq,nm) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_EMPTY_RES_D(d,nm) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_NM_CE(elem,vseq,nm) \
