@@ -9,7 +9,7 @@
 #include <boost/preprocessor/detail/auto_rec.hpp>
 #include <boost/vmd/detail/equal.hpp>
 
-#define BOOST_VMD_EQUAL_1(vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL(vseq1,vseq2)
+#define BOOST_VMD_EQUAL_1(vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_1(vseq1,vseq2)
 #define BOOST_VMD_EQUAL_2(vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_2(vseq1,vseq2)
 #define BOOST_VMD_EQUAL_3(vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_3(vseq1,vseq2)
 #define BOOST_VMD_EQUAL_4(vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_4(vseq1,vseq2)
@@ -26,7 +26,7 @@
 #define BOOST_VMD_EQUAL_15(vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_15(vseq1,vseq2)
 #define BOOST_VMD_EQUAL_16(vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_16(vseq1,vseq2)
 
-#define BOOST_VMD_EQUAL_D_1(d,vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_D(d,vseq1,vseq2)
+#define BOOST_VMD_EQUAL_D_1(d,vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_1_D(d,vseq1,vseq2)
 #define BOOST_VMD_EQUAL_D_2(d,vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_2_D(d,vseq1,vseq2)
 #define BOOST_VMD_EQUAL_D_3(d,vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_3_D(d,vseq1,vseq2)
 #define BOOST_VMD_EQUAL_D_4(d,vseq1,vseq2) BOOST_VMD_DETAIL_EQUAL_4_D(d,vseq1,vseq2)
