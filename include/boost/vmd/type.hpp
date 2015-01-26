@@ -7,7 +7,6 @@
 
 #include <boost/vmd/type/assert_is_type.hpp>
 #include <boost/vmd/type/is_type.hpp>
-#include <boost/vmd/type/type_elem.hpp>
 #include <boost/vmd/type/type_equal.hpp>
 #include <boost/vmd/type/type_not_equal.hpp>
 

@@ -7,7 +7,6 @@
 
 #include <boost/vmd/number/assert_is_number.hpp>
 #include <boost/vmd/number/is_number.hpp>
-#include <boost/vmd/number/number_elem.hpp>
 #include <boost/vmd/number/number_equal.hpp>
 #include <boost/vmd/number/number_not_equal.hpp>
 
