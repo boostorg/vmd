@@ -397,7 +397,17 @@
 									( \
 									BOOST_VMD_DETAIL_IS_RETURN_ONLY_AFTER(id), \
 									BOOST_VMD_DETAIL_MODS_OP_CURRENT_ONLY_AFTER, \
-									BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN \
+									BOOST_PP_IIF \
+										( \
+										BOOST_VMD_DETAIL_IS_RETURN_INDEX(id), \
+										BOOST_VMD_DETAIL_MODS_OP_CURRENT_IND, \
+										BOOST_PP_IIF \
+											( \
+											BOOST_VMD_DETAIL_IS_RETURN_NO_INDEX(id), \
+											BOOST_VMD_DETAIL_MODS_OP_CURRENT_NO_IND, \
+											BOOST_VMD_DETAIL_MODS_OP_CURRENT_UNKNOWN \
+											) \
+										) \
 									) \
 								) \
 							) \

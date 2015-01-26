@@ -794,7 +794,7 @@
 #define BOOST_VMD_DETAIL_SEQUENCE_ELEM_MATCHING_TYPE_ID(res,nm,type) \
 	BOOST_VMD_IS_IDENTIFIER \
 		( \
-		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA(res) \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA(res,nm) \
 		) \
 /**/
 
@@ -802,7 +802,7 @@
 	BOOST_VMD_IS_IDENTIFIER_D \
 		( \
 		d, \
-		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_D(d,res) \
+		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_RESULT_DATA_D(d,res,nm) \
 		) \
 /**/
 
@@ -961,16 +961,7 @@
 		( \
 		elem, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_VSEQ(__VA_ARGS__), \
-		BOOST_VMD_DETAIL_NEW_MODS \
-			( \
-			BOOST_PP_IIF \
-				( \
-				BOOST_VMD_DETAIL_ONLY_AFTER(__VA_ARGS__), \
-				BOOST_VMD_ALLOW_AFTER, \
-				allow \
-				), \
-			__VA_ARGS__ \
-			) \
+		BOOST_VMD_DETAIL_NEW_MODS(allow,__VA_ARGS__) \
 		) \
 /**/
 
@@ -980,17 +971,7 @@
 		d, \
 		elem, \
 		BOOST_VMD_DETAIL_SEQUENCE_ELEM_GET_VSEQ(__VA_ARGS__), \
-		BOOST_VMD_DETAIL_NEW_MODS_D \
-			( \
-			d, \
-			BOOST_PP_IIF \
-				( \
-				BOOST_VMD_DETAIL_ONLY_AFTER_D(d,__VA_ARGS__), \
-				BOOST_VMD_ALLOW_AFTER, \
-				allow \
-				), \
-			__VA_ARGS__ \
-			) \
+		BOOST_VMD_DETAIL_NEW_MODS_D(d,allow,__VA_ARGS__) \
 		) \
 /**/
 
