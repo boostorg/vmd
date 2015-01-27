@@ -4,7 +4,6 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
-#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
@@ -14,14 +13,12 @@
 #include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/detail/identifier.hpp>
 #include <boost/vmd/detail/identifier_concat.hpp>
+#include <boost/vmd/detail/not_empty.hpp>
 
 #define BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_MATCH(tup) \
-	BOOST_PP_COMPL \
+	BOOST_VMD_DETAIL_NOT_EMPTY \
 		( \
-		BOOST_VMD_IS_EMPTY \
-			( \
-			BOOST_PP_TUPLE_ELEM(0,tup) \
-			) \
+		BOOST_PP_TUPLE_ELEM(0,tup) \
 		) \
 /**/
 

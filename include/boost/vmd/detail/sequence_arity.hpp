@@ -3,10 +3,10 @@
 
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/bitnor.hpp>
-#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
+#include <boost/vmd/detail/not_empty.hpp>
 #include <boost/vmd/detail/sequence_elem.hpp>
 
 #define BOOST_VMD_DETAIL_IS_MULTI_TUPLE(tuple) \
@@ -20,10 +20,7 @@
 #define BOOST_VMD_DETAIL_IS_UNARY_TUPLE(tuple) \
 	BOOST_PP_BITAND \
 		( \
-		BOOST_PP_COMPL \
-			( \
-			BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)) \
-			), \
+		BOOST_VMD_DETAIL_NOT_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
 		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,tuple)) \
 		) \
 /**/

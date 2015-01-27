@@ -7,7 +7,6 @@
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
-#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
@@ -17,6 +16,7 @@
 #include <boost/vmd/detail/is_entire.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>
 #include <boost/vmd/detail/mods.hpp>
+#include <boost/vmd/detail/not_empty.hpp>
 #include <boost/vmd/detail/parens.hpp>
 
 #define BOOST_VMD_DETAIL_IDENTIFIER_PROCESS_KEYS_SUCCESS(id,rest,keymatch,mods) \
@@ -188,12 +188,9 @@
 	BOOST_PP_BITAND \
 		( \
 		BOOST_VMD_DETAIL_MODS_IS_RESULT_INDEX(mods), \
-		BOOST_PP_COMPL \
+		BOOST_VMD_DETAIL_NOT_EMPTY \
 			( \
-			BOOST_VMD_IS_EMPTY \
-				( \
-				BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
-				) \
+			BOOST_VMD_DETAIL_MODS_RESULT_OTHER(mods) \
 			) \
 		) \
 /**/
