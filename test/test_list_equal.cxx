@@ -1,8 +1,8 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/list/list_equal.hpp>
-#include <boost/vmd/list/list_not_equal.hpp>
+#include <boost/vmd/equal.hpp>
+#include <boost/vmd/not_equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 
@@ -30,11 +30,14 @@ int main()
   #define ALIST4 (0,((aaa)(ccc),(2,(3,BOOST_PP_NIL))))
   #define ALIST5 (0,((aaa)(ccc),(2,(3,BOOST_PP_NIL))))
   #define ALIST6 (0,((bbb)(ccc),(2,(3,BOOST_PP_NIL))))
+  #define ATUPLE (1)
+  #define ATUPLE2 (1)
   
-  BOOST_TEST(BOOST_VMD_LIST_EQUAL(ALIST,ALIST3));
-  BOOST_TEST(BOOST_VMD_LIST_EQUAL(ALIST4,ALIST5));
-  BOOST_TEST(BOOST_VMD_LIST_NOT_EQUAL(ALIST,ALIST2));
-  BOOST_TEST(BOOST_VMD_LIST_NOT_EQUAL(ALIST4,ALIST6));
+  BOOST_TEST(BOOST_VMD_EQUAL(ALIST,ALIST3,BOOST_VMD_TYPE_LIST));
+  BOOST_TEST(BOOST_VMD_EQUAL(ALIST4,ALIST5,BOOST_VMD_TYPE_LIST));
+  BOOST_TEST(BOOST_VMD_NOT_EQUAL(ALIST,ALIST2,BOOST_VMD_TYPE_LIST));
+  BOOST_TEST(BOOST_VMD_NOT_EQUAL(ALIST4,ALIST6,BOOST_VMD_TYPE_LIST));
+  BOOST_TEST(BOOST_VMD_NOT_EQUAL(ATUPLE,ATUPLE2,BOOST_VMD_TYPE_LIST));
   
 #endif
 

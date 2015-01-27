@@ -4,7 +4,7 @@
 #include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/enum.hpp>
-#include <boost/vmd/type/type_equal.hpp>
+#include <boost/vmd/equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/array/elem.hpp>
@@ -40,7 +40,7 @@ int main()
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_ENUM(ASEQUENCE4,BOOST_VMD_RETURN_TYPE)));
   BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(1,BOOST_PP_VARIADIC_ELEM(3,BOOST_VMD_ENUM(ASEQUENCE2,BOOST_VMD_RETURN_TYPE))),249);
   BOOST_TEST_EQ(BOOST_PP_VARIADIC_SIZE(BOOST_VMD_ENUM(ASEQUENCE,BOOST_VMD_RETURN_TYPE)),6);
-  BOOST_TEST(BOOST_VMD_TYPE_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_PP_VARIADIC_ELEM(0,BOOST_VMD_ENUM(ASEQUENCE3,BOOST_VMD_RETURN_TYPE))),BOOST_VMD_TYPE_SEQ));
+  BOOST_TEST(BOOST_VMD_EQUAL(BOOST_PP_TUPLE_ELEM(0,BOOST_PP_VARIADIC_ELEM(0,BOOST_VMD_ENUM(ASEQUENCE3,BOOST_VMD_RETURN_TYPE))),BOOST_VMD_TYPE_SEQ,BOOST_VMD_TYPE_TYPE));
   
   /* ENUM DATA */
   
