@@ -54,7 +54,7 @@
 #else
 
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/seq/is_seq.hpp>
+#include <boost/vmd/is_seq.hpp>
 
 #define BOOST_VMD_ASSERT_IS_SEQ(seq) \
     BOOST_VMD_ASSERT \

@@ -7,7 +7,7 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/tuple/is_tuple.hpp>
+#include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/detail/idprefix.hpp>
 #include <boost/vmd/detail/number_registration.hpp>
 #include <boost/vmd/detail/type_registration.hpp>

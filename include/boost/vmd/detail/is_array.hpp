@@ -3,7 +3,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/tuple/is_tuple.hpp>
+#include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/detail/is_array_common.hpp>
 
 #define BOOST_VMD_DETAIL_IS_ARRAY(vseq) \

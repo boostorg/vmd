@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/array/is_empty_array.hpp>
+#include <boost/vmd/is_empty_array.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 

@@ -1,8 +1,8 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/identifier/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/enum.hpp>
 #include <boost/vmd/equal.hpp>
 #endif

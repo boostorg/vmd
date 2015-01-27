@@ -54,7 +54,7 @@
 #else
 
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/list/is_list.hpp>
+#include <boost/vmd/is_list.hpp>
 
 #define BOOST_VMD_ASSERT_IS_LIST(param) \
     BOOST_VMD_ASSERT \

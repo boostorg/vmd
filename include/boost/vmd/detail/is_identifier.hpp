@@ -11,7 +11,7 @@
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple/is_tuple.hpp>
+#include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/detail/identifier.hpp>
 #include <boost/vmd/detail/identifier_concat.hpp>
 

@@ -18,7 +18,7 @@
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/identifier/is_identifier.hpp>
+#include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/detail/empty_result.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/match_identifier.hpp>

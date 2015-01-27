@@ -21,7 +21,7 @@
 #else
 
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/number/is_number.hpp>
+#include <boost/vmd/is_number.hpp>
 
 #define BOOST_VMD_ASSERT_IS_NUMBER(ppident) \
     BOOST_VMD_ASSERT \

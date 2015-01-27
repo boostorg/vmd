@@ -3,10 +3,10 @@
 #else
 #include <boost/vmd/elem.hpp>
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/identifier/is_identifier.hpp>
+#include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/number/is_number.hpp>
-#include <boost/vmd/type/is_type.hpp>
+#include <boost/vmd/is_number.hpp>
+#include <boost/vmd/is_type.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/arithmetic/dec.hpp>

@@ -6,7 +6,7 @@
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/facilities/overload.hpp>
 #include <boost/vmd/detail/recurse/equal/equal_headers.hpp>
-#include <boost/vmd/identifier/is_identifier.hpp>
+#include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/detail/not_empty.hpp>
 
 #include <boost/vmd/detail/recurse/equal/equal_1.hpp>

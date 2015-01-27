@@ -1,8 +1,8 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/identifier/is_identifier.hpp>
-#include <boost/vmd/seq/is_seq.hpp>
+#include <boost/vmd/is_identifier.hpp>
+#include <boost/vmd/is_seq.hpp>
 #include <boost/vmd/to_array.hpp>
 #include <boost/vmd/equal.hpp>
 #endif

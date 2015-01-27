@@ -15,7 +15,7 @@
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/type/is_type.hpp>
+#include <boost/vmd/is_type.hpp>
 #include <boost/vmd/detail/modifiers.hpp>
 
 #define BOOST_VMD_DETAIL_MODS_NO_RETURN 0

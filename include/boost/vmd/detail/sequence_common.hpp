@@ -21,7 +21,7 @@
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/list/is_empty_list.hpp>
+#include <boost/vmd/is_empty_list.hpp>
 #include <boost/vmd/detail/array.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
 #include <boost/vmd/detail/identifier.hpp>

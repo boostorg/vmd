@@ -6,7 +6,7 @@
 #if BOOST_PP_VARIADICS
 
 #include <boost/preprocessor/control/iif.hpp>
-#include <boost/vmd/array/is_array.hpp>
+#include <boost/vmd/is_array.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/detail/is_empty_array.hpp>
 

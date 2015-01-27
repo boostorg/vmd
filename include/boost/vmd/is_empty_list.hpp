@@ -7,7 +7,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/vmd/identity.hpp>
-#include <boost/vmd/list/is_list.hpp>
+#include <boost/vmd/is_list.hpp>
 
 /*
 

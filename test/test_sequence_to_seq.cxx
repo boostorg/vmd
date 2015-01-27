@@ -3,7 +3,7 @@
 #else
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/to_seq.hpp>
-#include <boost/vmd/tuple/is_tuple.hpp>
+#include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/equal.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>

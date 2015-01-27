@@ -22,7 +22,7 @@
 #else
 
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/identifier/is_identifier.hpp>
+#include <boost/vmd/is_identifier.hpp>
 
 #define BOOST_VMD_ASSERT_IS_IDENTIFIER(...) \
     BOOST_VMD_ASSERT \

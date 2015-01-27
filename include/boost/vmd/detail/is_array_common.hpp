@@ -10,7 +10,7 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
-#include <boost/vmd/tuple/is_tuple.hpp>
+#include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/detail/is_empty_tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_SYNTAX(tuple) \
