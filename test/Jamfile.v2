@@ -8,6 +8,7 @@ import testing ;
 
 project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>msvc:<warnings>all
+                                                 <toolset>msvc:<cxxflags>-wd4003
                                                  <toolset>gcc:<warnings>all
                                                  <toolset>gcc-4.3.0:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.3.0:<cxxflags>-std=c++0x

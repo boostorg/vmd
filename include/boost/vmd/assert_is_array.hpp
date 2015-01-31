@@ -63,6 +63,14 @@
       	) \
 /**/
 
+#define BOOST_VMD_ASSERT_IS_ARRAY_D(d,array) \
+    BOOST_VMD_ASSERT \
+      	( \
+      	BOOST_VMD_IS_ARRAY_D(d,array), \
+      	BOOST_VMD_IS_ARRAY_ASSERT_ERROR \
+      	) \
+/**/
+
 #endif /* !BOOST_VMD_ASSERT_DATA */
 
 #endif /* BOOST_PP_VARIADICS */

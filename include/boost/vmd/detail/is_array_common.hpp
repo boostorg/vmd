@@ -26,6 +26,19 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_IS_ARRAY_SYNTAX_D(d,tuple) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_EQUAL_D(d,2,BOOST_PP_TUPLE_SIZE(tuple)), \
+			BOOST_VMD_DETAIL_IS_ARRAY_CHECK_ARRAY_FORM_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,tuple) \
+		) \
+/**/
+
 /*
 
   Check if the first element of the tuple is equal to the number of tuple elements of the second element
@@ -36,7 +49,15 @@
     BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(0,x),BOOST_PP_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,x))) \
 /**/
 
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_SIZE_D(d,x) \
+    BOOST_PP_EQUAL_D(d,BOOST_PP_TUPLE_ELEM(0,x),BOOST_PP_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,x))) \
+/**/
+
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY(tuple) \
+	BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,tuple)) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY_D(d,tuple) \
 	BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,tuple)) \
 /**/
 
@@ -48,6 +69,16 @@
     	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY \
     	) \
     (tuple) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_D(d,tuple) \
+    BOOST_PP_IF \
+    	( \
+    	BOOST_PP_TUPLE_ELEM(0,tuple), \
+    	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_SIZE_D, \
+    	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY_D \
+    	) \
+    (d,tuple) \
 /**/
 
 /*
@@ -69,6 +100,19 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_D(d,tuple) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+		  ( \
+		  BOOST_VMD_DETAIL_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_D, \
+		  BOOST_VMD_IDENTITY(0) \
+		  ) \
+		(d,tuple) \
+		) \
+/**/
+
 /*
 
   Check if the second element is a tuple
@@ -85,6 +129,19 @@
 		  BOOST_VMD_IDENTITY(0) \
 		  ) \
 		(tuple) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_ARRAY_FORM_D(d,tuple) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+		  ( \
+		  BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,tuple)), \
+		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_D, \
+		  BOOST_VMD_IDENTITY(0) \
+		  ) \
+		(d,tuple) \
 		) \
 /**/
 

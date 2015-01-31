@@ -14,6 +14,7 @@
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/tuple/push_back.hpp>
+#include <boost/preprocessor/tuple/replace.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/vmd/empty.hpp>
 #include <boost/vmd/identity.hpp>

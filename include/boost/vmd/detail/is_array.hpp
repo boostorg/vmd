@@ -19,4 +19,17 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_IS_ARRAY_D(d,vseq) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_TUPLE(vseq), \
+			BOOST_VMD_DETAIL_IS_ARRAY_SYNTAX_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,vseq) \
+		) \
+/**/
+
 #endif /* BOOST_VMD_DETAIL_IS_ARRAY_HPP */

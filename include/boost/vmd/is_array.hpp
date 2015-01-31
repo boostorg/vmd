@@ -35,5 +35,9 @@
 	BOOST_VMD_DETAIL_IS_ARRAY(array) \
 /**/
 
+#define BOOST_VMD_IS_ARRAY_D(d,array) \
+	BOOST_VMD_DETAIL_IS_ARRAY_D(d,array) \
+/**/
+
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_IS_ARRAY_HPP */

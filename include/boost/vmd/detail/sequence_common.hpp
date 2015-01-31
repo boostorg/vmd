@@ -454,20 +454,20 @@
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_GENERAL_RETURN(d,from), \
-		((SEQ,1),(TUPLE,0)), \
+		((SEQ,1),(TUPLE,1)), \
 		BOOST_PP_IIF \
 			( \
 			BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_EXACT_RETURN(d,from), \
-			((SEQ,1),(LIST,1),(ARRAY,0),(TUPLE,0)), \
+			((SEQ,1),(LIST,1),(ARRAY,1),(TUPLE,1)), \
 			BOOST_PP_IIF \
 				( \
 				BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_ARRAY_RETURN(d,from), \
-				((SEQ,1),(ARRAY,0),(TUPLE,0)), \
+				((SEQ,1),(ARRAY,1),(TUPLE,1)), \
 				BOOST_PP_IIF \
 					( \
 					BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_LIST_RETURN(d,from), \
-					((SEQ,1),(LIST,1),(TUPLE,0)), \
-					((SEQ,1),(TUPLE,0)) \
+					((SEQ,1),(LIST,1),(TUPLE,1)), \
+					((SEQ,1),(TUPLE,1)) \
 					) \
 				) \
 			) \
@@ -486,8 +486,8 @@
 	BOOST_PP_IIF \
 		( \
 		BOOST_VMD_DETAIL_SEQUENCE_STATE_IS_GENERAL_RETURN(d,BOOST_VMD_DETAIL_SEQUENCE_STATE_FROM(state)), \
-		((SEQ,1),(TUPLE,0)), \
-		((SEQ,1),(LIST,1),(ARRAY,0),(TUPLE,0)) \
+		((SEQ,1),(TUPLE,1)), \
+		((SEQ,1),(LIST,1),(ARRAY,1),(TUPLE,1)) \
 		) \
 /**/
 
@@ -501,7 +501,7 @@
 				d, \
 				BOOST_VMD_DETAIL_SEQUENCE_STATE_FROM(state) \
 				), \
-			BOOST_VMD_IDENTITY(((SEQ,1),(LIST,1),(ARRAY,0),(TUPLE,0))), \
+			BOOST_VMD_IDENTITY(((SEQ,1),(LIST,1),(ARRAY,1),(TUPLE,1))), \
 			BOOST_VMD_DETAIL_SEQUENCE_OP_PAREN_TUPLE_TYPES_ANY_NOE_CHC \
 			) \
 		(d,state) \
@@ -518,7 +518,7 @@
 				BOOST_VMD_DETAIL_SEQUENCE_STATE_ELEM(state) \
 				), \
 			BOOST_VMD_DETAIL_SEQUENCE_OP_PAREN_TUPLE_TYPES_ANY_NOE, \
-			BOOST_VMD_IDENTITY(((SEQ,1),(TUPLE,0))) \
+			BOOST_VMD_IDENTITY(((SEQ,1),(TUPLE,1))) \
 			) \
 		(d,state) \
 		) \

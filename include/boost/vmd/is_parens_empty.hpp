@@ -32,7 +32,13 @@
     2) a single element seq whose data is empty
     
 */
-#define BOOST_VMD_IS_PARENS_EMPTY(param) BOOST_VMD_DETAIL_IS_EMPTY_TUPLE(param)
+#define BOOST_VMD_IS_PARENS_EMPTY(param) \
+	BOOST_VMD_DETAIL_IS_EMPTY_TUPLE(param) \
+/**/
+
+#define BOOST_VMD_IS_PARENS_EMPTY_D(d,param) \
+	BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_D(d,param) \
+/**/
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_IS_PARENS_EMPTY_HPP */

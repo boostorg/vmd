@@ -1,16 +1,16 @@
 #if !defined(BOOST_VMD_DETAIL_ASSERT_HPP)
 #define BOOST_VMD_DETAIL_ASSERT_HPP
 
+#include <boost/preprocessor/debug/assert.hpp>
+#include <boost/preprocessor/variadic/elem.hpp>
+
+#if BOOST_VMD_MSVC
+
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/if.hpp>
 #include <boost/preprocessor/control/iif.hpp>
-#include <boost/preprocessor/debug/assert.hpp>
-#include <boost/preprocessor/facilities/empty.hpp>
-#include <boost/preprocessor/variadic/elem.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/vmd/empty.hpp>
-
-#if BOOST_VMD_MSVC
 
 #define BOOST_VMD_DETAIL_ASSERT_VC_GEN_ERROR_OUTPUT(errstr) \
 	BOOST_PP_ASSERT(0) \

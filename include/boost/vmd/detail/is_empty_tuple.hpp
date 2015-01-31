@@ -26,6 +26,19 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE_D(d,tuple) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_EQUAL_D(d,BOOST_PP_TUPLE_SIZE(tuple),1), \
+			BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_CEM, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(tuple) \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_IS_EMPTY_TUPLE(tuple) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
@@ -36,6 +49,19 @@
 			BOOST_VMD_IDENTITY(0) \
 			) \
 		(tuple) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_D(d,tuple) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_TUPLE(tuple), \
+			BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,tuple) \
 		) \
 /**/
 

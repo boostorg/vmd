@@ -43,17 +43,20 @@
 /**/
 
 #define BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ(vseq) \
-    BOOST_PP_IIF \
-      ( \
-      BOOST_PP_BITOR \
-      	( \
-      	BOOST_VMD_IS_EMPTY(vseq), \
-      	BOOST_PP_IS_BEGIN_PARENS(vseq) \
-      	), \
-      BOOST_VMD_IDENTITY(0), \
-      BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_ID \
-      ) \
-    (vseq) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+		  ( \
+		  BOOST_PP_BITOR \
+			( \
+			BOOST_VMD_IS_EMPTY(vseq), \
+			BOOST_PP_IS_BEGIN_PARENS(vseq) \
+			), \
+		  BOOST_VMD_IDENTITY(0), \
+		  BOOST_VMD_DETAIL_IS_IDENTIFIER_VSEQ_ID \
+		  ) \
+		(vseq) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_IDENTIFIER_SINGLE(...) \

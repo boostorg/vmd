@@ -186,32 +186,38 @@
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_TEST_TYPE_CHECK_IDENTIFIER(vseq1,vtype1,type) \
-	BOOST_PP_IIF \
+	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE \
+		BOOST_PP_IIF \
 			( \
-			BOOST_VMD_TYPE_IDENTIFIER, \
-			type \
-			), \
-		BOOST_VMD_IS_IDENTIFIER, \
-		BOOST_VMD_IDENTITY(0) \
+			BOOST_VMD_DETAIL_EQUAL_TYPE \
+				( \
+				BOOST_VMD_TYPE_IDENTIFIER, \
+				type \
+				), \
+			BOOST_VMD_IS_IDENTIFIER, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(vseq1) \
 		) \
-	(vseq1) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_TEST_TYPE_CHECK_IDENTIFIER_D(d,vseq1,vtype1,type) \
-	BOOST_PP_IIF \
+	BOOST_VMD_IDENTITY_RESULT \
 		( \
-		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+		BOOST_PP_IIF \
 			( \
-			d, \
-			BOOST_VMD_TYPE_IDENTIFIER, \
-			type \
-			), \
-		BOOST_VMD_IS_IDENTIFIER_D, \
-		BOOST_VMD_IDENTITY(0) \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+				( \
+				d, \
+				BOOST_VMD_TYPE_IDENTIFIER, \
+				type \
+				), \
+			BOOST_VMD_IS_IDENTIFIER_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,vseq1) \
 		) \
-	(d,vseq1) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_TEST_TYPE_CHECK(vseq1,vtype1,type) \
