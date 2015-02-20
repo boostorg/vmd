@@ -95,7 +95,7 @@
 	(d,vseq1,vseq2,vtype) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_2_WT(vseq1,vseq2,vtype1,vtype2) \
+#define BOOST_VMD_DETAIL_EQUAL_2_WT_CHECK(vseq1,vseq2,vtype1,vtype2) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
 		BOOST_PP_IIF \
@@ -112,7 +112,7 @@
 		) \
 /**/
 
-#define BOOST_VMD_DETAIL_EQUAL_2_WT_D(d,vseq1,vseq2,vtype1,vtype2) \
+#define BOOST_VMD_DETAIL_EQUAL_2_WT_CHECK_D(d,vseq1,vseq2,vtype1,vtype2) \
 	BOOST_VMD_IDENTITY_RESULT \
 		( \
 		BOOST_PP_IIF \
@@ -130,13 +130,60 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_EQUAL_2_WT_CONVERT(vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_DETAIL_EQUAL_2_WT_CHECK \
+		( \
+		vseq1, \
+		vseq2, \
+		BOOST_VMD_DETAIL_ADJUST_TUPLE_TYPE(vseq1,vtype1), \
+		BOOST_VMD_DETAIL_ADJUST_TUPLE_TYPE(vseq2,vtype2) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_2_WT_CONVERT_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_DETAIL_EQUAL_2_WT_CHECK_D \
+		( \
+		d, \
+		vseq1, \
+		vseq2, \
+		BOOST_VMD_DETAIL_ADJUST_TUPLE_TYPE_D(d,vseq1,vtype1), \
+		BOOST_VMD_DETAIL_ADJUST_TUPLE_TYPE_D(d,vseq2,vtype2) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_2_WT(vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_IS_TUPLE_MISMATCH(vseq1,vseq2,vtype1,vtype2), \
+			BOOST_VMD_IDENTITY(0), \
+			BOOST_VMD_DETAIL_EQUAL_2_WT_CONVERT \
+			) \
+		(vseq1,vseq2,vtype1,vtype2) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_2_WT_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_DETAIL_EQUAL_IS_TUPLE_MISMATCH_D(d,vseq1,vseq2,vtype1,vtype2), \
+			BOOST_VMD_IDENTITY(0), \
+			BOOST_VMD_DETAIL_EQUAL_2_WT_CONVERT_D \
+			) \
+		(d,vseq1,vseq2,vtype1,vtype2) \
+		) \
+/**/
+
 #define BOOST_VMD_DETAIL_EQUAL_2_GTYPE(vseq1,vseq2) \
 	BOOST_VMD_DETAIL_EQUAL_2_WT \
 		( \
 		vseq1, \
 		vseq2, \
-		BOOST_VMD_GET_TYPE(vseq1), \
-		BOOST_VMD_GET_TYPE(vseq2) \
+		BOOST_VMD_GET_TYPE(vseq1,BOOST_VMD_RETURN_TYPE_TUPLE), \
+		BOOST_VMD_GET_TYPE(vseq2,BOOST_VMD_RETURN_TYPE_TUPLE) \
 		) \
 /**/
 
@@ -146,8 +193,8 @@
 		d, \
 		vseq1, \
 		vseq2, \
-		BOOST_VMD_GET_TYPE_D(d,vseq1), \
-		BOOST_VMD_GET_TYPE_D(d,vseq2) \
+		BOOST_VMD_GET_TYPE_D(d,vseq1,BOOST_VMD_RETURN_TYPE_TUPLE), \
+		BOOST_VMD_GET_TYPE_D(d,vseq2,BOOST_VMD_RETURN_TYPE_TUPLE) \
 		) \
 /**/
 

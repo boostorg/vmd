@@ -3,11 +3,14 @@
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
+#include <boost/preprocessor/comparison/not_equal.hpp>
 #include <boost/preprocessor/control/iif.hpp>
+#include <boost/preprocessor/logical/bitand.hpp>
 #include <boost/preprocessor/logical/bitor.hpp>
 #include <boost/preprocessor/logical/bitxor.hpp>
 #include <boost/preprocessor/logical/compl.hpp>
 #include <boost/preprocessor/punctuation/is_begin_parens.hpp>
+#include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/get_type.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
@@ -59,6 +62,57 @@
 			) \
 		) \
 	(d,vseq1,vseq2) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_IS_TUPLE_MISMATCH_SIZE(vseq1,vseq2) \
+	BOOST_PP_NOT_EQUAL \
+		( \
+		BOOST_PP_TUPLE_SIZE(vseq1), \
+		BOOST_PP_TUPLE_SIZE(vseq2) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_IS_TUPLE_MISMATCH_SIZE_D(d,vseq1,vseq2) \
+	BOOST_PP_NOT_EQUAL_D \
+		( \
+		d, \
+		BOOST_PP_TUPLE_SIZE(vseq1), \
+		BOOST_PP_TUPLE_SIZE(vseq2) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_IS_TUPLE_MISMATCH(vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITAND \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_TYPE(vtype1,BOOST_VMD_TYPE_TUPLE), \
+				BOOST_VMD_DETAIL_EQUAL_TYPE(vtype2,BOOST_VMD_TYPE_TUPLE) \
+				), \
+			BOOST_VMD_DETAIL_EQUAL_IS_TUPLE_MISMATCH_SIZE, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(vseq1,vseq2) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_EQUAL_IS_TUPLE_MISMATCH_D(d,vseq1,vseq2,vtype1,vtype2) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_PP_BITAND \
+				( \
+				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype1,BOOST_VMD_TYPE_TUPLE), \
+				BOOST_VMD_DETAIL_EQUAL_TYPE_D(d,vtype2,BOOST_VMD_TYPE_TUPLE) \
+				), \
+			BOOST_VMD_DETAIL_EQUAL_IS_TUPLE_MISMATCH_SIZE_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,vseq1,vseq2) \
+		) \
 /**/
 
 #define BOOST_VMD_DETAIL_EQUAL_BOTH_EMPTY(...) 1

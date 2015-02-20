@@ -8,8 +8,10 @@
 #include <boost/vmd/get_type.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/detail/adjust_tuple_type.hpp>
 #include <boost/vmd/detail/data_equal.hpp>
 #include <boost/vmd/detail/equal_common.hpp>
 #include <boost/vmd/detail/equal_type.hpp>
+#include <boost/vmd/detail/modifiers.hpp>
 
 #endif /* BOOST_VMD_DETAIL_EQUAL_HEADERS_HPP */
