@@ -7,6 +7,7 @@
 
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/assert_is_array.hpp>
+#include <boost/vmd/assert_is_empty.hpp>
 #include <boost/vmd/assert_is_identifier.hpp>
 #include <boost/vmd/assert_is_list.hpp>
 #include <boost/vmd/assert_is_number.hpp>
