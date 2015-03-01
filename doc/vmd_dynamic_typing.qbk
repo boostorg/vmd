@@ -2,28 +2,28 @@
 
 Within the constraints based on the top-level types which VMD can parse,
 the libraries gives the end-user the ability to design macros with
-dynamic v-types. By this I mean that a macro could be designed to handle
-different v-types based on some documented agreement of different combinations
+dynamic VMD types. By this I mean that a macro could be designed to handle
+different VMD types based on some documented agreement of different combinations
 of macro input meaning slightly different things. Add to this the ability
 to design such macros with variadic parameters and we have a preprocessor
 system of macro creation which to a lesser extent rivals the DSELS of template 
 metaprogramming. Of course the preprocessor is not nearly as flexible as
 C++ templates, but still the sort of preprocessor metaprogramming one could
 do with VMD, and the underlying Boost PP, in creating flexible macros which
-can handle different combinations of v-types is very interesting.
+can handle different combinations of VMD types is very interesting.
 
 Of course macros need to be usable by an end-user so the syntactical ability
-of v-types and v-type sequences to represent different types of input data must
+of VMD types and sequences to represent different types of input data must
 be balanced against ease of use and understanding when using a macro. But because
-certain v-type sequences can mimic C++ function calls to some extent it is possible
+certain sequences can mimic C++ function calls to some extent it is possible
 to represent macros as a language closer to C++ with VMD.
 
 What is important when designing a macro in which you parse input to decide which type
 of data the invoker is passing to your macro is that you are aware of the constraints
-when parsing a v-type. As an example if you design a macro where some input can either
-be a v-number, a v-identifier, or some none v-type top-level input then attempting 
+when parsing a VMD type. As an example if you design a macro where some input can either
+be a number, an identifier, or some other VMD type top-level input then attempting 
 to parse the data to see if it is a number or identifier could fail with a preprocessor
-error and nullify your design if the data is not a v-type. So designing a macro with 
-VMD v-types in mind often means restricting data to parseable top-level v-types.
+error and nullify your design if the data is not a VMD type. So designing a macro with 
+VMD types in mind often means restricting data to parseable top-level types.
 
 [endsect]

@@ -1,6 +1,6 @@
 [section:vmd_naming Naming conventions]
 
-All of the macros in the library begin with the prefix BOOST\_VMD\_, 
+All of the macros in the library begin with the prefix BOOST_VMD_, 
 where VMD stands for 'Variadic Macro Data'.
 
 Following the prefix, certain names in the macros refer to data types 
@@ -12,13 +12,32 @@ in this library or Boost PP. These names and their data types are:
 # SEQ        = Boost PP seq data type.
 # IDENTIFIER = A VMD identifier
 # NUMBER     = A VMD number
+# TYPE       = A VMD type
 
 I have used most of these names in order to mimic the naming of Boost PP 
-as closely as possible. Subsequent use of the words 'tuple', 'array', 'list',
-and 'seq' refer to these Boost PP data types unless otherwise
+as closely as possible. Subsequent use of the words 'array', 'list',
+'seq', and 'tuple' refer to these Boost PP data types unless otherwise
 noted. See the help for Boost PP for any explanation of these
-data types. For a VMD identifier I use the term 'v-identifier' and
-for a VMD number I use the term 'v-number'. Documentation for these
-in VMD will follow.
+data types.
+
+The term 'sequence' refers to a sequence of VMD data types and is not the
+same as a Boost PP sequence which is always referred to in this documentation
+as a 'seq'.
+
+The term 'return' refers to the expansion of a macro. I use the terminology
+of a macro "returning some data" rather than the terminology of a macro
+"expanding to some data", even if the latter is more accurate, because it
+more closely corresponds to the way I believe C++ programmers think about
+macro programming.
+
+The term 'emptiness' refers to no preprocessor data being passed to or returned
+from a macro. I have avoided the word 'nothing' because it has too vague a meaning.
+
+The term 'data types' refers to the various preprocessor input types
+which VMD can parse and which are listed above, and also including emptiness.
+
+The term 'vtype' refers to a VMD type, the term 'number returns to a VMD 'number'
+and the term 'identifier' refers to a VMD idfentifier. All these will be explained
+in their proper place.
 
 [endsect]

@@ -1,0 +1,97 @@
+[section:vmd_modifiers Macros with modifiers]
+
+The basic functionality for VMD macros parsing data types
+has been given using the required parameters of those
+macros. This basic functionality may be perfectly adequate for
+macro programmers to use VMD effectively in their programming efforts.
+
+A number of those macros take optional parameters,
+called in general "modifiers", which enhance or change the
+functionality of those macros in various ways. All modifiers
+are VMD identifiers.
+
+Some modifiers are identifiers, both registered and pre-detected,
+starting with BOOST_VMD_. These are termed VMD "specific modifiers"
+and change the expansion of a macro in various ways.
+
+Modifiers may also be user-defined identifiers in some situations 
+which will be subsequently explained. These user-defined identifiers 
+are termed "user-defined modifiers". 
+
+In all situations modifiers are optional parameters which are parsed 
+by VMD to provide enhanced functionality for some of its macros. 
+They are never required as part of the basic funcionality of a macro.
+
+When modifiers are used as optional arguments to a macro they
+can be input after the required parameters in any order and 
+VMD will still handle the optional parameters correctly.
+
+For any particular macro if a specific modifier
+is not appropriate it is just ignored. This means that VMD never
+generates a preprocessing error just because a specific modifier
+does not apply for a particular macro. Any modifier which is not
+recognized as a specific modifier is treated as a user-defined 
+modifier. In cases where a user-defined modifier is not appropriate
+it is also just ignored.
+
+The situations where modifiers can be used to enhance the basic
+functionality of VMD macros can be divided by particular types
+of specific modifiers. Each particular type of A specific modifier
+has a particular name given to it in this documentation, 
+functionality, set of identifiers, and may be used as optional
+parameters in one or more macros depending on the specific
+modifier type. 
+
+When more than one specific modifier from a particular type of modifier is 
+specified as an optional parameter the last specified takes effect. This
+allows the programmer to override a specific modifier by adding the
+overridden identifier as an optional argument to the end of the
+macro's invocation.
+
+Header files for specific modifiers are automatically included when
+the header files for macros taking those specific modifiers are
+included.
+
+Header files for user-defined modifiers must be included as needed
+by the programmer using those modifiers.
+
+The following topics will explain each particular type of modifier 
+and where it may be used.
+
+[include vmd_modifiers_return_type.qbk]
+[include vmd_modifiers_filter.qbk]
+[include vmd_modifiers_identifier.qbk]
+[include vmd_modifiers_splitting.qbk]
+[include vmd_modifiers_index.qbk]
+
+[heading Modifiers and the single-element sequence]
+
+A single element sequence is what we normally think of when
+working with macro data. It is a single type of macro data
+passed as an input parameter to some macro and processed as
+such.
+
+In its basic form without modifiers BOOST_VMD_ELEM serves
+to just return a particular element of a sequence. For
+a single element sequence BOOST_VMD_ELEM with element
+number 0, just returns the single-element sequence itself. This does not
+offer much functionality for our simple sequence. However with
+modifiers we can do things generically with our single-element 
+sequence which correspond to working with a single type of data
+and extracting information about it. 
+
+With the return type modifier we can get the type of the data 
+along with the data. Of course we can also use BOOST_VMD_GET_TYPE
+to retrieve the type of data.
+
+With our filter modifier we can retrieve the data only if it is a particular
+type, else retrieve emptiness. 
+
+With the identifier modifier we can retrieve an identifier only if it 
+matches one or more other identifiers, else retrieve emptiness. 
+
+With our index modifier we can retrieve both our
+identifier and its numeric index if it matches one or more
+other identifiers, else retrieve a tuple of two empty elements.
+
+[endsect]

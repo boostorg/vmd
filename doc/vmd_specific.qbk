@@ -1,0 +1,11 @@
+[section:vmd_specific Specific macros for working with data types]
+
+[include vmd_empty.qbk]
+[include vmd_constraints.qbk]
+[include vmd_identifier.qbk]
+[include vmd_number.qbk]
+[include vmd_type.qbk]
+[include vmd_pp_data_types.qbk]
+[include vmd_identifying.qbk]
+
+[endsect]

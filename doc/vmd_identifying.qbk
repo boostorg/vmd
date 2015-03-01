@@ -4,8 +4,10 @@
 
 The various macros for identifying VMD data types complement
 the ability to identify emptiness using BOOST_VMD_IS_EMPTY.
-They also share with BOOST_VMD_IS_EMPTY the inherent flaw
-mentioned when discussing this macro, since they themselves
+The general name I will use in this documentation for these 
+macros is "identifying macros." The identifying macros
+also share with BOOST_VMD_IS_EMPTY the inherent flaw
+mentioned when discussing BOOST_VMD_IS_EMPTY, since they themselves
 use BOOST_VMD_IS_EMPTY to determine that the input has ended.
 
 To recapitulate the flaw with BOOST_VMD_IS_EMPTY:
@@ -46,7 +48,7 @@ BOOST_VMD_IS_EMPTY problem will occur.
 The VMD identifying macros give the preprocessor metaprogrammer a great amount
 of flexibility when designing macros. It is not merely the flexibility of allowing
 direct parameters to a macro to be different data types, and having the macro work
-differently depending on the type of data passed to it, bit it is also the flexibility
+differently depending on the type of data passed to it, but it is also the flexibility
 of allowing individual elements of the higher level Boost PP data types to be 
 different data types and have the macro work correctly depending on the type of data 
 type passed as part of those elements.

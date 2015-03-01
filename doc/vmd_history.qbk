@@ -1,5 +1,46 @@
 [section:vmd_history History]
 
+[heading Version 1.8]
+
+* After a review of VMD I have greatly simplified the main interfaces and added
+optional functionality in the form of modifiers. The main changes are the addition
+of the many generic macros for sequences and the expansions of types to include the
+VMD type.
+  * Added BOOST_VMD_ELEM macro.
+  * Added BOOST_VMD_EQUAL macro.
+  * Added BOOST_VMD_NOT_EQUAL macro.
+  * Added BOOST_VMD_IS_MULTI macro.
+  * Added BOOST_VMD_IS_TYPE macro.
+  * Added BOOST_VMD_ASSERT_IS_TYPE macro.
+  * Added BOOST_VMD_IS_UNARY macro.
+  * Added BOOST_VMD_SIZE macro.
+  * Replaced with BOOST_VMD_ELEM macro using modifiers a number of macros, which were eleminated. These are:
+    * BOOST_VMD_IDENTIFER
+    * BOOST_VMD_BEGIN_IDENTIFIER
+    * BOOST_VMD_AFTER_IDENTIFIER
+    * BOOST_VMD_IS_BEGIN_IDENTIFIER
+    * BOOST_VMD_NUMBER
+    * BOOST_VMD_BEGIN_NUMBER
+    * BOOST_VMD_AFTER_NUMBER
+    * BOOST_VMD_IS_BEGIN_NUMBER
+    * BOOST_VMD_ARRAY
+    * BOOST_VMD_BEGIN_ARRAY
+    * BOOST_VMD_AFTER_ARRAY
+    * BOOST_VMD_IS_BEGIN_ARRAY
+    * BOOST_VMD_LIST
+    * BOOST_VMD_BEGIN_LIST
+    * BOOST_VMD_AFTER_LIST
+    * BOOST_VMD_IS_BEGIN_LIST
+    * BOOST_VMD_SEQ
+    * BOOST_VMD_BEGIN_SEQ
+    * BOOST_VMD_AFTER_SEQ
+    * BOOST_VMD_IS_BEGIN_SEQ
+    * BOOST_VMD_TUPLE
+    * BOOST_VMD_BEGIN_TUPLE
+    * BOOST_VMD_AFTER_TUPLE
+    * BOOST_VMD_IS_BEGIN_TUPLE
+  * Every macro has its own header file.
+
 [heading Version 1.7]
 
 * The library has been reengineered to provide vastly added functionality. This includes:

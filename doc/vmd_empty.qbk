@@ -295,7 +295,14 @@ in the way that it works. Explanations of when the macro is used by other macros
 the VMD library, and how to avoid the flaw in BOOST_VMD_IS_EMPTY, will be given for each
 macro in the library which uses BOOST_VMD_IS_EMPTY.
 
-The end-user of VMD can include the individual header file 'is_empty.hpp'
-instead of the general header file 'vmd.hpp' for using this macro.
-   
+You can use the general header file:
+
+ #include <boost/vmd/vmd.hpp>
+ 
+or you can use the individual header file:
+
+ #include <boost/vmd/is_empty.hpp>
+ 
+for the BOOST_VMD_IS_EMPTY macro.
+
 [endsect]

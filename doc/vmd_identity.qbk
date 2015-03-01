@@ -99,7 +99,7 @@ will produce a preprocessing error since the final invocation to either
 BOOST_PP_EMPTY or BOOST_PP_IDENTITY can not be done with 1 or more parameters.
 
 It would be much more useful if the final invocation could be done with
-any number of parameters. This is where variadic macros solve the problem. 
+any number of parameters. This is where using variadic macros solve the problem. 
 The BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY macros have the exact same 
 functionality as their Boost PP counterparts but the final invocation can 
 be made with any number of parameters, and those parameters are just ignored.
@@ -172,6 +172,23 @@ simply enclose that invocation within BOOST_VMD_IDENTITY_RESULT. As in the very 
 
  #define CALLING_MACRO_CHOICE(parameter1,parameter2) \
      BOOST_VMD_IDENTITY_RESULT(MACRO_CHOICE(parameter1,parameter2))
+     
+Alternatively you can change MACRO_CHOICE so that its implementation
+and usage is:
+     
+ #define MACRO_CHOICE(parameter1,parameter2) \
+     BOOST_VMD_IDENTITY_RESULT \
+         ( \
+         BOOST_PP_IIF(parameter1) \
+             ( \
+             MACRO_CALL_IF_PARAMETER_1, \
+             BOOST_VMD_IDENTITY(SOME_FIXED_VALUE) \
+             ) \
+         (parameter2) \
+         )
+         
+ #define CALLING_MACRO_CHOICE(parameter1,parameter2) \
+     MACRO_CHOICE(parameter1,parameter2)
      
 Using BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY in this way will ensure they can be used
 without preprocessing problems with either VC++ or any C++ standard conforming preprocessor.

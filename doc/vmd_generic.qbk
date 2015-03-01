@@ -1,0 +1,7 @@
+[section:vmd_generic Generic macros for working with data types]
+
+[include vmd_sequence.qbk]
+[include vmd_get_type.qbk]
+[include vmd_equality.qbk]
+
+[endsect]

@@ -1,6 +1,6 @@
 [section:vmd_number Numbers]
 
-A number in VMD, herafter called a 'v-number', is a preprocessing 'pp-number', 
+A number in VMD is a preprocessing 'pp-number', 
 limited to a Boost PP number. This is an integral literal between 0 and 256.
 The form of the number does not contain leading zeros. Acceptable as v-numbers are:
 
@@ -17,10 +17,12 @@ but not:
  009
  00
  
-As can be seen from the explanation of a v-identifier, a v-number is merely
-a small subset of all possible v-identifiers, for which VMD internally provides
-registration macros for use. Therefore the particular constraint on the input
-to test is exactly the same as for v-identifiers.
+[heading Problem testing any number]
+
+As can be seen from the explanation of a identifier, a number is merely
+a small subset of all possible identifiers, for which VMD internally provides
+registration macros for its use. Therefore the particular constraint on the input
+to test is exactly the same as for identifiers.
  
 The constraint is that the beginning input character, ignoring any whitespace, passed
 as the input to test must be either:
@@ -47,17 +49,24 @@ Given the input:
  %_anything : will give a preprocessing error due to the constraint
  (_anything : will give a preprocessing error due to the constraint, since a single '(' does not form a tuple
 
-The macro used to test for a particular v-number in VMD is called BOOST_VMD_IS_NUMBER.
+[heading Testing for a number macro]
+
+The macro used to test for any number in VMD is called BOOST_VMD_IS_NUMBER.
 The macro takes a single parameter, the input to test against.
 
 The macro returns 1 if the parameter is a Boost PP number, otherwise the macro returns 0.
 
 Unlike BOOST_VMD_IS_IDENTIFIER there is no need for a second parameter to test for a 
-particular v-number, nor is there need for v-number pre-detection macros, The reason for this
-is because Boost PP already has a large set of functionality to test for particular v-numbers,
-as well as the relationship and manipulation of v-numbers in its own library. See the Boost PP
-functionality for arithmetic, comparsion, and logical operations for working with v-numbers 
+particular number, nor is there need for number pre-detection macros, The reason for this
+is because Boost PP already has a large set of functionality to test for particular numbers,
+as well as the relationship and manipulation of numbers in its own library. See the Boost PP
+functionality for arithmetic, comparison, and logical operations for working with numbers 
 directly in Boost PP.
+
+However a number is also an identifier. Therefore you can also use BOOST_VMD_IS_IDENTIFIER
+to test for a particular number if you like, but it is highly recommended you already use
+the rich set of Boost PP functionality dealing with numbers instead to work with particular
+numbers.
 
 [heading Example]
 
@@ -86,6 +95,6 @@ To use the BOOST_VMD_IS_NUMBER macro either include the general header:
  
 or include the specific header:
 
- #include <boost/vmd/number.hpp>
+ #include <boost/vmd/is_number.hpp>
 
 [endsect]

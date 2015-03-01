@@ -1,9 +1,9 @@
 [section:vmd_assert Asserting and data types]
 
-The VMD macros for identifying v-types work best when the macro logic can take different 
+The VMD macros for identifying VMD types work best when the macro logic can take different 
 paths depending on the type of data being passed for a macro parameter. But occasionally 
 the preprocessor metaprogrammer wants to simply verify that the macro parameter data is of 
-the correct v-type, else a preprocessor error should be generated to notify the programmer 
+the correct VMD type, else a preprocessor error should be generated to notify the programmer 
 invoking the macro that the data passed is the incorrect type.
 
 [heading Using BOOST_VMD_ASSERT]
@@ -17,7 +17,7 @@ compilers.
 Unfortunately VC++ will only produce a warning when the wrong number of arguments are passed
 to a macro. Therefore the BOOST_PP_ASSERT macro does not produce a preprocessing error using
 VC++. Amazingly enough there appears to be no other way in which VC++ can be forced to
-issue a preprocessng error by invoking a macro ( if you find one please tell me about it ).
+issue a preprocessing error by invoking a macro ( if you find one please tell me about it ).
 However one can create invalid C++ as the output from a macro invocation which causes VC++
 to produce a compiler error when the VC++ compiler later encounters the construct.
 
@@ -48,19 +48,20 @@ or include the specific header:
 
  #include <boost/vmd/assert.hpp>
  
-[heading Assertions for VMD data types ]
+[heading Assertions for VMD types ]
 
-The v-types have their own assertion macros. These are largely just shortcuts for
+The VMD types have their own assertion macros. These are largely just shortcuts for
 passing the result of the identifying macros to BOOST_VMD_ASSERT. These assertion
 macros are:
 
 * emptiness, BOOST_VMD_ASSERT_IS_EMPTY
-* v-identifier, BOOST_VMD_ASSERT_IS_IDENTIFIER
-* v-number, BOOST_VMD_ASSERT_IS_NUMBER
+* identifier, BOOST_VMD_ASSERT_IS_IDENTIFIER
+* number, BOOST_VMD_ASSERT_IS_NUMBER
 * array, BOOST_VMD_ASSERT_IS_ARRAY
 * list, BOOST_VMD_ASSERT_IS_LIST
 * seq, BOOST_VMD_ASSERT_IS_SEQ
 * tuple, BOOST_VMD_ASSERT_IS_TUPLE
+* type, BOOST_VMD_ASSERT_IS_TYPE
 
 Each of these macros take as parameters the exact same argument as their
 corresponding identifying macros. But instead of returning non-zero or 0, each of these
@@ -79,13 +80,14 @@ To use the individual BOOST_VMD_ASSERT_... macros either include the general hea
  
 or include the specific header:
 
- #include <boost/vmd/is_empty.hpp> // BOOST_VMD_ASSERT_IS_EMPTY
- #include <boost/vmd/identifier.hpp> // BOOST_VMD_ASSERT_IS_IDENTIFIER
- #include <boost/vmd/number.hpp> // BOOST_VMD_ASSERT_IS_NUMBER
- #include <boost/vmd/array.hpp> // BOOST_VMD_ASSERT_IS_ARRAY
- #include <boost/vmd/list.hpp> // BOOST_VMD_ASSERT_IS_LIST
- #include <boost/vmd/seq.hpp> // BOOST_VMD_ASSERT_IS_SEQ
- #include <boost/vmd/tuple.hpp> // BOOST_VMD_ASSERT_IS_TUPLE
+ #include <boost/vmd/assert_is_empty.hpp> // BOOST_VMD_ASSERT_IS_EMPTY
+ #include <boost/vmd/assert_is_identifier.hpp> // BOOST_VMD_ASSERT_IS_IDENTIFIER
+ #include <boost/vmd/assert_is_number.hpp> // BOOST_VMD_ASSERT_IS_NUMBER
+ #include <boost/vmd/assert_is_array.hpp> // BOOST_VMD_ASSERT_IS_ARRAY
+ #include <boost/vmd/assert_is_list.hpp> // BOOST_VMD_ASSERT_IS_LIST
+ #include <boost/vmd/assert_is_seq.hpp> // BOOST_VMD_ASSERT_IS_SEQ
+ #include <boost/vmd/assert_is_tuple.hpp> // BOOST_VMD_ASSERT_IS_TUPLE
+ #include <boost/vmd/assert_is_type.hpp> // BOOST_VMD_ASSERT_IS_TYPE
  
 [heading Assertions and VC++ ]
 
