@@ -16,18 +16,16 @@
 /** \file
 */
 
-/** \def BOOST_VMD_IS_ARRAY(array)
+/** \def BOOST_VMD_IS_ARRAY(sequence)
 
-    \brief Determines if a parameter is a Boost PP array.
+    \brief Determines if a sequence is a Boost PP array.
 
-    The macro checks that the parameter is a Boost PP array.
+    The macro checks that the sequence is a Boost PP array.
     It returns 1 if it is an array, else if returns 0.
 
-    The macro works through variadic macro support.
-    
-    array = a possible Boost PP array.
+    sequence = a possible Boost PP array.
 
-    returns = 1 if it is an array, else returns 0.
+    returns  = 1 if it is an array, else returns 0.
     
     The macro will generate a preprocessing error if the input
     is in the form of an array but its first tuple element, instead
@@ -37,21 +35,19 @@
     
 */
 
-#define BOOST_VMD_IS_ARRAY(array) \
-	BOOST_VMD_DETAIL_IS_ARRAY(array) \
+#define BOOST_VMD_IS_ARRAY(sequence) \
+	BOOST_VMD_DETAIL_IS_ARRAY(sequence) \
 /**/
 
-/** \def BOOST_VMD_IS_ARRAY_D(d,array)
+/** \def BOOST_VMD_IS_ARRAY_D(d,sequence)
 
-    \brief Determines if a parameter is a Boost PP array. Re-entrant version.
+    \brief Determines if a sequence is a Boost PP array. Re-entrant version.
 
-    The macro checks that the parameter is a Boost PP array.
+    The macro checks that the sequence is a Boost PP array.
     It returns 1 if it is an array, else if returns 0.
 
-    The macro works through variadic macro support.
-    
-	d     = The next available BOOST_PP_WHILE iteration. 
-    array = a possible Boost PP array.
+	d        = The next available BOOST_PP_WHILE iteration. 
+    sequence = a possible Boost PP array.
 
     returns = 1 if it is an array, else returns 0.
     
@@ -63,8 +59,8 @@
     
 */
 
-#define BOOST_VMD_IS_ARRAY_D(d,array) \
-	BOOST_VMD_DETAIL_IS_ARRAY_D(d,array) \
+#define BOOST_VMD_IS_ARRAY_D(d,sequence) \
+	BOOST_VMD_DETAIL_IS_ARRAY_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

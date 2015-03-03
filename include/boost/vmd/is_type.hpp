@@ -16,35 +16,51 @@
 /** \file
 */
 
-/** \def BOOST_VMD_IS_TYPE(ppident)
+/** \def BOOST_VMD_IS_TYPE(sequence)
 
-    \brief Tests whether a parameter is a Boost PP number.
+    \brief Tests whether a sequence is a VMD type.
 
-    The macro checks to see if a parameter is a Boost PP number.
-    A Boost PP number is a value from 0 to 256.
+    sequence = a possible VMD type
     
-    ppident = a preprocessor identifier
-
-    returns = 1 if the param is a Boost PP number, 
+    returns = 1 if the sequence is a VMD type, 
               0 if it is not.
-              
-    The macro works through variadic macro support.
-    The ppident can be either:
     
-    1) A preprocessor identifier, alphanumeric or underscore characters.
-    2) An empty value, returns 0.
-    3) A set of beginning parens, returns 0.
-    
-    If it is not one of these possibilities a compiler error will occur.
+    If the sequence is not a VMD data type this macro could lead to
+    a preprocessor error. This is because the macro
+    uses preprocessor concatenation to determine if the sequence
+    is an identifier once it is determined that the sequence does not
+    start with parentheses. If the data being concatenated would
+    lead to an invalid preprocessor token the compiler can issue
+    a preprocessor error.
     
 */
 
-#define BOOST_VMD_IS_TYPE(ppident) \
-	BOOST_VMD_DETAIL_IS_TYPE(ppident) \
+#define BOOST_VMD_IS_TYPE(sequence) \
+	BOOST_VMD_DETAIL_IS_TYPE(sequence) \
 /**/
 
-#define BOOST_VMD_IS_TYPE_D(d,ppident) \
-	BOOST_VMD_DETAIL_IS_TYPE_D(d,ppident) \
+/** \def BOOST_VMD_IS_TYPE_D(d,sequence)
+
+    \brief Tests whether a sequence is a VMD type. Re-entrant version.
+
+	d        = The next available BOOST_PP_WHILE iteration. 
+    sequence = a possible VMD type
+    
+    returns = 1 if the sequence is a VMD type, 
+              0 if it is not.
+    
+    If the sequence is not a VMD data type this macro could lead to
+    a preprocessor error. This is because the macro
+    uses preprocessor concatenation to determine if the sequence
+    is an identifier once it is determined that the sequence does not
+    start with parentheses. If the data being concatenated would
+    lead to an invalid preprocessor token the compiler can issue
+    a preprocessor error.
+    
+*/
+
+#define BOOST_VMD_IS_TYPE_D(d,sequence) \
+	BOOST_VMD_DETAIL_IS_TYPE_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

@@ -14,51 +14,49 @@
 /** \file
 */
 
-/** \def BOOST_VMD_ASSERT_IS_TUPLE(tuple)
+/** \def BOOST_VMD_ASSERT_IS_TUPLE(sequence)
 
-    \brief Asserts that the parameter is a Boost PP tuple.
+    \brief Asserts that the sequence is a Boost PP tuple.
 
-    The macro checks that the parameter is a Boost PP tuple.
+    The macro checks that the sequence is a Boost PP tuple.
     If it is not a Boost PP tuple, it forces a compiler error.
-    
-    The macro works through variadic macro support.
     
     The macro normally checks for a Boost PP tuple only in 
     debug mode. However an end-user can force the macro 
     to check or not check by defining the macro 
     BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
 
-    tuple = a possible Boost PP tuple.
+    sequence = a possible Boost PP tuple.
 
-    returns = Normally the macro returns nothing. 
+    returns  = Normally the macro returns nothing. 
     
-              If the parameter is a Boost PP tuple, nothing is 
-              output.
+               If the sequence is a Boost PP tuple, nothing is 
+               output.
               
-              For VC++, because there is no sure way of forcing  
-              a compiler error from within a macro without producing
-              output, if the parameter is not a Boost PP tuple the 
-              macro forces a compiler error by outputting invalid C++.
+               For VC++, because there is no sure way of forcing  
+               a compiler error from within a macro without producing
+               output, if the sequence is not a Boost PP tuple the 
+               macro forces a compiler error by outputting invalid C++. 
               
-              For all other compilers a compiler error is forced 
-              without producing output if the parameter is not a 
-              Boost PP tuple.
+               For all other compilers a compiler error is forced 
+               without producing output if the sequence is not a 
+               Boost PP tuple.
               
 */
 
 #if !BOOST_VMD_ASSERT_DATA
 
-#define BOOST_VMD_ASSERT_IS_TUPLE(tuple)
+#define BOOST_VMD_ASSERT_IS_TUPLE(sequence)
 
 #else
 
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/is_tuple.hpp>
 
-#define BOOST_VMD_ASSERT_IS_TUPLE(tuple) \
+#define BOOST_VMD_ASSERT_IS_TUPLE(sequence) \
    BOOST_VMD_ASSERT \
      ( \
-     BOOST_VMD_IS_TUPLE(tuple), \
+     BOOST_VMD_IS_TUPLE(sequence), \
      BOOST_VMD_ASSERT_IS_TUPLE_ERROR \
      ) \
 /**/

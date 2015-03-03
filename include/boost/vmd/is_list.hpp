@@ -16,16 +16,14 @@
 /** \file
 */
 
-/** \def BOOST_VMD_IS_LIST(param)
+/** \def BOOST_VMD_IS_LIST(sequence)
 
-    \brief Determines if a parameter is a Boost pplib list.
+    \brief Determines if a sequence is a Boost pplib list.
 
-    The macro checks that the parameter is a pplib list.
-    
-    The macro works through variadic macro support.
+    The macro checks that the sequence is a pplib list.
     It returns 1 if it is a list, else if returns 0.
     
-    param = input as a possible Boost PP list.
+    sequence = input as a possible Boost PP list.
     
     returns = 1 if it a list, else returns 0.
     
@@ -37,21 +35,19 @@
     
 */
 
-#define BOOST_VMD_IS_LIST(param) \
-	BOOST_VMD_DETAIL_IS_LIST(param) \
+#define BOOST_VMD_IS_LIST(sequence) \
+	BOOST_VMD_DETAIL_IS_LIST(sequence) \
 /**/
 
-/** \def BOOST_VMD_IS_LIST_D(d,param)
+/** \def BOOST_VMD_IS_LIST_D(d,sequence)
 
-    \brief Determines if a parameter is a Boost pplib list. Re-entrant version.
+    \brief Determines if a sequence is a Boost pplib list. Re-entrant version.
 
-    The macro checks that the parameter is a pplib list.
-    
-    The macro works through variadic macro support.
+    The macro checks that the sequence is a pplib list.
     It returns 1 if it is a list, else if returns 0.
     
-	d    = The next available BOOST_PP_WHILE iteration. 
-    param = input as a possible Boost PP list.
+	d        = The next available BOOST_PP_WHILE iteration. 
+    sequence = input as a possible Boost PP list.
     
     returns = 1 if it a list, else returns 0.
     
@@ -63,8 +59,8 @@
     
 */
 
-#define BOOST_VMD_IS_LIST_D(d,param) \
-	BOOST_VMD_DETAIL_IS_LIST_D(d,param) \
+#define BOOST_VMD_IS_LIST_D(d,sequence) \
+	BOOST_VMD_DETAIL_IS_LIST_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

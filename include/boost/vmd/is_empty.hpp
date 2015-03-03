@@ -24,7 +24,7 @@
     The macro checks to see if the input is empty or not.
     It returns 1 if the input is empty, else returns 0.
     
-    The macro is a variadic macro taking any input and works through variadic macro support.
+    The macro is a variadic macro taking any input.
     For the VC++8 compiler (VS2005) the macro takes a single parameter of input to check.
     
     The macro is not perfect, and can not be so. The problem
@@ -51,19 +51,19 @@
 
 #if BOOST_VMD_MSVC_V8
 
-#define BOOST_VMD_IS_EMPTY(param) \
+#define BOOST_VMD_IS_EMPTY(sequence) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
       BOOST_PP_IS_BEGIN_PARENS \
         ( \
-        param \
+        sequence \
         ) \
       ) \
       ( \
       BOOST_VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
       BOOST_VMD_DETAIL_IS_EMPTY_PROCESS \
       ) \
-    (param) \
+    (sequence) \
 /**/
 
 #else

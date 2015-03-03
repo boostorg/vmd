@@ -61,7 +61,7 @@
 */
 
 #if BOOST_VMD_MSVC
-#define BOOST_VMD_IDENTITY_RESULT(item) BOOST_PP_CAT(item,)
+#define BOOST_VMD_IDENTITY_RESULT(result) BOOST_PP_CAT(result,)
 #else
 #define BOOST_VMD_IDENTITY_RESULT(result) result
 #endif

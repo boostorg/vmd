@@ -28,7 +28,7 @@
     The macro checks to see if the input is empty or not.
     If it is not empty, it forces a compiler error.
     
-    The macro is a variadic macro taking any input and works through variadic macro support.
+    The macro is a variadic macro taking any input.
     For the VC++8 compiler (VS2005) the macro takes a single parameter of input to check and not variadic data.
     
     The macro normally checks for emptiness only in 
@@ -44,11 +44,11 @@
               
               For VC++, because there is no sure way of forcing  
               a compiler error from within a macro without producing
-              output, if the parameter is not empty the 
+              output, if the input is not empty the 
               macro forces a compiler error by outputting invalid C++.
               
               For all other compilers a compiler error is forced 
-              without producing output if the parameter is not empty.
+              without producing output if the input is not empty.
     
     It is recommended to append BOOST_PP_EMPTY() to whatever input
     is being tested in order to avoid possible warning messages 
@@ -61,14 +61,14 @@
 
 #if !BOOST_VMD_ASSERT_DATA
 
-#define BOOST_VMD_ASSERT_IS_EMPTY(param)
+#define BOOST_VMD_ASSERT_IS_EMPTY(input)
 
 #else
 
-#define BOOST_VMD_ASSERT_IS_EMPTY(param) \
+#define BOOST_VMD_ASSERT_IS_EMPTY(input) \
     BOOST_VMD_ASSERT \
       	( \
-      	BOOST_VMD_IS_EMPTY(param), \
+      	BOOST_VMD_IS_EMPTY(input), \
       	BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
       	) \
 /**/

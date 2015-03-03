@@ -16,23 +16,23 @@
 /** \file
 */
 
-/** \def BOOST_VMD_IS_TUPLE(param)
+/** \def BOOST_VMD_IS_TUPLE(sequence)
 
-    \brief Tests whether a parameter is a Boost PP tuple.
+    \brief Tests whether a sequence is a Boost PP tuple.
 
-    The macro checks to see if a parameter is a Boost PP tuple.
-    A Boost PP tuple is a parameter enclosed by a set of parenthesis
-    with no prerocessing tokens before or after the parenthesis.
+    The macro checks to see if a sequence is a Boost PP tuple.
+    A Boost PP tuple is preprocessor tokens enclosed by a set of parentheses
+    with no preprocessing tokens before or after the parentheses.
     
-    param = a preprocessor parameter
+    sequence = a possible tuple
 
-    returns = 1 if the param is a Boost PP tuple.
+    returns = 1 if the sequence is a Boost PP tuple.
               0 if it is not.
               
 */
 
-#define BOOST_VMD_IS_TUPLE(param) \
-	BOOST_VMD_DETAIL_IS_TUPLE(param) \
+#define BOOST_VMD_IS_TUPLE(sequence) \
+	BOOST_VMD_DETAIL_IS_TUPLE(sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

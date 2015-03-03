@@ -16,31 +16,35 @@
 /** \file
 */
 
-// SIZE
+/** \def BOOST_VMD_SIZE(sequence)
 
-/** \brief Expands to the size of a v-sequence.
+	\brief Returns the size of a sequence.
 
-    vseq      = A v-sequence to test.
+    sequence  = A sequence to test.
 
-    returns   = If the v-sequence is empty returns 0, else returns the number of v-types
-    			in the v-sequence.
+    returns   = If the sequence is empty returns 0, else returns the number of elements
+    			in the sequence.
     
 */
-#define BOOST_VMD_SIZE(vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_SIZE(vseq) \
+
+#define BOOST_VMD_SIZE(sequence) \
+	BOOST_VMD_DETAIL_SEQUENCE_SIZE(sequence) \
 /**/
 
-/** \brief Reentrant - expands to the size of a v-sequence.
+/** \def BOOST_VMD_SIZE_D(d,sequence)
 
-	d         = The next available BOOST_PP_WHILE iteration.
-    vseq      = A v-sequence to test.
+	\brief Returns the size of a sequence. Re-entrant version.
 
-    returns   = If the v-sequence is empty returns 0, else returns the number of v-types
-    			in the v-sequence.
+	d         = The next available BOOST_PP_WHILE iteration. 
+    sequence  = A sequence to test.
+
+    returns   = If the sequence is empty returns 0, else returns the number of elements
+    			in the sequence.
     
 */
-#define BOOST_VMD_SIZE_D(d,vseq) \
-	BOOST_VMD_DETAIL_SEQUENCE_SIZE_D(d,vseq) \
+
+#define BOOST_VMD_SIZE_D(d,sequence) \
+	BOOST_VMD_DETAIL_SEQUENCE_SIZE_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */
