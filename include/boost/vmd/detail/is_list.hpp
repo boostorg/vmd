@@ -18,6 +18,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/is_identifier.hpp>
 #include <boost/vmd/is_tuple.hpp>
+#include <boost/vmd/detail/nil_registration.hpp>
 
 #define BOOST_VMD_DETAIL_IS_LIST_PROCESS_TUPLE(d,x) \
     BOOST_PP_IIF \
@@ -142,9 +143,6 @@
         ) \
       ) \
 /**/
-
-#define BOOST_VMD_REGISTER_BOOST_PP_NIL (BOOST_PP_NIL)
-#define BOOST_VMD_DETECT_BOOST_PP_NIL_BOOST_PP_NIL
 
 #define BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS(list) \
 	BOOST_VMD_IS_IDENTIFIER(list,BOOST_PP_NIL) \

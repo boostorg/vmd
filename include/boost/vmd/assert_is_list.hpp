@@ -16,33 +16,66 @@
 
 /** \def BOOST_VMD_ASSERT_IS_LIST(param)
 
-    \brief Asserts that the parameter is a Boost pplib list.
+    \brief Asserts that the parameter is a Boost PP list.
 
-    The macro checks that the parameter is a pplib list.
-    If it is not a pplib list, it forces a compiler error.
+    The macro checks that the parameter is a Boost PP list.
+    If it is not a Boost PP list, it forces a compiler error.
     
     The macro works through variadic macro support.
     
-    The macro normally checks for a pplib list only in 
+    The macro normally checks for a Boost PP list only in 
     debug mode. However an end-user can force the macro 
     to check or not check by defining the macro 
     BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
     
-    param = a possible pplib list.
+    param = a possible Boost PP list.
 
     returns = Normally the macro returns nothing. 
     
-              If the parameter is a pplib list, nothing is 
+              If the parameter is a Boost PP list, nothing is 
               output.
               
               For VC++, because there is no sure way of forcing  
               a compiler error from within a macro without producing
-              output, if the parameter is not a pplib list the 
+              output, if the parameter is not a Boost PP list the 
               macro forces a compiler error by outputting invalid C++.
               
               For all other compilers a compiler error is forced 
               without producing output if the parameter is not a 
-              pplib list.
+              Boost PP list.
+              
+*/
+
+/** \def BOOST_VMD_ASSERT_IS_LIST_D(d,param)
+
+    \brief Asserts that the parameter is a Boost PP list. Re-entrant version.
+
+    The macro checks that the parameter is a Boost PP list.
+    If it is not a Boost PP list, it forces a compiler error.
+    
+    The macro works through variadic macro support.
+    
+    The macro normally checks for a Boost PP list only in 
+    debug mode. However an end-user can force the macro 
+    to check or not check by defining the macro 
+    BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
+    
+	d     = The next available BOOST_PP_WHILE iteration. 
+    param = a possible Boost PP list.
+
+    returns = Normally the macro returns nothing. 
+    
+              If the parameter is a Boost PP list, nothing is 
+              output.
+              
+              For VC++, because there is no sure way of forcing  
+              a compiler error from within a macro without producing
+              output, if the parameter is not a Boost PP list the 
+              macro forces a compiler error by outputting invalid C++.
+              
+              For all other compilers a compiler error is forced 
+              without producing output if the parameter is not a 
+              Boost PP list.
               
 */
 

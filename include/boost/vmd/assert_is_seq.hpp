@@ -16,33 +16,66 @@
 
 /** \def BOOST_VMD_ASSERT_IS_SEQ(seq)
 
-    \brief Asserts that the parameter is a Boost pplib seq.
+    \brief Asserts that the parameter is a Boost PP seq.
 
-    The macro checks that the parameter is a pplib seq.
-    If it is not a pplib seq, it forces a compiler error.
+    The macro checks that the parameter is a Boost PP seq.
+    If it is not a Boost PP seq, it forces a compiler error.
     
     The macro works through variadic macro support.
     
-    The macro normally checks for a pplib seq only in 
+    The macro normally checks for a Boost PP seq only in 
     debug mode. However an end-user can force the macro 
     to check or not check by defining the macro 
     BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
 
-    seq = a possible pplib seq.
+    seq = a possible Boost PP seq.
 
     returns = Normally the macro returns nothing. 
     
-              If the parameter is a pplib seq, nothing is 
+              If the parameter is a Boost PP seq, nothing is 
               output.
               
               For VC++, because there is no sure way of forcing  
               a compiler error from within a macro without producing
-              output, if the parameter is not a pplib seq the 
+              output, if the parameter is not a Boost PP seq the 
               macro forces a compiler error by outputting invalid C++.
               
               For all other compilers a compiler error is forced 
               without producing output if the parameter is not a 
-              pplib seq.
+              Boost PP seq.
+              
+*/
+
+/** \def BOOST_VMD_ASSERT_IS_SEQ_D(d,seq)
+
+    \brief Asserts that the parameter is a Boost PP seq. Re-entrant version.
+
+    The macro checks that the parameter is a Boost PP seq.
+    If it is not a Boost PP seq, it forces a compiler error.
+    
+    The macro works through variadic macro support.
+    
+    The macro normally checks for a Boost PP seq only in 
+    debug mode. However an end-user can force the macro 
+    to check or not check by defining the macro 
+    BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
+
+	d   = The next available BOOST_PP_WHILE iteration. 
+    seq = a possible Boost PP seq.
+
+    returns = Normally the macro returns nothing. 
+    
+              If the parameter is a Boost PP seq, nothing is 
+              output.
+              
+              For VC++, because there is no sure way of forcing  
+              a compiler error from within a macro without producing
+              output, if the parameter is not a Boost PP seq the 
+              macro forces a compiler error by outputting invalid C++.
+              
+              For all other compilers a compiler error is forced 
+              without producing output if the parameter is not a 
+              Boost PP seq.
               
 */
 

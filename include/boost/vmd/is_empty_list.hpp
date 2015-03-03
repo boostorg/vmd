@@ -5,9 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/preprocessor/control/iif.hpp>
-#include <boost/vmd/identity.hpp>
-#include <boost/vmd/is_list.hpp>
+#include <boost/vmd/detail/is_list.hpp>
 
 /*
 
@@ -30,32 +28,39 @@
     returns = 1 if the param is an empty Boost PP list
               0 if it is not.
               
+    The macro will generate a preprocessing error if the input
+    as an empty list marker, instead of being an identifier, is 
+    a preprocessor token which VMD cannot parse, as in the 
+    example '&BOOST_PP_NIL'.
+    
 */
 
 #define BOOST_VMD_IS_EMPTY_LIST(param) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_IS_LIST(param), \
-			BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(param) \
-		) \
+	BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS(param) \
 /**/
 
+/** \def BOOST_VMD_IS_EMPTY_LIST_D(d,param)
+
+    \brief Tests whether a list is an empty Boost PP list. Re-entrant version.
+
+    An empty Boost PP list consists of the single identifier 'BOOST_PP_NIL'.
+    This identifier also serves as a list terminator for a non-empty list.
+    
+	d     = The next available BOOST_PP_WHILE iteration
+    param = a preprocessor parameter
+
+    returns = 1 if the param is an empty Boost PP list
+              0 if it is not.
+              
+    The macro will generate a preprocessing error if the input
+    as an empty list marker, instead of being an identifier, is 
+    a preprocessor token which VMD cannot parse, as in the 
+    example '&BOOST_PP_NIL'.
+    
+*/
+
 #define BOOST_VMD_IS_EMPTY_LIST_D(d,param) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_IS_LIST_D(d,param), \
-			BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(d,param) \
-		) \
+	BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D(d,param) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

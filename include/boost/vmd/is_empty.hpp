@@ -34,7 +34,7 @@
     
     This macro is a replacement, using variadic macro support,
     for the undocumented macro BOOST_PP_IS_EMPTY in the Boost
-    pplib. The code is taken from a posting by Paul Mensonides
+    PP library. The code is taken from a posting by Paul Mensonides
     of a variadic version for BOOST_PP_IS_EMPTY, and changed 
     in order to also support VC++.
     

@@ -16,33 +16,33 @@
 
 /** \def BOOST_VMD_ASSERT_IS_TUPLE(tuple)
 
-    \brief Asserts that the parameter is a pplib tuple.
+    \brief Asserts that the parameter is a Boost PP tuple.
 
-    The macro checks that the parameter is a pplib tuple.
-    If it is not a pplib tuple, it forces a compiler error.
+    The macro checks that the parameter is a Boost PP tuple.
+    If it is not a Boost PP tuple, it forces a compiler error.
     
     The macro works through variadic macro support.
     
-    The macro normally checks for a pplib tuple only in 
+    The macro normally checks for a Boost PP tuple only in 
     debug mode. However an end-user can force the macro 
     to check or not check by defining the macro 
     BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
 
-    tuple = a possible Boost pplib tuple.
+    tuple = a possible Boost PP tuple.
 
     returns = Normally the macro returns nothing. 
     
-              If the parameter is a pplib tuple, nothing is 
+              If the parameter is a Boost PP tuple, nothing is 
               output.
               
               For VC++, because there is no sure way of forcing  
               a compiler error from within a macro without producing
-              output, if the parameter is not a pplib tuple the 
+              output, if the parameter is not a Boost PP tuple the 
               macro forces a compiler error by outputting invalid C++.
               
               For all other compilers a compiler error is forced 
               without producing output if the parameter is not a 
-              pplib tuple.
+              Boost PP tuple.
               
 */
 
