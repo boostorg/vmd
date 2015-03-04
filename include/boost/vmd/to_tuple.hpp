@@ -53,7 +53,7 @@
 	BOOST_VMD_DETAIL_SEQUENCE_TO_TUPLE(__VA_ARGS__) \
 /**/
 
-/** \def BOOST_VMD_TO_TUPLE(...)
+/** \def BOOST_VMD_TO_TUPLE_D(d,...)
 
 	\brief Converts a sequence to a Boost PP tuple whose elements are the elements of the sequence. Re-entrant version.
 
