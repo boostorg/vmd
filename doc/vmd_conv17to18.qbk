@@ -7,7 +7,7 @@ VMD macros.
 
 The changes in functionality involve the parsing of sequences.
 The equivalent to all the V1.7 functionality, which looks for
-various VMD types at the beginning of a sequence, is encompassed
+various data types at the beginning of a sequence, is encompassed
 by the V1.8 macro BOOST_VMD_ELEM(0,sequence,...), where '0' is the first
 sequence element and 'sequence' is the sequence, with its optional
 parameters.

@@ -3,7 +3,7 @@
 Nearly all macros in VMD have equivalent reentrant versions which are
 meant to be used in a BOOST_PP_WHILE loop. These are versions which have
 an underscore D suffix, take the next available BOOST_PP_WHILE iteration
-as their firt parameter, and then have the exact same functionality as 
+as their first parameter, and then have the exact same functionality as 
 their unsuffixed equivalents. They can be used in BOOST_PP_WHILE loops 
 to provide slightly quicker preprocessing but, as the documentation for 
 BOOST_PP_WHILE and BOOST_PP_WHILE_##d explain, they do not have to be used.

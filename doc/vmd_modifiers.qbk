@@ -28,18 +28,18 @@ VMD will still handle the optional parameters correctly.
 
 For any particular macro if a specific modifier
 is not appropriate it is just ignored. This means that VMD never
-generates a preprocessing error just because a specific modifier
-does not apply for a particular macro. Any modifier which is not
-recognized as a specific modifier is treated as a user-defined 
-modifier. In cases where a user-defined modifier is not appropriate
-it is also just ignored.
+generates a preprocessing error or gives an incorrect result 
+just because a specific modifier does not apply for a particular 
+macro. Any modifier which is not recognized as a specific modifier 
+is treated as a user-defined modifier. In cases where a user-defined 
+modifier is not appropriate it is also just ignored.
 
 The situations where modifiers can be used to enhance the basic
 functionality of VMD macros can be divided by particular types
 of specific modifiers. Each particular type of A specific modifier
 has a particular name given to it in this documentation, 
 functionality, set of identifiers, and may be used as optional
-parameters in one or more macros depending on the specific
+parameters in one or more designated macros depending on the specific
 modifier type. 
 
 When more than one specific modifier from a particular type of modifier is 
@@ -52,8 +52,9 @@ Header files for specific modifiers are automatically included when
 the header files for macros taking those specific modifiers are
 included.
 
-Header files for user-defined modifiers must be included as needed
-by the programmer using those modifiers.
+Header files for user-defined modifiers, which register and pre-detect
+those user-defined modifiers, must be included as needed by the programmer 
+using those modifiers.
 
 The following topics will explain each particular type of modifier 
 and where it may be used.
@@ -82,7 +83,7 @@ and extracting information about it.
 
 With the return type modifier we can get the type of the data 
 along with the data. Of course we can also use BOOST_VMD_GET_TYPE
-to retrieve the type of data.
+to retrieve just the type of data.
 
 With our filter modifier we can retrieve the data only if it is a particular
 type, else retrieve emptiness. 
@@ -92,6 +93,7 @@ matches one or more other identifiers, else retrieve emptiness.
 
 With our index modifier we can retrieve both our
 identifier and its numeric index if it matches one or more
-other identifiers, else retrieve a tuple of two empty elements.
+other identifiers, else retrieve a tuple of two empty elements
+if no match is found.
 
 [endsect]

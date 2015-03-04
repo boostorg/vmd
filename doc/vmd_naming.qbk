@@ -33,11 +33,11 @@ macro programming.
 The term 'emptiness' refers to no preprocessor data being passed to or returned
 from a macro. I have avoided the word 'nothing' because it has too vague a meaning.
 
-The term 'data types' refers to the various preprocessor input types
-which VMD can parse and which are listed above, and also including emptiness.
+The term 'data type' refers to the various preprocessor input types
+which VMD can parse and which are listed above, also including emptiness.
 
-The term 'vtype' refers to a VMD type, the term 'number returns to a VMD 'number'
-and the term 'identifier' refers to a VMD idfentifier. All these will be explained
+The term 'v-type' refers to a VMD type, the term 'number' returns to a VMD number
+and the term 'identifier' refers to a VMD identifier. All these will be explained
 in their proper place.
 
 [endsect]

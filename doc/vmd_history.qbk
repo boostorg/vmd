@@ -5,7 +5,7 @@
 * After a review of VMD I have greatly simplified the main interfaces and added
 optional functionality in the form of modifiers. The main changes are the addition
 of the many generic macros for sequences and the expansions of types to include the
-VMD type.
+v-type.
   * Added BOOST_VMD_ELEM macro.
   * Added BOOST_VMD_EQUAL macro.
   * Added BOOST_VMD_NOT_EQUAL macro.
@@ -14,7 +14,7 @@ VMD type.
   * Added BOOST_VMD_ASSERT_IS_TYPE macro.
   * Added BOOST_VMD_IS_UNARY macro.
   * Added BOOST_VMD_SIZE macro.
-  * Replaced with BOOST_VMD_ELEM macro using modifiers a number of macros, which were eleminated. These are:
+  * Replaced with the BOOST_VMD_ELEM macro, using modifiers, a number of macros which were eliminated. These are:
     * BOOST_VMD_IDENTIFER
     * BOOST_VMD_BEGIN_IDENTIFIER
     * BOOST_VMD_AFTER_IDENTIFIER

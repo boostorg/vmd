@@ -1,5 +1,9 @@
 [section:vmd_specific Specific macros for working with data types]
 
+VMD has a number of specific macros for parsing data types.
+Each of these macros asks if some input is a particular
+VMD data type.
+
 [include vmd_empty.qbk]
 [include vmd_constraints.qbk]
 [include vmd_identifier.qbk]

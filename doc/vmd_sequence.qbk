@@ -1,8 +1,6 @@
 [section:vmd_sequence Parsing sequences]
 
-[heading Standard macro parameter usage]
-
-In the normal use of Boost PP, data is passed as arguments to a macro in
+In the normal use of Boost PP data is passed as arguments to a macro in
 discrete units so that each parameter expects a single data type. A typical
 macro might be:
 
@@ -53,7 +51,7 @@ data types involved and do preprocessor metaprogramming based on those results.
 I will be calling such input data, which consists of all top-level data types in a series,
 by the term of a 'sequence'. Each separate data type in the sequence is called an 'element'.
 In this definition of a 'sequence' we can have 0 or more elements, so that a sequence 
-should be seen as referring to any input data which VMD can parse. A sequence is therefore 
+is a general name for any VMD inpute. A sequence is therefore 
 any input VMD can parse, whether it is emptiness, a single element, or more than one 
 element in a series. Therefore when we speak of VMD macros parsing input data we are 
 really speaking of VMD macros parsing a sequence. A sequence can therefore also be part of 
@@ -177,6 +175,9 @@ The A_MULTI_ELEMENT_SEQUENCE consists of a tuple followed by a seq followed by a
  
 The type of a multi-element sequence is always BOOST_VMD_TYPE_VSEQUENCE.
 
+The type of a sequence can be obtained generically with the BOOST_VMD_GET_TYPE
+macro. We will be explaining this further in the documentation.
+
 The size of any sequence can be accessed using the BOOST_VMD_SIZE macro.
 For an empty sequence the size is always 0. For a single element sequence
 the size is always 1. For a multi-element sequence the size is the number
@@ -199,7 +200,7 @@ since it uses repetitive techniques to parse each element in the sequence,
 but afterwards accessing any individual element is as fast as accessing 
 any element in the Boost PP data type or among variadic data.
 # The sequence can be accessed directly through its individual elements.
-This is much slower than accessing an element of a Boost PP data type
+This is slower than accessing an element of a Boost PP data type
 or variadic data but offers conceptual access to the original sequence
 as a series of elements.
 

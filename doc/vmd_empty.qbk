@@ -289,11 +289,9 @@ can use the concept of empty preprocessor data in the design of his own macros.
 
 [heading Using the macro]
 
-The macro BOOST_VMD_IS_EMPTY is used extensively throughout VMD and macro programmers 
+The macro BOOST_VMD_IS_EMPTY is used internally throughout VMD and macro programmers 
 may find this macro useful in their own programming efforts despite the slight flaw 
-in the way that it works. Explanations of when the macro is used by other macros throughout
-the VMD library, and how to avoid the flaw in BOOST_VMD_IS_EMPTY, will be given for each
-macro in the library which uses BOOST_VMD_IS_EMPTY.
+in the way that it works.
 
 You can use the general header file:
 

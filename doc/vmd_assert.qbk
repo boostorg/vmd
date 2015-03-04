@@ -1,9 +1,9 @@
 [section:vmd_assert Asserting and data types]
 
-The VMD macros for identifying VMD types work best when the macro logic can take different 
+The VMD macros for identifying data types work best when the macro logic can take different 
 paths depending on the type of data being passed for a macro parameter. But occasionally 
 the preprocessor metaprogrammer wants to simply verify that the macro parameter data is of 
-the correct VMD type, else a preprocessor error should be generated to notify the programmer 
+the correct data type, else a preprocessor error should be generated to notify the programmer 
 invoking the macro that the data passed is the incorrect type.
 
 [heading Using BOOST_VMD_ASSERT]
@@ -48,9 +48,9 @@ or include the specific header:
 
  #include <boost/vmd/assert.hpp>
  
-[heading Assertions for VMD types ]
+[heading Assertions for data types ]
 
-The VMD types have their own assertion macros. These are largely just shortcuts for
+The data types have their own assertion macros. These are largely just shortcuts for
 passing the result of the identifying macros to BOOST_VMD_ASSERT. These assertion
 macros are:
 
@@ -92,7 +92,7 @@ or include the specific header:
 [heading Assertions and VC++ ]
 
 The VC++ compiler has a quirk when dealing with BOOST_VMD_ASSERT and the 
-v-type assert macros. If you invoke one of the assert macros within another
+data type assert macros. If you invoke one of the assert macros within another
 macro which would normally generate output preprocessor tokens, it is necessary when using
 VC++ to concatenate the result of the assert macro to whatever other preprocessor data
 is being generated, even if the assert macro does not generate an error.

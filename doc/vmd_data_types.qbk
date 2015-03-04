@@ -34,10 +34,13 @@ in a sequence of preprocessing tokens. A VMD number is really a subset of VMD id
 for which VMD offers specific functionality. The Boost PP library has it own extensive support
 for numbers, which VMD does not duplicate.
 
-VMD types are, like numbers, a subset of VMD identifiers consisting of identifiers beginning with
+VMD v-types are, like numbers, a subset of VMD identifiers consisting of identifiers beginning with
 BOOST_VMD_TYPE_ followed by a data type mnemonic. Each type can be recognized by VMD functionality
-and therefore passed or returned by macros. Like any identifier a VMD type can be parsed both as a
+and therefore passed or returned by macros. Like any identifier a v-type can be parsed both as a
 separate element or in a sequence of preprocessing tokens.
+
+VMD can also test for emptiness, or the absence of any preprocessing tokens passed
+as macro input.
 
 The Boost PP library supports four individual high-level data types. These are arrays, 
 lists, seqs, and tuples. When using variadic macros arrays are really 
@@ -50,10 +53,9 @@ VMD has functionality to work with the four Boost PP high-level data types. VMD 
 test the Boost PP data types and parse them in a sequence of preprocessor tokens.
 
 VMD can also parse sequences. A sequence consists of zero or more other top-level
-data types already mentioned represented consecutively.
-
-VMD can also test for emptiness, or the absence of any preprocessing tokens passed
-as macro input.
+data types already mentioned represented consecutively. As such a sequence represents
+any data type which VMD can parse since it can consist of emptiness, a single data type,
+or multiple data types represented consecutively.
 
 Emptiness, the three identifier types, the four Boost PP composite data types, and
 VMD sequences are the data types which VMD understands. Other low-level preprocessor

@@ -6,10 +6,10 @@ BOOST_VMD_GET_TYPE and it takes a single mandatory parameter, which
 is a VMD sequence.
 
 It returns one of the types previously discussed when introducing
-VMD types as an identifier subset. As explained previously in that
-topic a VMD type is fully recognized by VMD macros and can be part
-of a sequence and passed as VMD data just like all the other types 
-data VMD recognizes.
+v-types as an identifier subset. As explained previously in that
+topic a v-type is fully recognized by VMD macros and can be part
+of a sequence and passed as VMD data just like all the other data types 
+VMD recognizes.
 
 When BOOST_VMD_GET_TYPE returns the type of data it returns by default 
 the most specific type that the data can be. This means that non-empty

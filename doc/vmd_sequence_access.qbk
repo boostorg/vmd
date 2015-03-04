@@ -28,8 +28,9 @@ emptiness.
  
 Accessing an element of a sequence directly is slower than accessing an element
 of a Boost PP data type or even variadic data, since each access has to directly
-cycle through each element of the sequence to get to the one being accessed, and
-the process of parsing each element again each time is fairly slow.
+cycle through each element of the sequence to get to the one being accessed.
+The process of sequentially parsing each element again each time is slower than
+accessing a Boost PP data type element.
 
 [heading Usage]
 

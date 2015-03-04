@@ -15,6 +15,18 @@ The first six categories delineate the data types which VMD can parse.
 The last category presents additional macros which will prove helpful
 for a macro programmer using variadic macros with VMD and Boost PP.
 
-A further general explanation of each of these categories follow in the appropriate place.
+A general explanation of each of these categories will follow in the
+appropriate place in the documentation.
+
+Furthermore VMD macros for working with the above data types which VMD
+understands can be divided into specific and generic macros.
+
+The specific macros ask whether some input data is a particular
+data type. The generic macros work with input data as any data
+type while allowing the programmer to separately query the type
+of data.
+
+Both specific and generic macros have their place and the macro
+programmer can decide which to use for any given situation.
 
 [endsect]

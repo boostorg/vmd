@@ -4,7 +4,7 @@ Filtering modifiers are optional modifiers which work
 with some generic macros to specify a type of
 data to apply to the macro's functionality. The filtering
 modifier itself is an optional parameter specified as a 
-VMD type. Any VMD type, specified as an optional parameter,
+v-type. Any v-type, specified as an optional parameter,
 may be used as a filtering modifier.
 
 [heading Usage with equality macros]
@@ -15,15 +15,15 @@ not equal to each other.
 
 Each of these macro takes a single optional parameter, a filtering
 modifier, to narrow the focus of its equality testing to a particular
-VMD type.
+v-type.
 
 For the macro BOOST_VMD_EQUAL this optional parameter when specified means 
 that equality is not only that the two required input parameters are equal 
 but also that they are of the type or of a subtype of the third optional 
-parameter. A number and a VMD type are subtypes of identifiers, while a 
-non-empty list and an array are subtypes of tuples.
+parameter. A number and a v-type are subtypes of identifiers 
+while a non-empty list and an array are subtypes of tuples.
 
-Conversely BOOST_VMD_NOT_EQUAL, with the optional third VMD type parameter,
+Conversely BOOST_VMD_NOT_EQUAL, with the optional third v-type parameter,
 returns 1 if either the first two parameters are not equal or if the type of
 the first two parameters is not the type or a subtype of the third parameter.
 Otherwise it returns 0. It is implemented as the complement of BOOST_VMD_EQUAL
@@ -82,9 +82,9 @@ for each result, and would be redundant to be specified each time below.
 [heading Usage with BOOST_VMD_ELEM]
 
 As with the equality macros BOOST_VMD_ELEM allows one to perform
-filtering for the result. An optional parameter of a VMD type can be 
+filtering for the result. An optional parameter of a v-type can be 
 used so that BOOST_VMD_ELEM returns its result only if the sequence 
-element is of the VMD type specified, else it fails to find the
+element is of the v-type specified, else it fails to find the
 element in the same way that an element number which is outside
 the bounds of the sequence fails.
 
@@ -114,13 +114,13 @@ the bounds of the sequence fails.
  BOOST_VMD_ELEM(4,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER) will return ANAME
  BOOST_VMD_ELEM(4,A_SEQUENCE,BOOST_VMD_TYPE_NUMBER) will return emptiness
  
-If you specify more than one VMD data type as a filtering modifier to BOOST_VMD_ELEM
-the last VMD data type becomes the filter.
+If you specify more than one v-type as a filtering modifier to BOOST_VMD_ELEM
+the last v-type becomes the filter.
 
 Filtering with BOOST_VMD_ELEM denotes the type of the data expected when
 the particular element is found. Because filtering represents the type of
 the data requested, filtering modifiers and return type modifiers are
-mutually exclusive and any filtering modifier internally sets the return
-type modifier to BOOST_VMD_RETURN_NO_TYPE.
+mutually exclusive and any filtering modifier means that return
+type modifiers specified are ignored.
 
 [endsect]

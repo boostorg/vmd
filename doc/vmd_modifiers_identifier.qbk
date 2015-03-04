@@ -61,10 +61,10 @@ as part of a tuple. For an identifier found as a sequence element to
 match against one of these possible identifiers, the possible 
 identifiers must be both registered and pre-detected.
 
-Since filter modifiers, which are VMD types, are also identifiers, if
-you want to use VMD types as identifier modifiers you must use the form
+Since filter modifiers, which are v-types, are also identifiers, if
+you want to use v-types as identifier modifiers you must use the form
 which places all identifier modifiers as part of a tuple. Otherwise any
-VMD types specified singly as optional parameters are seen as filter
+v-types specified singly as optional parameters are seen as filter
 modifiers and never as identifier modifiers.
 
 Let's see how this works:
@@ -100,13 +100,13 @@ Using the sequence above:
 The last use of our macro returns emptiness because if there is more than one
 type specified as an optional parameter the last type is chosen for filtering.
 Since the last type for type filtering is BOOST_VMD_TYPE_TUPLE and our fourth
-element is a VMD type and not a tuple, emptiness is returned. The syntax does not 
+element is a v-type and not a tuple, emptiness is returned. The syntax does not 
 specifying filtering with identifiers as might be supposed since BOOST_VMD_TYPE_SEQ
 and BOOST_VMD_TYPE_TUPLE are not treated as identifier modifiers but rather as 
 additional filter modifiers.
 
 In order to do filtering with an identifier and do it against
-various types themselves, since VMD types are identifiers, we must
+various types themselves, since v-types are identifiers, we must
 use the tuple form to specify our identifier modifiers:
  
  BOOST_VMD_ELEM(3,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER,(BOOST_VMD_TYPE_SEQ,BOOST_VMD_TYPE_TUPLE)) will return BOOST_VMD_TYPE_SEQ

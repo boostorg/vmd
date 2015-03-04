@@ -2,7 +2,7 @@
 
 A number in VMD is a preprocessing 'pp-number', 
 limited to a Boost PP number. This is an integral literal between 0 and 256.
-The form of the number does not contain leading zeros. Acceptable as v-numbers are:
+The form of the number does not contain leading zeros. Acceptable as numbers are:
 
  0
  127
@@ -21,8 +21,8 @@ but not:
 
 As can be seen from the explanation of a identifier, a number is merely
 a small subset of all possible identifiers, for which VMD internally provides
-registration macros for its use. Therefore the particular constraint on the input
-to test is exactly the same as for identifiers.
+registration macros for its use and pre-detection macros. Therefore the particular 
+constraint on the input to test is exactly the same as for identifiers.
  
 The constraint is that the beginning input character, ignoring any whitespace, passed
 as the input to test must be either:
@@ -56,17 +56,14 @@ The macro takes a single parameter, the input to test against.
 
 The macro returns 1 if the parameter is a Boost PP number, otherwise the macro returns 0.
 
-Unlike BOOST_VMD_IS_IDENTIFIER there is no need for a second parameter to test for a 
-particular number, nor is there need for number pre-detection macros, The reason for this
-is because Boost PP already has a large set of functionality to test for particular numbers,
-as well as the relationship and manipulation of numbers in its own library. See the Boost PP
-functionality for arithmetic, comparison, and logical operations for working with numbers 
-directly in Boost PP.
+The Boost PP library has a great amount of functionality for working with numbers,
+so once you use VMD to parse/test for a number you can use Boost PP to work with that
+number in various ways. The VMD makes no attempt to duplicate the functionality
+of numbers that in the Boost PP library.
 
-However a number is also an identifier. Therefore you can also use BOOST_VMD_IS_IDENTIFIER
-to test for a particular number if you like, but it is highly recommended you already use
-the rich set of Boost PP functionality dealing with numbers instead to work with particular
-numbers.
+Any number is also an identifier, which has been registered and pre-detected,
+so you can also use the VMD functionality which works with identifiers to work with
+a number as an identifier if you like.
 
 [heading Example]
 

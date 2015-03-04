@@ -1,7 +1,7 @@
 [section:vmd_modifiers_return_type Return type modifiers]
 
 A number of macros are capable of returning the type of
-data as a VMD type rather than, or along with, the 
+data as a v-type rather than, or along with, the 
 data itself. The most obvious of these is BOOST_VMD_GET_TYPE 
 which generically returns the type of the input.
 
@@ -37,7 +37,7 @@ it parses all tuple-like data as a tuple and never as a list or an array.
 When VMD parses input generically, and the type of the data is required
 in some way as part of the return of a macro, VMD by default parses for 
 the most specific type of each data element in order to return the most
-accurate type. This means that in this situation by default the 
+accurate type. In this situation by default the 
 BOOST_VMD_RETURN_TYPE modifier is internally in effect without having 
 to be specified.
 
@@ -51,7 +51,7 @@ looks for the most specific type.
 
 For the BOOST_VMD_GET_TYPE macro the optional return type modifier 
 BOOST_VMD_RETURN_NO_TYPE, if specified, is always ignored since the purpose of 
-BOOST_VMD_GET_TYPE is solely to return the VMD type.
+BOOST_VMD_GET_TYPE is solely to return the v-type.
 
 Let's look at how this works with BOOST_VMD_GET_TYPE by specifying VMD sequences 
 that have tuples which may or may not be valid lists or arrays.
@@ -123,7 +123,7 @@ By specifying another optional return type modifier
 we tell the conversion to preserve the type in the conversion output.
 
 If the sequence is empty, since there are no sequence elements,
-any return type modifier we use accomplishes nothing.
+any return type modifier we use accomplishes nothing but is fine to use.
 
 First we show how sequence conversion macros work with the BOOST_VMD_RETURN_TYPE
 modifier, which always parses for the most specific type.
@@ -378,6 +378,7 @@ element consists; whether it be just the element data or the element
 as a type/data tuple with the type parsed according to our return type
 modifier. When we subsequently discuss the use of other modifiers with
 BOOST_VMD_ELEM and refer to the element being returned, we are referring
-to that element as it is determined by the return type modifiers.
+to that element as it is determined by the return type modifiers, which
+by default only returns the element's data.
 
 [endsect]

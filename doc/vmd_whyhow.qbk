@@ -36,10 +36,10 @@ Otherwise the output of the macro is 'Unknown'.
 Obviously much more complicated cases can be created
 in which the types and values of various parameters
 are parsed, in order to produce variable macro output
-depending on the input. With variadic macro support necessary
-for VMD functionality, macros with variable numbers and
-types of arguments give the macro programmer even greater
-freedom to design macros with flexibility.
+depending on the input. Using variadic macros,
+macros with variable numbers and types of arguments 
+give the macro programmer even greater freedom to 
+design macros with flexibility.
 
 Another feature of the VMD library is the ability to parse
 identifiers. A system of registering identifiers which VMD
@@ -103,10 +103,10 @@ Using the same setup as our previous example, but with identifier predetection:
  
 The VMD library also has 2 different sub-types of identifiers which can always be
 recognized. The first are numbers, equivalent to the number in Boost PP, numeric
-values with a range of 0-256. The second are types, which are identifiers starting
-with BOOST_VMD_TYPE_ followed by a name for the type of data. As an example, the type
-of a Boost PP tuple is BOOST_VMD_TYPE_TUPLE and the type of a VMD type itself is
-BOOST_VMD_TYPE_TYPE. All VMD data types have their own type identifier; types are
+values with a range of 0-256. The second are v-types, which are identifiers starting
+with BOOST_VMD_TYPE_ followed by a name for the type of data. As an example, the v-type
+of a Boost PP tuple is BOOST_VMD_TYPE_TUPLE and the v-type of a v-type itself is
+BOOST_VMD_TYPE_TYPE. All data types have their own v-type identifier; types are
 recognized by the VMD macros and may be passed as input data just like any other of
 the types of data VMD recognizes.
 
@@ -145,7 +145,7 @@ the type of any VMD data.
 etc.
 
 There is still much more of VMD functionality but hopefully this brief
-introduction of what VMD can do will whet your appetite to read on
+introduction of what VMD can do will interest you so that you will read on
 to understand VMD's functionality for the macro programmer.
 
 [endsect]

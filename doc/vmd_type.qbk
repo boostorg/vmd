@@ -1,24 +1,24 @@
 [section:vmd_type Types]
 
-A subset of identifiers is VMD types. These are identifiers which represent
-all of the preprocessor data types which VMD can parse. This subset of
+A subset of identifiers is VMD types, called a 'v-type'. These are identifiers 
+which represent all of the preprocessor data types which VMD can parse. This subset of
 identifiers is automatically registered and pre-detected by VMD. Each identifier
 type begins with the unique prefix 'BOOST_VMD_TYPE_'.
 
 The actual types are:
 
-BOOST_VMD_TYPE_EMPTY, represents emptiness, ie. "empty data"
-BOOST_VMD_TYPE_ARRAY, a Boost PP array
-BOOST_VMD_TYPE_LIST, a Boost PP list
-BOOST_VMD_TYPE_SEQ, a Boost PP seq
-BOOST_VMD_TYPE_TUPLE, a Boost PP tuple
-BOOST_VMD_TYPE_IDENTIFIER, identifier
-BOOST_BMD_TYPE_NUMBER, a number
-BOOST_VMD_TYPE_TYPE, a type itself
-BOOST_VMD_TYPE_VSEQUENCE, a sequence
-BOOST_VMD_TYPE_UNKNOWN, an unknown type
+* BOOST_VMD_TYPE_EMPTY, represents emptiness, ie. "empty data"
+* BOOST_VMD_TYPE_ARRAY, a Boost PP array
+* BOOST_VMD_TYPE_LIST, a Boost PP list
+* BOOST_VMD_TYPE_SEQ, a Boost PP seq
+* BOOST_VMD_TYPE_TUPLE, a Boost PP tuple
+* BOOST_VMD_TYPE_IDENTIFIER, identifier
+* BOOST_BMD_TYPE_NUMBER, a number
+* BOOST_VMD_TYPE_TYPE, a type itself
+* BOOST_VMD_TYPE_VSEQUENCE, a sequence
+* BOOST_VMD_TYPE_UNKNOWN, an unknown type
 
-Since a VMD type is itself an identifier the particular constraint on the input
+Since a v-type is itself an identifier the particular constraint on the input
 to test is exactly the same as for identifiers.
  
 The constraint is that the beginning input character, ignoring any whitespace, passed
@@ -49,7 +49,11 @@ Given the input:
 The macro used to test for a particular type in VMD is called BOOST_VMD_IS_TYPE.
 The macro takes a single parameter, the input to test against.
 
-The macro returns 1 if the parameter is a VMD type, otherwise the macro returns 0.
+The macro returns 1 if the parameter is a v-type, otherwise the macro returns 0.
+
+A v-type is also an identifier, which has been registered and pre-detected,
+so you can also use the VMD functionality which works with identifiers to work with
+a v-type as an identifier if you like.
 
 [heading Example]
 
