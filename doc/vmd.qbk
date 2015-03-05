@@ -20,6 +20,7 @@
 [include vmd_specific.qbk]
 [include vmd_generic.qbk]
 [include vmd_modifiers.qbk]
+[include vmd_identifier_subtyping.qbk]
 [include vmd_assert.qbk]
 [include vmd_identity.qbk]
 [include vmd_internal.qbk]

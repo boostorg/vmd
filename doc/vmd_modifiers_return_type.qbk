@@ -90,7 +90,7 @@ that have tuples which may or may not be valid lists or arrays.
  BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_LIST,BOOST_VMD_RETURN_TYPE_LIST) will give a preprocessing error
  
  BOOST_VMD_GET_TYPE(SEQUENCE_EMPTY) will always return BOOST_VMD_TYPE_EMPTY even if we add any return type modifiers
- BOOST_VMD_GET_TYPE(SEQUENCE_MULTI) will always return BOOST_VMD_TYPE_VSEQUENCE even if we add any return type modifiers
+ BOOST_VMD_GET_TYPE(SEQUENCE_MULTI) will always return BOOST_VMD_TYPE_SEQUENCE even if we add any return type modifiers
 
 [heading Usage with sequence converting macros]
 

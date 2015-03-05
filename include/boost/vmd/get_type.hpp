@@ -28,7 +28,7 @@
     
     The macro returns the type of a sequence as a VMD type. The type of an empty sequence
     is always BOOST_VMD_TYPE_EMPTY and the type of a multi-element is always
-    BOOST_VMD_TYPE_VSEQUENCE. The type of a single-element sequence is the
+    BOOST_VMD_TYPE_SEQUENCE. The type of a single-element sequence is the
     type of that single element.
     
     The type returned can be modified by specifying an optional return type parameter.
@@ -77,7 +77,7 @@
     
     The macro returns the type of a sequence as a VMD type. The type of an empty sequence
     is always BOOST_VMD_TYPE_EMPTY and the type of a multi-element is always
-    BOOST_VMD_TYPE_VSEQUENCE. The type of a single-element sequence is the
+    BOOST_VMD_TYPE_SEQUENCE. The type of a single-element sequence is the
     type of that single element.
     
     The type returned can be modified by specifying an optional return type parameter.

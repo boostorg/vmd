@@ -173,7 +173,7 @@ The A_MULTI_ELEMENT_SEQUENCE consists of a tuple followed by a seq followed by a
  
  BOOST_VMD_IS_MULTI(A_MULTI_ELEMENT_SEQUENCE) will return 1
  
-The type of a multi-element sequence is always BOOST_VMD_TYPE_VSEQUENCE.
+The type of a multi-element sequence is always BOOST_VMD_TYPE_SEQUENCE.
 
 The type of a sequence can be obtained generically with the BOOST_VMD_GET_TYPE
 macro. We will be explaining this further in the documentation.

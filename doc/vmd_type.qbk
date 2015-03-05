@@ -15,7 +15,7 @@ The actual types are:
 * BOOST_VMD_TYPE_IDENTIFIER, identifier
 * BOOST_BMD_TYPE_NUMBER, a number
 * BOOST_VMD_TYPE_TYPE, a type itself
-* BOOST_VMD_TYPE_VSEQUENCE, a sequence
+* BOOST_VMD_TYPE_SEQUENCE, a sequence
 * BOOST_VMD_TYPE_UNKNOWN, an unknown type
 
 Since a v-type is itself an identifier the particular constraint on the input
