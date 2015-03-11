@@ -10,6 +10,7 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/is_number.hpp>
 #include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/detail/is_empty_tuple.hpp>
 
@@ -113,6 +114,32 @@
 		) \
 /**/
 
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER(tuple) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_NUMBER(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+			BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(tuple) \
+		) \
+/**/
+
+#define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER_D(d,tuple) \
+	BOOST_VMD_IDENTITY_RESULT \
+		( \
+		BOOST_PP_IIF \
+			( \
+			BOOST_VMD_IS_NUMBER(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+			BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_D, \
+			BOOST_VMD_IDENTITY(0) \
+			) \
+		(d,tuple) \
+		) \
+/**/
+
 /*
 
   Check if the second element is a tuple
@@ -125,7 +152,7 @@
 		BOOST_PP_IIF \
 		  ( \
 		  BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,tuple)), \
-		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC, \
+		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER, \
 		  BOOST_VMD_IDENTITY(0) \
 		  ) \
 		(tuple) \
@@ -138,7 +165,7 @@
 		BOOST_PP_IIF \
 		  ( \
 		  BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,tuple)), \
-		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_D, \
+		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER_D, \
 		  BOOST_VMD_IDENTITY(0) \
 		  ) \
 		(d,tuple) \
