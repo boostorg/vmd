@@ -247,15 +247,19 @@ the wrong result in another situation.
 The failing situation is:
 
 when the input to BOOST_VMD_IS_EMPTY resolves to only a function-like macro 
-name taking any number of parameters, and the function-like macro, when passed 
-a single empty argument, expands to a tuple, BOOST_VMD_IS_EMPTY will erroneously 
-return 1 rather than 0 when using the Visual C++ compiler.
+name, and the function-like macro, when passed a single empty argument, expands to 
+a tuple, BOOST_VMD_IS_EMPTY will erroneously return 1 when using the Visual C++ 
+compiler rather than either give a preprocessor error or return 0.
 
 Here is an example of the failure:
 
- #define FMACRO(any_number_of_parameters) ( any_number_of_tuple_elements )
+ #define FMACRO4() ( any_number_of_tuple_elements )
+ #define FMACRO5(param) ( any_number_of_tuple_elements )
+ #define FMACRO6(param1,param2) ( any_number_of_tuple_elements )
  
- BOOST_VMD_IS_EMPTY(FMACRO) // erroneously returns 1, instead of 0
+ BOOST_VMD_IS_EMPTY(FMACRO4) // erroneously returns 1, instead of 0
+ BOOST_VMD_IS_EMPTY(FMACRO5) // erroneously returns 1, instead of 0
+ BOOST_VMD_IS_EMPTY(FMACRO6) // erroneously returns 1, instead of generating a preprocessor error
  
 As with a standard C++ conforming compiler, we have a rare corner case where
 the BOOST_VMD_IS_EMPTY will not work properly, but unfortunately in this very

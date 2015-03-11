@@ -54,21 +54,19 @@ As another simple example:
  #define BOOST_VMD_REGISTER_NAME (NAME)
  #define BOOST_VMD_REGISTER_ADDRESS (ADDRESS)
  
- #define AMACRO(param)               \
+ #define AMACRO1(param)              \
    BOOST_PP_IIF                      \
      (                               \
      BOOST_VMD_IS_IDENTIFIER(param), \
-     AMACRO_IDENTIFIER,              \
-     AMACRO_NO_IDENTIFIER            \
+     AMACRO1_IDENTIFIER,             \
+     AMACRO1_NO_IDENTIFIER           \
      )                               \
    (param)
    
- #define AMACRO_IDENTIFIER(param)
-   AMACRO_ ## param
- 
- #define AMACRO_NO_IDENTIFIER(param) Parameter is not an identifier
- #define AMACRO_NAME Identifier is a NAME
- #define AMACRO_ADDRESS Identifier is an ADDRESS
+ #define AMACRO1_IDENTIFIER(param) AMACRO1_ ## param
+ #define AMACRO1_NO_IDENTIFIER(param) Parameter is not an identifier
+ #define AMACRO1_NAME Identifier is a NAME
+ #define AMACRO1_ADDRESS Identifier is an ADDRESS
  
 Here we use VMD's identifier registration system to determine and
 handle a particular identifier we may be expecting as a macro parameter.
@@ -83,23 +81,23 @@ Using the same setup as our previous example, but with identifier predetection:
  #define BOOST_VMD_REGISTER_ADDRESS (ADDRESS)
  #define BOOST_VMD_DETECT_ADDRESS_ADDRESS
  
- #define AMACRO(param)                         \
+ #define AMACRO2(param)                        \
    BOOST_PP_IIF                                \
      (                                         \
      BOOST_VMD_IS_IDENTIFIER(param,NAME),      \
-     AMACRO_NAME,                              \
+     AMACRO2_NAME,                             \
      BOOST_PP_IIF                              \
        (                                       \
        BOOST_VMD_IS_IDENTIFIER(param,ADDRESS), \
-       AMACRO_ADDRESS,                         \
-       AMACRO_NO_IDENTIFIER                    \
+       AMACRO2_ADDRESS,                        \
+       AMACRO2_NO_IDENTIFIER                   \
        )                                       \
      )                                         \
    (param)
    
- #define AMACRO_NO_IDENTIFIER(param) Parameter is not a NAME or ADDRESS identifier
- #define AMACRO_NAME(param) Identifier is a NAME
- #define AMACRO_ADDRESS(param) Identifier is an ADDRESS
+ #define AMACRO2_NO_IDENTIFIER(param) Parameter is not a NAME or ADDRESS identifier
+ #define AMACRO2_NAME(param) Identifier is a NAME
+ #define AMACRO2_ADDRESS(param) Identifier is an ADDRESS
  
 The VMD library also has 2 different sub-types of identifiers which can always be
 recognized. The first are numbers, equivalent to the number in Boost PP, numeric
