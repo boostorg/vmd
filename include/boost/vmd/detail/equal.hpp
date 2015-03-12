@@ -5,8 +5,10 @@
 #include <boost/preprocessor/detail/auto_rec.hpp>
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/preprocessor/facilities/overload.hpp>
+#include <boost/preprocessor/logical/compl.hpp>
 #include <boost/vmd/detail/recurse/equal/equal_headers.hpp>
 #include <boost/vmd/is_identifier.hpp>
+#include <boost/vmd/is_empty_list.hpp>
 #include <boost/vmd/detail/not_empty.hpp>
 
 #include <boost/vmd/detail/recurse/equal/equal_1.hpp>
@@ -159,10 +161,17 @@
 			BOOST_VMD_TYPE_ARRAY, \
 			vtype1 \
 			), \
-		BOOST_VMD_DETAIL_EQUAL_TYPE \
+		BOOST_PP_BITAND \
 			( \
-			BOOST_VMD_TYPE_LIST, \
-			vtype1 \
+			BOOST_VMD_DETAIL_EQUAL_TYPE \
+				( \
+				BOOST_VMD_TYPE_LIST, \
+				vtype1 \
+				), \
+			BOOST_PP_COMPL \
+				( \
+				BOOST_VMD_IS_EMPTY_LIST(vseq1) \
+				) \
 			) \
 		) \
 /**/
@@ -176,11 +185,18 @@
 			BOOST_VMD_TYPE_ARRAY, \
 			vtype1 \
 			), \
-		BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+		BOOST_PP_BITAND \
 			( \
-			d, \
-			BOOST_VMD_TYPE_LIST, \
-			vtype1 \
+			BOOST_VMD_DETAIL_EQUAL_TYPE_D \
+				( \
+				d, \
+				BOOST_VMD_TYPE_LIST, \
+				vtype1 \
+				), \
+			BOOST_PP_COMPL \
+				( \
+				BOOST_VMD_IS_EMPTY_LIST_D(d,vseq1) \
+				) \
 			) \
 		) \
 /**/
