@@ -35,7 +35,7 @@
    			 
    			 typedef char errstr[-1];
    			 
-   			 The errstr defauls to BOOST_VMD_ASSERT_ERROR if not supplied.
+   			 The errstr defaults to BOOST_VMD_ASSERT_ERROR if not supplied.
    			 It is only relevant for VC++.
 
     returns = If cond expands to 0, this macro causes an error.  Otherwise, it expands to nothing.
