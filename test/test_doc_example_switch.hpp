@@ -7,6 +7,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/arithmetic/inc.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/control/expr_iif.hpp>
@@ -20,6 +21,7 @@
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 #include <boost/preprocessor/variadic/size.hpp>
 #include <boost/vmd/equal.hpp>
+#include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 
 /*
@@ -252,6 +254,28 @@
   
 */
 
+#if BOOST_VMD_MSVC
+
+#define BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT_NN(number,name) \
+	(number,name) \
+/**/
+
+#define BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT(d,state,tuple) \
+	BOOST_VMD_SWITCH_OP_UPDATE_INDEX \
+		( \
+		d, \
+		BOOST_PP_TUPLE_REPLACE_D \
+			( \
+			d, \
+			state, \
+			BOOST_VMD_SWITCH_STATE_ELEM_DEFAULT, \
+			BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT_NN(1,BOOST_PP_TUPLE_ENUM(tuple)) \
+			) \
+		) \
+/**/
+
+#else
+
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT(d,state,tuple) \
 	BOOST_VMD_SWITCH_OP_UPDATE_INDEX \
 		( \
@@ -265,6 +289,8 @@
 			) \
 		) \
 /**/
+
+#endif
 
 /*
 
@@ -436,6 +462,21 @@
 
 /*
 
+  Use BOOST_VMD_SWITCH_IDENTITY to pass a fixed value instead
+  of a function-like macro as the second element of
+  any tuple of the variadic parameters, or as the default
+  value, to BOOST_VMD_SWITCH.
+  
+*/
+
+#if BOOST_VMD_MSVC
+#define BOOST_VMD_SWITCH_IDENTITY(item) BOOST_PP_CAT(BOOST_VMD_IDENTITY(item),)
+#else
+#define BOOST_VMD_SWITCH_IDENTITY BOOST_VMD_IDENTITY
+#endif
+
+/*
+
   Switch macro
   
   Parameters are:
@@ -451,22 +492,6 @@
     a function-like macro to be called if no other value matches.
 
 */
-
-#define BOOST_VMD_SWITCH_CS(callp,state) \
-	BOOST_VMD_SWITCH_PROCESS \
-		( \
-		callp, \
-		BOOST_VMD_SWITCH_STATE_GET_RESULT \
-			( \
-			BOOST_PP_WHILE \
-				( \
-				BOOST_VMD_SWITCH_PRED, \
-				BOOST_VMD_SWITCH_OP, \
-				state \
-				) \
-			) \
-		) \
-/**/
 
 #define BOOST_VMD_SWITCH(value,callp,...) \
 	BOOST_VMD_SWITCH_PROCESS \

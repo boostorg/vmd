@@ -8,11 +8,13 @@ to access and the sequence, in that order. The element number is a
 of the sequence.
 
 The BOOST_VMD_ELEM macro returns the actual sequence element. If the
-first mandatory parameter is greater or equal to the size of the
+first required parameter is greater or equal to the size of the
 sequence the macro returns emptiness. Because of this using
 BOOST_VMD_ELEM on an empty sequence, whose size is 0, always returns
 emptiness.
 
+ #include <boost/vmd/elem.hpp>
+ 
  #define BOOST_VMD_REGISTER_ANAME (ANAME)
  #define A_SEQUENCE (1,2,3) 46 (list_data1,(list_data2,BOOST_PP_NIL)) BOOST_VMD_TYPE_SEQ ANAME
  #define AN_EMPTY_SEQUENCE
@@ -23,8 +25,8 @@ emptiness.
  BOOST_VMD_ELEM(3,A_SEQUENCE) will return BOOST_VMD_TYPE_SEQ
  BOOST_VMD_ELEM(4,A_SEQUENCE) will return ANAME
  
- BOOST_VMD_ELEM(5,A_SEQUENCE) will return nothing
- BOOST_VMD_ELEM(0,AN_EMPTY_SEQUENCE) will return nothing
+ BOOST_VMD_ELEM(5,A_SEQUENCE) will return emptiness
+ BOOST_VMD_ELEM(0,AN_EMPTY_SEQUENCE) will return emptiness
  
 Accessing an element of a sequence directly is slower than accessing an element
 of a Boost PP data type or even variadic data, since each access has to directly

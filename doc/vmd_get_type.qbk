@@ -2,7 +2,7 @@
 
 VMD has the ability to retrieve the type of any data which it can
 parse, which means any VMD sequence. The macro to do this is called
-BOOST_VMD_GET_TYPE and it takes a single mandatory parameter, which 
+BOOST_VMD_GET_TYPE and it takes a single required parameter, which 
 is a VMD sequence.
 
 It returns one of the types previously discussed when introducing
@@ -16,6 +16,8 @@ the most specific type that the data can be. This means that non-empty
 lists and arrays are returned as such, not as tuples, and numbers 
 and types and empty lists are returned as such, not as identifiers.
 
+ #include <boost/vmd/get_type.hpp>
+ 
  #define BOOST_VMD_REGISTER_ANID (ANID)
  #define SEQUENCE_EMPTY
  #define SEQUENCE_MULTI (1,2,3) 88

@@ -20,6 +20,8 @@ of a number of pre-detected identifiers.
 
 As an example:
 
+ #include <boost/vmd/is_identifier.hpp>
+ 
  #define BOOST_VMD_REGISTER_yellow (yellow)
  #define BOOST_VMD_REGISTER_green (green)
  #define BOOST_VMD_REGISTER_blue (blue)
@@ -33,7 +35,8 @@ As an example:
  BOOST_VMD_IS_IDENTIFIER(some_input,yellow,blue) // returns 1 only if 'some_input is 'yellow' or 'blue', else 0
  BOOST_VMD_IS_IDENTIFIER(some_input,(yellow,green)) // returns 1 if 'some_input' is 'yellow' or 'green', else 0
  
- BOOST_VMD_IS_IDENTIFIER(some_input,red) // always returns 0, even if 'some_input' is 'red' since 'red' has not been pre-detected
+ BOOST_VMD_IS_IDENTIFIER(some_input,red) 
+    // always returns 0, even if 'some_input' is 'red' since 'red' has not been pre-detected
 
 whereas
  
@@ -69,6 +72,8 @@ modifiers and never as identifier modifiers.
 
 Let's see how this works:
 
+ #include <boost/vmd/elem.hpp>
+ 
  #define BOOST_VMD_REGISTER_ANAME (ANAME)
  #define BOOST_VMD_REGISTER_APLACE (APLACE)
  #define BOOST_VMD_REGISTER_ACOUNTRY (ACOUNTRY)
@@ -86,15 +91,19 @@ Let's see how this works:
  
  BOOST_VMD_ELEM(4,A_SEQUENCE) will return 'ACOUNTRY'
  BOOST_VMD_ELEM(4,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER) will return 'ACOUNTRY'
- BOOST_VMD_ELEM(4,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER,ACOUNTRY,ANAME) will return emptiness since ACOUNTRY is not pre-detected
+ BOOST_VMD_ELEM(4,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER,ACOUNTRY,ANAME) 
+    will return emptiness since ACOUNTRY is not pre-detected
  
 Let us illustrate the case where VMD identifiers can be represented as either
 filter modifiers or identifier modifiers.
 
 Using the sequence above:
 
+ #include <boost/vmd/elem.hpp>
+ 
  BOOST_VMD_ELEM(3,A_SEQUENCE) will return the BOOST_VMD_TYPE_SEQ type
- BOOST_VMD_ELEM(3,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER) will return the BOOST_VMD_TYPE_SEQ type since a type is an identifier
+ BOOST_VMD_ELEM(3,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER) 
+    will return the BOOST_VMD_TYPE_SEQ type since a type is an identifier
  BOOST_VMD_ELEM(3,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER,BOOST_VMD_TYPE_SEQ,BOOST_VMD_TYPE_TUPLE) will return emptiness
  
 The last use of our macro returns emptiness because if there is more than one
@@ -109,7 +118,10 @@ In order to do filtering with an identifier and do it against
 various types themselves, since v-types are identifiers, we must
 use the tuple form to specify our identifier modifiers:
  
- BOOST_VMD_ELEM(3,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER,(BOOST_VMD_TYPE_SEQ,BOOST_VMD_TYPE_TUPLE)) will return BOOST_VMD_TYPE_SEQ
+ #include <boost/vmd/elem.hpp>
+ 
+ BOOST_VMD_ELEM(3,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER,(BOOST_VMD_TYPE_SEQ,BOOST_VMD_TYPE_TUPLE)) 
+    will return BOOST_VMD_TYPE_SEQ
  
 Now BOOST_VMD_TYPE_SEQ and BOOST_VMD_TYPE_TUPLE are treated as identifiers
 modifiers to match against.

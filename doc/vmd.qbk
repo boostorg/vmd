@@ -28,6 +28,7 @@
 [include vmd_dynamic_typing.qbk]
 [include vmd_vc_isms.qbk]
 [include vmd_conv17to18.qbk]
+[include vmd_examples.qbk]
 [include vmd_reference.qbk]
 [include vmd_design.qbk]
 [include vmd_compilers.qbk]

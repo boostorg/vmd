@@ -51,7 +51,7 @@ data types involved and do preprocessor metaprogramming based on those results.
 I will be calling such input data, which consists of all top-level data types in a series,
 by the term of a 'sequence'. Each separate data type in the sequence is called an 'element'.
 In this definition of a 'sequence' we can have 0 or more elements, so that a sequence 
-is a general name for any VMD inpute. A sequence is therefore 
+is a general name for any VMD input. A sequence is therefore 
 any input VMD can parse, whether it is emptiness, a single element, or more than one 
 element in a series. Therefore when we speak of VMD macros parsing input data we are 
 really speaking of VMD macros parsing a sequence. A sequence can therefore also be part of 
@@ -63,8 +63,8 @@ sequence if asked to do so.
 Parsing a sequence means that VMD can step through each element of a sequence
 sequentially, determine the type and data of each element, then move on to the
 next element. Parsing is sequential and can only be done in a forward direction,
-but it can be done any number of times. In C++ iterator terms parsing is a forward
-iterator.
+but it can be done any number of times. In C++ iterator terms parsing of a 
+sequence is a forward iterator.
 
 Working with a sequence is equivalent to using VMD macros generically.
 
@@ -78,7 +78,7 @@ when it comes to the syntactical side of things in a computer language. A macro
 parameter syntactical possibility has to be understandable to be used.
 * Using VMD to parse the individual data types of a sequence takes more 
 preprocessing time than functionality offered with Boost PP data types,
-because a good deal of it is based on the repetitive parsing techniques.
+because it is based on forward access through each top-level type of the sequence.
 
 The one constraint in a sequence is that the top-level must 
 consist of VMD data types, in other words preprocessor tokens which VMD understands. 
@@ -145,6 +145,8 @@ A VMD sequence can be seen as one of either three general types:
 An empty sequence is merely input that is empty, what VMD calls "emptiness". Use the previously
 explained BOOST_VMD_IS_EMPTY macro to test for an empty sequence.
 
+ #include <boost/vmd/is_empty.hpp>
+ 
  #define AN_EMPTY_SEQUENCE
  
  BOOST_VMD_IS_EMPTY(AN_EMPTY_SEQUENCE) will return 1
@@ -156,6 +158,8 @@ we have been previously discussing as data which VMD can parse in this
 documentation with our identifying macros. You can use the 
 BOOST_VMD_IS_UNARY macro to test for a single element sequence.
 
+ #include <boost/vmd/is_unary.hpp>
+ 
  #define A_SINGLE_ELEMENT_SEQUENCE (1,2)
  
  BOOST_VMD_IS_UNARY(A_SINGLE_ELEMENT_SEQUENCE) will return 1
@@ -171,6 +175,8 @@ to test for a multi-element sequence.
  
 The A_MULTI_ELEMENT_SEQUENCE consists of a tuple followed by a seq followed by a number.
  
+ #include <boost/vmd/is_multi.hpp>
+ 
  BOOST_VMD_IS_MULTI(A_MULTI_ELEMENT_SEQUENCE) will return 1
  
 The type of a multi-element sequence is always BOOST_VMD_TYPE_SEQUENCE.
@@ -178,11 +184,15 @@ The type of a multi-element sequence is always BOOST_VMD_TYPE_SEQUENCE.
 The type of a sequence can be obtained generically with the BOOST_VMD_GET_TYPE
 macro. We will be explaining this further in the documentation.
 
+[heading Sequence size]
+
 The size of any sequence can be accessed using the BOOST_VMD_SIZE macro.
 For an empty sequence the size is always 0. For a single element sequence
 the size is always 1. For a multi-element sequence the size is the number
 of individual top-level data types in the sequence.
 
+ #include <boost/vmd/size.hpp>
+ 
  BOOST_VMD_SIZE(AN_EMPTY_SEQUENCE) will return 0
  BOOST_VMD_SIZE(A_SINGLE_ELEMENT_SEQUENCE) will return 1
  BOOST_VMD_SIZE(A_MULTI_ELEMENT_SEQUENCE) will return 3
@@ -196,7 +206,7 @@ types are offered by the VMD library:
 to variadic data, where each individual data type in the sequence becomes 
 a separate element of the particular composite data type chosen. The
 conversion to a particular Boost PP data type or variadic data is slow, 
-since it uses repetitive techniques to parse each element in the sequence, 
+because it is based on forward access through each top-level type of the sequence,
 but afterwards accessing any individual element is as fast as accessing 
 any element in the Boost PP data type or among variadic data.
 # The sequence can be accessed directly through its individual elements.

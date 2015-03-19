@@ -23,8 +23,9 @@ BOOST_VMD_TYPE_TYPE, as VMD data when parsing sequences.
 
 It is possible for the end-user to define his own identifier subtype. 
 This is called a "user-defined subtype". Once a user-define subtype is
-created all the generic type facilities of VMD which a number or a
-v-type is automatically available for that user-define subtype.
+created all the generic type facilities of VMD which subtypes such as
+a number or a v-type possess is automatically available for that 
+user-define subtype.
 
 [heading Defining a subtype]
 
@@ -111,13 +112,15 @@ to include the header udef_vmd_macros.hpp in some translation unit whenever we n
 the VMD functionality for our new data type. So in our examples we will assume that
 an '#include udef_vmd_macros.hpp' precedes each example.
 
+ #include <boost/vmd/get_type.hpp>
+ 
  #define A_SEQUENCE UDEF_SQUARE
  #define A_SEQUENCE2 217
  #define A_SEQUENCE3 BOOST_VMD_TYPE_UDEF_SHAPES
  #define A_SEQUENCE4 BOOST_VMD_TYPE_NUMBER
  
  BOOST_VMD_GET_TYPE(A_SEQUENCE) will return 'BOOST_VMD_TYPE_UDEF_SHAPES'
- BOOST_VMD_GET_TYPE(A_SEQUENCE2 will return 'BOOST_VMD_TYPE_NUMBER'
+ BOOST_VMD_GET_TYPE(A_SEQUENCE2) will return 'BOOST_VMD_TYPE_NUMBER'
  BOOST_VMD_GET_TYPE(A_SEQUENCE3) will return 'BOOST_VMD_TYPE_TYPE'
  BOOST_VMD_GET_TYPE(A_SEQUENCE4) will return 'BOOST_VMD_TYPE_TYPE'
  
@@ -128,6 +131,8 @@ when we use our BOOST_VMD_GET_TYPE macro on our user-defined subtype's v-type it
 get back the type of all v-types, which is BOOST_VMD_TYPE_TYPE, just like we do
 when we ask for the type of the v-type of a number.
 
+ #include <boost/vmd/elem.hpp>
+ 
  #define A_SEQUENCE5 (1,2) UDEF_TRIANGLE
  
  BOOST_VMD_ELEM(1,A_SEQUENCE5,BOOST_VMD_RETURN_TYPE) will return '(BOOST_VMD_TYPE_UDEF_SHAPES,UDEF_TRIANGLE)'
@@ -136,6 +141,8 @@ when we ask for the type of the v-type of a number.
 Here we see that we can use the return type modifier to get back both the type
 and the value in a two-element tuple for our user-defined subtype just as we so
 for any other type.
+ 
+ #include <boost/vmd/equal.hpp>
  
  #define A_SEQUENCE6 UDEF_CIRCLE
  #define A_SEQUENCE7 168

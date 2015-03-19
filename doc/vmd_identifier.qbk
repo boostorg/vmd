@@ -57,7 +57,7 @@ Given the input:
  %_anything : undefined behavior and most likely a preprocessing error due to the constraint
  (_anything : undefined behavior and most likely a preprocessing error due to the constraint, since a single '(' does not form a tuple
  44.3 : undefined behavior and most likely a preprocessing error due to the constraint since '.' is not alphanumeric
-
+ 
 [heading Identifying an identifier]
 
 In VMD the only way an identifier can be identified in preprocessor input is by a process called
@@ -94,6 +94,8 @@ registered identifier, otherwise it returns 0.
 
 As an example:
 
+ #include <boost/vmd/is_identifier.hpp>
+ 
  #define BOOST_VMD_REGISTER_yellow (yellow)
  #define BOOST_VMD_REGISTER_green  (green)
  #define BOOST_VMD_REGISTER_blue   (blue)
@@ -128,6 +130,30 @@ want to match an identifier against a set of other identifiers. These situations
 will be explained later in the documentation when the particular macro functionality 
 is discussed. If the programmer never uses the functionality which these situations
 encompass there is no need to use pre-detection for a registered identifier.
+
+[heading Parsing identifiers and undefined behavior]
+
+The technique for parsing identifiers, once it is determined that the input
+being parsed does not begin with a set of parentheses, uses preprocessor 
+concatenation in its parsing. This technique involves the preprocessor '##' 
+operator to concatenate input, and examine the results of that concatenation.
+
+When preprocessor concatenation is used the result of the concatenation must
+be a valid preprocessing token, else the behavior of the preprocessor is undefined.
+In C++ 'undefined behavior' in general means that anything can happen. In practical
+use when preprocessor concatenation does not produce a valid preprocessing token,
+a compiler is most likely to generate a preprocessing error. If the compiler chooses
+not to issue a preprocessing error the outcome will always mean that parsing an
+identifier will fail. But because the outcome is undefined behavior there is no
+absolute way that the programmer can determine what the outcome will be when
+preprocessor concatemation is used and the input being parsed contains
+preprocessor input which does not meet the constraints for parsing an identifier
+mentioned at the beginning of this topic.
+
+In this documentation I will be using the abbreviation 'UB' as the shortened form
+of 'undefined behavior' to denote the particular occurence where VMD attempts to
+parse preprocessor input using preprocessor concatenation and undefined behavior
+will occur.
 
 [heading Usage]
 

@@ -24,6 +24,8 @@ one has:
  
 then
  
+ #include <boost/vmd/is_tuple.hpp>
+ 
  BOOST_VMD_IS_TUPLE(ANARRAY) returns 1
  BOOST_VMD_IS_TUPLE(ALIST) returns 1
  BOOST_VMD_IS_TUPLE(ATUPLE) returns 1
@@ -36,6 +38,9 @@ an array. So if one has:
  #define ALIST (2,(3,BOOST_PP_NIL))
  #define ALIST2 (2,(3,(4,BOOST_PP_NIL)))
  #define ALIST3 (2,BOOST_PP_NIL)
+ 
+ #include <boost/vmd/is_array.hpp>
+ #include <boost/vmd/is_list.hpp>
  
  BOOST_VMD_IS_LIST(ALIST) returns 1
  BOOST_VMD_IS_LIST(ALIST2) returns 1
@@ -50,6 +55,9 @@ A single element tuple is also a one element seq. So if one has:
  
 then
 
+ #include <boost/vmd/is_seq.hpp>
+ #include <boost/vmd/is_tuple.hpp>
+ 
  BOOST_VMD_IS_TUPLE(ASE_TUPLE) returns 1
  BOOST_VMD_IS_SEQ(ASE_TUPLE) returns 1
  
@@ -63,20 +71,22 @@ largely obsolete. However VMD still supports it.
 
 The problem when testing for an array is that if the first element
 does not obey the constraint on testing for a number, you will get
-a preprocessing error.
+UB.
 
+ #include <boost/vmd/is_array.hpp>
+ #include <boost/vmd/is_tuple.hpp>
+ 
  #define A_TUPLE (&anything,(1,2))
  
- BOOST_VMD_IS_ARRAY(A_TUPLE) will give a preprocessing error due to the constraint
+ BOOST_VMD_IS_ARRAY(A_TUPLE) will give UB due to the constraint
  BOOST_VMD_IS_TUPLE(A_TUPLE) will return 1
  
 When VMD attempts to parse for an array, as it does when the BOOST_VMD_IS_ARRAY
 is used, if first looks to see if the syntax represents a tuple with two elements.
-Next it looks to see if the second element itself is a tuple. Next it looks to see
-that the first element is not a tuple. Finally if it is satisfied that all the
-previous checks are valid it tests whether the first element is a number or not.
-It is in this final test, that the first element is a valid number, where the
-preprocessing error could occur as explained in the topic 'Numbers'.
+Next it looks to see if the second element itself is a tuple. Finally if it is 
+satisfied that the previous checks are valid it tests whether the first element 
+is a number or not. It is in this final test, that the first element is a valid 
+number, where the UB could occur as explained in the topic 'Numbers'.
 
 [heading Problem when testing a list]
 
@@ -87,19 +97,25 @@ BOOST_PP_NIL.
 
 The problem when testing for a list is that if the second element
 does not obey the constraint on testing for an identifier, you will get
-a preprocessing error.
+UB.
 
+ #include <boost/vmd/is_list.hpp>
+ #include <boost/vmd/is_tuple.hpp>
+ 
  #define A_TUPLE (element,&anything)
 
- BOOST_VMD_IS_LIST(A_TUPLE) will give a preprocessing error due to the constraint
+ BOOST_VMD_IS_LIST(A_TUPLE) will give UB due to the constraint
  BOOST_VMD_IS_TUPLE(A_TUPLE) will return 1
  
 The form of an empty list is the identifier BOOST_PP_NIL. Therefore:
 
+ #include <boost/vmd/is_identifier.hpp>
+ #include <boost/vmd/is_list.hpp>
+ 
  #define A_BAD_EMPTY_LIST &BOOST_PP_NIL
 
- BOOST_VMD_IS_LIST(A_BAD_EMPTY_LIST) will give a preprocessing error due to the constraint
- BOOST_VMD_IS_IDENTIFIER(A_BAD_EMPTY_LIST) will give a preprocessing error due to the constraint
+ BOOST_VMD_IS_LIST(A_BAD_EMPTY_LIST) will give UB due to the constraint
+ BOOST_VMD_IS_IDENTIFIER(A_BAD_EMPTY_LIST) will give UB due to the constraint
 
 When VMD attempts to parse for a list, as it does when the BOOST_VMD_IS_LIST
 is used, if first looks to see if the syntax represents a tuple with two elements.
@@ -107,7 +123,7 @@ If it is not a tuple with two elements it will check for the end-of-list.
 If it is a tuple with two elements it looks to see if the second element is a list.
 In both these paths it must always eventually check for the end-of-list notation
 BOOST_PP_NIL, which is an identifier in VMD. It is in this final test, that the
-end-of-list notation exists as a VMD identifier, where the preprocessing error
+end-of-list notation exists as a VMD identifier, where the UB
 could occur as explained in the topic 'Identifiers'.
 
 [heading Distinguishing a seq and a tuple]
@@ -121,6 +137,9 @@ determine the type of such data, it always returns it as a tuple ( BOOST_VMD_TYP
 If our data consists of more than one consecutive tuple of a single
 element the data is a seq:
 
+ #include <boost/vmd/is_seq.hpp>
+ #include <boost/vmd/is_tuple.hpp>
+ 
  #define ST_DATA (somedata)(some_other_data)
  
  BOOST_VMD_IS_SEQ(ST_DATA) will return 1
@@ -157,6 +176,9 @@ An empty array has the form '(0,())', and is a perfectly valid array.
 
 You can test for an empty array using the macro BOOST_VMD_IS_EMPTY_ARRAY.
 
+ #include <boost/vmd/is_array.hpp>
+ #include <boost/vmd/is_empty_array.hpp>
+ 
  #define AN_ARRAY (1,(1))
  #define AN_EMPTY_ARRAY (0,())
  
@@ -171,6 +193,9 @@ An empty list has the form 'BOOST_PP_NIL', and is a perfectly valid list.
 
 You can test for an empty list using the macro BOOST_VMD_IS_EMPTY_LIST.
 
+ #include <boost/vmd/is_empty_list.hpp>
+ #include <boost/vmd/is_list.hpp>
+ 
  #define A_LIST (1,BOOST_PP_NIL)
  #define AN_EMPTY_LIST BOOST_PP_NIL
  
@@ -193,6 +218,10 @@ tuple whose content is emptiness.
 VMD supports the syntax of an empty parenthesis. You can test for it using 
 the macro BOOST_VMD_IS_PARENS_EMPTY.
 
+ #include <boost/vmd/is_parens_empty.hpp>
+ #include <boost/vmd/is_seq.hpp>
+ #include <boost/vmd/is_tuple.hpp>
+ 
  #define EMPTY_PARENS ()
  #define TUPLE (0)
  #define SEQ (0)(1)

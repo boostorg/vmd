@@ -6,11 +6,11 @@ Boost PP data types have much greater functionality.
 
 To convert a sequence to a Boost PP data type or variadic data the macros to be used are:
 
-BOOST_VMD_TO_ARRAY(sequence) to convert the sequence to an array
-BOOST_VMD_TO_LIST(sequence) to convert the sequence to a list
-BOOST_VMD_TO_SEQ(sequence) to convert the sequence to a seq
-BOOST_VMD_TO_TUPLE(sequence) to convert the sequence to a tuple
-BOOST_VMD_ENUM(sequence) to convert the sequence to variadic data
+* BOOST_VMD_TO_ARRAY(sequence) to convert the sequence to an array
+* BOOST_VMD_TO_LIST(sequence) to convert the sequence to a list
+* BOOST_VMD_TO_SEQ(sequence) to convert the sequence to a seq
+* BOOST_VMD_TO_TUPLE(sequence) to convert the sequence to a tuple
+* BOOST_VMD_ENUM(sequence) to convert the sequence to variadic data
 
 After the conversion the elements of a sequence become the elements
 of the corresponding composite data type.
@@ -28,6 +28,12 @@ For a sequence that is empty the result is emptiness when converting to
 a seq, tuple, or variadic data; the result is an empty array or list when
 converting to each of those composite data types respectively.
 
+ #include <boost/vmd/enum.hpp>
+ #include <boost/vmd/to_array.hpp>
+ #include <boost/vmd/to_list.hpp>
+ #include <boost/vmd/to_seq.hpp>
+ #include <boost/vmd/to_tuple.hpp>
+ 
  #define BOOST_VMD_REGISTER_ANID (ANID)
  
  #define SEQUENCE_EMPTY

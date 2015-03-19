@@ -34,6 +34,8 @@ Here is an example of using BOOST_VMD_EQUAL with a filtering modifier.
 BOOST_VMD_NOT_EQUAL is just the complement of the results in our example
 for each result, and would be redundant to be specified each time below.
 
+ #include <boost/vmd/equal.hpp>
+ 
  #define BOOST_VMD_REGISTER_AN_ID1 (AN_ID1)
  #define BOOST_VMD_REGISTER_AN_ID2 (AN_ID2)
  
@@ -88,6 +90,8 @@ element is of the v-type specified, else it fails to find the
 element in the same way that an element number which is outside
 the bounds of the sequence fails.
 
+ #include <boost/vmd/elem.hpp>
+ 
  #define BOOST_VMD_REGISTER_ANAME (ANAME) // an identifier must always be registered to be found by VMD
  #define A_SEQUENCE (1,2,3) 46 (list_data1,(list_data2,BOOST_PP_NIL)) BOOST_VMD_TYPE_SEQ ANAME
  
@@ -113,6 +117,11 @@ the bounds of the sequence fails.
  BOOST_VMD_ELEM(4,A_SEQUENCE) will return ANAME
  BOOST_VMD_ELEM(4,A_SEQUENCE,BOOST_VMD_TYPE_IDENTIFIER) will return ANAME
  BOOST_VMD_ELEM(4,A_SEQUENCE,BOOST_VMD_TYPE_NUMBER) will return emptiness
+ 
+ BOOST_VMD_ELEM(0,BOOST_PP_NIL) will return BOOST_PP_NIL
+ BOOST_VMD_ELEM(0,BOOST_PP_NIL,BOOST_VMD_TYPE_LIST) will return BOOST_PP_NIL since it is an empty list
+ BOOST_VMD_ELEM(0,BOOST_PP_NIL,BOOST_VMD_TYPE_IDENTIFIER) will return BOOST_PP_NIL since it a registered identifier
+ BOOST_VMD_ELEM(0,BOOST_PP_NIL,BOOST_VMD_TYPE_TUPLE) will return emptiness
  
 If you specify more than one v-type as a filtering modifier to BOOST_VMD_ELEM
 the last v-type becomes the filter.

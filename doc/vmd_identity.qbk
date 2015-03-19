@@ -10,6 +10,9 @@ a further macro call syntax is required taking no parameters.
 This sort of usefulness occurs in Boost PP when there are two paths to take depending
 on the outcome of a BOOST_PP_IF or BOOST_PP_IIF logic. Here is an artificial example:
 
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/preprocessor/facilities/empty.hpp>
+
  #define MACRO_CHOICE(parameter) \
      BOOST_PP_IIF(parameter) \
          ( \
@@ -25,6 +28,9 @@ macro is invoked, whereas if the parameter is 0 some
 fixed value is returned. The reason that this is useful
 is that one may not want to code the MACRO_CHOICE macro
 in this way:
+
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/preprocessor/facilities/empty.hpp>
 
  #define MACRO_CHOICE(parameter) \
      BOOST_PP_IIF(parameter) \
@@ -47,6 +53,9 @@ Again, like BOOST_PP_EMPTY, the final invocation must be done with no value.
 Our example from above, which originally used BOOST_PP_EMPTY to return
 a fixed value, is now:
   
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/preprocessor/facilities/identity.hpp>
+
  #define MACRO_CHOICE(parameter) \
      BOOST_PP_IIF(parameter) \
          ( \
@@ -73,6 +82,9 @@ very limiting. If the final invocation must be with one or more parameters
 you cannot use BOOST_PP_EMPTY or BOOST_PP_IDENTITY. In other words, 
 making a change to either of our two examples:
 
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/preprocessor/facilities/empty.hpp>
+
  #define MACRO_CHOICE(parameter1,parameter2) \
      BOOST_PP_IIF(parameter1) \
          ( \
@@ -84,6 +96,9 @@ making a change to either of our two examples:
  #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_both_parameters
  
 or
+
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/preprocessor/facilities/identity.hpp>
 
  #define MACRO_CHOICE(parameter1,parameter2) \
      BOOST_PP_IIF(parameter1) \
@@ -102,9 +117,13 @@ It would be much more useful if the final invocation could be done with
 any number of parameters. This is where using variadic macros solve the problem. 
 The BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY macros have the exact same 
 functionality as their Boost PP counterparts but the final invocation can 
-be made with any number of parameters, and those parameters are just ignored.
+be made with any number of parameters, and those parameters are just ignored
+when BOOST_VMD_EMPTY or BOOST_VMD_IDENTITY is the choice.
 
 Now for our two examples we can have:
+
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/vmd/empty.hpp>
 
  #define MACRO_CHOICE(parameter1,parameter2) \
      BOOST_PP_IIF(parameter1) \
@@ -117,6 +136,9 @@ Now for our two examples we can have:
  #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_parameters
  
 or
+
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/vmd/identity.hpp>
 
  #define MACRO_CHOICE(parameter1,parameter2) \
      BOOST_PP_IIF(parameter1) \
@@ -170,12 +192,17 @@ returned from a macro which uses BOOST_VMD_IDENTITY ( or its equivalent
 Given our MACRO_CHOICE example above, if you have another macro invoking MACRO_CHOICE
 simply enclose that invocation within BOOST_VMD_IDENTITY_RESULT. As in the very simple:
 
+ #include <boost/vmd/identity.hpp>
+ 
  #define CALLING_MACRO_CHOICE(parameter1,parameter2) \
      BOOST_VMD_IDENTITY_RESULT(MACRO_CHOICE(parameter1,parameter2))
      
 Alternatively you can change MACRO_CHOICE so that its implementation
 and usage is:
      
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/vmd/identity.hpp>
+
  #define MACRO_CHOICE(parameter1,parameter2) \
      BOOST_VMD_IDENTITY_RESULT \
          ( \

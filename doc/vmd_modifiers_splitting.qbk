@@ -26,7 +26,7 @@ The splitting modifers BOOST_VMD_RETURN_NO_AFTER and BOOST_VMD_RETURN_AFTER
 work with either return type modifiers or filtering modifiers if they are 
 used. The splitting modifier BOOST_VMD_RETURN_ONLY_AFTER works with
 filtering modifiers if it is used and any return type modifiers will be ignored.
-Optional modifiers may occur in any order after the mandatory parameters
+Optional modifiers may occur in any order after the required parameters
 to BOOST_VMD_ELEM.
 
 If BOOST_VMD_RETURN_AFTER is in effect and an element is not found, either 
@@ -34,6 +34,8 @@ because the element number is out of range for the sequence or because
 filtering does not match the element type, a tuple will still be returned 
 but both its elements will be empty.
 
+ #include <boost/vmd/elem.hpp>
+ 
  #define BOOST_VMD_REGISTER_ANAME (ANAME) // an identifier must always be registered to be found by VMD
  #define A_SEQUENCE (1,2,3) 46 (list_data1,BOOST_PP_NIL) BOOST_VMD_TYPE_SEQ ANAME
  
@@ -53,6 +55,6 @@ Combining splitting modifiers with return type modifiers:
  
 Combining splitting modifiers with filtering modifiers:
  
- BOOST_VMD_ELEM(2,A_SEQUENCE,BOOST_VMD_RETURN_AFTER,BOOST_VMD_TYPE_LIST) will return '((BOOST_VMD_TYPE_LIST,(list_data1,BOOST_PP_NIL)),BOOST_VMD_TYPE_SEQ ANAME)'
+ BOOST_VMD_ELEM(2,A_SEQUENCE,BOOST_VMD_RETURN_AFTER,BOOST_VMD_TYPE_LIST) will return '((list_data1,BOOST_PP_NIL),BOOST_VMD_TYPE_SEQ ANAME)'
  
 [endsect]

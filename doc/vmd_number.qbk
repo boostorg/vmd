@@ -76,6 +76,8 @@ a number as an identifier if you like.
 
 Let us look at an example of how to use BOOST_VMD_IS_NUMBER.
 
+ #include <boost/vmd/is_number.hpp>
+ 
  BOOST_VMD_IS_NUMBER(input)
  
  returns:

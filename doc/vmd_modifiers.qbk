@@ -20,7 +20,7 @@ are termed "user-defined modifiers".
 
 In all situations modifiers are optional parameters which are parsed 
 by VMD to provide enhanced functionality for some of its macros. 
-They are never required as part of the basic funcionality of a macro.
+They are never required as part of the basic functionality of a macro.
 
 When modifiers are used as optional arguments to a macro they
 can be input after the required parameters in any order and 
@@ -36,7 +36,7 @@ modifier is not appropriate it is also just ignored.
 
 The situations where modifiers can be used to enhance the basic
 functionality of VMD macros can be divided by particular types
-of specific modifiers. Each particular type of A specific modifier
+of specific modifiers. Each particular type of a specific modifier
 has a particular name given to it in this documentation, 
 functionality, set of identifiers, and may be used as optional
 parameters in one or more designated macros depending on the specific

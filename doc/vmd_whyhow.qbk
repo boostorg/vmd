@@ -15,6 +15,9 @@ can create different expansions.
 
 As a simple example:
 
+ #include <boost/vmd/is_seq.hpp>
+ #include <boost/vmd/is_tuple.hpp>
+
  #define AMACRO(param)                 \
    BOOST_PP_IIF                        \
      (                                 \
@@ -51,6 +54,8 @@ using VMD's system for pre-detecting identifiers.
 
 As another simple example:
 
+ #include <boost/vmd/is_identifier.hpp>
+ 
  #define BOOST_VMD_REGISTER_NAME (NAME)
  #define BOOST_VMD_REGISTER_ADDRESS (ADDRESS)
  
@@ -75,6 +80,8 @@ Identifier pre-detection makes things clearer, allowing us to
 detect within VMD whether macro input matches a particular identifier.
 Using the same setup as our previous example, but with identifier predetection:
 
+ #include <boost/vmd/is_identifier.hpp>
+ 
  #define BOOST_VMD_REGISTER_NAME (NAME)
  #define BOOST_VMD_DETECT_NAME_NAME
  
@@ -115,6 +122,9 @@ Another reason to use VMD is that VMD understands 'sequences' of the VMD data ty
 can have a sequence of data types and VMD can convert the sequence to any of the Boost
 PP data types, or access any individual data type in a sequence.
 
+ #include <boost/vmd/elem.hpp>
+ #include <boost/vmd/to_tuple.hpp>
+ 
  #define BOOST_VMD_REGISTER_NAME (NAME)
  #define ASEQUENCE (1,2) NAME 147 BOOST_VMD_TYPE_NUMBER (a)(b)
  
@@ -137,6 +147,8 @@ Besides specifically asking if a particular input is a particular
 data type, you can use the macro BOOST_VMD_GET_TYPE to retrieve
 the type of any VMD data.
 
+ #include <boost/vmd/get_type.hpp>
+ 
  BOOST_VMD_GET_TYPE((1,2)) // expands to BOOST_VMD_TYPE_TUPLE
  BOOST_VMD_GET_TYPE(235)   // expands to BOOST_VMD_TYPE_NUMBER
  

@@ -29,7 +29,7 @@ a problem. For the array or list data types this can be a problem, as
 explained when discussing parsing arrays and lists respectively using the 
 specific macros BOOST_VMD_IS_ARRAY and BOOST_VMD_IS_LIST. The problem is 
 that a valid tuple can be an invalid list or an invalid array, whose 
-parsing as the more specific type will lead to preprocessing errors. 
+parsing as the more specific type will lead to UB.
 Because of this when VMD parses input generically,
 and only the data of an element is needed to continue parsing correctly, 
 it parses all tuple-like data as a tuple and never as a list or an array.
@@ -56,6 +56,8 @@ BOOST_VMD_GET_TYPE is solely to return the v-type.
 Let's look at how this works with BOOST_VMD_GET_TYPE by specifying VMD sequences 
 that have tuples which may or may not be valid lists or arrays.
 
+ #include <boost/vmd/get_type.hpp>
+ 
  #define TUPLE_IS_ARRAY (2,(3,4))
  #define TUPLE_IS_LIST (anydata,BOOST_PP_NIL)
  #define TUPLE_IS_LIST_OR_ARRAY (2,(3,BOOST_PP_NIL))
@@ -79,18 +81,20 @@ that have tuples which may or may not be valid lists or arrays.
  BOOST_VMD_GET_TYPE(TUPLE_IS_LIST_OR_ARRAY,BOOST_VMD_RETURN_TYPE_ARRAY) will return BOOST_VMD_TYPE_ARRAY
  BOOST_VMD_GET_TYPE(TUPLE_IS_LIST_OR_ARRAY,BOOST_VMD_RETURN_TYPE_LIST) will return BOOST_VMD_TYPE_LIST
  
- BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_ARRAY) will give a preprocessing error
+ BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_ARRAY) will give UB
  BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_ARRAY,BOOST_VMD_RETURN_TYPE_TUPLE) will return BOOST_VMD_TYPE_TUPLE
- BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_ARRAY,BOOST_VMD_RETURN_TYPE_ARRAY) will give a preprocessing error
+ BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_ARRAY,BOOST_VMD_RETURN_TYPE_ARRAY) will give UB
  BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_ARRAY,BOOST_VMD_RETURN_TYPE_LIST) will return BOOST_VMD_TYPE_TUPLE
  
- BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_LIST) will give a preprocessing error
+ BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_LIST) will give UB
  BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_LIST,BOOST_VMD_RETURN_TYPE_TUPLE) will return BOOST_VMD_TYPE_TUPLE
  BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_LIST,BOOST_VMD_RETURN_TYPE_ARRAY) will return BOOST_VMD_TYPE_TUPLE
- BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_LIST,BOOST_VMD_RETURN_TYPE_LIST) will give a preprocessing error
+ BOOST_VMD_GET_TYPE(TUPLE_BUT_INVALID_LIST,BOOST_VMD_RETURN_TYPE_LIST) will give UB
  
- BOOST_VMD_GET_TYPE(SEQUENCE_EMPTY) will always return BOOST_VMD_TYPE_EMPTY even if we add any return type modifiers
- BOOST_VMD_GET_TYPE(SEQUENCE_MULTI) will always return BOOST_VMD_TYPE_SEQUENCE even if we add any return type modifiers
+ BOOST_VMD_GET_TYPE(SEQUENCE_EMPTY) 
+    will always return BOOST_VMD_TYPE_EMPTY even if we add any return type modifiers
+ BOOST_VMD_GET_TYPE(SEQUENCE_MULTI) 
+    will always return BOOST_VMD_TYPE_SEQUENCE even if we add any return type modifiers
 
 [heading Usage with sequence converting macros]
 
@@ -128,6 +132,12 @@ any return type modifier we use accomplishes nothing but is fine to use.
 First we show how sequence conversion macros work with the BOOST_VMD_RETURN_TYPE
 modifier, which always parses for the most specific type.
 
+ #include <boost/vmd/enum.hpp>
+ #include <boost/vmd/to_array.hpp>
+ #include <boost/vmd/to_list.hpp>
+ #include <boost/vmd/to_seq.hpp>
+ #include <boost/vmd/to_tuple.hpp>
+ 
  #define BOOST_VMD_REGISTER_ANID (ANID)
  #define SEQUENCE_EMPTY_1
  #define SEQUENCE_SINGLE 35
@@ -141,25 +151,31 @@ modifier, which always parses for the most specific type.
  BOOST_VMD_TO_ARRAY(SEQUENCE_EMPTY_1,BOOST_VMD_RETURN_TYPE) will return an empty array '(0,())'
  
  BOOST_VMD_TO_LIST(SEQUENCE_SINGLE) will return a one-element list '(35,BOOST_PP_NIL)'
- BOOST_VMD_TO_LIST(SEQUENCE_SINGLE,BOOST_VMD_RETURN_TYPE) will return a one-element list '((BOOST_VMD_TYPE_NUMBER,35),BOOST_PP_NIL)'
+ BOOST_VMD_TO_LIST(SEQUENCE_SINGLE,BOOST_VMD_RETURN_TYPE) 
+    will return a one-element list '((BOOST_VMD_TYPE_NUMBER,35),BOOST_PP_NIL)'
  
  BOOST_VMD_TO_SEQ(SEQUENCE_SINGLE_ID) will return a one-element seq '(ANID)'
- BOOST_VMD_TO_SEQ(SEQUENCE_SINGLE_ID,BOOST_VMD_RETURN_TYPE) will return a one-element seq '((BOOST_VMD_TYPE_IDENTIFIER,ANID))'
+ BOOST_VMD_TO_SEQ(SEQUENCE_SINGLE_ID,BOOST_VMD_RETURN_TYPE) 
+    will return a one-element seq '((BOOST_VMD_TYPE_IDENTIFIER,ANID))'
  
  BOOST_VMD_TO_TUPLE(SEQUENCE_SINGLE_ARRAY) will return a single element tuple '((3,(0,1,2)))'
- BOOST_VMD_TO_TUPLE(SEQUENCE_SINGLE_ARRAY,BOOST_VMD_RETURN_TYPE) will return a single element tuple '((BOOST_VMD_TYPE_ARRAY,(3,(0,1,2))))'
+ BOOST_VMD_TO_TUPLE(SEQUENCE_SINGLE_ARRAY,BOOST_VMD_RETURN_TYPE) 
+    will return a single element tuple '((BOOST_VMD_TYPE_ARRAY,(3,(0,1,2))))'
  
  BOOST_VMD_ENUM(SEQUENCE_SINGLE_LIST) will return the single-element '(data,(more_data,BOOST_PP_NIL))'
- BOOST_VMD_ENUM(SEQUENCE_SINGLE_LIST,BOOST_VMD_RETURN_TYPE) will return the single element '(BOOST_VMD_TYPE_LIST,(data,(more_data,BOOST_PP_NIL)))'
+ BOOST_VMD_ENUM(SEQUENCE_SINGLE_LIST,BOOST_VMD_RETURN_TYPE) 
+    will return the single element '(BOOST_VMD_TYPE_LIST,(data,(more_data,BOOST_PP_NIL)))'
  
  BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_1) will return a multi-element tuple '((0,1),(2)(3)(4))'
- BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_1,BOOST_VMD_RETURN_TYPE) will return a multi-element tuple '((BOOST_VMD_TYPE_TUPLE,(0,1)),(BOOST_VMD_TYPE_SEQ,(2)(3)(4)))'
+ BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_1,BOOST_VMD_RETURN_TYPE) 
+    will return a multi-element tuple '((BOOST_VMD_TYPE_TUPLE,(0,1)),(BOOST_VMD_TYPE_SEQ,(2)(3)(4)))'
  
  BOOST_VMD_ENUM(SEQUENCE_MULTI_2) will return multi-element variadic data 'BOOST_VMD_TYPE_SEQ,(2,(5,6))'
- BOOST_VMD_ENUM(SEQUENCE_MULTI_2,BOOST_VMD_RETURN_TYPE) will return multi-element variadic data '(BOOST_VMD_TYPE_TYPE,BOOST_VMD_TYPE_SEQ),(BOOST_VMD_TYPE_ARRAY,(2,(5,6)))'
+ BOOST_VMD_ENUM(SEQUENCE_MULTI_2,BOOST_VMD_RETURN_TYPE) 
+    will return multi-element variadic data '(BOOST_VMD_TYPE_TYPE,BOOST_VMD_TYPE_SEQ),(BOOST_VMD_TYPE_ARRAY,(2,(5,6)))'
  
 Lets look at how we might use other return type modifiers when doing conversions
-to avoid preprocessing errors if we want the type as part of the conversion but
+to avoid UB if we want the type as part of the conversion but
 the type might be a valid tuple while being an invalid list or array.
 
  #define TUPLE_IS_VALID_ARRAY (2,(3,4))
@@ -175,51 +191,75 @@ the type might be a valid tuple while being an invalid list or array.
 We present a number of uses of various sequence conversions
 with each of our four different sequences, and show their results.
  
- BOOST_VMD_TO_SEQ(SEQUENCE_MULTI_T1,BOOST_VMD_RETURN_TYPE) will return the seq '((BOOST_VMD_TYPE_ARRAY,(2,(3,4)))) ((BOOST_VMD_TYPE_LIST,(anydata,BOOST_PP_NIL)))'
- BOOST_VMD_TO_SEQ(SEQUENCE_MULTI_T1,BOOST_VMD_RETURN_TYPE_ARRAY) will return the seq '((BOOST_VMD_TYPE_ARRAY,(2,(3,4)))) ((BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL)))'
- BOOST_VMD_TO_SEQ(SEQUENCE_MULTI_T1,BOOST_VMD_RETURN_TYPE_LIST) will return the seq '((BOOST_VMD_TYPE_TUPLE,(2,(3,4)))) ((BOOST_VMD_TYPE_LIST,(anydata,BOOST_PP_NIL)))'
- BOOST_VMD_TO_SEQ(SEQUENCE_MULTI_T1,BOOST_VMD_RETURN_TYPE_TUPLE) will return the seq '((BOOST_VMD_TYPE_TUPLE,(2,(3,4)))) ((BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL)))'
+ #include <boost/vmd/to_seq.hpp>
+ 
+ BOOST_VMD_TO_SEQ(SEQUENCE_MULTI_T1,BOOST_VMD_RETURN_TYPE) 
+    will return the seq '((BOOST_VMD_TYPE_ARRAY,(2,(3,4)))) ((BOOST_VMD_TYPE_LIST,(anydata,BOOST_PP_NIL)))'
+ BOOST_VMD_TO_SEQ(SEQUENCE_MULTI_T1,BOOST_VMD_RETURN_TYPE_ARRAY) 
+    will return the seq '((BOOST_VMD_TYPE_ARRAY,(2,(3,4)))) ((BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL)))'
+ BOOST_VMD_TO_SEQ(SEQUENCE_MULTI_T1,BOOST_VMD_RETURN_TYPE_LIST) 
+    will return the seq '((BOOST_VMD_TYPE_TUPLE,(2,(3,4)))) ((BOOST_VMD_TYPE_LIST,(anydata,BOOST_PP_NIL)))'
+ BOOST_VMD_TO_SEQ(SEQUENCE_MULTI_T1,BOOST_VMD_RETURN_TYPE_TUPLE) 
+    will return the seq '((BOOST_VMD_TYPE_TUPLE,(2,(3,4)))) ((BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL)))'
  
 The SEQUENCE_MULTI_T1 is a valid array followed by a valid list. All return type 
-modifiers produce their results without any preprocessor errors.
+modifiers produce their results without any UBs.
 
- BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_T2,BOOST_VMD_RETURN_TYPE) will produce a preprocessing an error when attempting to parse the invalid array as an array
- BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_T2,BOOST_VMD_RETURN_TYPE_ARRAY) will produce a preprocessing an error when attempting to parse the invalid array as an array
- BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_T2,BOOST_VMD_RETURN_TYPE_LIST) will return the tuple '((BOOST_VMD_TYPE_TUPLE,(2,(3,4))),(BOOST_VMD_TYPE_LIST,(anydata,BOOST_PP_NIL)))'
- BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_T2,BOOST_VMD_RETURN_TYPE_TUPLE) will return the tuple '((BOOST_VMD_TYPE_TUPLE,(2,(3,4))),(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL)))'
+ #include <boost/vmd/to_tuple.hpp>
+ 
+ BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_T2,BOOST_VMD_RETURN_TYPE) 
+    will produce UB when attempting to parse the invalid array as an array
+ BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_T2,BOOST_VMD_RETURN_TYPE_ARRAY) 
+    will produce UB when attempting to parse the invalid array as an array
+ BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_T2,BOOST_VMD_RETURN_TYPE_LIST) 
+    will return the tuple '((BOOST_VMD_TYPE_TUPLE,(&2,(3,4))),(BOOST_VMD_TYPE_LIST,(anydata,BOOST_PP_NIL)))'
+ BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI_T2,BOOST_VMD_RETURN_TYPE_TUPLE) 
+    will return the tuple '((BOOST_VMD_TYPE_TUPLE,(&2,(3,4))),(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL)))'
  
 The SEQUENCE_MULTI_T2 is an invalid array, but valid tuple, followed by a valid list.
 
-In sequence conversion we will get preprocessing errors whenever we use a return type
+In sequence conversion we will get UB whenever we use a return type
 modifier that parses the data type of the invalid array as an array. But if we use
 the return type modifiers BOOST_VMD_RETURN_TYPE_LIST or BOOST_VMD_RETURN_TYPE_TUPLE
 we are never parsing the invalid array as an array but as a tuple instead and therefore
 we successfully return the type of the invalid array as a BOOST_VMD_TYPE_TUPLE.
 
- BOOST_VMD_TO_ARRAY(SEQUENCE_MULTI_T3,BOOST_VMD_RETURN_TYPE) will produce a preprocessing an error when attempting to parse the invalid list as a list
- BOOST_VMD_TO_ARRAY(SEQUENCE_MULTI_T3,BOOST_VMD_RETURN_TYPE_ARRAY) will produce a preprocessing an error when attempting to parse the invalid array as an array
- BOOST_VMD_TO_ARRAY(SEQUENCE_MULTI_T3,BOOST_VMD_RETURN_TYPE_LIST) will return the array '(2,((BOOST_VMD_TYPE_ARRAY,(2,(3,4))),(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))))'
- BOOST_VMD_TO_ARRAY(SEQUENCE_MULTI_T3,BOOST_VMD_RETURN_TYPE_TUPLE) will return the array '(2,((BOOST_VMD_TYPE_ARRAY,(2,(3,4))),(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))))'
+ #include <boost/vmd/to_array.hpp>
+ 
+ BOOST_VMD_TO_ARRAY(SEQUENCE_MULTI_T3,BOOST_VMD_RETURN_TYPE) 
+    will produce UB when attempting to parse the invalid list as a list
+ BOOST_VMD_TO_ARRAY(SEQUENCE_MULTI_T3,BOOST_VMD_RETURN_TYPE_LIST) 
+    will produce UB when attempting to parse the invalid list as a list
+ BOOST_VMD_TO_ARRAY(SEQUENCE_MULTI_T3,BOOST_VMD_RETURN_TYPE_ARRAY) 
+    will return the array '(2,((BOOST_VMD_TYPE_ARRAY,(2,(3,4))),(BOOST_VMD_TYPE_TUPLE,(anydata,^BOOST_PP_NIL))))'
+ BOOST_VMD_TO_ARRAY(SEQUENCE_MULTI_T3,BOOST_VMD_RETURN_TYPE_TUPLE) 
+    will return the array '(2,((BOOST_VMD_TYPE_TUPLE,(2,(3,4))),(BOOST_VMD_TYPE_TUPLE,(anydata,^BOOST_PP_NIL))))'
  
 The SEQUENCE_MULTI_T3 is a valid array followed by an invalid list, but a valid tuple.
 
-In sequence conversion we will get preprocessing errors whenever we use a return type
+In sequence conversion we will get UBs whenever we use a return type
 modifier that parses the data type of the invalid list as a list. But if we use
 the return type modifiers BOOST_VMD_RETURN_TYPE_ARRAY or BOOST_VMD_RETURN_TYPE_TUPLE
 we are never parsing the invalid list as a list but as a tuple instead and therefore
 we successfully return the type of the invalid list as a BOOST_VMD_TYPE_TUPLE.
 
- BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE) will produce a preprocessing an error when attempting to parse the invalid array or invalid list
- BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE_ARRAY) will produce a preprocessing an error when attempting to parse the invalid array
- BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE_LIST) will produce a preprocessing an error when attempting to parse the invalid list
- BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE_TUPLE) will return the list '((BOOST_VMD_TYPE_TUPLE,(2,(3,4))),((BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL)),BOOST_PP_NIL))'
+ #include <boost/vmd/to_list.hpp>
+ 
+ BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE) 
+    will produce UB when attempting to parse the invalid array or invalid list
+ BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE_ARRAY) 
+    will produce UB when attempting to parse the invalid array
+ BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE_LIST) 
+    will produce UB when attempting to parse the invalid list
+ BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE_TUPLE) 
+    will return the list '((BOOST_VMD_TYPE_TUPLE,(&2,(3,4))),((BOOST_VMD_TYPE_TUPLE,(anydata,^BOOST_PP_NIL)),BOOST_PP_NIL))'
  
 The SEQUENCE_MULTI_T4 is an invalid array, but valid tuple, followed by a invalid list, but valid tuple.
 
-In sequence conversion we will get preprocessing errors whenever we use a return type
+In sequence conversion we will get UBs whenever we use a return type
 modifier that parses the sequence other than looking for only valid tuples. So here we must use
 the return type modifier BOOST_VMD_RETURN_TYPE_TUPLE for a sequence conversion without
-generating preprocessing errors.
+generating UBs.
  
 [heading Usage with BOOST_VMD_ELEM]
 
@@ -248,6 +288,8 @@ or array, but a valid tuple. It is when the element found may be an invalid
 list or invalid array that we must use other return type modifiers in order
 to parse the type of the element correctly.
 
+ #include <boost/vmd/elem.hpp>
+ 
  #define BOOST_VMD_REGISTER_ANID_E (ANID_E)
  #define SEQUENCE_SINGLE_E 35
  #define SEQUENCE_SINGLE_E2 ANID_E
@@ -272,7 +314,7 @@ but a valid tuple and yet we still want its type returned as part of the result.
 
 Let's look at how this works with BOOST_VMD_ELEM by specifying VMD sequences 
 that have tuples which are in the form of arrays or lists which cannot be 
-parsed as such by VMD without generating preprocessing errors.
+parsed as such by VMD without generating UBs.
 
  #define TUPLE_IS_VALID_ARRAY_E (2,(3,4))
  #define TUPLE_IS_VALID_LIST_E (anydata,BOOST_PP_NIL)
@@ -287,6 +329,8 @@ parsed as such by VMD without generating preprocessing errors.
 We present a number of uses of BOOST_VMD_ELEM with each of our four 
 different sequences, and show their results.
  
+ #include <boost/vmd/elem.hpp>
+ 
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E1,BOOST_VMD_RETURN_TYPE) will return '(BOOST_VMD_TYPE_ARRAY,(2,(3,4)))'
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E1,BOOST_VMD_RETURN_TYPE_ARRAY) will return '(BOOST_VMD_TYPE_ARRAY,(2,(3,4)))'
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E1,BOOST_VMD_RETURN_TYPE_LIST) will return '(BOOST_VMD_TYPE_TUPLE,(2,(3,4)))'
@@ -297,12 +341,16 @@ different sequences, and show their results.
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E1,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))'
  
 The SEQUENCE_MULTI_E1 is a valid array followed by a valid list. All return type 
-modifiers produce their results without any preprocessor errors.
+modifiers produce their results without any UBs.
 
- BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE) will produce a preprocessing an error when attempting to parse the invalid array as an array
- BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE_ARRAY) will produce a preprocessing an error when attempting to parse the invalid array as an array
- BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE_LIST) will return '(BOOST_VMD_TYPE_TUPLE,(2,(3,4)))'
- BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(2,(3,4)))'
+ #include <boost/vmd/elem.hpp>
+ 
+ BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE) 
+    will produce UB when attempting to parse the invalid array as an array
+ BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE_ARRAY) 
+    will produce UB when attempting to parse the invalid array as an array
+ BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE_LIST) will return '(BOOST_VMD_TYPE_TUPLE,(&2,(3,4)))'
+ BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(&2,(3,4)))'
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE) will return '(BOOST_VMD_TYPE_LIST,(anydata,BOOST_PP_NIL))'
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE_ARRAY) will return '(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))'
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E2,BOOST_VMD_RETURN_TYPE_LIST) will return '(BOOST_VMD_TYPE_LIST,(anydata,BOOST_PP_NIL))'
@@ -311,57 +359,67 @@ modifiers produce their results without any preprocessor errors.
 The SEQUENCE_MULTI_E2 is an invalid array, but valid tuple, followed by a valid list.
 
 When we access element 0 of our sequence, and use a return type modifier that parses
-its data type as an array we will get a preprocessing error. But if we use the return
+its data type as an array we will get UB. But if we use the return
 type modifiers BOOST_VMD_RETURN_TYPE_LIST or BOOST_VMD_RETURN_TYPE_TUPLE 
 we are never parsing the invalid array as an array but as a tuple instead and therefore
 we successfully return the type of the invalid array as a BOOST_VMD_TYPE_TUPLE.
 
 When we access element 1 of our sequence, which is both a valid list and a valid tuple,
-we will never get a preprocessing error. We will get the return type of the element based
+we will never get UB. We will get the return type of the element based
 on which return type modifier we use.
 
+ #include <boost/vmd/elem.hpp>
+ 
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE) will return '(BOOST_VMD_TYPE_ARRAY,(2,(3,4)))'
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE_ARRAY) will return '(BOOST_VMD_TYPE_ARRAY,(2,(3,4)))'
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE_LIST) will return '(BOOST_VMD_TYPE_TUPLE,(2,(3,4)))'
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(2,(3,4)))'
- BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE) will produce a preprocessing an error when attempting to parse the invalid list as a list
+ BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE) 
+    will produce UB when attempting to parse the invalid list as a list
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE_ARRAY) will return '(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))'
- BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE_LIST) will produce a preprocessing an error when attempting to parse the invalid list as a list
+ BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE_LIST) 
+    will produce UB when attempting to parse the invalid list as a list
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))'
  
 The SEQUENCE_MULTI_E3 is a valid array followed by a invalid list, but valid tuple.
 
 When we access element 0 of our sequence, which is both a valid array and a valid tuple,
-we will never get a preprocessing error. We will get the return type of the element based
+we will never get UB. We will get the return type of the element based
 on which return type modifier we use.
 
 When we access element 1 of our sequence, and use a return type modifier that parses
-its data type as a list we will get a preprocessing error. But if we use the return
+its data type as a list we will get UB. But if we use the return
 type modifiers BOOST_VMD_RETURN_TYPE_ARRAY or BOOST_VMD_RETURN_TYPE_TUPLE 
 we are never parsing the invalid list as a list but as a tuple instead and therefore
 we successfully return the type of the invalid list as a BOOST_VMD_TYPE_TUPLE.
 
- BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE) will produce a preprocessing an error when attempting to parse the invalid array
- BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_ARRAY) will produce a preprocessing an error when attempting to parse the invalid array
+ #include <boost/vmd/elem.hpp>
+ 
+ BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE) 
+    will produce UB when attempting to parse the invalid array
+ BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_ARRAY) 
+    will produce UB when attempting to parse the invalid array
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_LIST) will return '(BOOST_VMD_TYPE_TUPLE,(2,(3,4)))'
  BOOST_VMD_ELEM(0,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(2,(3,4)))'
- BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE) will produce a preprocessing an error when attempting to parse the invalid list
+ BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE) 
+    will produce UB when attempting to parse the invalid list
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_ARRAY) will return '(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))'
- BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_LIST) will produce a preprocessing an error when attempting to parse the invalid list
+ BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_LIST) 
+    will produce UB when attempting to parse the invalid list
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))'
 
 The SEQUENCE_MULTI_E4 is an invalid array, but valid tuple, followed by a invalid list, but valid tuple.
 
 When we access element 0 of our sequence, which is an invalid array but a valid tuple,
 we must use a return type modifier which does not parse element 0 as an array, else
-we will get a preprocessing error. This means we must use the return
+we will get UB. This means we must use the return
 type modifiers BOOST_VMD_RETURN_TYPE_LIST or BOOST_VMD_RETURN_TYPE_TUPLE so
 we are never parsing the invalid array as an array but as a tuple instead and therefore
 we successfully return the type of the invalid array as a BOOST_VMD_TYPE_TUPLE.
 
 When we access element 1 of our sequence, which is an invalid list but a valid tuple,
 we must use a return type modifier which does not parse element 1 as a list, else
-we will get a preprocessing error. This means we must use the return
+we will get UB. This means we must use the return
 type modifiers BOOST_VMD_RETURN_TYPE_ARRAY or BOOST_VMD_RETURN_TYPE_TUPLE so
 we are never parsing the invalid list as a list but as a tuple instead and therefore
 we successfully return the type of the invalid list as a BOOST_VMD_TYPE_TUPLE.

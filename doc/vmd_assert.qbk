@@ -3,15 +3,15 @@
 The VMD macros for identifying data types work best when the macro logic can take different 
 paths depending on the type of data being passed for a macro parameter. But occasionally 
 the preprocessor metaprogrammer wants to simply verify that the macro parameter data is of 
-the correct data type, else a preprocessor error should be generated to notify the programmer 
+the correct data type, else a preprocessing error should be generated to notify the programmer 
 invoking the macro that the data passed is the incorrect type.
 
 [heading Using BOOST_VMD_ASSERT]
 
-The Boost PP library has a macro which produces a preprocessor error when the condition
+The Boost PP library has a macro which produces a preprocessing error when the condition
 passed to it is 0. This macro is called BOOST_PP_ASSERT. The macro produces a preprocessor
 error by forcing a call to an internal macro with the wrong number of arguments. According
-to the C++ standard this should always cause an immediate preprocessor error for conforming
+to the C++ standard this should always cause an immediate preprocessing error for conforming
 compilers.
 
 Unfortunately VC++ will only produce a warning when the wrong number of arguments are passed
@@ -101,12 +101,23 @@ As a simple example let us suppose we have a macro expecting a tuple and generat
 if the tuple has more than 2 elements, otherwise it generates 0. Ordinarily we could
 write:
 
+ #include <boost/preprocessor/comparison/greater.hpp>
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/preprocessor/tuple/size.hpp>
+ #include <boost/vmd/assert_is_tuple.hpp>
+ 
  #define AMACRO(atuple) \
      BOOST_VMD_ASSERT_IS_TUPLE(atuple) \
      BOOST_PP_IIF(BOOST_PP_GREATER(BOOST_PP_TUPLE_SIZE(atuple), 2),1,0)
      
 but for VC++ we must write
 
+ #include <boost/preprocessor/cat.hpp>
+ #include <boost/preprocessor/comparison/greater.hpp>
+ #include <boost/preprocessor/control/iif.hpp>
+ #include <boost/preprocessor/tuple/size.hpp>
+ #include <boost/vmd/assert_is_tuple.hpp>
+ 
  #define AMACRO(atuple) \
      BOOST_PP_CAT \
         ( \

@@ -157,6 +157,8 @@ a function-like macro name and the function-like macro takes two or more paramet
 
 Here is a simple example:
 
+ #include <boost/vmd/is_empty.hpp>
+ 
  #define FMACRO(x,y) any_output
  
  BOOST_VMD_IS_EMPTY(FMACRO)
@@ -171,6 +173,8 @@ cases above a compiler error will result from the use of BOOST_VMD_IS_EMPTY.
 Please note that these two problematical cases are not the same as passing
 an invocation of a function-like macro name to BOOST_VMD_IS_EMPTY, as in
 
+ #include <boost/vmd/is_empty.hpp>
+ 
  BOOST_VMD_IS_EMPTY(FMACRO(arg1,arg2))
  BOOST_VMD_IS_EMPTY(someinput FMACRO(arg1,arg2))
  
@@ -183,7 +187,7 @@ passed is empty. An example of this would be:
 
  #define FMACRO(x) BOOST_PP_CAT(+,x C);
  
-When nothing is passed to FMACRO a preprocessing error will occur.
+When nothing is passed to FMACRO undefined behavior will occur.
 
 So for a standard comforming compiler we have essentially a single corner case where
 the BOOST_VMD_IS_EMPTY does not work and, when it does not work it, produces a
@@ -249,17 +253,19 @@ The failing situation is:
 when the input to BOOST_VMD_IS_EMPTY resolves to only a function-like macro 
 name, and the function-like macro, when passed a single empty argument, expands to 
 a tuple, BOOST_VMD_IS_EMPTY will erroneously return 1 when using the Visual C++ 
-compiler rather than either give a preprocessor error or return 0.
+compiler rather than either give a preprocessing error or return 0.
 
 Here is an example of the failure:
 
+ #include <boost/vmd/is_empty.hpp>
+ 
  #define FMACRO4() ( any_number_of_tuple_elements )
  #define FMACRO5(param) ( any_number_of_tuple_elements )
  #define FMACRO6(param1,param2) ( any_number_of_tuple_elements )
  
  BOOST_VMD_IS_EMPTY(FMACRO4) // erroneously returns 1, instead of 0
  BOOST_VMD_IS_EMPTY(FMACRO5) // erroneously returns 1, instead of 0
- BOOST_VMD_IS_EMPTY(FMACRO6) // erroneously returns 1, instead of generating a preprocessor error
+ BOOST_VMD_IS_EMPTY(FMACRO6) // erroneously returns 1, instead of generating a preprocessing error
  
 As with a standard C++ conforming compiler, we have a rare corner case where
 the BOOST_VMD_IS_EMPTY will not work properly, but unfortunately in this very

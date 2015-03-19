@@ -24,10 +24,10 @@ identifier is found.
 
 V1.8 equivalent
 
-BOOST_VMD_ELEM(0,sequence,identifiers,BOOST_VMD_TYPE_IDENTIFIER,BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX)
+BOOST_VMD_ELEM(0,sequence,(identifiers),BOOST_VMD_TYPE_IDENTIFIER,BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX)
 returns a 3-element tuple where the identifier found is the first tuple element, 
 the rest of the sequence is the second tuple element, and the matching index, starting with
-0, is the 3rd tuple element. If no identifier is found all elements of the tuple are empty.
+0, is the 3rd tuple element. If no identifier is found all elements of the returned tuple are empty.
 
 V1.7
 
@@ -37,10 +37,10 @@ the beginning of a sequence and returned the matching index starting with 1, or
 
 V1.8 equivalent
 
-BOOST_VMD_ELEM(0,sequence,identifiers,BOOST_VMD_TYPE_IDENTIFIER,BOOST_VMD_RETURN_INDEX)
+BOOST_VMD_ELEM(0,sequence,(identifiers),BOOST_VMD_TYPE_IDENTIFIER,BOOST_VMD_RETURN_INDEX)
 returns a 2-element tuple where the identifier found is the first tuple element 
 and the matching index, starting with 0, is the 2nd tuple element. If no identifier 
-is found both elements of the tuple are empty.
+is found both elements of the returned tuple are empty.
 
 V1.7
 
@@ -50,7 +50,7 @@ no identifier is found.
 
 V1.8 equivalent
 
-BOOST_VMD_ELEM(0,sequence,identifiers,BOOST_VMD_TYPE_IDENTIFIER,BOOST_VMD_RETURN_ONLY_AFTER)
+BOOST_VMD_ELEM(0,sequence,(identifiers),BOOST_VMD_TYPE_IDENTIFIER,BOOST_VMD_RETURN_ONLY_AFTER)
 is the exact equivalent.
 
 V1.7
@@ -60,7 +60,7 @@ begins with an identifier, else 0 if it does not.
 
 V1.8 equivalent
 
-BOOST_VMD_ELEM(0,sequence,identifiers,BOOST_VMD_TYPE_IDENTIFIER) returns the identifier found,
+BOOST_VMD_ELEM(0,sequence,(identifiers),BOOST_VMD_TYPE_IDENTIFIER) returns the identifier found,
 otherwise emptiness if not found. You can use 
 BOOST_PP_COMPL(BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(0,sequence,identifiers,BOOST_VMD_TYPE_IDENTIFIER))) 
 as the exact equivalent.

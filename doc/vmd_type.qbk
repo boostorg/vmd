@@ -66,6 +66,8 @@ a v-type as an identifier if you like.
 
 Let us look at an example of how to use BOOST_VMD_IS_TYPE.
 
+ #include <boost/vmd/is_type.hpp>
+ 
  BOOST_VMD_IS_TYPE(input)
  
  returns:

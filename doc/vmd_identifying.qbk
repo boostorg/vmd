@@ -20,7 +20,7 @@ of a function-like macro, and that macro when invoked with no
 parameters returns a tuple, the macro erroneously returns 1, 
 meaning that the input is empty.
 * even if the function-like macro takes one parameter, passing
-emptiness to that macro could cause preprocessor errors.
+emptiness to that macro could cause a preprocessing error.
 
 The obvious way to avoid the BOOST_VMD_IS_EMPTY problem with the 
 identifying macros is to design input so that the name of a function-like
