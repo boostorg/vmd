@@ -91,7 +91,7 @@ This shows how the matching case can be a fixed_value as the macro 'name'.
 
 This shows how the default value can be a fixed_value as the macro 'name'.
 
-[example_switch_defines_t6]
+[example_switch_defines_t7]
 
 This shows that the 'value' and each 'case' matching values can be different
 data types just as long as the types are one which VMD can parse.

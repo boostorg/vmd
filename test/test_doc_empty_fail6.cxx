@@ -1,3 +1,4 @@
+#include <boost/vmd/vmd.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
 int main()
