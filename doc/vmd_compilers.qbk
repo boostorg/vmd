@@ -2,8 +2,9 @@
 
 I have tested this library using gcc/MingW, VC++, and clang targeting gcc on Windows.
 The compilers tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1, 4.6.0,
-4.6.1, 4.6.2, 4.7.0, 4.7.2, 4.8.1, VC++ 8.0, 9.0, 10.0, 11.0, 12.0, and the latest clang build. 
-Other compilers which currently should work with this library are gcc on Linux and clang on Linux.
+4.6.1, 4.6.2, 4.7.0, 4.7.2, 4.8.1, 4.8.2, 4.8.3, 4.8.4, 4.9.0, 4.9.1, 4.9.2, 
+VC++ 8.0, 9.0, 10.0, 11.0, 12.0, and the latest clang build. Other compilers which 
+currently should work with this library are gcc on Linux and clang on Linux.
 
 For VC++ 8.0 the BOOST_VMD_IS_EMPTY and BOOST_VMD_ASSERT_IS_EMPTY macros
 take a single parameter rather than variadic data because this 
