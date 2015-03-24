@@ -9,6 +9,9 @@ import testing ;
 project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>msvc:<warnings>all
                                                  <toolset>msvc:<cxxflags>-wd4003
+                                                 <toolset>sun:<cxxflags>-std=c++11
+                                                 <toolset>intel-linux:<cxxflags>-std=c++11
+                                                 <toolset>clang:<cxxflags>-std=c++11
                                                  <toolset>gcc:<warnings>all
                                                  <toolset>gcc-4.3.0:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.3.0:<cxxflags>-std=c++0x
@@ -145,6 +148,7 @@ test-suite variadic_macro_data
          <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ run test_doc_empty.cpp ]
        [ compile-fail test_doc_empty_fail.cpp ]
+       [ compile-fail test_doc_empty_fail2.cpp ]
        [ compile-fail test_doc_empty_fail3.cpp ]
        [ compile-fail test_doc_empty_fail4.cpp ]
        [ compile-fail test_doc_empty_fail6.cpp ]
