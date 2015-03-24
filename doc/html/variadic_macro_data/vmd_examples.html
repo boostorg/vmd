@@ -1,0 +1,560 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Examples using VMD functionality</title>
+<link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="prev" href="vmd_conv.html" title="Version 1.7 to 1.8 conversion">
+<link rel="next" href="../variadic_macro_data_reference.html" title="Variadic Macro Data Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_conv.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../variadic_macro_data_reference.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="variadic_macro_data.vmd_examples"></a><a class="link" href="vmd_examples.html" title="Examples using VMD functionality">Examples using VMD functionality</a>
+</h2></div></div></div>
+<p>
+      Examples of library use are always highly personal. Any given library employing
+      macro programming can decide what macro facilities are needed based on the
+      library itself and then decide if functionality in a macro library like VMD
+      makes macro programming in that library easier. To that end the examples presented
+      here are highly arbitrary and are just efforts to illustrate possible use of
+      functionality of VMD features without worrying too much if those examples have
+      any practical beneficial use in real programming situations. In these examples
+      I have endeavored, therefore, to present macro programming "snippets"
+      using VMD functionality rather than complete solutions to a given practical
+      problem.
+    </p>
+<h4>
+<a name="variadic_macro_data.vmd_examples.h0"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_examples.switch_macro"></a></span><a class="link" href="vmd_examples.html#variadic_macro_data.vmd_examples.switch_macro">Switch
+      macro</a>
+    </h4>
+<p>
+      In C++ there is a 'switch' statement which we can emulate in macro programming
+      using VMD. For the macro emulation we will have as parameters to our macro:
+    </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+          A value, which can be any data type VMD can parse.
+        </li>
+<li class="listitem">
+          A tuple of calling values.
+        </li>
+<li class="listitem">
+          Variadic parameters, each of which are tuples. Each tuple consists of two
+          elements, the name of a value to match and the name of a macro to call.
+          For the 'default' case the tuple is a single element which is the name
+          of a macro to call.
+        </li>
+</ol></div>
+<p>
+      The macro looks like:
+    </p>
+<pre class="programlisting"><span class="identifier">BOOST_VMD_SWITCH</span><span class="special">(</span><span class="identifier">value</span><span class="special">,</span><span class="identifier">calling_values</span><span class="special">,...)</span>
+</pre>
+<p>
+      We have to be careful not to parse the name of our macro to call in any way
+      since this is a failing condition for BOOST_VMD_IS_EMPTY and subsequently for
+      any parsing of input data we might want to do. Instead we will just extract
+      the calling macro name and just call it, passing the calling values.
+    </p>
+<p>
+      Our processing is:
+    </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+          Convert our variadic parameters to a tuple since access to tuple elements
+          is easier.
+        </li>
+<li class="listitem">
+          Use a BOOST_PP_WHILE loop to find the matching value and extract the calling
+          macro from it. We will use BOOST_VMD_EQUAL to find the matching value.
+        </li>
+<li class="listitem">
+          Call the calling macro with the calling values.
+        </li>
+</ol></div>
+<p>
+      Here is our code:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">detail</span><span class="special">/</span><span class="identifier">setup</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#if</span> <span class="identifier">BOOST_PP_VARIADICS</span>
+
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">arithmetic</span><span class="special">/</span><span class="identifier">inc</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">comparison</span><span class="special">/</span><span class="identifier">equal</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">expr_iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="keyword">while</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">tuple</span><span class="special">/</span><span class="identifier">elem</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">tuple</span><span class="special">/</span><span class="keyword">enum</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">facilities</span><span class="special">/</span><span class="identifier">expand</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">tuple</span><span class="special">/</span><span class="identifier">replace</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">tuple</span><span class="special">/</span><span class="identifier">size</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">variadic</span><span class="special">/</span><span class="identifier">to_tuple</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">variadic</span><span class="special">/</span><span class="identifier">size</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">equal</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">is_empty</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="comment">/*
+
+  State index into state values
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_ELEM_INDEX</span> <span class="number">2</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_ELEM_DEFAULT</span> <span class="number">4</span>
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_ELEM_RESULT</span> <span class="number">5</span>
+
+<span class="comment">/*
+
+  Retrieve the state value, never changes
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_GET_VALUE</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">0</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Retrieve the state tuple of values, never changes
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_GET_CHOICES</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">1</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Retrieve the state index
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_GET_INDEX</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">2</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Retrieve the state tuple of values size, never changes
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_GET_SIZE</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">3</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Retrieve the state default tuple
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_GET_DEFAULT</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">4</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Retrieve the state result tuple
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_GET_RESULT</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">5</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Retrieve the current value tuple
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE_GET_CURRENT_CHOICE</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_ELEM</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_INDEX</span><span class="special">(</span><span class="identifier">state</span><span class="special">),</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_CHOICES</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Expands to the WHILE state
+
+  The state to our WHILE consists of a tuple of elements:
+
+  1: value to compare against
+  2: tuple of values. Each value is a value/macro pair or if the default just a macro
+  3: index into the values
+  4: tuple for default macro. 0 means no default macro, 1 means default macro and then second value is the default macro.
+  5: tuple of result matched. Emptiness means no result yet specified, 0 means no match, 1 means match and second value is the matching macro.
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_STATE</span><span class="special">(</span><span class="identifier">value</span><span class="special">,...)</span> <span class="special">\</span>
+	<span class="special">(</span> <span class="special">\</span>
+	<span class="identifier">value</span><span class="special">,</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_VARIADIC_TO_TUPLE</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">),</span> <span class="special">\</span>
+	<span class="number">0</span><span class="special">,</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_VARIADIC_SIZE</span><span class="special">(</span><span class="identifier">__VA_ARGS__</span><span class="special">),</span> <span class="special">\</span>
+	<span class="special">(</span><span class="number">0</span><span class="special">,),</span> <span class="special">\</span>
+	<span class="special">(,)</span> <span class="special">\</span>
+	<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Sets the state upon a successful match.
+
+  macro = is the matching macro found
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_SUCCESS</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">macro</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_REPLACE_D</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">state</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_STATE_ELEM_RESULT</span><span class="special">,</span> <span class="special">\</span>
+		<span class="special">(</span><span class="number">1</span><span class="special">,</span><span class="identifier">macro</span><span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Sets the state upon final failure to find a match.
+
+  def = default tuple macro, ignored
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_FAILURE</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">def</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_REPLACE_D</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">state</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_STATE_ELEM_RESULT</span><span class="special">,</span> <span class="special">\</span>
+		<span class="special">(</span><span class="number">0</span><span class="special">,)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Increments the state index into the tuple values
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_UPDATE_INDEX</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_TUPLE_REPLACE_D</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">state</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_STATE_ELEM_INDEX</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_PP_INC</span><span class="special">(</span><span class="identifier">BOOST_VMD_SWITCH_STATE_GET_INDEX</span><span class="special">(</span><span class="identifier">state</span><span class="special">))</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Choose our current value's macro as our successful match
+
+  tuple = current tuple to test
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_MATCH</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_VMD_SWITCH_OP_SUCCESS</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">1</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">))</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Update our state index
+
+  tuple = current tuple to test, ignored
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_UPDATE_INDEX</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_VMD_SWITCH_OP_UPDATE_INDEX</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Test our current value against our value to compare against
+
+  tuple = current tuple to test
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_IIF</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_EQUAL_D</span> <span class="special">\</span>
+			<span class="special">(</span> <span class="special">\</span>
+			<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+			<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_VALUE</span><span class="special">(</span><span class="identifier">state</span><span class="special">),</span> <span class="special">\</span>
+			<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">0</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">)</span> <span class="special">\</span>
+			<span class="special">),</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_MATCH</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_UPDATE_INDEX</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+	<span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">)</span>	<span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Set our default macro and update the index in our WHILE state
+
+  tuple = current tuple to test
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_VMD_SWITCH_OP_UPDATE_INDEX</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_PP_TUPLE_REPLACE_D</span> <span class="special">\</span>
+			<span class="special">(</span> <span class="special">\</span>
+			<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+			<span class="identifier">state</span><span class="special">,</span> <span class="special">\</span>
+			<span class="identifier">BOOST_VMD_SWITCH_STATE_ELEM_DEFAULT</span><span class="special">,</span> <span class="special">\</span>
+			<span class="special">(</span><span class="number">1</span><span class="special">,</span><span class="identifier">BOOST_PP_TUPLE_ENUM</span><span class="special">(</span><span class="identifier">tuple</span><span class="special">))</span> <span class="special">\</span>
+			<span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  If our current value is a default macro, just set the default macro,
+  else test our current value.
+
+  tuple = current tuple to test
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_TUPLE</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_IIF</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">BOOST_PP_EQUAL_D</span> <span class="special">\</span>
+			<span class="special">(</span> <span class="special">\</span>
+			<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+			<span class="identifier">BOOST_PP_TUPLE_SIZE</span><span class="special">(</span><span class="identifier">tuple</span><span class="special">),</span> <span class="special">\</span>
+			<span class="number">1</span> <span class="special">\</span>
+			<span class="special">),</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+	<span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">tuple</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Test the current value in our tuple of values
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT_TUPLE</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">state</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_CURRENT_CHOICE</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Choose the default macro as our successful match
+
+  def = default tuple cosnisting of just the default macro name
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_DEFAULT_RET_CHOSEN</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">def</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_VMD_SWITCH_OP_SUCCESS</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">state</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">1</span><span class="special">,</span><span class="identifier">def</span><span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  If the default macro exists, choose it else indicate no macro was found
+
+  def = default tuple cosnisting of just the default macro name
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_DEFAULT_RET</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">def</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_IIF</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">0</span><span class="special">,</span><span class="identifier">def</span><span class="special">),</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_OP_DEFAULT_RET_CHOSEN</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_OP_FAILURE</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+	<span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">,</span><span class="identifier">def</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+ Try to choose the default macro if it exists
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP_DEFAULT</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_VMD_SWITCH_OP_DEFAULT_RET</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">state</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_DEFAULT</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  WHILE loop operation
+
+  Check for the next value match or try to choose the default if all matches have been checked
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_OP</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_IIF</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">BOOST_PP_EQUAL_D</span> <span class="special">\</span>
+			<span class="special">(</span>  <span class="special">\</span>
+			<span class="identifier">d</span><span class="special">,</span> <span class="special">\</span>
+			<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_INDEX</span><span class="special">(</span><span class="identifier">state</span><span class="special">),</span> <span class="special">\</span>
+			<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_SIZE</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+			<span class="special">),</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_OP_DEFAULT</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_OP_TEST_CURRENT</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+	<span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  WHILE loop predicate
+
+  Continue the WHILE loop if a result has not yet been specified
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_PRED</span><span class="special">(</span><span class="identifier">d</span><span class="special">,</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_VMD_IS_EMPTY</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">BOOST_PP_TUPLE_ELEM</span> <span class="special">\</span>
+			<span class="special">(</span> <span class="special">\</span>
+			<span class="number">0</span><span class="special">,</span> <span class="special">\</span>
+			<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_RESULT</span><span class="special">(</span><span class="identifier">state</span><span class="special">)</span> <span class="special">\</span>
+			<span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Invokes the function-like macro
+
+  macro = function-like macro name
+  tparams = tuple of macro parameters
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_PROCESS_INVOKE_MACRO</span><span class="special">(</span><span class="identifier">macro</span><span class="special">,</span><span class="identifier">tparams</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_EXPAND</span><span class="special">(</span><span class="identifier">macro</span> <span class="identifier">tparams</span><span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Processes our WHILE loop result
+
+  callp = tuple of parameters for the called macro
+  result = tuple. The first tuple element is 0
+           if no macro has been found or 1 if a macro
+           has been found. If 1 the second element is
+           the name of a function-like macro
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH_PROCESS</span><span class="special">(</span><span class="identifier">callp</span><span class="special">,</span><span class="identifier">result</span><span class="special">)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_PP_EXPR_IIF</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">0</span><span class="special">,</span><span class="identifier">result</span><span class="special">),</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_PROCESS_INVOKE_MACRO</span> <span class="special">\</span>
+			<span class="special">(</span> <span class="special">\</span>
+			<span class="identifier">BOOST_PP_TUPLE_ELEM</span><span class="special">(</span><span class="number">1</span><span class="special">,</span><span class="identifier">result</span><span class="special">),</span> <span class="special">\</span>
+			<span class="identifier">callp</span> <span class="special">\</span>
+			<span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="comment">/*
+
+  Switch macro
+
+  Parameters are:
+
+  value = value to compare against. May be any VMD data value.
+  callp = tuple of parameters for the called macro
+  variadic parameters = each parameter must be a tuple.
+    Each tuple consists of a two-element tuple. The first element is
+    a value, which may be any VMD data value, and the second element
+    is the name of a function-like macro to be called if the value
+    is equal to the value to compare against. For a default value
+    the tuple is a single-element tuple which contains the name of
+    a function-like macro to be called if no other value matches.
+
+*/</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">BOOST_VMD_SWITCH</span><span class="special">(</span><span class="identifier">value</span><span class="special">,</span><span class="identifier">callp</span><span class="special">,...)</span> <span class="special">\</span>
+	<span class="identifier">BOOST_VMD_SWITCH_PROCESS</span> <span class="special">\</span>
+		<span class="special">(</span> <span class="special">\</span>
+		<span class="identifier">callp</span><span class="special">,</span> <span class="special">\</span>
+		<span class="identifier">BOOST_VMD_SWITCH_STATE_GET_RESULT</span> <span class="special">\</span>
+			<span class="special">(</span> <span class="special">\</span>
+			<span class="identifier">BOOST_PP_WHILE</span> <span class="special">\</span>
+				<span class="special">(</span> <span class="special">\</span>
+				<span class="identifier">BOOST_VMD_SWITCH_PRED</span><span class="special">,</span> <span class="special">\</span>
+				<span class="identifier">BOOST_VMD_SWITCH_OP</span><span class="special">,</span> <span class="special">\</span>
+				<span class="identifier">BOOST_VMD_SWITCH_STATE</span><span class="special">(</span><span class="identifier">value</span><span class="special">,</span><span class="identifier">__VA_ARGS__</span><span class="special">)</span> <span class="special">\</span>
+				<span class="special">)</span> <span class="special">\</span>
+			<span class="special">)</span> <span class="special">\</span>
+		<span class="special">)</span> <span class="special">\</span>
+<span class="comment">/**/</span>
+
+<span class="preprocessor">#endif</span> <span class="comment">/* BOOST_PP_VARIADICS */</span>
+</pre>
+<p>
+      The code is fairly involved but it is commented sso that it can be understood.
+    </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2015 Tropic Software East Inc</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="vmd_conv.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../variadic_macro_data_reference.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>
