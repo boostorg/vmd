@@ -76,6 +76,10 @@ int main()
   
   BOOST_VMD_ASSERT(BOOST_VMD_IS_TYPE(BOOST_PP_SEQ_ELEM(1,A_SEQ2)))
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

@@ -59,6 +59,10 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN3));
   BOOST_TEST(!BOOST_VMD_IS_EMPTY(FUNC_GEN4));
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif /* BOOST_PP_VARIADICS */
 
   return boost::report_errors();

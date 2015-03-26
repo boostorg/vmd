@@ -52,6 +52,10 @@ int main()
 
   BOOST_TEST(!BOOST_VMD_IS_TUPLE((y)2(x)));
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

@@ -30,6 +30,10 @@ int main()
   BOOST_TEST(BOOST_VMD_NOT_EQUAL(bbb,ccc));
   BOOST_TEST(BOOST_VMD_NOT_EQUAL(eee,eee));
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

@@ -20,6 +20,10 @@ int main()
   BOOST_TEST(BOOST_VMD_IS_LIST(AN_EMPTY_LIST));
   BOOST_TEST(!BOOST_VMD_IS_LIST(AN_EMPTY_LIST_PLUS));
 
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

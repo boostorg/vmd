@@ -37,6 +37,10 @@ int main()
   	);
 #endif
 	
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

@@ -35,6 +35,10 @@ int main()
 	BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),eeb)
 	BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),grist)
 	
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   	return boost::report_errors();

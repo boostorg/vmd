@@ -54,6 +54,10 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(0,253 num,BOOST_VMD_RETURN_ONLY_AFTER,BOOST_VMD_TYPE_NUMBER)));
   BOOST_TEST(!BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(0,17 181 201 somevalue num,BOOST_VMD_RETURN_ONLY_AFTER,BOOST_VMD_TYPE_NUMBER)));
 	
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

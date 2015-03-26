@@ -8,7 +8,9 @@
 int main()
   {
   
-#if BOOST_PP_VARIADICS && !BOOST_VMD_MSVC
+#if BOOST_PP_VARIADICS
+
+#if !BOOST_VMD_MSVC
 
   #define FUNC_GEN(x,y) anything
   
@@ -18,6 +20,10 @@ int main()
 
   typedef char BOOST_VMD_IS_EMPTY_ERROR[-1];
    
+#endif
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif /* BOOST_PP_VARIADICS */
 
   return boost::report_errors();

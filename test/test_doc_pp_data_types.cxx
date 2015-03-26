@@ -111,6 +111,10 @@ int main()
  BOOST_TEST(!BOOST_VMD_IS_PARENS_EMPTY(TUPLE));
  BOOST_TEST(!BOOST_VMD_IS_PARENS_EMPTY(SEQ));
  
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

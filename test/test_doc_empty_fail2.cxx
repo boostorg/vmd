@@ -4,7 +4,9 @@
 int main()
   {
   
-#if BOOST_PP_VARIADICS && !BOOST_VMD_MSVC
+#if BOOST_PP_VARIADICS
+
+#if !BOOST_VMD_MSVC
 
   #define VMACRO(x,...) x __VA_ARGS__
   
@@ -14,6 +16,12 @@ int main()
   
   typedef char BOOST_VMD_GENERATE_ERROR[-1];
    
+#endif
+
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

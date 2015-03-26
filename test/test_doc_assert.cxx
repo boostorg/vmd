@@ -34,6 +34,10 @@ int main()
  BOOST_TEST(AMACRO((1,2,3)));
  BOOST_TEST(!AMACRO((1,2)));
  
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

@@ -23,6 +23,10 @@ int main()
   BOOST_VMD_ASSERT_IS_NUMBER(BOOST_PP_SEQ_ELEM(2,A_SEQ))
   BOOST_VMD_ASSERT_IS_NUMBER(BOOST_PP_LIST_AT(A_LIST,2))
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

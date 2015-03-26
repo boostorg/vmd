@@ -18,8 +18,6 @@ int main()
   
 #else
   
-  typedef char BOOST_VMD_TEST_FAIL_IS_EMPTY[-1];
-  
 #endif
 
   return boost::report_errors();

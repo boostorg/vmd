@@ -40,6 +40,10 @@ int main()
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(3,ASEQUENCE4,BOOST_VMD_RETURN_ONLY_AFTER)));
   BOOST_TEST_EQ(BOOST_VMD_SIZE(BOOST_VMD_ELEM(1,ASEQUENCE2,BOOST_VMD_RETURN_ONLY_AFTER)),3);
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

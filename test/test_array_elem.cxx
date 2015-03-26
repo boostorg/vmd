@@ -61,6 +61,10 @@ int main()
   BOOST_TEST_EQ(BOOST_PP_ARRAY_SIZE(BOOST_VMD_ELEM(2,ASEQUENCE5,BOOST_VMD_TYPE_ARRAY)),0);
 #endif
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

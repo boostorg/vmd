@@ -38,6 +38,10 @@ int main()
 	BOOST_TEST(!BOOST_VMD_IS_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),eeb));
 	BOOST_TEST_EQ(BOOST_VMD_IS_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),(babble,num,whatever)),1);
 	
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   	return boost::report_errors();

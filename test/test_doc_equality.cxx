@@ -65,6 +65,10 @@ int main()
  
  BOOST_TEST(!BOOST_VMD_EQUAL(A_TUPLE_1,A_TUPLE_2));
  
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

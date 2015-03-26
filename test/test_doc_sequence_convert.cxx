@@ -35,6 +35,10 @@ int main()
  BOOST_TEST_EQ(BOOST_PP_TUPLE_ELEM(1,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_TO_TUPLE(SEQUENCE_MULTI))),1);
  BOOST_TEST(BOOST_VMD_IS_TYPE(BOOST_PP_VARIADIC_ELEM(0,BOOST_VMD_ENUM(SEQUENCE_MULTI_2))));
  
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

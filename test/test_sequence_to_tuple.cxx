@@ -47,6 +47,10 @@ int main()
   BOOST_TEST(BOOST_VMD_IS_LIST(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_TO_TUPLE(ASEQUENCE))));
   BOOST_TEST_EQ(BOOST_PP_SEQ_ELEM(2,BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_TO_TUPLE(ASEQUENCE2))),27);
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

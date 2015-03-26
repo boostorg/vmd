@@ -8,7 +8,9 @@
 int main()
   {
   
-#if BOOST_PP_VARIADICS && !BOOST_VMD_MSVC
+#if BOOST_PP_VARIADICS
+
+#if !BOOST_VMD_MSVC
 
   #define FMACRO6(param1,param2) ( any_number_of_tuple_elements )
   
@@ -18,6 +20,12 @@ int main()
   
   typedef char BOOST_VMD_GENERATE_ERROR[-1];
    
+#endif
+
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

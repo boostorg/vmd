@@ -19,6 +19,10 @@ int main()
  BOOST_TEST(BOOST_VMD_IS_IDENTIFIER(blue));
  BOOST_TEST(!BOOST_VMD_IS_IDENTIFIER(purple));
 
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

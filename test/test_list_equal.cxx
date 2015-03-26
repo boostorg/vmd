@@ -39,6 +39,10 @@ int main()
   BOOST_TEST(BOOST_VMD_NOT_EQUAL(ALIST4,ALIST6,BOOST_VMD_TYPE_LIST));
   BOOST_TEST(BOOST_VMD_NOT_EQUAL(ATUPLE,ATUPLE2,BOOST_VMD_TYPE_LIST));
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

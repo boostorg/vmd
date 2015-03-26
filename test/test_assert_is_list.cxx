@@ -17,6 +17,10 @@ int main()
   BOOST_VMD_ASSERT_IS_LIST(A_LIST)
   BOOST_VMD_ASSERT_IS_LIST(BOOST_PP_NIL)
 
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

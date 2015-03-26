@@ -16,6 +16,10 @@ int main()
  BOOST_TEST(!BOOST_VMD_IS_TYPE(BOOST_VMD_TYPE_IDENTIFIER DATA));
  BOOST_TEST(!BOOST_VMD_IS_TYPE(( BOOST_VMD_TYPE_EMPTY )));
  
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

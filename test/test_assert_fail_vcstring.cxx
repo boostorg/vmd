@@ -14,8 +14,6 @@ int main()
   
 #else
   
-  typedef char BOOST_VMD_VC_FAILURE[-1];
-   
 #endif
 
   return boost::report_errors();

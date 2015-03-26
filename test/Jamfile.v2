@@ -12,7 +12,9 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>sun:<cxxflags>-std=c++11
                                                  <toolset>intel-linux:<cxxflags>-std=c++11
                                                  <toolset>clang:<cxxflags>-std=c++11
+                                                 <toolset>clang:<cxxflags>-pedantic-errors
                                                  <toolset>gcc:<warnings>all
+                                                 <toolset>gcc:<cxxflags>-pedantic-errors
                                                  <toolset>gcc-4.3.0:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.3.0:<cxxflags>-std=c++0x
                                                  <toolset>gcc-4.3.0:<cxxflags>-U__STRICT_ANSI__

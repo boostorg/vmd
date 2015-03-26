@@ -57,6 +57,10 @@ int main()
  BOOST_TEST(BOOST_VMD_EQUAL(A_SEQUENCE7,168,BOOST_VMD_TYPE_NUMBER));
  BOOST_TEST(BOOST_VMD_NOT_EQUAL(A_SEQUENCE7,168,BOOST_VMD_TYPE_SEQ));
  
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

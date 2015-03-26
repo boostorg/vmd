@@ -33,6 +33,10 @@ int main()
   BOOST_TEST(BOOST_VMD_NOT_EQUAL(ASEQ4,ASEQ5));
   BOOST_TEST(BOOST_VMD_NOT_EQUAL(ASEQ7,ASEQ8));
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

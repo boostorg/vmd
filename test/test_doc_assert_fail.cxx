@@ -12,7 +12,9 @@
 int main()
   {
   
-#if BOOST_PP_VARIADICS && BOOST_VMD_ASSERT_DATA
+#if BOOST_PP_VARIADICS
+
+#if BOOST_VMD_ASSERT_DATA
  
 #if BOOST_VMD_MSVC
 
@@ -36,6 +38,12 @@ int main()
 #else
  
   typedef char BOOST_VMD_DOC_ASSERT_FAIL_ERROR[-1];
+  
+#endif
+
+#else
+
+BOOST_ERROR("No variadic macro support");
   
 #endif
 

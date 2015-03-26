@@ -1,11 +1,11 @@
 [section:vmd_compilers Compilers]
 
-On Windows I have successfully tested this library using gcc/MingW, VC++, and clang targeting gcc.
-The compilers tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1, 4.6.0,
+On Windows I have tested this library using gcc/MingW, VC++, and clang targeting gcc.
+The compilers tested are gcc 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1, 4.6.0,
 4.6.1, 4.6.2, 4.7.0, 4.7.2, 4.8.1, 4.8.2, 4.8.3, 4.8.4, 4.9.0, 4.9.1, 4.9.2, 
 VC++ 8.0, 9.0, 10.0, 11.0, 12.0, and the latest clang build from source.
 
-On Linux I have successfully tested this library using gcc 4.4.7, 4.6.4, 4.7.3, 4.8.2, 4.8.3, 4.9.1, 
+On Linux I have tested this library using gcc 4.4.7, 4.6.4, 4.7.3, 4.8.2, 4.8.3, 4.9.1, 
 clang 3.3, 3.4, 3.5, and the latest clang build from source, Intel C++ 12.1. 13.0, 14.0, 15.0, and 
 Oracle Solaris Studio 12.2, 12.3, and 12.4.
 

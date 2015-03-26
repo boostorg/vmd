@@ -34,8 +34,6 @@ int main()
   	
 #else
   
-  typedef char BOOST_VMD_TEST_FAIL_IDENTIFIER[-1];
-  
 #endif
 
   return boost::report_errors();

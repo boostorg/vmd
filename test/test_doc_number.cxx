@@ -20,6 +20,10 @@ int main()
  BOOST_TEST(!BOOST_VMD_IS_NUMBER(245e2));
  BOOST_TEST(!BOOST_VMD_IS_NUMBER((44)));
  
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

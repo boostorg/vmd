@@ -27,6 +27,10 @@ int main()
  BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(5,A_SEQUENCE)));
  BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(0,AN_EMPTY_SEQUENCE)));
  
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

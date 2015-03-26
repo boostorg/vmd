@@ -48,6 +48,10 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_MULTI(ASEQUENCE4));
   BOOST_TEST(BOOST_VMD_IS_MULTI(ASEQUENCE5));
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

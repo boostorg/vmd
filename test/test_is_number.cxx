@@ -31,6 +31,10 @@ BOOST_TEST(!BOOST_VMD_IS_NUMBER(BOOST_PP_LIST_AT(A_LIST,1)));
 BOOST_TEST(!BOOST_VMD_IS_NUMBER((XXX)));
 BOOST_TEST(!BOOST_VMD_IS_NUMBER());
   
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();

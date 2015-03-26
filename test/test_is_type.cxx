@@ -26,6 +26,10 @@ int main()
 	BOOST_TEST(BOOST_VMD_IS_TYPE(BOOST_PP_LIST_AT(A_LIST,1)));
 	BOOST_TEST(!BOOST_VMD_IS_TYPE(KDATA));
 	
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   	return boost::report_errors();

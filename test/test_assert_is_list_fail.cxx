@@ -9,7 +9,9 @@
 int main()
   {
   
-#if BOOST_PP_VARIADICS && BOOST_VMD_ASSERT_DATA
+#if BOOST_PP_VARIADICS
+
+#if BOOST_VMD_ASSERT_DATA
 
   BOOST_VMD_ASSERT_IS_LIST((4,(x)))
   
@@ -17,6 +19,12 @@ int main()
 
   typedef char BOOST_VMD_ASSERT_IS_LIST_ERROR[-1];
    
+#endif
+
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif
 
   return boost::report_errors();
