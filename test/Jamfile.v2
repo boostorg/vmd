@@ -9,8 +9,8 @@ import testing ;
 project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>msvc:<warnings>all
                                                  <toolset>msvc:<cxxflags>-wd4003
-                                                 <toolset>sun:<cxxflags>-std=c++11
                                                  <toolset>intel-linux:<cxxflags>-std=c++11
+                                                 <toolset>sun:<cxxflags>-std=c++11
                                                  <toolset>clang:<cxxflags>-std=c++11
                                                  <toolset>clang:<cxxflags>-pedantic-errors
                                                  <toolset>gcc:<warnings>all
