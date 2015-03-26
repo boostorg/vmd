@@ -13,10 +13,6 @@ int main()
 
   BOOST_TEST(BOOST_VMD_IS_LIST((4,(x))));
   
-#else
-
-  BOOST_ERROR("No variadic macro support");
-   
 #endif
 
   return boost::report_errors();

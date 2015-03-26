@@ -16,8 +16,6 @@ int main()
   
   BOOST_VMD_ASSERT(BOOST_VMD_IS_NUMBER(BOOST_PP_LIST_AT(A_LIST,1)),BOOST_VMD_TEST_FAIL_IS_NUMBER)
   
-#else
-  
 #endif
 
   return boost::report_errors();

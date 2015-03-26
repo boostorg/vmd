@@ -15,10 +15,6 @@ int main()
   	BOOST_VMD_IS_ARRAY((3,(3,5,6) xc))
   	);
   
-#else
-
-  BOOST_ERROR("No variadic macro support");
-   
 #endif
 
   return boost::report_errors();

@@ -20,8 +20,6 @@ int main()
   
   BOOST_VMD_ASSERT(BOOST_VMD_IS_IDENTIFIER(JDATA,zzz),BOOST_VMD_TEST_FAIL_IS_IDENTIFIER)
   
-#else
-  
 #endif
 
   return boost::report_errors();

@@ -32,8 +32,6 @@ int main()
   	BOOST_VMD_TEST_FAIL_IDENTIFIER
   	)
   	
-#else
-  
 #endif
 
   return boost::report_errors();

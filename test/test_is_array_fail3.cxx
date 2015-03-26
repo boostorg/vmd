@@ -15,10 +15,6 @@ int main()
   	BOOST_VMD_IS_ARRAY(tree)
   	);
   
-#else
-
-  BOOST_ERROR("No variadic macro support");
-   
 #endif
 
   return boost::report_errors();

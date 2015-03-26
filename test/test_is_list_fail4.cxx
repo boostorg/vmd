@@ -12,10 +12,6 @@ int main()
   
   BOOST_TEST(BOOST_VMD_IS_LIST((tt,(5,(uu,BOOST_PP_NIL yy)))));
   
-#else
-
-  BOOST_ERROR("No variadic macro support");
-   
 #endif
 
   return boost::report_errors();
