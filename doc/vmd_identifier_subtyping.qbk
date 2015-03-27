@@ -78,7 +78,7 @@ give it a uniqueness which should not be duplicated:
  
  #define BOOST_VMD_DETECT_BOOST_VMD_TYPE_UDEF_SHAPES_BOOST_VMD_TYPE_UDEF_SHAPES
 
-[heading Subset register all identifiers of the subtype]
+[heading Subtype register all identifiers of the subtype]
 
 The macro to register an identifier subset starts with BOOST_VMD_SUBTYPE_REGISTER_
 and you append to it each identifier in the subset. This is very much like the
@@ -94,7 +94,7 @@ For our udef user-defined subtype this would be:
  #define BOOST_VMD_SUBTYPE_REGISTER_UDEF_TRIANGLE (BOOST_VMD_TYPE_UDEF_SHAPES,UDEF_TRIANGLE)
  #define BOOST_VMD_SUBTYPE_REGISTER_UDEF_HEXAGON (BOOST_VMD_TYPE_UDEF_SHAPES,UDEF_HEXAGON)
 
-[heading Subset register the v-type name for the subtype]
+[heading Subtype register the v-type name for the subtype]
 
 Doing a subset register of the actual udef v-type is fairly easy once we understand
 how to register an identifier subset. The only particular thing to realize is

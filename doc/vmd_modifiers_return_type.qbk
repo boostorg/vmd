@@ -41,6 +41,9 @@ accurate type. In this situation by default the
 BOOST_VMD_RETURN_TYPE modifier is internally in effect without having 
 to be specified.
 
+If more than one of the return type modifiers are specified as optional
+parameters last one specified is in effect.
+
 [heading Usage with BOOST_VMD_GET_TYPE]
 
 The only macro in which VMD without the use of modifiers is being asked 

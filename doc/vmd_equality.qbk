@@ -127,8 +127,8 @@ because lists are more specific than arrays. They can be used as in:
      
 The next three are valid tuples but invalid arrays. The BOOST_VMD_EQUAL 
 macro attempts to parse them as the most specific type they can be, which is an 
-array. But the attempt to parse them as arrays will lead to a preprocessing
-error because the number which signifies the size of the array is invalid as
+array. But the attempt to parse them as arrays will lead to UB
+because the number which signifies the size of the array is invalid as
 a number. Now let us suppose we should parse them as the less specific type
 of a tuple instead of as an array. This will still give UB
 if we will attempt to compare the first tuple element against a corresponding
@@ -142,8 +142,8 @@ because it is not a data type VMD can parse.
 
 The next three are valid tuples but invalid lists. The BOOST_VMD_EQUAL 
 macro attempts to parse them as the most specific type they can be, which is
-a list. But the attempt to parse them as lists will lead to a preprocessing
-error because the identifier which signifies the end-of-list is invalid as
+a list. But the attempt to parse them as lists will lead to UB
+because the identifier which signifies the end-of-list is invalid as
 an identifier. Now let us suppose we should parse them as the less specific type
 of a tuple instead of as a list. This will still give UB
 if we will attempt to compare the second tuple element against a corresponding
@@ -174,7 +174,7 @@ before it tests for the equality of each element. This is just one example where
 equality may fail before UB is generated when BOOST_VMD_EQUAL attempts to
 parse a data type which it cannot handle. Nevertheless the general rule should still be considered
 that for BOOST_VMD_EQUAL/BOOT_VMD_NOT_EQUAL all data types, even an element of a composite data
-type, must be a VMD data type if the macro is to work properly.
+type, must be a VMD data type if the macro is to work properly, else UB could occur.
 
 [heading Usage]
 

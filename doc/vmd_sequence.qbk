@@ -115,7 +115,7 @@ is as a whole, using any of the VMD identifying macros already discussed, if the
 type is not one that VMD can handle.
 
 On the other hand you can still use VMD to parse such tokens in the input if you use
-Boost PP data types as top-level v-types to do so. Such as:
+Boost PP data types as top-level data types to do so. Such as:
 
  ( &name ) identifier ( param )
  
