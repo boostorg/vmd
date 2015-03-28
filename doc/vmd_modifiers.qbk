@@ -42,7 +42,7 @@ functionality, set of identifiers, and may be used as optional
 parameters in one or more designated macros depending on the specific
 modifier type. 
 
-When more than one specific modifier from a particular type of modifier is 
+When more than one mutually exclusive specific modifier from a particular type of modifier is 
 specified as an optional parameter the last specified takes effect. This
 allows the programmer to override a specific modifier by adding the
 overridden identifier as an optional argument to the end of the
