@@ -54,7 +54,7 @@ int main()
 
   #define A_TUPLE (*,#,zzz ())
   #define JDATA somevalue
-  #define A_SEQ (num (split) clear)($)(#)
+  #define A_SEQ (num (split) clear)(%)(#)
   #define A_LIST (eeb (5),(grist,(&,BOOST_PP_NIL)))
 
   BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_ELEM(0,ATUPLE,BOOST_VMD_RETURN_ONLY_AFTER,BOOST_VMD_TYPE_IDENTIFIER)));

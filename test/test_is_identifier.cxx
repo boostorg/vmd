@@ -15,7 +15,7 @@ int main()
 
 	#define A_TUPLE (*,#,zzz)
 	#define JDATA somevalue
-	#define A_SEQ (num)($)(#)
+	#define A_SEQ (num)(%)(#)
 	#define A_LIST (eeb,(grist,(&,BOOST_PP_NIL)))
 	
     #define BOOST_VMD_REGISTER_zzz (zzz)

@@ -26,7 +26,7 @@ int main()
   #define KDATA (ggh)
   #define NOT_TUPLE y6()
   #define NOT_TUPLE2 &(kkkgg,(e))
-  #define A_SEQ (r)($)(#)
+  #define A_SEQ (r)(%)(#)
   #define AN_ARRAY (4,(5,7,f,x))
   #define A_LIST (e,(g,(&,BOOST_PP_NIL)))
   
