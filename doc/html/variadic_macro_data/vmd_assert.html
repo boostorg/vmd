@@ -4,10 +4,10 @@
 <title>Asserting and data types</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="prev" href="vmd_identifying.html" title="Identifying data types">
-<link rel="next" href="vmd_sequence.html" title="Parsing v-type sequences">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="prev" href="vmd_identifier_subtype.html" title="Identifier subtypes">
+<link rel="next" href="vmd_identity.html" title="Generating emptiness and identity">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr>
@@ -20,19 +20,19 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="vmd_identifying.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_sequence.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="vmd_identifier_subtype.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_identity.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
 <a name="variadic_macro_data.vmd_assert"></a><a class="link" href="vmd_assert.html" title="Asserting and data types">Asserting and data types</a>
 </h2></div></div></div>
 <p>
-      The VMD macros for identifying v-types work best when the macro logic can take
-      different paths depending on the type of data being passed for a macro parameter.
-      But occasionally the preprocessor metaprogrammer wants to simply verify that
-      the macro parameter data is of the correct v-type, else a preprocessor error
-      should be generated to notify the programmer invoking the macro that the data
-      passed is the incorrect type.
+      The VMD macros for identifying data types work best when the macro logic can
+      take different paths depending on the type of data being passed for a macro
+      parameter. But occasionally the preprocessor metaprogrammer wants to simply
+      verify that the macro parameter data is of the correct data type, else a preprocessing
+      error should be generated to notify the programmer invoking the macro that
+      the data passed is the incorrect type.
     </p>
 <h4>
 <a name="variadic_macro_data.vmd_assert.h0"></a>
@@ -40,20 +40,20 @@
       BOOST_VMD_ASSERT</a>
     </h4>
 <p>
-      The Boost PP library has a macro which produces a preprocessor error when the
-      condition passed to it is 0. This macro is called BOOST_PP_ASSERT. The macro
-      produces a preprocessor error by forcing a call to an internal macro with the
-      wrong number of arguments. According to the C++ standard this should always
-      cause an immediate preprocessor error for conforming compilers.
+      The Boost PP library has a macro which produces a preprocessing error when
+      the condition passed to it is 0. This macro is called BOOST_PP_ASSERT. The
+      macro produces a preprocessor error by forcing a call to an internal macro
+      with the wrong number of arguments. According to the C++ standard this should
+      always cause an immediate preprocessing error for conforming compilers.
     </p>
 <p>
       Unfortunately VC++ will only produce a warning when the wrong number of arguments
       are passed to a macro. Therefore the BOOST_PP_ASSERT macro does not produce
       a preprocessing error using VC++. Amazingly enough there appears to be no other
-      way in which VC++ can be forced to issue a preprocessng error by invoking a
-      macro ( if you find one please tell me about it ). However one can create invalid
-      C++ as the output from a macro invocation which causes VC++ to produce a compiler
-      error when the VC++ compiler later encounters the construct.
+      way in which VC++ can be forced to issue a preprocessing error by invoking
+      a macro ( if you find one please tell me about it ). However one can create
+      invalid C++ as the output from a macro invocation which causes VC++ to produce
+      a compiler error when the VC++ compiler later encounters the construct.
     </p>
 <p>
       This is what the macro BOOST_VMD_ASSERT does. It takes the same conditional
@@ -95,11 +95,11 @@
 </pre>
 <h4>
 <a name="variadic_macro_data.vmd_assert.h2"></a>
-      <span class="phrase"><a name="variadic_macro_data.vmd_assert.assertions_for_vmd_data_types"></a></span><a class="link" href="vmd_assert.html#variadic_macro_data.vmd_assert.assertions_for_vmd_data_types">Assertions
-      for VMD data types </a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_assert.assertions_for_data_types"></a></span><a class="link" href="vmd_assert.html#variadic_macro_data.vmd_assert.assertions_for_data_types">Assertions
+      for data types </a>
     </h4>
 <p>
-      The v-types have their own assertion macros. These are largely just shortcuts
+      The data types have their own assertion macros. These are largely just shortcuts
       for passing the result of the identifying macros to BOOST_VMD_ASSERT. These
       assertion macros are:
     </p>
@@ -108,10 +108,10 @@
           emptiness, BOOST_VMD_ASSERT_IS_EMPTY
         </li>
 <li class="listitem">
-          v-identifier, BOOST_VMD_ASSERT_IS_IDENTIFIER
+          identifier, BOOST_VMD_ASSERT_IS_IDENTIFIER
         </li>
 <li class="listitem">
-          v-number, BOOST_VMD_ASSERT_IS_NUMBER
+          number, BOOST_VMD_ASSERT_IS_NUMBER
         </li>
 <li class="listitem">
           array, BOOST_VMD_ASSERT_IS_ARRAY
@@ -124,6 +124,9 @@
         </li>
 <li class="listitem">
           tuple, BOOST_VMD_ASSERT_IS_TUPLE
+        </li>
+<li class="listitem">
+          type, BOOST_VMD_ASSERT_IS_TYPE
         </li>
 </ul></div>
 <p>
@@ -151,13 +154,14 @@
 <p>
       or include the specific header:
     </p>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">is_empty</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_EMPTY</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">is_identifier</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_IDENTIFIER</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">is_number</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_NUMBER</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">array</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_ARRAY</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_LIST</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">seq</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_SEQ</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">tuple</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_TUPLE</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_empty</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_EMPTY</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_identifier</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_IDENTIFIER</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_number</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_NUMBER</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_array</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_ARRAY</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_LIST</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_seq</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_SEQ</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_tuple</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_TUPLE</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_type</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">// BOOST_VMD_ASSERT_IS_TYPE</span>
 </pre>
 <h4>
 <a name="variadic_macro_data.vmd_assert.h4"></a>
@@ -165,8 +169,8 @@
       and VC++ </a>
     </h4>
 <p>
-      The VC++ compiler has a quirk when dealing with BOOST_VMD_ASSERT and the v-type
-      assert macros. If you invoke one of the assert macros within another macro
+      The VC++ compiler has a quirk when dealing with BOOST_VMD_ASSERT and the data
+      type assert macros. If you invoke one of the assert macros within another macro
       which would normally generate output preprocessor tokens, it is necessary when
       using VC++ to concatenate the result of the assert macro to whatever other
       preprocessor data is being generated, even if the assert macro does not generate
@@ -177,14 +181,25 @@
       1 if the tuple has more than 2 elements, otherwise it generates 0. Ordinarily
       we could write:
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">AMACRO</span><span class="special">(</span><span class="identifier">atuple</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">comparison</span><span class="special">/</span><span class="identifier">greater</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">tuple</span><span class="special">/</span><span class="identifier">size</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_tuple</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">AMACRO</span><span class="special">(</span><span class="identifier">atuple</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_VMD_ASSERT_IS_TUPLE</span><span class="special">(</span><span class="identifier">atuple</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">BOOST_PP_GREATER</span><span class="special">(</span><span class="identifier">BOOST_PP_TUPLE_SIZE</span><span class="special">(</span><span class="identifier">atuple</span><span class="special">),</span> <span class="number">2</span><span class="special">),</span><span class="number">1</span><span class="special">,</span><span class="number">0</span><span class="special">)</span>
 </pre>
 <p>
       but for VC++ we must write
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">AMACRO</span><span class="special">(</span><span class="identifier">atuple</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">cat</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">comparison</span><span class="special">/</span><span class="identifier">greater</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">tuple</span><span class="special">/</span><span class="identifier">size</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">assert_is_tuple</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">AMACRO</span><span class="special">(</span><span class="identifier">atuple</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_CAT</span> <span class="special">\</span>
        <span class="special">(</span> <span class="special">\</span>
        <span class="identifier">BOOST_VMD_ASSERT_IS_TUPLE</span><span class="special">(</span><span class="identifier">atuple</span><span class="special">),</span> <span class="special">\</span>
@@ -199,11 +214,11 @@
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2015 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="vmd_identifying.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_sequence.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="vmd_identifier_subtype.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_identity.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

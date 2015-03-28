@@ -4,8 +4,10 @@
 
 The various macros for identifying VMD data types complement
 the ability to identify emptiness using BOOST_VMD_IS_EMPTY.
-They also share with BOOST_VMD_IS_EMPTY the inherent flaw
-mentioned when discussing this macro, since they themselves
+The general name I will use in this documentation for these 
+specific macros is "identifying macros." The identifying macros
+also share with BOOST_VMD_IS_EMPTY the inherent flaw
+mentioned when discussing BOOST_VMD_IS_EMPTY, since they themselves
 use BOOST_VMD_IS_EMPTY to determine that the input has ended.
 
 To recapitulate the flaw with BOOST_VMD_IS_EMPTY:
@@ -17,27 +19,13 @@ more parameters, a preprocessing error will occur.
 of a function-like macro, and that macro when invoked with no 
 parameters returns a tuple, the macro erroneously returns 1, 
 meaning that the input is empty.
+* even if the function-like macro takes one parameter, passing
+emptiness to that macro could cause a preprocessing error.
 
-For the macros which identify Boost PP data types the use
-of BOOST_VMD_IS_EMPTY occurs only after these macros recognize
-the beginning tuple in the input. So if the input begins with
-the situation above that causes BOOST_VMD_IS_EMPTY to work incorrectly,
-the Boost PP data type identifying macros will still work correctly.
-It is only if, when a beginning tuple has been found, that if the
-situation above occurs that induces the flaw with BOOST_VMD_IS_EMPTY 
-with the rest of the input that we will have the same problem as 
-BOOST_VMD_IS_EMPTY.
-
-For the macros which identify v-identifiers and v-numbers the use of
-BOOST_VMD_IS_EMPTY occurs not only with the beginning input but with
-any input still remaining after the possible beginning v-identifier
-or v-number. So the same problem of BOOST_VMD_IS_EMPTY will occur 
-with these identifying macros.
-
-The obvious way to avoid the BOOST_VMD_IS_EMPTY problem wih the 
+The obvious way to avoid the BOOST_VMD_IS_EMPTY problem with the 
 identifying macros is to design input so that the name of a function-like
 macro is never passed as a parameter. This can be done, if one uses
-VMD and does design situations where the input could contain
+VMD and has situations where the input could contain
 a function-like macro name, by having that function-like macro name placed
 within a Boost PP data type, such as a tuple, without attempting to identify
 the type of the tuple element using VMD. In other word if the input is:
@@ -62,7 +50,7 @@ BOOST_VMD_IS_EMPTY problem will occur.
 The VMD identifying macros give the preprocessor metaprogrammer a great amount
 of flexibility when designing macros. It is not merely the flexibility of allowing
 direct parameters to a macro to be different data types, and having the macro work
-differently depending on the type of data passed to it, it is also the flexibility
+differently depending on the type of data passed to it, but it is also the flexibility
 of allowing individual elements of the higher level Boost PP data types to be 
 different data types and have the macro work correctly depending on the type of data 
 type passed as part of those elements.

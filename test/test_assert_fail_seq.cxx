@@ -2,7 +2,7 @@
 #include <boost/vmd/vmd.hpp>
 #else
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/seq.hpp>
+#include <boost/vmd/elem.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
@@ -16,11 +16,7 @@ int main()
 
   #define A_SEQ_PLUS (mmf)(34)(^^)(!) 456
   
-  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_SEQ_ELEM(1,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_SEQ(A_SEQ_PLUS))),456),BOOST_VMD_TEST_FAIL_SEQ)
-  
-#else
-  
-  typedef char BOOST_VMD_TEST_FAIL_SEQ[-1];
+  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_SEQ_ELEM(1,BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_ELEM(0,A_SEQ_PLUS,BOOST_VMD_RETURN_AFTER,BOOST_VMD_TYPE_SEQ))),456),BOOST_VMD_TEST_FAIL_SEQ)
   
 #endif
 

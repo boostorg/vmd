@@ -4,10 +4,10 @@
 <title>Visual C++ gotchas in VMD</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
 <link rel="prev" href="vmd_dynamic_typing.html" title="Input as dynamic types">
-<link rel="next" href="../variadic_macro_data_reference.html" title="Variadic Macro Data Reference">
+<link rel="next" href="vmd_conv.html" title="Version 1.7 to 1.8 conversion">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr>
@@ -20,7 +20,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="vmd_dynamic_typing.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../variadic_macro_data_reference.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="vmd_dynamic_typing.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_conv.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -48,16 +48,16 @@
         </li>
 <li class="listitem">
           The BOOST_VMD_ASSERT macro, and the corresponding individual VMD ASSERT
-          macros for the various VMD data types, do not cause an immediate compiler
-          error, but instead generate invalid C++ if the ASSERT occurs.
+          macros for the various data types, do not cause an immediate compiler error,
+          but instead generate invalid C++ if the ASSERT occurs.
         </li>
 <li class="listitem">
           When the BOOST_VMD_ASSERT macro, or one of the corresponding individual
-          VMD ASSERT macros for the various VMD data types, does not generate an
-          error, and the macro in which it is being used does generate some output,
-          it is necessary to use BOOST_PP_CAT to concatenate the empty result of
-          the VMD ASSERT macro with the normally generated output to correctly generate
-          the final expansion of the macro in which the VMD ASSERT occurs.
+          VMD ASSERT macros for the various data types, does not generate an error,
+          and the macro in which it is being used does generate some output, it is
+          necessary to use BOOST_PP_CAT to concatenate the empty result of the VMD
+          ASSERT macro with the normally generated output to correctly generate the
+          final expansion of the macro in which the VMD ASSERT occurs.
         </li>
 <li class="listitem">
           When using BOOST_VMD_EMPTY following some non-empty expansion, or when
@@ -73,11 +73,11 @@
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2015 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="vmd_dynamic_typing.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../variadic_macro_data_reference.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="vmd_dynamic_typing.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_conv.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

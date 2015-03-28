@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/is_number.hpp>
+#include <boost/vmd/assert_is_number.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/list/at.hpp>
@@ -22,6 +22,10 @@ int main()
   BOOST_VMD_ASSERT_IS_NUMBER(KDATA)
   BOOST_VMD_ASSERT_IS_NUMBER(BOOST_PP_SEQ_ELEM(2,A_SEQ))
   BOOST_VMD_ASSERT_IS_NUMBER(BOOST_PP_LIST_AT(A_LIST,2))
+  
+#else
+
+BOOST_ERROR("No variadic macro support");
   
 #endif
 

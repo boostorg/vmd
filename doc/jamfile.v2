@@ -35,20 +35,40 @@ else
 
 doxygen vmd_reference
   :
-    $(here)/../../../boost/vmd/array.hpp
     $(here)/../../../boost/vmd/assert.hpp
+    $(here)/../../../boost/vmd/assert_is_array.hpp
+    $(here)/../../../boost/vmd/assert_is_empty.hpp
+    $(here)/../../../boost/vmd/assert_is_identifier.hpp
+    $(here)/../../../boost/vmd/assert_is_list.hpp
+    $(here)/../../../boost/vmd/assert_is_number.hpp
+    $(here)/../../../boost/vmd/assert_is_seq.hpp
+    $(here)/../../../boost/vmd/assert_is_tuple.hpp
+    $(here)/../../../boost/vmd/assert_is_type.hpp
+    $(here)/../../../boost/vmd/elem.hpp
     $(here)/../../../boost/vmd/empty.hpp
-    $(here)/../../../boost/vmd/identifier.hpp
+    $(here)/../../../boost/vmd/enum.hpp
+    $(here)/../../../boost/vmd/equal.hpp
+    $(here)/../../../boost/vmd/get_type.hpp
     $(here)/../../../boost/vmd/identity.hpp
-    $(here)/../../../boost/vmd/is_begin_tuple.hpp
+    $(here)/../../../boost/vmd/is_array.hpp
     $(here)/../../../boost/vmd/is_empty.hpp
+    $(here)/../../../boost/vmd/is_empty_array.hpp
+    $(here)/../../../boost/vmd/is_empty_list.hpp
     $(here)/../../../boost/vmd/is_identifier.hpp
+    $(here)/../../../boost/vmd/is_list.hpp
+    $(here)/../../../boost/vmd/is_multi.hpp
     $(here)/../../../boost/vmd/is_number.hpp
     $(here)/../../../boost/vmd/is_parens_empty.hpp
-    $(here)/../../../boost/vmd/list.hpp
-    $(here)/../../../boost/vmd/number.hpp
-    $(here)/../../../boost/vmd/seq.hpp
-    $(here)/../../../boost/vmd/tuple.hpp
+    $(here)/../../../boost/vmd/is_seq.hpp
+    $(here)/../../../boost/vmd/is_tuple.hpp
+    $(here)/../../../boost/vmd/is_type.hpp
+    $(here)/../../../boost/vmd/is_unary.hpp
+    $(here)/../../../boost/vmd/not_equal.hpp
+    $(here)/../../../boost/vmd/size.hpp
+    $(here)/../../../boost/vmd/to_array.hpp
+    $(here)/../../../boost/vmd/to_list.hpp
+    $(here)/../../../boost/vmd/to_seq.hpp
+    $(here)/../../../boost/vmd/to_tuple.hpp
   : 
     <doxygen:param>PROJECT_NAME="VMD"
     <doxygen:param>PROJECT_NUMBER=1

@@ -4,10 +4,10 @@
 <title>Generating emptiness and identity</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="prev" href="vmd_sequence/vmd_sequence_pp_data_helpers.html" title="PP-data helper macros">
-<link rel="next" href="vmd_empty_pp_data_types.html" title="Emptiness and Boost PP data types">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="prev" href="vmd_assert.html" title="Asserting and data types">
+<link rel="next" href="vmd_internal_macros.html" title="Controlling internal usage">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr>
@@ -20,7 +20,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="vmd_sequence/vmd_sequence_pp_data_helpers.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_empty_pp_data_types.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="vmd_assert.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_internal_macros.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -42,7 +42,10 @@
       Boost PP when there are two paths to take depending on the outcome of a BOOST_PP_IF
       or BOOST_PP_IIF logic. Here is an artificial example:
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">facilities</span><span class="special">/</span><span class="identifier">empty</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">(</span> <span class="special">\</span>
         <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">,</span> <span class="special">\</span>
@@ -58,7 +61,10 @@
       this is useful is that one may not want to code the MACRO_CHOICE macro in this
       way:
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">facilities</span><span class="special">/</span><span class="identifier">empty</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">(</span> <span class="special">\</span>
         <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(),</span> <span class="special">\</span>
@@ -82,7 +88,10 @@
       Our example from above, which originally used BOOST_PP_EMPTY to return a fixed
       value, is now:
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">facilities</span><span class="special">/</span><span class="identifier">identity</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">parameter</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">(</span> <span class="special">\</span>
         <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">,</span> <span class="special">\</span>
@@ -113,28 +122,34 @@
       or BOOST_PP_IDENTITY. In other words, making a change to either of our two
       examples:
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">facilities</span><span class="special">/</span><span class="identifier">empty</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">(</span> <span class="special">\</span>
         <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">,</span> <span class="special">\</span>
         <span class="identifier">SOME_FIXED_VALUE</span> <span class="identifier">BOOST_PP_EMPTY</span> <span class="special">\</span>
         <span class="special">)</span> <span class="special">\</span>
-    <span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span>
+    <span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span>
 
-<span class="preprocessor">#define</span> <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="identifier">some_processing_using_both_parameters</span>
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="identifier">some_processing_using_both_parameters</span>
 </pre>
 <p>
       or
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">facilities</span><span class="special">/</span><span class="identifier">identity</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">(</span> <span class="special">\</span>
         <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">,</span> <span class="special">\</span>
         <span class="identifier">BOOST_PP_IDENTITY</span><span class="special">(</span><span class="identifier">SOME_FIXED_VALUE</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">)</span> <span class="special">\</span>
-    <span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span>
+    <span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span>
 
-<span class="preprocessor">#define</span> <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="identifier">some_processing_using_both_parameters</span>
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="identifier">some_processing_using_both_parameters</span>
 </pre>
 <p>
       will produce a preprocessing error since the final invocation to either BOOST_PP_EMPTY
@@ -142,36 +157,43 @@
     </p>
 <p>
       It would be much more useful if the final invocation could be done with any
-      nymber of parameters. This is where variadic macros solve the problem. The
-      BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY macros have the exact same functionality
+      number of parameters. This is where using variadic macros solve the problem.
+      The BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY macros have the exact same functionality
       as their Boost PP counterparts but the final invocation can be made with any
-      number of parameters, and those parameters are just ignored.
+      number of parameters, and those parameters are just ignored when BOOST_VMD_EMPTY
+      or BOOST_VMD_IDENTITY is the choice.
     </p>
 <p>
       Now for our two examples we can have:
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">empty</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">(</span> <span class="special">\</span>
         <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">,</span> <span class="special">\</span>
         <span class="identifier">SOME_FIXED_VALUE</span> <span class="identifier">BOOST_VMD_EMPTY</span> <span class="special">\</span>
         <span class="special">)</span> <span class="special">\</span>
-    <span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span>
+    <span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span>
 
-<span class="preprocessor">#define</span> <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="identifier">some_processing_using_parameters</span>
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="identifier">some_processing_using_parameters</span>
 </pre>
 <p>
       or
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">identity</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">(</span> <span class="special">\</span>
         <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">,</span> <span class="special">\</span>
         <span class="identifier">BOOST_VMD_IDENTITY</span><span class="special">(</span><span class="identifier">SOME_FIXED_VALUE</span><span class="special">)</span> <span class="special">\</span>
         <span class="special">)</span> <span class="special">\</span>
-    <span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span>
+    <span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span>
 
-<span class="preprocessor">#define</span> <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="identifier">some_processing_using_parameters</span>
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="identifier">some_processing_using_parameters</span>
 </pre>
 <p>
       and our macros will compile without preprocessing errors and work as expected.
@@ -230,8 +252,31 @@
       simply enclose that invocation within BOOST_VMD_IDENTITY_RESULT. As in the
       very simple:
     </p>
-<pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">CALLING_MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">identity</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">CALLING_MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
     <span class="identifier">BOOST_VMD_IDENTITY_RESULT</span><span class="special">(</span><span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">))</span>
+</pre>
+<p>
+      Alternatively you can change MACRO_CHOICE so that its implementation and usage
+      is:
+    </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">preprocessor</span><span class="special">/</span><span class="identifier">control</span><span class="special">/</span><span class="identifier">iif</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">vmd</span><span class="special">/</span><span class="identifier">identity</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
+    <span class="identifier">BOOST_VMD_IDENTITY_RESULT</span> <span class="special">\</span>
+        <span class="special">(</span> <span class="special">\</span>
+        <span class="identifier">BOOST_PP_IIF</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">)</span> <span class="special">\</span>
+            <span class="special">(</span> <span class="special">\</span>
+            <span class="identifier">MACRO_CALL_IF_PARAMETER_1</span><span class="special">,</span> <span class="special">\</span>
+            <span class="identifier">BOOST_VMD_IDENTITY</span><span class="special">(</span><span class="identifier">SOME_FIXED_VALUE</span><span class="special">)</span> <span class="special">\</span>
+            <span class="special">)</span> <span class="special">\</span>
+        <span class="special">(</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
+        <span class="special">)</span>
+
+<span class="preprocessor">#define</span> <span class="identifier">CALLING_MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span> <span class="special">\</span>
+    <span class="identifier">MACRO_CHOICE</span><span class="special">(</span><span class="identifier">parameter1</span><span class="special">,</span><span class="identifier">parameter2</span><span class="special">)</span>
 </pre>
 <p>
       Using BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY in this way will ensure they can
@@ -257,11 +302,11 @@
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2015 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="vmd_sequence/vmd_sequence_pp_data_helpers.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_empty_pp_data_types.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="vmd_assert.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vmd_internal_macros.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

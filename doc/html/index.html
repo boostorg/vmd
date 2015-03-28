@@ -1,11 +1,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7</title>
+<title>Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8</title>
 <link rel="stylesheet" href="../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
-<link rel="home" href="index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="next" href="variadic_macro_data/vmd_vmacros.html" title="Variadic Macros">
+<link rel="home" href="index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="next" href="variadic_macro_data/vmd_naming.html" title="Naming conventions">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr>
@@ -17,102 +17,161 @@
 <td align="center"><a href="../../../../more/index.htm">More</a></td>
 </tr></table>
 <hr>
-<div class="spirit-nav"><a accesskey="n" href="variadic_macro_data/vmd_vmacros.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a></div>
+<div class="spirit-nav"><a accesskey="n" href="variadic_macro_data/vmd_naming.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a></div>
 <div class="chapter">
 <div class="titlepage"><div>
 <div><h2 class="title">
-<a name="variadic_macro_data"></a>Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7</h2></div>
+<a name="variadic_macro_data"></a>Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8</h2></div>
 <div><div class="author"><h3 class="author">
 <span class="firstname">Edward</span> <span class="surname">Diener</span>
 </h3></div></div>
-<div><p class="copyright">Copyright &#169; 2010-2014 Tropic Software East Inc</p></div>
+<div><p class="copyright">Copyright &#169; 2010-2015 Tropic Software East Inc</p></div>
 </div></div>
 <div class="toc">
 <p><b>Table of Contents</b></p>
 <dl class="toc">
 <dt><span class="section"><a href="index.html#variadic_macro_data.vmd_intro">Introduction</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_vmacros.html">Variadic Macros</a></span></dt>
-<dd><dl>
-<dt><span class="section"><a href="variadic_macro_data/vmd_vmacros.html#variadic_macro_data.vmd_vmacros.vmd_vmacros_Boost">Boost
-      support</a></span></dt>
-<dd><dl><dt><span class="section"><a href="variadic_macro_data/vmd_vmacros.html#variadic_macro_data.vmd_vmacros.vmd_vmacros_Boost.vmd_vmacros_Modes">Determining
-        variadic macro support</a></span></dt></dl></dd>
-</dl></dd>
 <dt><span class="section"><a href="variadic_macro_data/vmd_naming.html">Naming conventions</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_whyhow.html">Why and how to use</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_vmacros.html">Using variadic macros</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_vc.html">Visual C++ define</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data/vmd_detail.html">Functional groups</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_vc.html">Visual C++</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_test_empty.html">Emptiness</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_constraints.html">Macro constraints</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data/vmd_data_types.html">Data types</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_identifier.html">Identifiers</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_number.html">Numbers</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_pp_data_types.html">Boost PP data types</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_identifying.html">Identifying data types</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_assert.html">Asserting and data types</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence.html">Parsing v-type sequences</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_specific.html">Specific macros for working
+    with data types</a></span></dt>
 <dd><dl>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence.html#variadic_macro_data.vmd_sequence.vmd_sequence_identifier">Parsing
-      v-identifiers</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence/vmd_sequence_identifier_opt.html">Parsing
-      v-identifiers using optional parameters</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence/vmd_sequence_identifier_helpers.html">V-identifiers
-      helper macros</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence/vmd_sequence_number.html">Parsing
-      v-numbers</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence/vmd_sequence_number_opt.html">Parsing
-      v-numbers using optional parameters</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence/vmd_sequence_number_helper.html">V-number
-      helper macros</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence/vmd_sequence_pp_data.html">Parsing
-      Boost PP data</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_sequence/vmd_sequence_pp_data_helpers.html">PP-data
-      helper macros</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_specific.html#variadic_macro_data.vmd_specific.vmd_test_empty">Emptiness</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_specific/vmd_constraints.html">Macro
+      constraints</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_specific/vmd_identifier.html">Identifiers</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_specific/vmd_number.html">Numbers</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_specific/vmd_type.html">Types</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_specific/vmd_pp_data_types.html">VMD
+      and Boost PP data types</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_specific/vmd_identifying.html">Identifying
+      data types</a></span></dt>
 </dl></dd>
+<dt><span class="section"><a href="variadic_macro_data/vmd_generic.html">Generic macros for working
+    with data types</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="variadic_macro_data/vmd_generic.html#variadic_macro_data.vmd_generic.vmd_sequence">Parsing
+      sequences</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="variadic_macro_data/vmd_generic.html#variadic_macro_data.vmd_generic.vmd_sequence.vmd_sequence_convert">Converting
+        sequences</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_generic.html#variadic_macro_data.vmd_generic.vmd_sequence.vmd_sequence_access">Accessing
+        a sequence element</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="variadic_macro_data/vmd_generic/vmd_convert_sequence.html">Getting
+      the type of data</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_generic/vmd_assert.html">Testing for
+      equality and inequality</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="variadic_macro_data/vmd_modifiers.html">Macros with modifiers</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="variadic_macro_data/vmd_modifiers.html#variadic_macro_data.vmd_modifiers.vmd_modifiers_return_type">Return
+      type modifiers</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_modifiers/vmd_modifiers_filter.html">Filtering
+      modifiers</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_modifiers/vmd_modifiers_filter0.html">Identifier
+      modifiers</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_modifiers/vmd_modifiers_splitting.html">Splitting
+      modifiers</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_modifiers/vmd_modifiers_filter1.html">Index
+      modifiers</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_modifiers/vmd_modifiers_single.html">Modifiers
+      and the single-element sequence</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="variadic_macro_data/vmd_identifier_subtype.html">Identifier
+    subtypes</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_assert.html">Asserting and data types</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data/vmd_identity.html">Generating emptiness
     and identity</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_empty_pp_data_types.html">Emptiness
-    and Boost PP data types</a></span></dt>
-<dt><span class="section"><a href="variadic_macro_data/vmd_reentrant.html">Boost PP reentrant versions</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_internal_macros.html">Controlling internal
+    usage</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_reentrant.html">Boost PP re-entrant
+    versions</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data/vmd_dynamic_typing.html">Input as dynamic
     types</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data/vmd_vc_isms.html">Visual C++ gotchas in
     VMD</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_conv.html">Version 1.7 to 1.8 conversion</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data/vmd_examples.html">Examples using VMD functionality</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data_reference.html">Variadic Macro Data Reference</a></span></dt>
 <dd><dl>
-<dt><span class="section"><a href="variadic_macro_data_reference.html#header.boost.vmd.array_hpp">Header &lt;boost/vmd/array.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="variadic_macro_data_reference.html#header.boost.vmd.assert_hpp">Header &lt;boost/vmd/assert.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
-<dt><span class="section"><a href="header/boost/vmd/assert_hpp.html">Header &lt;boost/vmd/assert.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="header/boost/vmd/assert_is_array_hpp.html">Header &lt;boost/vmd/assert_is_array.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/assert_is_empty_hpp.html">Header &lt;boost/vmd/assert_is_empty.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/assert_is_identifier_hpp.html">Header &lt;boost/vmd/assert_is_identifier.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/assert_is_list_hpp.html">Header &lt;boost/vmd/assert_is_list.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/assert_is_number_hpp.html">Header &lt;boost/vmd/assert_is_number.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/assert_is_seq_hpp.html">Header &lt;boost/vmd/assert_is_seq.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/assert_is_tuple_hpp.html">Header &lt;boost/vmd/assert_is_tuple.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/assert_is_type_hpp.html">Header &lt;boost/vmd/assert_is_type.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/elem_hpp.html">Header &lt;boost/vmd/elem.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
 <dt><span class="section"><a href="header/boost/vmd/empty_hpp.html">Header &lt;boost/vmd/empty.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
-<dt><span class="section"><a href="header/boost/vmd/identifier_hpp.html">Header &lt;boost/vmd/identifier.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="header/boost/vmd/enum_hpp.html">Header &lt;boost/vmd/enum.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/equal_hpp.html">Header &lt;boost/vmd/equal.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/get_type_hpp.html">Header &lt;boost/vmd/get_type.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
 <dt><span class="section"><a href="header/boost/vmd/identity_hpp.html">Header &lt;boost/vmd/identity.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
-<dt><span class="section"><a href="header/boost/vmd/is_begin_tuple_hpp.html">Header &lt;boost/vmd/is_begin_tuple.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="header/boost/vmd/is_array_hpp.html">Header &lt;boost/vmd/is_array.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
 <dt><span class="section"><a href="header/boost/vmd/is_empty_hpp.html">Header &lt;boost/vmd/is_empty.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/is_empty_array_hpp.html">Header &lt;boost/vmd/is_empty_array.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/is_empty_list_hpp.html">Header &lt;boost/vmd/is_empty_list.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
 <dt><span class="section"><a href="header/boost/vmd/is_identifier_hpp.html">Header &lt;boost/vmd/is_identifier.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/is_list_hpp.html">Header &lt;boost/vmd/is_list.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/is_multi_hpp.html">Header &lt;boost/vmd/is_multi.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
 <dt><span class="section"><a href="header/boost/vmd/is_number_hpp.html">Header &lt;boost/vmd/is_number.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
 <dt><span class="section"><a href="header/boost/vmd/is_parens_empty_hpp.html">Header &lt;boost/vmd/is_parens_empty.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
-<dt><span class="section"><a href="header/boost/vmd/list_hpp.html">Header &lt;boost/vmd/list.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="header/boost/vmd/is_seq_hpp.html">Header &lt;boost/vmd/is_seq.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
-<dt><span class="section"><a href="header/boost/vmd/number_hpp.html">Header &lt;boost/vmd/number.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="header/boost/vmd/is_tuple_hpp.html">Header &lt;boost/vmd/is_tuple.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
-<dt><span class="section"><a href="header/boost/vmd/seq_hpp.html">Header &lt;boost/vmd/seq.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="header/boost/vmd/is_type_hpp.html">Header &lt;boost/vmd/is_type.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
-<dt><span class="section"><a href="header/boost/vmd/tuple_hpp.html">Header &lt;boost/vmd/tuple.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="header/boost/vmd/is_unary_hpp.html">Header &lt;boost/vmd/is_unary.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/not_equal_hpp.html">Header &lt;boost/vmd/not_equal.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/size_hpp.html">Header &lt;boost/vmd/size.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/to_array_hpp.html">Header &lt;boost/vmd/to_array.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/to_list_hpp.html">Header &lt;boost/vmd/to_list.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/to_seq_hpp.html">Header &lt;boost/vmd/to_seq.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
+<dt><span class="section"><a href="header/boost/vmd/to_tuple_hpp.html">Header &lt;boost/vmd/to_tuple.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
 </dl></dd>
 <dt><span class="section"><a href="variadic_macro_data/vmd_design.html">Design</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data/vmd_compilers.html">Compilers</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data/vmd_history.html">History</a></span></dt>
 <dt><span class="section"><a href="variadic_macro_data/vmd_ack.html">Acknowledgements</a></span></dt>
-<dt><span class="section"><a href="index/s25.html">Index</a></span></dt>
 </dl>
 </div>
 <div class="section">
@@ -120,7 +179,7 @@
 <a name="variadic_macro_data.vmd_intro"></a><a class="link" href="index.html#variadic_macro_data.vmd_intro" title="Introduction">Introduction</a>
 </h2></div></div></div>
 <p>
-      Welcome to version 1.7 of the Variadic Macro Data library.
+      Welcome to version 1.8 of the Variadic Macro Data library.
     </p>
 <p>
       The Variadic Macro Data library, referred to hereafter as VMD for short, is
@@ -137,12 +196,12 @@
           preprocessor data.
         </li>
 <li class="listitem">
-          Provide ways for testing/parsing for identifiers, numbers, tuples, arrays,
-          lists. and seqs.
+          Provide ways for testing/parsing for identifiers, numbers, types, tuples,
+          arrays, lists, and seqs.
         </li>
 <li class="listitem">
-          Provide ways for testing/parsing sequences of identifiers, numbers, tuples,
-          arrays, lists. and seqs.
+          Provide ways for testing/parsing sequences of identifiers, numbers, types,
+          tuples, arrays, lists. and seqs.
         </li>
 <li class="listitem">
           Provide some useful variadic macros not in Boost PP.
@@ -162,23 +221,24 @@
     </p>
 <p>
       Use of the library is only dependent on Boost PP. The library also uses Boost
-      detail lightweight_test.hpp for its own tests. The library currently depends
-      on the 'develop' branch of the Boost PP library in the modular boost structure.
-      Once Boost 1.56 is released the 'develop' branch of Boost PP in modular-boost
-      will be merged to the 'master' branch.
-    </p>
-<p>
-      The library is NOT a Boost library but it is in the Boost review queue and
-      is eagerly looking for a review manager. Please contact Edward Diener at eldiener@tropicsoft.com
-      if you are interested as serving as the review manager for the library.
+      detail lightweight_test.hpp for its own tests.
     </p>
 </div>
+<p>
+    </p>
+<div class="index">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="id968313"></a>Index</h2></div></div></div>
+<div class="index"></div>
+</div>
+<p>
+  </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
-<td align="left"><p><small>Last revised: July 19, 2014 at 17:53:52 GMT</small></p></td>
+<td align="left"><p><small>Last revised: March 28, 2015 at 13:58:05 GMT</small></p></td>
 <td align="right"><div class="copyright-footer"></div></td>
 </tr></table>
 <hr>
-<div class="spirit-nav"><a accesskey="n" href="variadic_macro_data/vmd_vmacros.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a></div>
+<div class="spirit-nav"><a accesskey="n" href="variadic_macro_data/vmd_naming.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a></div>
 </body>
 </html>

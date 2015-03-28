@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/array.hpp>
+#include <boost/vmd/is_empty_array.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 
@@ -28,6 +28,10 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_EMPTY_ARRAY(AN_EMPTY_ARRAY_PLUS));
   BOOST_TEST(!BOOST_VMD_IS_EMPTY_ARRAY(EMPTY_ARRAY_INVALID));
   BOOST_TEST(BOOST_VMD_IS_EMPTY_ARRAY(EMPTY_ARRAY));
+  
+#else
+
+BOOST_ERROR("No variadic macro support");
   
 #endif
 

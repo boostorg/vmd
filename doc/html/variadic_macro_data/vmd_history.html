@@ -4,8 +4,8 @@
 <title>History</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
 <link rel="prev" href="vmd_compilers.html" title="Compilers">
 <link rel="next" href="vmd_ack.html" title="Acknowledgements">
 </head>
@@ -28,6 +28,124 @@
 </h2></div></div></div>
 <h4>
 <a name="variadic_macro_data.vmd_history.h0"></a>
+      <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_8"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_8">Version
+      1.8</a>
+    </h4>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+          After a review of VMD I have greatly simplified the main interfaces and
+          added optional functionality in the form of modifiers. The main changes
+          are the addition of the many generic macros for sequences and the expansions
+          of types to include the v-type.
+          <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; ">
+<li class="listitem">
+                Added BOOST_VMD_ELEM macro.
+              </li>
+<li class="listitem">
+                Added BOOST_VMD_EQUAL macro.
+              </li>
+<li class="listitem">
+                Added BOOST_VMD_NOT_EQUAL macro.
+              </li>
+<li class="listitem">
+                Added BOOST_VMD_IS_MULTI macro.
+              </li>
+<li class="listitem">
+                Added BOOST_VMD_IS_TYPE macro.
+              </li>
+<li class="listitem">
+                Added BOOST_VMD_ASSERT_IS_TYPE macro.
+              </li>
+<li class="listitem">
+                Added BOOST_VMD_IS_UNARY macro.
+              </li>
+<li class="listitem">
+                Added BOOST_VMD_SIZE macro.
+              </li>
+<li class="listitem">
+                Replaced with the BOOST_VMD_ELEM macro, using modifiers, a number
+                of macros which were eliminated. These are:
+                <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: square; ">
+<li class="listitem">
+                      BOOST_VMD_IDENTIFER
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_BEGIN_IDENTIFIER
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_AFTER_IDENTIFIER
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_IS_BEGIN_IDENTIFIER
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_NUMBER
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_BEGIN_NUMBER
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_AFTER_NUMBER
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_IS_BEGIN_NUMBER
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_ARRAY
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_BEGIN_ARRAY
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_AFTER_ARRAY
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_IS_BEGIN_ARRAY
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_LIST
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_BEGIN_LIST
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_AFTER_LIST
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_IS_BEGIN_LIST
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_SEQ
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_BEGIN_SEQ
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_AFTER_SEQ
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_IS_BEGIN_SEQ
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_TUPLE
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_BEGIN_TUPLE
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_AFTER_TUPLE
+                    </li>
+<li class="listitem">
+                      BOOST_VMD_IS_BEGIN_TUPLE
+                    </li>
+</ul></div>
+              </li>
+<li class="listitem">
+                Every macro has its own header file.
+              </li>
+</ul></div>
+        </li></ul></div>
+<h4>
+<a name="variadic_macro_data.vmd_history.h1"></a>
       <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_7"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_7">Version
       1.7</a>
     </h4>
@@ -50,7 +168,7 @@
 </ul></div>
         </li></ul></div>
 <h4>
-<a name="variadic_macro_data.vmd_history.h1"></a>
+<a name="variadic_macro_data.vmd_history.h2"></a>
       <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_6"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_6">Version
       1.6</a>
     </h4>
@@ -76,7 +194,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="variadic_macro_data.vmd_history.h2"></a>
+<a name="variadic_macro_data.vmd_history.h3"></a>
       <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_5"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_5">Version
       1.5</a>
     </h4>
@@ -102,7 +220,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="variadic_macro_data.vmd_history.h3"></a>
+<a name="variadic_macro_data.vmd_history.h4"></a>
       <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_4"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_4">Version
       1.4</a>
     </h4>
@@ -111,7 +229,7 @@
           VC++.
         </li></ul></div>
 <h4>
-<a name="variadic_macro_data.vmd_history.h4"></a>
+<a name="variadic_macro_data.vmd_history.h5"></a>
       <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_3"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_3">Version
       1.3</a>
     </h4>
@@ -145,7 +263,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="variadic_macro_data.vmd_history.h5"></a>
+<a name="variadic_macro_data.vmd_history.h6"></a>
       <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_2"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_2">Version
       1.2</a>
     </h4>
@@ -159,7 +277,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="variadic_macro_data.vmd_history.h6"></a>
+<a name="variadic_macro_data.vmd_history.h7"></a>
       <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_1"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_1">Version
       1.1</a>
     </h4>
@@ -167,7 +285,7 @@
           Added better documentation for using variadic data with Boost PP and VMD.
         </li></ul></div>
 <h4>
-<a name="variadic_macro_data.vmd_history.h7"></a>
+<a name="variadic_macro_data.vmd_history.h8"></a>
       <span class="phrase"><a name="variadic_macro_data.vmd_history.version_1_0"></a></span><a class="link" href="vmd_history.html#variadic_macro_data.vmd_history.version_1_0">Version
       1.0</a>
     </h4>
@@ -177,7 +295,7 @@
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2015 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">

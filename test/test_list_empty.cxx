@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/list.hpp>
+#include <boost/vmd/is_empty_list.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 
@@ -24,6 +24,10 @@ int main()
   BOOST_TEST(!BOOST_VMD_IS_EMPTY_LIST(KDATA));
   BOOST_TEST(!BOOST_VMD_IS_EMPTY_LIST(A_SEQ));
   BOOST_TEST(BOOST_VMD_IS_EMPTY_LIST(EMPTY_LIST));
+  
+#else
+
+BOOST_ERROR("No variadic macro support");
   
 #endif
 

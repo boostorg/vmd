@@ -5,7 +5,7 @@
 
 #if BOOST_PP_VARIADICS
 
-#include <boost/vmd/is_begin_tuple.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 #include <boost/vmd/detail/is_empty.hpp>
 
 /*
@@ -24,7 +24,8 @@
     The macro checks to see if the input is empty or not.
     It returns 1 if the input is empty, else returns 0.
     
-    The macro is a variadic macro taking any input and works through variadic macro support.
+    The macro is a variadic macro taking any input.
+    For the VC++8 compiler (VS2005) the macro takes a single parameter of input to check.
     
     The macro is not perfect, and can not be so. The problem
     area is if the input to be checked is a function-like
@@ -33,11 +34,11 @@
     
     This macro is a replacement, using variadic macro support,
     for the undocumented macro BOOST_PP_IS_EMPTY in the Boost
-    pplib. The code is taken from a posting by Paul Mensonides
+    PP library. The code is taken from a posting by Paul Mensonides
     of a variadic version for BOOST_PP_IS_EMPTY, and changed 
     in order to also support VC++.
     
-    .... = variadic input
+    .... = variadic input, for VC++8 this must be a single parameter
 
     returns = 1 if the input is empty, 0 if it is not
     
@@ -50,45 +51,27 @@
 
 #if BOOST_VMD_MSVC_V8
 
-#define BOOST_VMD_IS_EMPTY(param) \
+#define BOOST_VMD_IS_EMPTY(sequence) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE \
+      BOOST_PP_IS_BEGIN_PARENS \
         ( \
-        param \
+        sequence \
         ) \
       ) \
       ( \
       BOOST_VMD_DETAIL_IS_EMPTY_GEN_ZERO, \
       BOOST_VMD_DETAIL_IS_EMPTY_PROCESS \
       ) \
-    (param) \
+    (sequence) \
 /**/
-
-#if !BOOST_VMD_ASSERT_DATA
-
-#define BOOST_VMD_ASSERT_IS_EMPTY(param)
-
-#else
-
-#include <boost/vmd/assert.hpp>
-
-#define BOOST_VMD_ASSERT_IS_EMPTY(param) \
-    BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_EMPTY(param), \
-      	BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
-      	) \
-/**/
-
-#endif // !BOOST_VMD_ASSERT_DATA
 
 #else
 
 #define BOOST_VMD_IS_EMPTY(...) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_VMD_IS_BEGIN_TUPLE \
+      BOOST_PP_IS_BEGIN_PARENS \
         ( \
         __VA_ARGS__ \
         ) \
@@ -99,24 +82,6 @@
       ) \
     (__VA_ARGS__) \
 /**/
-
-#if !BOOST_VMD_ASSERT_DATA
-
-#define BOOST_VMD_ASSERT_IS_EMPTY(...)
-
-#else
-
-#include <boost/vmd/assert.hpp>
-
-#define BOOST_VMD_ASSERT_IS_EMPTY(...) \
-    BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_EMPTY(__VA_ARGS__), \
-      	BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
-      	) \
-/**/
-
-#endif // !BOOST_VMD_ASSERT_DATA
 
 #endif /* BOOST_VMD_MSVC_V8 */
 

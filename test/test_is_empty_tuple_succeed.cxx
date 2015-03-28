@@ -33,6 +33,10 @@ int main()
    BOOST_TEST_EQ(TN_TEST_ONE(A,(1)),1);
    BOOST_TEST_EQ(TN_TEST_ONE(A,()),0);
 	
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif /* BOOST_PP_VARIADICS */
 
   return boost::report_errors();

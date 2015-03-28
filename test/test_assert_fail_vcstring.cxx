@@ -12,10 +12,6 @@ int main()
 
   BOOST_VMD_ASSERT(0,BOOST_VMD_VC_FAILURE)
   
-#else
-  
-  typedef char BOOST_VMD_VC_FAILURE[-1];
-   
 #endif
 
   return boost::report_errors();

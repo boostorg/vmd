@@ -4,9 +4,9 @@
 <title>Input as dynamic types</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="prev" href="vmd_reentrant.html" title="Boost PP reentrant versions">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="prev" href="vmd_reentrant.html" title="Boost PP re-entrant versions">
 <link rel="next" href="vmd_vc_isms.html" title="Visual C++ gotchas in VMD">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -29,38 +29,38 @@
 </h2></div></div></div>
 <p>
       Within the constraints based on the top-level types which VMD can parse, the
-      libraries gives the end-user the ability to design macros with dynamic v-types.
-      By this I mean that a macro could be designed to handle different v-types based
-      on some documented agreement of different combinations of macro input meaning
-      slightly different things. Add to this the ability to design such macros with
-      variadic parameters and we have a preprocessor system of macro creation which
-      to a lesser extent rivals the DSELS of template metaprogramming. Of course
-      the preprocessor is not nearly as flexible as C++ templates, but still the
-      sort of preprocessor metaprogramming one could do with VMD, and the underlying
-      Boost PP, in creating flexible macros which can handle different combinations
-      of v-types is very interesting.
+      libraries gives the end-user the ability to design macros with dynamic data
+      types. By this I mean that a macro could be designed to handle different data
+      types based on some documented agreement of different combinations of macro
+      input meaning slightly different things. Add to this the ability to design
+      such macros with variadic parameters and we have a preprocessor system of macro
+      creation which to a lesser extent rivals the DSELS of template metaprogramming.
+      Of course the preprocessor is not nearly as flexible as C++ templates, but
+      still the sort of preprocessor metaprogramming one could do with VMD, and the
+      underlying Boost PP, in creating flexible macros which can handle different
+      combinations of data types is very interesting.
     </p>
 <p>
       Of course macros need to be usable by an end-user so the syntactical ability
-      of v-types and v-type sequences to represent different types of input data
-      must be balanced against ease of use and understanding when using a macro.
-      But because certain v-type sequences can mimic C++ function calls to some extent
-      it is possible to represent macros as a language closer to C++ with VMD.
+      of sequences to represent different types of input data must be balanced against
+      ease of use and understanding when using a macro. But because certain sequences
+      can mimic C++ function calls to some extent it is possible to represent macros
+      as a language closer to C++ with VMD.
     </p>
 <p>
       What is important when designing a macro in which you parse input to decide
       which type of data the invoker is passing to your macro is that you are aware
-      of the constraints when parsing a v-type. As an example if you design a macro
-      where some input can either be a v-number, a v-identifier, or some none v-type
-      top-level input then attempting to parse the data to see if it is a number
-      or identifier could fail with a preprocessor error and nullify your design
-      if the data is not a v-type. So designing a macro with VMD v-types in mind
-      often means restricting data to parseable top-level v-types.
+      of the constraints when parsing a data type. As an example if you design a
+      macro where some input can either be a number, an identifier, or some other
+      data type top-level input then attempting to parse the data to see if it is
+      a number or identifier could fail with a preprocessor error and nullify your
+      design if the data is not a VMD data type. So designing a macro with data types
+      in mind often means restricting data to parseable top-level types.
     </p>
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2015 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">

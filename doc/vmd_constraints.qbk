@@ -20,7 +20,7 @@ to a macro than a programmer can do at compile-time and/or at run-time to constr
 input to a C++ callable. Nevertheless it is perfectly valid to document what a macro expects
 as its argument input and, if a programmer does not follow the constraint, the macro will fail
 to work properly. In the ideal case in preprocessor metaprogramming the macro could tell whether
-or not the constraint was met and could issue some sort of intelligible preprocessor error
+or not the constraint was met and could issue some sort of intelligible preprocessing error
 when this occured, but even within the reality of preprocessor metaprogramming with Boost PP
 this is not always possible to do. Nevertheless if the user of a macro  
 does not follow the constraints for a macro parameter, as specified in the 
@@ -31,36 +31,34 @@ run-time occurrence which allows the programmer to correct the error, rather tha
 which masks the error. Because the preprocessor is "dumber" and cannot provide this occurrence
 in all cases the error could unfortunately be masked, despite the fact that the documentation 
 specifies the correct input constraint(s). In the case of the already discussed 
-macro BOOST_VMD_IS_EMPTY, this masking of the error only occurs with a preprocessor ( Visual C++ )
+macro BOOST_VMD_IS_EMPTY, this masking of the error could only occur with a preprocessor ( Visual C++ )
 which is not C++ standard conformant.
 
-The Boost PP library does have a way of generating a preprocessor error, without generating preprocessor 
+The Boost PP library does have a way of generating a preprocessing error, without generating preprocessor 
 output, but once again this way does not work with the non-conformant preprocessor of Visual C++. The means
 to do so using Boost PP is through the BOOST_PP_ASSERT macro. As will be seen and discussed later VMD has
 an equivalent macro which will work with Visual C++ by producing incorrect C++ output rather than a preprocessing
 error, but even this is not a complete solution since the incorrect C++ output produced could be hidden.
 
-Even the effort to produce a preprocessor error, or incorrect output inducing a compile-time error,
+Even the effort to produce a preprocessing error, or incorrect output inducing a compile-time error,
 does not solve the problem of constrained input for preprocessor metaprogramming. Often it is impossible 
 to determine if the input meets the constraints which the preprocessor metaprogrammer places on it and 
 documents. Certain preprocessing tokens cannot be checked reliably for particular values, or a range of 
-values, without the checking mechanism itself possibly creating a preprocessing error.
+values, without the checking mechanism itself creating a preprocessing error or undefined behavior.
 
 This does not mean that one should give up attempting to check macro input constraints. If it can be done
 I see the value of such checks and a number of VMD macros, discussed later, are designed as preprocessing 
 input constraint checking macros. But the most important thing when dealing with macro input constraints is that they 
-should be carefully documented and that the programmer should know that if the constraints are not met, either
+should be carefully documented, and that the programmer should know that if the constraints are not met either
 preprocessing errors or incorrect macro results could be the results.
 
-In this the VMD library is less conservative than the Boost PP library. Paul Mensonides design for Boost PP
-almost always means that the greatest care has been taken to not produce erroneous results, even in the face
-of erroneous input. The VMD library, in order to present more preprocessor programming functionality and 
+The VMD library, in order to present more preprocessor programming functionality and 
 flexibility, allows that erroneous results could occur if certain input constraints are not met, whether the 
-erroneous results are preprocessor errors or incorrect output from a VMD macro. At the same time the VMD does 
+erroneous results are preprocessing errors or incorrect output from a VMD macro. At the same time the VMD does 
 everything that the preprocessor is capable of doing to check the input constraints, and carefully documents 
 for each macro in the library what the input for each could be in order to avoid erroneous output.
 
-I believe that documented macro input constraints are just as valid in the preprocessor as 
+Documented macro input constraints are just as valid in the preprocessor as 
 compile-time/run-time constraints are valid in C++, even if the detection of such constraints 
 and/or the handling of constraints that are not met are far more difficult,
 if not impossible, in the preprocessor than in the compile-time/run-time processing of C++.

@@ -1,7 +1,7 @@
 #if !defined(BOOST_VMD_DETAIL_IS_EMPTY_HPP)
 #define BOOST_VMD_DETAIL_IS_EMPTY_HPP
 
-#include <boost/vmd/is_begin_tuple.hpp>
+#include <boost/preprocessor/punctuation/is_begin_parens.hpp>
 
 #if BOOST_VMD_MSVC
 
@@ -13,7 +13,7 @@
 #if BOOST_VMD_MSVC_V8
 
 #define BOOST_VMD_DETAIL_IS_EMPTY_PROCESS(param) \
-	BOOST_VMD_IS_BEGIN_TUPLE \
+	BOOST_PP_IS_BEGIN_PARENS \
     	( \
         BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param () \
         ) \
@@ -22,7 +22,7 @@
 #else
 
 #define BOOST_VMD_DETAIL_IS_EMPTY_PROCESS(...) \
-	BOOST_VMD_IS_BEGIN_TUPLE \
+	BOOST_PP_IS_BEGIN_PARENS \
         ( \
         BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
         ) \
@@ -36,7 +36,7 @@
 #define BOOST_VMD_DETAIL_IS_EMPTY_IIF_1(t, ...) t
 
 #define BOOST_VMD_DETAIL_IS_EMPTY_PROCESS(...) \
-	BOOST_VMD_IS_BEGIN_TUPLE \
+	BOOST_PP_IS_BEGIN_PARENS \
         ( \
         BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
         ) \

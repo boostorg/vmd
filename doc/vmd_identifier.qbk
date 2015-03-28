@@ -1,6 +1,6 @@
 [section:vmd_identifier Identifiers]
 
-An identifier in VMD, hereafter called a 'v-identifier', is either of two possibilities:
+An identifier in VMD is either of two lower-level preprocessor possibilities:
 
 * a preprocessing token 'identifier', which is essentially a sequence 
 of alphanumeric characters and the underscore 
@@ -21,6 +21,8 @@ Here are some examples:
  654792
  0x1256
 
+[heading Problem testing any identifier]
+
 One of the difficulties with identifiers in preprocessor metaprogramming 
 is safely testing for a particular one. VMD has a means of doing this within
 a particular constraint for the characters that serve as the input.
@@ -29,9 +31,14 @@ The constraint is that the beginning input character, ignoring any whitespace, p
 as the input to test must be either:
 
 * an identifier character, ie. an alphanumeric or an underscore
-* the left parenthesis of a tuple. 
+* the left parenthesis of a tuple 
 
-If this is not the case a preprocessing error will occur.
+and if the first character is not the left parenthesis of a tuple
+the remaining characters must be alphanumeric until a space character
+or end of input occurs.
+
+If this is not the case the behavior is undefined, and most likely
+a preprocessing error will occur.
 
 Given the input:
 
@@ -45,66 +52,108 @@ Given the input:
  245e2: can be tested
  (anything) : can be tested, tuple
  (anything) anything : can be tested, tuple and further input
+ anything anything : can be tested, identifier followed by space character
  
- %_anything : will give a preprocessing error due to the constraint
- (_anything : will give a preprocessing error due to the constraint, since a single '(' does not form a tuple
-
-The macro used to test for a particular identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
-The macro takes two parameters. The first parameter is the input to test against, while the
-second parameter is the 'key', hereafter called a v-key. The v-key can be used to test against 
-any one of a number of possible identifiers, since the v-key can be either a single token or 
-a tuple of tokens.
-
-The form of a v-key is that of a v-identifier itself, except that the v-key
-should not begin with an underscore character ( _ ).
-
-In order to use a v-key the programmer invoking this macro must define an object-like
-macro, called a key-identifier macro, whose form is:
-
- #define BOOST_VMD_MAP_'v-key''v-identifier'
+ %_anything : undefined behavior and most likely a preprocessing error due to the constraint
+ (_anything : undefined behavior and most likely a preprocessing error due to the constraint, since a single '(' does not form a tuple
+ 44.3 : undefined behavior and most likely a preprocessing error due to the constraint since '.' is not alphanumeric
  
-A key-identifier macro must generate no output. The v-key portion must be unique,
-for each identifier to be tested, and which will not be duplicated within the translation unit.
-Two of the easiest ways to create a unique v-key across the translation unit is:
+[heading Identifying an identifier]
 
-* preface all v-keys with a single unique preface for the library or application in which 
-BOOST_VMD_IS_IDENTIFIER is being used, followed by some distinct v-key name.
-* generate a GUID and use its hex representation as the unique v-key.
+In VMD the only way an identifier can be identified in preprocessor input is by a process called
+registration. In order to 'register' an identifier to be recognized by VMD the end-user must create,
+for every identifier to be recognized, an object-like macro whose form is:
 
-The programmer can define any number of key-identifier macros, one for each identifier he wishes to test.
-Once the key-identifier macro is defined, the v-key is passed as the second parameter to 
-BOOST_VMD_IS_IDENTIFIER to see if the first parameter is the same as the v-identifier.
-
-Since the second parameter can be a single token or a tuple of tokens, the BOOST_VMD_IS_IDENTIFIER macro 
-returns a number, from 0 to the number of tokens passed. A return of 0 indicates that the
-v-identifier was not found, while a return of a non-zero indicates the v-identifier was found and,
-in the case of multiple tokens passed as a tuple, indicates which one of the v-identifiers was
-found ( 1 for the first token, 2 for the second token, etc. ). The programmer can then use a Boost PP
-comparison macro, such as BOOST_PP_EQUAL, to determine which v-identifier is found. The programmer can
-also use BOOST_PP_IF or BOOST_PP_IIF ( with a single token v-key ) with the result to branch as part of his 
-preprocessor metaprogramming logic.
-
-[heading Example]
-
-Let us look at an example of how to use BOOST_VMD_IS_IDENTIFIER.
-
- #define BOOST_VMD_MAP_MYLIB_KEY1_CIRCLE
- #define BOOST_VMD_MAP_MYLIB_KEY2_SQUARE
- #define BOOST_VMD_MAP_MYLIB_KEY3_TRIANGLE
- #define BOOST_VMD_MAP_MYLIB_KEY4_RECTANGLE
+ #define BOOST_VMD_REGISTER_identifier (identifier)
  
- BOOST_VMD_IS_IDENTIFIER(input,(MYLIB_KEY1_,MYLIB_KEY2_,MYLIB_KEY3_,MYLIB_KEY4_))
+where 'identifier' is a particular identifier we wish to identify. This is called in
+VMD a registration macro.
+
+It is recommended that such registration macros be created in a header file which
+can be included before the end-user uses the identifier macros of VMD.
+
+If a particular registration macro occurs more than once it is
+not a preprocessing error, so duplicating a registration macro will not lead to any problems
+since each registration macro of the same name will have the exact same object-like macro
+expansion.
+
+Within a given translation unit it could potentially happen
+that registration macros have been included by header files which a particular end-user
+of VMD has not created. This should also not lead to particular problems since registration
+is a process for adding identifiers for any particular transalation unit. As we shall see
+VMD has macros for not only finding any identifier in preprocessor input but for also finding
+particular identifiers in preprocessor input.
+
+[heading Testing for an identifier macro]
+
+The macro used to test for an identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
+The macro takes one required parameter which is the input against which to test.
+
+When we invoke BOOST_VMD_IS_IDENTIFIER it returns 1 if the input represents any 
+registered identifier, otherwise it returns 0.
+
+As an example:
+
+ #include <boost/vmd/is_identifier.hpp>
  
- returns:
+ #define BOOST_VMD_REGISTER_yellow (yellow)
+ #define BOOST_VMD_REGISTER_green  (green)
+ #define BOOST_VMD_REGISTER_blue   (blue)
  
- if input = CIRCLE, 1
- if input = SQUARE, 2
- if input = TRIANGLE, 3
- if input = RECTANGLE, 4
- if input = PARALLELOGRAM, 0 since there is no match of any of the keys
- if input = CIRCLE DATA, 0 since there are tokens after the identifier 
- if input = %NAME, does not meet the constraint therefore a preprocessing error occurs
- if input = ( NAME ) NAME, 0 since the macro begins with a tuple and this can be tested for
+ BOOST_VMD_IS_IDENTIFIER(some_input) // returns 1 if 'some_input is 'yellow','green', or 'blue'
+ BOOST_VMD_IS_IDENTIFIER(some_input) // returns 0 if 'some_input' is 'purple'
+ 
+Essentially only registered identifiers can be found in VMD as identifiers.
+
+[heading Detecting a particular identifier]
+
+Although registering an identifier allows VMD to recognize the string of characters
+as a VMD identifier, the ability to detect a particular identifier needs the end-user
+to specify another macro:
+
+ BOOST_VMD_DETECT_identifier_identifier
+ 
+where 'identifier' is a particular identifier we wish to detect. This object-like 
+macro expands to no output.
+
+Like the registration macro multiple detection macros of the same identifier
+in a translation unit does not cause a compiler problem since the exact same
+object-like macro occurs.
+
+The term for creating this macro is that we have potentially 'pre-detected'
+the identifier and I will use the term pre-detected as the process of creating
+the BOOST_VMD_DETECT macro.
+
+The ability to detect that a VMD identifier is a particular identifier is used
+in VMD macros when data is compared for equality/inequality as well as when we 
+want to match an identifier against a set of other identifiers. These situations 
+will be explained later in the documentation when the particular macro functionality 
+is discussed. If the programmer never uses the functionality which these situations
+encompass there is no need to use pre-detection for a registered identifier.
+
+[heading Parsing identifiers and undefined behavior]
+
+The technique for parsing identifiers, once it is determined that the input
+being parsed does not begin with a set of parentheses, uses preprocessor 
+concatenation in its parsing. This technique involves the preprocessor '##' 
+operator to concatenate input, and examine the results of that concatenation.
+
+When preprocessor concatenation is used the result of the concatenation must
+be a valid preprocessing token, else the behavior of the preprocessor is undefined.
+In C++ 'undefined behavior' in general means that anything can happen. In practical
+use when preprocessor concatenation does not produce a valid preprocessing token,
+a compiler is most likely to generate a preprocessing error. If the compiler chooses
+not to issue a preprocessing error the outcome will always mean that parsing an
+identifier will fail. But because the outcome is undefined behavior there is no
+absolute way that the programmer can determine what the outcome will be when
+preprocessor concatemation is used and the input being parsed contains
+preprocessor input which does not meet the constraints for parsing an identifier
+mentioned at the beginning of this topic.
+
+In this documentation I will be using the abbreviation 'UB' as the shortened form
+of 'undefined behavior' to denote the particular occurence where VMD attempts to
+parse preprocessor input using preprocessor concatenation and undefined behavior
+will occur.
 
 [heading Usage]
 

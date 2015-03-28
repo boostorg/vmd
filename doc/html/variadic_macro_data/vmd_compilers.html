@@ -4,8 +4,8 @@
 <title>Compilers</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
-<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
-<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.7">
+<link rel="home" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
+<link rel="up" href="../index.html" title="Chapter&#160;1.&#160;The Variadic Macro Data Library 1.8">
 <link rel="prev" href="vmd_design.html" title="Design">
 <link rel="next" href="vmd_history.html" title="History">
 </head>
@@ -27,14 +27,18 @@
 <a name="variadic_macro_data.vmd_compilers"></a><a class="link" href="vmd_compilers.html" title="Compilers">Compilers</a>
 </h2></div></div></div>
 <p>
-      I have tested this library using gcc/MingW, VC++, and clang targeting gcc on
-      Windows. The compilers tested are gcc 3.3.3, 3.4.2, 3.4.5, 4.3.0, 4.4.0, 4.5.0-1,
-      4.5.2-1, 4.6.0, 4.6.1, 4.6.2, 4.7.0, 4.7.2, 4.8.1, VC++ 8.0, 9.0, 10.0, 11.0,
-      12.0, and the latest clang build. Other compilers which currently should work
-      with this library are gcc on Linux and clang.
+      On Windows I have tested this library using gcc/MingW, VC++, and clang targeting
+      gcc. The compilers tested are gcc 4.3.0, 4.4.0, 4.5.0-1, 4.5.2-1, 4.6.0, 4.6.1,
+      4.6.2, 4.7.0, 4.7.2, 4.8.1, 4.8.2, 4.8.3, 4.8.4, 4.9.0, 4.9.1, 4.9.2, VC++
+      8.0, 9.0, 10.0, 11.0, 12.0, and the latest clang build from source.
     </p>
 <p>
-      For VC++ 8.0 the BOOST_VMD_IS_BEGIN_TUPLE and BOOST_VMD_IS_EMPTY macros take
+      On Linux I have tested this library using gcc 4.4.7, 4.6.4, 4.7.3, 4.8.2, 4.8.3,
+      4.9.1, clang 3.3, 3.4, 3.5, and the latest clang build from source, and Intel
+      C++ 12.1. 13.0, 14.0, 15.0.
+    </p>
+<p>
+      For VC++ 8.0 the BOOST_VMD_IS_EMPTY and BOOST_VMD_ASSERT_IS_EMPTY macros take
       a single parameter rather than variadic data because this version of VC++ does
       not accept variadic data which may be empty.
     </p>
@@ -45,7 +49,7 @@
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2014 Tropic Software East Inc</div></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2010-2015 Tropic Software East Inc</div></td>
 </tr></table>
 <hr>
 <div class="spirit-nav">

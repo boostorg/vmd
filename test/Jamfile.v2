@@ -8,7 +8,13 @@ import testing ;
 
 project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>msvc:<warnings>all
+                                                 <toolset>msvc:<cxxflags>-wd4003
+                                                 <toolset>intel-linux:<cxxflags>-std=c++11
+                                                 <toolset>sun:<cxxflags>-std=c++11
+                                                 <toolset>clang:<cxxflags>-std=c++11
+                                                 <toolset>clang:<cxxflags>-pedantic-errors
                                                  <toolset>gcc:<warnings>all
+                                                 <toolset>gcc:<cxxflags>-pedantic-errors
                                                  <toolset>gcc-4.3.0:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.3.0:<cxxflags>-std=c++0x
                                                  <toolset>gcc-4.3.0:<cxxflags>-U__STRICT_ANSI__
@@ -35,18 +41,37 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>gcc-4.7.2:<cxxflags>-std=c++0x
                                                  <toolset>gcc-4.8.1:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.8.1:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.8.1:<cxxflags>-ftrack-macro-expansion=0
+                                                 <toolset>gcc-4.8.2:<cxxflags>-Wno-variadic-macros
+                                                 <toolset>gcc-4.8.2:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.8.2:<cxxflags>-ftrack-macro-expansion=0
+                                                 <toolset>gcc-4.8.3:<cxxflags>-Wno-variadic-macros
+                                                 <toolset>gcc-4.8.3:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.8.3:<cxxflags>-ftrack-macro-expansion=0
+                                                 <toolset>gcc-4.9.0:<cxxflags>-Wno-variadic-macros
+                                                 <toolset>gcc-4.9.0:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.9.0:<cxxflags>-ftrack-macro-expansion=0
+                                                 <toolset>gcc-4.9.1:<cxxflags>-Wno-variadic-macros
+                                                 <toolset>gcc-4.9.1:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.9.1:<cxxflags>-ftrack-macro-expansion=0
+                                                 <toolset>gcc-4.9.2:<cxxflags>-Wno-variadic-macros
+                                                 <toolset>gcc-4.9.2:<cxxflags>-std=c++0x
+                                                 <toolset>gcc-4.9.2:<cxxflags>-ftrack-macro-expansion=0
                                                  ;
 
 test-suite variadic_macro_data
     : 
-       [ run test_after_array.cpp ]
-       [ run test_after_identifier.cpp ]
-       [ run test_after_list.cpp ]
-       [ run test_after_number.cpp ]
-       [ run test_after_seq.cpp ]
-       [ run test_after_tuple.cpp ]
-       [ run test_array.cpp ]
+       [ run test_after_array_elem.cpp ]
+       [ run test_after_identifier_elem.cpp ]
+       [ run test_after_list_elem.cpp ]
+       [ run test_after_number_elem.cpp ]
+       [ run test_after_seq_elem.cpp ]
+       [ run test_after_tuple_elem.cpp ]
+       [ run test_after_type_elem.cpp ]
+       [ run test_array_elem.cpp ]
        [ run test_array_empty.cpp ]
+       [ run test_array_equal.cpp ]
+       [ run test_ary.cpp ]
        [ compile test_assert.cpp ]
        [ compile-fail test_assert_fail.cpp ]
        [ compile-fail test_assert_fail_array.cpp ]
@@ -115,24 +140,55 @@ test-suite variadic_macro_data
          <define>BOOST_VMD_ASSERT_DATA=1 ]
        [ compile-fail test_assert_is_tuple_fail4.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 ]
-       [ run test_begin_array.cpp ]
-       [ run test_begin_identifier.cpp ]
-       [ run test_begin_list.cpp ]
-       [ run test_begin_number.cpp ]
-       [ run test_begin_seq.cpp ]
-       [ run test_begin_tuple.cpp ]
-       [ run test_identifier.cpp ]
+       [ compile test_assert_is_type.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1 ]
+       [ compile-fail test_assert_is_type_fail.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1 ]
+       [ compile test_doc_assert.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1 ]
+       [ compile-fail test_doc_assert_fail.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1 ]
+       [ run test_doc_empty.cpp ]
+       [ compile-fail test_doc_empty_fail.cpp ]
+       [ compile-fail test_doc_empty_fail2.cpp ]
+       [ compile-fail test_doc_empty_fail3.cpp ]
+       [ compile-fail test_doc_empty_fail4.cpp ]
+       [ compile-fail test_doc_empty_fail6.cpp ]
+       [ compile-fail test_doc_empty_fail7.cpp ]
+       [ compile-fail test_doc_empty_fail8.cpp ]
+       [ run test_doc_equality.cpp ]
+       [ run test_doc_example_switch.cpp ]
+       [ run test_doc_get_type.cpp ]
+       [ run test_doc_identifier.cpp ]
+       [ run test_doc_identifier_subtyping.cpp ]
+       [ run test_doc_modifiers_filter.cpp ]
+       [ run test_doc_modifiers_identifier.cpp ]
+       [ run test_doc_modifiers_index.cpp ]
+       [ run test_doc_modifiers_return_type.cpp ]
+       [ run test_doc_modifiers_splitting.cpp ]
+       [ run test_doc_number.cpp ]
+       [ run test_doc_type.cpp ]
+       [ run test_doc_pp_data_types.cpp ]
+       [ run test_doc_sequence.cpp ]
+       [ run test_doc_sequence_access.cpp ]
+       [ run test_doc_sequence_convert.cpp ]
+       [ run test_doc_whyhow.cpp ]
+       [ run test_equal.cpp ]
+       [ run test_equal_array.cpp ]
+       [ run test_equal_identifier.cpp ]
+       [ run test_equal_list.cpp ]
+       [ run test_equal_multi.cpp ]
+       [ run test_equal_number.cpp ]
+       [ run test_equal_seq.cpp ]
+       [ run test_equal_tuple.cpp ]
+       [ run test_equal_type.cpp ]
+       [ run test_identifier_elem.cpp ]
+       [ run test_identifier_equal.cpp ]
        [ run test_is_array.cpp ]
        [ run-fail test_is_array_fail.cpp ]
        [ run-fail test_is_array_fail2.cpp ]
        [ run-fail test_is_array_fail3.cpp ]
        [ run-fail test_is_array_fail4.cpp ]
-       [ run test_is_begin_array.cpp ]
-       [ run test_is_begin_identifier.cpp ]
-       [ run test_is_begin_list.cpp ]
-       [ run test_is_begin_number.cpp ]
-       [ run test_is_begin_seq.cpp ]
-       [ run test_is_begin_tuple.cpp ]
        [ run test_is_empty.cpp ]
        [ compile-fail test_is_empty_fail.cpp ]
        [ run test_is_identifier.cpp ]
@@ -153,39 +209,64 @@ test-suite variadic_macro_data
        [ run-fail test_is_tuple_fail2.cpp ]
        [ run-fail test_is_tuple_fail3.cpp ]
        [ run-fail test_is_tuple_fail4.cpp ]
-       [ run test_list.cpp ]
+       [ run test_is_type.cpp ]
+       [ run test_list_elem.cpp ]
        [ run test_list_empty.cpp ]
-       [ run test_number.cpp ]
-       [ run test_seq.cpp ]
-       [ run test_tuple.cpp ]
+       [ run test_list_equal.cpp ]
+       [ run test_number_elem.cpp ]
+       [ run test_number_equal.cpp ]
+       [ run test_seq_elem.cpp ]
+       [ run test_seq_equal.cpp ]
+       [ run test_sequence_after_elem.cpp ]
+       [ run test_sequence_elem.cpp ]
+       [ run test_sequence_enum.cpp ]
+       [ run test_sequence_size.cpp ]
+       [ run test_sequence_to_array.cpp ]
+       [ run test_sequence_to_list.cpp ]
+       [ run test_sequence_to_seq.cpp ]
+       [ run test_sequence_to_tuple.cpp ]
+       [ run test_tuple_elem.cpp ]
+       [ run test_tuple_equal.cpp ]
+       [ run test_type.cpp ]
+       [ run test_type_elem.cpp ]
+       [ run test_type_equal.cpp ]
     ;
 
 test-suite variadic_macro_data_gh
    : 
-       [ run test_after_array.cpp : : :
+       [ run test_after_array_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_after_array_gh ]
-       [ run test_after_identifier.cpp : : :
+         test_after_array_elem_gh ]
+       [ run test_after_identifier_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_after_identifier_gh ]
-       [ run test_after_list.cpp : : :
+         test_after_identifier_elem_gh ]
+       [ run test_after_list_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_after_list_gh ]
-       [ run test_after_number.cpp : : :
+         test_after_list_elem_gh ]
+       [ run test_after_number_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_after_number_gh ]
-       [ run test_after_seq.cpp : : :
+         test_after_number_elem_gh ]
+       [ run test_after_seq_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_after_seq_gh ]
-       [ run test_after_tuple.cpp : : :
+         test_after_seq_elem_gh ]
+       [ run test_after_tuple_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_after_tuple_gh ]
-       [ run test_array.cpp : : :
+         test_after_tuple_elem_gh ]
+       [ run test_after_type_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_array_gh ]
+         test_after_type_elem_gh ]
+       [ run test_array_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_array_elem_gh ]
+       [ run test_array_equal.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_array_equal_gh ]
        [ run test_array_empty.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_array_empty_gh ]
+       [ run test_ary.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_ary_gh ]
        [ compile test_assert.cpp :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_assert_gh ]
@@ -334,27 +415,118 @@ test-suite variadic_macro_data_gh
          <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_assert_is_tuple_fail4_gh ]
-       [ run test_begin_array.cpp : : :
+       [ compile test_assert_is_type.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_begin_array_gh ]
-       [ run test_begin_identifier.cpp : : :
+         test_assert_is_type_gh ]
+       [ compile-fail test_assert_is_type_fail.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_begin_identifier_gh ]
-       [ run test_begin_list.cpp : : :
+         test_assert_is_type_fail_gh ]
+       [ compile test_doc_assert.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1 
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_begin_list_gh ]
-       [ run test_begin_number.cpp : : :
+         test_doc_assert_gh ]
+       [ compile-fail test_doc_assert_fail.cpp :
+         <define>BOOST_VMD_ASSERT_DATA=1 
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_begin_number_gh ]
-       [ run test_begin_seq.cpp : : :
+         test_doc_assert_fail_gh ]
+       [ run test_doc_empty.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_begin_seq_gh ]
-       [ run test_begin_tuple.cpp : : :
+         test_doc_empty_gh ]
+       [ compile-fail test_doc_empty_fail3.cpp :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_begin_tuple_gh ]
-       [ run test_identifier.cpp : : :
+         test_doc_empty_fail3_gh ]
+       [ compile-fail test_doc_empty_fail4.cpp :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_identifier_gh ]
+         test_doc_empty_fail4_gh ]
+       [ compile-fail test_doc_empty_fail7.cpp :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_empty_fail7_gh ]
+       [ run test_doc_equality.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_equality_gh ]
+       [ run test_doc_example_switch.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_example_switch_gh ]
+       [ run test_doc_get_type.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_get_type_gh ]
+       [ run test_doc_identifier.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_identifier_gh ]
+       [ run test_doc_identifier_subtyping.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_identifier_subtyping_gh ]
+       [ run test_doc_modifiers_filter.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_modifiers_filter_gh ]
+       [ run test_doc_modifiers_identifier.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_modifiers_identifier_gh ]
+       [ run test_doc_modifiers_index.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_modifiers_index_gh ]
+       [ run test_doc_modifiers_return_type.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_modifiers_return_type_gh ]
+       [ run test_doc_modifiers_splitting.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_modifiers_splitting_gh ]
+       [ run test_doc_number.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_number_gh ]
+       [ run test_doc_pp_data_types.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_pp_data_types_gh ]
+       [ run test_doc_sequence.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_sequence_gh ]
+       [ run test_doc_sequence_access.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_sequence_access_gh ]
+       [ run test_doc_sequence_convert.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_sequence_convert_gh ]
+       [ run test_doc_type.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_type_gh ]
+       [ run test_doc_whyhow.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_doc_whyhow_gh ]
+       [ run test_equal.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_gh ]
+       [ run test_equal_array.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_array_gh ]
+       [ run test_equal_identifier.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_identifier_gh ]
+       [ run test_equal_list.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_list_gh ]
+       [ run test_equal_multi.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_multi_gh ]
+       [ run test_equal_number.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_number_gh ]
+       [ run test_equal_seq.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_seq_gh ]
+       [ run test_equal_tuple.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_tuple_gh ]
+       [ run test_equal_type.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_equal_type_gh ]
+       [ run test_identifier_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_identifier_elem_gh ]
+       [ run test_identifier_equal.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_identifier_equal_gh ]
        [ run test_is_array.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_array_gh ]
@@ -370,24 +542,6 @@ test-suite variadic_macro_data_gh
        [ run-fail test_is_array_fail4.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_array_fail4_gh ]
-       [ run test_is_begin_array.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_begin_array_gh ]
-       [ run test_is_begin_identifier.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_begin_identifier_gh ]
-       [ run test_is_begin_list.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_begin_list_gh ]
-       [ run test_is_begin_number.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_begin_number_gh ]
-       [ run test_is_begin_seq.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_begin_seq_gh ]
-       [ run test_is_begin_tuple.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_is_begin_tuple_gh ]
        [ run test_is_empty.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_empty_gh ]
@@ -451,19 +605,67 @@ test-suite variadic_macro_data_gh
        [ run-fail test_is_tuple_fail4.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_is_tuple_fail4_gh ]
-       [ run test_list.cpp : : :
+       [ run test_is_type.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_list_gh ]
+         test_is_type_gh ]
+       [ run test_list_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_list_elem_gh ]
        [ run test_list_empty.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
          test_list_empty_gh ]
-       [ run test_number.cpp : : :
+       [ run test_list_equal.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_number_gh ]
-       [ run test_seq.cpp : : :
+         test_list_equal_gh ]
+       [ run test_number_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_seq_gh ]
-       [ run test_tuple.cpp : : :
+         test_number_elem_gh ]
+       [ run test_number_equal.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER : 
-         test_tuple_gh ]
+         test_number_equal_gh ]
+       [ run test_seq_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_seq_elem_gh ]
+       [ run test_seq_equal.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_seq_equal_gh ]
+       [ run test_sequence_after_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_after_elem_gh ]
+       [ run test_sequence_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_elem_gh ]
+       [ run test_sequence_enum.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_enum_gh ]
+       [ run test_sequence_size.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_size_gh ]
+       [ run test_sequence_to_array.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_to_array_gh ]
+       [ run test_sequence_to_list.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_to_list_gh ]
+       [ run test_sequence_to_seq.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_to_seq_gh ]
+       [ run test_sequence_to_tuple.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_sequence_to_tuple_gh ]
+       [ run test_tuple_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_tuple_elem_gh ]
+       [ run test_tuple_equal.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_tuple_equal_gh ]
+       [ run test_type.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_type_gh ]
+       [ run test_type_elem.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_type_elem_gh ]
+       [ run test_type_equal.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER : 
+         test_type_equal_gh ]
     ;

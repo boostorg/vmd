@@ -13,14 +13,12 @@ int main()
 
   #define JDATA somevalue
   
-  #define BOOST_VMD_MAP_VMD_TEST_0_zzz
-  #define BOOST_VMD_MAP_VMD_TEST_1_somevalue
+  #define BOOST_VMD_REGISTER_zzz (zzz)
+  #define BOOST_VMD_DETECT_zzz_zzz
+  #define BOOST_VMD_REGISTER_somevalue (somevalue)
+  #define BOOST_VMD_DETECT_somevalue_somevalue
   
-  BOOST_VMD_ASSERT(BOOST_VMD_IS_IDENTIFIER(JDATA,VMD_TEST_0_),BOOST_VMD_TEST_FAIL_IS_IDENTIFIER)
-  
-#else
-  
-  typedef char BOOST_VMD_TEST_FAIL_IS_IDENTIFIER[-1];
+  BOOST_VMD_ASSERT(BOOST_VMD_IS_IDENTIFIER(JDATA,zzz),BOOST_VMD_TEST_FAIL_IS_IDENTIFIER)
   
 #endif
 

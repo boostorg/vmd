@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/array.hpp>
+#include <boost/vmd/elem.hpp>
 #include <boost/vmd/assert.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
@@ -15,11 +15,7 @@ int main()
 
   #define AN_ARRAY_PLUS (4,(mmf,34,^^,!)) 156
 
-  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ARRAY(AN_ARRAY_PLUS)),256),BOOST_VMD_TEST_FAIL_ARRAY)
-  
-#else
-  
-  typedef char BOOST_VMD_TEST_FAIL_ARRAY[-1];
+  BOOST_VMD_ASSERT(BOOST_PP_EQUAL(BOOST_PP_TUPLE_ELEM(1,BOOST_VMD_ELEM(0,AN_ARRAY_PLUS,BOOST_VMD_RETURN_AFTER,BOOST_VMD_TYPE_ARRAY)),256),BOOST_VMD_TEST_FAIL_ARRAY)
   
 #endif
 

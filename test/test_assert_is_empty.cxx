@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/is_empty.hpp>
+#include <boost/vmd/assert_is_empty.hpp>
 #endif
 #include <boost/preprocessor/facilities/empty.hpp>
 #include <boost/detail/lightweight_test.hpp>
@@ -36,6 +36,10 @@ int main()
 
 #endif /* BOOST_VMD_MSVC */
 
+#else
+
+BOOST_ERROR("No variadic macro support");
+  
 #endif /* BOOST_PP_VARIADICS */
 
   return boost::report_errors();

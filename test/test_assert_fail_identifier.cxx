@@ -2,7 +2,7 @@
 #include <boost/vmd/vmd.hpp>
 #else
 #include <boost/vmd/assert.hpp>
-#include <boost/vmd/identifier.hpp>
+#include <boost/vmd/elem.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/comparison/equal.hpp>
@@ -15,7 +15,8 @@ int main()
 
   #define A_TUPLE (*,#,zzz ())
   
-  #define BOOST_VMD_MAP_VMD_TEST_0_zzz
+  #define BOOST_VMD_REGISTER_zzz (zzz)
+  #define BOOST_VMD_DETECT_zzz_zzz
   
   BOOST_VMD_ASSERT
   	(
@@ -23,18 +24,14 @@ int main()
   		(
 		BOOST_PP_TUPLE_ELEM
 			(
-			0,
-			BOOST_VMD_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(DUMMY1,VMD_TEST_0_))
+			2,
+			BOOST_VMD_ELEM(0,BOOST_PP_TUPLE_ELEM(2,A_TUPLE),(dummy1,zzz),BOOST_VMD_RETURN_AFTER,BOOST_VMD_RETURN_INDEX,BOOST_VMD_TYPE_IDENTIFIER)
 			),
-		1
+		0
   		),
   	BOOST_VMD_TEST_FAIL_IDENTIFIER
   	)
   	
-#else
-  
-  typedef char BOOST_VMD_TEST_FAIL_IDENTIFIER[-1];
-  
 #endif
 
   return boost::report_errors();

@@ -16,10 +16,6 @@ int main()
   
   BOOST_VMD_ASSERT(BOOST_VMD_IS_EMPTY(DATA BOOST_PP_EMPTY()),BOOST_VMD_TEST_FAIL_IS_EMPTY)
   
-#else
-  
-  typedef char BOOST_VMD_TEST_FAIL_IS_EMPTY[-1];
-  
 #endif
 
   return boost::report_errors();

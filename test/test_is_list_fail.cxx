@@ -1,7 +1,7 @@
 #if defined(BOOST_VMD_TEST_GENERAL_HEADER)
 #include <boost/vmd/vmd.hpp>
 #else
-#include <boost/vmd/list.hpp>
+#include <boost/vmd/is_list.hpp>
 #endif
 #include <boost/detail/lightweight_test.hpp>
 
@@ -13,10 +13,6 @@ int main()
 
   BOOST_TEST(BOOST_VMD_IS_LIST((4,(x))));
   
-#else
-
-  BOOST_ERROR("No variadic macro support");
-   
 #endif
 
   return boost::report_errors();

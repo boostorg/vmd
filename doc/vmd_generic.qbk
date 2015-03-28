@@ -1,0 +1,10 @@
+[section:vmd_generic Generic macros for working with data types]
+
+Besides the specific macros for working with data types
+VMD has a number of generic macros for parsing sequences.
+
+[include vmd_sequence.qbk]
+[include vmd_get_type.qbk]
+[include vmd_equality.qbk]
+
+[endsect]
