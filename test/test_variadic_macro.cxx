@@ -44,7 +44,7 @@ BOOST_ERROR("No variadic macro support for gcc >= 4.3: __STDC_VERSION__ is less 
 #      else
 BOOST_ERROR("No variadic macro support: __STDC_VERSION__ is less than 199901L.");
 #      endif
-#    elif __cplusplus < 201103L
+#    elif defined __cplusplus && __cplusplus < 201103L
 #      if BOOST_COMP_GNUC >= 4.3
 BOOST_ERROR("No variadic macro support for g++ >= 4.3: __cplusplus is less than 201103L.");
 #      else
