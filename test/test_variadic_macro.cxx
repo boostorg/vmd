@@ -39,13 +39,13 @@ BOOST_ERROR("No variadic macro support: __PGI defined.");
 #    elif defined __WAVE__ && __WAVE_HAS_VARIADICS__ || defined __GNUC__ && __GXX_EXPERIMENTAL_CXX0X__
 #    /* EDG-based (C/C++), GCC (C), and unknown (C/C++) */
 #    elif !defined __cplusplus && __STDC_VERSION__ < 199901L
-#      if BOOST_COMP_GNUC >= 4.3
+#      if BOOST_COMP_GNUC >= BOOST_VERSION_NUMBER(4,3,0)
 BOOST_ERROR("No variadic macro support for gcc >= 4.3: __STDC_VERSION__ is less than 199901L.");
 #      else
 BOOST_ERROR("No variadic macro support: __STDC_VERSION__ is less than 199901L.");
 #      endif
 #    elif defined __cplusplus && __cplusplus < 201103L
-#      if BOOST_COMP_GNUC >= 4.3
+#      if BOOST_COMP_GNUC >= BOOST_VERSION_NUMBER(4,3,0)
 BOOST_ERROR("No variadic macro support for g++ >= 4.3: __cplusplus is less than 201103L.");
 #      else
 BOOST_ERROR("No variadic macro support: __cplusplus is less than 201103L.");
