@@ -13,7 +13,6 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>msvc:<warnings>all
                                                  <toolset>msvc:<cxxflags>-wd4003
                                                  <toolset>intel-linux:<cxxflags>-std=c++11
-                                                 <toolset>sun:<cxxflags>-std=c++11
                                                  <toolset>clang:<cxxflags>-std=c++11
                                                  <toolset>clang:<cxxflags>-pedantic-errors
                                                  <toolset>gcc:<warnings>all
@@ -217,7 +216,7 @@ test-suite variadic_macro_data
        [ run test_type.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ run test_type_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ run test_type_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_variadic_macro.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_variadic_macro.cpp ]
        [ run test_qnx.cpp ]
     ;
 
