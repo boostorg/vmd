@@ -21,8 +21,8 @@ BOOST_ERROR("No variadic macro support: __CODEGEARC__ defined.");
 BOOST_ERROR("No variadic macro support: __BORLANDC__ defined.");
 #    elif defined __MWERKS__
 BOOST_ERROR("No variadic macro support: __MWERKS__ defined.");
-#    elif defined __SUNPRO_CC
-BOOST_ERROR("No variadic macro support: __SUNPRO_CC defined.");
+#    elif (defined __SUNPRO_CC && __SUNPRO_CC < 0x5120)
+BOOST_ERROR("No variadic macro support: __SUNPRO_CC defined below version 12.3.");
 #    elif defined __HP_aCC && !defined __EDG__
 BOOST_ERROR("No variadic macro support: __HP_aCC defined and __EDG__ not defined.");
 #    elif defined __MRC__
