@@ -10,6 +10,7 @@ import ../../predef/check/predef
     : predef-check predef-require ;
 
 project variadic_macro_data_tests : requirements <warnings>on
+                                                 <test-info>always_show_run_output
                                                  <toolset>msvc:<warnings>all
                                                  <toolset>msvc:<cxxflags>-wd4003
                                                  <toolset>intel-linux:<cxxflags>-std=c++11
@@ -17,6 +18,7 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>clang:<cxxflags>-pedantic-errors
                                                  <toolset>gcc:<warnings>all
                                                  <toolset>gcc:<cxxflags>-pedantic-errors
+                                                 [ predef-check "BOOST_COMP_GNUC >= 4.8.1" : : <cxxflags>-ftrack-macro-expansion=0 ]
                                                  <toolset>gcc-4.3.0:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.3.0:<cxxflags>-U__STRICT_ANSI__
                                                  <toolset>gcc-4.4.0:<cxxflags>-Wno-variadic-macros
@@ -32,630 +34,623 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>gcc-4.7.0:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.7.2:<cxxflags>-Wno-variadic-macros
                                                  <toolset>gcc-4.8.1:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.8.1:<cxxflags>-ftrack-macro-expansion=0
                                                  <toolset>gcc-4.8.2:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.8.2:<cxxflags>-ftrack-macro-expansion=0
                                                  <toolset>gcc-4.8.3:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.8.3:<cxxflags>-ftrack-macro-expansion=0
                                                  <toolset>gcc-4.9.0:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.9.0:<cxxflags>-ftrack-macro-expansion=0
                                                  <toolset>gcc-4.9.1:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.9.1:<cxxflags>-ftrack-macro-expansion=0
                                                  <toolset>gcc-4.9.2:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-4.9.2:<cxxflags>-ftrack-macro-expansion=0
                                                  <toolset>gcc-5.1.0:<cxxflags>-Wno-variadic-macros
-                                                 <toolset>gcc-5.1.0:<cxxflags>-ftrack-macro-expansion=0
                                                  ;
 
 test-suite variadic_macro_data
     : 
-       [ run test_after_array_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_after_identifier_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_after_list_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_after_number_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_after_seq_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_after_tuple_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_after_type_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_array_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_array_empty.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_array_equal.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_ary.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile test_assert.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_array.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_identifier.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_is_empty.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_is_identifier.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_is_number.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_list.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_number.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_seq.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_tuple.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_assert_fail_vcstring.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_after_array_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_after_identifier_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_after_list_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_after_number_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_after_seq_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_after_tuple_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_after_type_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_array_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_array_empty.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_array_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_ary.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile test_assert.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_array.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_identifier.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_is_empty.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_is_identifier.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_is_number.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_list.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_number.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_seq.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_tuple.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_assert_fail_vcstring.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_assert_is_array.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_array_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_array_fail2.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_array_fail3.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_array_fail4.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_assert_is_empty.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_empty_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_empty_fail2.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_empty_fail3.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_assert_is_identifier.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_identifier_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_assert_is_list.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_list_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_list_fail2.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_list_fail3.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_list_fail4.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_assert_is_number.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_number_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_assert_is_seq.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_seq_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_seq_fail2.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_seq_fail3.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_seq_fail4.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_assert_is_tuple.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_tuple_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_tuple_fail2.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_tuple_fail3.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_tuple_fail4.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_assert_is_type.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_assert_is_type_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile test_doc_assert.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
        [ compile-fail test_doc_assert_fail.cpp :
-         <define>BOOST_VMD_ASSERT_DATA=1 <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_empty.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_doc_empty_fail.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_doc_empty_fail2.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_doc_empty_fail3.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_doc_empty_fail4.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_doc_empty_fail6.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_doc_empty_fail7.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_doc_empty_fail8.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_equality.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_example_switch.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_get_type.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_identifier.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_identifier_subtyping.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_modifiers_filter.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_modifiers_identifier.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_modifiers_index.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_modifiers_return_type.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_modifiers_splitting.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_number.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_type.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_pp_data_types.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_sequence.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_sequence_access.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_sequence_convert.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_doc_whyhow.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal_array.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal_identifier.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal_list.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal_multi.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal_number.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal_seq.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal_tuple.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_equal_type.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_identifier_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_identifier_equal.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_array.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_array_fail.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_array_fail2.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_array_fail3.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_array_fail4.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_empty.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ compile-fail test_is_empty_fail.cpp : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_identifier.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_list.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_list_fail.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_list_fail2.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_list_fail3.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_list_fail4.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_number.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_parens_empty.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_seq.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_seq_fail.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_seq_fail2.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_seq_fail3.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_seq_fail4.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_tuple.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_tuple_fail.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_tuple_fail2.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_tuple_fail3.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run-fail test_is_tuple_fail4.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_is_type.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_list_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_list_empty.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_list_equal.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_number_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_number_equal.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_seq_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_seq_equal.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_sequence_after_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_sequence_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_sequence_enum.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_sequence_size.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_sequence_to_array.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_sequence_to_list.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_sequence_to_seq.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_sequence_to_tuple.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_tuple_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_tuple_equal.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_type.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_type_elem.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_type_equal.cpp : : : <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
-       [ run test_variadic_macro.cpp : : : <test-info>always_show_run_output ]
-       [ run test_qnx.cpp : : : <test-info>always_show_run_output ]
+         <define>BOOST_VMD_ASSERT_DATA=1 [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_empty.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_doc_empty_fail.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_doc_empty_fail2.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_doc_empty_fail3.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_doc_empty_fail4.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_doc_empty_fail6.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_doc_empty_fail7.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_doc_empty_fail8.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_equality.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_example_switch.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_get_type.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_identifier.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_identifier_subtyping.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_modifiers_filter.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_modifiers_identifier.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_modifiers_index.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_modifiers_return_type.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_modifiers_splitting.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_number.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_type.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_pp_data_types.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_sequence.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_sequence_access.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_sequence_convert.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_doc_whyhow.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal_array.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal_identifier.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal_list.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal_multi.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal_number.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal_seq.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal_tuple.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_equal_type.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_identifier_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_identifier_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_array.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_array_fail.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_array_fail2.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_array_fail3.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_array_fail4.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_empty.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ compile-fail test_is_empty_fail.cpp : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_identifier.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_list.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_list_fail.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_list_fail2.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_list_fail3.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_list_fail4.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_number.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_parens_empty.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_seq.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_seq_fail.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_seq_fail2.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_seq_fail3.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_seq_fail4.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_tuple.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_tuple_fail.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_tuple_fail2.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_tuple_fail3.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run-fail test_is_tuple_fail4.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_is_type.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_list_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_list_empty.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_list_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_number_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_number_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_seq_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_seq_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_sequence_after_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_sequence_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_sequence_enum.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_sequence_size.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_sequence_to_array.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_sequence_to_list.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_sequence_to_seq.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_sequence_to_tuple.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_tuple_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_tuple_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_type.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_type_elem.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_type_equal.cpp : : : [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_variadic_macro.cpp : : : ]
+       [ run test_qnx.cpp : : : ]
     ;
 
 test-suite variadic_macro_data_gh
    : 
        [ run test_after_array_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_after_array_elem_gh ]
        [ run test_after_identifier_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_after_identifier_elem_gh ]
        [ run test_after_list_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_after_list_elem_gh ]
        [ run test_after_number_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_after_number_elem_gh ]
        [ run test_after_seq_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_after_seq_elem_gh ]
        [ run test_after_tuple_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_after_tuple_elem_gh ]
        [ run test_after_type_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_after_type_elem_gh ]
        [ run test_array_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_array_elem_gh ]
        [ run test_array_equal.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_array_equal_gh ]
        [ run test_array_empty.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_array_empty_gh ]
        [ run test_ary.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_ary_gh ]
        [ compile test_assert.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_gh ]
        [ compile-fail test_assert_fail.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_gh ]
        [ compile-fail test_assert_fail_array.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_array_gh ]
        [ compile-fail test_assert_fail_identifier.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_identifier_gh ]
        [ compile-fail test_assert_fail_is_empty.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_is_empty_gh ]
        [ compile-fail test_assert_fail_is_identifier.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_is_identifier_gh ]
        [ compile-fail test_assert_fail_is_number.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_is_number_gh ]
        [ compile-fail test_assert_fail_list.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_list_gh ]
        [ compile-fail test_assert_fail_number.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_number_gh ]
        [ compile-fail test_assert_fail_seq.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_seq_gh ]
        [ compile-fail test_assert_fail_tuple.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_tuple_gh ]
        [ compile-fail test_assert_fail_vcstring.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_fail_vcstring_gh ]
        [ compile test_assert_is_array.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_array_gh ]
        [ compile-fail test_assert_is_array_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_array_fail_gh ]
        [ compile-fail test_assert_is_array_fail2.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_array_fail2_gh.cpp ]
        [ compile-fail test_assert_is_array_fail3.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_array_fail3_gh ]
        [ compile-fail test_assert_is_array_fail4.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_array_fail4_gh ]
        [ compile test_assert_is_empty.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_empty_gh ]
        [ compile-fail test_assert_is_empty_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_empty_fail_gh ]
        [ compile-fail test_assert_is_empty_fail2.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_empty_fail2_gh ]
        [ compile-fail test_assert_is_empty_fail3.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_empty_fail3_gh ]
        [ compile test_assert_is_identifier.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_identifier_gh ]
        [ compile-fail test_assert_is_identifier_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_identifier_fail_gh ]
        [ compile test_assert_is_list.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_list_gh ]
        [ compile-fail test_assert_is_list_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_list_fail_gh ]
        [ compile-fail test_assert_is_list_fail2.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_list_fail2_gh.cpp ]
        [ compile-fail test_assert_is_list_fail3.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_list_fail3_gh ]
        [ compile-fail test_assert_is_list_fail4.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_list_fail4_gh ]
        [ compile test_assert_is_number.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_number_gh ]
        [ compile-fail test_assert_is_number_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_number_fail_gh ]
        [ compile test_assert_is_seq.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_seq_gh ]
        [ compile-fail test_assert_is_seq_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_seq_fail_gh ]
        [ compile-fail test_assert_is_seq_fail2.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_seq_fail2_gh.cpp ]
        [ compile-fail test_assert_is_seq_fail3.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_seq_fail3_gh ]
        [ compile-fail test_assert_is_seq_fail4.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_seq_fail4_gh ]
        [ compile test_assert_is_tuple.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_tuple_gh ]
        [ compile-fail test_assert_is_tuple_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_tuple_fail_gh ]
        [ compile-fail test_assert_is_tuple_fail2.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_tuple_fail2_gh.cpp ]
        [ compile-fail test_assert_is_tuple_fail3.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_tuple_fail3_gh ]
        [ compile-fail test_assert_is_tuple_fail4.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_tuple_fail4_gh ]
        [ compile test_assert_is_type.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_type_gh ]
        [ compile-fail test_assert_is_type_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_assert_is_type_fail_gh ]
        [ compile test_doc_assert.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_assert_gh ]
        [ compile-fail test_doc_assert_fail.cpp :
          <define>BOOST_VMD_ASSERT_DATA=1 
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_assert_fail_gh ]
        [ run test_doc_empty.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_empty_gh ]
        [ compile-fail test_doc_empty_fail3.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_empty_fail3_gh ]
        [ compile-fail test_doc_empty_fail4.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_empty_fail4_gh ]
        [ compile-fail test_doc_empty_fail7.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_empty_fail7_gh ]
        [ run test_doc_equality.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_equality_gh ]
        [ run test_doc_example_switch.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_example_switch_gh ]
        [ run test_doc_get_type.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_get_type_gh ]
        [ run test_doc_identifier.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_identifier_gh ]
        [ run test_doc_identifier_subtyping.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_identifier_subtyping_gh ]
        [ run test_doc_modifiers_filter.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_modifiers_filter_gh ]
        [ run test_doc_modifiers_identifier.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_modifiers_identifier_gh ]
        [ run test_doc_modifiers_index.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_modifiers_index_gh ]
        [ run test_doc_modifiers_return_type.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_modifiers_return_type_gh ]
        [ run test_doc_modifiers_splitting.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_modifiers_splitting_gh ]
        [ run test_doc_number.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_number_gh ]
        [ run test_doc_pp_data_types.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_pp_data_types_gh ]
        [ run test_doc_sequence.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_sequence_gh ]
        [ run test_doc_sequence_access.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_sequence_access_gh ]
        [ run test_doc_sequence_convert.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_sequence_convert_gh ]
        [ run test_doc_type.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_type_gh ]
        [ run test_doc_whyhow.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_doc_whyhow_gh ]
        [ run test_equal.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_gh ]
        [ run test_equal_array.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_array_gh ]
        [ run test_equal_identifier.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_identifier_gh ]
        [ run test_equal_list.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_list_gh ]
        [ run test_equal_multi.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_multi_gh ]
        [ run test_equal_number.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_number_gh ]
        [ run test_equal_seq.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_seq_gh ]
        [ run test_equal_tuple.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_tuple_gh ]
        [ run test_equal_type.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_equal_type_gh ]
        [ run test_identifier_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_identifier_elem_gh ]
        [ run test_identifier_equal.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_identifier_equal_gh ]
        [ run test_is_array.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_array_gh ]
        [ run-fail test_is_array_fail.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_array_fail_gh ]
        [ run-fail test_is_array_fail2.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_array_fail2_gh ]
        [ run-fail test_is_array_fail3.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_array_fail3_gh ]
        [ run-fail test_is_array_fail4.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_array_fail4_gh ]
        [ run test_is_empty.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_empty_gh ]
        [ compile-fail test_is_empty_fail.cpp :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_empty_fail_gh ]
        [ run test_is_empty_tuple_succeed.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_empty_tuple_succeed_gh ]
        [ run test_is_identifier.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_identifier_gh ]
        [ run test_is_list.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_list_gh ]
        [ run-fail test_is_list_fail.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_list_fail_gh ]
        [ run-fail test_is_list_fail2.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_list_fail2_gh ]
        [ run-fail test_is_list_fail3.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_list_fail3_gh ]
        [ run-fail test_is_list_fail4.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_list_fail4_gh ]
        [ run test_is_number.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_number_gh ]
        [ run test_is_parens_empty.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_parens_empty_gh ]
        [ run test_is_seq.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_seq_gh ]
        [ run-fail test_is_seq_fail.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_seq_fail_gh ]
        [ run-fail test_is_seq_fail2.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_seq_fail2_gh ]
        [ run-fail test_is_seq_fail3.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_seq_fail3_gh ]
        [ run-fail test_is_seq_fail4.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_seq_fail4_gh ]
        [ run test_is_tuple.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_tuple_gh ]
        [ run-fail test_is_tuple_fail.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_tuple_fail_gh ]
        [ run-fail test_is_tuple_fail2.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_tuple_fail2_gh ]
        [ run-fail test_is_tuple_fail3.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_tuple_fail3_gh ]
        [ run-fail test_is_tuple_fail4.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_tuple_fail4_gh ]
        [ run test_is_type.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_is_type_gh ]
        [ run test_list_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_list_elem_gh ]
        [ run test_list_empty.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_list_empty_gh ]
        [ run test_list_equal.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_list_equal_gh ]
        [ run test_number_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_number_elem_gh ]
        [ run test_number_equal.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_number_equal_gh ]
        [ run test_seq_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_seq_elem_gh ]
        [ run test_seq_equal.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_seq_equal_gh ]
        [ run test_sequence_after_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_sequence_after_elem_gh ]
        [ run test_sequence_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_sequence_elem_gh ]
        [ run test_sequence_enum.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_sequence_enum_gh ]
        [ run test_sequence_size.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_sequence_size_gh ]
        [ run test_sequence_to_array.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_sequence_to_array_gh ]
        [ run test_sequence_to_list.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_sequence_to_list_gh ]
        [ run test_sequence_to_seq.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_sequence_to_seq_gh ]
        [ run test_sequence_to_tuple.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_sequence_to_tuple_gh ]
        [ run test_tuple_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_tuple_elem_gh ]
        [ run test_tuple_equal.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_tuple_equal_gh ]
        [ run test_type.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_type_gh ]
        [ run test_type_elem.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_type_elem_gh ]
        [ run test_type_equal.cpp : : :
-         <define>BOOST_VMD_TEST_GENERAL_HEADER <test-info>always_show_run_output [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
+         <define>BOOST_VMD_TEST_GENERAL_HEADER [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] : 
          test_type_equal_gh ]
     ;
