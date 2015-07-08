@@ -34,6 +34,7 @@ test-suite variadic_macro_data
        [ run test_after_list_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_after_number_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_after_seq_elem.cpp : : : $(l_gcc_c11) ]
+       [ run test_android.cpp : : : <cxxflags>-std=c++0x ]
        [ run test_after_tuple_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_after_type_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_array_elem.cpp : : : $(l_gcc_c11) ]
@@ -198,8 +199,7 @@ test-suite variadic_macro_data
        [ run test_type.cpp : : : $(l_gcc_c11) ]
        [ run test_type_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_type_equal.cpp : : : $(l_gcc_c11) ]
-       [ run test_variadic_macro.cpp : : : ]
-       [ run test_qnx.cpp : : : ]
+       [ run test_variadic_macro.cpp ]
     ;
 
 test-suite variadic_macro_data_gh
