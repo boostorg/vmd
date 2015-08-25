@@ -12,13 +12,13 @@
 #include <boost/preprocessor/variadic/to_tuple.hpp>
 
 #define BOOST_VMD_DETAIL_VARIADIC_POP_FRONT(...) \
-	BOOST_PP_TUPLE_ENUM \
-		( \
-		BOOST_PP_TUPLE_POP_FRONT \
-			( \
-			BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__) \
-			) \
-		) \
+    BOOST_PP_TUPLE_ENUM \
+        ( \
+        BOOST_PP_TUPLE_POP_FRONT \
+            ( \
+            BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__) \
+            ) \
+        ) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_VARIADIC_POP_FRONT_HPP */

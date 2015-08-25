@@ -25,9 +25,9 @@
 
 /** \def BOOST_VMD_ELEM(elem,...)
 
-	\brief Accesses an element of a sequence.
+    \brief Accesses an element of a sequence.
 
-	elem      = A sequence element number. From 0 to sequence size - 1.
+    elem      = A sequence element number. From 0 to sequence size - 1.
     ...       = Variadic parameters.
     
     The first variadic parameter is required and is the sequence to access.
@@ -63,9 +63,9 @@
     do change what data is returned by the macro.
              
     Splitting: Splitting allows the macro to return the rest of the sequence
-    		 after the element accessed.
+             after the element accessed.
     
-    		 If BOOST_VMD_RETURN_AFTER is specified the return is a tuple
+             If BOOST_VMD_RETURN_AFTER is specified the return is a tuple
              with the element accessed as the first tuple parameter and the rest of
              the sequence as the second tuple parameter. If element access fails 
              both tuple parameters are empty. 
@@ -153,15 +153,15 @@
 */
 
 #define BOOST_VMD_ELEM(elem,...) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM(BOOST_VMD_ALLOW_ALL,elem,__VA_ARGS__) \
+    BOOST_VMD_DETAIL_SEQUENCE_ELEM(BOOST_VMD_ALLOW_ALL,elem,__VA_ARGS__) \
 /**/
 
 /** \def BOOST_VMD_ELEM_D(d,elem,...)
 
-	\brief Accesses an element of a sequence. Re-entrant version.
+    \brief Accesses an element of a sequence. Re-entrant version.
 
-	d         = The next available BOOST_PP_WHILE iteration. 
-	elem      = A sequence element number. From 0 to sequence size - 1.
+    d         = The next available BOOST_PP_WHILE iteration. 
+    elem      = A sequence element number. From 0 to sequence size - 1.
     ...       = Variadic parameters.
     
     The first variadic parameter is required and is the sequence to access.
@@ -197,9 +197,9 @@
     do change what data is returned by the macro.
              
     Splitting: Splitting allows the macro to return the rest of the sequence
-    		 after the element accessed.
+             after the element accessed.
     
-    		 If BOOST_VMD_RETURN_AFTER is specified the return is a tuple
+             If BOOST_VMD_RETURN_AFTER is specified the return is a tuple
              with the element accessed as the first tuple parameter and the rest of
              the sequence as the second tuple parameter. If element access fails 
              both tuple parameters are empty. 
@@ -285,7 +285,7 @@
 */
 
 #define BOOST_VMD_ELEM_D(d,elem,...) \
-	BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,BOOST_VMD_ALLOW_ALL,elem,__VA_ARGS__) \
+    BOOST_VMD_DETAIL_SEQUENCE_ELEM_D(d,BOOST_VMD_ALLOW_ALL,elem,__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

@@ -10,7 +10,7 @@
 #include <boost/vmd/detail/match_identifier_common.hpp>
 
 #define BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER(id,key) \
-	BOOST_VMD_DETAIL_MATCH_IDENTIFIER_OP_CMP_IDS(id,key) \
+    BOOST_VMD_DETAIL_MATCH_IDENTIFIER_OP_CMP_IDS(id,key) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_MATCH_SINGLE_IDENTIFIER_HPP */

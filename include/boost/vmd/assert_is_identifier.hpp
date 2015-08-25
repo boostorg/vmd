@@ -38,8 +38,8 @@
     
     sequence         = A sequence to test as an identifier.
     ids (optional)   = The data may take one of two forms:
-    			       it is either one or more single identifiers
-    			       or a single Boost PP tuple of identifiers.
+                       it is either one or more single identifiers
+                       or a single Boost PP tuple of identifiers.
 
     returns = Normally the macro returns nothing. 
     
@@ -85,15 +85,15 @@
     to check or not check by defining the macro 
     BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
 
-	d         = The next available BOOST_PP_WHILE iteration. 
+    d         = The next available BOOST_PP_WHILE iteration. 
     ...       = variadic parameters
     
     The variadic parameters are:
     
     sequence         = A sequence to test as an identifier.
     ids (optional)   = The data may take one of two forms:
-    			       it is either one or more single identifiers
-    			       or a single Boost PP tuple of identifiers.
+                       it is either one or more single identifiers
+                       or a single Boost PP tuple of identifiers.
 
     returns = Normally the macro returns nothing. 
     
@@ -139,18 +139,18 @@
 
 #define BOOST_VMD_ASSERT_IS_IDENTIFIER(...) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_IDENTIFIER(__VA_ARGS__), \
-      	BOOST_VMD_IDENTIFIER_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_IDENTIFIER(__VA_ARGS__), \
+          BOOST_VMD_IDENTIFIER_ASSERT_ERROR \
+          ) \
 /**/
 
 #define BOOST_VMD_ASSERT_IS_IDENTIFIER_D(d,...) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_IDENTIFIER_D(d,__VA_ARGS__), \
-      	BOOST_VMD_IDENTIFIER_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_IDENTIFIER_D(d,__VA_ARGS__), \
+          BOOST_VMD_IDENTIFIER_ASSERT_ERROR \
+          ) \
 /**/
 
 #endif // !BOOST_VMD_ASSERT_DATA

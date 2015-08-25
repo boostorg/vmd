@@ -22,7 +22,7 @@
 
 /** \def BOOST_VMD_EMPTY(...)
 
-	\brief Outputs emptiness.
+    \brief Outputs emptiness.
 
     ... = any variadic parameters. The parameters are ignored.
     

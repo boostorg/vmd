@@ -42,7 +42,7 @@
 */
 
 #define BOOST_VMD_IS_EMPTY_LIST(sequence) \
-	BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS(sequence) \
+    BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS(sequence) \
 /**/
 
 /** \def BOOST_VMD_IS_EMPTY_LIST_D(d,sequence)
@@ -52,7 +52,7 @@
     An empty Boost PP list consists of the single identifier 'BOOST_PP_NIL'.
     This identifier also serves as a list terminator for a non-empty list.
     
-	d        = The next available BOOST_PP_WHILE iteration
+    d        = The next available BOOST_PP_WHILE iteration
     sequence = a preprocessor parameter
 
     returns = 1 if the sequence is an empty Boost PP list
@@ -66,7 +66,7 @@
 */
 
 #define BOOST_VMD_IS_EMPTY_LIST_D(d,sequence) \
-	BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D(d,sequence) \
+    BOOST_VMD_DETAIL_IS_LIST_IS_EMPTY_LIST_PROCESS_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

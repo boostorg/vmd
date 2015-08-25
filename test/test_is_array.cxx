@@ -22,27 +22,27 @@ int main()
 #endif
   
   BOOST_TEST
-  	(
-  	BOOST_VMD_IS_ARRAY((4,(x,3,e,2)))
-  	);
-  	
+      (
+      BOOST_VMD_IS_ARRAY((4,(x,3,e,2)))
+      );
+      
   BOOST_TEST
-  	(
-  	BOOST_VMD_IS_ARRAY((6,(x,3,e,2,(4,(x,3,e,2)),#)))
-  	);
-  	
+      (
+      BOOST_VMD_IS_ARRAY((6,(x,3,e,2,(4,(x,3,e,2)),#)))
+      );
+      
   BOOST_TEST
-  	(
-  	BOOST_VMD_IS_ARRAY(AN_ARRAY)
-  	);
-	
+      (
+      BOOST_VMD_IS_ARRAY(AN_ARRAY)
+      );
+    
 #if !BOOST_VMD_MSVC_V8
   BOOST_TEST
-  	(
-  	BOOST_VMD_IS_ARRAY(AN_EMPTY_ARRAY)
-  	);
+      (
+      BOOST_VMD_IS_ARRAY(AN_EMPTY_ARRAY)
+      );
 #endif
-	
+    
 #else
 
 BOOST_ERROR("No variadic macro support");

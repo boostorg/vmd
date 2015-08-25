@@ -47,16 +47,16 @@
 */
 
 #define BOOST_VMD_IS_EMPTY_ARRAY(sequence) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_IS_ARRAY(sequence), \
-			BOOST_VMD_DETAIL_IS_EMPTY_ARRAY_SIZE, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(sequence) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+            ( \
+            BOOST_VMD_IS_ARRAY(sequence), \
+            BOOST_VMD_DETAIL_IS_EMPTY_ARRAY_SIZE, \
+            BOOST_VMD_IDENTITY(0) \
+            ) \
+        (sequence) \
+        ) \
 /**/
 
 /** \def BOOST_VMD_IS_EMPTY_ARRAY_D(d,sequence)
@@ -67,7 +67,7 @@
     size element is 0 and the second element is a tuple with a single 
     empty element, ie. '(0,())'.
     
-	d        = The next available BOOST_PP_WHILE iteration. 
+    d        = The next available BOOST_PP_WHILE iteration. 
     sequence = a possible empty array
 
     returns = 1 if the sequence is an empty Boost PP array
@@ -82,16 +82,16 @@
 */
 
 #define BOOST_VMD_IS_EMPTY_ARRAY_D(d,sequence) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_IS_ARRAY_D(d,sequence), \
-			BOOST_VMD_DETAIL_IS_EMPTY_ARRAY_SIZE, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(sequence) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+            ( \
+            BOOST_VMD_IS_ARRAY_D(d,sequence), \
+            BOOST_VMD_DETAIL_IS_EMPTY_ARRAY_SIZE, \
+            BOOST_VMD_IDENTITY(0) \
+            ) \
+        (sequence) \
+        ) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

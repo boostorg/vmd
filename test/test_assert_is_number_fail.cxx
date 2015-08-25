@@ -17,7 +17,7 @@ int main()
 #if BOOST_PP_VARIADICS
 
 #if BOOST_VMD_ASSERT_DATA
-	
+    
   BOOST_VMD_ASSERT_IS_NUMBER(data)
   
 #else

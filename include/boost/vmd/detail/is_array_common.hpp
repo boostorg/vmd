@@ -21,29 +21,29 @@
 #include <boost/vmd/detail/is_empty_tuple.hpp>
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_SYNTAX(tuple) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(tuple)), \
-			BOOST_VMD_DETAIL_IS_ARRAY_CHECK_ARRAY_FORM, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(tuple) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+            ( \
+            BOOST_PP_EQUAL(2,BOOST_PP_TUPLE_SIZE(tuple)), \
+            BOOST_VMD_DETAIL_IS_ARRAY_CHECK_ARRAY_FORM, \
+            BOOST_VMD_IDENTITY(0) \
+            ) \
+        (tuple) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_SYNTAX_D(d,tuple) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_PP_EQUAL_D(d,2,BOOST_PP_TUPLE_SIZE(tuple)), \
-			BOOST_VMD_DETAIL_IS_ARRAY_CHECK_ARRAY_FORM_D, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(d,tuple) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+            ( \
+            BOOST_PP_EQUAL_D(d,2,BOOST_PP_TUPLE_SIZE(tuple)), \
+            BOOST_VMD_DETAIL_IS_ARRAY_CHECK_ARRAY_FORM_D, \
+            BOOST_VMD_IDENTITY(0) \
+            ) \
+        (d,tuple) \
+        ) \
 /**/
 
 /*
@@ -61,30 +61,30 @@
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY(tuple) \
-	BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,tuple)) \
+    BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,tuple)) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY_D(d,tuple) \
-	BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,tuple)) \
+    BOOST_VMD_DETAIL_IS_EMPTY_TUPLE_SIZE(BOOST_PP_TUPLE_ELEM(1,tuple)) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH(tuple) \
     BOOST_PP_IF \
-    	( \
-    	BOOST_PP_TUPLE_ELEM(0,tuple), \
-    	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_SIZE, \
-    	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY \
-    	) \
+        ( \
+        BOOST_PP_TUPLE_ELEM(0,tuple), \
+        BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_SIZE, \
+        BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY \
+        ) \
     (tuple) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_D(d,tuple) \
     BOOST_PP_IF \
-    	( \
-    	BOOST_PP_TUPLE_ELEM(0,tuple), \
-    	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_SIZE_D, \
-    	BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY_D \
-    	) \
+        ( \
+        BOOST_PP_TUPLE_ELEM(0,tuple), \
+        BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_SIZE_D, \
+        BOOST_VMD_DETAIL_IS_ARRAY_CHECK_EMPTY_D \
+        ) \
     (d,tuple) \
 /**/
 
@@ -95,55 +95,55 @@
 */
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC(tuple) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-		  ( \
-		  BOOST_VMD_DETAIL_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,tuple)), \
-		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH, \
-		  BOOST_VMD_IDENTITY(0) \
-		  ) \
-		(tuple) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+          ( \
+          BOOST_VMD_DETAIL_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+          BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH, \
+          BOOST_VMD_IDENTITY(0) \
+          ) \
+        (tuple) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_D(d,tuple) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-		  ( \
-		  BOOST_VMD_DETAIL_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,tuple)), \
-		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_D, \
-		  BOOST_VMD_IDENTITY(0) \
-		  ) \
-		(d,tuple) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+          ( \
+          BOOST_VMD_DETAIL_IS_ARRAY_NUM(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+          BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_MATCH_D, \
+          BOOST_VMD_IDENTITY(0) \
+          ) \
+        (d,tuple) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER(tuple) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_IS_NUMBER(BOOST_PP_TUPLE_ELEM(0,tuple)), \
-			BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(tuple) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+            ( \
+            BOOST_VMD_IS_NUMBER(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+            BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC, \
+            BOOST_VMD_IDENTITY(0) \
+            ) \
+        (tuple) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER_D(d,tuple) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_IS_NUMBER(BOOST_PP_TUPLE_ELEM(0,tuple)), \
-			BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_D, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(d,tuple) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+            ( \
+            BOOST_VMD_IS_NUMBER(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+            BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMERIC_D, \
+            BOOST_VMD_IDENTITY(0) \
+            ) \
+        (d,tuple) \
+        ) \
 /**/
 
 /*
@@ -153,29 +153,29 @@
 */
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_ARRAY_FORM(tuple) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-		  ( \
-		  BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,tuple)), \
-		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER, \
-		  BOOST_VMD_IDENTITY(0) \
-		  ) \
-		(tuple) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+          ( \
+          BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,tuple)), \
+          BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER, \
+          BOOST_VMD_IDENTITY(0) \
+          ) \
+        (tuple) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_CHECK_ARRAY_FORM_D(d,tuple) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-		  ( \
-		  BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,tuple)), \
-		  BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER_D, \
-		  BOOST_VMD_IDENTITY(0) \
-		  ) \
-		(d,tuple) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+          ( \
+          BOOST_VMD_IS_TUPLE(BOOST_PP_TUPLE_ELEM(1,tuple)), \
+          BOOST_VMD_DETAIL_IS_ARRAY_CHECK_NUMBER_D, \
+          BOOST_VMD_IDENTITY(0) \
+          ) \
+        (d,tuple) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_ARRAY_NUM(x) BOOST_VMD_IS_EMPTY(BOOST_PP_CAT(BOOST_VMD_DETAIL_IS_ARRAY_NUM_HELPER_, x) BOOST_PP_EMPTY())

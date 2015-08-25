@@ -61,10 +61,10 @@
 
 #define BOOST_VMD_ASSERT_IS_NUMBER(sequence) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_NUMBER(sequence), \
-      	BOOST_VMD_IS_NUMBER_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_NUMBER(sequence), \
+          BOOST_VMD_IS_NUMBER_ASSERT_ERROR \
+          ) \
 /**/
 
 #endif // !BOOST_VMD_ASSERT_DATA

@@ -93,18 +93,18 @@
 
 #define BOOST_VMD_ASSERT_IS_ARRAY(sequence) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_ARRAY(sequence), \
-      	BOOST_VMD_IS_ARRAY_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_ARRAY(sequence), \
+          BOOST_VMD_IS_ARRAY_ASSERT_ERROR \
+          ) \
 /**/
 
 #define BOOST_VMD_ASSERT_IS_ARRAY_D(d,sequence) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_ARRAY_D(d,sequence), \
-      	BOOST_VMD_IS_ARRAY_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_ARRAY_D(d,sequence), \
+          BOOST_VMD_IS_ARRAY_ASSERT_ERROR \
+          ) \
 /**/
 
 #endif /* !BOOST_VMD_ASSERT_DATA */

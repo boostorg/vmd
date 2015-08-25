@@ -24,7 +24,7 @@
 
 /** \def BOOST_VMD_TO_ARRAY(...)
 
-	\brief Converts a sequence to a Boost PP array whose elements are the elements of the sequence.
+    \brief Converts a sequence to a Boost PP array whose elements are the elements of the sequence.
 
     ...       = Variadic parameters.
     
@@ -48,22 +48,22 @@
     specified determines the return type.
     
     returns   = A Boost PP array. The sequence is empty the Boost PP array is an empty array.
-    			If an optional return type other than BOOST_VMD_RETURN_NO_TYPE
-    			is specified the type and the data of each element is
-    			returned as the array element. Otherwise just the data
-    			is returned as the array element, which is the default.
+                If an optional return type other than BOOST_VMD_RETURN_NO_TYPE
+                is specified the type and the data of each element is
+                returned as the array element. Otherwise just the data
+                is returned as the array element, which is the default.
     
 */
 
 #define BOOST_VMD_TO_ARRAY(...) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY(__VA_ARGS__) \
+    BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY(__VA_ARGS__) \
 /**/
 
 /** \def BOOST_VMD_TO_ARRAY_D(d,...)
 
-	\brief Converts a sequence to a Boost PP array whose elements are the elements of the sequence. Re-entrant version.
+    \brief Converts a sequence to a Boost PP array whose elements are the elements of the sequence. Re-entrant version.
 
-	d         = The next available BOOST_PP_WHILE iteration. 
+    d         = The next available BOOST_PP_WHILE iteration. 
     ...       = Variadic parameters.
     
     The first variadic parameter is required and is the sequence to convert.
@@ -86,15 +86,15 @@
     specified determines the return type.
     
     returns   = A Boost PP array. The sequence is empty the Boost PP array is empty. 
-    			If an optional return type other than BOOST_VMD_RETURN_NO_TYPE
-    			is specified the type and the data of each element is
-    			returned as the array element. Otherwise just the data
-    			is returned as the array element, which is the default.
+                If an optional return type other than BOOST_VMD_RETURN_NO_TYPE
+                is specified the type and the data of each element is
+                returned as the array element. Otherwise just the data
+                is returned as the array element, which is the default.
     
 */
 
 #define BOOST_VMD_TO_ARRAY_D(d,...) \
-	BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_D(d,__VA_ARGS__) \
+    BOOST_VMD_DETAIL_SEQUENCE_TO_ARRAY_D(d,__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

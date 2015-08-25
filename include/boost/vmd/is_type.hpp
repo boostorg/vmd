@@ -42,14 +42,14 @@
 */
 
 #define BOOST_VMD_IS_TYPE(sequence) \
-	BOOST_VMD_DETAIL_IS_TYPE(sequence) \
+    BOOST_VMD_DETAIL_IS_TYPE(sequence) \
 /**/
 
 /** \def BOOST_VMD_IS_TYPE_D(d,sequence)
 
     \brief Tests whether a sequence is a VMD type. Re-entrant version.
 
-	d        = The next available BOOST_PP_WHILE iteration. 
+    d        = The next available BOOST_PP_WHILE iteration. 
     sequence = a possible VMD type
     
     returns = 1 if the sequence is a VMD type, 
@@ -66,7 +66,7 @@
 */
 
 #define BOOST_VMD_IS_TYPE_D(d,sequence) \
-	BOOST_VMD_DETAIL_IS_TYPE_D(d,sequence) \
+    BOOST_VMD_DETAIL_IS_TYPE_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

@@ -15,15 +15,15 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 
 int main()
-  	{
+      {
   
 #if BOOST_PP_VARIADICS
 
-	#define A_TUPLE (*,#,zzz)
-	#define JDATA somevalue
-	#define A_SEQ (num)(%)(#)
-	#define A_LIST (eeb,(grist,(&,BOOST_PP_NIL)))
-	
+    #define A_TUPLE (*,#,zzz)
+    #define JDATA somevalue
+    #define A_SEQ (num)(%)(#)
+    #define A_LIST (eeb,(grist,(&,BOOST_PP_NIL)))
+    
     #define BOOST_VMD_REGISTER_zzz (zzz)
     #define BOOST_VMD_DETECT_zzz_zzz
     #define BOOST_VMD_REGISTER_somevalue (somevalue)
@@ -35,18 +35,18 @@ int main()
     #define BOOST_VMD_REGISTER_grist (grist)
     #define BOOST_VMD_DETECT_grist_grist
   
-	BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),zzz)
-	BOOST_VMD_ASSERT_IS_IDENTIFIER(JDATA,somevalue)
-	BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),num)
-	BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),eeb)
-	BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),grist)
-	
+    BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_TUPLE_ELEM(2,A_TUPLE),zzz)
+    BOOST_VMD_ASSERT_IS_IDENTIFIER(JDATA,somevalue)
+    BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_SEQ_ELEM(0,A_SEQ),num)
+    BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,0),eeb)
+    BOOST_VMD_ASSERT_IS_IDENTIFIER(BOOST_PP_LIST_AT(A_LIST,1),grist)
+    
 #else
 
 BOOST_ERROR("No variadic macro support");
   
 #endif
 
-  	return boost::report_errors();
+      return boost::report_errors();
   
-  	}
+      }

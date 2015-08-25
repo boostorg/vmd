@@ -11,17 +11,17 @@
 #include <boost/vmd/detail/seq.hpp>
 
 #define BOOST_VMD_DETAIL_IS_SEQ(seq) \
-	BOOST_VMD_DETAIL_IS_ENTIRE \
-		( \
-		BOOST_VMD_DETAIL_SEQ_SPLIT(seq) \
-		) \
+    BOOST_VMD_DETAIL_IS_ENTIRE \
+        ( \
+        BOOST_VMD_DETAIL_SEQ_SPLIT(seq) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_SEQ_D(d,seq) \
-	BOOST_VMD_DETAIL_IS_ENTIRE \
-		( \
-		BOOST_VMD_DETAIL_SEQ_SPLIT_D(d,seq) \
-		) \
+    BOOST_VMD_DETAIL_IS_ENTIRE \
+        ( \
+        BOOST_VMD_DETAIL_SEQ_SPLIT_D(d,seq) \
+        ) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_IS_SEQ_HPP */

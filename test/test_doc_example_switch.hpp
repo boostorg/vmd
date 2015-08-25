@@ -47,7 +47,7 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE_GET_VALUE(state) \
-	BOOST_PP_TUPLE_ELEM(0,state) \
+    BOOST_PP_TUPLE_ELEM(0,state) \
 /**/
 
 /*
@@ -57,7 +57,7 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE_GET_CHOICES(state) \
-	BOOST_PP_TUPLE_ELEM(1,state) \
+    BOOST_PP_TUPLE_ELEM(1,state) \
 /**/
 
 /*
@@ -67,7 +67,7 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE_GET_INDEX(state) \
-	BOOST_PP_TUPLE_ELEM(2,state) \
+    BOOST_PP_TUPLE_ELEM(2,state) \
 /**/
 
 /*
@@ -77,7 +77,7 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE_GET_SIZE(state) \
-	BOOST_PP_TUPLE_ELEM(3,state) \
+    BOOST_PP_TUPLE_ELEM(3,state) \
 /**/
 
 /*
@@ -87,7 +87,7 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE_GET_DEFAULT(state) \
-	BOOST_PP_TUPLE_ELEM(4,state) \
+    BOOST_PP_TUPLE_ELEM(4,state) \
 /**/
 
 /*
@@ -97,7 +97,7 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE_GET_RESULT(state) \
-	BOOST_PP_TUPLE_ELEM(5,state) \
+    BOOST_PP_TUPLE_ELEM(5,state) \
 /**/
 
 /*
@@ -107,11 +107,11 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE_GET_CURRENT_CHOICE(state) \
-	BOOST_PP_TUPLE_ELEM \
-		( \
-		BOOST_VMD_SWITCH_STATE_GET_INDEX(state), \
-		BOOST_VMD_SWITCH_STATE_GET_CHOICES(state) \
-		) \
+    BOOST_PP_TUPLE_ELEM \
+        ( \
+        BOOST_VMD_SWITCH_STATE_GET_INDEX(state), \
+        BOOST_VMD_SWITCH_STATE_GET_CHOICES(state) \
+        ) \
 /**/
 
 /*
@@ -127,7 +127,7 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE_EXPAND(value,tuple,size) \
-	(value,tuple,0,size,(0,),(,)) \
+    (value,tuple,0,size,(0,),(,)) \
 /**/
 
 /*
@@ -145,12 +145,12 @@
 */
 
 #define BOOST_VMD_SWITCH_STATE(value,...) \
-	BOOST_VMD_SWITCH_STATE_EXPAND \
-		( \
-		value, \
-		BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__), \
-		BOOST_PP_VARIADIC_SIZE(__VA_ARGS__) \
-		) \
+    BOOST_VMD_SWITCH_STATE_EXPAND \
+        ( \
+        value, \
+        BOOST_PP_VARIADIC_TO_TUPLE(__VA_ARGS__), \
+        BOOST_PP_VARIADIC_SIZE(__VA_ARGS__) \
+        ) \
 /**/
 
 /*
@@ -162,13 +162,13 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_SUCCESS(d,state,macro) \
-	BOOST_PP_TUPLE_REPLACE_D \
-		( \
-		d, \
-		state, \
-		BOOST_VMD_SWITCH_STATE_ELEM_RESULT, \
-		(1,macro) \
-		) \
+    BOOST_PP_TUPLE_REPLACE_D \
+        ( \
+        d, \
+        state, \
+        BOOST_VMD_SWITCH_STATE_ELEM_RESULT, \
+        (1,macro) \
+        ) \
 /**/
 
 /*
@@ -180,13 +180,13 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_FAILURE(d,state,def) \
-	BOOST_PP_TUPLE_REPLACE_D \
-		( \
-		d, \
-		state, \
-		BOOST_VMD_SWITCH_STATE_ELEM_RESULT, \
-		(0,) \
-		) \
+    BOOST_PP_TUPLE_REPLACE_D \
+        ( \
+        d, \
+        state, \
+        BOOST_VMD_SWITCH_STATE_ELEM_RESULT, \
+        (0,) \
+        ) \
 /**/
 
 /*
@@ -196,13 +196,13 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_UPDATE_INDEX(d,state) \
-	BOOST_PP_TUPLE_REPLACE_D \
-		( \
-		d, \
-		state, \
-		BOOST_VMD_SWITCH_STATE_ELEM_INDEX, \
-		BOOST_PP_INC(BOOST_VMD_SWITCH_STATE_GET_INDEX(state)) \
-		) \
+    BOOST_PP_TUPLE_REPLACE_D \
+        ( \
+        d, \
+        state, \
+        BOOST_VMD_SWITCH_STATE_ELEM_INDEX, \
+        BOOST_PP_INC(BOOST_VMD_SWITCH_STATE_GET_INDEX(state)) \
+        ) \
 /**/
 
 /*
@@ -214,7 +214,7 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_MATCH(d,state,tuple) \
-	BOOST_VMD_SWITCH_OP_SUCCESS(d,state,BOOST_PP_TUPLE_ELEM(1,tuple)) \
+    BOOST_VMD_SWITCH_OP_SUCCESS(d,state,BOOST_PP_TUPLE_ELEM(1,tuple)) \
 /**/
 
 /*
@@ -226,7 +226,7 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_UPDATE_INDEX(d,state,tuple) \
-	BOOST_VMD_SWITCH_OP_UPDATE_INDEX(d,state) \
+    BOOST_VMD_SWITCH_OP_UPDATE_INDEX(d,state) \
 /**/
 
 /*
@@ -238,18 +238,18 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE(d,state,tuple) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_EQUAL_D \
-			( \
-			d, \
-			BOOST_VMD_SWITCH_STATE_GET_VALUE(state), \
-			BOOST_PP_TUPLE_ELEM(0,tuple) \
-			), \
-		BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_MATCH, \
-		BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_UPDATE_INDEX \
-		) \
-	(d,state,tuple)	\
+    BOOST_PP_IIF \
+        ( \
+        BOOST_VMD_EQUAL_D \
+            ( \
+            d, \
+            BOOST_VMD_SWITCH_STATE_GET_VALUE(state), \
+            BOOST_PP_TUPLE_ELEM(0,tuple) \
+            ), \
+        BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_MATCH, \
+        BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE_UPDATE_INDEX \
+        ) \
+    (d,state,tuple)    \
 /**/
 
 /*
@@ -263,37 +263,37 @@
 #if BOOST_VMD_MSVC
 
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT_NN(number,name) \
-	(number,name) \
+    (number,name) \
 /**/
 
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT(d,state,tuple) \
-	BOOST_VMD_SWITCH_OP_UPDATE_INDEX \
-		( \
-		d, \
-		BOOST_PP_TUPLE_REPLACE_D \
-			( \
-			d, \
-			state, \
-			BOOST_VMD_SWITCH_STATE_ELEM_DEFAULT, \
-			BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT_NN(1,BOOST_PP_TUPLE_ENUM(tuple)) \
-			) \
-		) \
+    BOOST_VMD_SWITCH_OP_UPDATE_INDEX \
+        ( \
+        d, \
+        BOOST_PP_TUPLE_REPLACE_D \
+            ( \
+            d, \
+            state, \
+            BOOST_VMD_SWITCH_STATE_ELEM_DEFAULT, \
+            BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT_NN(1,BOOST_PP_TUPLE_ENUM(tuple)) \
+            ) \
+        ) \
 /**/
 
 #else
 
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT(d,state,tuple) \
-	BOOST_VMD_SWITCH_OP_UPDATE_INDEX \
-		( \
-		d, \
-		BOOST_PP_TUPLE_REPLACE_D \
-			( \
-			d, \
-			state, \
-			BOOST_VMD_SWITCH_STATE_ELEM_DEFAULT, \
-			(1,BOOST_PP_TUPLE_ENUM(tuple)) \
-			) \
-		) \
+    BOOST_VMD_SWITCH_OP_UPDATE_INDEX \
+        ( \
+        d, \
+        BOOST_PP_TUPLE_REPLACE_D \
+            ( \
+            d, \
+            state, \
+            BOOST_VMD_SWITCH_STATE_ELEM_DEFAULT, \
+            (1,BOOST_PP_TUPLE_ENUM(tuple)) \
+            ) \
+        ) \
 /**/
 
 #endif
@@ -308,18 +308,18 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT_TUPLE(d,state,tuple) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_EQUAL_D \
-			( \
-			d, \
-			BOOST_PP_TUPLE_SIZE(tuple), \
-			1 \
-			), \
-		BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT, \
-		BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE \
-		) \
-	(d,state,tuple) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_PP_EQUAL_D \
+            ( \
+            d, \
+            BOOST_PP_TUPLE_SIZE(tuple), \
+            1 \
+            ), \
+        BOOST_VMD_SWITCH_OP_TEST_CURRENT_CREATE_DEFAULT, \
+        BOOST_VMD_SWITCH_OP_TEST_CURRENT_VALUE \
+        ) \
+    (d,state,tuple) \
 /**/
 
 /*
@@ -329,12 +329,12 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_TEST_CURRENT(d,state) \
-	BOOST_VMD_SWITCH_OP_TEST_CURRENT_TUPLE \
-		( \
-		d, \
-		state, \
-		BOOST_VMD_SWITCH_STATE_GET_CURRENT_CHOICE(state) \
-		) \
+    BOOST_VMD_SWITCH_OP_TEST_CURRENT_TUPLE \
+        ( \
+        d, \
+        state, \
+        BOOST_VMD_SWITCH_STATE_GET_CURRENT_CHOICE(state) \
+        ) \
 /**/
 
 /*
@@ -346,12 +346,12 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_DEFAULT_RET_CHOSEN(d,state,def) \
-	BOOST_VMD_SWITCH_OP_SUCCESS \
-		( \
-		d, \
-		state, \
-		BOOST_PP_TUPLE_ELEM(1,def) \
-		) \
+    BOOST_VMD_SWITCH_OP_SUCCESS \
+        ( \
+        d, \
+        state, \
+        BOOST_PP_TUPLE_ELEM(1,def) \
+        ) \
 /**/
 
 /*
@@ -363,13 +363,13 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_DEFAULT_RET(d,state,def) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_TUPLE_ELEM(0,def), \
-		BOOST_VMD_SWITCH_OP_DEFAULT_RET_CHOSEN, \
-		BOOST_VMD_SWITCH_OP_FAILURE \
-		) \
-	(d,state,def) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_PP_TUPLE_ELEM(0,def), \
+        BOOST_VMD_SWITCH_OP_DEFAULT_RET_CHOSEN, \
+        BOOST_VMD_SWITCH_OP_FAILURE \
+        ) \
+    (d,state,def) \
 /**/
 
 /*
@@ -379,12 +379,12 @@
 */
 
 #define BOOST_VMD_SWITCH_OP_DEFAULT(d,state) \
-	BOOST_VMD_SWITCH_OP_DEFAULT_RET \
-		( \
-		d, \
-		state, \
-		BOOST_VMD_SWITCH_STATE_GET_DEFAULT(state) \
-		) \
+    BOOST_VMD_SWITCH_OP_DEFAULT_RET \
+        ( \
+        d, \
+        state, \
+        BOOST_VMD_SWITCH_STATE_GET_DEFAULT(state) \
+        ) \
 /**/
 
 /*
@@ -396,18 +396,18 @@
 */
 
 #define BOOST_VMD_SWITCH_OP(d,state) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_EQUAL_D \
-			(  \
-			d, \
-			BOOST_VMD_SWITCH_STATE_GET_INDEX(state), \
-			BOOST_VMD_SWITCH_STATE_GET_SIZE(state) \
-			), \
-		BOOST_VMD_SWITCH_OP_DEFAULT, \
-		BOOST_VMD_SWITCH_OP_TEST_CURRENT \
-		) \
-	(d,state) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_PP_EQUAL_D \
+            (  \
+            d, \
+            BOOST_VMD_SWITCH_STATE_GET_INDEX(state), \
+            BOOST_VMD_SWITCH_STATE_GET_SIZE(state) \
+            ), \
+        BOOST_VMD_SWITCH_OP_DEFAULT, \
+        BOOST_VMD_SWITCH_OP_TEST_CURRENT \
+        ) \
+    (d,state) \
 /**/
 
 /*
@@ -419,14 +419,14 @@
 */
 
 #define BOOST_VMD_SWITCH_PRED(d,state) \
-	BOOST_VMD_IS_EMPTY \
-		( \
-		BOOST_PP_TUPLE_ELEM \
-			( \
-			0, \
-			BOOST_VMD_SWITCH_STATE_GET_RESULT(state) \
-			) \
-		) \
+    BOOST_VMD_IS_EMPTY \
+        ( \
+        BOOST_PP_TUPLE_ELEM \
+            ( \
+            0, \
+            BOOST_VMD_SWITCH_STATE_GET_RESULT(state) \
+            ) \
+        ) \
 /**/
 
 /*
@@ -439,7 +439,7 @@
 */
 
 #define BOOST_VMD_SWITCH_PROCESS_INVOKE_MACRO(macro,tparams) \
-	BOOST_PP_EXPAND(macro tparams) \
+    BOOST_PP_EXPAND(macro tparams) \
 /**/
 
 /*
@@ -455,15 +455,15 @@
 */
 
 #define BOOST_VMD_SWITCH_PROCESS(callp,result) \
-	BOOST_PP_EXPR_IIF \
-		( \
-		BOOST_PP_TUPLE_ELEM(0,result), \
-		BOOST_VMD_SWITCH_PROCESS_INVOKE_MACRO \
-			( \
-			BOOST_PP_TUPLE_ELEM(1,result), \
-			callp \
-			) \
-		) \
+    BOOST_PP_EXPR_IIF \
+        ( \
+        BOOST_PP_TUPLE_ELEM(0,result), \
+        BOOST_VMD_SWITCH_PROCESS_INVOKE_MACRO \
+            ( \
+            BOOST_PP_TUPLE_ELEM(1,result), \
+            callp \
+            ) \
+        ) \
 /**/
 
 /*
@@ -500,19 +500,19 @@
 */
 
 #define BOOST_VMD_SWITCH(value,callp,...) \
-	BOOST_VMD_SWITCH_PROCESS \
-		( \
-		callp, \
-		BOOST_VMD_SWITCH_STATE_GET_RESULT \
-			( \
-			BOOST_PP_WHILE \
-				( \
-				BOOST_VMD_SWITCH_PRED, \
-				BOOST_VMD_SWITCH_OP, \
-				BOOST_VMD_SWITCH_STATE(value,__VA_ARGS__) \
-				) \
-			) \
-		) \
+    BOOST_VMD_SWITCH_PROCESS \
+        ( \
+        callp, \
+        BOOST_VMD_SWITCH_STATE_GET_RESULT \
+            ( \
+            BOOST_PP_WHILE \
+                ( \
+                BOOST_VMD_SWITCH_PRED, \
+                BOOST_VMD_SWITCH_OP, \
+                BOOST_VMD_SWITCH_STATE(value,__VA_ARGS__) \
+                ) \
+            ) \
+        ) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

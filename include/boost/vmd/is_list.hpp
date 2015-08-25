@@ -42,7 +42,7 @@
 */
 
 #define BOOST_VMD_IS_LIST(sequence) \
-	BOOST_VMD_DETAIL_IS_LIST(sequence) \
+    BOOST_VMD_DETAIL_IS_LIST(sequence) \
 /**/
 
 /** \def BOOST_VMD_IS_LIST_D(d,sequence)
@@ -52,7 +52,7 @@
     The macro checks that the sequence is a pplib list.
     It returns 1 if it is a list, else if returns 0.
     
-	d        = The next available BOOST_PP_WHILE iteration. 
+    d        = The next available BOOST_PP_WHILE iteration. 
     sequence = input as a possible Boost PP list.
     
     returns = 1 if it a list, else returns 0.
@@ -66,7 +66,7 @@
 */
 
 #define BOOST_VMD_IS_LIST_D(d,sequence) \
-	BOOST_VMD_DETAIL_IS_LIST_D(d,sequence) \
+    BOOST_VMD_DETAIL_IS_LIST_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

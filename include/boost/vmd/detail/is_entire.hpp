@@ -13,11 +13,11 @@
 #include <boost/vmd/detail/not_empty.hpp>
 
 #define BOOST_VMD_DETAIL_IS_ENTIRE(tuple) \
-	BOOST_PP_BITAND \
-		( \
-		BOOST_VMD_DETAIL_NOT_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
-		BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,tuple)) \
-		) \
+    BOOST_PP_BITAND \
+        ( \
+        BOOST_VMD_DETAIL_NOT_EMPTY(BOOST_PP_TUPLE_ELEM(0,tuple)), \
+        BOOST_VMD_IS_EMPTY(BOOST_PP_TUPLE_ELEM(1,tuple)) \
+        ) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_IS_ENTIRE_HPP */

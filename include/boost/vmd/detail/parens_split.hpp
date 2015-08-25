@@ -16,7 +16,7 @@
     BOOST_PP_IIF \
       ( \
       BOOST_PP_IS_BEGIN_PARENS(vseq), \
-	  BOOST_VMD_DETAIL_SPLIT_PARENS, \
+      BOOST_VMD_DETAIL_SPLIT_PARENS, \
       BOOST_VMD_DETAIL_EMPTY_RESULT \
       ) \
     (vseq) \

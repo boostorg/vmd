@@ -38,7 +38,7 @@
 */
 
 #define BOOST_VMD_IS_TUPLE(sequence) \
-	BOOST_VMD_DETAIL_IS_TUPLE(sequence) \
+    BOOST_VMD_DETAIL_IS_TUPLE(sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

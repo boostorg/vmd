@@ -17,9 +17,9 @@ int main()
 #if BOOST_PP_VARIADICS
 
   BOOST_TEST
-  	(
-  	BOOST_VMD_IS_ARRAY((3,(x,3,e,2)))
-  	);
+      (
+      BOOST_VMD_IS_ARRAY((3,(x,3,e,2)))
+      );
   
 #endif
 

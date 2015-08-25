@@ -62,7 +62,7 @@
     to check or not check by defining the macro 
     BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
     
-	d        = The next available BOOST_PP_WHILE iteration. 
+    d        = The next available BOOST_PP_WHILE iteration. 
     sequence = a possible Boost PP list.
 
     returns  = Normally the macro returns nothing. 

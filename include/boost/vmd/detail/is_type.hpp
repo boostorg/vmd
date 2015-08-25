@@ -15,43 +15,43 @@
 #include <boost/vmd/detail/type_registration.hpp>
 
 #define BOOST_VMD_DETAIL_IS_TYPE_IMP_TYPE(vseq) \
-	BOOST_VMD_DETAIL_IS_TYPE_TYPE \
-		( \
-		BOOST_VMD_DETAIL_IDENTIFIER_TYPE(vseq) \
-		) \
+    BOOST_VMD_DETAIL_IS_TYPE_TYPE \
+        ( \
+        BOOST_VMD_DETAIL_IDENTIFIER_TYPE(vseq) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_TYPE_IMP_TYPE_D(d,vseq) \
-	BOOST_VMD_DETAIL_IS_TYPE_TYPE \
-		( \
-		BOOST_VMD_DETAIL_IDENTIFIER_TYPE_D(d,vseq) \
-		) \
+    BOOST_VMD_DETAIL_IS_TYPE_TYPE \
+        ( \
+        BOOST_VMD_DETAIL_IDENTIFIER_TYPE_D(d,vseq) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_TYPE(vseq) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_DETAIL_IS_IDENTIFIER_SINGLE(vseq), \
-			BOOST_VMD_DETAIL_IS_TYPE_IMP_TYPE, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(vseq) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+            ( \
+            BOOST_VMD_DETAIL_IS_IDENTIFIER_SINGLE(vseq), \
+            BOOST_VMD_DETAIL_IS_TYPE_IMP_TYPE, \
+            BOOST_VMD_IDENTITY(0) \
+            ) \
+        (vseq) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_IS_TYPE_D(d,vseq) \
-	BOOST_VMD_IDENTITY_RESULT \
-		( \
-		BOOST_PP_IIF \
-			( \
-			BOOST_VMD_DETAIL_IS_IDENTIFIER_SINGLE_D(d,vseq), \
-			BOOST_VMD_DETAIL_IS_TYPE_IMP_TYPE_D, \
-			BOOST_VMD_IDENTITY(0) \
-			) \
-		(d,vseq) \
-		) \
+    BOOST_VMD_IDENTITY_RESULT \
+        ( \
+        BOOST_PP_IIF \
+            ( \
+            BOOST_VMD_DETAIL_IS_IDENTIFIER_SINGLE_D(d,vseq), \
+            BOOST_VMD_DETAIL_IS_TYPE_IMP_TYPE_D, \
+            BOOST_VMD_IDENTITY(0) \
+            ) \
+        (d,vseq) \
+        ) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_IS_TYPE_HPP */

@@ -24,7 +24,7 @@
 
 /** \def BOOST_VMD_ENUM(...)
 
-	\brief Converts a sequence to comma-separated elements which are the elements of the sequence.
+    \brief Converts a sequence to comma-separated elements which are the elements of the sequence.
 
     ...       = Variadic parameters.
     
@@ -48,23 +48,23 @@
     specified determines the return type.
     
     returns   = Comma-separated data, otherwise known as variadic data.
-    			If the sequence is empty the variadic data is empty. If an 
-    			optional return type other than BOOST_VMD_RETURN_NO_TYPE
-    			is specified the type and the data of each element is
-    			returned as part of the variadic data. Otherwise just the data
-    			of each element is returned, which is the default.
+                If the sequence is empty the variadic data is empty. If an 
+                optional return type other than BOOST_VMD_RETURN_NO_TYPE
+                is specified the type and the data of each element is
+                returned as part of the variadic data. Otherwise just the data
+                of each element is returned, which is the default.
     
 */
 
 #define BOOST_VMD_ENUM(...) \
-	BOOST_VMD_DETAIL_SEQUENCE_ENUM(__VA_ARGS__) \
+    BOOST_VMD_DETAIL_SEQUENCE_ENUM(__VA_ARGS__) \
 /**/
 
 /** \def BOOST_VMD_ENUM_D(d,...)
 
-	\brief Converts a sequence to comma-separated elements which are the elements of the sequence. Re-entrant version.
+    \brief Converts a sequence to comma-separated elements which are the elements of the sequence. Re-entrant version.
 
-	d         = The next available BOOST_PP_WHILE iteration. 
+    d         = The next available BOOST_PP_WHILE iteration. 
     ...       = Variadic parameters.
     
     The first variadic parameter is required and is the sequence to convert.
@@ -87,16 +87,16 @@
     specified determines the return type.
     
     returns   = Comma-separated data, otherwise known as variadic data.
-    			If the sequence is empty the variadic data is empty. If an 
-    			optional return type other than BOOST_VMD_RETURN_NO_TYPE
-    			is specified the type and the data of each element is
-    			returned as part of the variadic data. Otherwise just the data
-    			of each element is returned, which is the default.
+                If the sequence is empty the variadic data is empty. If an 
+                optional return type other than BOOST_VMD_RETURN_NO_TYPE
+                is specified the type and the data of each element is
+                returned as part of the variadic data. Otherwise just the data
+                of each element is returned, which is the default.
     
 */
 
 #define BOOST_VMD_ENUM_D(d,...) \
-	BOOST_VMD_DETAIL_SEQUENCE_ENUM_D(d,__VA_ARGS__) \
+    BOOST_VMD_DETAIL_SEQUENCE_ENUM_D(d,__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

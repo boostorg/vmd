@@ -12,7 +12,7 @@
 #include <boost/detail/lightweight_test.hpp>
 
 int main()
-  	{
+      {
   
 #if BOOST_PP_VARIADICS
 
@@ -24,15 +24,15 @@ int main()
     #define BOOST_VMD_DETECT_somevalue_somevalue
     
     BOOST_VMD_ASSERT_IS_IDENTIFIER(zzz,somevalue)
-	
+    
 #else
-	
+    
     typedef char BOOST_VMD_IS_IDENTIFIER_ERROR[-1];
   
 #endif
 
 #endif
 
-  	return boost::report_errors();
+      return boost::report_errors();
   
-  	}
+      }

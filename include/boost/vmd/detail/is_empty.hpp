@@ -19,8 +19,8 @@
 #if BOOST_VMD_MSVC_V8
 
 #define BOOST_VMD_DETAIL_IS_EMPTY_PROCESS(param) \
-	BOOST_PP_IS_BEGIN_PARENS \
-    	( \
+    BOOST_PP_IS_BEGIN_PARENS \
+        ( \
         BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C param () \
         ) \
 /**/
@@ -28,7 +28,7 @@
 #else
 
 #define BOOST_VMD_DETAIL_IS_EMPTY_PROCESS(...) \
-	BOOST_PP_IS_BEGIN_PARENS \
+    BOOST_PP_IS_BEGIN_PARENS \
         ( \
         BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
         ) \
@@ -42,7 +42,7 @@
 #define BOOST_VMD_DETAIL_IS_EMPTY_IIF_1(t, ...) t
 
 #define BOOST_VMD_DETAIL_IS_EMPTY_PROCESS(...) \
-	BOOST_PP_IS_BEGIN_PARENS \
+    BOOST_PP_IS_BEGIN_PARENS \
         ( \
         BOOST_VMD_DETAIL_IS_EMPTY_NON_FUNCTION_C __VA_ARGS__ () \
         ) \

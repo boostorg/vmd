@@ -23,136 +23,136 @@
 #include <boost/vmd/detail/parens.hpp>
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_INIT(seq) \
-	BOOST_PP_TUPLE_PUSH_BACK \
-		( \
-		BOOST_PP_TUPLE_PUSH_BACK \
-			( \
-			BOOST_VMD_DETAIL_PARENS(seq,BOOST_VMD_RETURN_AFTER), \
-			BOOST_PP_EMPTY() \
-			), \
-		BOOST_PP_EMPTY() \
-		) \
+    BOOST_PP_TUPLE_PUSH_BACK \
+        ( \
+        BOOST_PP_TUPLE_PUSH_BACK \
+            ( \
+            BOOST_VMD_DETAIL_PARENS(seq,BOOST_VMD_RETURN_AFTER), \
+            BOOST_PP_EMPTY() \
+            ), \
+        BOOST_PP_EMPTY() \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_INIT_D(d,seq) \
-	BOOST_PP_TUPLE_PUSH_BACK \
-		( \
-		BOOST_PP_TUPLE_PUSH_BACK \
-			( \
-			BOOST_VMD_DETAIL_PARENS_D(d,seq,BOOST_VMD_RETURN_AFTER), \
-			BOOST_PP_EMPTY() \
-			), \
-		BOOST_PP_EMPTY() \
-		) \
+    BOOST_PP_TUPLE_PUSH_BACK \
+        ( \
+        BOOST_PP_TUPLE_PUSH_BACK \
+            ( \
+            BOOST_VMD_DETAIL_PARENS_D(d,seq,BOOST_VMD_RETURN_AFTER), \
+            BOOST_PP_EMPTY() \
+            ), \
+        BOOST_PP_EMPTY() \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_PRED(d,state) \
-	BOOST_VMD_DETAIL_NOT_EMPTY \
-		( \
-		BOOST_PP_TUPLE_ELEM(0,state) \
-		) \
+    BOOST_VMD_DETAIL_NOT_EMPTY \
+        ( \
+        BOOST_PP_TUPLE_ELEM(0,state) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_FAILURE(d,state) \
-	( \
-	BOOST_PP_EMPTY(), \
-	BOOST_PP_EMPTY(), \
-	BOOST_PP_TUPLE_ELEM(2,state), \
-	BOOST_PP_TUPLE_ELEM(3,state) \
-	) \
+    ( \
+    BOOST_PP_EMPTY(), \
+    BOOST_PP_EMPTY(), \
+    BOOST_PP_TUPLE_ELEM(2,state), \
+    BOOST_PP_TUPLE_ELEM(3,state) \
+    ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_OP_MAKE_SEQ(d,state) \
-	BOOST_PP_TUPLE_ELEM(0,state) \
+    BOOST_PP_TUPLE_ELEM(0,state) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_OP_UPGRADE_SEQ(d,state) \
-	BOOST_PP_SEQ_PUSH_BACK \
-		( \
-		BOOST_PP_TUPLE_ELEM(2,state), \
-		BOOST_PP_TUPLE_ELEM \
-			( \
-			0, \
-			BOOST_PP_TUPLE_ELEM(0,state) \
-			) \
-		) \
+    BOOST_PP_SEQ_PUSH_BACK \
+        ( \
+        BOOST_PP_TUPLE_ELEM(2,state), \
+        BOOST_PP_TUPLE_ELEM \
+            ( \
+            0, \
+            BOOST_PP_TUPLE_ELEM(0,state) \
+            ) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_SUCCESS(d,state) \
-	( \
-	BOOST_PP_EMPTY(), \
-	BOOST_PP_EMPTY(), \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_EMPTY \
-			( \
-      		BOOST_PP_TUPLE_ELEM(2,state) \
-			), \
-		BOOST_VMD_DETAIL_SEQ_STATE_OP_MAKE_SEQ, \
-		BOOST_VMD_DETAIL_SEQ_STATE_OP_UPGRADE_SEQ \
-		) \
-	(d,state), \
-	BOOST_PP_EMPTY() \
-	) \
+    ( \
+    BOOST_PP_EMPTY(), \
+    BOOST_PP_EMPTY(), \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_VMD_IS_EMPTY \
+            ( \
+              BOOST_PP_TUPLE_ELEM(2,state) \
+            ), \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP_MAKE_SEQ, \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP_UPGRADE_SEQ \
+        ) \
+    (d,state), \
+    BOOST_PP_EMPTY() \
+    ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_CONTINUE(d,state) \
-	BOOST_PP_TUPLE_PUSH_BACK \
-		( \
-		BOOST_PP_TUPLE_PUSH_BACK \
-			( \
-			BOOST_VMD_DETAIL_PARENS_D(d,BOOST_PP_TUPLE_ELEM(1,state),BOOST_VMD_RETURN_AFTER), \
-			BOOST_PP_IIF \
-				( \
-				BOOST_VMD_IS_EMPTY \
-					( \
-					BOOST_PP_TUPLE_ELEM(2,state) \
-					), \
-				BOOST_VMD_DETAIL_SEQ_STATE_OP_MAKE_SEQ, \
-				BOOST_VMD_DETAIL_SEQ_STATE_OP_UPGRADE_SEQ \
-				) \
-			(d,state) \
-			), \
-		BOOST_PP_TUPLE_ELEM(1,state) \
-		) \
+    BOOST_PP_TUPLE_PUSH_BACK \
+        ( \
+        BOOST_PP_TUPLE_PUSH_BACK \
+            ( \
+            BOOST_VMD_DETAIL_PARENS_D(d,BOOST_PP_TUPLE_ELEM(1,state),BOOST_VMD_RETURN_AFTER), \
+            BOOST_PP_IIF \
+                ( \
+                BOOST_VMD_IS_EMPTY \
+                    ( \
+                    BOOST_PP_TUPLE_ELEM(2,state) \
+                    ), \
+                BOOST_VMD_DETAIL_SEQ_STATE_OP_MAKE_SEQ, \
+                BOOST_VMD_DETAIL_SEQ_STATE_OP_UPGRADE_SEQ \
+                ) \
+            (d,state) \
+            ), \
+        BOOST_PP_TUPLE_ELEM(1,state) \
+        ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_OP_CHECK_REST(d,state) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_EMPTY \
-			( \
-      		BOOST_PP_TUPLE_ELEM(1,state) \
-			), \
-		BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_SUCCESS, \
-		BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_CONTINUE \
-		) \
-	(d,state) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_VMD_IS_EMPTY \
+            ( \
+              BOOST_PP_TUPLE_ELEM(1,state) \
+            ), \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_SUCCESS, \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_CONTINUE \
+        ) \
+    (d,state) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_OP(d,state) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_PP_EQUAL_D \
-			( \
-			d, \
-			1, \
-			BOOST_PP_TUPLE_SIZE \
-				( \
-	      		BOOST_PP_TUPLE_ELEM(0,state) \
-				) \
-			), \
-		BOOST_VMD_DETAIL_SEQ_STATE_OP_CHECK_REST, \
-		BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_FAILURE \
-		) \
-	(d,state) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_PP_EQUAL_D \
+            ( \
+            d, \
+            1, \
+            BOOST_PP_TUPLE_SIZE \
+                ( \
+                  BOOST_PP_TUPLE_ELEM(0,state) \
+                ) \
+            ), \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP_CHECK_REST, \
+        BOOST_VMD_DETAIL_SEQ_STATE_OP_SET_FAILURE \
+        ) \
+    (d,state) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_STATE_RESULT(state) \
-	( \
-	BOOST_PP_TUPLE_ELEM(2,state), \
-	BOOST_PP_TUPLE_ELEM(3,state) \
-	) \
+    ( \
+    BOOST_PP_TUPLE_ELEM(2,state), \
+    BOOST_PP_TUPLE_ELEM(3,state) \
+    ) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_PROCESS(seq) \
@@ -168,17 +168,17 @@
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_SPLIT(seq) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_EMPTY(seq), \
-		BOOST_VMD_DETAIL_EMPTY_RESULT, \
-		BOOST_VMD_DETAIL_SEQ_PROCESS \
-		) \
-	(seq) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_VMD_IS_EMPTY(seq), \
+        BOOST_VMD_DETAIL_EMPTY_RESULT, \
+        BOOST_VMD_DETAIL_SEQ_PROCESS \
+        ) \
+    (seq) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_BEGIN(seq) \
-	BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_SEQ_SPLIT(seq)) \
+    BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_SEQ_SPLIT(seq)) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_PROCESS_D(d,seq) \
@@ -194,43 +194,43 @@
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_SPLIT_D(d,seq) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_IS_EMPTY(seq), \
-		BOOST_VMD_DETAIL_EMPTY_RESULT, \
-		BOOST_VMD_DETAIL_SEQ_PROCESS_D \
-		) \
-	(d,seq) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_VMD_IS_EMPTY(seq), \
+        BOOST_VMD_DETAIL_EMPTY_RESULT, \
+        BOOST_VMD_DETAIL_SEQ_PROCESS_D \
+        ) \
+    (d,seq) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_BEGIN_D(d,seq) \
-	BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_SEQ_SPLIT_D(d,seq)) \
+    BOOST_PP_TUPLE_ELEM(0,BOOST_VMD_DETAIL_SEQ_SPLIT_D(d,seq)) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ_D(d,...) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_MODS_IS_RESULT_AFTER \
-			( \
-			BOOST_VMD_DETAIL_NEW_MODS_D(d,BOOST_VMD_ALLOW_AFTER,__VA_ARGS__) \
-			), \
-		BOOST_VMD_DETAIL_SEQ_SPLIT_D, \
-		BOOST_VMD_DETAIL_SEQ_BEGIN_D \
-		) \
-	(d,BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_VMD_DETAIL_MODS_IS_RESULT_AFTER \
+            ( \
+            BOOST_VMD_DETAIL_NEW_MODS_D(d,BOOST_VMD_ALLOW_AFTER,__VA_ARGS__) \
+            ), \
+        BOOST_VMD_DETAIL_SEQ_SPLIT_D, \
+        BOOST_VMD_DETAIL_SEQ_BEGIN_D \
+        ) \
+    (d,BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
 /**/
 
 #define BOOST_VMD_DETAIL_SEQ(...) \
-	BOOST_PP_IIF \
-		( \
-		BOOST_VMD_DETAIL_MODS_IS_RESULT_AFTER \
-			( \
-			BOOST_VMD_DETAIL_NEW_MODS(BOOST_VMD_ALLOW_AFTER,__VA_ARGS__) \
-			), \
-		BOOST_VMD_DETAIL_SEQ_SPLIT, \
-		BOOST_VMD_DETAIL_SEQ_BEGIN \
-		) \
-	(BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_VMD_DETAIL_MODS_IS_RESULT_AFTER \
+            ( \
+            BOOST_VMD_DETAIL_NEW_MODS(BOOST_VMD_ALLOW_AFTER,__VA_ARGS__) \
+            ), \
+        BOOST_VMD_DETAIL_SEQ_SPLIT, \
+        BOOST_VMD_DETAIL_SEQ_BEGIN \
+        ) \
+    (BOOST_PP_VARIADIC_ELEM(0,__VA_ARGS__)) \
 /**/
 
 #endif /* BOOST_VMD_DETAIL_SEQ_HPP */

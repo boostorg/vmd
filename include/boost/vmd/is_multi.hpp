@@ -39,14 +39,14 @@
 */
 
 #define BOOST_VMD_IS_MULTI(sequence) \
-	BOOST_VMD_DETAIL_IS_MULTI(sequence) \
+    BOOST_VMD_DETAIL_IS_MULTI(sequence) \
 /**/
 
 /** \def BOOST_VMD_IS_MULTI_D(d,sequence)
 
     \brief Determines if the sequence has more than one element, referred to as a multi-element sequence.
     
-	d        = The next available BOOST_PP_WHILE iteration. 
+    d        = The next available BOOST_PP_WHILE iteration. 
     sequence = a sequence
 
     returns = 1 if the sequence is a multi-element sequence, else returns 0.
@@ -60,7 +60,7 @@
 */
 
 #define BOOST_VMD_IS_MULTI_D(d,sequence) \
-	BOOST_VMD_DETAIL_IS_MULTI_D(d,sequence) \
+    BOOST_VMD_DETAIL_IS_MULTI_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

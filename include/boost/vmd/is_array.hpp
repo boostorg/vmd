@@ -42,7 +42,7 @@
 */
 
 #define BOOST_VMD_IS_ARRAY(sequence) \
-	BOOST_VMD_DETAIL_IS_ARRAY(sequence) \
+    BOOST_VMD_DETAIL_IS_ARRAY(sequence) \
 /**/
 
 /** \def BOOST_VMD_IS_ARRAY_D(d,sequence)
@@ -52,7 +52,7 @@
     The macro checks that the sequence is a Boost PP array.
     It returns 1 if it is an array, else if returns 0.
 
-	d        = The next available BOOST_PP_WHILE iteration. 
+    d        = The next available BOOST_PP_WHILE iteration. 
     sequence = a possible Boost PP array.
 
     returns = 1 if it is an array, else returns 0.
@@ -66,7 +66,7 @@
 */
 
 #define BOOST_VMD_IS_ARRAY_D(d,sequence) \
-	BOOST_VMD_DETAIL_IS_ARRAY_D(d,sequence) \
+    BOOST_VMD_DETAIL_IS_ARRAY_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

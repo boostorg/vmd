@@ -73,10 +73,10 @@
 
 #define BOOST_VMD_ASSERT_IS_EMPTY(input) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_EMPTY(input), \
-      	BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_EMPTY(input), \
+          BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
+          ) \
 /**/
 
 #endif // !BOOST_VMD_ASSERT_DATA
@@ -91,10 +91,10 @@
 
 #define BOOST_VMD_ASSERT_IS_EMPTY(...) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_EMPTY(__VA_ARGS__), \
-      	BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_EMPTY(__VA_ARGS__), \
+          BOOST_VMD_IS_EMPTY_ASSERT_ERROR \
+          ) \
 /**/
 
 #endif // !BOOST_VMD_ASSERT_DATA

@@ -24,9 +24,9 @@
 
 /** \def BOOST_VMD_EQUAL(sequence,...)
 
-	\brief Tests any two sequences for equality.
+    \brief Tests any two sequences for equality.
 
-	sequence     = First sequence.
+    sequence     = First sequence.
     ...          = variadic parameters, maximum of 2.
     
     The first variadic parameter is required and is the second sequence to test.
@@ -50,15 +50,15 @@
 */
 
 #define BOOST_VMD_EQUAL(sequence,...) \
-	BOOST_VMD_DETAIL_EQUAL(sequence,__VA_ARGS__) \
+    BOOST_VMD_DETAIL_EQUAL(sequence,__VA_ARGS__) \
 /**/
 
 /** \def BOOST_VMD_EQUAL_D(d,sequence,...)
 
-	\brief Tests any two sequences for equality. Re-entrant version.
+    \brief Tests any two sequences for equality. Re-entrant version.
 
-	d            = The next available BOOST_PP_WHILE iteration. 
-	sequence     = First sequence.
+    d            = The next available BOOST_PP_WHILE iteration. 
+    sequence     = First sequence.
     ...          = variadic parameters, maximum of 2.
     
     The first variadic parameter is required and is the second sequence to test.
@@ -82,7 +82,7 @@
 */
 
 #define BOOST_VMD_EQUAL_D(d,sequence,...) \
-	BOOST_VMD_DETAIL_EQUAL_D(d,sequence,__VA_ARGS__) \
+    BOOST_VMD_DETAIL_EQUAL_D(d,sequence,__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

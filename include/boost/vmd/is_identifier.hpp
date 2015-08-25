@@ -24,7 +24,7 @@
 
 /** \def BOOST_VMD_IS_IDENTIFIER(...)
 
-	\brief Tests whether a parameter is an identifier.
+    \brief Tests whether a parameter is an identifier.
 
     ...       = variadic parameters
     
@@ -35,11 +35,11 @@
     or a single Boost PP tuple of identifiers.
 
     returns   = 1 if the parameter is an identifier, otherwise 0.
-    			
-    			If the parameter is not an identifier, 
-    			or if optional identifiers are specified and the identifier
-    			does not match any of the optional identifiers, the macro returns 0.
-    			
+                
+                If the parameter is not an identifier, 
+                or if optional identifiers are specified and the identifier
+                does not match any of the optional identifiers, the macro returns 0.
+                
     Identifiers are registered in VMD with:
     
     #define BOOST_VMD_REG_XXX (XXX) where XXX is a v-identifier.
@@ -52,7 +52,7 @@
     
     If you specify optional identifiers and have not specified the detection
     of an optional identifier, that optional identifier will never match the input.
-    			
+                
     If the input is not a VMD data type this macro could lead to
     a preprocessor error. This is because the macro
     uses preprocessor concatenation to determine if the input
@@ -64,14 +64,14 @@
 */
 
 #define BOOST_VMD_IS_IDENTIFIER(...) \
-	BOOST_VMD_DETAIL_IS_IDENTIFIER(__VA_ARGS__) \
+    BOOST_VMD_DETAIL_IS_IDENTIFIER(__VA_ARGS__) \
 /**/
 
 /** \def BOOST_VMD_IS_IDENTIFIER_D(d,...)
 
-	\brief Tests whether a parameter is an identifier. Re-entrant version.
+    \brief Tests whether a parameter is an identifier. Re-entrant version.
 
-	d         = The next available BOOST_PP_WHILE iteration. 
+    d         = The next available BOOST_PP_WHILE iteration. 
     ...       = variadic parameters
     
     The first variadic parameter is required and it is the input to test.
@@ -81,11 +81,11 @@
     or a single Boost PP tuple of identifiers.
 
     returns   = 1 if the parameter is an identifier, otherwise 0.
-    			
-    			If the parameter is not an identifier, 
-    			or if optional identifiers are specified and the identifier
-    			does not match any of the optional identifiers, the macro returns 0.
-    			
+                
+                If the parameter is not an identifier, 
+                or if optional identifiers are specified and the identifier
+                does not match any of the optional identifiers, the macro returns 0.
+                
     Identifiers are registered in VMD with:
     
     #define BOOST_VMD_REG_XXX (XXX) where XXX is a v-identifier.
@@ -98,7 +98,7 @@
     
     If you specify optional identifiers and have not specified the detection
     of an optional identifier, that optional identifier will never match the input.
-    			
+                
     If the input is not a VMD data type this macro could lead to
     a preprocessor error. This is because the macro
     uses preprocessor concatenation to determine if the input
@@ -110,7 +110,7 @@
 */
 
 #define BOOST_VMD_IS_IDENTIFIER_D(d,...) \
-	BOOST_VMD_DETAIL_IS_IDENTIFIER_D(d,__VA_ARGS__) \
+    BOOST_VMD_DETAIL_IS_IDENTIFIER_D(d,__VA_ARGS__) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

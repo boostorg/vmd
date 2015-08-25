@@ -21,19 +21,19 @@ int main()
 //[ example_switch_defines
 
 #define BOOST_VMD_SWITCH_TEST_1(number) \
-	test1_ ## number
+    test1_ ## number
 /**/
 
 #define BOOST_VMD_SWITCH_TEST_2(number) \
-	test2_ ## number
+    test2_ ## number
 /**/
 
 #define BOOST_VMD_SWITCH_TEST_3(number) \
-	test3_ ## number
+    test3_ ## number
 /**/
 
 #define BOOST_VMD_SWITCH_TEST_DEFAULT(number) \
-	test_default_ ## number
+    test_default_ ## number
 /**/
 
 //]
@@ -48,107 +48,107 @@ int main()
 #define BOOST_VMD_DETECT_test_default_7_test_default_7
 
 BOOST_TEST(BOOST_VMD_EQUAL
-			(
+            (
 //[ example_switch_defines_t1
-			BOOST_VMD_SWITCH(1,
-							(7),
-							(BOOST_VMD_SWITCH_TEST_DEFAULT),
-							(3,BOOST_VMD_SWITCH_TEST_3),
-							(1,BOOST_VMD_SWITCH_TEST_1),
-							(2,BOOST_VMD_SWITCH_TEST_2)
-							)
+            BOOST_VMD_SWITCH(1,
+                            (7),
+                            (BOOST_VMD_SWITCH_TEST_DEFAULT),
+                            (3,BOOST_VMD_SWITCH_TEST_3),
+                            (1,BOOST_VMD_SWITCH_TEST_1),
+                            (2,BOOST_VMD_SWITCH_TEST_2)
+                            )
 //]
-			,test1_7
-			)
-	      );
+            ,test1_7
+            )
+          );
 
 BOOST_TEST(BOOST_VMD_EQUAL
-			(
-			BOOST_VMD_SWITCH(2,
-							(7),
-							(BOOST_VMD_SWITCH_TEST_DEFAULT),
-							(1,BOOST_VMD_SWITCH_TEST_1),
-							(3,BOOST_VMD_SWITCH_TEST_3),
-							(2,BOOST_VMD_SWITCH_TEST_2)
-							)
-			,test2_7
-			)
-	      );
+            (
+            BOOST_VMD_SWITCH(2,
+                            (7),
+                            (BOOST_VMD_SWITCH_TEST_DEFAULT),
+                            (1,BOOST_VMD_SWITCH_TEST_1),
+                            (3,BOOST_VMD_SWITCH_TEST_3),
+                            (2,BOOST_VMD_SWITCH_TEST_2)
+                            )
+            ,test2_7
+            )
+          );
 
 BOOST_TEST(BOOST_VMD_EQUAL
-			(
-			BOOST_VMD_SWITCH(3,
-							(7),
-							(BOOST_VMD_SWITCH_TEST_DEFAULT),
-							(1,BOOST_VMD_SWITCH_TEST_1),
-							(2,BOOST_VMD_SWITCH_TEST_2),
-							(3,BOOST_VMD_SWITCH_TEST_3)
-							)
-			,test3_7
-			)
-	      );
-	      
+            (
+            BOOST_VMD_SWITCH(3,
+                            (7),
+                            (BOOST_VMD_SWITCH_TEST_DEFAULT),
+                            (1,BOOST_VMD_SWITCH_TEST_1),
+                            (2,BOOST_VMD_SWITCH_TEST_2),
+                            (3,BOOST_VMD_SWITCH_TEST_3)
+                            )
+            ,test3_7
+            )
+          );
+          
 BOOST_TEST(BOOST_VMD_EQUAL
-			(
+            (
 //[ example_switch_defines_t4
-			BOOST_VMD_SWITCH(4,
-							(7),
-							(BOOST_VMD_SWITCH_TEST_DEFAULT),
-							(2,BOOST_VMD_SWITCH_TEST_2),
-							(1,BOOST_VMD_SWITCH_TEST_1),
-							(3,BOOST_VMD_SWITCH_TEST_3)
-							)
+            BOOST_VMD_SWITCH(4,
+                            (7),
+                            (BOOST_VMD_SWITCH_TEST_DEFAULT),
+                            (2,BOOST_VMD_SWITCH_TEST_2),
+                            (1,BOOST_VMD_SWITCH_TEST_1),
+                            (3,BOOST_VMD_SWITCH_TEST_3)
+                            )
 //]
-			,test_default_7
-			)
-	      );
-	      
+            ,test_default_7
+            )
+          );
+          
 BOOST_TEST(BOOST_VMD_EQUAL
-			(
+            (
 //[ example_switch_defines_t5
-			BOOST_VMD_SWITCH(143,
-							(7),
-							(BOOST_VMD_SWITCH_TEST_DEFAULT),
-							(1,BOOST_VMD_SWITCH_TEST_1),
-							(2,BOOST_VMD_SWITCH_TEST_2),
-							(3,BOOST_VMD_SWITCH_TEST_3),
-							(143,BOOST_VMD_SWITCH_IDENTITY(55))
-							)
+            BOOST_VMD_SWITCH(143,
+                            (7),
+                            (BOOST_VMD_SWITCH_TEST_DEFAULT),
+                            (1,BOOST_VMD_SWITCH_TEST_1),
+                            (2,BOOST_VMD_SWITCH_TEST_2),
+                            (3,BOOST_VMD_SWITCH_TEST_3),
+                            (143,BOOST_VMD_SWITCH_IDENTITY(55))
+                            )
 //]
-			,55
-			)
-	      );
-	      
+            ,55
+            )
+          );
+          
 BOOST_TEST(BOOST_VMD_EQUAL
-			(
+            (
 //[ example_switch_defines_t6
-			BOOST_VMD_SWITCH(155,
-							(7),
-							(BOOST_VMD_SWITCH_IDENTITY(77)),
-							(1,BOOST_VMD_SWITCH_TEST_1),
-							(2,BOOST_VMD_SWITCH_TEST_2),
-							(3,BOOST_VMD_SWITCH_TEST_3),
-							(143,BOOST_VMD_SWITCH_IDENTITY(55))
-							)
+            BOOST_VMD_SWITCH(155,
+                            (7),
+                            (BOOST_VMD_SWITCH_IDENTITY(77)),
+                            (1,BOOST_VMD_SWITCH_TEST_1),
+                            (2,BOOST_VMD_SWITCH_TEST_2),
+                            (3,BOOST_VMD_SWITCH_TEST_3),
+                            (143,BOOST_VMD_SWITCH_IDENTITY(55))
+                            )
 //]
-			,77
-			)
-	      );
-	      
+            ,77
+            )
+          );
+          
 BOOST_TEST(BOOST_VMD_EQUAL
-			(
+            (
 //[ example_switch_defines_t7
-			BOOST_VMD_SWITCH(BOOST_VMD_TYPE_TUPLE,
-							(7),
-							(BOOST_VMD_SWITCH_TEST_DEFAULT),
-							(BOOST_VMD_TYPE_TUPLE,BOOST_VMD_SWITCH_TEST_1),
-							((1,2,3),BOOST_VMD_SWITCH_TEST_3),
-							(2,BOOST_VMD_SWITCH_TEST_2)
-							)
+            BOOST_VMD_SWITCH(BOOST_VMD_TYPE_TUPLE,
+                            (7),
+                            (BOOST_VMD_SWITCH_TEST_DEFAULT),
+                            (BOOST_VMD_TYPE_TUPLE,BOOST_VMD_SWITCH_TEST_1),
+                            ((1,2,3),BOOST_VMD_SWITCH_TEST_3),
+                            (2,BOOST_VMD_SWITCH_TEST_2)
+                            )
 //]
-			,test1_7
-			)
-	      );
+            ,test1_7
+            )
+          );
 
 #else
 

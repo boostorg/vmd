@@ -39,14 +39,14 @@
 */
 
 #define BOOST_VMD_IS_UNARY(sequence) \
-	BOOST_VMD_DETAIL_IS_UNARY(sequence) \
+    BOOST_VMD_DETAIL_IS_UNARY(sequence) \
 /**/
 
 /** \def BOOST_VMD_IS_UNARY_D(d,sequence)
 
     \brief Determines if the sequence has only a single element, referred to as a single-element sequence. Re-entrant version.
     
-	d        = The next available BOOST_PP_WHILE iteration.
+    d        = The next available BOOST_PP_WHILE iteration.
     sequence = a sequence
 
     returns = 1 if the sequence is a single-element sequence, else returns 0.
@@ -60,7 +60,7 @@
 */
 
 #define BOOST_VMD_IS_UNARY_D(d,sequence) \
-	BOOST_VMD_DETAIL_IS_UNARY_D(d,sequence) \
+    BOOST_VMD_DETAIL_IS_UNARY_D(d,sequence) \
 /**/
 
 #endif /* BOOST_PP_VARIADICS */

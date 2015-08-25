@@ -62,7 +62,7 @@
     to check or not check by defining the macro 
     BOOST_VMD_ASSERT_DATA to 1 or 0 respectively.
 
-	d       = The next available BOOST_PP_WHILE iteration. 
+    d       = The next available BOOST_PP_WHILE iteration. 
     sequence = a possible VMD type.
 
     returns = Normally the macro returns nothing. 
@@ -93,18 +93,18 @@
 
 #define BOOST_VMD_ASSERT_IS_TYPE(sequence) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_TYPE(sequence), \
-      	BOOST_VMD_IS_TYPE_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_TYPE(sequence), \
+          BOOST_VMD_IS_TYPE_ASSERT_ERROR \
+          ) \
 /**/
 
 #define BOOST_VMD_ASSERT_IS_TYPE_D(d,sequence) \
     BOOST_VMD_ASSERT \
-      	( \
-      	BOOST_VMD_IS_TYPE_D(d,sequence), \
-      	BOOST_VMD_IS_TYPE_ASSERT_ERROR \
-      	) \
+          ( \
+          BOOST_VMD_IS_TYPE_D(d,sequence), \
+          BOOST_VMD_IS_TYPE_ASSERT_ERROR \
+          ) \
 /**/
 
 #endif // !BOOST_VMD_ASSERT_DATA

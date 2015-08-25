@@ -27,7 +27,7 @@
 
 /** \def BOOST_VMD_IDENTITY(item)
 
-	\brief Macro which expands to its argument when invoked with any number of parameters.
+    \brief Macro which expands to its argument when invoked with any number of parameters.
 
     item = any single argument
     
@@ -53,7 +53,7 @@
 
 /** \def BOOST_VMD_IDENTITY_RESULT(result)
 
-	\brief Macro which wraps any result which can return its value using BOOST_VMD_IDENTITY or 'item BOOST_VMD_EMPTY'.
+    \brief Macro which wraps any result which can return its value using BOOST_VMD_IDENTITY or 'item BOOST_VMD_EMPTY'.
 
     result = any single result returned when BOOST_VMD_IDENTITY is used or 'item BOOST_VMD_EMPTY'.
     

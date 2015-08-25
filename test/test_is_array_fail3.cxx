@@ -17,9 +17,9 @@ int main()
 #if BOOST_PP_VARIADICS
 
   BOOST_TEST
-  	(
-  	BOOST_VMD_IS_ARRAY(tree)
-  	);
+      (
+      BOOST_VMD_IS_ARRAY(tree)
+      );
   
 #endif
 
