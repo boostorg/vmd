@@ -1,3 +1,10 @@
+[/ 
+  (C) Copyright Edward Diener 2011-2015
+  Distributed under the Boost Software License, Version 1.0.
+  (See accompanying file LICENSE_1_0.txt or copy at
+  http://www.boost.org/LICENSE_1_0.txt).
+]
+
 [section:vmd_pp_data_types VMD and  Boost PP data types]
 
 VMD is able to determine whether or not preprocessing input

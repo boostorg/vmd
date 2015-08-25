@@ -1,3 +1,10 @@
+[/ 
+  (C) Copyright Edward Diener 2011-2015
+  Distributed under the Boost Software License, Version 1.0.
+  (See accompanying file LICENSE_1_0.txt or copy at
+  http://www.boost.org/LICENSE_1_0.txt).
+]
+
 [section:vmd_modifiers_splitting Splitting modifiers]
 
 The BOOST_VMD_ELEM macro, which by default just returns an element of
