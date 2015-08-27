@@ -63,7 +63,7 @@ invoked as
 
  VMACRO(somedata,)
  
-Here one passes empty data as the variadic maco data and it is perfectly valid C++.
+Here one passes empty data as the variadic macro data and it is perfectly valid C++.
 Please notice that this different from
 
  VMACRO(somedata)
@@ -196,7 +196,7 @@ passed is empty. An example of this would be:
  
 When nothing is passed to FMACRO undefined behavior will occur.
 
-So for a standard comforming compiler we have essentially a single corner case where
+So for a standard conforming compiler we have essentially a single corner case where
 the BOOST_VMD_IS_EMPTY does not work and, when it does not work it, produces a
 compiler error rather than an incorrect result. Essentially what is desired for maximum 
 safety is that we never pass input ending with the name of a function-like macro name when
@@ -290,7 +290,7 @@ incorrectly are very small, even with the erroneous VC++ preprocessor,
 and I consider the macro worthwhile to use since it works correctly with the vast 
 majority of possible preprocessor input.
 
-The case where it will not work, with both a C++ standard confoming preprocessor or
+The case where it will not work, with both a C++ standard conforming preprocessor or
 with Visual C++, occurs when he name of a function-like macro is part of the input
 to BOOST_VMD_IS_EMPTY. Obviously the macro should be used by the preprocessor 
 metaprogrammer when the possible input to it is constrained to eliminate the erroneous

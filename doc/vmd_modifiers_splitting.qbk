@@ -29,7 +29,7 @@ a previous splitting modifier specified as an optional parameter.
 If more than one of the splitting modifiers are specified as optional parameters
 to BOOST_VMD_ELEM the last one specified is in effect.
 
-The splitting modifers BOOST_VMD_RETURN_NO_AFTER and BOOST_VMD_RETURN_AFTER 
+The splitting modifiers BOOST_VMD_RETURN_NO_AFTER and BOOST_VMD_RETURN_AFTER 
 work with either return type modifiers or filtering modifiers if they are 
 used. The splitting modifier BOOST_VMD_RETURN_ONLY_AFTER works with
 filtering modifiers if it is used and any return type modifiers will be ignored.

@@ -341,7 +341,7 @@
 
   Choose the default macro as our successful match
   
-  def = default tuple cosnisting of just the default macro name
+  def = default tuple consisting of just the default macro name
 
 */
 
@@ -358,7 +358,7 @@
 
   If the default macro exists, choose it else indicate no macro was found
 
-  def = default tuple cosnisting of just the default macro name
+  def = default tuple consisting of just the default macro name
   
 */
 

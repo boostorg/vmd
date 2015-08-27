@@ -87,7 +87,7 @@ expansion.
 Within a given translation unit it could potentially happen
 that registration macros have been included by header files which a particular end-user
 of VMD has not created. This should also not lead to particular problems since registration
-is a process for adding identifiers for any particular transalation unit. As we shall see
+is a process for adding identifiers for any particular translation unit. As we shall see
 VMD has macros for not only finding any identifier in preprocessor input but for also finding
 particular identifiers in preprocessor input.
 
@@ -153,12 +153,12 @@ a compiler is most likely to generate a preprocessing error. If the compiler cho
 not to issue a preprocessing error the outcome will always mean that parsing an
 identifier will fail. But because the outcome is undefined behavior there is no
 absolute way that the programmer can determine what the outcome will be when
-preprocessor concatemation is used and the input being parsed contains
+preprocessor concatenation is used and the input being parsed contains
 preprocessor input which does not meet the constraints for parsing an identifier
 mentioned at the beginning of this topic.
 
 In this documentation I will be using the abbreviation 'UB' as the shortened form
-of 'undefined behavior' to denote the particular occurence where VMD attempts to
+of 'undefined behavior' to denote the particular occurrence where VMD attempts to
 parse preprocessor input using preprocessor concatenation and undefined behavior
 will occur.
 

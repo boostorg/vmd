@@ -15,7 +15,7 @@ Therefore the initial main design goal of this library was to interoperate varia
 with Boost PP in the easiest and clearest way possible.
 
 This led to the original versions of the library as an impetus for 
-adding variadic macro data suppport to Boost PP. While this was being done,
+adding variadic macro data support to Boost PP. While this was being done,
 but the variadic macro data support had not yet been finalized in Boost PP,
 I still maintained the library in two modes, either its own variadic data
 functionality or deferring to the implementation of variadic macros in the 
@@ -34,7 +34,7 @@ incorrect in a number of areas. But I still felt this functionality could be use
 in select situations and might be useful to others. Using this functionality
 I was able to build up some other macros which tested for the various Boost PP
 data types. I also was able to add in functionality, based on Paul Mendsonides
-excellent work, for handling tuples in preproccessing data.
+excellent work, for handling tuples in preprocessing data.
 
 All of this particular functionality is impossible to do effectively 
 without the use of variadic macros. But I had kept these features at a 
