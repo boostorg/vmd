@@ -12,7 +12,7 @@ when identifier modifiers are being used. Index modifiers
 take two values:
 
 * BOOST_VMD_RETURN_INDEX, return an index as a number, starting with 0,
-of the particular identifier modifer which matched, as part of the
+of the particular identifier modifier which matched, as part of the
 output of the BOOST_VMD_ELEM macro. If no particular identifier modifier
 matches, return emptiness as part of the output. The index number is
 determined purely by the order in which identifier modifiers are

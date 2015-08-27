@@ -38,7 +38,7 @@ parameters are not equal.
 Conversely to test for inequality, of the same values as are required in testing
 for equality, the VMD library has the macro BOOST_VMD_NOT_EQUAL. This macro is simply
 a complement of the BOOST_VMD_EQUAL macro. If BOOST_VMD_EQUAL returns 1 then
-then BOOST_VMD_NOT_EQUAL returns 0 and if BOOST_VMD_EQUAL returns 0 then
+BOOST_VMD_NOT_EQUAL returns 0 and if BOOST_VMD_EQUAL returns 0 then
 BOOST_VMD_NOT_EQUAL returns 1.
 
 The BOOST_VMD_EQUAL and BOOST_VMD_NOT_EQUAL macros are called "equality macros".
