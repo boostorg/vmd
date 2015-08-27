@@ -52,7 +52,7 @@ v-type.
 
 * The library has been reengineered to provide vastly added functionality. This includes:
   * Adding functionality for parsing v-types.
-  * Adding functionality for parsing sequencies of v-types.
+  * Adding functionality for parsing sequences of v-types.
   * Adding improved ASSERT macros.
   * Adding BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY.
 
@@ -100,6 +100,6 @@ v-type.
 
 [heading Version 1.0]
 
-Initial version of the libary.
+Initial version of the library.
 
 [endsect]

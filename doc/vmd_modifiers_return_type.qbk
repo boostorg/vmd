@@ -121,7 +121,7 @@ destination composite type. The macros are:
 When it does the conversion, using just the required parameter of the sequence itself,
 it converts only the data value of each sequence element to the
 elements of a composite Boost PP data type or variadic data. Because it needs only the data
-value of each sequence element it determines the type of each sequence element as the
+value of each sequence element it determines the type of each sequence element as
 the most general type that it can be. This means that all tuple-like data are parsed as
 tuples rather than as possible lists or arrays.
 
@@ -264,7 +264,7 @@ we successfully return the type of the invalid list as a BOOST_VMD_TYPE_TUPLE.
  BOOST_VMD_TO_LIST(SEQUENCE_MULTI_T4,BOOST_VMD_RETURN_TYPE_TUPLE) 
     will return the list '((BOOST_VMD_TYPE_TUPLE,(&2,(3,4))),((BOOST_VMD_TYPE_TUPLE,(anydata,^BOOST_PP_NIL)),BOOST_PP_NIL))'
  
-The SEQUENCE_MULTI_T4 is an invalid array, but valid tuple, followed by a invalid list, but valid tuple.
+The SEQUENCE_MULTI_T4 is an invalid array, but valid tuple, followed by an invalid list, but valid tuple.
 
 In sequence conversion we will get UBs whenever we use a return type
 modifier that parses the sequence other than looking for only valid tuples. So here we must use
@@ -391,7 +391,7 @@ on which return type modifier we use.
     will produce UB when attempting to parse the invalid list as a list
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E3,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))'
  
-The SEQUENCE_MULTI_E3 is a valid array followed by a invalid list, but valid tuple.
+The SEQUENCE_MULTI_E3 is a valid array followed by an invalid list, but valid tuple.
 
 When we access element 0 of our sequence, which is both a valid array and a valid tuple,
 we will never get UB. We will get the return type of the element based
@@ -418,7 +418,7 @@ we successfully return the type of the invalid list as a BOOST_VMD_TYPE_TUPLE.
     will produce UB when attempting to parse the invalid list
  BOOST_VMD_ELEM(1,SEQUENCE_MULTI_E4,BOOST_VMD_RETURN_TYPE_TUPLE) will return '(BOOST_VMD_TYPE_TUPLE,(anydata,BOOST_PP_NIL))'
 
-The SEQUENCE_MULTI_E4 is an invalid array, but valid tuple, followed by a invalid list, but valid tuple.
+The SEQUENCE_MULTI_E4 is an invalid array, but valid tuple, followed by an invalid list, but valid tuple.
 
 When we access element 0 of our sequence, which is an invalid array but a valid tuple,
 we must use a return type modifier which does not parse element 0 as an array, else

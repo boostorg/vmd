@@ -50,7 +50,7 @@ with our user-defined subtype.
 
 [heading Register and pre-detect all identifiers of that subtype]
 
-Registering and pre-detecting all of the identiifers of that subtype
+Registering and pre-detecting all of the identifiers of that subtype
 is exactly the same as registering and pre-detecting any identifier.
 
 Let's create some identifiers based for use in the mythical "udef" library.
@@ -164,7 +164,7 @@ just as we can do with any other v-type, such as the number v-type.
 
 In all respects once we define our subtype and provide those definitions in
 a header file, our user-defined subtype acts like any other v-type in our system.
-Since VMD functionality is laregly based on being able to recognize the type of
+Since VMD functionality is largely based on being able to recognize the type of
 data in macro input being able to define another 'type', as an identifier subtype, 
 which VMD understands has value for the macro programmer.
 

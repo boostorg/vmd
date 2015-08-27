@@ -133,7 +133,7 @@ but for VC++ we must write
         )
         
 VC++ does not work correctly in the first instance, erroneously getting confused as far as
-compiler ouput is concerned. But by using BOOST_PP_CAT in the second condition VC++ will 
+compiler output is concerned. But by using BOOST_PP_CAT in the second condition VC++ will
 work correctly with VMD assertions.
      
 [endsect]

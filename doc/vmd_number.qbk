@@ -26,7 +26,7 @@ but not:
  
 [heading Problem testing any number]
 
-As can be seen from the explanation of a identifier, a number is merely
+As can be seen from the explanation of an identifier, a number is merely
 a small subset of all possible identifiers, for which VMD internally provides
 registration macros for its use and pre-detection macros. Therefore the particular 
 constraint on the input to test is exactly the same as for identifiers.
