@@ -11,6 +11,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/vmd/array.hpp>
 #include <boost/vmd/assert.hpp>
 #include <boost/vmd/assert_is_array.hpp>
 #include <boost/vmd/assert_is_empty.hpp>
@@ -39,12 +40,15 @@
 #include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/is_type.hpp>
 #include <boost/vmd/is_unary.hpp>
+#include <boost/vmd/list.hpp>
 #include <boost/vmd/not_equal.hpp>
+#include <boost/vmd/seq.hpp>
 #include <boost/vmd/size.hpp>
 #include <boost/vmd/to_array.hpp>
 #include <boost/vmd/to_list.hpp>
 #include <boost/vmd/to_seq.hpp>
 #include <boost/vmd/to_tuple.hpp>
+#include <boost/vmd/tuple.hpp>
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VARIADIC_MACRO_DATA_HPP */
