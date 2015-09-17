@@ -50,7 +50,7 @@
     returns   = A Boost PP seq. If the sequence is empty the return is emptiness
                 since an empty seq does not exist. If an optional return type other 
                 than BOOST_VMD_RETURN_NO_TYPE is specified the type and the data of 
-                each element is    returned as the seq element. Otherwise just the data
+                each element is returned as the seq element. Otherwise just the data
                 is returned as the seq element, which is the default.
     
 */
