@@ -43,6 +43,8 @@ test-suite variadic_macro_data
        [ run test_array_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_array_empty.cpp : : : $(l_gcc_c11) ]
        [ run test_array_equal.cpp : : : $(l_gcc_c11) ]
+       [ run test_array_to_seq.cpp : : : $(l_gcc_c11) ]
+       [ run test_array_to_tuple.cpp : : : $(l_gcc_c11) ]
        [ run test_ary.cpp : : : $(l_gcc_c11) ]
        [ compile test_assert.cpp : $(l_gcc_c11) ]
        [ compile-fail test_assert_fail.cpp : $(l_gcc_c11) ]
@@ -185,10 +187,21 @@ test-suite variadic_macro_data
        [ run test_list_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_list_empty.cpp : : : $(l_gcc_c11) ]
        [ run test_list_equal.cpp : : : $(l_gcc_c11) ]
+       [ run test_list_to_seq.cpp : : : $(l_gcc_c11) ]
+       [ run test_list_to_tuple.cpp : : : $(l_gcc_c11) ]
        [ run test_number_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_number_equal.cpp : : : $(l_gcc_c11) ]
        [ run test_seq_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_seq_equal.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_pop_back.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_pop_front.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_push_back.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_push_front.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_remove.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_size.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_to_array.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_to_list.cpp : : : $(l_gcc_c11) ]
+       [ run test_seq_to_tuple.cpp : : : $(l_gcc_c11) ]
        [ run test_sequence_after_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_sequence_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_sequence_enum.cpp : : : $(l_gcc_c11) ]
@@ -199,6 +212,15 @@ test-suite variadic_macro_data
        [ run test_sequence_to_tuple.cpp : : : $(l_gcc_c11) ]
        [ run test_tuple_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_tuple_equal.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_pop_back.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_pop_front.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_push_back.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_push_front.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_remove.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_size.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_to_array.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_to_list.cpp : : : $(l_gcc_c11) ]
+       [ run test_tuple_to_seq.cpp : : : $(l_gcc_c11) ]
        [ run test_type.cpp : : : $(l_gcc_c11) ]
        [ run test_type_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_type_equal.cpp : : : $(l_gcc_c11) ]
@@ -237,6 +259,12 @@ test-suite variadic_macro_data_gh
        [ run test_array_empty.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
          test_array_empty_gh ]
+       [ run test_array_to_seq.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_array_to_seq_gh ]
+       [ run test_array_to_tuple.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_array_to_tuple_gh ]
        [ run test_ary.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
          test_ary_gh ]
@@ -590,6 +618,12 @@ test-suite variadic_macro_data_gh
        [ run test_list_equal.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
          test_list_equal_gh ]
+       [ run test_list_to_seq.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_list_to_seq_gh ]
+       [ run test_list_to_tuple.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_list_to_tuple_gh ]
        [ run test_number_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
          test_number_elem_gh ]
@@ -602,6 +636,33 @@ test-suite variadic_macro_data_gh
        [ run test_seq_equal.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
          test_seq_equal_gh ]
+       [ run test_seq_pop_back.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_pop_back_gh ]
+       [ run test_seq_pop_front.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_pop_front_gh ]
+       [ run test_seq_push_back.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_push_back_gh ]
+       [ run test_seq_push_front.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_push_front_gh ]
+       [ run test_seq_remove.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_remove_gh ]
+       [ run test_seq_size.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_size_gh ]
+       [ run test_seq_to_array.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_to_array_gh ]
+       [ run test_seq_to_list.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_to_list_gh ]
+       [ run test_seq_to_tuple.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_seq_to_tuple_gh ]
        [ run test_sequence_after_elem.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
          test_sequence_after_elem_gh ]
@@ -632,6 +693,33 @@ test-suite variadic_macro_data_gh
        [ run test_tuple_equal.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
          test_tuple_equal_gh ]
+       [ run test_tuple_pop_back.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_pop_back_gh ]
+       [ run test_tuple_pop_front.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_pop_front_gh ]
+       [ run test_tuple_push_back.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_push_back_gh ]
+       [ run test_tuple_push_front.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_push_front_gh ]
+       [ run test_tuple_remove.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_remove_gh ]
+       [ run test_tuple_size.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_size_gh ]
+       [ run test_tuple_to_array.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_to_array_gh ]
+       [ run test_tuple_to_list.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_to_list_gh ]
+       [ run test_tuple_to_seq.cpp : : :
+         <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
+         test_tuple_to_seq_gh ]
        [ run test_type.cpp : : :
          <define>BOOST_VMD_TEST_GENERAL_HEADER $(l_gcc_c11) : 
          test_type_gh ]
