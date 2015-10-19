@@ -4,11 +4,7 @@
 //  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt).
 
-#if defined(BOOST_VMD_TEST_GENERAL_HEADER)
-#include <boost/vmd/vmd.hpp>
-#else
 #include <boost/vmd/assert_is_number.hpp>
-#endif
 #include <boost/detail/lightweight_test.hpp>
 
 int main()

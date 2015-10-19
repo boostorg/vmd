@@ -4,9 +4,6 @@
 //  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt).
 
-#if defined(BOOST_VMD_TEST_GENERAL_HEADER)
-#include <boost/vmd/vmd.hpp>
-#else
 #include <boost/vmd/elem.hpp>
 #include <boost/vmd/enum.hpp>
 #include <boost/vmd/equal.hpp>
@@ -16,7 +13,6 @@
 #include <boost/vmd/to_list.hpp>
 #include <boost/vmd/to_seq.hpp>
 #include <boost/vmd/to_tuple.hpp>
-#endif
 #include <boost/preprocessor/array/elem.hpp>
 #include <boost/preprocessor/list/at.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>

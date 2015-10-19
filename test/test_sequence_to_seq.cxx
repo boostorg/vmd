@@ -4,14 +4,10 @@
 //  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt).
 
-#if defined(BOOST_VMD_TEST_GENERAL_HEADER)
-#include <boost/vmd/vmd.hpp>
-#else
 #include <boost/vmd/is_empty.hpp>
 #include <boost/vmd/to_seq.hpp>
 #include <boost/vmd/is_tuple.hpp>
 #include <boost/vmd/equal.hpp>
-#endif
 #include <boost/detail/lightweight_test.hpp>
 #include <boost/preprocessor/list/at.hpp>
 #include <boost/preprocessor/seq/elem.hpp>

@@ -4,7 +4,7 @@
 //  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt).
 
-#include <boost/vmd/vmd.hpp>
+#include <boost/vmd/detail/setup.hpp>
 #include <boost/predef.h>
 #include <boost/detail/lightweight_test.hpp>
 
