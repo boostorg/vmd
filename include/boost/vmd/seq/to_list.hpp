@@ -13,7 +13,7 @@
 
 #include <boost/preprocessor/control/iif.hpp>
 #include <boost/preprocessor/seq/to_list.hpp>
-#include <boost/vmd/identity.hpp>
+// #include <boost/vmd/identity.hpp>
 #include <boost/vmd/is_empty.hpp>
 
 /*
@@ -35,18 +35,31 @@
     Otherwise the seq is converted to a list with the same number of elements as the seq.
 */
 
+#if BOOST_VMD_MSVC
 #define BOOST_VMD_SEQ_TO_LIST(seq) \
-    BOOST_VMD_IDENTITY_RESULT \
-        ( \
         BOOST_PP_IIF \
             ( \
             BOOST_VMD_IS_EMPTY(seq), \
-            BOOST_VMD_IDENTITY(BOOST_PP_NIL), \
-            BOOST_PP_SEQ_TO_LIST \
+            BOOST_VMD_SEQ_TO_LIST_PE, \
+            BOOST_VMD_SEQ_TO_LIST_NPE \
             ) \
         (seq) \
-        ) \
 /**/
+#define BOOST_VMD_SEQ_TO_LIST_PE(seq) BOOST_PP_NIL
+/**/
+#define BOOST_VMD_SEQ_TO_LIST_NPE(seq) BOOST_PP_SEQ_TO_LIST(seq)
+/**/
+#else
+#define BOOST_VMD_SEQ_TO_LIST(seq) \
+    BOOST_PP_IIF \
+        ( \
+        BOOST_VMD_IS_EMPTY(seq), \
+        BOOST_VMD_IDENTITY(BOOST_PP_NIL), \
+        BOOST_PP_SEQ_TO_LIST \
+        ) \
+    (seq) \
+/**/
+#endif
 
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_SEQ_TO_LIST_HPP */
