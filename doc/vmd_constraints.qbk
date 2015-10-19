@@ -28,7 +28,7 @@ input to a C++ callable. Nevertheless it is perfectly valid to document what a m
 as its argument input and, if a programmer does not follow the constraint, the macro will fail
 to work properly. In the ideal case in preprocessor metaprogramming the macro could tell whether
 or not the constraint was met and could issue some sort of intelligible preprocessing error
-when this occured, but even within the reality of preprocessor metaprogramming with Boost PP
+when this occurred, but even within the reality of preprocessor metaprogramming with Boost PP
 this is not always possible to do. Nevertheless if the user of a macro  
 does not follow the constraints for a macro parameter, as specified in the 
 documentation of a particular macro being invoked, any error which occurs is the 

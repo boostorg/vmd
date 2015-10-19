@@ -136,7 +136,7 @@ is the exact equivalent.
 
 V1.7
 
-BOOST_VMD_BEGIN_ARRAY(sequence) looked for a array at
+BOOST_VMD_BEGIN_ARRAY(sequence) looked for an array at
 the beginning of a sequence and returned the array if found or emptiness
 if no array is found.
 
