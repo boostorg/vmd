@@ -5,6 +5,9 @@
 //  http://www.boost.org/LICENSE_1_0.txt).
 
 #include <boost/vmd/seq/pop_back.hpp>
+#include <boost/vmd/is_empty.hpp>
+#include <boost/preprocessor/seq/elem.hpp>
+#include <boost/preprocessor/seq/size.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
 int main()
@@ -12,6 +15,13 @@ int main()
   
 #if BOOST_PP_VARIADICS
 
+  #define A_SEQ (1)(2)(3)(4)
+  #define AN_OE_SEQ (1)
+  
+  BOOST_TEST_EQ(BOOST_PP_SEQ_ELEM(2,BOOST_VMD_SEQ_POP_BACK(A_SEQ)),3);
+  BOOST_TEST_EQ(BOOST_PP_SEQ_SIZE(BOOST_VMD_SEQ_POP_BACK(A_SEQ)),3);
+  BOOST_TEST(BOOST_VMD_IS_EMPTY(BOOST_VMD_SEQ_POP_BACK(AN_OE_SEQ)));
+  
 #else
 
 BOOST_ERROR("No variadic macro support");
