@@ -82,6 +82,9 @@ As another simple example:
  
 Here we use VMD's identifier registration system to determine and
 handle a particular identifier we may be expecting as a macro parameter.
+If the input to 'AMACRO1' is 'NAME' the output is 'Identifier is a NAME'.
+If the input to 'AMACRO1' is 'ADDRESS' the output is 'Identifier is an ADDRESS'.
+Otherwise the output is 'Parameter is not an identifier'.
 
 Identifier pre-detection makes things clearer, allowing us to
 detect within VMD whether macro input matches a particular identifier.
@@ -113,6 +116,10 @@ Using the same setup as our previous example, but with identifier pre-detection:
  #define AMACRO2_NAME(param) Identifier is a NAME
  #define AMACRO2_ADDRESS(param) Identifier is an ADDRESS
  
+If the input to 'AMACRO2' is 'NAME' the output is 'Identifier is a NAME'.
+If the input to 'AMACRO2' is 'ADDRESS' the output is 'Identifier is an ADDRESS'.
+Otherwise the output is 'Parameter is not a NAME or ADDRESS identifier'.
+
 The VMD library also has 2 different subtypes of identifiers which can always be
 recognized. The first are numbers, equivalent to the number in Boost PP, numeric
 values with a range of 0-256. The second are v-types, which are identifiers starting

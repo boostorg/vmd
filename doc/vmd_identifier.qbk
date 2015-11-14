@@ -49,21 +49,21 @@ a preprocessing error will occur.
 
 Given the input:
 
- s_anything : can be tested
- S_anything : can be tested
- s_anYthiNg : can be tested
- _anything : can be tested
- _Anything : can be tested
- _anytHIng : can be tested
- 24 : can be tested
- 245e2: can be tested
- (anything) : can be tested, tuple
- (anything) anything : can be tested, tuple and further input
- anything anything : can be tested, identifier followed by space character
+ 's_anything' : can be tested
+ 'S_anything' : can be tested
+ 's_anYthiNg' : can be tested
+ '_anything' : can be tested
+ '_Anything' : can be tested
+ '_anytHIng' : can be tested
+ '24' : can be tested
+ '245e2' : can be tested
+ '(anything)' : can be tested, tuple
+ '(anything) anything' : can be tested, tuple and further input
+ 'anything anything' : can be tested, identifier followed by space character
  
- %_anything : undefined behavior and most likely a preprocessing error due to the constraint
- (_anything : undefined behavior and most likely a preprocessing error due to the constraint, since a single '(' does not form a tuple
- 44.3 : undefined behavior and most likely a preprocessing error due to the constraint since '.' is not alphanumeric
+ '%_anything' : undefined behavior and most likely a preprocessing error due to the constraint
+ '(_anything' : undefined behavior and most likely a preprocessing error due to the constraint, since a single '(' does not form a tuple
+ '44.3' : undefined behavior and most likely a preprocessing error due to the constraint since '.' is not alphanumeric
  
 [heading Identifying an identifier]
 
@@ -93,7 +93,7 @@ particular identifiers in preprocessor input.
 
 [heading Testing for an identifier macro]
 
-The macro used to test for an identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
+The specific macro used to test for an identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
 The macro takes one required parameter which is the input against which to test.
 
 When we invoke BOOST_VMD_IS_IDENTIFIER it returns 1 if the input represents any 
@@ -107,7 +107,7 @@ As an example:
  #define BOOST_VMD_REGISTER_green  (green)
  #define BOOST_VMD_REGISTER_blue   (blue)
  
- BOOST_VMD_IS_IDENTIFIER(some_input) // returns 1 if 'some_input is 'yellow','green', or 'blue'
+ BOOST_VMD_IS_IDENTIFIER(some_input) // returns 1 if 'some_input' is 'yellow','green', or 'blue'
  BOOST_VMD_IS_IDENTIFIER(some_input) // returns 0 if 'some_input' is 'purple'
  
 Essentially only registered identifiers can be found in VMD as identifiers.
@@ -116,9 +116,9 @@ Essentially only registered identifiers can be found in VMD as identifiers.
 
 Although registering an identifier allows VMD to recognize the string of characters
 as a VMD identifier, the ability to detect a particular identifier needs the end-user
-to specify another macro:
+to define another macro:
 
- BOOST_VMD_DETECT_identifier_identifier
+ #define BOOST_VMD_DETECT_identifier_identifier
  
 where 'identifier' is a particular identifier we wish to detect. This object-like 
 macro expands to no output.

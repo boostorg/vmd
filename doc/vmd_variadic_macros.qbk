@@ -22,13 +22,14 @@ found in Boost PP data types.
 
 The Boost PP library has support for variadic macros and uses its 
 own criteria to determine if a particular compiler has that support.
-Boost PP uses the macro BOOST_PP_VARIADICS to denote whether 
+Boost PP defines or uses the macro BOOST_PP_VARIADICS to denote whether 
 the compiler being used supports variadic macros. When BOOST_PP_VARIADICS
 is set to 1 the compiler supports variadic macros, otherwise when 
 BOOST_PP_VARIADICS is set to 0 the compiler does not support variadic macros.
 If a user of Boost PP sets this value, Boost PP uses the value the end-user 
-sets. This macro can also be checked to determine if a compiler has support 
-for variadic macros.
+sets, otherwise Boost PP defines the value of BOOST_PP_VARIADICS based on its
+own analysis of the compiler being used. This macro can also be checked to 
+determine if a compiler has support for variadic macros.
 
 [heading Determining variadic macro support]
 

@@ -55,9 +55,9 @@ values, without the checking mechanism itself creating a preprocessing error or 
 
 This does not mean that one should give up attempting to check macro input constraints. If it can be done
 I see the value of such checks and a number of VMD macros, discussed later, are designed as preprocessing 
-input constraint checking macros. But the most important thing when dealing with macro input constraints is that they 
-should be carefully documented, and that the programmer should know that if the constraints are not met either
-preprocessing errors or incorrect macro results could be the results.
+input constraint checking macros. But the most important thing when dealing with macro input constraints is 
+that they should be carefully documented, and that the programmer should know that if the constraints are 
+not met either preprocessing errors or incorrect macro results could be the results.
 
 The VMD library, in order to present more preprocessor programming functionality and 
 flexibility, allows that erroneous results could occur if certain input constraints are not met, whether the 

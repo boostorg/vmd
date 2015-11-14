@@ -205,9 +205,9 @@ testing for emptiness.
 [heading Macro Flaw with Visual C++]
 
 The VC++ preprocessor is not a standard C++ conforming preprocessor in at least two 
-relevant situations. These situations combine to create a single corner case which causes the 
-BOOST_VMD_IS_EMPTY macro to not work properly using VC++ when the input resolves to a 
-function-like macro name.
+relevant situations to our discussion of emptiness. These situations combine to create 
+a single corner case which causes the BOOST_VMD_IS_EMPTY macro to not work properly 
+using VC++ when the input resolves to a function-like macro name.
 
 The first situation is that if a macro taking 'n' number of parameters is invoked 
 with 0 to 'n-1' parameters, the compiler does not give an error, but only a warning.
@@ -280,7 +280,7 @@ similar but even rarer corner case with VC++, we will silently get an incorrect 
 rather than a compiler error.
 
 I want to reiterate that there is no perfect solution in C++ to the detection of 
-emptiness even for a C++ compiler whose preprocessor is complete conformant, which 
+emptiness even for a C++ compiler whose preprocessor is completely conformant, which 
 VC++ obviously is not.
 
 [heading Macro Flaw conclusion]

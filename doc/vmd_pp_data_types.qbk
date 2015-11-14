@@ -73,7 +73,7 @@ then
 The form of an array is a two element tuple, where the first
 element is a number and the second element is a tuple. The number
 specifies the size of the tuple. Since when using variadic macros
-it is never necessary to specify the size of a tuple an array is
+it is never necessary to specify the size of a tuple, an array is
 largely obsolete. However VMD still supports it.
 
 The problem when testing for an array is that if the first element
@@ -103,8 +103,8 @@ second element is itself a list or the end-of-list identifier
 BOOST_PP_NIL.
 
 The problem when testing for a list is that if the second element
-does not obey the constraint on testing for an identifier, you will get
-UB.
+does not obey the constraint on testing for an identifier, since BOOST_PP_NIL
+is an identifier and is tested as such, you will get UB.
 
  #include <boost/vmd/is_list.hpp>
  #include <boost/vmd/is_tuple.hpp>
@@ -213,7 +213,7 @@ You can test for an empty list using the macro BOOST_VMD_IS_EMPTY_LIST.
  BOOST_VMD_IS_EMPTY_LIST() will return 0
  BOOST_VMD_IS_EMPTY_LIST(A_LIST) will return 0
  
-Neither seqs or tuples can be empty. Because of this if you
+Neither seqs or tuples can be empty when using Boost PP. Because of this if you
 convert from an empty array or list to a seq or tuple using
 Boost PP macros to do so you will get undefined behavior.
 
@@ -252,9 +252,17 @@ When using variadic macros, the fact that an array can be empty is its only
 advantage over a tuple. Otherwise using a tuple is always easier since
 the syntax is simpler; you never have to notate the tuple's size.
 
-Since VMD fully supports passing and returning emptiness you can use a tuple 
+Since VMD fully supports passing and returning emptiness you could use a tuple 
 instead of an array in all situations and simply pass or return emptiness to 
 represent an "empty" tuple, and as an equivalent to an empty array.
+
+This notion of using emptiness to represent an "empty" tuple can also be extended
+to using emptiness to represent an "empty" seq. However functionality in Boost PP
+will not recognize emptiness as an empty tuple or seq, nor can you work with emptiness
+to represent an empty tuple or empty seq using the Boost PP functionality for a tuple
+or a seq. For a solution to using emptiness to represent an "empty" tuple or an
+"empty" seq VMD has functionality which will be explained when we look at our last
+area of functionality in VMD, useful variadic macros not in Boost PP.
 
 [heading Usage]
 

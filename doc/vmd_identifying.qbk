@@ -67,7 +67,7 @@ designer this responsibility is twofold:
 
 * To carefully document the possible combinations of acceptable data and what they mean.
 * To balance flexibility with ease of use so that the macro does not become so hard to
-understand that the programmer invoking the macro gives up using it intelligently.
+understand that the programmer invoking the macro gives up using it entirely.
 
 For the programmer invoking a macro the responsibility is to understand the documentation
 and not attempt to pass to the macro data which may cause incorrect results or preprocessing

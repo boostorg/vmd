@@ -28,7 +28,7 @@ but not:
 
 As can be seen from the explanation of an identifier, a number is merely
 a small subset of all possible identifiers, for which VMD internally provides
-registration macros for its use and pre-detection macros. Therefore the particular 
+registration macros for its use and pre-detection macros for its use. Therefore the particular 
 constraint on the input to test is exactly the same as for identifiers.
  
 The constraint is that the beginning input character, ignoring any whitespace, passed
@@ -43,25 +43,6 @@ or end of input occurs.
 
 If this is not the case the behavior is undefined, and most likely
 a preprocessing error will occur.
-
-Given the input:
-
- s_anything : can be tested
- S_anything : can be tested
- s_anYthiNg : can be tested
- s&_anYthiNg : can be tested
- _anything : can be tested
- _Anything : can be tested
- _anytH?Ing : can be tested
- 24 : can be tested
- 245e2: can be tested
- (anything) : can be tested, tuple
- (anything) anything : can be tested, tuple + identifier
- anything anything : can be tested, identifier followed by space character
- 
- %_anything : undefined behavior and most likely a preprocessing error due to the constraint
- (_anything : undefined behavior and most likely a preprocessing error due to the constraint, since a single '(' does not form a tuple
- 44.3 : undefined behavior and most likely a preprocessing error due to the constraint since '.' is not alphanumeric
 
 [heading Testing for a number macro]
 
