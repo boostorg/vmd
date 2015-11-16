@@ -32,7 +32,7 @@ It is possible for the end-user to define his own identifier subtype.
 This is called a "user-defined subtype". Once a user-define subtype is
 created all the generic type facilities of VMD which subtypes such as
 a number or a v-type possess is automatically available for that 
-user-define subtype.
+user-defined subtype.
 
 [heading Defining a subtype]
 
