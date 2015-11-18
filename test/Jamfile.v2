@@ -184,6 +184,8 @@ test-suite variadic_macro_data
        [ run-fail test_is_tuple_fail3.cpp : : : $(l_gcc_c11) ]
        [ run-fail test_is_tuple_fail4.cpp : : : $(l_gcc_c11) ]
        [ run test_is_type.cpp : : : $(l_gcc_c11) ]
+       [ run test_is_vmd_seq.cpp : : : $(l_gcc_c11) ]
+       [ run test_is_vmd_tuple.cpp : : : $(l_gcc_c11) ]
        [ run test_list_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_list_empty.cpp : : : $(l_gcc_c11) ]
        [ run test_list_equal.cpp : : : $(l_gcc_c11) ]
