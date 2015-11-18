@@ -37,13 +37,12 @@ is that one may not want to code the MACRO_CHOICE macro
 in this way:
 
  #include <boost/preprocessor/control/iif.hpp>
- #include <boost/preprocessor/facilities/empty.hpp>
 
  #define MACRO_CHOICE(parameter) \
      BOOST_PP_IIF(parameter) \
          ( \
          MACRO_CALL_IF_PARAMETER_1(), \
-         SOME_FIXED_VALUE BOOST_PP_EMPTY() \
+         SOME_FIXED_VALUE \
          )
      
  #define MACRO_CALL_IF_PARAMETER_1() some_processing
@@ -52,7 +51,7 @@ because it is inefficient. The invocation of MACRO_CALL_IF_PARAMETER_1 will stil
 be generated even when 'parameter' is 0.
 
 This idiom of returning a fixed value through the use of BOOST_PP_EMPTY
-is so useful that Boost PP has an accompany macro to BOOST_PP_EMPTY to
+is so useful that Boost PP has an accompanying macro to BOOST_PP_EMPTY to
 work with it. This accompanying macro is BOOST_PP_IDENTITY(value)().
 Essentially BOOST_PP_IDENTITY returns its value when it is invoked.
 Again, like BOOST_PP_EMPTY, the final invocation must be done with no value.
@@ -100,7 +99,7 @@ making a change to either of our two examples:
          ) \
      (parameter2)
      
- #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_both_parameters
+ #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_a_parameter
  
 or
 
@@ -115,13 +114,13 @@ or
          ) \
      (parameter2)
      
- #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_both_parameters
+ #define MACRO_CALL_IF_PARAMETER_1(parameter2) some_processing_using_a_parameter
  
 will produce a preprocessing error since the final invocation to either
 BOOST_PP_EMPTY or BOOST_PP_IDENTITY can not be done with 1 or more parameters.
 
 It would be much more useful if the final invocation could be done with
-any number of parameters. This is where using variadic macros solve the problem. 
+any number of parameters. This is where using variadic macros solves the problem. 
 The BOOST_VMD_EMPTY and BOOST_VMD_IDENTITY macros have the exact same 
 functionality as their Boost PP counterparts but the final invocation can 
 be made with any number of parameters, and those parameters are just ignored
@@ -186,7 +185,7 @@ Unfortunately the Visual C++ preprocessor has a problem when a macro
 expands to something followed by a variadic macro which expands to nothing.
 This is the case when using BOOST_VMD_EMPTY following some non-empty expansion, 
 or the equivalent use of BOOST_VMD_IDENTITY. As strange as it sounds this VC++
-preprocessor problem is solved by concatenating the result using BOOST_PP_CAT
+preprocessor problem is normally solved by concatenating the result using BOOST_PP_CAT
 with an empty value. But then again the many non-standard behaviors of VC++
 are difficult to understand or even track. 
 

@@ -299,6 +299,6 @@ to work with non-empty seqs and tuples. The easiest way to do this is to use the
 VMD seq and VMD tuple equivalent functions when choosing between VMD and
 Boost PP, and use the Boost PP seq and tuple functionality otherwise. 
 Just remember that Boost PP seq and tuple functionality can never
-work with empty seqs and tuples.
+work with empty seqs or empty tuples.
 
 [endsect]

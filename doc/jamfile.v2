@@ -37,6 +37,8 @@ else
 
 doxygen vmd_reference
   :
+    $(here)/../../../boost/vmd/array/to_seq.hpp
+    $(here)/../../../boost/vmd/array/to_tuple.hpp
     $(here)/../../../boost/vmd/assert.hpp
     $(here)/../../../boost/vmd/assert_is_array.hpp
     $(here)/../../../boost/vmd/assert_is_empty.hpp
@@ -65,12 +67,32 @@ doxygen vmd_reference
     $(here)/../../../boost/vmd/is_tuple.hpp
     $(here)/../../../boost/vmd/is_type.hpp
     $(here)/../../../boost/vmd/is_unary.hpp
+    $(here)/../../../boost/vmd/list/to_seq.hpp
+    $(here)/../../../boost/vmd/list/to_tuple.hpp
     $(here)/../../../boost/vmd/not_equal.hpp
+    $(here)/../../../boost/vmd/seq/pop_back.hpp
+    $(here)/../../../boost/vmd/seq/pop_front.hpp
+    $(here)/../../../boost/vmd/seq/push_back.hpp
+    $(here)/../../../boost/vmd/seq/push_front.hpp
+    $(here)/../../../boost/vmd/seq/remove.hpp
+    $(here)/../../../boost/vmd/seq/size.hpp
+    $(here)/../../../boost/vmd/seq/to_array.hpp
+    $(here)/../../../boost/vmd/seq/to_list.hpp
+    $(here)/../../../boost/vmd/seq/to_tuple.hpp
     $(here)/../../../boost/vmd/size.hpp
     $(here)/../../../boost/vmd/to_array.hpp
     $(here)/../../../boost/vmd/to_list.hpp
     $(here)/../../../boost/vmd/to_seq.hpp
     $(here)/../../../boost/vmd/to_tuple.hpp
+    $(here)/../../../boost/vmd/tuple/pop_back.hpp
+    $(here)/../../../boost/vmd/tuple/pop_front.hpp
+    $(here)/../../../boost/vmd/tuple/push_back.hpp
+    $(here)/../../../boost/vmd/tuple/push_front.hpp
+    $(here)/../../../boost/vmd/tuple/remove.hpp
+    $(here)/../../../boost/vmd/tuple/size.hpp
+    $(here)/../../../boost/vmd/tuple/to_array.hpp
+    $(here)/../../../boost/vmd/tuple/to_list.hpp
+    $(here)/../../../boost/vmd/tuple/to_seq.hpp
   : 
     <doxygen:param>PROJECT_NAME="VMD"
     <doxygen:param>PROJECT_NUMBER=1

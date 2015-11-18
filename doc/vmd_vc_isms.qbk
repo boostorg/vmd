@@ -9,8 +9,8 @@
 
 I have discussed throughout the documentation areas of VMD which need to be
 considered when using Microsoft's Visual C++ compilers. The VMD library
-supports VC++ versions 8 through the latest 12. These correspond to
-Visual Studio 20056 through the current Visual Studio 2013.
+supports VC++ versions 8 through the latest 14. These correspond to
+Visual Studio 2005 through the current Visual Studio 2015.
 
 I will give here fairly briefly the VC++ quirks which should be taken
 into account when using VMD. These quirks exist because the VC++ compiler
