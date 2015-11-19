@@ -11,6 +11,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/vmd/tuple/is_vmd_tuple.hpp>
 #include <boost/vmd/tuple/pop_back.hpp>
 #include <boost/vmd/tuple/pop_front.hpp>
 #include <boost/vmd/tuple/push_back.hpp>

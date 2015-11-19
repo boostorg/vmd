@@ -70,6 +70,7 @@ doxygen vmd_reference
     $(here)/../../../boost/vmd/list/to_seq.hpp
     $(here)/../../../boost/vmd/list/to_tuple.hpp
     $(here)/../../../boost/vmd/not_equal.hpp
+    $(here)/../../../boost/vmd/seq/is_vmd_seq.hpp
     $(here)/../../../boost/vmd/seq/pop_back.hpp
     $(here)/../../../boost/vmd/seq/pop_front.hpp
     $(here)/../../../boost/vmd/seq/push_back.hpp
@@ -84,6 +85,7 @@ doxygen vmd_reference
     $(here)/../../../boost/vmd/to_list.hpp
     $(here)/../../../boost/vmd/to_seq.hpp
     $(here)/../../../boost/vmd/to_tuple.hpp
+    $(here)/../../../boost/vmd/tuple/is_vmd_tuple.hpp
     $(here)/../../../boost/vmd/tuple/pop_back.hpp
     $(here)/../../../boost/vmd/tuple/pop_front.hpp
     $(here)/../../../boost/vmd/tuple/push_back.hpp

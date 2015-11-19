@@ -11,6 +11,7 @@
 
 #if BOOST_PP_VARIADICS
 
+#include <boost/vmd/seq/is_vmd_seq.hpp>
 #include <boost/vmd/seq/pop_back.hpp>
 #include <boost/vmd/seq/pop_front.hpp>
 #include <boost/vmd/seq/push_back.hpp>

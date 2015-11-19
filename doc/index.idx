@@ -32,6 +32,7 @@
 !scan boost/vmd/list/to_tuple.hpp
 !scan boost/vmd/not_equal.hpp
 !scan boost/vmd/size.hpp
+!scan boost/vmd/seq/is_vmd_seq.hpp
 !scan boost/vmd/seq/pop_back.hpp
 !scan boost/vmd/seq/pop_front.hpp
 !scan boost/vmd/seq/push_back.hpp
@@ -45,6 +46,7 @@
 !scan boost/vmd/to_list.hpp
 !scan boost/vmd/to_seq.hpp
 !scan boost/vmd/to_tuple.hpp
+!scan boost/vmd/tuple/is_vmd_tuple.hpp
 !scan boost/vmd/tuple/pop_back.hpp
 !scan boost/vmd/tuple/pop_front.hpp
 !scan boost/vmd/tuple/push_back.hpp

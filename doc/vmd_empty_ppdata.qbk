@@ -49,7 +49,11 @@ or tuple. A VMD seq is a seq which may be empty and a VMD tuple is a tuple
 which may be empty. A VMD seq is therefore a superset of a normal seq and a
 VMD tuple is therefore a superset of a normal tuple. The VMD functionality
 therefore can accept a VMD seq or tuple or a normal seq or tuple whereas the
-equivalent Boost PP functionality only accepts a normal seq or tuple.
+equivalent Boost PP functionality only accepts a normal seq or tuple. To be more
+more precise the Boost PP functionality can accept a VMD seq or a VMD tuple as
+long as it is not empty. In other words there is no difference between a
+non-empty VMD seq or a Boost PP seq, or between a non-empty VMD tuple and
+a Boost PP tuple.
 
 The particular macros which VMD supplies, supporting VMD seqs and VMD tuples, 
 are divided between array, list, seq, and tuple functionality. The actual header
@@ -126,6 +130,13 @@ The seq macros either work with a VMD seq or return A VMD seq. The seq macros ar
 [table:vpp_seq Seq macros
 [[Macro][Parameter][Return][Functionality][Header]]
 [
+[BOOST_VMD_IS_VMD_SEQ]
+[sequence = a VMD sequence]
+[1 if the VMD sequence is a VMD seq, else 0]
+[Tests a sequence as a VMD seq. If the sequence is empty returns 1, otherwise returns the same as BOOST_VMD_IS_SEQ]
+[boost/vmd/seq/is_vmd_seq.hpp]
+]
+[
 [BOOST_VMD_SEQ_POP_BACK]
 [seq = a Boost PP seq]
 [A VMD seq]
@@ -143,14 +154,14 @@ The seq macros either work with a VMD seq or return A VMD seq. The seq macros ar
 [BOOST_VMD_SEQ_PUSH_BACK]
 [seq = a VMD seq, elem = element to push onto the end of the VMD seq]
 [A Boost PP seq]
-[Pushes an element onto the end of a VMD seq. If the VMD seq is empty the seq consists of that element, otherwise works exactly the same as BOOST_PP_SEQ_PUSH_BACK]
+[Pushes an element onto the end of a VMD seq. If the VMD seq is empty the returned seq consists of that element, otherwise works exactly the same as BOOST_PP_SEQ_PUSH_BACK]
 [boost/vmd/seq/push_back.hpp]
 ]
 [
 [BOOST_VMD_SEQ_PUSH_FRONT]
 [seq = a VMD seq, elem = element to push onto the beginning of the VMD seq]
 [A Boost PP seq]
-[Pushes an element onto the beginning of a VMD seq. If the VMD seq is empty the seq consists of that element, otherwise works exactly the same as BOOST_PP_SEQ_PUSH_FRONT]
+[Pushes an element onto the beginning of a VMD seq. If the VMD seq is empty the returned seq consists of that element, otherwise works exactly the same as BOOST_PP_SEQ_PUSH_FRONT]
 [boost/vmd/seq/push_front.hpp]
 ]
 [
@@ -206,6 +217,13 @@ The tuple macros either work with a VMD tuple or return a VMD tuple. The tuple m
 [table:vpp_tuple Tuple macros
 [[Macro][Parameter][Return][Functionality][Header]]
 [
+[BOOST_VMD_IS_VMD_TUPLE]
+[sequence = a VMD sequence]
+[1 if the VMD sequence is a VMD tuple, else 0]
+[Tests a sequence as a VMD tuple. If the sequence is empty returns 1, otherwise returns the same as BOOST_VMD_IS_TUPLE]
+[boost/vmd/tuple/is_vmd_tuple.hpp]
+]
+[
 [BOOST_VMD_TUPLE_POP_BACK]
 [tuple = a Boost PP tuple]
 [A VMD tuple]
@@ -223,14 +241,14 @@ The tuple macros either work with a VMD tuple or return a VMD tuple. The tuple m
 [BOOST_VMD_TUPLE_PUSH_BACK]
 [tuple = a VMD tuple, elem = element to push onto the end of the VMD tuple]
 [A Boost PP tuple]
-[Pushes an element onto the end of a VMD tuple. If the VMD tuple is empty the tuple consists of that element, otherwise works exactly the same as BOOST_PP_TUPLE_PUSH_BACK]
+[Pushes an element onto the end of a VMD tuple. If the VMD tuple is empty the returned tuple consists of that element, otherwise works exactly the same as BOOST_PP_TUPLE_PUSH_BACK]
 [boost/vmd/tuple/push_back.hpp]
 ]
 [
 [BOOST_VMD_TUPLE_PUSH_FRONT]
 [tuple = a VMD tuple, elem = element to push onto the beginning of the VMD tuple]
 [A Boost PP tuple]
-[Pushes an element onto the beginning of a VMD tuple. If the VMD tuple is empty the tuple consists of that element, otherwise works exactly the same as BOOST_PP_TUPLE_PUSH_FRONT]
+[Pushes an element onto the beginning of a VMD tuple. If the VMD tuple is empty the returned tuple consists of that element, otherwise works exactly the same as BOOST_PP_TUPLE_PUSH_FRONT]
 [boost/vmd/tuple/push_front.hpp]
 ]
 [
@@ -282,23 +300,23 @@ general header file 'boost/vmd/vmd.hpp' for all macros.
 [heading Seq and tuple functionality]
 
 The set of macros for seq and tuple functionality which work with VMD seqs and
-VMD tuples are only a subset of the seq and tuple functionality in Boost PP. This reflects
+VMD tuples are largely only a subset of the seq and tuple functionality in Boost PP. This reflects
 the fact that a number of macros in Boost PP for working with a seq or tuple make no
 sense when extended to work with a possible empty seq or empty tuple. For instance
 BOOST_PP_SEQ_FIRST_N could not mean anything when passed an empty
 seq and BOOST_PP_TUPLE_REM_CTOR could not mean anything when passed an empty tuple.
 Likewise for other Boost PP seq and tuple macros which do not have a VMD equivalent.
 
-The set of functionality in VMD for working with a possibly empty seq or tuple makes
+The set of functionality in VMD for working with a possibly empty seq or empty tuple makes
 it possible to add or remove elements in a seq or tuple which could start out or
 end up empty, take the seq or tuple size even when the seq or tuple is empty, 
-and convert between arrays, lists, seqs, or tuples which could start out or end up 
-empty. This functionality should allow macro programmers the ability to work with 
-empty seqs and tuples while still using other Boost PP seq and tuple functuionality 
-to work with non-empty seqs and tuples. The easiest way to do this is to use the 
-VMD seq and VMD tuple equivalent functions when choosing between VMD and
-Boost PP, and use the Boost PP seq and tuple functionality otherwise. 
-Just remember that Boost PP seq and tuple functionality can never
-work with empty seqs or empty tuples.
+convert between arrays, lists, seqs, or tuples which could start out or end up 
+empty, and test for a VMD seq or a VMD tuple. This functionality should allow macro 
+programmers the ability to work with empty seqs and tuples while still using other 
+Boost PP seq and tuple functuionality to work with non-empty seqs and tuples. The 
+easiest way to do this is to use the VMD seq and VMD tuple equivalent functions 
+when choosing between VMD and Boost PP, and use the Boost PP seq and tuple 
+functionality otherwise. Just remember that Boost PP seq and tuple functionality 
+can never work with empty seqs or empty tuples.
 
 [endsect]

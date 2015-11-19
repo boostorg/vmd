@@ -60,13 +60,13 @@
     
     Identifiers are registered in VMD with:
     
-    #define BOOST_VMD_REG_XXX (XXX) where XXX is a v-identifier.
+        #define BOOST_VMD_REG_XXX (XXX) where XXX is a v-identifier.
     
     The identifier must be registered to be found.
     
     Identifiers are pre-detected in VMD with:
     
-    #define BOOST_VMD_DETECT_XXX_XXX where XXX is an identifier.
+        #define BOOST_VMD_DETECT_XXX_XXX where XXX is an identifier.
     
     If you specify optional ids and have not specified the detection
     of an optional id, that id will never match an identifier.
@@ -114,13 +114,13 @@
     
     Identifiers are registered in VMD with:
     
-    #define BOOST_VMD_REG_XXX (XXX) where XXX is a v-identifier.
+        #define BOOST_VMD_REG_XXX (XXX) where XXX is a v-identifier.
     
     The identifier must be registered to be found.
     
     Identifiers are pre-detected in VMD with:
     
-    #define BOOST_VMD_DETECT_XXX_XXX where XXX is an identifier.
+        #define BOOST_VMD_DETECT_XXX_XXX where XXX is an identifier.
     
     If you specify optional ids and have not specified the detection
     of an optional id, that id will never match an identifier.
