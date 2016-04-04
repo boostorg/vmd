@@ -5,7 +5,7 @@
   http://www.boost.org/LICENSE_1_0.txt).
 ]
 
-[section:vmd_modifiers_filter Identifier modifiers]
+[section:vmd_modifiers_identifier Identifier modifiers]
 
 Identifier modifiers are optional parameters which 
 specify a set of identifiers to search in order to look 
