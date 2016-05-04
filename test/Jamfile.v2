@@ -30,7 +30,7 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  
 local l_gcc_c11 = [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ;
 
-test-suite variadic_macro_data
+alias variadic_macro_data
     : 
        [ run test_after_array_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_after_identifier_elem.cpp : : : $(l_gcc_c11) ]
