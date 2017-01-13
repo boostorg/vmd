@@ -49,7 +49,7 @@ nothing when invoked, such as in:
 
 Finally emptiness can be part of any composite data type as in:
 
-['(45,,some_name)]
+    (45,,some_name)
 
 where the second tuple element is empty.
 
