@@ -1,5 +1,5 @@
 [/ 
-  (C) Copyright Edward Diener 2011-2015
+  (C) Copyright Edward Diener 2011-2017
   Distributed under the Boost Software License, Version 1.0.
   (See accompanying file LICENSE_1_0.txt or copy at
   http://www.boost.org/LICENSE_1_0.txt).
@@ -7,12 +7,93 @@
 
 [section:vmd_intro Introduction]
 
-Welcome to version 1.9 of the Variadic Macro Data library.
+Welcome to the Variadic Macro Data library.
 
 The Variadic Macro Data library, referred to hereafter as VMD for 
 short, is a library of variadic macros which provide enhancements 
 to the functionality in the Boost preprocessor library ( Boost PP ),
-especially as it relates to preprocessor "data types".
+especially as it relates to preprocessor data types.
+
+The preprocessor data types which which VMD works are
+emptiness, identifiers, numbers ( a subset of identifiers ),
+types ( a subset of identifiers ), Boost PP arrays,
+Boost PP lists, Boost PP seqs, Boost PP tuples, 
+and sequences. The first four are basic preprocessor data types
+while the latter five are composite preprocessor data types. A
+sequence is one or more of the other preprocessor data type
+( except for emptiness ) following each other.
+
+[heading Data type examples]
+
+An example of an identifier could be:
+
+anyname
+
+An example of a number could be:
+
+47
+
+An example of a type could be:
+
+BOOST_VMD_TYPE_NUMBER
+
+An example of the composite type Boost PP array could be:
+
+(4,(an_identifier,156,BOOST_VMD_TYPE_IDENTIFIER))
+
+An example of the composite type Boost PP list could be:
+
+(78,(some_identifier,(BOOST_VMD_TYPE_TYPE,BOOST_PP_NIL)))
+
+An example of the composite type Boost PP seq could be:
+
+(identifier)(89)(245)
+
+An example of the composite type Boost PP tuple could be:
+
+(any_id,175,BOOST_VMD_TYPE_LIST,happy,21)
+
+An example of a sequence could be:
+
+tree 59 (56,BOOST_VMD_TYPE_SEQ) (128)(fire)(clown) (47,(BOOST_VMD_TYPE_TUPLE,BOOST_PP_NIL))
+
+Emptiness is the lack of any preprocessing tokens. A macro which
+expsnds to nothing, as in:
+
+#define RETURN_NOTHING(x)
+
+is said to return emptiness. Conversely a macro could accept
+nothing when invoked, such as in:
+
+RETURN_NOTHING()
+
+Finally emptiness can be part of any composite data type,
+except for a sequence, as in:
+
+(45,,some_name)
+
+where the second tuple element is empty.
+
+[heading What's the big deal ?]
+
+VMD can identify any of the preprocessor data types previously mentioned,
+and can parse sequences into their individual preprocessor data types.
+You may well ask what is the importance of that.
+
+In Boost PP macro programming a great deal of the control logic of
+designing a macro is based on the support Boost PP has for numbers
+and testing for the value of a number, in particular 0 and 1 to represent
+boolean choices. Essentially Boost PP uses that value of a number to
+control the logic in a macro's design. VMD does not attempt, in any way,
+to duplicate Boost PP's support for testing the value of numbers or of
+the boolean 0 or 1 numbers. What VMD offers is a system for deciphering
+the preprocessor data types, as well as comparing any if the preprocessor
+data types for equality to any given value. This allows macro logic to be
+designed in a completely flexible way, both on the type of data and/or the
+value of the data. If this intrigues you, read on to understand how you
+can program macro processing using VMD.
+
+[heading Functionality areas]
 
 The functionality of the library may be summed up as:
 
