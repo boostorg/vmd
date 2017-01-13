@@ -20,57 +20,36 @@ types ( a subset of identifiers ), Boost PP arrays,
 Boost PP lists, Boost PP seqs, Boost PP tuples, 
 and sequences. The first four are basic preprocessor data types
 while the latter five are composite preprocessor data types. A
-sequence is one or more of the other preprocessor data type
-( except for emptiness ) following each other.
+sequence is zero or more of the other preprocessor data types
+following each other.
 
 [heading Data type examples]
 
-An example of an identifier could be:
-
-anyname
-
-An example of a number could be:
-
-47
-
-An example of a type could be:
-
-BOOST_VMD_TYPE_NUMBER
-
-An example of the composite type Boost PP array could be:
-
-(4,(an_identifier,156,BOOST_VMD_TYPE_IDENTIFIER))
-
-An example of the composite type Boost PP list could be:
-
-(78,(some_identifier,(BOOST_VMD_TYPE_TYPE,BOOST_PP_NIL)))
-
-An example of the composite type Boost PP seq could be:
-
-(identifier)(89)(245)
-
-An example of the composite type Boost PP tuple could be:
-
-(any_id,175,BOOST_VMD_TYPE_LIST,happy,21)
-
-An example of a sequence could be:
-
-tree 59 (56,BOOST_VMD_TYPE_SEQ) (128)(fire)(clown) (47,(BOOST_VMD_TYPE_TUPLE,BOOST_PP_NIL))
+[table:dwe Data types with examples
+[[Type] [Example]]
+[[identifier] [anyname]]
+[[number] [47]]
+[[type] [BOOST_VMD_TYPE_NUMBER]]
+[[array] [(4,(an_identifier,156,BOOST_VMD_TYPE_IDENTIFIER))]]
+[[list] [(78,(some_identifier,(BOOST_VMD_TYPE_TYPE,BOOST_PP_NIL)))]]
+[[seq] [(identifier)(89)(245)]]
+[[tuple] [(any_id,175,BOOST_VMD_TYPE_LIST,happy,21)]]
+[[sequence] [tree 59 (56,BOOST_VMD_TYPE_SEQ) (128)(fire)(clown) (47,(BOOST_VMD_TYPE_TUPLE,BOOST_PP_NIL))]]
+]
 
 Emptiness is the lack of any preprocessing tokens. A macro which
-expsnds to nothing, as in:
+expands to nothing, as in:
 
-#define RETURN_NOTHING(x)
+    #define RETURN_NOTHING(x)
 
 is said to return emptiness. Conversely a macro could accept
 nothing when invoked, such as in:
 
-RETURN_NOTHING()
+    RETURN_NOTHING()
 
-Finally emptiness can be part of any composite data type,
-except for a sequence, as in:
+Finally emptiness can be part of any composite data type as in:
 
-(45,,some_name)
+['(45,,some_name)]
 
 where the second tuple element is empty.
 
@@ -78,20 +57,22 @@ where the second tuple element is empty.
 
 VMD can identify any of the preprocessor data types previously mentioned,
 and can parse sequences into their individual preprocessor data types.
-You may well ask what is the importance of that.
+You may well ask why that is important.
 
 In Boost PP macro programming a great deal of the control logic of
 designing a macro is based on the support Boost PP has for numbers
 and testing for the value of a number, in particular 0 and 1 to represent
-boolean choices. Essentially Boost PP uses that value of a number to
-control the logic in a macro's design. VMD does not attempt, in any way,
-to duplicate Boost PP's support for testing the value of numbers or of
-the boolean 0 or 1 numbers. What VMD offers is a system for deciphering
-the preprocessor data types, as well as comparing any if the preprocessor
-data types for equality to any given value. This allows macro logic to be
-designed in a completely flexible way, both on the type of data and/or the
-value of the data. If this intrigues you, read on to understand how you
-can program macro processing using VMD.
+boolean choices. Essentially Boost PP often uses the value of a number to
+control the logic in a macro's design. 
+
+VMD does not attempt, in any way, to duplicate Boost PP's support for
+testing the value of numbers or of the boolean 0 or 1 values, but just
+reuses that functionality. What VMD offers, which goes beyond Boost PP,
+is a system for deciphering the preprocessor data types, as well as
+comparing any of the preprocessor data types for equality to any given
+value. This allows macro logic to be designed in a more flexible way,
+relying on the type of data and/or the value of the data. If this intrigues
+you, continue reading to understand how you can use VMD to do macro programming.
 
 [heading Functionality areas]
 
