@@ -14,8 +14,8 @@ short, is a library of variadic macros which provide enhancements
 to the functionality in the Boost preprocessor library ( Boost PP ),
 especially as it relates to preprocessor data types.
 
-The preprocessor data types which which VMD works are
-emptiness, identifiers, numbers ( a subset of identifiers ),
+The preprocessor data types with which VMD has specific functionality
+are emptiness, identifiers, numbers ( a subset of identifiers ),
 types ( a subset of identifiers ), Boost PP arrays,
 Boost PP lists, Boost PP seqs, Boost PP tuples, 
 and sequences. The first four are basic preprocessor data types
@@ -53,7 +53,7 @@ Finally emptiness can be part of any composite data type as in:
 
 where the second tuple element is empty.
 
-[heading What's the big deal ?]
+[heading What is the advantage ?]
 
 VMD can identify any of the preprocessor data types previously mentioned,
 and can parse sequences into their individual preprocessor data types.
