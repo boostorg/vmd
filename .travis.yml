@@ -51,7 +51,6 @@ install:
 script:
   - |-
     echo "using $TOOLSET : : $COMPILER : <cxxflags>-std=$CXXSTD ;" > ~/user-config.jam
-  - ./b2 libs/preprocessor/test toolset=$TOOLSET preprocessor_config
   - ./b2 libs/vmd/test toolset=$TOOLSET
 
 notifications:
