@@ -15,8 +15,8 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <test-info>always_show_run_output
                                                  <toolset>msvc:<warnings>all
                                                  <toolset>msvc:<cxxflags>-wd4003
-                                                 <toolset>intel-linux:<cxxflags>-std=c++11
-                                                 <toolset>clang-linux:<cxxflags>-std=c++11
+#                                                 <toolset>intel-linux:<cxxflags>-std=c++11
+#                                                 <toolset>clang-linux:<cxxflags>-std=c++11
                                                  <toolset>clang:<cxxflags>-pedantic-errors
                                                  <toolset>gcc:<warnings>all
                                                  <toolset>gcc:<cxxflags>-pedantic-errors
@@ -28,7 +28,7 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <target-os>android:<cxxflags>-std=c++0x
                                                  ;
                                                  
-local l_gcc_c11 = [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ;
+# local l_gcc_c11 = [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ;
 
 alias variadic_macro_data
     : 
