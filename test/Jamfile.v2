@@ -15,8 +15,6 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <test-info>always_show_run_output
                                                  <toolset>msvc:<warnings>all
                                                  <toolset>msvc:<cxxflags>-wd4003
-#                                                 <toolset>intel-linux:<cxxflags>-std=c++11
-#                                                 <toolset>clang-linux:<cxxflags>-std=c++11
                                                  <toolset>clang:<cxxflags>-pedantic-errors
                                                  <toolset>gcc:<warnings>all
                                                  <toolset>gcc:<cxxflags>-pedantic-errors
@@ -25,7 +23,6 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <toolset>gcc-4.3.0:<cxxflags>-U__STRICT_ANSI__
                                                  <toolset>gcc-4.4.0:<cxxflags>-U__STRICT_ANSI__
                                                  <toolset>gcc-4.5.0:<linkflags>"-Wl,--enable-auto-import"
-                                                 <target-os>android:<cxxflags>-std=c++0x
                                                  ;
                                                  
 # local l_gcc_c11 = [ predef-check "BOOST_COMP_GNUC >= 4.3" "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ;
@@ -37,7 +34,7 @@ alias variadic_macro_data
        [ run test_after_list_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_after_number_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_after_seq_elem.cpp : : : $(l_gcc_c11) ]
-       [ run test_android.cpp : : : [ predef-check "BOOST_OS_QNX == 0" : : <cxxflags>-std=c++0x ] ]
+       [ run test_android.cpp : : : [ predef-check "BOOST_PLAT_ANDROID != 0" "BOOST_OS_QNX == 0" ] ]
        [ run test_after_tuple_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_after_type_elem.cpp : : : $(l_gcc_c11) ]
        [ run test_array_elem.cpp : : : $(l_gcc_c11) ]
