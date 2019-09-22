@@ -132,7 +132,7 @@ alias variadic_macro_data
        [ run test_doc_modifiers_filter.cpp ]
        [ run test_doc_modifiers_identifier.cpp ]
        [ run test_doc_modifiers_index.cpp ]
-       [ run test_doc_modifiers_return_type.cpp ]
+       [ run test_doc_modifiers_return_type.cpp : : : <toolset>clang:<build>no ]
        [ run test_doc_modifiers_splitting.cpp ]
        [ run test_doc_number.cpp ]
        [ run test_doc_type.cpp ]
