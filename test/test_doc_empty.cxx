@@ -1,5 +1,5 @@
 
-//  (C) Copyright Edward Diener 2011-2015
+//  (C) Copyright Edward Diener 2011-2015,2019
 //  Use, modification and distribution are subject to the Boost Software License,
 //  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt).
@@ -13,6 +13,8 @@ int main()
   {
   
 #if BOOST_PP_VARIADICS
+
+ #define USE_VA_OPT BOOST_PP_VARIADIC_OPT()
 
  #define SMACRO() someoutput
  #define EMACRO(x) otheroutput x
@@ -84,7 +86,15 @@ int main()
  #define FMACRO4() ( any_number_of_tuple_elements )
  #define FMACRO5(param) ( any_number_of_tuple_elements )
  
-#if BOOST_VMD_MSVC
+#if USE_VA_OPT
+
+ #define FMACRO6(param1,param2) ( any_number_of_tuple_elements )
+ 
+ BOOST_TEST(!BOOST_VMD_IS_EMPTY(FMACRO4));
+ BOOST_TEST(!BOOST_VMD_IS_EMPTY(FMACRO5));
+ BOOST_TEST(!BOOST_VMD_IS_EMPTY(FMACRO6));
+ 
+#elif BOOST_VMD_MSVC
 
  #define FMACRO6(param1,param2) ( any_number_of_tuple_elements )
 
@@ -98,7 +108,7 @@ int main()
  BOOST_TEST(!BOOST_VMD_IS_EMPTY(FMACRO5));
  
 #endif
- 
+
 #else
 
 BOOST_ERROR("No variadic macro support");
