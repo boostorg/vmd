@@ -81,9 +81,9 @@
 
 #else
 
+# if defined(__cplusplus) && __cplusplus > 201703L
 #include <boost/preprocessor/variadic/opt.hpp>
 #include <boost/preprocessor/facilities/is_empty.hpp>
-
 #define BOOST_VMD_IS_EMPTY(...) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
@@ -95,7 +95,11 @@
       ) \
     (__VA_ARGS__) \
 /**/
-
+# else
+#define BOOST_VMD_IS_EMPTY(...) \
+    BOOST_VMD_IS_EMPTY_NO_OPT(__VA_ARGS__) \
+/**/
+# endif
 #define BOOST_VMD_IS_EMPTY_NO_OPT(...) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
@@ -110,7 +114,6 @@
       ) \
     (__VA_ARGS__) \
 /**/
-
 #endif /* BOOST_VMD_MSVC_V8 */
 #endif /* BOOST_PP_VARIADICS */
 #endif /* BOOST_VMD_IS_EMPTY_HPP */
