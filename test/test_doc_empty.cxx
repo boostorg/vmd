@@ -15,7 +15,7 @@ int main()
   
 #if BOOST_PP_VARIADICS
 
- #define USE_VA_OPT BOOST_PP_VARIADIC_OPT()
+ #define USE_VA_OPT BOOST_PP_VARIADIC_HAS_OPT()
 
  #define SMACRO() someoutput
  #define EMACRO(x) otheroutput x

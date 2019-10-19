@@ -31,7 +31,7 @@ int main()
   #define FUNC_GEN3() anything
   #define FUNC_GEN4(x) anything
   
-#if BOOST_PP_VARIADIC_OPT()
+#if BOOST_PP_VARIADIC_HAS_OPT()
 
   #define FUNC_GEN5(x,y) ()
   #define FUNC_GEN6(x,y) anything

@@ -87,7 +87,7 @@
 #define BOOST_VMD_IS_EMPTY(...) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
       ( \
-      BOOST_PP_VARIADIC_OPT() \
+      BOOST_PP_VARIADIC_HAS_OPT() \
       ) \
       ( \
       BOOST_PP_IS_EMPTY_OPT, \

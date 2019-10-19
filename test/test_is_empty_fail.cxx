@@ -13,7 +13,7 @@ int main()
   
 #if BOOST_PP_VARIADICS
 
-#if !BOOST_VMD_MSVC && !BOOST_PP_VARIADIC_OPT()
+#if !BOOST_VMD_MSVC && !BOOST_PP_VARIADIC_HAS_OPT()
 
   #define FUNC_GEN(x,y) anything
   

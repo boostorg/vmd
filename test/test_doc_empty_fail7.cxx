@@ -13,7 +13,7 @@ int main()
   
 #if BOOST_PP_VARIADICS
 
-#if !BOOST_VMD_MSVC && !BOOST_PP_VARIADIC_OPT()
+#if !BOOST_VMD_MSVC && !BOOST_PP_VARIADIC_HAS_OPT()
 
   #define FMACRO6(param1,param2) ( any_number_of_tuple_elements )
   
