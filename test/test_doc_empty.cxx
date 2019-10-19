@@ -7,7 +7,7 @@
 #include <boost/vmd/is_empty.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/elem.hpp>
-#include <boost/preprocessor/variadic/opt.hpp>
+#include <boost/preprocessor/variadic/has_opt.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
 int main()

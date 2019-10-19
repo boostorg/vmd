@@ -333,7 +333,7 @@ is a function-like macro taking no parameters and returns 1 if the compiler
 is in C++20 mode and __VA_OPT__ is supported, otherwise returns 0. The header
 file needed to invoke the macro as BOOST_PP_VARIADIC_HAS_OPT() is included as:
 
- #include <boost/preprocessor/variadic/opt.hpp>
+ #include <boost/preprocessor/variadic/has_opt.hpp>
  
 The programmer does not have to be compiling in C++20 mode to invoke the
 BOOST_PP_VARIADIC_HAS_OPT macro. When the programmer is not in C++20 mode invoking

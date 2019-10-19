@@ -82,7 +82,7 @@
 #else
 
 # if defined(__cplusplus) && __cplusplus > 201703L
-#include <boost/preprocessor/variadic/opt.hpp>
+#include <boost/preprocessor/variadic/has_opt.hpp>
 #include <boost/preprocessor/facilities/is_empty.hpp>
 #define BOOST_VMD_IS_EMPTY(...) \
     BOOST_VMD_DETAIL_IS_EMPTY_IIF \
