@@ -22,6 +22,7 @@ can create different expansions.
 
 As a simple example:
 
+ #include <boost/preprocessor/control/iif.hpp>
  #include <boost/vmd/is_seq.hpp>
  #include <boost/vmd/is_tuple.hpp>
 
@@ -61,6 +62,7 @@ using VMD's system for pre-detecting identifiers.
 
 As another simple example:
 
+ #include <boost/preprocessor/control/iif.hpp>
  #include <boost/vmd/is_identifier.hpp>
  
  #define BOOST_VMD_REGISTER_NAME (NAME)
@@ -90,6 +92,7 @@ Identifier pre-detection makes things clearer, allowing us to
 detect within VMD whether macro input matches a particular identifier.
 Using the same setup as our previous example, but with identifier pre-detection:
 
+ #include <boost/preprocessor/control/iif.hpp>
  #include <boost/vmd/is_identifier.hpp>
  
  #define BOOST_VMD_REGISTER_NAME (NAME)
@@ -145,11 +148,11 @@ PP data types, or access any individual data type in a sequence.
  BOOST_VMD_TO_TUPLE(ASEQUENCE)
  BOOST_VMD_ELEM(2,ASEQUENCE)
  
-Our first expansion returns the tuple:
+Our first expansion `BOOST_VMD_TO_TUPLE(ASEQUENCE)` returns the tuple:
 
  ((1,2),NAME,147,BOOST_VMD_TYPE_NUMBER,(a)(b))
 
-Our second expansion returns the sequence element:
+Our second expansion `BOOST_VMD_ELEM(2,ASEQUENCE)` returns the sequence element:
 
  147
  

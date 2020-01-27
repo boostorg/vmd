@@ -94,7 +94,7 @@ any particular identifier in preprocessor input.
 [heading Testing for an identifier macro]
 
 The specific macro used to test for an identifier in VMD is called BOOST_VMD_IS_IDENTIFIER.
-The macro takes one required parameter which is the input against which to test.
+The macro takes a required parameter of variadic data which is the input against which to test.
 
 When we invoke BOOST_VMD_IS_IDENTIFIER it returns 1 if the input represents any 
 registered identifier, otherwise it returns 0.
@@ -110,7 +110,7 @@ As an example:
  BOOST_VMD_IS_IDENTIFIER(some_input) // returns 1 if 'some_input' is 'yellow','green', or 'blue'
  BOOST_VMD_IS_IDENTIFIER(some_input) // returns 0 if 'some_input' is 'purple'
  
-Essentially only registered identifiers can be found in VMD as identifiers.
+Only registered identifiers can be found in VMD as identifiers.
 
 [heading Detecting a particular identifier]
 
@@ -138,9 +138,10 @@ will be explained later in the documentation when the particular macro functiona
 is discussed. If the programmer never uses the functionality which these situations
 encompass there is no need to use pre-detection for a registered identifier.
 
-[heading Parsing identifiers and undefined behavior]
+[heading Parsing identifier constraints and undefined behavior]
 
-The technique for parsing identifiers, once it is determined that the input
+The reason that the identifier constraints mentioned above exist is that the
+technique for parsing identifiers, once it is determined that the input
 being parsed does not begin with a set of parentheses, uses preprocessor 
 concatenation in its parsing. This technique involves the preprocessor '##' 
 operator to concatenate input, and examine the results of that concatenation.
@@ -150,9 +151,9 @@ be a valid preprocessing token, else the behavior of the preprocessor is undefin
 In C++ 'undefined behavior' in general means that anything can happen. In practical
 use when preprocessor concatenation does not produce a valid preprocessing token,
 a compiler is most likely to generate a preprocessing error. If the compiler chooses
-not to issue a preprocessing error the outcome will always mean that parsing an
-identifier will fail. But because the outcome is undefined behavior there is no
-absolute way that the programmer can determine what the outcome will be when
+not to issue a preprocessing error the outcome will always be correct and mean that
+parsing an identifier will fail. But because the outcome is undefined behavior there
+is no absolute way that the programmer can determine what the outcome will be when
 preprocessor concatenation is used and the input being parsed contains
 preprocessor input which does not meet the constraints for parsing an identifier
 mentioned at the beginning of this topic.

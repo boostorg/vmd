@@ -14,10 +14,11 @@ the ability to identify emptiness using BOOST_VMD_IS_EMPTY.
 The general name I will use in this documentation for these 
 specific macros is "identifying macros." The identifying macros
 also share with BOOST_VMD_IS_EMPTY the inherent flaw
-mentioned when discussing BOOST_VMD_IS_EMPTY, since they themselves
-use BOOST_VMD_IS_EMPTY to determine that the input has ended.
+mentioned when discussing BOOST_VMD_IS_EMPTY prior to the C++20
+standard, since they themselves use BOOST_VMD_IS_EMPTY to determine
+that the input has ended.
 
-To recapitulate the flaw with BOOST_VMD_IS_EMPTY:
+To recapitulate the flaw with BOOST_VMD_IS_EMPTY prior to C++20:
 
 * using a standard C++ compiler if the input ends with the
 name of a function-like macro, and that macro takes two or

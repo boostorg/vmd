@@ -205,9 +205,39 @@ of individual top-level data types in the sequence.
  BOOST_VMD_SIZE(A_SINGLE_ELEMENT_SEQUENCE) will return 1
  BOOST_VMD_SIZE(A_MULTI_ELEMENT_SEQUENCE) will return 3
 
+[heading Distinguishing consecutive seqs and tuples in a sequence]
+
+As has previously been mentioned a single element tuple
+is also a one element seq, so parsing a sequence which
+has seqs and tuples in them might be a problem as far
+as identify each element of the sequence. In a multi-element
+sequence if the data consists of a mixture of seqs
+and tuples consecutively we need to distinguish how VMD parses the data.
+The rule is that VMD always parses a single element tuple as a tuple unless it is
+followed by one or more single element tuples, in which case it is a seq.
+Here are some examples showing how the rule is applied.
+
+ #define ST_DATA (somedata)(element1,element2)
+ 
+VMD parses the above data as 2 consecutive tuples.
+The first tuple is the single element tuple '(somedata)' and the second tuple
+is the multi element tuple '(element1,element2)'.
+
+ #define ST_DATA (element1,element2)(somedata)
+ 
+VMD parses the above data as 2 consecutive tuples.
+The first tuple is the multi element tuple '(element1,element2)' and the second tuple
+is the single element tuple '(somedata)'.
+
+ #define ST_DATA (somedata)(some_other_data)(element1,element2)
+ 
+VMD parses the above data as a seq followed by a tuple.
+The seq is '(somedata)(some_other_data)' and the tuple is
+'(element1,element2)'.
+
 [heading Using VMD to parse sequence input]
 
-For a VMD sequence essentially two ways of parsing into individual data 
+For a VMD sequence two ways of parsing into individual data 
 types are offered by the VMD library:
 
 # The sequence can be converted to any of the Boost PP data types, or

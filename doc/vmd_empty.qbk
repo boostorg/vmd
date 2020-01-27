@@ -356,7 +356,7 @@ to BOOST_VMD_IS_EMPTY. Obviously the macro should be used by the preprocessor
 metaprogrammer when the possible input to it is constrained to eliminate the erroneous
 case.
 
-Furthermore, since emptiness can correctly be tested for in nearly every situation, the
+Since emptiness can correctly be tested for in nearly every situation, the
 BOOST_VMD_IS_EMPTY macro can be used internally when the preprocessor metaprogrammer wants to return data
 from a macro and all or part of that data could be empty.
 

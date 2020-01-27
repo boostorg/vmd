@@ -24,7 +24,7 @@ The preprocessor token types which VMD cannot parse are:
 * preprocessing-op-or-punc
 
 Even though VMD cannot parse these preprocessor token types, it is still
-a very useful library since a large part of macro programming works with
+a very useful library since a very large part of macro programming works with
 'identifier' and 'pp-number' tokens.
 
 VMD identifiers are preprocessing tokens consisting 
@@ -47,9 +47,9 @@ and therefore passed or returned by macros. Like any identifier a v-type can be 
 separate element or in a sequence of preprocessing tokens.
 
 VMD can also test for emptiness, or the absence of any preprocessing tokens when passed
-as macro input.
+as macro input or returned from a macro.
 
-The Boost PP library supports four individual high-level data types. These are arrays, 
+The Boost PP library supports four individual composite data types. These are arrays, 
 lists, seqs, and tuples. When using variadic macros arrays are really 
 obsolete since tuples have all the functionality of arrays with a simpler syntax. 
 Nonetheless arrays are fully supported by VMD. A further data type supported by 
