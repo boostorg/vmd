@@ -109,6 +109,7 @@ boostbook standalone
   :
      vmd
   :
+  <flags>"--maxdepth 100000"
   <xsl:param>boost.root="../../../.."
   <xsl:param>chunk.section.depth=8  # How far down we chunk nested sections, basically all of them.
   <xsl:param>toc.section.depth=8  # How far down sections get TOCs.
