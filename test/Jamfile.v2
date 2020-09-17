@@ -15,9 +15,7 @@ project variadic_macro_data_tests : requirements <warnings>on
                                                  <test-info>always_show_run_output
                                                  <toolset>msvc:<warnings>all
                                                  <toolset>msvc:<cxxflags>-wd4003
-                                                 <toolset>clang:<cxxflags>-pedantic-errors
                                                  <toolset>gcc:<warnings>all
-                                                 <toolset>gcc:<cxxflags>-pedantic-errors
                                                  [ predef-check "BOOST_COMP_GNUC >= 4.7.4" : : <cxxflags>-ftrack-macro-expansion=0 ]
                                                  [ predef-check "BOOST_COMP_GNUC >= 4.3.0" : : <cxxflags>-Wno-variadic-macros ]
                                                  <toolset>gcc-4.3.0:<cxxflags>-U__STRICT_ANSI__
