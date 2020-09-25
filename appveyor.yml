@@ -20,20 +20,27 @@ environment:
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       TOOLSET: msvc-10.0
+      ADDRMD: 32
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       TOOLSET: msvc-11.0
+      ADDRMD: 32
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       TOOLSET: msvc-12.0
+      ADDRMD: 32,64
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       TOOLSET: msvc-14.0
+      ADDRMD: 32,64
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       TOOLSET: msvc-14.1
+      ADDRMD: 32,64
       CXXSTD: 14,17,latest
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       TOOLSET: msvc-14.2
+      ADDRMD: 32,64
       CXXSTD: 14,17,latest
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       TOOLSET: msvc-14.2
+      ADDRMD: 32,64
       CXXSTD: 14,17,latest
       PREPROCESSOR: /Zc:preprocessor
 
@@ -75,5 +82,6 @@ for:
 
   test_script:
     - if not "%CXXSTD%" == "" set CXXSTD=cxxstd=%CXXSTD%
+    - if not "%ADDRMD%" == "" set ADDRMD=address-model=%ADDRMD%
     - if not "%PREPROCESSOR%" == "" set PREPROCESSOR=cflags="%PREPROCESSOR%"
-    - b2 libs/vmd/test -j3 toolset=%TOOLSET% %CXXSTD% address-model=32,64 %PREPROCESSOR% variant=debug,release
+    - b2 libs/vmd/test -j3 toolset=%TOOLSET% %CXXSTD% %ADDRMD% %PREPROCESSOR% variant=debug,release
