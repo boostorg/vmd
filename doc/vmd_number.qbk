@@ -8,7 +8,7 @@
 [section:vmd_number Numbers]
 
 A number in VMD is a preprocessing 'pp-number', 
-limited to a Boost PP number. This is an integral literal between 0 and 256.
+limited to a Boost PP number. This is an integral literal between 0 and BOOST_PP_LIMIT_MAG.
 The form of the number does not contain leading zeros. Acceptable as numbers are:
 
  0
@@ -76,7 +76,7 @@ Let us look at an example of how to use BOOST_VMD_IS_NUMBER.
  if input = 44 DATA, 0 since there are tokens after the number
  if input = 044, 0 since no leading zeros are allowed for our Boost PP numbers
  if input = 256, 1
- if input = 257, 0 since it falls outside the Boost PP number range of 0-256
+ if input = 1025, 0 since it falls outside the Boost PP number range of 0-BOOST_PP_LIMIT_MAG
  if input = %44, does not meet the constraint therefore undefined behavior
  if input = 44.0, does not meet the constraint therefore undefined behavior
  if input = ( 44 ), 0 since the macro begins with a tuple and this can be tested for

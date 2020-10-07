@@ -125,7 +125,7 @@ Otherwise the output is 'Parameter is not a NAME or ADDRESS identifier'.
 
 The VMD library also has 2 different subtypes of identifiers which can always be
 recognized. The first are numbers, equivalent to the number in Boost PP, numeric
-values with a range of 0-256. The second are v-types, which are identifiers starting
+values with a range of 0-BOOST_PP_LIMIT_MAG. The second are v-types, which are identifiers starting
 with BOOST_VMD_TYPE_ followed by a name for the type of data. As an example, the v-type
 of a Boost PP tuple is BOOST_VMD_TYPE_TUPLE and the v-type of a v-type itself is
 BOOST_VMD_TYPE_TYPE. All data types have their own v-type identifier; types are

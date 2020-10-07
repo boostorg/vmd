@@ -15,7 +15,7 @@ to the functionality in the Boost preprocessor library ( Boost PP ),
 especially as it relates to preprocessor data types.
 
 In the Boost PP library the preprocessor data types which have
-specific functionality are numbers ( values between 0 and 256)
+specific functionality are numbers ( values between 0 and BOOST_PP_LIMIT_MAG)
 and the composite data types Boost PP arrays, Boost PP lists, 
 Boost PP seqs, and Boost PP tuples.
 

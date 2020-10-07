@@ -35,7 +35,7 @@ functionality for parsing VMD identifiers both as a separate element or in a seq
 tokens.
 
 VMD numbers are Boost PP numbers, ie. preprocessing tokens of 
-whole numbers between 0 and 256 inclusive. These are a small subset of preprocessor token 
+whole numbers between 0 and BOOST_PP_LIMIT_MAG inclusive. These are a small subset of preprocessor token 
 "pp-number". VMD offers functionality for parsing numbers both as a separate element or 
 in a sequence of preprocessing tokens. A VMD number is really a subset of VMD identifiers 
 for which VMD offers specific functionality. The Boost PP library has it own extensive support
