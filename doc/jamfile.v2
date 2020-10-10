@@ -50,6 +50,7 @@ doxygen vmd_reference
     $(here)/../../../boost/vmd/is_empty.hpp
     $(here)/../../../boost/vmd/is_empty_array.hpp
     $(here)/../../../boost/vmd/is_empty_list.hpp
+    $(here)/../../../boost/vmd/is_general_identifier.hpp
     $(here)/../../../boost/vmd/is_identifier.hpp
     $(here)/../../../boost/vmd/is_list.hpp
     $(here)/../../../boost/vmd/is_multi.hpp

@@ -156,6 +156,7 @@ alias variadic_macro_data
        [ run-fail test_is_array_fail3.cpp ]
        [ run-fail test_is_array_fail4.cpp ]
        [ run test_is_empty.cpp ]
+       [ run test_is_general_identifier.cpp ]
        [ compile-fail test_is_empty_fail.cpp ]
        [ run test_is_identifier.cpp ]
        [ run test_is_list.cpp ]
