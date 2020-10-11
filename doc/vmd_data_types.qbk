@@ -50,11 +50,10 @@ VMD can also test for emptiness, or the absence of any preprocessing tokens when
 as macro input or returned from a macro.
 
 The Boost PP library supports four individual composite data types. These are arrays, 
-lists, seqs, and tuples. When using variadic macros arrays are really 
-obsolete since tuples have all the functionality of arrays with a simpler syntax. 
-Nonetheless arrays are fully supported by VMD. A further data type supported by 
-Boost PP is variadic data, which is a comma separated grouping of preprocessor elements.
-VMD has no special support for variadic data outside of what is already in Boost PP.
+lists, seqs, and tuples. These data types are recognized and supported by VMD.
+A further data type supported by Boost PP is variadic data, which is a comma separated
+grouping of preprocessor elements. VMD has no special support for variadic data outside
+of what is already in Boost PP.
 
 VMD has functionality to work with the four Boost PP high-level data types. VMD can 
 test the Boost PP data types and parse them in a sequence of preprocessor tokens.

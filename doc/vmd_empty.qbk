@@ -11,7 +11,10 @@
 
 It is possible to pass an empty argument to a macro.
 The official terminology for this in the C++ standard is an argument 
-"consisting of no preprocessing tokens".
+"consisting of no preprocessing tokens". Passing an empty argument
+to a macro is officially part of the C++11 standard, but a number
+of compilers also support passing an empty argument to a macro in
+C++98/C++03 mode, when not in strict compliance to the standard.
 
 Let us consider a number of cases without worrying too much
 what the macro output represents.
@@ -139,19 +142,17 @@ that data was indeed empty.
 [heading Testing for empty data]
 
 Currently Boost PP has an undocumented macro for testing whether 
-a parameter is empty of not, written without the use of variadic 
-macros. The macro is called BOOST_PP_IS_EMPTY. The macro is by its nature flawed,
+a parameter is empty of not. The macro is called BOOST_PP_IS_EMPTY. The macro is by its nature flawed,
 since there is no generalized way of determining whether or not a 
 parameter is empty using the C++ preprocessor prior to C++20. But the macro will 
-work given input limited in various ways or if the input is actually empty.
+work correctly with almost all non-empty input or if the input is actually empty.
 
-Paul Mensonides, the developer of Boost PP and the BOOST_PP_IS_EMPTY macro 
-in that library, also wrote a better macro using variadic 
-macros, for determining whether or not a parameter is empty or not, which
-he published on the Internet in response to a discussion about emptiness.
-This macro is also not perfect, since there is no perfect solution prior to C++20, 
-but will work correctly with almost all input. I have adapted his code
-for VMD and developed my own very slightly different code.
+Paul Mensonides, the developer of Boost PP,
+wrote the code for the BOOST_PP_IS_EMPTY macro,
+for determining whether or not a parameter is empty or not using variadic macros, which
+he originally published on the Internet in response to a discussion about emptiness.
+I have adapted his code for the Boost PP library and
+for VMD developed my own very slightly different code based on his original example.
 
 The macro is called [macroref BOOST_VMD_IS_EMPTY] and will return 1 if its input 
 is empty or 0 if its input is not empty. The macro

@@ -1,13 +1,11 @@
 [/ 
-  (C) Copyright Edward Diener 2011-2015
+  (C) Copyright Edward Diener 2011-2015,2020
   Distributed under the Boost Software License, Version 1.0.
   (See accompanying file LICENSE_1_0.txt or copy at
   http://www.boost.org/LICENSE_1_0.txt).
 ]
 
-[section:vmd_identifying Identifying data types]
-
-[heading Identifying macros and BOOST_VMD_IS_EMPTY ]
+[section:vmd_identifying Identifying macros and BOOST_VMD_IS_EMPTY]
 
 The various macros for identifying VMD data types complement
 the ability to identify emptiness using BOOST_VMD_IS_EMPTY.
@@ -52,26 +50,5 @@ without encountering the BOOST_VMD_IS_EMPTY problem. However if the input is:
 either directly or through accessing the above tuple's first element, and the 
 programmer attempts to use BOOST_VMD_IS_IDENTIFIER with this input, the 
 BOOST_VMD_IS_EMPTY problem will occur.
-
-[heading Identifying macros and programming flexibility ]
-
-The VMD identifying macros give the preprocessor metaprogrammer a great amount
-of flexibility when designing macros. It is not merely the flexibility of allowing
-direct parameters to a macro to be different data types, and having the macro work
-differently depending on the type of data passed to it, but it is also the flexibility
-of allowing individual elements of the higher level Boost PP data types to be 
-different data types and have the macro work correctly depending on the type of data 
-type passed as part of those elements.
-
-With this flexibility also comes a greater amount of responsibility. For the macro 
-designer this responsibility is twofold: 
-
-* To carefully document the possible combinations of acceptable data and what they mean.
-* To balance flexibility with ease of use so that the macro does not become so hard to
-understand that the programmer invoking the macro gives up using it entirely.
-
-For the programmer invoking a macro the responsibility is to understand the documentation
-and not attempt to pass to the macro data which may cause incorrect results or preprocessing
-errors.
 
 [endsect]

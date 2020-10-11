@@ -25,7 +25,7 @@ preprocessor data types: emptiness, VMD identifiers,
 VMD types ( a subset of identifiers ), and VMD sequences, which is another
 composite data type. A sequence is zero or more of any of the other
 preprocessor data types, other than emptiness, which have been
-previously mentioned asd supported by the VMD library, sequentially
+previously mentioned and supported by the VMD library, sequentially
 following each other.
 
 The VMD library does not replicate in any way the functionality

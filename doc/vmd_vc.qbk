@@ -25,7 +25,7 @@ in this documentation. Your macro processing may therefore occasional take the f
  
  #if BOOST_VMD_MSVC
  
- #define SOME_MACRO ... code for VC++
+ #define SOME_MACRO ... code for VC++ using its default preprocessor
  
  #else
  
