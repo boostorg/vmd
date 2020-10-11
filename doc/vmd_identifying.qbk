@@ -23,7 +23,7 @@ To recapitulate the flaw with BOOST_VMD_IS_EMPTY prior to C++20:
 * using a standard C++ compiler if the input ends with the
 name of a function-like macro, and that macro takes two or
 more parameters, a preprocessing error will occur.
-* using the VC++ compiler if the input consists of the name
+* using the VC++ compiler with its default preprocessor if the input consists of the name
 of a function-like macro, and that macro when invoked with no 
 parameters returns a tuple, the macro erroneously returns 1, 
 meaning that the input is empty.

@@ -207,12 +207,12 @@ testing for emptiness.
 
 [heading Macro Flaw with Visual C++]
 
-The VC++ preprocessor is not a standard C++ conforming preprocessor in at least two 
+The VC++ default preprocessor is not a standard C++ conforming preprocessor in at least two 
 relevant situations to our discussion of emptiness. These situations combine to create 
 a single corner case which causes the BOOST_VMD_IS_EMPTY macro to not work properly 
-using VC++ when the input resolves to a function-like macro name.
+using VC++ with its default preprocessor when the input resolves to a function-like macro name.
 
-The first situation, related to our discussion of emptiness, where the VC++ preprocessor
+The first situation, related to our discussion of emptiness, where the VC++ default preprocessor
 is not a standard C++ conforming preprocessor is that if a macro taking 'n' number of parameters is invoked 
 with 0 to 'n-1' parameters, the compiler does not give an error, but only a warning.
 
@@ -221,14 +221,14 @@ with 0 to 'n-1' parameters, the compiler does not give an error, but only a warn
  FMACRO(1)
  
 should give a compiler error, as it does when using a C++ standard-conforming  
-compiler, but when invoked using VC++ it only gives a warning
+compiler, but when invoked using VC++ with its default preprocessor it only gives a warning
 and VC++ continues macro substitution with 'y' as a placemarker preprocessing token.
 This non-standard conforming action actually eliminates the case where BOOST_VMD_IS_EMPTY
 does not work properly with a standard C++ conforming compiler. But of course it has the
 potential of producing incorrect output in other macro processing situations unrelated
 to the BOOST_VMD_IS_EMPTY invocation, where a compiler error should occur.
 
-A second general situation, related to our discussion of emptiness, where the VC++ preprocessor
+A second general situation, related to our discussion of emptiness, where the VC++ default preprocessor
 is not a standard C++ conforming preprocessor is that the expansion of a macro works incorrectly 
 when the expanded macro is a function-like macro name followed by a function-like macro invocation, 
 in which case the macro re-expansion is erroneously done more than once. This latter case can be 
@@ -244,7 +244,7 @@ seen by this example:
  
  FMACRO3()
  
- but in VC++ it expands to:
+ but in VC++ with its default preprocessor it expands to:
  
  1
 
@@ -255,7 +255,7 @@ where after initially expanding the macro to:
 VC++ erroneously rescans the sequence of preprocessing tokens more than once rather than 
 rescan just one more time for more macro names.
 
-What these two particular preprocessor flaws in the VC++ compiler mean is that although
+What these two particular preprocessor flaws in the VC++ compiler with its default preprocessor mean is that although
 BOOST_VMD_IS_EMPTY does not fail with a compiler error in the same case as with 
 a standard C++ conforming compiler given previously, it fails by giving
 the wrong result in another situation. 
@@ -281,12 +281,12 @@ Here is an example of the failure:
  
 As with a standard C++ conforming compiler prior to C++20, we have a rare corner case where
 the BOOST_VMD_IS_EMPTY will not work properly, but unfortunately in this very
-similar but even rarer corner case with VC++, we will silently get an incorrect result
+similar but even rarer corner case with VC++ with its default preprocessor, we will silently get an incorrect result
 rather than a compiler error.
 
 I want to reiterate that for all compilers prior to C++20 there is no perfect solution
 in C++ to the detection of emptiness even for a C++ compiler whose preprocessor is completely
-conformant, which VC++ obviously is not.
+conformant, which VC++ with its default preprocessor obviously is not.
 
 [heading Testing emptiness in C++20 mode]
 
@@ -345,7 +345,7 @@ clever preprocessor programming.
 [heading Macro Flaw conclusion]
 
 With all of the above mentioned, the cases where BOOST_VMD_IS_EMPTY will work 
-incorrectly are very small, even with the erroneous VC++ preprocessor, 
+incorrectly are very small, even with the erroneous VC++ default preprocessor, 
 and I consider the macro worthwhile to use since it works correctly with the vast 
 majority of possible preprocessor input, and always works correctly in C++20
 mode with __VA_OPT__ preprocessor support.
